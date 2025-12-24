@@ -19,7 +19,7 @@
 
 ## 🎯 Visual Overview
 
-<img src="./efficient/images/flash-attention.svg" width="100%">
+<img src="../06-hot-topics/flash-attention/images/flash-attention.svg" width="100%">
 
 *Caption: Scaling techniques enable training billion-parameter models. Key methods include mixed precision (FP16/BF16), distributed training (DDP/FSDP), and FlashAttention for memory-efficient attention computation.*
 
