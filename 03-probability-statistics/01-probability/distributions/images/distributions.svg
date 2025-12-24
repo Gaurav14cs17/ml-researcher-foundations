@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1687.5 1012.5">
+  <ns0:rect width="1687.5" height="1012.5" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="375" y="35" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Common Probability Distributions</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="200" height="170" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="100" y="60.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Gaussian (Normal)</ns0:text>
+    <ns0:path d="M30 130 Q50 130 70 110 Q90 70 100 50 Q110 70 130 110 Q150 130 170 130" stroke="#007bff" stroke-width="3" fill="none"/>
+    <ns0:line x1="30" y1="130" x2="170" y2="130" stroke="#e0e0e0" stroke-width="1"/>
+    <ns0:text x="100" y="150" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">N(μ, σ²)</ns0:text>
+    <ns0:text x="100" y="175.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Most common in ML</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(275, 70)">
+    <ns0:rect width="200" height="170" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="100" y="200.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Bernoulli</ns0:text>
+    <ns0:rect x="50" y="60" width="30" height="60" fill="#2e7d32"/>
+    <ns0:rect x="120" y="90" width="30" height="30" fill="#2e7d32"/>
+    <ns0:line x1="30" y1="130" x2="170" y2="130" stroke="#e0e0e0" stroke-width="1"/>
+    <ns0:text x="65" y="225.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">0</ns0:text>
+    <ns0:text x="135" y="250.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">1</ns0:text>
+    <ns0:text x="100" y="275.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Binary outcomes</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(500, 70)">
+    <ns0:rect width="200" height="170" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="100" y="300.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Categorical</ns0:text>
+    <ns0:rect x="30" y="80" width="25" height="40" fill="#e65100"/>
+    <ns0:rect x="60" y="60" width="25" height="60" fill="#e65100"/>
+    <ns0:rect x="90" y="90" width="25" height="30" fill="#e65100"/>
+    <ns0:rect x="120" y="70" width="25" height="50" fill="#e65100"/>
+    <ns0:rect x="150" y="100" width="25" height="20" fill="#e65100"/>
+    <ns0:line x1="20" y1="130" x2="180" y2="130" stroke="#e0e0e0" stroke-width="1"/>
+    <ns0:text x="100" y="325.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Multi-class</ns0:text>
+    <ns0:text x="100" y="350.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Classification output</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 260)">
+    <ns0:rect width="200" height="170" rx="10" fill="#1a237e" stroke="#6f42c1" stroke-width="2"/>
+    <ns0:text x="100" y="375.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Uniform</ns0:text>
+    <ns0:line x1="40" y1="80" x2="160" y2="80" stroke="#6f42c1" stroke-width="3"/>
+    <ns0:line x1="40" y1="80" x2="40" y2="130" stroke="#6f42c1" stroke-width="2"/>
+    <ns0:line x1="160" y1="80" x2="160" y2="130" stroke="#6f42c1" stroke-width="2"/>
+    <ns0:line x1="30" y1="130" x2="170" y2="130" stroke="#e0e0e0" stroke-width="1"/>
+    <ns0:text x="100" y="400.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">U(a, b)</ns0:text>
+    <ns0:text x="100" y="425.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Random init</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(275, 260)">
+    <ns0:rect width="200" height="170" rx="10" fill="#1a237e" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="100" y="450.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Exponential</ns0:text>
+    <ns0:path d="M40 50 Q60 70 80 100 Q100 115 140 125 Q160 128 170 130" stroke="#dc3545" stroke-width="3" fill="none"/>
+    <ns0:line x1="30" y1="130" x2="170" y2="130" stroke="#e0e0e0" stroke-width="1"/>
+    <ns0:text x="100" y="475.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Exp(λ)</ns0:text>
+    <ns0:text x="100" y="500.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Wait times</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(500, 260)">
+    <ns0:rect width="200" height="170" rx="10" fill="#1a237e" stroke="#17a2b8" stroke-width="2"/>
+    <ns0:text x="100" y="525.0" text-anchor="middle" fill="#00838f" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Softmax Output</ns0:text>
+    <ns0:rect x="40" y="70" width="30" height="50" fill="#00838f"/>
+    <ns0:rect x="85" y="90" width="30" height="30" fill="#00838f"/>
+    <ns0:rect x="130" y="100" width="30" height="20" fill="#00838f"/>
+    <ns0:line x1="30" y1="130" x2="170" y2="130" stroke="#e0e0e0" stroke-width="1"/>
+    <ns0:text x="100" y="550.0" text-anchor="middle" fill="#00838f" font-family="Arial, sans-serif" font-size="9">Σ = 1</ns0:text>
+    <ns0:text x="100" y="575.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">exp(xᵢ)/Σexp(xⱼ)</ns0:text>
+  </ns0:g>
+</ns0:svg>

@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1000">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc"/>
+      <stop offset="100%" style="stop-color:#f1f5f9"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#475569"/>
+    </marker>
+  </defs>
+  
+  <rect width="2000" height="1000" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="1000" y="60" text-anchor="middle" fill="#0f172a" font-family="Arial, sans-serif" font-size="48" font-weight="bold">CNN Architecture</text>
+  <text x="1000" y="105" text-anchor="middle" fill="#475569" font-family="Arial, sans-serif" font-size="24">Convolutional Neural Network for Image Processing</text>
+  
+  <!-- CNN Pipeline -->
+  <g transform="translate(80, 160)">
+    <!-- Input Image -->
+    <g filter="url(#shadow)">
+      <rect x="0" y="150" width="180" height="180" fill="#e0f2fe" stroke="#0284c7" stroke-width="4" rx="10"/>
+      <rect x="10" y="160" width="160" height="160" fill="#bae6fd" stroke="#0369a1" stroke-width="2" rx="6"/>
+      <!-- Grid pattern -->
+      <line x1="10" y1="200" x2="170" y2="200" stroke="#0284c7" stroke-width="1" opacity="0.3"/>
+      <line x1="10" y1="240" x2="170" y2="240" stroke="#0284c7" stroke-width="1" opacity="0.3"/>
+      <line x1="10" y1="280" x2="170" y2="280" stroke="#0284c7" stroke-width="1" opacity="0.3"/>
+      <line x1="50" y1="160" x2="50" y2="320" stroke="#0284c7" stroke-width="1" opacity="0.3"/>
+      <line x1="90" y1="160" x2="90" y2="320" stroke="#0284c7" stroke-width="1" opacity="0.3"/>
+      <line x1="130" y1="160" x2="130" y2="320" stroke="#0284c7" stroke-width="1" opacity="0.3"/>
+      <text x="90" y="240" text-anchor="middle" fill="#0369a1" font-family="Arial, sans-serif" font-size="32" font-weight="bold">🖼️</text>
+      <text x="90" y="360" text-anchor="middle" fill="#0284c7" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Input Image</text>
+      <text x="90" y="383" text-anchor="middle" fill="#0369a1" font-family="Arial, sans-serif" font-size="16">32×32×3</text>
+    </g>
+    
+    <line x1="180" y1="240" x2="230" y2="240" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+    
+    <!-- Conv Layer 1 -->
+    <g transform="translate(230, 0)" filter="url(#shadow)">
+      <rect x="0" y="130" width="200" height="220" fill="#f0fdf4" stroke="#10b981" stroke-width="4" rx="12"/>
+      <text x="100" y="30" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Conv Layer 1</text>
+      
+      <!-- Feature maps -->
+      <rect x="30" y="60" width="60" height="150" fill="#86efac" rx="6"/>
+      <rect x="55" y="75" width="60" height="150" fill="#4ade80" rx="6"/>
+      <rect x="80" y="90" width="60" height="150" fill="#22c55e" rx="6"/>
+      
+      <text x="100" y="265" text-anchor="middle" fill="#15803d" font-family="Arial, sans-serif" font-size="15" font-weight="bold">+ ReLU</text>
+      <text x="100" y="290" text-anchor="middle" fill="#166534" font-family="Arial, sans-serif" font-size="14">28×28×16</text>
+      <text x="100" y="310" text-anchor="middle" fill="#064e3b" font-family="Arial, sans-serif" font-size="13">3×3 kernels</text>
+    </g>
+    
+    <line x1="430" y1="240" x2="480" y2="240" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+    
+    <!-- Pooling Layer 1 -->
+    <g transform="translate(480, 0)" filter="url(#shadow)">
+      <rect x="0" y="150" width="180" height="180" fill="#fef3c7" stroke="#f59e0b" stroke-width="4" rx="12"/>
+      <text x="90" y="30" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Max Pool</text>
+      
+      <!-- Pooling visual -->
+      <rect x="30" y="75" width="50" height="120" fill="#fcd34d" rx="6"/>
+      <rect x="50" y="90" width="50" height="120" fill="#fbbf24" rx="6"/>
+      <rect x="70" y="105" width="50" height="120" fill="#f59e0b" rx="6"/>
+      
+      <text x="90" y="255" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="15" font-weight="bold">2×2 pool</text>
+      <text x="90" y="280" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="14">14×14×16</text>
+      <text x="90" y="300" text-anchor="middle" fill="#78350f" font-family="Arial, sans-serif" font-size="13">Downsampling</text>
+    </g>
+    
+    <line x1="660" y1="240" x2="710" y2="240" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+    
+    <!-- Conv Layer 2 -->
+    <g transform="translate(710, 0)" filter="url(#shadow)">
+      <rect x="0" y="130" width="200" height="220" fill="#eff6ff" stroke="#3b82f6" stroke-width="4" rx="12"/>
+      <text x="100" y="30" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Conv Layer 2</text>
+      
+      <!-- Feature maps -->
+      <rect x="20" y="60" width="50" height="130" fill="#93c5fd" rx="6"/>
+      <rect x="40" y="75" width="50" height="130" fill="#60a5fa" rx="6"/>
+      <rect x="60" y="90" width="50" height="130" fill="#3b82f6" rx="6"/>
+      <rect x="80" y="105" width="50" height="130" fill="#2563eb" rx="6"/>
+      
+      <text x="100" y="265" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="15" font-weight="bold">+ ReLU</text>
+      <text x="100" y="290" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="14">10×10×32</text>
+      <text x="100" y="310" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="13">3×3 kernels</text>
+    </g>
+    
+    <line x1="910" y1="240" x2="960" y2="240" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+    
+    <!-- Pooling Layer 2 -->
+    <g transform="translate(960, 0)" filter="url(#shadow)">
+      <rect x="0" y="170" width="160" height="140" fill="#fce7f3" stroke="#ec4899" stroke-width="4" rx="12"/>
+      <text x="80" y="30" text-anchor="middle" fill="#ec4899" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Max Pool</text>
+      
+      <rect x="35" y="85" width="35" height="90" fill="#f9a8d4" rx="6"/>
+      <rect x="50" y="95" width="35" height="90" fill="#f472b6" rx="6"/>
+      <rect x="65" y="105" width="35" height="90" fill="#ec4899" rx="6"/>
+      
+      <text x="80" y="235" text-anchor="middle" fill="#db2777" font-family="Arial, sans-serif" font-size="15" font-weight="bold">2×2 pool</text>
+      <text x="80" y="260" text-anchor="middle" fill="#be185d" font-family="Arial, sans-serif" font-size="14">5×5×32</text>
+    </g>
+    
+    <line x1="1120" y1="240" x2="1170" y2="240" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+    
+    <!-- Flatten -->
+    <g transform="translate(1170, 0)" filter="url(#shadow)">
+      <rect x="0" y="200" width="80" height="80" fill="#faf5ff" stroke="#8b5cf6" stroke-width="4" rx="12"/>
+      <text x="40" y="235" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Flatten</text>
+      <text x="40" y="310" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="14">800×1</text>
+    </g>
+    
+    <line x1="1250" y1="240" x2="1300" y2="240" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+    
+    <!-- FC Layer -->
+    <g transform="translate(1300, 0)" filter="url(#shadow)">
+      <rect x="0" y="150" width="180" height="180" fill="#fef2f2" stroke="#ef4444" stroke-width="4" rx="12"/>
+      <text x="90" y="30" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Fully</text>
+      <text x="90" y="55" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Connected</text>
+      
+      <!-- Neurons -->
+      <circle cx="40" cy="135" r="12" fill="#fca5a5"/>
+      <circle cx="90" cy="135" r="12" fill="#f87171"/>
+      <circle cx="140" cy="135" r="12" fill="#ef4444"/>
+      
+      <circle cx="40" cy="175" r="12" fill="#fca5a5"/>
+      <circle cx="90" cy="175" r="12" fill="#f87171"/>
+      <circle cx="140" cy="175" r="12" fill="#ef4444"/>
+      
+      <circle cx="40" cy="215" r="12" fill="#fca5a5"/>
+      <circle cx="90" cy="215" r="12" fill="#f87171"/>
+      <circle cx="140" cy="215" r="12" fill="#ef4444"/>
+      
+      <text x="90" y="265" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="15" font-weight="bold">+ ReLU</text>
+      <text x="90" y="290" text-anchor="middle" fill="#991b1b" font-family="Arial, sans-serif" font-size="14">128 neurons</text>
+    </g>
+    
+    <line x1="1480" y1="240" x2="1530" y2="240" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+    
+    <!-- Output -->
+    <g transform="translate(1530, 0)" filter="url(#shadow)">
+      <rect x="0" y="170" width="150" height="140" fill="#fef3c7" stroke="#ca8a04" stroke-width="4" rx="12"/>
+      <text x="75" y="30" text-anchor="middle" fill="#ca8a04" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Output</text>
+      
+      <circle cx="75" cy="130" r="14" fill="#fde047"/>
+      <circle cx="75" cy="165" r="14" fill="#facc15"/>
+      <circle cx="75" cy="200" r="14" fill="#eab308"/>
+      <circle cx="75" cy="235" r="14" fill="#ca8a04"/>
+      
+      <text x="75" y="275" text-anchor="middle" fill="#a16207" font-family="Arial, sans-serif" font-size="15" font-weight="bold">Softmax</text>
+      <text x="75" y="295" text-anchor="middle" fill="#854d0e" font-family="Arial, sans-serif" font-size="14">10 classes</text>
+    </g>
+  </g>
+  
+  <!-- Legend -->
+  <g transform="translate(100, 580)" filter="url(#shadow)">
+    <rect width="1800" height="360" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
+    <text x="900" y="45" text-anchor="middle" fill="#0f172a" font-family="Arial, sans-serif" font-size="32" font-weight="bold">🔍 Layer Functions</text>
+    <line x1="40" y1="65" x2="1760" y2="65" stroke="#e2e8f0" stroke-width="2"/>
+    
+    <g transform="translate(80, 100)">
+      <!-- Conv -->
+      <text x="0" y="0" fill="#10b981" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Convolutional Layer:</text>
+      <text x="0" y="28" fill="#166534" font-family="Arial, sans-serif" font-size="18">• Extracts local features using learnable kernels/filters</text>
+      <text x="0" y="52" fill="#166534" font-family="Arial, sans-serif" font-size="18">• Preserves spatial relationships in the input</text>
+      
+      <!-- Pool -->
+      <text x="0" y="95" fill="#f59e0b" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Pooling Layer:</text>
+      <text x="0" y="123" fill="#92400e" font-family="Arial, sans-serif" font-size="18">• Reduces spatial dimensions (downsampling)</text>
+      <text x="0" y="147" fill="#92400e" font-family="Arial, sans-serif" font-size="18">• Provides translation invariance and reduces parameters</text>
+      
+      <!-- FC -->
+      <text x="0" y="190" fill="#ef4444" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Fully Connected Layer:</text>
+      <text x="0" y="218" fill="#991b1b" font-family="Arial, sans-serif" font-size="18">• Combines all features for final classification</text>
+      <text x="0" y="242" fill="#991b1b" font-family="Arial, sans-serif" font-size="18">• Each neuron connected to all previous layer outputs</text>
+    </g>
+    
+    <g transform="translate(950, 100)">
+      <!-- Key Advantages -->
+      <text x="0" y="0" fill="#0f172a" font-family="Arial, sans-serif" font-size="24" font-weight="bold">🎯 Key Advantages:</text>
+      <text x="0" y="35" fill="#475569" font-family="Arial, sans-serif" font-size="18">✓ Parameter sharing (same filter across image)</text>
+      <text x="0" y="63" fill="#475569" font-family="Arial, sans-serif" font-size="18">✓ Translation invariance</text>
+      <text x="0" y="91" fill="#475569" font-family="Arial, sans-serif" font-size="18">✓ Hierarchical feature learning</text>
+      <text x="0" y="119" fill="#475569" font-family="Arial, sans-serif" font-size="18">✓ Efficient for image/spatial data</text>
+      
+      <rect x="-10" y="145" width="780" height="85" fill="#eff6ff" rx="12"/>
+      <text x="380" y="178" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="19" font-weight="bold">💡 Early layers detect edges/textures</text>
+      <text x="380" y="206" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="19" font-weight="bold">Later layers detect complex patterns/objects</text>
+    </g>
+  </g>
+</svg>

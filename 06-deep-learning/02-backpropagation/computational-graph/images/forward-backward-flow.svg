@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2025.0 1350.0">
+  <ns0:rect width="100%" height="100%" fill="#f8f9fa" rx="8"/>
+  <ns0:defs>
+    <ns0:marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <ns0:path d="M0,0 L0,6 L9,3 z" fill="#1565c0"/>
+    </ns0:marker>
+    <ns0:marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <ns0:path d="M0,0 L0,6 L9,3 z" fill="#c62828"/>
+    </ns0:marker>
+  </ns0:defs>
+  <ns0:text x="450" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Computational Graph: Forward &amp;amp; Backward Pass
+  </ns0:text>
+  <ns0:text x="450" y="60" font-size="14" text-anchor="middle" fill="#1a237e">
+    Example: y = σ(Wx + b) with L = (y - target)²
+  </ns0:text>
+  <ns0:g transform="translate(50, 100)">
+    <ns0:text x="400" y="85.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      Forward Pass (Compute Values) →
+    </ns0:text>
+    <ns0:circle cx="50" cy="50" r="25" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="50" y="110.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a237e">x</ns0:text>
+    <ns0:text x="50" y="135.0" font-size="10" text-anchor="middle" fill="#2e7d32">2.0</ns0:text>
+    <ns0:circle cx="150" cy="20" r="20" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="150" y="160.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">W</ns0:text>
+    <ns0:text x="150" y="185.0" font-size="10" text-anchor="middle" fill="#e67e22">0.5</ns0:text>
+    <ns0:rect x="140" y="60" width="60" height="40" fill="#1a237e" stroke="#007bff" stroke-width="2" rx="5"/>
+    <ns0:text x="170" y="210.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#1565c0">×</ns0:text>
+    <ns0:circle cx="250" cy="50" r="25" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="250" y="235.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">z₁</ns0:text>
+    <ns0:text x="250" y="260.0" font-size="10" text-anchor="middle" fill="#2e7d32">1.0</ns0:text>
+    <ns0:circle cx="350" cy="20" r="20" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="350" y="285.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">b</ns0:text>
+    <ns0:text x="350" y="310.0" font-size="10" text-anchor="middle" fill="#e67e22">0.5</ns0:text>
+    <ns0:rect x="340" y="60" width="60" height="40" fill="#1a237e" stroke="#007bff" stroke-width="2" rx="5"/>
+    <ns0:text x="370" y="335.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#1565c0">+</ns0:text>
+    <ns0:circle cx="450" cy="50" r="25" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="450" y="360.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">z₂</ns0:text>
+    <ns0:text x="450" y="385.0" font-size="10" text-anchor="middle" fill="#2e7d32">1.5</ns0:text>
+    <ns0:rect x="520" y="35" width="60" height="30" fill="#1a237e" stroke="#007bff" stroke-width="2" rx="5"/>
+    <ns0:text x="550" y="410.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1565c0">σ</ns0:text>
+    <ns0:circle cx="630" cy="50" r="25" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="630" y="435.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a237e">y</ns0:text>
+    <ns0:text x="630" y="460.0" font-size="10" text-anchor="middle" fill="#2e7d32">0.82</ns0:text>
+    <ns0:rect x="700" y="35" width="60" height="30" fill="#1a237e" stroke="#dc3545" stroke-width="2" rx="5"/>
+    <ns0:text x="730" y="485.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#922b21">L</ns0:text>
+    <ns0:circle cx="800" cy="50" r="25" fill="#1a237e" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="800" y="510.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a237e">L</ns0:text>
+    <ns0:text x="800" y="535.0" font-size="10" text-anchor="middle" fill="#922b21">0.03</ns0:text>
+    <ns0:path d="M 75,50 L 140,68" stroke="#007bff" stroke-width="3" marker-end="url(#arrowBlue)"/>
+    <ns0:path d="M 150,40 L 160,60" stroke="#007bff" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <ns0:path d="M 200,80 L 225,55" stroke="#007bff" stroke-width="3" marker-end="url(#arrowBlue)"/>
+    <ns0:path d="M 275,50 L 340,68" stroke="#007bff" stroke-width="3" marker-end="url(#arrowBlue)"/>
+    <ns0:path d="M 350,40 L 360,60" stroke="#007bff" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <ns0:path d="M 400,80 L 425,55" stroke="#007bff" stroke-width="3" marker-end="url(#arrowBlue)"/>
+    <ns0:path d="M 475,50 L 520,50" stroke="#007bff" stroke-width="3" marker-end="url(#arrowBlue)"/>
+    <ns0:path d="M 580,50 L 605,50" stroke="#007bff" stroke-width="3" marker-end="url(#arrowBlue)"/>
+    <ns0:path d="M 655,50 L 700,50" stroke="#007bff" stroke-width="3" marker-end="url(#arrowBlue)"/>
+    <ns0:path d="M 760,50 L 775,50" stroke="#007bff" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  </ns0:g>
+  <ns0:g transform="translate(50, 320)">
+    <ns0:text x="400" y="560.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#c62828">
+      ← Backward Pass (Compute Gradients via Chain Rule)
+    </ns0:text>
+    <ns0:circle cx="800" cy="50" r="25" fill="#1a237e" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="800" y="585.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">∂L/∂L</ns0:text>
+    <ns0:text x="800" y="610.0" font-size="10" text-anchor="middle" fill="#922b21">1.0</ns0:text>
+    <ns0:circle cx="630" cy="50" r="25" fill="#1a237e" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="630" y="635.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">∂L/∂y</ns0:text>
+    <ns0:text x="630" y="660.0" font-size="10" text-anchor="middle" fill="#922b21">-0.36</ns0:text>
+    <ns0:rect x="680" y="35" width="100" height="30" fill="#fff9e6" stroke="#fd7e14" stroke-width="1" rx="3"/>
+    <ns0:text x="730" y="685.0" font-size="9" text-anchor="middle" fill="#1a237e">
+      2(y-target)
+    </ns0:text>
+    <ns0:circle cx="450" cy="50" r="25" fill="#1a237e" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="450" y="710.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">∂L/∂z₂</ns0:text>
+    <ns0:text x="450" y="735.0" font-size="10" text-anchor="middle" fill="#922b21">-0.05</ns0:text>
+    <ns0:rect x="510" y="35" width="100" height="30" fill="#fff9e6" stroke="#fd7e14" stroke-width="1" rx="3"/>
+    <ns0:text x="560" y="760.0" font-size="9" text-anchor="middle" fill="#1a237e">
+      ∂L/∂y · σ'(z₂)
+    </ns0:text>
+    <ns0:text x="560" y="785.0" font-size="8" text-anchor="middle" fill="#1a237e">
+      y(1-y)
+    </ns0:text>
+    <ns0:circle cx="250" cy="50" r="25" fill="#1a237e" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="250" y="810.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">∂L/∂z₁</ns0:text>
+    <ns0:text x="250" y="835.0" font-size="10" text-anchor="middle" fill="#922b21">-0.05</ns0:text>
+    <ns0:circle cx="350" cy="20" r="20" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="350" y="860.0" font-size="10" font-weight="bold" text-anchor="middle" fill="#1a237e">∂L/∂b</ns0:text>
+    <ns0:text x="350" y="885.0" font-size="9" text-anchor="middle" fill="#922b21">-0.05</ns0:text>
+    <ns0:circle cx="150" cy="20" r="20" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="150" y="910.0" font-size="10" font-weight="bold" text-anchor="middle" fill="#1a237e">∂L/∂W</ns0:text>
+    <ns0:text x="150" y="935.0" font-size="9" text-anchor="middle" fill="#922b21">-0.10</ns0:text>
+    <ns0:rect x="100" y="60" width="100" height="30" fill="#fff9e6" stroke="#fd7e14" stroke-width="1" rx="3"/>
+    <ns0:text x="150" y="960.0" font-size="9" text-anchor="middle" fill="#1a237e">
+      ∂L/∂z₁ · x
+    </ns0:text>
+    <ns0:circle cx="50" cy="50" r="25" fill="#1a237e" stroke="#e0e0e0" stroke-width="2" opacity="0.5"/>
+    <ns0:text x="50" y="985.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">∂L/∂x</ns0:text>
+    <ns0:text x="50" y="1010.0" font-size="10" text-anchor="middle" fill="#1a237e">-0.03</ns0:text>
+    <ns0:path d="M 775,50 L 655,50" stroke="#dc3545" stroke-width="3" marker-end="url(#arrowRed)"/>
+    <ns0:path d="M 605,50 L 475,50" stroke="#dc3545" stroke-width="3" marker-end="url(#arrowRed)"/>
+    <ns0:path d="M 425,50 L 275,50" stroke="#dc3545" stroke-width="3" marker-end="url(#arrowRed)"/>
+    <ns0:path d="M 425,55 L 360,35" stroke="#dc3545" stroke-width="2" marker-end="url(#arrowRed)"/>
+    <ns0:path d="M 225,50 L 75,50" stroke="#dc3545" stroke-width="3" marker-end="url(#arrowRed)" opacity="0.5"/>
+    <ns0:path d="M 225,55 L 160,35" stroke="#dc3545" stroke-width="2" marker-end="url(#arrowRed)"/>
+  </ns0:g>
+  <ns0:rect x="50" y="520" width="800" height="60" fill="#1a237e" stroke="#e0e0e0" stroke-width="2" rx="8"/>
+  <ns0:text x="450" y="1035.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Chain Rule: ∂L/∂xᵢ = ∂L/∂y · ∂y/∂z₂ · ∂z₂/∂z₁ · ∂z₁/∂xᵢ
+  </ns0:text>
+  <ns0:text x="450" y="1060.0" font-size="12" text-anchor="middle" fill="#1a237e">
+    Forward: Store all intermediate values • Backward: Multiply local gradients going backward
+  </ns0:text>
+</ns0:svg>

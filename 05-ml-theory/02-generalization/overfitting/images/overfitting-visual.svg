@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgOF" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Underfitting vs Overfitting</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="210" height="200" rx="10" fill="#2d2d2d20" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="105" y="60.0" text-anchor="middle" fill="#1565c0" font-size="14" font-weight="bold">Underfitting</ns0:text>
+    <ns0:text x="105" y="85.0" text-anchor="middle" fill="#1565c0" font-size="10">High Bias</ns0:text>
+    <ns0:circle cx="40" cy="150" r="5" fill="#e65100"/>
+    <ns0:circle cx="60" cy="130" r="5" fill="#e65100"/>
+    <ns0:circle cx="80" cy="100" r="5" fill="#e65100"/>
+    <ns0:circle cx="100" cy="90" r="5" fill="#e65100"/>
+    <ns0:circle cx="120" cy="110" r="5" fill="#e65100"/>
+    <ns0:circle cx="140" cy="130" r="5" fill="#e65100"/>
+    <ns0:circle cx="160" cy="160" r="5" fill="#e65100"/>
+    <ns0:circle cx="180" cy="170" r="5" fill="#e65100"/>
+    <ns0:line x1="30" y1="140" x2="190" y2="120" stroke="#007bff" stroke-width="3"/>
+    <ns0:text x="105" y="195" text-anchor="middle" fill="#c62828" font-size="10">❌ Too simple</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(295, 70)">
+    <ns0:rect width="210" height="200" rx="10" fill="#2d2d2d20" stroke="#10b981" stroke-width="2"/>
+    <ns0:text x="105" y="220.0" text-anchor="middle" fill="#2e7d32" font-size="14" font-weight="bold">Good Fit ✓</ns0:text>
+    <ns0:text x="105" y="245.0" text-anchor="middle" fill="#34d399" font-size="10">Balanced</ns0:text>
+    <ns0:circle cx="40" cy="150" r="5" fill="#e65100"/>
+    <ns0:circle cx="60" cy="130" r="5" fill="#e65100"/>
+    <ns0:circle cx="80" cy="100" r="5" fill="#e65100"/>
+    <ns0:circle cx="100" cy="90" r="5" fill="#e65100"/>
+    <ns0:circle cx="120" cy="110" r="5" fill="#e65100"/>
+    <ns0:circle cx="140" cy="130" r="5" fill="#e65100"/>
+    <ns0:circle cx="160" cy="160" r="5" fill="#e65100"/>
+    <ns0:circle cx="180" cy="170" r="5" fill="#e65100"/>
+    <ns0:path d="M 30 160 Q 60 120 100 90 Q 140 100 180 170" stroke="#10b981" stroke-width="3" fill="none"/>
+    <ns0:text x="105" y="270.0" text-anchor="middle" fill="#2e7d32" font-size="10">✓ Generalizes well</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(540, 70)">
+    <ns0:rect width="210" height="200" rx="10" fill="#2d2d2d20" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="105" y="295.0" text-anchor="middle" fill="#c62828" font-size="14" font-weight="bold">Overfitting</ns0:text>
+    <ns0:text x="105" y="320.0" text-anchor="middle" fill="#c62828" font-size="10">High Variance</ns0:text>
+    <ns0:circle cx="40" cy="150" r="5" fill="#e65100"/>
+    <ns0:circle cx="60" cy="130" r="5" fill="#e65100"/>
+    <ns0:circle cx="80" cy="100" r="5" fill="#e65100"/>
+    <ns0:circle cx="100" cy="90" r="5" fill="#e65100"/>
+    <ns0:circle cx="120" cy="110" r="5" fill="#e65100"/>
+    <ns0:circle cx="140" cy="130" r="5" fill="#e65100"/>
+    <ns0:circle cx="160" cy="160" r="5" fill="#e65100"/>
+    <ns0:circle cx="180" cy="170" r="5" fill="#e65100"/>
+    <ns0:path d="M 30 155 Q 40 150 45 150 Q 55 150 60 130 Q 65 110 75 95 Q 85 85 100 90 Q 110 95 120 110 Q 130 125 140 130 Q 150 135 160 160 Q 170 175 180 170 Q 190 165 195 165" stroke="#dc3545" stroke-width="3" fill="none"/>
+    <ns0:text x="105" y="345.0" text-anchor="middle" fill="#c62828" font-size="10">❌ Memorizes noise</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 290)">
+    <ns0:rect width="700" height="90" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="370.0" text-anchor="middle" fill="#e65100" font-size="14" font-weight="bold">Solutions to Overfitting</ns0:text>
+    <ns0:text x="100" y="395.0" text-anchor="middle" fill="#10b981" font-size="11">More Data</ns0:text>
+    <ns0:text x="230" y="420.0" text-anchor="middle" fill="#1565c0" font-size="11">Regularization</ns0:text>
+    <ns0:text x="360" y="445.0" text-anchor="middle" fill="#e65100" font-size="11">Dropout</ns0:text>
+    <ns0:text x="490" y="470.0" text-anchor="middle" fill="#8b5cf6" font-size="11">Early Stopping</ns0:text>
+    <ns0:text x="620" y="495.0" text-anchor="middle" fill="#c62828" font-size="11">Simpler Model</ns0:text>
+    <ns0:text x="100" y="520.0" text-anchor="middle" fill="#2e7d32" font-size="9">more examples</ns0:text>
+    <ns0:text x="230" y="545.0" text-anchor="middle" fill="#1565c0" font-size="9">L1/L2 penalty</ns0:text>
+    <ns0:text x="360" y="570.0" text-anchor="middle" fill="#e65100" font-size="9">random zeroing</ns0:text>
+    <ns0:text x="490" y="595.0" text-anchor="middle" fill="#c4b5fd" font-size="9">stop training</ns0:text>
+    <ns0:text x="620" y="620.0" text-anchor="middle" fill="#c62828" font-size="9">reduce params</ns0:text>
+  </ns0:g>
+</ns0:svg>

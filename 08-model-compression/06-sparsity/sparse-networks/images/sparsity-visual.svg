@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="sparseBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="30" text-anchor="middle" fill="#00838f" font-family="Arial, sans-serif" font-size="20" font-weight="bold">🕸️ Sparse Neural Networks</ns0:text>
+  <ns0:g transform="translate(50, 60)">
+    <ns0:text x="150" y="55.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Dense Network</ns0:text>
+    <ns0:g transform="translate(50, 20)">
+      <ns0:circle cx="0" cy="30" r="12" fill="#1565c0"/>
+      <ns0:circle cx="0" cy="70" r="12" fill="#1565c0"/>
+      <ns0:circle cx="0" cy="110" r="12" fill="#1565c0"/>
+      <ns0:circle cx="100" cy="30" r="12" fill="#2e7d32"/>
+      <ns0:circle cx="100" cy="70" r="12" fill="#2e7d32"/>
+      <ns0:circle cx="100" cy="110" r="12" fill="#2e7d32"/>
+      <ns0:circle cx="200" cy="50" r="12" fill="#e65100"/>
+      <ns0:circle cx="200" cy="90" r="12" fill="#e65100"/>
+      <ns0:line x1="12" y1="30" x2="88" y2="30" stroke="#e0e0e0" stroke-width="1"/>
+      <ns0:line x1="12" y1="30" x2="88" y2="70" stroke="#e0e0e0" stroke-width="1"/>
+      <ns0:line x1="12" y1="30" x2="88" y2="110" stroke="#e0e0e0" stroke-width="1"/>
+      <ns0:line x1="12" y1="70" x2="88" y2="30" stroke="#e0e0e0" stroke-width="1"/>
+      <ns0:line x1="12" y1="70" x2="88" y2="70" stroke="#e0e0e0" stroke-width="1"/>
+      <ns0:line x1="12" y1="70" x2="88" y2="110" stroke="#e0e0e0" stroke-width="1"/>
+      <ns0:line x1="12" y1="110" x2="88" y2="30" stroke="#e0e0e0" stroke-width="1"/>
+      <ns0:line x1="12" y1="110" x2="88" y2="70" stroke="#e0e0e0" stroke-width="1"/>
+      <ns0:line x1="12" y1="110" x2="88" y2="110" stroke="#e0e0e0" stroke-width="1"/>
+      <ns0:line x1="112" y1="30" x2="188" y2="50" stroke="#e0e0e0" stroke-width="1"/>
+      <ns0:line x1="112" y1="30" x2="188" y2="90" stroke="#e0e0e0" stroke-width="1"/>
+      <ns0:line x1="112" y1="70" x2="188" y2="50" stroke="#e0e0e0" stroke-width="1"/>
+      <ns0:line x1="112" y1="70" x2="188" y2="90" stroke="#e0e0e0" stroke-width="1"/>
+      <ns0:line x1="112" y1="110" x2="188" y2="50" stroke="#e0e0e0" stroke-width="1"/>
+      <ns0:line x1="112" y1="110" x2="188" y2="90" stroke="#e0e0e0" stroke-width="1"/>
+    </ns0:g>
+    <ns0:text x="150" y="170" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">15 connections</ns0:text>
+    <ns0:text x="150" y="195.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="9">100% compute</ns0:text>
+  </ns0:g>
+  <ns0:text x="385" y="220.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="24">→</ns0:text>
+  <ns0:g transform="translate(430, 60)">
+    <ns0:text x="150" y="245.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Sparse Network (70%)</ns0:text>
+    <ns0:g transform="translate(50, 20)">
+      <ns0:circle cx="0" cy="30" r="12" fill="#1565c0"/>
+      <ns0:circle cx="0" cy="70" r="12" fill="#1565c0"/>
+      <ns0:circle cx="0" cy="110" r="12" fill="#1565c0"/>
+      <ns0:circle cx="100" cy="30" r="12" fill="#2e7d32"/>
+      <ns0:circle cx="100" cy="70" r="12" fill="#2e7d32"/>
+      <ns0:circle cx="100" cy="110" r="12" fill="#2e7d32"/>
+      <ns0:circle cx="200" cy="50" r="12" fill="#e65100"/>
+      <ns0:circle cx="200" cy="90" r="12" fill="#e65100"/>
+      <ns0:line x1="12" y1="30" x2="88" y2="30" stroke="#28a745" stroke-width="2"/>
+      <ns0:line x1="12" y1="70" x2="88" y2="70" stroke="#28a745" stroke-width="2"/>
+      <ns0:line x1="12" y1="70" x2="88" y2="110" stroke="#28a745" stroke-width="2"/>
+      <ns0:line x1="12" y1="110" x2="88" y2="110" stroke="#28a745" stroke-width="2"/>
+      <ns0:line x1="112" y1="30" x2="188" y2="50" stroke="#28a745" stroke-width="2"/>
+      <ns0:line x1="112" y1="70" x2="188" y2="90" stroke="#28a745" stroke-width="2"/>
+    </ns0:g>
+    <ns0:text x="150" y="270.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">6 connections</ns0:text>
+    <ns0:text x="150" y="295.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">40% compute!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(100, 220)">
+    <ns0:rect width="600" height="160" rx="12" fill="#1a237e" stroke="#17a2b8" stroke-width="2"/>
+    <ns0:text x="300" y="320.0" text-anchor="middle" fill="#00838f" font-family="Arial, sans-serif" font-size="14" font-weight="bold">📊 Types of Sparsity</ns0:text>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:rect width="160" height="80" rx="6" fill="#374151"/>
+      <ns0:text x="80" y="345.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Weight Sparsity</ns0:text>
+      <ns0:text x="80" y="370.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Zero out small weights</ns0:text>
+      <ns0:text x="80" y="395.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Unstructured/Structured</ns0:text>
+      <ns0:text x="80" y="420.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="8">2:4 pattern (NVIDIA)</ns0:text>
+    </ns0:g>
+    <ns0:g transform="translate(220, 50)">
+      <ns0:rect width="160" height="80" rx="6" fill="#374151"/>
+      <ns0:text x="80" y="445.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Activation Sparsity</ns0:text>
+      <ns0:text x="80" y="470.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">ReLU creates zeros</ns0:text>
+      <ns0:text x="80" y="495.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Dynamic at inference</ns0:text>
+      <ns0:text x="80" y="520.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="8">~50-90% sparse!</ns0:text>
+    </ns0:g>
+    <ns0:g transform="translate(410, 50)">
+      <ns0:rect width="160" height="80" rx="6" fill="#374151"/>
+      <ns0:text x="80" y="545.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Attention Sparsity</ns0:text>
+      <ns0:text x="80" y="570.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Sparse transformers</ns0:text>
+      <ns0:text x="80" y="595.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Local + global patterns</ns0:text>
+      <ns0:text x="80" y="620.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="8">O(n) instead of O(n²)</ns0:text>
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>

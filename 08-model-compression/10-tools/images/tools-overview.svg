@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="toolsBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="30" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="20" font-weight="bold">🧰 Compression Tools &amp; Frameworks</ns0:text>
+  <ns0:g transform="translate(50, 60)">
+    <ns0:rect width="170" height="130" rx="10" fill="#1a237e" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="85" y="55.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="12" font-weight="bold">🔥 PyTorch</ns0:text>
+    <ns0:text x="20" y="80.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">torch.quantization</ns0:text>
+    <ns0:text x="20" y="105.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">torch.nn.utils.prune</ns0:text>
+    <ns0:text x="20" y="130.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">torch.compile</ns0:text>
+    <ns0:text x="20" y="155.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Native quantization support</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(240, 60)">
+    <ns0:rect width="170" height="130" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="85" y="180.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="12" font-weight="bold">🤗 Hugging Face</ns0:text>
+    <ns0:text x="20" y="205.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">bitsandbytes</ns0:text>
+    <ns0:text x="20" y="230.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">PEFT library</ns0:text>
+    <ns0:text x="20" y="255.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Optimum</ns0:text>
+    <ns0:text x="20" y="280.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">LoRA, QLoRA, 4-bit</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(430, 60)">
+    <ns0:rect width="170" height="130" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="85" y="305.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="12" font-weight="bold">⚡ ONNX Runtime</ns0:text>
+    <ns0:text x="20" y="330.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Cross-platform</ns0:text>
+    <ns0:text x="20" y="355.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Graph optimization</ns0:text>
+    <ns0:text x="20" y="380.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">INT8/INT4 inference</ns0:text>
+    <ns0:text x="20" y="405.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Mobile to server</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(620, 60)">
+    <ns0:rect width="150" height="130" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="75" y="430.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12" font-weight="bold">🚀 TensorRT</ns0:text>
+    <ns0:text x="20" y="455.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">NVIDIA GPUs</ns0:text>
+    <ns0:text x="20" y="480.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">FP16/INT8</ns0:text>
+    <ns0:text x="20" y="505.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Kernel fusion</ns0:text>
+    <ns0:text x="20" y="530.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Max GPU speed</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(100, 210)">
+    <ns0:rect width="600" height="170" rx="12" fill="#1a237e" stroke="#6f42c1" stroke-width="2"/>
+    <ns0:text x="300" y="555.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="14" font-weight="bold">📋 Typical Workflow</ns0:text>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:rect width="100" height="50" rx="6" fill="#1565c0"/>
+      <ns0:text x="50" y="580.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9" font-weight="bold">1. Train</ns0:text>
+      <ns0:text x="50" y="605.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="8">PyTorch/TF</ns0:text>
+    </ns0:g>
+    <ns0:text x="145" y="630.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="14">→</ns0:text>
+    <ns0:g transform="translate(165, 50)">
+      <ns0:rect width="100" height="50" rx="6" fill="#e65100"/>
+      <ns0:text x="50" y="655.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9" font-weight="bold">2. Compress</ns0:text>
+      <ns0:text x="50" y="680.0" text-anchor="middle" fill="#fef3c7" font-family="Arial, sans-serif" font-size="8">QAT/Prune</ns0:text>
+    </ns0:g>
+    <ns0:text x="280" y="705.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="14">→</ns0:text>
+    <ns0:g transform="translate(300, 50)">
+      <ns0:rect width="100" height="50" rx="6" fill="#6a1b9a"/>
+      <ns0:text x="50" y="730.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9" font-weight="bold">3. Export</ns0:text>
+      <ns0:text x="50" y="755.0" text-anchor="middle" fill="#e9d5ff" font-family="Arial, sans-serif" font-size="8">ONNX</ns0:text>
+    </ns0:g>
+    <ns0:text x="415" y="780.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="14">→</ns0:text>
+    <ns0:g transform="translate(435, 50)">
+      <ns0:rect width="100" height="50" rx="6" fill="#2e7d32"/>
+      <ns0:text x="50" y="805.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9" font-weight="bold">4. Optimize</ns0:text>
+      <ns0:text x="50" y="830.0" text-anchor="middle" fill="#dcfce7" font-family="Arial, sans-serif" font-size="8">TRT/ORT</ns0:text>
+    </ns0:g>
+    <ns0:text x="30" y="855.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9"># QLoRA Example</ns0:text>
+    <ns0:text x="30" y="880.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">model = AutoModelForCausalLM.from_pretrained(..., load_in_4bit=True)</ns0:text>
+    <ns0:text x="30" y="905.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">model = get_peft_model(model, LoraConfig(r=16, lora_alpha=32))</ns0:text>
+  </ns0:g>
+</ns0:svg>

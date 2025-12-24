@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecfdf5"/>
+      <stop offset="100%" style="stop-color:#d1fae5"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  
+  <rect width="1800" height="1200" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#065f46" font-family="Arial, sans-serif" font-size="52" font-weight="bold">Support Vector Machine (SVM)</text>
+  <text x="900" y="120" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="26">Maximum Margin Classification</text>
+  
+  <!-- Visual Representation -->
+  <g transform="translate(100, 180)" filter="url(#shadow)">
+    <rect width="1000" height="700" rx="18" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="500" y="50" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="32" font-weight="bold">📊 Maximum Margin Hyperplane</text>
+    <line x1="40" y1="70" x2="960" y2="70" stroke="#d1fae5" stroke-width="2"/>
+    
+    <g transform="translate(100, 120)">
+      <!-- Coordinate system -->
+      <line x1="0" y1="500" x2="800" y2="500" stroke="#cbd5e1" stroke-width="2"/>
+      <line x1="50" y1="0" x2="50" y2="550" stroke="#cbd5e1" stroke-width="2"/>
+      
+      <!-- Class -1 (red circles) -->
+      <circle cx="150" cy="150" r="18" fill="none" stroke="#ef4444" stroke-width="4"/>
+      <circle cx="200" cy="100" r="18" fill="none" stroke="#ef4444" stroke-width="4"/>
+      <circle cx="120" cy="220" r="18" fill="none" stroke="#ef4444" stroke-width="4"/>
+      <circle cx="180" cy="180" r="18" fill="none" stroke="#ef4444" stroke-width="4"/>
+      <circle cx="250" cy="140" r="18" fill="none" stroke="#ef4444" stroke-width="4"/>
+      <circle cx="160" cy="280" r="18" fill="none" stroke="#ef4444" stroke-width="4"/>
+      
+      <!-- Support vectors for class -1 (highlighted) -->
+      <circle cx="280" cy="240" r="18" fill="none" stroke="#ef4444" stroke-width="6"/>
+      <circle cx="250" cy="200" r="18" fill="none" stroke="#ef4444" stroke-width="6"/>
+      
+      <!-- Class +1 (blue filled circles) -->
+      <circle cx="500" cy="420" r="18" fill="#3b82f6" stroke="#3b82f6" stroke-width="4"/>
+      <circle cx="550" cy="380" r="18" fill="#3b82f6" stroke="#3b82f6" stroke-width="4"/>
+      <circle cx="600" cy="450" r="18" fill="#3b82f6" stroke="#3b82f6" stroke-width="4"/>
+      <circle cx="480" cy="350" r="18" fill="#3b82f6" stroke="#3b82f6" stroke-width="4"/>
+      <circle cx="650" cy="400" r="18" fill="#3b82f6" stroke="#3b82f6" stroke-width="4"/>
+      <circle cx="520" cy="480" r="18" fill="#3b82f6" stroke="#3b82f6" stroke-width="4"/>
+      
+      <!-- Support vectors for class +1 (highlighted) -->
+      <circle cx="420" cy="320" r="18" fill="#3b82f6" stroke="#3b82f6" stroke-width="6"/>
+      <circle cx="460" cy="290" r="18" fill="#3b82f6" stroke="#3b82f6" stroke-width="6"/>
+      
+      <!-- Decision boundary (solid line) -->
+      <line x1="100" y1="100" x2="700" y2="500" stroke="#10b981" stroke-width="5"/>
+      <text x="450" y="330" fill="#10b981" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Decision Boundary</text>
+      
+      <!-- Margin boundaries (dashed lines) -->
+      <line x1="50" y1="50" x2="650" y2="450" stroke="#f59e0b" stroke-width="4" stroke-dasharray="10,5"/>
+      <line x1="150" y1="150" x2="750" y2="550" stroke="#f59e0b" stroke-width="4" stroke-dasharray="10,5"/>
+      
+      <!-- Margin width indicator -->
+      <line x1="320" y1="220" x2="380" y2="260" stroke="#8b5cf6" stroke-width="4"/>
+      <line x1="310" y1="210" x2="320" y2="220" stroke="#8b5cf6" stroke-width="4"/>
+      <line x1="330" y1="230" x2="320" y2="220" stroke="#8b5cf6" stroke-width="4"/>
+      <line x1="370" y1="250" x2="380" y2="260" stroke="#8b5cf6" stroke-width="4"/>
+      <line x1="390" y1="270" x2="380" y2="260" stroke="#8b5cf6" stroke-width="4"/>
+      <text x="350" y="210" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Margin</text>
+      
+      <!-- Labels -->
+      <text x="150" y="60" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Class -1</text>
+      <text x="550" y="540" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Class +1</text>
+      
+      <!-- Support vector labels -->
+      <text x="320" y="270" fill="#64748b" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Support Vectors</text>
+      <text x="320" y="290" fill="#64748b" font-family="Arial, sans-serif" font-size="14">(thick circles)</text>
+    </g>
+  </g>
+  
+  <!-- Mathematical Formulation -->
+  <g transform="translate(1150, 180)" filter="url(#shadow)">
+    <rect width="550" height="700" rx="18" fill="#ffffff" stroke="#3b82f6" stroke-width="4"/>
+    <text x="275" y="50" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="28" font-weight="bold">📐 Formulation</text>
+    <line x1="40" y1="70" x2="510" y2="70" stroke="#bfdbfe" stroke-width="2"/>
+    
+    <g transform="translate(50, 110)">
+      <text x="225" y="0" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Objective:</text>
+      <rect x="30" y="15" width="390" height="80" fill="#eff6ff" rx="10"/>
+      <text x="225" y="45" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Maximize margin</text>
+      <text x="225" y="70" text-anchor="middle" fill="#1e3a8a" font-family="Consolas, monospace" font-size="18">= 2/||w||</text>
+      <text x="225" y="92" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="16">⟺ Minimize ||w||²/2</text>
+      
+      <text x="225" y="135" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Constraints:</text>
+      <rect x="30" y="150" width="390" height="60" fill="#eff6ff" rx="10"/>
+      <text x="225" y="180" text-anchor="middle" fill="#1e3a8a" font-family="Consolas, monospace" font-size="19">yᵢ(w·xᵢ + b) ≥ 1</text>
+      <text x="225" y="204" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="16">for all i = 1,...,n</text>
+      
+      <line x1="0" y1="235" x2="450" y2="235" stroke="#bfdbfe" stroke-width="2"/>
+      
+      <text x="225" y="265" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Decision Function:</text>
+      <rect x="30" y="280" width="390" height="55" fill="#f0fdf4" rx="10"/>
+      <text x="225" y="315" text-anchor="middle" fill="#059669" font-family="Consolas, monospace" font-size="20">f(x) = sign(w·x + b)</text>
+      
+      <text x="225" y="365" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Support Vectors:</text>
+      <rect x="20" y="380" width="410" height="90" fill="#fef3c7" rx="10"/>
+      <text x="225" y="410" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="17">Points where constraint</text>
+      <text x="225" y="433" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="17">is active (equality):</text>
+      <text x="225" y="460" text-anchor="middle" fill="#92400e" font-family="Consolas, monospace" font-size="18">yᵢ(w·xᵢ + b) = 1</text>
+      
+      <rect x="20" y="490" width="410" height="180" fill="#faf5ff" rx="10"/>
+      <text x="225" y="520" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Key Properties:</text>
+      <text x="225" y="548" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="17">• Only support vectors</text>
+      <text x="225" y="572" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="17">matter for solution</text>
+      <text x="225" y="596" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="17">• Sparse representation</text>
+      <text x="225" y="620" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="17">• Robust to outliers</text>
+      <text x="225" y="644" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="17">• Convex optimization</text>
+      <text x="225" y="668" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="17">• Global optimum</text>
+    </g>
+  </g>
+  
+  <!-- Key Benefits -->
+  <g transform="translate(100, 930)" filter="url(#shadow)">
+    <rect width="1600" height="210" rx="18" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="32" font-weight="bold">🎯 Why Maximum Margin?</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#d1fae5" stroke-width="2"/>
+    
+    <g transform="translate(100, 110)">
+      <text x="0" y="0" fill="#059669" font-family="Arial, sans-serif" font-size="22" font-weight="bold">✓ Better Generalization:</text>
+      <text x="20" y="30" fill="#15803d" font-family="Arial, sans-serif" font-size="19">Larger margin → better performance on unseen data</text>
+      
+      <text x="800" y="0" fill="#059669" font-family="Arial, sans-serif" font-size="22" font-weight="bold">✓ Robustness:</text>
+      <text x="820" y="30" fill="#15803d" font-family="Arial, sans-serif" font-size="19">More tolerant to small perturbations</text>
+      
+      <text x="0" y="75" fill="#059669" font-family="Arial, sans-serif" font-size="22" font-weight="bold">✓ Unique Solution:</text>
+      <text x="20" y="105" fill="#15803d" font-family="Arial, sans-serif" font-size="19">Convex problem guarantees global optimum</text>
+      
+      <text x="800" y="75" fill="#059669" font-family="Arial, sans-serif" font-size="22" font-weight="bold">✓ Kernel Trick:</text>
+      <text x="820" y="105" fill="#15803d" font-family="Arial, sans-serif" font-size="19">Can handle non-linear boundaries</text>
+    </g>
+  </g>
+  
+  <!-- Key Insight -->
+  <rect x="100" y="1160" width="1600" height="60" fill="#10b981" rx="14" filter="url(#shadow)"/>
+  <text x="900" y="1197" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="bold">💡 SVM: Find hyperplane with maximum margin • Only support vectors determine the boundary</text>
+</svg>

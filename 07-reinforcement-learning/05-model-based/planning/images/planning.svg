@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgPlan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Planning with Learned Models</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:text x="350" y="60.0" text-anchor="middle" fill="#e65100" font-size="14" font-weight="bold">Model-Based RL Pipeline</ns0:text>
+    <ns0:rect x="0" y="40" width="140" height="70" rx="10" fill="#1565c0" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="70" y="85.0" text-anchor="middle" fill="#1a237e" font-size="11" font-weight="bold">Learn Model</ns0:text>
+    <ns0:text x="70" y="110.0" text-anchor="middle" fill="#1565c0" font-size="9">P̂(s'|s,a), R̂(s,a)</ns0:text>
+    <ns0:rect x="200" y="40" width="140" height="70" rx="10" fill="#e65100" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="270" y="135.0" text-anchor="middle" fill="#1a237e" font-size="11" font-weight="bold">Plan</ns0:text>
+    <ns0:text x="270" y="160.0" text-anchor="middle" fill="#fef3c7" font-size="9">Simulate trajectories</ns0:text>
+    <ns0:rect x="400" y="40" width="140" height="70" rx="10" fill="#10b981" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="470" y="185.0" text-anchor="middle" fill="#1a237e" font-size="11" font-weight="bold">Act</ns0:text>
+    <ns0:text x="470" y="210.0" text-anchor="middle" fill="#d1fae5" font-size="9">Execute best action</ns0:text>
+    <ns0:rect x="600" y="40" width="140" height="70" rx="10" fill="#8b5cf6" stroke="#a78bfa" stroke-width="2"/>
+    <ns0:text x="670" y="235.0" text-anchor="middle" fill="#1a237e" font-size="11" font-weight="bold">Collect Data</ns0:text>
+    <ns0:text x="670" y="260.0" text-anchor="middle" fill="#e9d5ff" font-size="9">Real experience</ns0:text>
+    <ns0:line x1="140" y1="75" x2="200" y2="75" stroke="#6366f1" stroke-width="2"/>
+    <ns0:line x1="340" y1="75" x2="400" y2="75" stroke="#6366f1" stroke-width="2"/>
+    <ns0:line x1="540" y1="75" x2="600" y2="75" stroke="#6366f1" stroke-width="2"/>
+    <ns0:path d="M 670 110 L 670 140 L 70 140 L 70 110" stroke="#6366f1" stroke-width="2" fill="none"/>
+  </ns0:g>
+  <ns0:g transform="translate(50, 220)">
+    <ns0:rect width="700" height="150" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="285.0" text-anchor="middle" fill="#e65100" font-size="13" font-weight="bold">Planning Methods</ns0:text>
+    <ns0:text x="120" y="310.0" text-anchor="middle" fill="#10b981" font-size="11" font-weight="bold">Random Shooting</ns0:text>
+    <ns0:text x="120" y="335.0" text-anchor="middle" fill="#2e7d32" font-size="9">Sample action sequences</ns0:text>
+    <ns0:text x="120" y="360.0" text-anchor="middle" fill="#2e7d32" font-size="9">Pick best trajectory</ns0:text>
+    <ns0:text x="350" y="385.0" text-anchor="middle" fill="#1565c0" font-size="11" font-weight="bold">CEM</ns0:text>
+    <ns0:text x="350" y="410.0" text-anchor="middle" fill="#1565c0" font-size="9">Cross-Entropy Method</ns0:text>
+    <ns0:text x="350" y="435.0" text-anchor="middle" fill="#1565c0" font-size="9">Iterative refinement</ns0:text>
+    <ns0:text x="580" y="460.0" text-anchor="middle" fill="#e65100" font-size="11" font-weight="bold">MPC</ns0:text>
+    <ns0:text x="580" y="485.0" text-anchor="middle" fill="#e65100" font-size="9">Model Predictive Control</ns0:text>
+    <ns0:text x="580" y="510.0" text-anchor="middle" fill="#e65100" font-size="9">Replan at each step</ns0:text>
+    <ns0:text x="350" y="535.0" text-anchor="middle" fill="#c62828" font-size="10">Challenge: Model errors compound over long horizons!</ns0:text>
+  </ns0:g>
+</ns0:svg>

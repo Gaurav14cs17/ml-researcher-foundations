@@ -1,0 +1,191 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2475.0 2025.0">
+  <ns0:defs>
+    <ns0:marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <ns0:path d="M0,0 L0,6 L9,3 z" fill="#2e7d32"/>
+    </ns0:marker>
+  </ns0:defs>
+  <ns0:text x="550" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Data Augmentation: Expand Training Data Artificially
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="500" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      1. Why Data Augmentation?
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="270.0" fill="#f8f9fa" stroke="#007bff" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:g>
+        <ns0:circle cx="8" cy="-3" r="8" fill="#1565c0"/>
+        <ns0:text x="8" y="80.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">1</ns0:text>
+        <ns0:text x="25" y="105.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#1565c0">Regularization:</ns0:tspan>
+          Reduces overfitting by showing model variations of same data
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 25)">
+        <ns0:circle cx="8" cy="-3" r="8" fill="#1565c0"/>
+        <ns0:text x="8" y="130.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">2</ns0:text>
+        <ns0:text x="25" y="155.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#1565c0">Invariance:</ns0:tspan>
+          Model learns to be robust to transformations (rotation, scale, color)
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 50)">
+        <ns0:circle cx="8" cy="-3" r="8" fill="#1565c0"/>
+        <ns0:text x="8" y="180.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">3</ns0:text>
+        <ns0:text x="25" y="205.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#1565c0">More Data:</ns0:tspan>
+          Artificially increase dataset size without collecting new samples
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 240)">
+    <ns0:text x="500" y="230.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      2. Image Augmentation Techniques
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="340" fill="#1a237e" stroke="#28a745" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(50, 50)">
+      <ns0:g>
+        <ns0:text x="60" y="255.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">
+          Original
+        </ns0:text>
+        <ns0:rect x="10" y="0" width="100" height="100" fill="#1565c0" opacity="0.3" stroke="#007bff" stroke-width="2" rx="8"/>
+        <ns0:circle cx="60" cy="40" r="15" fill="#e65100"/>
+        <ns0:rect x="45" y="55" width="30" height="30" fill="#c62828"/>
+        <ns0:text x="60" y="280.0" font-size="10" text-anchor="middle" fill="#1a237e">Base image</ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(140, 0)">
+        <ns0:text x="60" y="305.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+          Horizontal Flip
+        </ns0:text>
+        <ns0:rect x="10" y="0" width="100" height="100" fill="#1565c0" opacity="0.3" stroke="#007bff" stroke-width="2" rx="8"/>
+        <ns0:circle cx="60" cy="40" r="15" fill="#e65100"/>
+        <ns0:rect x="45" y="55" width="30" height="30" fill="#c62828"/>
+        <ns0:path d="M 30,50 L 90,50" stroke="#28a745" stroke-width="2" marker-end="url(#arrowGreen)"/>
+        <ns0:text x="60" y="330.0" font-size="10" text-anchor="middle" fill="#1a237e">Mirror</ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(280, 0)">
+        <ns0:text x="60" y="355.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+          Rotation (15°)
+        </ns0:text>
+        <ns0:rect x="10" y="0" width="100" height="100" fill="#1565c0" opacity="0.3" stroke="#007bff" stroke-width="2" rx="8"/>
+        <ns0:circle cx="65" cy="45" r="15" fill="#e65100" transform="rotate(15 60 50)"/>
+        <ns0:rect x="50" y="60" width="30" height="30" fill="#c62828" transform="rotate(15 60 50)"/>
+        <ns0:text x="60" y="380.0" font-size="10" text-anchor="middle" fill="#1a237e">Tilt</ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(420, 0)">
+        <ns0:text x="60" y="405.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#e65100">
+          Random Crop
+        </ns0:text>
+        <ns0:rect x="10" y="0" width="100" height="100" fill="#1565c0" opacity="0.3" stroke="#007bff" stroke-width="2" rx="8"/>
+        <ns0:rect x="30" y="20" width="60" height="60" fill="none" stroke="#fd7e14" stroke-width="3"/>
+        <ns0:circle cx="60" cy="40" r="15" fill="#e65100"/>
+        <ns0:text x="60" y="430.0" font-size="10" text-anchor="middle" fill="#1a237e">Zoom in</ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(560, 0)">
+        <ns0:text x="60" y="455.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#c62828">
+          Color Jitter
+        </ns0:text>
+        <ns0:rect x="10" y="0" width="100" height="100" fill="#6a1b9a" opacity="0.3" stroke="#6f42c1" stroke-width="2" rx="8"/>
+        <ns0:circle cx="60" cy="40" r="15" fill="#2e7d32"/>
+        <ns0:rect x="45" y="55" width="30" height="30" fill="#1565c0"/>
+        <ns0:text x="60" y="480.0" font-size="10" text-anchor="middle" fill="#1a237e">Hue/Sat/Bright</ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(700, 0)">
+        <ns0:text x="60" y="505.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">
+          Gaussian Noise
+        </ns0:text>
+        <ns0:rect x="10" y="0" width="100" height="100" fill="#1565c0" opacity="0.3" stroke="#007bff" stroke-width="2" rx="8"/>
+        <ns0:circle cx="60" cy="40" r="15" fill="#e65100"/>
+        <ns0:rect x="45" y="55" width="30" height="30" fill="#c62828"/>
+        <ns0:circle cx="25" cy="20" r="2" fill="#1a237e"/>
+        <ns0:circle cx="75" cy="35" r="2" fill="#1a237e"/>
+        <ns0:circle cx="40" cy="75" r="2" fill="#1a237e"/>
+        <ns0:circle cx="85" cy="65" r="2" fill="#1a237e"/>
+        <ns0:text x="60" y="530.0" font-size="10" text-anchor="middle" fill="#1a237e">Add noise</ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 140)">
+        <ns0:text x="0" y="555.0" font-size="13" font-weight="bold" fill="#145a32">
+          More Techniques:
+        </ns0:text>
+        <ns0:g transform="translate(0, 20)">
+          <ns0:text x="0" y="580.0" font-size="12" fill="#1a237e">
+            • 
+            <ns0:tspan font-weight="bold">Translation:</ns0:tspan>
+             Shift image horizontally/vertically
+          </ns0:text>
+          <ns0:text x="0" y="605.0" font-size="12" fill="#1a237e">
+            • 
+            <ns0:tspan font-weight="bold">Scale:</ns0:tspan>
+             Zoom in/out
+          </ns0:text>
+          <ns0:text x="0" y="630.0" font-size="12" fill="#1a237e">
+            • 
+            <ns0:tspan font-weight="bold">Cutout/Random Erasing:</ns0:tspan>
+             Mask random patches → Forces attention to all parts
+          </ns0:text>
+          <ns0:text x="0" y="655.0" font-size="12" fill="#1a237e">
+            • 
+            <ns0:tspan font-weight="bold">Mixup:</ns0:tspan>
+             Blend two images → x_new = λx₁ + (1-λ)x₂
+          </ns0:text>
+          <ns0:text x="0" y="680.0" font-size="12" fill="#1a237e">
+            • 
+            <ns0:tspan font-weight="bold">CutMix:</ns0:tspan>
+             Paste patch from one image onto another
+          </ns0:text>
+          <ns0:text x="0" y="705.0" font-size="12" fill="#1a237e">
+            • 
+            <ns0:tspan font-weight="bold">AutoAugment:</ns0:tspan>
+             Learn optimal augmentation policy with RL
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 640)">
+    <ns0:text x="500" y="730.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+      3. Beyond Images
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="270.0" fill="#1a237e" stroke="#6f42c1" stroke-width="2" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:g>
+        <ns0:text x="0" y="755.0" font-size="13" font-weight="bold" fill="#6a1b9a">
+          Text Augmentation:
+        </ns0:text>
+        <ns0:text x="0" y="780.0" font-size="12" fill="#1a237e">
+          <ns0:tspan x="0" dy="0">• Synonym replacement • Back-translation • Random</ns0:tspan>
+          <ns0:tspan x="0" dy="1.2em">insertion/deletion • Paraphrasing</ns0:tspan>
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 50)">
+        <ns0:text x="0" y="805.0" font-size="13" font-weight="bold" fill="#6a1b9a">
+          Tabular Data:
+        </ns0:text>
+        <ns0:text x="0" y="830.0" font-size="12" fill="#1a237e">
+          <ns0:tspan x="0" dy="0">• SMOTE (Synthetic Minority Over-sampling) • Add Gaussian</ns0:tspan>
+          <ns0:tspan x="0" dy="1.2em">noise to features • Feature permutation</ns0:tspan>
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:rect x="50" y="790" width="2250.0" height="100" fill="#1a237e" stroke="#fd7e14" stroke-width="2" rx="8"/>
+  <ns0:text x="550" y="855.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#d35400">
+    💡 Best Practices
+  </ns0:text>
+  <ns0:g transform="translate(70, 840)">
+    <ns0:text x="0" y="880.0" font-size="13" fill="#1a237e">
+      1. Only augment 
+      <ns0:tspan font-weight="bold">training</ns0:tspan>
+       data, not validation/test → Evaluate on real distribution
+    </ns0:text>
+    <ns0:text x="0" y="905.0" font-size="13" fill="#1a237e">
+      2. Use domain knowledge: Horizontal flip OK for cats, NOT for digits (6 vs 9!)
+    </ns0:text>
+    <ns0:text x="0" y="930.0" font-size="13" fill="#1a237e">
+      <ns0:tspan x="0" dy="0">3. Combine multiple augmentations randomly for diversity →</ns0:tspan>
+      <ns0:tspan x="0" dy="1.2em">Typically 3-5 transformations per image</ns0:tspan>
+    </ns0:text>
+  </ns0:g>
+</ns0:svg>

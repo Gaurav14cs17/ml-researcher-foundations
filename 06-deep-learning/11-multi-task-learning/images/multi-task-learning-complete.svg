@@ -1,0 +1,162 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2475.0 2025.0">
+  <ns0:defs>
+    <ns0:marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <ns0:path d="M0,0 L0,6 L9,3 z" fill="#1a237e"/>
+    </ns0:marker>
+  </ns0:defs>
+  <ns0:text x="550" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Multi-Task Learning: Learning Multiple Tasks Simultaneously
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="500" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      1. What is Multi-Task Learning (MTL)?
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="270.0" fill="#f8f9fa" stroke="#007bff" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="80.0" font-size="14" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#1565c0">Idea:</ns0:tspan>
+        Train one model on multiple related tasks → Share knowledge across tasks
+      </ns0:text>
+      <ns0:g transform="translate(0, 30)">
+        <ns0:text x="0" y="105.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#2e7d32">Benefits:</ns0:tspan>
+          Better generalization, implicit regularization, faster learning, shared representations
+        </ns0:text>
+        <ns0:text x="0" y="130.0" font-size="13" fill="#1a237e">
+          <ns0:tspan x="0" dy="0">Example: Image classification + object detection +</ns0:tspan>
+          <ns0:tspan x="0" dy="1.2em">segmentation sharing CNN backbone</ns0:tspan>
+        </ns0:text>
+        <ns0:text x="0" y="155.0" font-size="13" fill="#1a237e">
+          Example: NLP model learning sentiment + NER + POS tagging simultaneously
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 240)">
+    <ns0:text x="500" y="180.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      2. Single-Task vs Multi-Task Architecture
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="300" fill="#1a237e" stroke="#28a745" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:g>
+        <ns0:text x="150" y="205.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a237e">
+          Single-Task Learning
+        </ns0:text>
+        <ns0:rect x="110" y="20" width="80" height="30" fill="#1565c0" opacity="0.7" stroke="#007bff" stroke-width="2" rx="3"/>
+        <ns0:text x="150" y="230.0" font-size="11" text-anchor="middle" fill="#1a237e">
+          Input
+        </ns0:text>
+        <ns0:path d="M 150,50 L 150,80" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrow)"/>
+        <ns0:rect x="110" y="80" width="80" height="50" fill="#6a1b9a" opacity="0.7" stroke="#6f42c1" stroke-width="2" rx="3"/>
+        <ns0:text x="150" y="255.0" font-size="11" text-anchor="middle" fill="#1a237e">
+          Shared
+        </ns0:text>
+        <ns0:text x="150" y="280.0" font-size="11" text-anchor="middle" fill="#1a237e">
+          Layers
+        </ns0:text>
+        <ns0:path d="M 150,130 L 150,160" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrow)"/>
+        <ns0:rect x="110" y="160" width="80" height="40" fill="#2e7d32" opacity="0.7" stroke="#145a32" stroke-width="2" rx="3"/>
+        <ns0:text x="150" y="305.0" font-size="11" text-anchor="middle" fill="#1a237e">
+          Task 1
+        </ns0:text>
+        <ns0:text x="150" y="330.0" font-size="10" fill="#1a237e">
+          Train 3 separate models
+        </ns0:text>
+        <ns0:text x="150" y="355.0" font-size="10" fill="#1a237e">
+          No shared knowledge
+        </ns0:text>
+      </ns0:g>
+      <ns0:line x1="350" y1="0" x2="350" y2="260" stroke="#444444" stroke-width="2" stroke-dasharray="5,5"/>
+      <ns0:g transform="translate(400, 0)">
+        <ns0:text x="250" y="380.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+          Multi-Task Learning (Hard Parameter Sharing)
+        </ns0:text>
+        <ns0:rect x="210" y="20" width="80" height="30" fill="#1565c0" opacity="0.7" stroke="#007bff" stroke-width="2" rx="3"/>
+        <ns0:text x="250" y="405.0" font-size="11" text-anchor="middle" fill="#1a237e">
+          Input
+        </ns0:text>
+        <ns0:path d="M 250,50 L 250,80" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrow)"/>
+        <ns0:rect x="180" y="80" width="140" height="50" fill="#6a1b9a" opacity="0.7" stroke="#6f42c1" stroke-width="3" rx="3"/>
+        <ns0:text x="250" y="430.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">
+          Shared Layers
+        </ns0:text>
+        <ns0:text x="250" y="455.0" font-size="10" text-anchor="middle" fill="#1a237e">
+          (Common features)
+        </ns0:text>
+        <ns0:path d="M 220,130 L 100,160" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrow)"/>
+        <ns0:path d="M 250,130 L 250,160" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrow)"/>
+        <ns0:path d="M 280,130 L 400,160" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrow)"/>
+        <ns0:rect x="60" y="160" width="80" height="40" fill="#2e7d32" opacity="0.7" stroke="#145a32" stroke-width="2" rx="3"/>
+        <ns0:text x="100" y="480.0" font-size="11" text-anchor="middle" fill="#1a237e">
+          Task 1
+        </ns0:text>
+        <ns0:rect x="210" y="160" width="80" height="40" fill="#e65100" opacity="0.7" stroke="#e67e22" stroke-width="2" rx="3"/>
+        <ns0:text x="250" y="505.0" font-size="11" text-anchor="middle" fill="#1a237e">
+          Task 2
+        </ns0:text>
+        <ns0:rect x="360" y="160" width="80" height="40" fill="#c62828" opacity="0.7" stroke="#dc3545" stroke-width="2" rx="3"/>
+        <ns0:text x="400" y="530.0" font-size="11" text-anchor="middle" fill="#1a237e">
+          Task 3
+        </ns0:text>
+        <ns0:text x="250" y="555.0" font-size="10" fill="#2e7d32" font-weight="bold">
+          ✓ One model, shared backbone
+        </ns0:text>
+        <ns0:text x="250" y="580.0" font-size="10" fill="#2e7d32" font-weight="bold">
+          ✓ Knowledge transfer
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 580)">
+    <ns0:text x="500" y="605.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#e67e22">
+      3. Multi-Task Loss Function
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="140" fill="#1a237e" stroke="#fd7e14" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="630.0" font-size="14" font-weight="bold" fill="#d84315">
+        Weighted sum of task-specific losses:
+      </ns0:text>
+      <ns0:rect x="0" y="20" width="940" height="35" fill="#fdebd0" stroke="#e67e22" stroke-width="1" rx="3"/>
+      <ns0:text x="470" y="655.0" font-size="13" font-family="Arial, sans-serif" text-anchor="middle" fill="#d35400">
+        L_total = w₁·L₁ + w₂·L₂ + ... + wₙ·Lₙ
+      </ns0:text>
+      <ns0:g transform="translate(0, 70)">
+        <ns0:text x="0" y="680.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#d35400">Challenge:</ns0:tspan>
+          How to set weights {w₁, w₂, ..., wₙ}?
+        </ns0:text>
+        <ns0:text x="0" y="705.0" font-size="12" fill="#2e7d32">
+          • Uniform weights (w₁ = w₂ = ... = 1) → Simple but may not balance well
+        </ns0:text>
+        <ns0:text x="0" y="730.0" font-size="12" fill="#2e7d32">
+          <ns0:tspan x="0" dy="0">• Uncertainty weighting: wᵢ ∝ 1/σᵢ² → Tasks with higher</ns0:tspan>
+          <ns0:tspan x="0" dy="1.2em">uncertainty get lower weight (Kendall et al.)</ns0:tspan>
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 760)">
+    <ns0:text x="500" y="755.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+      4. Parameter Sharing Strategies
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="100" fill="#1a237e" stroke="#6f42c1" stroke-width="2" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="780.0" font-size="13" fill="#1a237e">
+        • 
+        <ns0:tspan font-weight="bold" fill="#6a1b9a">Hard Parameter Sharing:</ns0:tspan>
+        All tasks share same hidden layers → Most common, strong regularization
+      </ns0:text>
+      <ns0:text x="0" y="805.0" font-size="13" fill="#1a237e">
+        • 
+        <ns0:tspan font-weight="bold" fill="#6a1b9a">Soft Parameter Sharing:</ns0:tspan>
+        Each task has its own parameters, but encourage similarity (L2 distance)
+      </ns0:text>
+      <ns0:text x="0" y="830.0" font-size="13" fill="#1a237e">
+        • 
+        <ns0:tspan font-weight="bold" fill="#6a1b9a">Cross-Stitch Networks:</ns0:tspan>
+        Learn linear combinations of task-specific features → Adaptive sharing
+      </ns0:text>
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>

@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1125.0 787.5">
+  <ns0:defs>
+    <ns0:linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#1a1a3e"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1125.0" height="787.5" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="250" y="30" fill="#1a237e" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold">ELBO in Variational Inference</ns0:text>
+  <ns0:rect x="180" y="60" width="140" height="40" rx="5" fill="#4a90d9" opacity="0.8"/>
+  <ns0:text x="250" y="85" fill="#1a237e" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">log p(x)</ns0:text>
+  <ns0:text x="250" y="130" fill="#1a237e" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">=</ns0:text>
+  <ns0:rect x="50" y="145" width="180" height="50" rx="5" fill="#2ecc71" opacity="0.8"/>
+  <ns0:text x="140" y="165" fill="#1a237e" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">ELBO (maximize this!)</ns0:text>
+  <ns0:text x="140" y="185" fill="#1a237e" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">E_q[log p(x,z) - log q(z)]</ns0:text>
+  <ns0:text x="250" y="210.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">+</ns0:text>
+  <ns0:rect x="270" y="145" width="180" height="50" rx="5" fill="#c62828" opacity="0.8"/>
+  <ns0:text x="360" y="235.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">KL Divergence (≥ 0)</ns0:text>
+  <ns0:text x="360" y="260.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">KL(q(z|x) || p(z|x))</ns0:text>
+  <ns0:path d="M 140 200 L 140 240" stroke="#2ecc71" stroke-width="3" marker-end="url(#arrow)"/>
+  <ns0:text x="140" y="285.0" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">↑ Maximize</ns0:text>
+  <ns0:text x="250" y="310.0" fill="#444444" font-family="Arial, sans-serif" font-size="13" text-anchor="middle">Used in: VAE, Diffusion Models, Bayesian Neural Networks</ns0:text>
+  <ns0:rect x="50" y="315" width="400" height="25" rx="3" fill="#1a237e"/>
+  <ns0:text x="250" y="332" fill="#1a237e" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">Maximizing ELBO ≈ Maximizing log-likelihood (when KL → 0)</ns0:text>
+</ns0:svg>

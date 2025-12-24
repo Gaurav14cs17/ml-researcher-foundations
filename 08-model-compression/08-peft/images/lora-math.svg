@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 1170.0">
+  <ns0:defs>
+    <ns0:linearGradient id="lmBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="1170.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#ec4899" font-family="Arial, sans-serif" font-size="18" font-weight="bold">LoRA Mathematics</ns0:text>
+  <ns0:g transform="translate(30, 60)">
+    <ns0:rect width="360" height="180" rx="10" fill="#1a237e" stroke="#ec4899" stroke-width="2"/>
+    <ns0:text x="180" y="60.0" text-anchor="middle" fill="#ec4899" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Low-Rank Decomposition</ns0:text>
+    <ns0:text x="20" y="85.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Weight update:</ns0:text>
+    <ns0:text x="20" y="110.0" fill="#f472b6" font-family="Arial, sans-serif" font-size="14">W' = W0 + dW = W0 + B*A</ns0:text>
+    <ns0:text x="20" y="135.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">W0: d x k matrix (frozen pretrained)</ns0:text>
+    <ns0:text x="20" y="160.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">B: d x r matrix (trainable, init Gaussian)</ns0:text>
+    <ns0:text x="20" y="185.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">A: r x k matrix (trainable, init zero)</ns0:text>
+    <ns0:text x="20" y="210.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">r &lt;&lt; min(d,k), typically r = 8, 16, 32</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 60)">
+    <ns0:rect width="360" height="180" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="180" y="235.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Parameter Reduction</ns0:text>
+    <ns0:text x="20" y="260.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Full fine-tuning:</ns0:text>
+    <ns0:text x="20" y="285.0" fill="#c62828" font-family="Arial, sans-serif" font-size="11">#params = d * k</ns0:text>
+    <ns0:text x="20" y="310.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">LoRA:</ns0:text>
+    <ns0:text x="20" y="335.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11">#params = d*r + r*k = r*(d+k)</ns0:text>
+    <ns0:text x="20" y="360.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Example: d=k=4096, r=16</ns0:text>
+    <ns0:text x="20" y="385.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Full: 16.7M vs LoRA: 131K (128x less!)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(30, 260)">
+    <ns0:rect width="360" height="110" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="180" y="410.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Scaling Factor alpha</ns0:text>
+    <ns0:text x="20" y="435.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Scaled update:</ns0:text>
+    <ns0:text x="20" y="460.0" fill="#e65100" font-family="Arial, sans-serif" font-size="12">h = W0*x + (alpha/r)*B*A*x</ns0:text>
+    <ns0:text x="20" y="485.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Typical: alpha = 2*r (so scaling = 2)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 260)">
+    <ns0:rect width="360" height="110" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="180" y="510.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Merge for Inference</ns0:text>
+    <ns0:text x="20" y="535.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Merge weights (no runtime cost!):</ns0:text>
+    <ns0:text x="20" y="560.0" fill="#1565c0" font-family="Arial, sans-serif" font-size="12">W_merged = W0 + (alpha/r)*B*A</ns0:text>
+    <ns0:text x="20" y="585.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Zero inference overhead!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(30, 390)">
+    <ns0:rect width="740" height="110" rx="10" fill="#1a237e" stroke="#6f42c1" stroke-width="2"/>
+    <ns0:text x="370" y="610.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="13" font-weight="bold">QLoRA: Quantized LoRA</ns0:text>
+    <ns0:text x="30" y="635.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Forward:</ns0:text>
+    <ns0:text x="100" y="660.0" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="10">h = Dequant(W_4bit)*x + B*A*x</ns0:text>
+    <ns0:text x="400" y="685.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Memory:</ns0:text>
+    <ns0:text x="470" y="710.0" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="10">4-bit base + FP16 adapters</ns0:text>
+    <ns0:text x="30" y="735.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">NF4 (Normal Float 4-bit): Optimal for normally distributed weights</ns0:text>
+    <ns0:text x="30" y="760.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Fine-tune 70B model on single 48GB GPU!</ns0:text>
+  </ns0:g>
+</ns0:svg>

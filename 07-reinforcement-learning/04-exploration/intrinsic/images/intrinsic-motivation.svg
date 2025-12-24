@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgIM" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Intrinsic Motivation</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="700" height="80" rx="10" fill="#8b5cf620" stroke="#8b5cf6" stroke-width="2"/>
+    <ns0:text x="350" y="60.0" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="bold">Reward = Extrinsic + Intrinsic</ns0:text>
+    <ns0:text x="350" y="85.0" text-anchor="middle" fill="#1a237e" font-size="12" font-family="Arial, sans-serif">r_total = r_env + β · r_intrinsic</ns0:text>
+    <ns0:text x="350" y="110.0" text-anchor="middle" fill="#a5b4fc" font-size="10">Add internal reward for exploring novel states</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 170)">
+    <ns0:rect width="220" height="120" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="110" y="135.0" text-anchor="middle" fill="#2e7d32" font-size="12" font-weight="bold">Count-Based</ns0:text>
+    <ns0:text x="110" y="160.0" text-anchor="middle" fill="#1a237e" font-size="10" font-family="Arial, sans-serif">r = 1/√N(s)</ns0:text>
+    <ns0:text x="110" y="185.0" text-anchor="middle" fill="#2e7d32" font-size="9">Less visited = more reward</ns0:text>
+    <ns0:text x="110" y="210.0" text-anchor="middle" fill="#2e7d32" font-size="9">Simple but effective</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(290, 170)">
+    <ns0:rect width="220" height="120" rx="10" fill="#2d2d2d20" stroke="#fd7e14"/>
+    <ns0:text x="110" y="235.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Prediction Error</ns0:text>
+    <ns0:text x="110" y="260.0" text-anchor="middle" fill="#1a237e" font-size="10" font-family="Arial, sans-serif">r = ||ŝ' - s'||²</ns0:text>
+    <ns0:text x="110" y="285.0" text-anchor="middle" fill="#e65100" font-size="9">Surprise = high reward</ns0:text>
+    <ns0:text x="110" y="310.0" text-anchor="middle" fill="#e65100" font-size="9">Learn dynamics model</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(530, 170)">
+    <ns0:rect width="220" height="120" rx="10" fill="#2d2d2d20" stroke="#dc3545"/>
+    <ns0:text x="110" y="335.0" text-anchor="middle" fill="#c62828" font-size="12" font-weight="bold">RND (Random)</ns0:text>
+    <ns0:text x="110" y="360.0" text-anchor="middle" fill="#1a237e" font-size="10" font-family="Arial, sans-serif">r = ||f(s) - f̂(s)||²</ns0:text>
+    <ns0:text x="110" y="385.0" text-anchor="middle" fill="#c62828" font-size="9">Predict random features</ns0:text>
+    <ns0:text x="110" y="410.0" text-anchor="middle" fill="#c62828" font-size="9">State-of-the-art</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 310)">
+    <ns0:rect width="700" height="70" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="435.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">When to Use</ns0:text>
+    <ns0:text x="350" y="460.0" text-anchor="middle" fill="#1a237e" font-size="10">Sparse rewards (Montezuma's Revenge), Procedural environments, Open-ended exploration</ns0:text>
+  </ns0:g>
+</ns0:svg>

@@ -1,0 +1,182 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2475.0 2025.0">
+  <ns0:text x="550" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Bayes' Theorem, MLE &amp; MAP: Complete Framework
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="500" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      1. Bayes' Theorem
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="405.0" fill="#f8f9fa" stroke="#007bff" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:rect x="0" y="0" width="940" height="60" fill="#1a237e" stroke="#007bff" stroke-width="1" rx="3"/>
+      <ns0:text x="470" y="80.0" font-size="18" font-family="Arial, sans-serif" text-anchor="middle" fill="#1a5276">
+        P(θ|D) = P(D|θ) · P(θ) / P(D)
+      </ns0:text>
+      <ns0:g transform="translate(0, 75)">
+        <ns0:g>
+          <ns0:rect x="0" y="0" width="220" height="45" fill="#1a237e" stroke="#007bff" stroke-width="1" rx="3"/>
+          <ns0:text x="110" y="105.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#1565c0">
+            P(θ|D) - Posterior
+          </ns0:text>
+          <ns0:text x="110" y="130.0" font-size="11" text-anchor="middle" fill="#1a237e">
+            What we want to know
+          </ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(240, 0)">
+          <ns0:rect x="0" y="0" width="220" height="45" fill="#1a237e" stroke="#fd7e14" stroke-width="1" rx="3"/>
+          <ns0:text x="110" y="155.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#d35400">
+            P(D|θ) - Likelihood
+          </ns0:text>
+          <ns0:text x="110" y="180.0" font-size="11" text-anchor="middle" fill="#1a237e">
+            Prob of data given params
+          </ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(480, 0)">
+          <ns0:rect x="0" y="0" width="220" height="45" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+          <ns0:text x="110" y="205.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#145a32">
+            P(θ) - Prior
+          </ns0:text>
+          <ns0:text x="110" y="230.0" font-size="11" text-anchor="middle" fill="#1a237e">
+            Belief before seeing data
+          </ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(720, 0)">
+          <ns0:rect x="0" y="0" width="220" height="45" fill="#1a237e" stroke="#6f42c1" stroke-width="1" rx="3"/>
+          <ns0:text x="110" y="255.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#6c3483">
+            P(D) - Evidence
+          </ns0:text>
+          <ns0:text x="110" y="280.0" font-size="11" text-anchor="middle" fill="#1a237e">
+            Normalization constant
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 300)">
+    <ns0:text x="500" y="305.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1a237e">
+      2. Maximum Likelihood (MLE) vs Maximum A Posteriori (MAP)
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="260" fill="#1a237e" stroke="#e0e0e0" stroke-width="2" rx="8"/>
+    <ns0:g transform="translate(50, 50)">
+      <ns0:text x="200" y="330.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#e65100">
+        Maximum Likelihood Estimation (MLE)
+      </ns0:text>
+      <ns0:rect x="0" y="10" width="400" height="405.0" fill="#1a237e" stroke="#e67e22" stroke-width="2" rx="5"/>
+      <ns0:g transform="translate(20, 40)">
+        <ns0:text x="0" y="355.0" font-size="13" font-weight="bold" fill="#d35400">
+          Objective:
+        </ns0:text>
+        <ns0:rect x="0" y="10" width="360" height="63" fill="#fdebd0" stroke="#e67e22" stroke-width="1" rx="3"/>
+        <ns0:text x="180" y="380.0" font-size="14" font-family="Arial, sans-serif" text-anchor="middle" fill="#d35400">
+          θ_MLE = argmax_θ P(D|θ)
+        </ns0:text>
+        <ns0:text x="0" y="405.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#e67e22">Approach:</ns0:tspan>
+          Maximize likelihood
+        </ns0:text>
+        <ns0:text x="0" y="430.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#2e7d32">✓ Pros:</ns0:tspan>
+          Simple, no prior needed
+        </ns0:text>
+        <ns0:text x="0" y="455.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#c62828">✗ Cons:</ns0:tspan>
+          Can overfit with little data
+        </ns0:text>
+        <ns0:text x="0" y="480.0" font-size="12" fill="#1a237e">
+          Often use log-likelihood:
+        </ns0:text>
+        <ns0:text x="0" y="505.0" font-size="12" font-family="Arial, sans-serif" fill="#1a237e">
+          θ_MLE = argmax_θ Σᵢ log P(xᵢ|θ)
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+    <ns0:g transform="translate(500, 50)">
+      <ns0:text x="200" y="530.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+        Maximum A Posteriori (MAP)
+      </ns0:text>
+      <ns0:rect x="0" y="10" width="400" height="405.0" fill="#1a237e" stroke="#6f42c1" stroke-width="2" rx="5"/>
+      <ns0:g transform="translate(20, 40)">
+        <ns0:text x="0" y="555.0" font-size="13" font-weight="bold" fill="#6c3483">
+          Objective:
+        </ns0:text>
+        <ns0:rect x="0" y="10" width="360" height="63" fill="#1a237e" stroke="#6f42c1" stroke-width="1" rx="3"/>
+        <ns0:text x="180" y="580.0" font-size="14" font-family="Arial, sans-serif" text-anchor="middle" fill="#6c3483">
+          θ_MAP = argmax_θ P(θ|D)
+        </ns0:text>
+        <ns0:text x="0" y="605.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#6a1b9a">Approach:</ns0:tspan>
+          Maximize posterior
+        </ns0:text>
+        <ns0:text x="0" y="630.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#2e7d32">✓ Pros:</ns0:tspan>
+          Regularization via prior
+        </ns0:text>
+        <ns0:text x="0" y="655.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#c62828">✗ Cons:</ns0:tspan>
+          Must choose prior
+        </ns0:text>
+        <ns0:text x="0" y="680.0" font-size="12" fill="#1a237e">
+          Equivalent to:
+        </ns0:text>
+        <ns0:text x="0" y="705.0" font-size="12" font-family="Arial, sans-serif" fill="#1a237e">
+          θ_MAP = argmax_θ [log P(D|θ) + log P(θ)]
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 600)">
+    <ns0:text x="500" y="730.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      3. Connection to Regularization
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="405.0" fill="#1a237e" stroke="#28a745" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="755.0" font-size="14" font-weight="bold" fill="#145a32">
+        MAP = MLE + Regularization!
+      </ns0:text>
+      <ns0:g transform="translate(0, 25)">
+        <ns0:rect x="0" y="0" width="940" height="60" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(15, 20)">
+          <ns0:text x="0" y="780.0" font-size="13" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#145a32">Gaussian Prior P(θ) ∝ exp(-||θ||²/2σ²)</ns0:tspan>
+            <ns0:tspan dx="10">→</ns0:tspan>
+          </ns0:text>
+          <ns0:text x="0" y="805.0" font-size="13" font-family="Arial, sans-serif" fill="#1a237e">
+            <ns0:tspan x="0" dy="0">θ_MAP = argmax_θ [log P(D|θ) - λ||θ||²] = Ridge Regression</ns0:tspan>
+            <ns0:tspan x="0" dy="1.2em">/ L2 Regularization</ns0:tspan>
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:g transform="translate(0, 95)">
+        <ns0:rect x="0" y="0" width="940" height="60" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(15, 20)">
+          <ns0:text x="0" y="830.0" font-size="13" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#145a32">Laplace Prior P(θ) ∝ exp(-|θ|/b)</ns0:tspan>
+            <ns0:tspan dx="10">→</ns0:tspan>
+          </ns0:text>
+          <ns0:text x="0" y="855.0" font-size="13" font-family="Arial, sans-serif" fill="#1a237e">
+            θ_MAP = argmax_θ [log P(D|θ) - λ||θ||₁] = Lasso / L1 Regularization
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 820)">
+    <ns0:rect x="0" y="0" width="2250.0" height="70" fill="#e1f5fe" stroke="#007bff" stroke-width="2" rx="8"/>
+    <ns0:text x="500" y="880.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#1a5276">
+      🎯 Example: Coin Flip (10 flips, 7 heads)
+    </ns0:text>
+    <ns0:g transform="translate(50, 40)">
+      <ns0:text x="0" y="905.0" font-size="13" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#e65100">MLE:</ns0:tspan>
+        <ns0:tspan font-family="Arial, sans-serif">θ_MLE = 7/10 = 0.70</ns0:tspan>
+        <ns0:tspan fill="#1a237e"> (just use observed frequency)</ns0:tspan>
+      </ns0:text>
+      <ns0:text x="0" y="930.0" font-size="13" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#6a1b9a">MAP (Beta(2,2) prior):</ns0:tspan>
+        <ns0:tspan font-family="Arial, sans-serif">θ_MAP = (7+1)/(10+4) = 0.57</ns0:tspan>
+        <ns0:tspan fill="#1a237e"> (pulled toward 0.5 by prior → less overfitting)</ns0:tspan>
+      </ns0:text>
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>

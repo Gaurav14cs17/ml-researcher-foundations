@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecfdf5"/>
+      <stop offset="100%" style="stop-color:#d1fae5"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  
+  <rect width="1800" height="1400" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#065f46" font-family="Arial, sans-serif" font-size="52" font-weight="bold">Weight Initialization Strategies</text>
+  <text x="900" y="120" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="26">Critical for training deep neural networks</text>
+  
+  <!-- Why It Matters -->
+  <g transform="translate(100, 180)" filter="url(#shadow)">
+    <rect width="1600" height="180" rx="18" fill="#ffffff" stroke="#ef4444" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="32" font-weight="bold">⚠️ Why Initialization Matters</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#fecaca" stroke-width="2"/>
+    
+    <g transform="translate(100, 110)">
+      <text x="0" y="0" fill="#dc2626" font-family="Arial, sans-serif" font-size="22" font-weight="bold">✗ Too small weights:</text>
+      <text x="20" y="30" fill="#b91c1c" font-family="Arial, sans-serif" font-size="19">Vanishing gradients, slow learning</text>
+      
+      <text x="800" y="0" fill="#dc2626" font-family="Arial, sans-serif" font-size="22" font-weight="bold">✗ Too large weights:</text>
+      <text x="820" y="30" fill="#b91c1c" font-family="Arial, sans-serif" font-size="19">Exploding gradients, unstable training</text>
+    </g>
+  </g>
+  
+  <!-- Initialization Methods -->
+  <g transform="translate(100, 410)" filter="url(#shadow)">
+    <rect width="1600" height="880" rx="18" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="36" font-weight="bold">🎯 Initialization Methods</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#d1fae5" stroke-width="2"/>
+    
+    <g transform="translate(80, 110)">
+      <!-- Zero Initialization -->
+      <rect width="1440" height="110" fill="#fee2e2" rx="12"/>
+      <text x="720" y="35" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="26" font-weight="bold">❌ Zero Initialization (Don't use!)</text>
+      <text x="720" y="68" text-anchor="middle" fill="#dc2626" font-family="Consolas, monospace" font-size="22">W = 0</text>
+      <text x="720" y="96" text-anchor="middle" fill="#b91c1c" font-family="Arial, sans-serif" font-size="18">All neurons learn the same features (symmetry problem)</text>
+      
+      <!-- Random Initialization -->
+      <g transform="translate(0, 130)">
+        <rect width="1440" height="110" fill="#fef3c7" rx="12"/>
+        <text x="720" y="35" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="26" font-weight="bold">⚠️ Random Initialization (Basic)</text>
+        <text x="720" y="68" text-anchor="middle" fill="#d97706" font-family="Consolas, monospace" font-size="22">W ~ N(0, 0.01)</text>
+        <text x="720" y="96" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="18">Breaks symmetry but doesn't scale with layer size</text>
+      </g>
+      
+      <!-- Xavier/Glorot -->
+      <g transform="translate(0, 260)">
+        <rect width="1440" height="150" fill="#dbeafe" rx="12"/>
+        <text x="720" y="35" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="26" font-weight="bold">✓ Xavier/Glorot Initialization</text>
+        <text x="720" y="70" text-anchor="middle" fill="#1e40af" font-family="Consolas, monospace" font-size="22">W ~ N(0, √(2/(nᵢₙ + nₒᵤₜ)))</text>
+        <text x="720" y="100" text-anchor="middle" fill="#1e40af" font-family="Consolas, monospace" font-size="20">or Uniform: W ~ U(-√(6/(nᵢₙ + nₒᵤₜ)), √(6/(nᵢₙ + nₒᵤₜ)))</text>
+        <text x="720" y="130" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="18">Best for: tanh, sigmoid activations</text>
+      </g>
+      
+      <!-- He Initialization -->
+      <g transform="translate(0, 430)">
+        <rect width="1440" height="150" fill="#dcfce7" rx="12"/>
+        <text x="720" y="35" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="26" font-weight="bold">⭐ He Initialization (Recommended for ReLU)</text>
+        <text x="720" y="70" text-anchor="middle" fill="#059669" font-family="Consolas, monospace" font-size="22">W ~ N(0, √(2/nᵢₙ))</text>
+        <text x="720" y="100" text-anchor="middle" fill="#059669" font-family="Consolas, monospace" font-size="20">or Uniform: W ~ U(-√(6/nᵢₙ), √(6/nᵢₙ))</text>
+        <text x="720" y="130" text-anchor="middle" fill="#15803d" font-family="Arial, sans-serif" font-size="18">Best for: ReLU, Leaky ReLU, PReLU activations</text>
+      </g>
+      
+      <!-- LeCun Initialization -->
+      <g transform="translate(0, 600)">
+        <rect width="1440" height="130" fill="#faf5ff" rx="12"/>
+        <text x="720" y="35" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="26" font-weight="bold">✓ LeCun Initialization</text>
+        <text x="720" y="70" text-anchor="middle" fill="#7c3aed" font-family="Consolas, monospace" font-size="22">W ~ N(0, √(1/nᵢₙ))</text>
+        <text x="720" y="105" text-anchor="middle" fill="#6b21a8" font-family="Arial, sans-serif" font-size="18">Best for: SELU activation (self-normalizing networks)</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Quick Reference -->
+  <g transform="translate(100, 1340)" filter="url(#shadow)">
+    <rect width="1600" height="80" rx="18" fill="#ffffff" stroke="#06b6d4" stroke-width="4"/>
+    <text x="800" y="30" text-anchor="middle" fill="#06b6d4" font-family="Arial, sans-serif" font-size="24" font-weight="bold">📋 Quick Reference Guide</text>
+    <line x1="40" y1="40" x2="1560" y2="40" stroke="#a5f3fc" stroke-width="2"/>
+    
+    <g transform="translate(80, 55)">
+      <text x="0" y="0" fill="#0891b2" font-family="Arial, sans-serif" font-size="18">ReLU/Leaky ReLU → He Init</text>
+      <text x="400" y="0" fill="#0891b2" font-family="Arial, sans-serif" font-size="18">tanh/sigmoid → Xavier Init</text>
+      <text x="850" y="0" fill="#0891b2" font-family="Arial, sans-serif" font-size="18">SELU → LeCun Init</text>
+      <text x="1200" y="0" fill="#0891b2" font-family="Arial, sans-serif" font-size="18">Default → He Init</text>
+    </g>
+  </g>
+  
+  <!-- Key Insight -->
+  <rect x="100" y="1440" width="1600" height="60" fill="#10b981" rx="14" filter="url(#shadow)"/>
+  <text x="900" y="1477" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="bold">💡 Proper initialization prevents vanishing/exploding gradients • Use He for ReLU, Xavier for tanh/sigmoid</text>
+</svg>

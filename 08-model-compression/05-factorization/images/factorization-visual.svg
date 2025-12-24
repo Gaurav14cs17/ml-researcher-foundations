@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="factBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="30" text-anchor="middle" fill="#00838f" font-family="Arial, sans-serif" font-size="20" font-weight="bold">📐 Low-Rank Factorization</ns0:text>
+  <ns0:text x="400" y="55" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12">Approximate large matrices with smaller ones</ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="80" y="80.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Original Weight</ns0:text>
+    <ns0:rect width="160" height="120" rx="8" fill="#c62828" opacity="0.3" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="80" y="105.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" font-weight="bold">W</ns0:text>
+    <ns0:text x="80" y="130.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="11">m × n</ns0:text>
+    <ns0:text x="80" y="155.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="10">1024 × 4096</ns0:text>
+    <ns0:text x="80" y="180.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">4.2M params</ns0:text>
+  </ns0:g>
+  <ns0:text x="245" y="205.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="20">≈</ns0:text>
+  <ns0:g transform="translate(280, 80)">
+    <ns0:text x="30" y="230.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12" font-weight="bold">U</ns0:text>
+    <ns0:rect width="60" height="120" rx="6" fill="#2e7d32"/>
+    <ns0:text x="30" y="255.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="14" font-weight="bold">U</ns0:text>
+    <ns0:text x="30" y="280.0" text-anchor="middle" fill="#dcfce7" font-family="Arial, sans-serif" font-size="9">m × r</ns0:text>
+    <ns0:text x="30" y="305.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">1024×32</ns0:text>
+  </ns0:g>
+  <ns0:text x="365" y="330.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="16">×</ns0:text>
+  <ns0:g transform="translate(390, 110)">
+    <ns0:text x="70" y="355.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="12" font-weight="bold">V</ns0:text>
+    <ns0:rect width="140" height="50" rx="6" fill="#1565c0"/>
+    <ns0:text x="70" y="380.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="14" font-weight="bold">V</ns0:text>
+    <ns0:text x="70" y="405.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="9">r × n</ns0:text>
+    <ns0:text x="70" y="430.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">32×4096</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(560, 80)">
+    <ns0:rect width="180" height="120" rx="8" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="90" y="455.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Compressed!</ns0:text>
+    <ns0:text x="90" y="480.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">W ≈ U × V</ns0:text>
+    <ns0:text x="90" y="505.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Rank r = 32</ns0:text>
+    <ns0:text x="90" y="530.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12" font-weight="bold">164K params</ns0:text>
+    <ns0:text x="90" y="555.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">25× smaller!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(100, 240)">
+    <ns0:rect width="600" height="140" rx="12" fill="#1a237e" stroke="#17a2b8" stroke-width="2"/>
+    <ns0:text x="300" y="580.0" text-anchor="middle" fill="#00838f" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🔬 SVD Decomposition: W = UΣV^T</ns0:text>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:rect width="80" height="60" rx="4" fill="#c62828" opacity="0.3" stroke="#dc3545"/>
+      <ns0:text x="40" y="605.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12">W</ns0:text>
+    </ns0:g>
+    <ns0:text x="130" y="630.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="14">=</ns0:text>
+    <ns0:g transform="translate(150, 50)">
+      <ns0:rect width="40" height="60" rx="4" fill="#2e7d32"/>
+      <ns0:text x="20" y="655.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">U</ns0:text>
+    </ns0:g>
+    <ns0:text x="210" y="680.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="14">×</ns0:text>
+    <ns0:g transform="translate(230, 60)">
+      <ns0:rect width="40" height="40" rx="4" fill="#e65100"/>
+      <ns0:text x="20" y="705.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Σ</ns0:text>
+    </ns0:g>
+    <ns0:text x="290" y="730.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="14">×</ns0:text>
+    <ns0:g transform="translate(310, 60)">
+      <ns0:rect width="60" height="40" rx="4" fill="#1565c0"/>
+      <ns0:text x="30" y="755.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">V^T</ns0:text>
+    </ns0:g>
+    <ns0:text x="410" y="780.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Keep top-r singular values</ns0:text>
+    <ns0:text x="410" y="805.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Σ = diag(σ₁, σ₂, ..., σᵣ)</ns0:text>
+    <ns0:text x="410" y="830.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Best rank-r approximation!</ns0:text>
+    <ns0:text x="410" y="855.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Minimizes ||W - Ŵ||_F</ns0:text>
+  </ns0:g>
+</ns0:svg>

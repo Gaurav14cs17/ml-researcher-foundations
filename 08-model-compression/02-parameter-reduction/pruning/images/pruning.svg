@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="pruneBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#2d2d2d"/>
+      <ns0:stop offset="100%" style="stop-color:#0f0f1a"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#c62828" font-size="22" font-weight="bold">Neural Network Pruning</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:text x="80" y="60.0" text-anchor="middle" fill="#9ca3af" font-size="12">Dense Network</ns0:text>
+    <ns0:circle cx="20" cy="40" r="10" fill="#1565c0"/>
+    <ns0:circle cx="20" cy="80" r="10" fill="#1565c0"/>
+    <ns0:circle cx="20" cy="120" r="10" fill="#1565c0"/>
+    <ns0:circle cx="80" cy="40" r="10" fill="#10b981"/>
+    <ns0:circle cx="80" cy="80" r="10" fill="#10b981"/>
+    <ns0:circle cx="80" cy="120" r="10" fill="#10b981"/>
+    <ns0:circle cx="140" cy="80" r="10" fill="#a78bfa"/>
+    <ns0:line x1="30" y1="40" x2="70" y2="40" stroke="#6b7280" stroke-width="1"/>
+    <ns0:line x1="30" y1="40" x2="70" y2="80" stroke="#6b7280" stroke-width="1"/>
+    <ns0:line x1="30" y1="40" x2="70" y2="120" stroke="#6b7280" stroke-width="1"/>
+    <ns0:line x1="30" y1="80" x2="70" y2="40" stroke="#6b7280" stroke-width="1"/>
+    <ns0:line x1="30" y1="80" x2="70" y2="80" stroke="#6b7280" stroke-width="1"/>
+    <ns0:line x1="30" y1="80" x2="70" y2="120" stroke="#6b7280" stroke-width="1"/>
+    <ns0:line x1="30" y1="120" x2="70" y2="40" stroke="#6b7280" stroke-width="1"/>
+    <ns0:line x1="30" y1="120" x2="70" y2="80" stroke="#6b7280" stroke-width="1"/>
+    <ns0:line x1="30" y1="120" x2="70" y2="120" stroke="#6b7280" stroke-width="1"/>
+    <ns0:line x1="90" y1="40" x2="130" y2="80" stroke="#6b7280" stroke-width="1"/>
+    <ns0:line x1="90" y1="80" x2="130" y2="80" stroke="#6b7280" stroke-width="1"/>
+    <ns0:line x1="90" y1="120" x2="130" y2="80" stroke="#6b7280" stroke-width="1"/>
+  </ns0:g>
+  <ns0:path d="M230 140 L280 140" stroke="#fd7e14" stroke-width="2" marker-end="url(#arrowY)"/>
+  <ns0:text x="255" y="160" text-anchor="middle" fill="#e65100" font-size="10">Prune</ns0:text>
+  <ns0:g transform="translate(300, 70)">
+    <ns0:text x="80" y="185.0" text-anchor="middle" fill="#9ca3af" font-size="12">Sparse Network</ns0:text>
+    <ns0:circle cx="20" cy="40" r="10" fill="#1565c0"/>
+    <ns0:circle cx="20" cy="80" r="10" fill="#1565c0"/>
+    <ns0:circle cx="20" cy="120" r="10" fill="#1565c0" opacity="0.3"/>
+    <ns0:circle cx="80" cy="40" r="10" fill="#10b981"/>
+    <ns0:circle cx="80" cy="80" r="10" fill="#10b981" opacity="0.3"/>
+    <ns0:circle cx="80" cy="120" r="10" fill="#10b981"/>
+    <ns0:circle cx="140" cy="80" r="10" fill="#a78bfa"/>
+    <ns0:line x1="30" y1="40" x2="70" y2="40" stroke="#28a745" stroke-width="2"/>
+    <ns0:line x1="30" y1="80" x2="70" y2="120" stroke="#28a745" stroke-width="2"/>
+    <ns0:line x1="90" y1="40" x2="130" y2="80" stroke="#28a745" stroke-width="2"/>
+    <ns0:line x1="90" y1="120" x2="130" y2="80" stroke="#28a745" stroke-width="2"/>
+  </ns0:g>
+  <ns0:rect x="500" y="60" width="270" height="130" rx="10" fill="#1a237e" stroke="#dc3545" stroke-width="2"/>
+  <ns0:text x="635" y="210.0" text-anchor="middle" fill="#c62828" font-size="13" font-weight="bold">Pruning Types</ns0:text>
+  <ns0:text x="635" y="235.0" text-anchor="middle" fill="#c62828" font-size="11">Unstructured: Any weight</ns0:text>
+  <ns0:text x="635" y="260.0" text-anchor="middle" fill="#c62828" font-size="11">Structured: Entire filters/heads</ns0:text>
+  <ns0:text x="635" y="285.0" text-anchor="middle" fill="#c62828" font-size="10">Structured → actual speedup</ns0:text>
+  <ns0:text x="635" y="310.0" text-anchor="middle" fill="#c62828" font-size="10">Unstructured → needs sparse libs</ns0:text>
+  <ns0:rect x="50" y="230" width="350" height="140" rx="10" fill="#1e3a5f" stroke="#007bff" stroke-width="2"/>
+  <ns0:text x="225" y="335.0" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">Pruning Methods</ns0:text>
+  <ns0:text x="225" y="360.0" text-anchor="middle" fill="#1565c0" font-size="11">• Magnitude: Remove smallest weights</ns0:text>
+  <ns0:text x="225" y="385.0" text-anchor="middle" fill="#1565c0" font-size="11">• Movement: Remove weights moving to 0</ns0:text>
+  <ns0:text x="225" y="410.0" text-anchor="middle" fill="#1565c0" font-size="11">• Lottery Ticket: Find sparse subnetworks</ns0:text>
+  <ns0:text x="225" y="435.0" text-anchor="middle" fill="#1565c0" font-size="10">Iterative pruning often best</ns0:text>
+  <ns0:rect x="420" y="230" width="350" height="140" rx="10" fill="#134e4a" stroke="#10b981" stroke-width="2"/>
+  <ns0:text x="595" y="460.0" text-anchor="middle" fill="#10b981" font-size="13" font-weight="bold">Typical Results</ns0:text>
+  <ns0:text x="595" y="485.0" text-anchor="middle" fill="#2e7d32" font-size="11">50-90% weights prunable</ns0:text>
+  <ns0:text x="595" y="510.0" text-anchor="middle" fill="#2e7d32" font-size="11">&lt;1% accuracy drop common</ns0:text>
+  <ns0:text x="595" y="535.0" text-anchor="middle" fill="#2e7d32" font-size="11">Requires fine-tuning after pruning</ns0:text>
+  <ns0:text x="595" y="560.0" text-anchor="middle" fill="#2e7d32" font-size="10">LLMs: SparseGPT, Wanda</ns0:text>
+</ns0:svg>

@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="quantBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#2d2d2d"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1565c0" font-size="22" font-weight="bold">Quantization</ns0:text>
+  <ns0:rect x="50" y="60" width="150" height="80" rx="8" fill="#7f1d1d" stroke="#dc3545" stroke-width="2"/>
+  <ns0:text x="125" y="90" text-anchor="middle" fill="#c62828" font-size="12" font-weight="bold">FP32</ns0:text>
+  <ns0:text x="125" y="115" text-anchor="middle" fill="#c62828" font-size="10">32 bits/param</ns0:text>
+  <ns0:text x="125" y="140.0" text-anchor="middle" fill="#c62828" font-size="10">Full precision</ns0:text>
+  <ns0:path d="M210 100 L280 100" stroke="#fd7e14" stroke-width="2" marker-end="url(#arrowY)"/>
+  <ns0:rect x="290" y="60" width="150" height="80" rx="8" fill="#4c1d95" stroke="#a78bfa" stroke-width="2"/>
+  <ns0:text x="365" y="165.0" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="bold">FP16/BF16</ns0:text>
+  <ns0:text x="365" y="190.0" text-anchor="middle" fill="#ddd6fe" font-size="10">16 bits/param</ns0:text>
+  <ns0:text x="365" y="215.0" text-anchor="middle" fill="#ddd6fe" font-size="10">2x compression</ns0:text>
+  <ns0:path d="M450 100 L520 100" stroke="#fd7e14" stroke-width="2"/>
+  <ns0:rect x="530" y="60" width="150" height="80" rx="8" fill="#14532d" stroke="#28a745" stroke-width="2"/>
+  <ns0:text x="605" y="240.0" text-anchor="middle" fill="#2e7d32" font-size="12" font-weight="bold">INT8/INT4</ns0:text>
+  <ns0:text x="605" y="265.0" text-anchor="middle" fill="#bbf7d0" font-size="10">4-8 bits/param</ns0:text>
+  <ns0:text x="605" y="290.0" text-anchor="middle" fill="#bbf7d0" font-size="10">4-8x compression</ns0:text>
+  <ns0:rect x="50" y="160" width="220" height="110" rx="8" fill="#1e3a5f" stroke="#007bff" stroke-width="2"/>
+  <ns0:text x="160" y="315.0" text-anchor="middle" fill="#1565c0" font-size="12" font-weight="bold">Post-Training (PTQ)</ns0:text>
+  <ns0:text x="160" y="340.0" text-anchor="middle" fill="#1565c0" font-size="10">Quantize after training</ns0:text>
+  <ns0:text x="160" y="365.0" text-anchor="middle" fill="#1565c0" font-size="10">Fast, no retraining</ns0:text>
+  <ns0:text x="160" y="390.0" text-anchor="middle" fill="#1565c0" font-size="10">Some accuracy loss</ns0:text>
+  <ns0:rect x="290" y="160" width="220" height="110" rx="8" fill="#134e4a" stroke="#10b981" stroke-width="2"/>
+  <ns0:text x="400" y="415.0" text-anchor="middle" fill="#10b981" font-size="12" font-weight="bold">QAT</ns0:text>
+  <ns0:text x="400" y="440.0" text-anchor="middle" fill="#2e7d32" font-size="10">Quantize-Aware Training</ns0:text>
+  <ns0:text x="400" y="465.0" text-anchor="middle" fill="#2e7d32" font-size="10">Learn to handle quantization</ns0:text>
+  <ns0:text x="400" y="490.0" text-anchor="middle" fill="#2e7d32" font-size="10">Better accuracy</ns0:text>
+  <ns0:rect x="530" y="160" width="220" height="110" rx="8" fill="#3d1f5c" stroke="#ec4899" stroke-width="2"/>
+  <ns0:text x="640" y="515.0" text-anchor="middle" fill="#ec4899" font-size="12" font-weight="bold">Dynamic Quant</ns0:text>
+  <ns0:text x="640" y="540.0" text-anchor="middle" fill="#fbcfe8" font-size="10">Quantize at runtime</ns0:text>
+  <ns0:text x="640" y="565.0" text-anchor="middle" fill="#fbcfe8" font-size="10">Weights: static, Activations: dynamic</ns0:text>
+  <ns0:text x="640" y="590.0" text-anchor="middle" fill="#f9a8d4" font-size="10">Balanced approach</ns0:text>
+  <ns0:rect x="150" y="290" width="500" height="80" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+  <ns0:text x="400" y="615.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Popular Methods</ns0:text>
+  <ns0:text x="400" y="640.0" text-anchor="middle" fill="#fef3c7" font-size="11">GPTQ • AWQ • GGUF • bitsandbytes • llama.cpp</ns0:text>
+  <ns0:text x="400" y="665.0" text-anchor="middle" fill="#e65100" font-size="10">LLMs: 4-bit quantization often retains 95%+ quality</ns0:text>
+</ns0:svg>

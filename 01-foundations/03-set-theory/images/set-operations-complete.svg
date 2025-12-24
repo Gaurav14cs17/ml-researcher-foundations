@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ede9fe"/>
+      <stop offset="100%" style="stop-color:#ddd6fe"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  
+  <rect width="1800" height="1400" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#5b21b6" font-family="Arial, sans-serif" font-size="52" font-weight="bold">Set Operations</text>
+  <text x="900" y="120" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="26">Fundamental operations on sets with visual representations</text>
+  
+  <!-- Union -->
+  <g transform="translate(100, 180)" filter="url(#shadow)">
+    <rect width="750" height="360" rx="18" fill="#ffffff" stroke="#3b82f6" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="32" font-weight="bold">1. Union (A ∪ B)</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#bfdbfe" stroke-width="2"/>
+    
+    <!-- Venn diagram -->
+    <g transform="translate(200, 110)">
+      <circle cx="120" cy="100" r="80" fill="#3b82f6" fill-opacity="0.4" stroke="#3b82f6" stroke-width="3"/>
+      <circle cx="230" cy="100" r="80" fill="#3b82f6" fill-opacity="0.4" stroke="#3b82f6" stroke-width="3"/>
+      <text x="80" y="105" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="28" font-weight="bold">A</text>
+      <text x="270" y="105" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="28" font-weight="bold">B</text>
+    </g>
+    
+    <g transform="translate(50, 250)">
+      <rect x="0" y="0" width="650" height="90" fill="#eff6ff" rx="10"/>
+      <text x="325" y="30" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="22" font-weight="bold">A ∪ B = {x : x ∈ A or x ∈ B}</text>
+      <text x="325" y="60" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="19">All elements in A or B (or both)</text>
+      <text x="325" y="85" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Example: {1,2,3} ∪ {3,4,5} = {1,2,3,4,5}</text>
+    </g>
+  </g>
+  
+  <!-- Intersection -->
+  <g transform="translate(950, 180)" filter="url(#shadow)">
+    <rect width="750" height="360" rx="18" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="32" font-weight="bold">2. Intersection (A ∩ B)</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#d1fae5" stroke-width="2"/>
+    
+    <!-- Venn diagram -->
+    <g transform="translate(200, 110)">
+      <circle cx="120" cy="100" r="80" fill="none" stroke="#10b981" stroke-width="3"/>
+      <circle cx="230" cy="100" r="80" fill="none" stroke="#10b981" stroke-width="3"/>
+      <ellipse cx="175" cy="100" rx="45" ry="80" fill="#10b981" fill-opacity="0.5"/>
+      <text x="80" y="105" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="28" font-weight="bold">A</text>
+      <text x="270" y="105" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="28" font-weight="bold">B</text>
+    </g>
+    
+    <g transform="translate(50, 250)">
+      <rect x="0" y="0" width="650" height="90" fill="#f0fdf4" rx="10"/>
+      <text x="325" y="30" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="22" font-weight="bold">A ∩ B = {x : x ∈ A and x ∈ B}</text>
+      <text x="325" y="60" text-anchor="middle" fill="#15803d" font-family="Arial, sans-serif" font-size="19">Elements common to both A and B</text>
+      <text x="325" y="85" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Example: {1,2,3} ∩ {3,4,5} = {3}</text>
+    </g>
+  </g>
+  
+  <!-- Difference -->
+  <g transform="translate(100, 590)" filter="url(#shadow)">
+    <rect width="750" height="360" rx="18" fill="#ffffff" stroke="#f59e0b" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="32" font-weight="bold">3. Difference (A \ B)</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#fde68a" stroke-width="2"/>
+    
+    <!-- Venn diagram -->
+    <g transform="translate(200, 110)">
+      <circle cx="120" cy="100" r="80" fill="#f59e0b" fill-opacity="0.5" stroke="#f59e0b" stroke-width="3"/>
+      <circle cx="230" cy="100" r="80" fill="none" stroke="#f59e0b" stroke-width="3"/>
+      <ellipse cx="175" cy="100" rx="45" ry="80" fill="#ffffff"/>
+      <text x="80" y="105" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="28" font-weight="bold">A</text>
+      <text x="270" y="105" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="28" font-weight="bold">B</text>
+    </g>
+    
+    <g transform="translate(50, 250)">
+      <rect x="0" y="0" width="650" height="90" fill="#fef3c7" rx="10"/>
+      <text x="325" y="30" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="22" font-weight="bold">A \ B = {x : x ∈ A and x ∉ B}</text>
+      <text x="325" y="60" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="19">Elements in A but not in B</text>
+      <text x="325" y="85" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Example: {1,2,3} \ {3,4,5} = {1,2}</text>
+    </g>
+  </g>
+  
+  <!-- Complement -->
+  <g transform="translate(950, 590)" filter="url(#shadow)">
+    <rect width="750" height="360" rx="18" fill="#ffffff" stroke="#ef4444" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="32" font-weight="bold">4. Complement (Aᶜ)</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#fecaca" stroke-width="2"/>
+    
+    <!-- Venn diagram -->
+    <g transform="translate(150, 110)">
+      <rect x="0" y="0" width="350" height="200" fill="#ef4444" fill-opacity="0.3" stroke="#64748b" stroke-width="3" rx="10"/>
+      <circle cx="175" cy="100" r="70" fill="#ffffff" stroke="#ef4444" stroke-width="3"/>
+      <text x="175" y="105" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="28" font-weight="bold">A</text>
+      <text x="50" y="30" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="20">U</text>
+    </g>
+    
+    <g transform="translate(50, 250)">
+      <rect x="0" y="0" width="650" height="90" fill="#fee2e2" rx="10"/>
+      <text x="325" y="30" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Aᶜ = {x : x ∈ U and x ∉ A}</text>
+      <text x="325" y="60" text-anchor="middle" fill="#b91c1c" font-family="Arial, sans-serif" font-size="19">Elements in universe U but not in A</text>
+      <text x="325" y="85" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Example: If U={1,2,3,4,5}, A={1,2} → Aᶜ={3,4,5}</text>
+    </g>
+  </g>
+  
+  <!-- Symmetric Difference -->
+  <g transform="translate(100, 1000)" filter="url(#shadow)">
+    <rect width="750" height="340" rx="18" fill="#ffffff" stroke="#8b5cf6" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="32" font-weight="bold">5. Symmetric Diff (A △ B)</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#e9d5ff" stroke-width="2"/>
+    
+    <!-- Venn diagram -->
+    <g transform="translate(200, 110)">
+      <circle cx="120" cy="100" r="80" fill="#8b5cf6" fill-opacity="0.4" stroke="#8b5cf6" stroke-width="3"/>
+      <circle cx="230" cy="100" r="80" fill="#8b5cf6" fill-opacity="0.4" stroke="#8b5cf6" stroke-width="3"/>
+      <ellipse cx="175" cy="100" rx="45" ry="80" fill="#ffffff"/>
+      <text x="80" y="105" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="28" font-weight="bold">A</text>
+      <text x="270" y="105" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="28" font-weight="bold">B</text>
+    </g>
+    
+    <g transform="translate(50, 240)">
+      <rect x="0" y="0" width="650" height="80" fill="#faf5ff" rx="10"/>
+      <text x="325" y="28" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="20" font-weight="bold">A △ B = (A \ B) ∪ (B \ A) = (A ∪ B) \ (A ∩ B)</text>
+      <text x="325" y="55" text-anchor="middle" fill="#6b21a8" font-family="Arial, sans-serif" font-size="19">Elements in A or B but not both</text>
+      <text x="325" y="78" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Example: {1,2,3} △ {3,4,5} = {1,2,4,5}</text>
+    </g>
+  </g>
+  
+  <!-- Properties -->
+  <g transform="translate(950, 1000)" filter="url(#shadow)">
+    <rect width="750" height="340" rx="18" fill="#ffffff" stroke="#06b6d4" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#06b6d4" font-family="Arial, sans-serif" font-size="32" font-weight="bold">📋 Key Properties</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#a5f3fc" stroke-width="2"/>
+    
+    <g transform="translate(60, 110)">
+      <text x="0" y="0" fill="#0891b2" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Commutative:</text>
+      <text x="20" y="28" fill="#0e7490" font-family="Arial, sans-serif" font-size="18">A ∪ B = B ∪ A,  A ∩ B = B ∩ A</text>
+      
+      <text x="0" y="65" fill="#0891b2" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Associative:</text>
+      <text x="20" y="93" fill="#0e7490" font-family="Arial, sans-serif" font-size="18">(A ∪ B) ∪ C = A ∪ (B ∪ C)</text>
+      
+      <text x="0" y="130" fill="#0891b2" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Distributive:</text>
+      <text x="20" y="158" fill="#0e7490" font-family="Arial, sans-serif" font-size="18">A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)</text>
+      
+      <text x="0" y="195" fill="#0891b2" font-family="Arial, sans-serif" font-size="22" font-weight="bold">De Morgan's Laws:</text>
+      <text x="20" y="223" fill="#0e7490" font-family="Arial, sans-serif" font-size="18">(A ∪ B)ᶜ = Aᶜ ∩ Bᶜ,  (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ</text>
+    </g>
+  </g>
+  
+  <!-- Key Insight -->
+  <rect x="100" y="1360" width="1600" height="60" fill="#8b5cf6" rx="14" filter="url(#shadow)"/>
+  <text x="900" y="1397" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="bold">💡 Set operations form the foundation of logic, probability, and database queries</text>
+</svg>

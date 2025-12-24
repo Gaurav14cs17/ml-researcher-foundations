@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgFL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Feature Learning</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="340" height="130" rx="10" fill="#2d2d2d20" stroke="#dc3545"/>
+    <ns0:text x="170" y="60.0" text-anchor="middle" fill="#c62828" font-size="12" font-weight="bold">Traditional: Hand-crafted</ns0:text>
+    <ns0:text x="170" y="85.0" text-anchor="middle" fill="#c62828" font-size="10">Domain expert designs features</ns0:text>
+    <ns0:text x="30" y="110.0" fill="#c62828" font-size="9">• SIFT, HOG for images</ns0:text>
+    <ns0:text x="30" y="135.0" fill="#c62828" font-size="9">• TF-IDF for text</ns0:text>
+    <ns0:text x="30" y="160.0" fill="#c62828" font-size="9">• MFCC for audio</ns0:text>
+    <ns0:text x="30" y="185.0" fill="#c62828" font-size="8">Labor-intensive, limited</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 70)">
+    <ns0:rect width="340" height="130" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="170" y="210.0" text-anchor="middle" fill="#2e7d32" font-size="12" font-weight="bold">Deep Learning: Learned</ns0:text>
+    <ns0:text x="170" y="235.0" text-anchor="middle" fill="#2e7d32" font-size="10">Network learns features from data</ns0:text>
+    <ns0:text x="30" y="260.0" fill="#2e7d32" font-size="9">• Hierarchical representations</ns0:text>
+    <ns0:text x="30" y="285.0" fill="#2e7d32" font-size="9">• End-to-end optimization</ns0:text>
+    <ns0:text x="30" y="310.0" fill="#2e7d32" font-size="9">• Task-specific features</ns0:text>
+    <ns0:text x="30" y="335.0" fill="#34d399" font-size="8">Automatic, powerful</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 220)">
+    <ns0:rect width="700" height="90" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="360.0" text-anchor="middle" fill="#e65100" font-size="11" font-weight="bold">Feature Hierarchy (CNN Example)</ns0:text>
+    <ns0:rect x="40" y="40" width="90" height="40" rx="5" fill="#1565c0"/>
+    <ns0:text x="85" y="385.0" text-anchor="middle" fill="#1a237e" font-size="8">Layer 1</ns0:text>
+    <ns0:text x="85" y="410.0" text-anchor="middle" fill="#1565c0" font-size="7">Edges</ns0:text>
+    <ns0:text x="155" y="435.0" fill="#6366f1">→</ns0:text>
+    <ns0:rect x="180" y="40" width="90" height="40" rx="5" fill="#8b5cf6"/>
+    <ns0:text x="225" y="460.0" text-anchor="middle" fill="#1a237e" font-size="8">Layer 2</ns0:text>
+    <ns0:text x="225" y="485.0" text-anchor="middle" fill="#e9d5ff" font-size="7">Textures</ns0:text>
+    <ns0:text x="295" y="510.0" fill="#6366f1">→</ns0:text>
+    <ns0:rect x="320" y="40" width="90" height="40" rx="5" fill="#e65100"/>
+    <ns0:text x="365" y="535.0" text-anchor="middle" fill="#1a237e" font-size="8">Layer 3</ns0:text>
+    <ns0:text x="365" y="560.0" text-anchor="middle" fill="#fef3c7" font-size="7">Parts</ns0:text>
+    <ns0:text x="435" y="585.0" fill="#6366f1">→</ns0:text>
+    <ns0:rect x="460" y="40" width="90" height="40" rx="5" fill="#c62828"/>
+    <ns0:text x="505" y="610.0" text-anchor="middle" fill="#1a237e" font-size="8">Layer 4</ns0:text>
+    <ns0:text x="505" y="635.0" text-anchor="middle" fill="#c62828" font-size="7">Objects</ns0:text>
+    <ns0:text x="575" y="660.0" fill="#6366f1">→</ns0:text>
+    <ns0:rect x="600" y="40" width="90" height="40" rx="5" fill="#10b981"/>
+    <ns0:text x="645" y="685.0" text-anchor="middle" fill="#1a237e" font-size="8">Output</ns0:text>
+    <ns0:text x="645" y="710.0" text-anchor="middle" fill="#d1fae5" font-size="7">Classes</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 330)">
+    <ns0:rect width="700" height="50" rx="10" fill="#2d2d2d20" stroke="#007bff"/>
+    <ns0:text x="350" y="735.0" text-anchor="middle" fill="#1565c0" font-size="11">Deep networks automatically learn the feature hierarchy that took humans decades to design!</ns0:text>
+  </ns0:g>
+</ns0:svg>

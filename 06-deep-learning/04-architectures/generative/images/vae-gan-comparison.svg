@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef2f2"/>
+      <stop offset="100%" style="stop-color:#fee2e2"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  
+  <rect width="1800" height="1400" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#991b1b" font-family="Arial, sans-serif" font-size="52" font-weight="bold">VAE vs GAN Comparison</text>
+  <text x="900" y="120" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="26">Two approaches to generative modeling</text>
+  
+  <!-- VAE Section -->
+  <g transform="translate(100, 180)" filter="url(#shadow)">
+    <rect width="750" height="1020" rx="18" fill="#ffffff" stroke="#3b82f6" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="36" font-weight="bold">Variational Autoencoder (VAE)</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#bfdbfe" stroke-width="2"/>
+    
+    <g transform="translate(50, 110)">
+      <!-- Architecture -->
+      <rect width="650" height="260" fill="#eff6ff" rx="12"/>
+      <text x="325" y="30" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Architecture</text>
+      <line x1="20" y1="45" x2="630" y2="45" stroke="#bfdbfe" stroke-width="2"/>
+      
+      <g transform="translate(100, 70)">
+        <rect x="0" y="0" width="120" height="50" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="8"/>
+        <text x="60" y="32" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="18">Input x</text>
+        
+        <text x="150" y="28" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="20">→</text>
+        
+        <rect x="180" y="0" width="120" height="50" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2" rx="8"/>
+        <text x="240" y="32" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="18">Encoder</text>
+        
+        <text x="330" y="28" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="20">→</text>
+        
+        <rect x="360" y="0" width="120" height="50" fill="#93c5fd" stroke="#3b82f6" stroke-width="2" rx="8"/>
+        <text x="420" y="25" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="16">Latent z</text>
+        <text x="420" y="42" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="14">(μ, σ)</text>
+        
+        <text x="240" y="85" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="20">↓</text>
+        
+        <rect x="180" y="100" width="120" height="50" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2" rx="8"/>
+        <text x="240" y="132" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="18">Decoder</text>
+        
+        <text x="240" y="185" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="20">↓</text>
+        
+        <rect x="180" y="200" width="120" height="50" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="8"/>
+        <text x="240" y="232" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="18">Output x̂</text>
+      </g>
+      
+      <!-- Objective -->
+      <g transform="translate(0, 290)">
+        <rect width="650" height="180" fill="#fef3c7" rx="12"/>
+        <text x="325" y="30" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Objective</text>
+        <line x1="20" y1="45" x2="630" y2="45" stroke="#fde68a" stroke-width="2"/>
+        
+        <text x="325" y="80" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="19">Maximize ELBO:</text>
+        <rect x="80" y="90" width="490" height="75" fill="#fed7aa" rx="10"/>
+        <text x="325" y="120" text-anchor="middle" fill="#92400e" font-family="Consolas, monospace" font-size="17">L = E[log p(x|z)]</text>
+        <text x="325" y="145" text-anchor="middle" fill="#92400e" font-family="Consolas, monospace" font-size="17">    - KL(q(z|x) || p(z))</text>
+      </g>
+      
+      <!-- Pros -->
+      <g transform="translate(0, 490)">
+        <rect width="650" height="220" fill="#dcfce7" rx="12"/>
+        <text x="325" y="30" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="24" font-weight="bold">✓ Advantages</text>
+        <line x1="20" y1="45" x2="630" y2="45" stroke="#d1fae5" stroke-width="2"/>
+        
+        <text x="325" y="75" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="19">• Stable training</text>
+        <text x="325" y="105" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="19">• Explicit latent representation</text>
+        <text x="325" y="135" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="19">• Can compute likelihood</text>
+        <text x="325" y="165" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="19">• Smooth latent space</text>
+        <text x="325" y="195" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="19">• Good for interpolation</text>
+      </g>
+      
+      <!-- Cons -->
+      <g transform="translate(0, 730)">
+        <rect width="650" height="190" fill="#fee2e2" rx="12"/>
+        <text x="325" y="30" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="24" font-weight="bold">✗ Disadvantages</text>
+        <line x1="20" y1="45" x2="630" y2="45" stroke="#fecaca" stroke-width="2"/>
+        
+        <text x="325" y="80" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">• Blurry outputs</text>
+        <text x="325" y="110" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">• Lower sample quality</text>
+        <text x="325" y="140" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">• Posterior approximation</text>
+        <text x="325" y="170" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">• Mode collapse possible</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- GAN Section -->
+  <g transform="translate(950, 180)" filter="url(#shadow)">
+    <rect width="750" height="1020" rx="18" fill="#ffffff" stroke="#8b5cf6" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="36" font-weight="bold">Generative Adversarial Network</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#e9d5ff" stroke-width="2"/>
+    
+    <g transform="translate(50, 110)">
+      <!-- Architecture -->
+      <rect width="650" height="260" fill="#faf5ff" rx="12"/>
+      <text x="325" y="30" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Architecture</text>
+      <line x1="20" y1="45" x2="630" y2="45" stroke="#e9d5ff" stroke-width="2"/>
+      
+      <g transform="translate(100, 70)">
+        <rect x="0" y="0" width="120" height="50" fill="#f3e8ff" stroke="#8b5cf6" stroke-width="2" rx="8"/>
+        <text x="60" y="25" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="18">Noise z</text>
+        <text x="60" y="42" text-anchor="middle" fill="#6b21a8" font-family="Arial, sans-serif" font-size="14">~N(0,1)</text>
+        
+        <text x="150" y="28" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="20">→</text>
+        
+        <rect x="180" y="0" width="120" height="50" fill="#e9d5ff" stroke="#8b5cf6" stroke-width="2" rx="8"/>
+        <text x="240" y="32" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="18">Generator</text>
+        
+        <text x="330" y="28" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="20">→</text>
+        
+        <rect x="360" y="0" width="120" height="50" fill="#c4b5fd" stroke="#8b5cf6" stroke-width="2" rx="8"/>
+        <text x="420" y="32" text-anchor="middle" fill="#5b21b6" font-family="Arial, sans-serif" font-size="18">Fake x</text>
+        
+        <text x="420" y="85" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="20">↓</text>
+        
+        <rect x="360" y="100" width="120" height="50" fill="#e9d5ff" stroke="#8b5cf6" stroke-width="2" rx="8"/>
+        <text x="420" y="132" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="18">Discriminator</text>
+        
+        <!-- Real data path -->
+        <rect x="0" y="100" width="120" height="50" fill="#f3e8ff" stroke="#8b5cf6" stroke-width="2" rx="8"/>
+        <text x="60" y="132" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="18">Real x</text>
+        
+        <line x1="120" y1="125" x2="360" y2="125" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,3"/>
+        
+        <text x="240" y="185" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="20">↓</text>
+        
+        <rect x="180" y="200" width="120" height="50" fill="#c4b5fd" stroke="#8b5cf6" stroke-width="2" rx="8"/>
+        <text x="240" y="225" text-anchor="middle" fill="#5b21b6" font-family="Arial, sans-serif" font-size="16">Real/Fake?</text>
+        <text x="240" y="242" text-anchor="middle" fill="#5b21b6" font-family="Arial, sans-serif" font-size="14">[0, 1]</text>
+      </g>
+      
+      <!-- Objective -->
+      <g transform="translate(0, 290)">
+        <rect width="650" height="180" fill="#fef3c7" rx="12"/>
+        <text x="325" y="30" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Objective</text>
+        <line x1="20" y1="45" x2="630" y2="45" stroke="#fde68a" stroke-width="2"/>
+        
+        <text x="325" y="80" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="19">Minimax game:</text>
+        <rect x="50" y="90" width="550" height="75" fill="#fed7aa" rx="10"/>
+        <text x="325" y="120" text-anchor="middle" fill="#92400e" font-family="Consolas, monospace" font-size="15">min max E[log D(x)] +</text>
+        <text x="325" y="145" text-anchor="middle" fill="#92400e" font-family="Consolas, monospace" font-size="15"> G   D   E[log(1 - D(G(z)))]</text>
+      </g>
+      
+      <!-- Pros -->
+      <g transform="translate(0, 490)">
+        <rect width="650" height="220" fill="#dcfce7" rx="12"/>
+        <text x="325" y="30" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="24" font-weight="bold">✓ Advantages</text>
+        <line x1="20" y1="45" x2="630" y2="45" stroke="#d1fae5" stroke-width="2"/>
+        
+        <text x="325" y="75" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="19">• Sharp, realistic outputs</text>
+        <text x="325" y="105" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="19">• High sample quality</text>
+        <text x="325" y="135" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="19">• No explicit likelihood</text>
+        <text x="325" y="165" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="19">• State-of-the-art images</text>
+        <text x="325" y="195" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="19">• Diverse samples</text>
+      </g>
+      
+      <!-- Cons -->
+      <g transform="translate(0, 730)">
+        <rect width="650" height="190" fill="#fee2e2" rx="12"/>
+        <text x="325" y="30" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="24" font-weight="bold">✗ Disadvantages</text>
+        <line x1="20" y1="45" x2="630" y2="45" stroke="#fecaca" stroke-width="2"/>
+        
+        <text x="325" y="80" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">• Training instability</text>
+        <text x="325" y="110" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">• Mode collapse</text>
+        <text x="325" y="140" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">• No explicit latent space</text>
+        <text x="325" y="170" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">• Hard to evaluate</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Key Insight -->
+  <rect x="100" y="1220" width="1600" height="100" fill="#991b1b" rx="14" filter="url(#shadow)"/>
+  <text x="900" y="1260" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="bold">💡 VAE: Stable training, explicit latent space, blurry outputs</text>
+  <text x="900" y="1295" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="bold">GAN: Sharp outputs, unstable training, adversarial learning</text>
+</svg>

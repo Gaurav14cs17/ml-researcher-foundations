@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="deployBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="30" text-anchor="middle" fill="#0ea5e9" font-family="Arial, sans-serif" font-size="20" font-weight="bold">🚀 Deployment Targets</ns0:text>
+  <ns0:g transform="translate(50, 60)">
+    <ns0:rect width="220" height="150" rx="12" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="110" y="55.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="14" font-weight="bold">☁️ Cloud/Server</ns0:text>
+    <ns0:text x="15" y="80.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• High throughput focus</ns0:text>
+    <ns0:text x="15" y="105.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Batch inference</ns0:text>
+    <ns0:text x="15" y="130.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• A100/H100 GPUs</ns0:text>
+    <ns0:text x="15" y="155.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• FP16/INT8 quantization</ns0:text>
+    <ns0:text x="15" y="180.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">Tools: TensorRT, vLLM, TGI</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(290, 60)">
+    <ns0:rect width="220" height="150" rx="12" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="110" y="205.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="14" font-weight="bold">📱 Edge/Mobile</ns0:text>
+    <ns0:text x="15" y="230.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Low latency priority</ns0:text>
+    <ns0:text x="15" y="255.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Memory constrained</ns0:text>
+    <ns0:text x="15" y="280.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Mobile GPUs/NPUs</ns0:text>
+    <ns0:text x="15" y="305.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• INT8/INT4 essential</ns0:text>
+    <ns0:text x="15" y="330.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">Tools: TFLite, ONNX, CoreML</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(530, 60)">
+    <ns0:rect width="220" height="150" rx="12" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="110" y="355.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🌐 Browser/WebGPU</ns0:text>
+    <ns0:text x="15" y="380.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Smallest model size</ns0:text>
+    <ns0:text x="15" y="405.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Cross-platform</ns0:text>
+    <ns0:text x="15" y="430.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• WASM/WebGPU</ns0:text>
+    <ns0:text x="15" y="455.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• INT4 + distillation</ns0:text>
+    <ns0:text x="15" y="480.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">Tools: Transformers.js, ONNX.js</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(100, 230)">
+    <ns0:rect width="600" height="150" rx="12" fill="#1a237e" stroke="#0ea5e9" stroke-width="2"/>
+    <ns0:text x="300" y="505.0" text-anchor="middle" fill="#38bdf8" font-family="Arial, sans-serif" font-size="14" font-weight="bold">📊 Deployment Strategies by Target</ns0:text>
+    <ns0:text x="80" y="530.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Target</ns0:text>
+    <ns0:text x="180" y="555.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Model Size</ns0:text>
+    <ns0:text x="280" y="580.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Precision</ns0:text>
+    <ns0:text x="400" y="605.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Technique</ns0:text>
+    <ns0:text x="520" y="630.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Latency</ns0:text>
+    <ns0:text x="80" y="655.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="10">Cloud</ns0:text>
+    <ns0:text x="180" y="680.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Large OK</ns0:text>
+    <ns0:text x="280" y="705.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">FP16/INT8</ns0:text>
+    <ns0:text x="400" y="730.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">TensorRT</ns0:text>
+    <ns0:text x="520" y="755.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">&lt;100ms</ns0:text>
+    <ns0:text x="80" y="780.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Edge</ns0:text>
+    <ns0:text x="180" y="805.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">&lt;500MB</ns0:text>
+    <ns0:text x="280" y="830.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">INT8/INT4</ns0:text>
+    <ns0:text x="400" y="855.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Distill+Quant</ns0:text>
+    <ns0:text x="520" y="880.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">&lt;50ms</ns0:text>
+    <ns0:text x="80" y="905.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="10">Browser</ns0:text>
+    <ns0:text x="180" y="930.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">&lt;100MB</ns0:text>
+    <ns0:text x="280" y="955.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">INT4</ns0:text>
+    <ns0:text x="400" y="980.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Tiny model</ns0:text>
+    <ns0:text x="520" y="1005.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">&lt;1s OK</ns0:text>
+    <ns0:text x="300" y="1030.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Choose compression strategy based on deployment target!</ns0:text>
+  </ns0:g>
+</ns0:svg>

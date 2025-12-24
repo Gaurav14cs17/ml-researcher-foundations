@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="lpBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#e65100" font-size="22" font-weight="bold">Linear Programming</ns0:text>
+  <ns0:rect x="50" y="60" width="300" height="130" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+  <ns0:text x="200" y="90" text-anchor="middle" fill="#e65100" font-size="14" font-weight="bold">Standard Form</ns0:text>
+  <ns0:text x="200" y="120" text-anchor="middle" fill="#fef3c7" font-size="14">min cᵀx</ns0:text>
+  <ns0:text x="200" y="145" text-anchor="middle" fill="#fef3c7" font-size="14">s.t. Ax = b</ns0:text>
+  <ns0:text x="200" y="170" text-anchor="middle" fill="#fef3c7" font-size="14">x ≥ 0</ns0:text>
+  <ns0:g transform="translate(400, 60)">
+    <ns0:polygon points="50,120 150,40 250,60 220,150 80,160" fill="#1e3a5f" stroke="#007bff" stroke-width="2"/>
+    <ns0:circle cx="150" cy="40" r="5" fill="#2e7d32"/>
+    <ns0:text x="150" y="195.0" text-anchor="middle" fill="#2e7d32" font-size="10">Optimal</ns0:text>
+    <ns0:line x1="50" y1="170" x2="270" y2="80" stroke="#dc3545" stroke-width="1" stroke-dasharray="5,5"/>
+    <ns0:text x="280" y="220.0" fill="#c62828" font-size="10">Objective</ns0:text>
+    <ns0:text x="150" y="245.0" text-anchor="middle" fill="#1565c0" font-size="11">Feasible Region (Polytope)</ns0:text>
+  </ns0:g>
+  <ns0:rect x="50" y="230" width="220" height="140" rx="10" fill="#134e4a" stroke="#10b981" stroke-width="2"/>
+  <ns0:text x="160" y="270.0" text-anchor="middle" fill="#10b981" font-size="14" font-weight="bold">Simplex Method</ns0:text>
+  <ns0:text x="160" y="295.0" text-anchor="middle" fill="#2e7d32" font-size="11">Walks along vertices</ns0:text>
+  <ns0:text x="160" y="320.0" text-anchor="middle" fill="#2e7d32" font-size="11">Exponential worst-case</ns0:text>
+  <ns0:text x="160" y="345.0" text-anchor="middle" fill="#2e7d32" font-size="11">Fast in practice</ns0:text>
+  <ns0:text x="160" y="370.0" text-anchor="middle" fill="#2e7d32" font-size="10">George Dantzig, 1947</ns0:text>
+  <ns0:rect x="290" y="230" width="220" height="140" rx="10" fill="#1a237e" stroke="#818cf8" stroke-width="2"/>
+  <ns0:text x="400" y="395.0" text-anchor="middle" fill="#818cf8" font-size="14" font-weight="bold">Interior Point</ns0:text>
+  <ns0:text x="400" y="420.0" text-anchor="middle" fill="#c7d2fe" font-size="11">Goes through interior</ns0:text>
+  <ns0:text x="400" y="445.0" text-anchor="middle" fill="#c7d2fe" font-size="11">Polynomial time O(n³·⁵)</ns0:text>
+  <ns0:text x="400" y="470.0" text-anchor="middle" fill="#c7d2fe" font-size="11">Better for large sparse</ns0:text>
+  <ns0:text x="400" y="495.0" text-anchor="middle" fill="#a5b4fc" font-size="10">Karmarkar, 1984</ns0:text>
+  <ns0:rect x="530" y="230" width="220" height="140" rx="10" fill="#3f3f46" stroke="#a1a1aa" stroke-width="2"/>
+  <ns0:text x="640" y="520.0" text-anchor="middle" fill="#f4f4f5" font-size="14" font-weight="bold">Applications</ns0:text>
+  <ns0:text x="640" y="545.0" text-anchor="middle" fill="#d4d4d8" font-size="11">• Resource allocation</ns0:text>
+  <ns0:text x="640" y="570.0" text-anchor="middle" fill="#d4d4d8" font-size="11">• Network flow</ns0:text>
+  <ns0:text x="640" y="595.0" text-anchor="middle" fill="#d4d4d8" font-size="11">• Transportation</ns0:text>
+  <ns0:text x="640" y="620.0" text-anchor="middle" fill="#d4d4d8" font-size="11">• LP relaxations</ns0:text>
+</ns0:svg>

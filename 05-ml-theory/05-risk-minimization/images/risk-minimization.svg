@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgRisk" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Risk Minimization</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="340" height="120" rx="10" fill="#2d2d2d20" stroke="#dc3545"/>
+    <ns0:text x="170" y="60.0" text-anchor="middle" fill="#c62828" font-size="13" font-weight="bold">True Risk (Unknown)</ns0:text>
+    <ns0:text x="170" y="85.0" text-anchor="middle" fill="#1a237e" font-size="11" font-family="Arial, sans-serif">R(f) = E_{(x,y)~P}[L(f(x), y)]</ns0:text>
+    <ns0:text x="170" y="110.0" text-anchor="middle" fill="#c62828" font-size="9">Expected loss over true distribution</ns0:text>
+    <ns0:text x="170" y="135.0" text-anchor="middle" fill="#c62828" font-size="9">We can't compute this directly!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 70)">
+    <ns0:rect width="340" height="120" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="170" y="160.0" text-anchor="middle" fill="#2e7d32" font-size="13" font-weight="bold">Empirical Risk (Computable)</ns0:text>
+    <ns0:text x="170" y="185.0" text-anchor="middle" fill="#1a237e" font-size="11" font-family="Arial, sans-serif">R̂(f) = (1/n)Σᵢ L(f(xᵢ), yᵢ)</ns0:text>
+    <ns0:text x="170" y="210.0" text-anchor="middle" fill="#2e7d32" font-size="9">Average loss on training data</ns0:text>
+    <ns0:text x="170" y="235.0" text-anchor="middle" fill="#2e7d32" font-size="9">This is what we minimize!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 210)">
+    <ns0:rect width="340" height="100" rx="10" fill="#2d2d2d20" stroke="#007bff"/>
+    <ns0:text x="170" y="260.0" text-anchor="middle" fill="#1565c0" font-size="12" font-weight="bold">ERM (Empirical Risk Min)</ns0:text>
+    <ns0:text x="170" y="285.0" text-anchor="middle" fill="#1565c0" font-size="10">f* = argmin R̂(f)</ns0:text>
+    <ns0:text x="170" y="310.0" text-anchor="middle" fill="#1565c0" font-size="9">May overfit!</ns0:text>
+    <ns0:text x="170" y="335.0" text-anchor="middle" fill="#1565c0" font-size="8">Simple but risky</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 210)">
+    <ns0:rect width="340" height="100" rx="10" fill="#2d2d2d20" stroke="#fd7e14"/>
+    <ns0:text x="170" y="360.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">SRM (Structural Risk Min)</ns0:text>
+    <ns0:text x="170" y="385.0" text-anchor="middle" fill="#e65100" font-size="10">f* = argmin R̂(f) + λ·Complexity(f)</ns0:text>
+    <ns0:text x="170" y="410.0" text-anchor="middle" fill="#e65100" font-size="9">Regularization controls complexity</ns0:text>
+    <ns0:text x="170" y="435.0" text-anchor="middle" fill="#e65100" font-size="8">Better generalization</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 330)">
+    <ns0:rect width="700" height="50" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="460.0" text-anchor="middle" fill="#e65100" font-size="11">Goal: Make R̂(f) ≈ R(f) → Generalization theory tells us when this holds!</ns0:text>
+  </ns0:g>
+</ns0:svg>

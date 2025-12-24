@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eff6ff"/>
+      <stop offset="100%" style="stop-color:#dbeafe"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#1e40af"/>
+    </marker>
+  </defs>
+  
+  <rect width="1800" height="1200" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="52" font-weight="bold">Eigenvalues &amp; Eigenvectors</text>
+  <text x="900" y="120" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="26">Special vectors that only get scaled by matrix transformations</text>
+  
+  <!-- Definition -->
+  <g transform="translate(100, 170)" filter="url(#shadow)">
+    <rect width="1600" height="180" rx="18" fill="#ffffff" stroke="#3b82f6" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="36" font-weight="bold">Definition</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#bfdbfe" stroke-width="2"/>
+    
+    <rect x="150" y="95" width="1300" height="70" fill="#eff6ff" rx="14"/>
+    <text x="800" y="145" text-anchor="middle" fill="#1e40af" font-family="Consolas, monospace" font-size="38" font-weight="bold">Av = λv</text>
+    <text x="350" y="110" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="18">Matrix A</text>
+    <text x="625" y="110" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="18">Eigenvector v</text>
+    <text x="980" y="110" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="18">Eigenvalue λ (scalar)</text>
+  </g>
+  
+  <!-- Visual Representation -->
+  <g transform="translate(100, 400)" filter="url(#shadow)">
+    <rect width="1600" height="480" rx="18" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="36" font-weight="bold">🎨 Visual Interpretation</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#d1fae5" stroke-width="2"/>
+    
+    <!-- Before Transformation -->
+    <g transform="translate(200, 150)">
+      <text x="200" y="-20" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="26" font-weight="bold">Before: Vector v</text>
+      
+      <!-- Coordinate system -->
+      <line x1="0" y1="200" x2="400" y2="200" stroke="#cbd5e1" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="200" y1="0" x2="200" y2="400" stroke="#cbd5e1" stroke-width="2"/>
+      <text x="410" y="205" fill="#64748b" font-family="Arial, sans-serif" font-size="18">x</text>
+      <text x="205" y="-5" fill="#64748b" font-family="Arial, sans-serif" font-size="18">y</text>
+      
+      <!-- Eigenvector -->
+      <line x1="200" y1="200" x2="320" y2="80" stroke="#10b981" stroke-width="6" marker-end="url(#arrow)"/>
+      <text x="330" y="70" fill="#10b981" font-family="Arial, sans-serif" font-size="22" font-weight="bold">v</text>
+      
+      <!-- Another vector (not eigenvector) -->
+      <line x1="200" y1="200" x2="320" y2="160" stroke="#f59e0b" stroke-width="6" marker-end="url(#arrow)"/>
+      <text x="335" y="155" fill="#f59e0b" font-family="Arial, sans-serif" font-size="22" font-weight="bold">u</text>
+    </g>
+    
+    <!-- Arrow showing transformation -->
+    <g transform="translate(650, 300)">
+      <text x="0" y="-30" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="28" font-weight="bold">Apply A</text>
+      <line x1="-50" y1="0" x2="50" y2="0" stroke="#3b82f6" stroke-width="6" marker-end="url(#arrow)"/>
+      <text x="0" y="30" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="20">(matrix multiply)</text>
+    </g>
+    
+    <!-- After Transformation -->
+    <g transform="translate(1000, 150)">
+      <text x="200" y="-20" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="26" font-weight="bold">After: Av = λv (scaled only!)</text>
+      
+      <!-- Coordinate system -->
+      <line x1="0" y1="200" x2="400" y2="200" stroke="#cbd5e1" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="200" y1="0" x2="200" y2="400" stroke="#cbd5e1" stroke-width="2"/>
+      <text x="410" y="205" fill="#64748b" font-family="Arial, sans-serif" font-size="18">x</text>
+      <text x="205" y="-5" fill="#64748b" font-family="Arial, sans-serif" font-size="18">y</text>
+      
+      <!-- Scaled eigenvector (same direction!) -->
+      <line x1="200" y1="200" x2="360" y2="20" stroke="#10b981" stroke-width="6" marker-end="url(#arrow)"/>
+      <text x="370" y="15" fill="#10b981" font-family="Arial, sans-serif" font-size="22" font-weight="bold">λv</text>
+      <text x="280" y="100" fill="#10b981" font-family="Arial, sans-serif" font-size="18" font-weight="bold">✓ Same direction!</text>
+      
+      <!-- Transformed other vector (direction changed!) -->
+      <line x1="200" y1="200" x2="280" y2="120" stroke="#f59e0b" stroke-width="6" marker-end="url(#arrow)"/>
+      <text x="290" y="115" fill="#f59e0b" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Au</text>
+      <text x="240" y="170" fill="#f59e0b" font-family="Arial, sans-serif" font-size="18" font-weight="bold">✗ Direction changed</text>
+    </g>
+  </g>
+  
+  <!-- Properties and Applications -->
+  <g transform="translate(100, 940)" filter="url(#shadow)">
+    <rect width="750" height="240" rx="18" fill="#ffffff" stroke="#8b5cf6" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="32" font-weight="bold">🔑 Key Properties</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#e9d5ff" stroke-width="2"/>
+    
+    <g transform="translate(50, 105)">
+      <text x="0" y="0" fill="#7c3aed" font-family="Arial, sans-serif" font-size="20" font-weight="bold">• n×n matrix has n eigenvalues (counting multiplicity)</text>
+      <text x="0" y="32" fill="#7c3aed" font-family="Arial, sans-serif" font-size="20" font-weight="bold">• Eigenvectors are directions of "pure stretch"</text>
+      <text x="0" y="64" fill="#7c3aed" font-family="Arial, sans-serif" font-size="20" font-weight="bold">• If λ &gt; 1: stretching, λ &lt; 1: shrinking</text>
+      <text x="0" y="96" fill="#7c3aed" font-family="Arial, sans-serif" font-size="20" font-weight="bold">• λ &lt; 0: flip direction + scale</text>
+      <text x="0" y="128" fill="#7c3aed" font-family="Arial, sans-serif" font-size="20" font-weight="bold">• det(A) = product of all eigenvalues</text>
+    </g>
+  </g>
+  
+  <g transform="translate(900, 940)" filter="url(#shadow)">
+    <rect width="800" height="240" rx="18" fill="#ffffff" stroke="#f59e0b" stroke-width="4"/>
+    <text x="400" y="50" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="32" font-weight="bold">🧠 ML Applications</text>
+    <line x1="40" y1="70" x2="760" y2="70" stroke="#fde68a" stroke-width="2"/>
+    
+    <g transform="translate(50, 105)">
+      <text x="0" y="0" fill="#d97706" font-family="Arial, sans-serif" font-size="20" font-weight="bold">✓ PCA:</text>
+      <text x="20" y="28" fill="#92400e" font-family="Arial, sans-serif" font-size="18">Eigenvectors of covariance matrix = principal components</text>
+      
+      <text x="0" y="64" fill="#d97706" font-family="Arial, sans-serif" font-size="20" font-weight="bold">✓ Graph Neural Networks:</text>
+      <text x="20" y="92" fill="#92400e" font-family="Arial, sans-serif" font-size="18">Spectral methods use graph Laplacian eigenvalues</text>
+      
+      <text x="0" y="128" fill="#d97706" font-family="Arial, sans-serif" font-size="20" font-weight="bold">✓ Stability Analysis:</text>
+      <text x="20" y="156" fill="#92400e" font-family="Arial, sans-serif" font-size="18">Eigenvalues determine convergence of gradient descent</text>
+    </g>
+  </g>
+</svg>

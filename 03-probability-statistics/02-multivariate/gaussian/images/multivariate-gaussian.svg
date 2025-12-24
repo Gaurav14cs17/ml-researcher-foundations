@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgMVG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+    <ns0:radialGradient id="gaussGrad" cx="50%" cy="50%" r="50%">
+      <ns0:stop offset="0%" style="stop-color:#fd7e14;stop-opacity:0.8"/>
+      <ns0:stop offset="50%" style="stop-color:#fd7e14;stop-opacity:0.3"/>
+      <ns0:stop offset="100%" style="stop-color:#fd7e14;stop-opacity:0"/>
+    </ns0:radialGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Multivariate Gaussian Distribution</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:text x="150" y="60.0" text-anchor="middle" fill="#e65100" font-size="14" font-weight="bold">2D Gaussian Contours</ns0:text>
+    <ns0:ellipse cx="150" cy="130" rx="120" ry="80" fill="none" stroke="#fd7e14" stroke-width="1" opacity="0.3"/>
+    <ns0:ellipse cx="150" cy="130" rx="90" ry="60" fill="none" stroke="#fd7e14" stroke-width="1" opacity="0.5"/>
+    <ns0:ellipse cx="150" cy="130" rx="60" ry="40" fill="none" stroke="#fd7e14" stroke-width="2" opacity="0.7"/>
+    <ns0:ellipse cx="150" cy="130" rx="30" ry="20" fill="url(#gaussGrad)" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:circle cx="150" cy="130" r="5" fill="#c62828"/>
+    <ns0:text x="165" y="125" fill="#c62828" font-size="10">μ (mean)</ns0:text>
+    <ns0:line x1="20" y1="130" x2="280" y2="130" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3"/>
+    <ns0:line x1="150" y1="30" x2="150" y2="230" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3"/>
+    <ns0:text x="275" y="145" fill="#a5b4fc" font-size="10">x₁</ns0:text>
+    <ns0:text x="155" y="170.0" fill="#a5b4fc" font-size="10">x₂</ns0:text>
+    <ns0:text x="150" y="260" text-anchor="middle" fill="#e65100" font-size="10">Contours = constant probability</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(350, 70)">
+    <ns0:rect width="400" height="120" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="200" y="285.0" text-anchor="middle" fill="#e65100" font-size="14" font-weight="bold">N(μ, Σ) Parameters</ns0:text>
+    <ns0:text x="20" y="310.0" fill="#c62828" font-size="12" font-weight="bold">μ = mean vector</ns0:text>
+    <ns0:text x="20" y="335.0" fill="#c62828" font-size="11" font-family="Arial, sans-serif">[μ₁, μ₂, ..., μₙ]ᵀ</ns0:text>
+    <ns0:text x="220" y="360.0" fill="#1565c0" font-size="12" font-weight="bold">Σ = covariance matrix</ns0:text>
+    <ns0:text x="220" y="385.0" fill="#1565c0" font-size="10">Controls shape &amp;amp; orientation</ns0:text>
+    <ns0:text x="220" y="410.0" fill="#1565c0" font-size="10">Σᵢⱼ = Cov(Xᵢ, Xⱼ)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(350, 200)">
+    <ns0:rect width="400" height="70" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="200" y="435.0" text-anchor="middle" fill="#2e7d32" font-size="12" font-weight="bold">Probability Density Function</ns0:text>
+    <ns0:text x="200" y="460.0" text-anchor="middle" fill="#1a237e" font-size="11" font-family="Arial, sans-serif">p(x) = (2π)^(-d/2)|Σ|^(-1/2) exp(-½(x-μ)ᵀΣ⁻¹(x-μ))</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 290)">
+    <ns0:rect width="700" height="90" rx="10" fill="#8b5cf620" stroke="#8b5cf6"/>
+    <ns0:text x="350" y="485.0" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="bold">ML Applications</ns0:text>
+    <ns0:text x="100" y="510.0" text-anchor="middle" fill="#e65100" font-size="11" font-weight="bold">VAE</ns0:text>
+    <ns0:text x="100" y="535.0" text-anchor="middle" fill="#e65100" font-size="9">Latent space</ns0:text>
+    <ns0:text x="240" y="560.0" text-anchor="middle" fill="#1565c0" font-size="11" font-weight="bold">GP</ns0:text>
+    <ns0:text x="240" y="585.0" text-anchor="middle" fill="#1565c0" font-size="9">Function prior</ns0:text>
+    <ns0:text x="380" y="610.0" text-anchor="middle" fill="#10b981" font-size="11" font-weight="bold">Diffusion</ns0:text>
+    <ns0:text x="380" y="635.0" text-anchor="middle" fill="#2e7d32" font-size="9">Noise process</ns0:text>
+    <ns0:text x="520" y="660.0" text-anchor="middle" fill="#c62828" font-size="11" font-weight="bold">GMM</ns0:text>
+    <ns0:text x="520" y="685.0" text-anchor="middle" fill="#c62828" font-size="9">Clustering</ns0:text>
+    <ns0:text x="650" y="710.0" text-anchor="middle" fill="#8b5cf6" font-size="11" font-weight="bold">BNN</ns0:text>
+    <ns0:text x="650" y="735.0" text-anchor="middle" fill="#c4b5fd" font-size="9">Weight priors</ns0:text>
+  </ns0:g>
+</ns0:svg>

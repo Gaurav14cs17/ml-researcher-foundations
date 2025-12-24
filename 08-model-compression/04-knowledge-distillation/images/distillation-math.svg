@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 1125.0">
+  <ns0:defs>
+    <ns0:linearGradient id="dmBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="1125.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Knowledge Distillation Mathematics</ns0:text>
+  <ns0:g transform="translate(30, 60)">
+    <ns0:rect width="360" height="160" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="180" y="60.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Temperature Scaling</ns0:text>
+    <ns0:text x="20" y="85.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Soft probabilities:</ns0:text>
+    <ns0:text x="20" y="110.0" fill="#e65100" font-family="Arial, sans-serif" font-size="11">p_i = exp(z_i/T) / Sum(exp(z_j/T))</ns0:text>
+    <ns0:text x="20" y="135.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">T = 1: Standard softmax (sharp)</ns0:text>
+    <ns0:text x="20" y="160.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">T &gt; 1: Softer distribution (more info)</ns0:text>
+    <ns0:text x="20" y="185.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Typical: T = 4 to 20</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 60)">
+    <ns0:rect width="360" height="160" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="180" y="210.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Distillation Loss (Hinton)</ns0:text>
+    <ns0:text x="20" y="235.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Total loss:</ns0:text>
+    <ns0:text x="20" y="260.0" fill="#1565c0" font-family="Arial, sans-serif" font-size="12">L = a*L_soft + (1-a)*L_hard</ns0:text>
+    <ns0:text x="20" y="285.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">L_soft = T^2 * KL(p_student || p_teacher)</ns0:text>
+    <ns0:text x="20" y="310.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">L_hard = CrossEntropy(y_student, y_true)</ns0:text>
+    <ns0:text x="20" y="335.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">alpha typically 0.5 to 0.9</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(30, 240)">
+    <ns0:rect width="360" height="120" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="180" y="360.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="13" font-weight="bold">KL Divergence</ns0:text>
+    <ns0:text x="20" y="385.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Definition:</ns0:text>
+    <ns0:text x="20" y="410.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11">KL(P||Q) = Sum P(x)*log(P(x)/Q(x))</ns0:text>
+    <ns0:text x="20" y="435.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">For distillation: KL(p_teacher || p_student)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 240)">
+    <ns0:rect width="360" height="120" rx="10" fill="#1a237e" stroke="#6f42c1" stroke-width="2"/>
+    <ns0:text x="180" y="460.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Feature Distillation</ns0:text>
+    <ns0:text x="20" y="485.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Match intermediate features:</ns0:text>
+    <ns0:text x="20" y="510.0" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="11">L_feat = ||f_s(x) - f_t(x)||^2</ns0:text>
+    <ns0:text x="20" y="535.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">With projection: L = ||W*f_s(x) - f_t(x)||^2</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(30, 380)">
+    <ns0:rect width="740" height="100" rx="10" fill="#1a237e" stroke="#ec4899" stroke-width="2"/>
+    <ns0:text x="370" y="560.0" text-anchor="middle" fill="#ec4899" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Why Temperature Works (Dark Knowledge)</ns0:text>
+    <ns0:text x="30" y="585.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Hard labels: [1, 0, 0, 0] - Only tells &quot;what is correct&quot;</ns0:text>
+    <ns0:text x="30" y="610.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Soft labels (T=4): [0.7, 0.15, 0.1, 0.05] - &quot;Cat is similar to dog, not car&quot;</ns0:text>
+    <ns0:text x="30" y="635.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Student learns class relationships from teacher's uncertainty!</ns0:text>
+  </ns0:g>
+</ns0:svg>

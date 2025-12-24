@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L9,3 z" fill="#212529" />
+      </marker>
+    <marker id="arrowred" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L9,3 z" fill="#dc3545" />
+      </marker>
+    <marker id="arrowgreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L9,3 z" fill="#28a745" />
+      </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="700" fill="#f8f9fa" rx="8"/>
+  
+  <!-- Title -->
+  <text x="500" y="35" font-family="Arial, sans-serif" font-size="26" font-weight="bold" text-anchor="middle" fill="#212529">
+    Eigenvalue Decomposition
+  </text>
+  
+  <!-- Main equation -->
+  <g id="equation">
+    <rect x="250" y="60" width="500" height="60" fill="#212529" stroke="#444444" stroke-width="2" rx="5"/>
+    <text x="500" y="95" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" fill="#212529">
+      Av = λv
+    </text>
+    <text x="500" y="115" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#212529" font-style="italic">
+      (Matrix times eigenvector = scalar times eigenvector)
+    </text>
+  </g>
+  
+  <!-- Left panel: Geometric interpretation -->
+  <g id="geometric">
+    <rect x="30" y="150" width="450" height="520" fill="#212529" stroke="#007bff" stroke-width="3" rx="8"/>
+    <text x="255" y="180" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#007bff">
+      Geometric Interpretation
+    </text>
+    
+    <!-- Coordinate system -->
+    <line x1="100" y1="450" x2="400" y2="450" stroke="#dee2e6" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="100" y1="450" x2="100" y2="220" stroke="#dee2e6" stroke-width="2" marker-end="url(#arrow)"/>
+    
+    <!-- Original vector v -->
+    <line x1="100" y1="450" x2="220" y2="350" stroke="#dc3545" stroke-width="4" marker-end="url(#arrowred)"/>
+    <text x="170" y="390" font-family="Arial, sans-serif" font-size="14" fill="#dc3545" font-weight="bold">
+      v
+    </text>
+    
+    <!-- Transformed vector Av = λv (scaled) -->
+    <line x1="100" y1="450" x2="280" y2="300" stroke="#28a745" stroke-width="4" marker-end="url(#arrowgreen)" stroke-dasharray="8,4"/>
+    <text x="250" y="360" font-family="Arial, sans-serif" font-size="14" fill="#28a745" font-weight="bold">
+      Av = λv
+    </text>
+    
+    <!-- Scale factor -->
+    <path d="M 220 350 Q 250 325, 280 300" fill="none" stroke="#fd7e14" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="235" y="320" font-family="Arial, sans-serif" font-size="12" fill="#fd7e14">
+      λ = 1.5
+    </text>
+    
+    <!-- Another vector (not eigenvector) -->
+    <line x1="100" y1="450" x2="180" y2="400" stroke="#dee2e6" stroke-width="3"/>
+    <text x="140" y="420" font-family="Arial, sans-serif" font-size="12" fill="#212529">
+      w
+    </text>
+    
+    <!-- Transformed non-eigenvector (changes direction) -->
+    <line x1="100" y1="450" x2="300" y2="380" stroke="#dee2e6" stroke-width="3" stroke-dasharray="6,3"/>
+    <text x="230" y="410" font-family="Arial, sans-serif" font-size="12" fill="#212529">
+      Aw
+    </text>
+    <path d="M 180 400 Q 240 390, 300 380" fill="none" stroke="#e67e22" stroke-width="2"/>
+    <text x="220" y="380" font-family="Arial, sans-serif" font-size="11" fill="#e67e22">
+      direction changes
+    </text>
+    
+    <!-- Explanation box -->
+    <rect x="50" y="520" width="410" height="130" fill="#212529" rx="5"/>
+    <text x="255" y="545" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#212529">
+      Key Insight:
+    </text>
+    <text x="255" y="570" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#212529">
+      • Eigenvector v: direction preserved
+    </text>
+    <text x="255" y="595" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#212529">
+      • Only scaled by λ (eigenvalue)
+    </text>
+    <text x="255" y="620" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#212529">
+      • Non-eigenvector w: direction changes
+    </text>
+  </g>
+  
+  <!-- Right panel: Matrix decomposition -->
+  <g id="decomposition">
+    <rect x="520" y="150" width="450" height="520" fill="#212529" stroke="#dc3545" stroke-width="3" rx="8"/>
+    <text x="745" y="180" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#dc3545">
+      Matrix Decomposition
+    </text>
+    
+    <!-- Decomposition formula -->
+    <rect x="560" y="200" width="370" height="80" fill="#212529" stroke="#444444" stroke-width="2" rx="5"/>
+    <text x="745" y="235" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#212529" font-weight="bold">
+      A = VΛV⁻¹
+    </text>
+    <text x="745" y="260" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#212529" font-style="italic">
+      (Eigenvalue decomposition)
+    </text>
+    
+    <!-- Components -->
+    <g id="components">
+      <!-- Matrix A -->
+      <text x="600" y="320" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#007bff">
+        A (original)
+      </text>
+      <rect x="570" y="330" width="80" height="60" fill="none" stroke="#007bff" stroke-width="2" rx="3"/>
+      <text x="610" y="365" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#212529">
+        <tspan x="610" dy="0">4  1</tspan>
+        <tspan x="610" dy="15">2  3</tspan>
+      </text>
+      
+      <!-- Equals -->
+      <text x="670" y="365" font-family="Arial, sans-serif" font-size="20" fill="#212529">=</text>
+      
+      <!-- Matrix V -->
+      <text x="730" y="320" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#6f42c1">
+        V (eigenvectors)
+      </text>
+      <rect x="700" y="330" width="80" height="60" fill="none" stroke="#6f42c1" stroke-width="2" rx="3"/>
+      <text x="740" y="365" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#212529">
+        <tspan x="740" dy="0">0.7  -0.6</tspan>
+        <tspan x="740" dy="15">0.7   0.8</tspan>
+      </text>
+      
+      <!-- Matrix Λ -->
+      <text x="830" y="320" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#dc3545">
+        Λ (eigenvalues)
+      </text>
+      <rect x="800" y="330" width="80" height="60" fill="none" stroke="#dc3545" stroke-width="2" rx="3"/>
+      <text x="840" y="365" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#212529">
+        <tspan x="840" dy="0">5  0</tspan>
+        <tspan x="840" dy="15">0  2</tspan>
+      </text>
+      
+      <!-- V inverse -->
+      <text x="910" y="350" font-family="Arial, sans-serif" font-size="14" fill="#6f42c1">V⁻¹</text>
+    </g>
+    
+    <!-- Properties box -->
+    <rect x="560" y="420" width="370" height="220" fill="#e8f4f8" rx="5"/>
+    <text x="745" y="445" font-family="Arial, sans-serif" font-size="15" font-weight="bold" text-anchor="middle" fill="#212529">
+      Properties &amp; Applications
+    </text>
+    
+    <text x="575" y="475" font-family="Arial, sans-serif" font-size="12" fill="#212529">
+      <tspan x="575" dy="0">✓ Diagonal matrix Λ has eigenvalues λ₁, λ₂, ...</tspan>
+      <tspan x="575" dy="25">✓ Columns of V are eigenvectors v₁, v₂, ...</tspan>
+      <tspan x="575" dy="25">✓ Only works if A has n linearly</tspan>
+      <tspan x="585" dy="18">  independent eigenvectors</tspan>
+    </text>
+    
+    <text x="575" y="565" font-family="Arial, sans-serif" font-size="13" fill="#dc3545" font-weight="bold">
+      Applications:
+    </text>
+    <text x="575" y="585" font-family="Arial, sans-serif" font-size="12" fill="#212529">
+      <tspan x="575" dy="0">• PCA (Principal Component Analysis)</tspan>
+      <tspan x="575" dy="20">• Spectral clustering</tspan>
+      <tspan x="575" dy="20">• Solving differential equations</tspan>
+    </text>
+  </g>
+</svg>
+

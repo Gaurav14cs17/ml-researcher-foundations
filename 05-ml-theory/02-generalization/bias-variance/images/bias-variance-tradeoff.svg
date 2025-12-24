@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 650">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L9,3 z" fill="#212529" />
+      </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="650" fill="#f8f9fa" rx="8"/>
+  
+  <!-- Title -->
+  <text x="550" y="30" font-family="Arial, sans-serif" font-size="26" font-weight="bold" text-anchor="middle" fill="#212529">
+    Bias-Variance Tradeoff
+  </text>
+  
+  <!-- Main decomposition formula -->
+  <rect x="150" y="50" width="800" height="60" fill="#212529" stroke="#007bff" stroke-width="3" rx="8"/>
+  <text x="550" y="88" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#212529" font-weight="bold">
+    Expected Test Error = Bias² + Variance + Irreducible Error
+  </text>
+  
+  <!-- Main graph -->
+  <g id="main-graph">
+    <!-- Axes -->
+    <line x1="100" y1="500" x2="700" y2="500" stroke="#dee2e6" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="100" y1="500" x2="100" y2="140" stroke="#dee2e6" stroke-width="2" marker-end="url(#arrow)"/>
+    <!-- Axis labels -->
+    <text x="710" y="505" font-family="Arial, sans-serif" font-size="14" fill="#212529" font-weight="bold">
+      Model Complexity →
+    </text>
+    <text x="50" y="130" font-family="Arial, sans-serif" font-size="14" fill="#212529" font-weight="bold">
+      Error
+    </text>
+    
+    <!-- Underfitting and Overfitting labels -->
+    <text x="200" y="530" font-family="Arial, sans-serif" font-size="13" fill="#e67e22" font-weight="bold">
+      Underfitting
+    </text>
+    <text x="200" y="545" font-family="Arial, sans-serif" font-size="11" fill="#212529">
+      High Bias
+    </text>
+    
+    <text x="550" y="530" font-family="Arial, sans-serif" font-size="13" fill="#dc3545" font-weight="bold">
+      Overfitting
+    </text>
+    <text x="550" y="545" font-family="Arial, sans-serif" font-size="11" fill="#212529">
+      High Variance
+    </text>
+    
+    <!-- Sweet spot -->
+    <text x="380" y="530" font-family="Arial, sans-serif" font-size="13" fill="#28a745" font-weight="bold">
+      Sweet Spot
+    </text>
+    <line x1="400" y1="500" x2="400" y2="150" stroke="#28a745" stroke-width="2" stroke-dasharray="5,5"/>
+    
+    <!-- Bias curve (decreasing) -->
+    <path d="M 120 180 Q 250 170, 400 250 T 680 420" fill="none" stroke="#007bff" stroke-width="4"/>
+    <text x="650" y="430" font-family="Arial, sans-serif" font-size="14" fill="#007bff" font-weight="bold">
+      Bias²
+    </text>
+    
+    <!-- Variance curve (increasing) -->
+    <path d="M 120 420 Q 250 400, 400 250 T 680 180" fill="none" stroke="#dc3545" stroke-width="4"/>
+    <text x="650" y="190" font-family="Arial, sans-serif" font-size="14" fill="#dc3545" font-weight="bold">
+      Variance
+    </text>
+    
+    <!-- Total error curve (U-shaped) -->
+    <path d="M 120 320 Q 250 280, 400 240 T 680 320" fill="none" stroke="#fd7e14" stroke-width="5"/>
+    <text x="590" y="310" font-family="Arial, sans-serif" font-size="15" fill="#fd7e14" font-weight="bold">
+      Total Error
+    </text>
+    
+    <!-- Optimal point -->
+    <circle cx="400" cy="240" r="8" fill="#28a745" stroke="#ffffff" stroke-width="2"/>
+    <text x="400" y="225" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#28a745" font-weight="bold">
+      Optimal
+    </text>
+    
+    <!-- Irreducible error line -->
+    <line x1="100" y1="470" x2="680" y2="470" stroke="#dee2e6" stroke-width="3" stroke-dasharray="8,4"/>
+    <text x="620" y="465" font-family="Arial, sans-serif" font-size="12" fill="#212529">
+      Irreducible Error (noise)
+    </text>
+  </g>
+  
+  <!-- Model examples -->
+  <g id="model-examples">
+    <rect x="750" y="140" width="320" height="360" fill="#212529" stroke="#007bff" stroke-width="2" rx="8"/>
+    <text x="910" y="170" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#007bff">
+      Model Examples
+    </text>
+    
+    <!-- Simple models -->
+    <rect x="770" y="190" width="280" height="90" fill="#e8f4f8" rx="5"/>
+    <text x="910" y="210" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#007bff">
+      Simple Models (High Bias)
+    </text>
+    <text x="780" y="235" font-family="Arial, sans-serif" font-size="11" fill="#212529">
+      • Linear regression
+    </text>
+    <text x="780" y="253" font-family="Arial, sans-serif" font-size="11" fill="#212529">
+      • Logistic regression
+    </text>
+    <text x="780" y="271" font-family="Arial, sans-serif" font-size="11" fill="#212529">
+      • Shallow neural networks
+    </text>
+    
+    <!-- Balanced models -->
+    <rect x="770" y="295" width="280" height="90" fill="#d5f4e6" rx="5"/>
+    <text x="910" y="315" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#28a745">
+      Balanced Models ✓
+    </text>
+    <text x="780" y="340" font-family="Arial, sans-serif" font-size="11" fill="#212529">
+      • Regularized models (L1/L2)
+    </text>
+    <text x="780" y="358" font-family="Arial, sans-serif" font-size="11" fill="#212529">
+      • Ensembles (Random Forest)
+    </text>
+    <text x="780" y="376" font-family="Arial, sans-serif" font-size="11" fill="#212529">
+      • Well-tuned deep networks
+    </text>
+    
+    <!-- Complex models -->
+    <rect x="770" y="400" width="280" height="90" fill="#212529" rx="5"/>
+    <text x="910" y="420" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#dc3545">
+      Complex Models (High Variance)
+    </text>
+    <text x="780" y="445" font-family="Arial, sans-serif" font-size="11" fill="#212529">
+      • High-degree polynomials
+    </text>
+    <text x="780" y="463" font-family="Arial, sans-serif" font-size="11" fill="#212529">
+      • Deep nets without regularization
+    </text>
+    <text x="780" y="481" font-family="Arial, sans-serif" font-size="11" fill="#212529">
+      • k-NN with small k
+    </text>
+  </g>
+  
+  <!-- Solutions box -->
+  <rect x="100" y="530" width="600" height="105" fill="#212529" stroke="#28a745" stroke-width="2" rx="8"/>
+  <text x="400" y="555" font-family="Arial, sans-serif" font-size="15" font-weight="bold" text-anchor="middle" fill="#28a745">
+    How to Fix
+  </text>
+  
+  <text x="120" y="580" font-family="Arial, sans-serif" font-size="12" fill="#212529">
+    <tspan x="120" dy="0" font-weight="bold" fill="#007bff">High Bias (Underfitting):</tspan>
+    <tspan x="130" dy="18">• Increase model complexity</tspan>
+    <tspan x="130" dy="15">• Add more features</tspan>
+    <tspan x="130" dy="15">• Remove regularization</tspan>
+    
+    <tspan x="400" dy="-48" font-weight="bold" fill="#dc3545">High Variance (Overfitting):</tspan>
+    <tspan x="410" dy="18">• Get more training data</tspan>
+    <tspan x="410" dy="15">• Add regularization (L1/L2, dropout)</tspan>
+    <tspan x="410" dy="15">• Reduce model complexity</tspan>
+  </text>
+</svg>
+

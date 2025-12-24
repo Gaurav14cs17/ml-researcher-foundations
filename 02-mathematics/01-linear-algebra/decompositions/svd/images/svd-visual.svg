@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bgSVD" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#2d2d2d"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="800" height="400" fill="#f8f9fa" rx="8"/>
+  
+  <text x="400" y="35" text-anchor="middle" fill="#212529" font-size="22" font-weight="bold">Singular Value Decomposition (SVD)</text>
+  
+  <!-- Main decomposition -->
+  <g transform="translate(50, 80)">
+    <text x="350" y="0" text-anchor="middle" fill="#fd7e14" font-size="14" font-weight="bold">A = UΣVᵀ</text>
+    
+    <!-- Matrix A -->
+    <rect x="0" y="30" width="80" height="100" rx="5" fill="#8b5cf6" stroke="#a78bfa" stroke-width="2"/>
+    <text x="40" y="85" text-anchor="middle" fill="#212529" font-size="14" font-weight="bold">A</text>
+    <text x="40" y="145" text-anchor="middle" fill="#c4b5fd" font-size="9">m × n</text>
+    
+    <text x="110" y="85" fill="#212529" font-size="24">=</text>
+    
+    <!-- Matrix U -->
+    <rect x="140" y="25" width="80" height="110" rx="5" fill="#007bff" stroke="#007bff" stroke-width="2"/>
+    <text x="180" y="85" text-anchor="middle" fill="#212529" font-size="14" font-weight="bold">U</text>
+    <text x="180" y="150" text-anchor="middle" fill="#007bff" font-size="9">m × m</text>
+    <text x="180" y="165" text-anchor="middle" fill="#007bff" font-size="8">left singular</text>
+    
+    <!-- Sigma -->
+    <rect x="250" y="30" width="100" height="100" rx="5" fill="#fd7e14" stroke="#fd7e14" stroke-width="2"/>
+    <text x="300" y="85" text-anchor="middle" fill="#212529" font-size="14" font-weight="bold">Σ</text>
+    <text x="300" y="145" text-anchor="middle" fill="#fd7e14" font-size="9">m × n</text>
+    <text x="300" y="160" text-anchor="middle" fill="#fd7e14" font-size="8">diagonal</text>
+    
+    <!-- V^T -->
+    <rect x="380" y="40" width="110" height="80" rx="5" fill="#10b981" stroke="#28a745" stroke-width="2"/>
+    <text x="435" y="85" text-anchor="middle" fill="#212529" font-size="14" font-weight="bold">Vᵀ</text>
+    <text x="435" y="135" text-anchor="middle" fill="#28a745" font-size="9">n × n</text>
+    <text x="435" y="150" text-anchor="middle" fill="#28a745" font-size="8">right singular</text>
+    
+    <!-- Sigma values -->
+    <g transform="translate(520, 30)">
+      <text x="0" y="20" fill="#fd7e14" font-size="10">σ₁ ≥ σ₂ ≥ ... ≥ σᵣ ≥ 0</text>
+      <text x="0" y="40" fill="#fd7e14" font-size="9">singular values</text>
+      <text x="0" y="60" fill="#fd7e14" font-size="9">(ordered, non-negative)</text>
+    </g>
+  </g>
+  
+  <!-- Applications -->
+  <g transform="translate(50, 240)">
+    <rect width="700" height="130" rx="10" fill="#212529" stroke="#dee2e6"/>
+    <text x="350" y="25" text-anchor="middle" fill="#fd7e14" font-size="13" font-weight="bold">ML Applications</text>
+    
+    <text x="100" y="55" text-anchor="middle" fill="#dc3545" font-size="11" font-weight="bold">Dimensionality Reduction</text>
+    <text x="100" y="75" text-anchor="middle" fill="#dc3545" font-size="9">Keep top k singular values</text>
+    <text x="100" y="90" text-anchor="middle" fill="#dc3545" font-size="8">Â = UₖΣₖVₖᵀ</text>
+    
+    <text x="280" y="55" text-anchor="middle" fill="#10b981" font-size="11" font-weight="bold">PCA</text>
+    <text x="280" y="75" text-anchor="middle" fill="#28a745" font-size="9">V columns = principal</text>
+    <text x="280" y="90" text-anchor="middle" fill="#28a745" font-size="9">components</text>
+    
+    <text x="450" y="55" text-anchor="middle" fill="#007bff" font-size="11" font-weight="bold">Pseudoinverse</text>
+    <text x="450" y="75" text-anchor="middle" fill="#007bff" font-size="9">A⁺ = VΣ⁺Uᵀ</text>
+    <text x="450" y="90" text-anchor="middle" fill="#007bff" font-size="9">Least squares</text>
+    
+    <text x="610" y="55" text-anchor="middle" fill="#fd7e14" font-size="11" font-weight="bold">Low-rank Approx</text>
+    <text x="610" y="75" text-anchor="middle" fill="#fd7e14" font-size="9">Compress matrices</text>
+    <text x="610" y="90" text-anchor="middle" fill="#fd7e14" font-size="9">LoRA uses this!</text>
+    
+    <text x="350" y="120" text-anchor="middle" fill="#a5b4fc" font-size="10">Truncated SVD: Best rank-k approximation (Eckart-Young theorem)</text>
+  </g>
+</svg>
+

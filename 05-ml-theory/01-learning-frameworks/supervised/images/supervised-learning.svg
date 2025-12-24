@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 855.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgSL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="855.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Supervised Learning</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect x="0" y="20" width="130" height="80" rx="10" fill="#1565c0"/>
+    <ns0:text x="65" y="55" text-anchor="middle" fill="#1a237e" font-size="11" font-weight="bold">Training Data</ns0:text>
+    <ns0:text x="65" y="75" text-anchor="middle" fill="#1565c0" font-size="9">(X, y) pairs</ns0:text>
+    <ns0:rect x="180" y="20" width="130" height="80" rx="10" fill="#8b5cf6"/>
+    <ns0:text x="245" y="100.0" text-anchor="middle" fill="#1a237e" font-size="11" font-weight="bold">Model f_θ</ns0:text>
+    <ns0:text x="245" y="125.0" text-anchor="middle" fill="#e9d5ff" font-size="9">Learn θ to fit data</ns0:text>
+    <ns0:rect x="360" y="20" width="130" height="80" rx="10" fill="#e65100"/>
+    <ns0:text x="425" y="150.0" text-anchor="middle" fill="#1a237e" font-size="11" font-weight="bold">Loss L(θ)</ns0:text>
+    <ns0:text x="425" y="175.0" text-anchor="middle" fill="#fef3c7" font-size="9">MSE, Cross-Entropy</ns0:text>
+    <ns0:rect x="540" y="20" width="130" height="80" rx="10" fill="#10b981"/>
+    <ns0:text x="605" y="200.0" text-anchor="middle" fill="#1a237e" font-size="11" font-weight="bold">Optimizer</ns0:text>
+    <ns0:text x="605" y="225.0" text-anchor="middle" fill="#d1fae5" font-size="9">θ ← θ - η∇L</ns0:text>
+    <ns0:line x1="130" y1="60" x2="180" y2="60" stroke="#6366f1" stroke-width="2"/>
+    <ns0:line x1="310" y1="60" x2="360" y2="60" stroke="#6366f1" stroke-width="2"/>
+    <ns0:line x1="490" y1="60" x2="540" y2="60" stroke="#6366f1" stroke-width="2"/>
+    <ns0:path d="M 605 100 Q 605 130 245 130 Q 245 100" stroke="#dc3545" stroke-width="2" fill="none"/>
+    <ns0:polygon points="243,105 245,95 247,105" fill="#c62828"/>
+    <ns0:text x="425" y="250.0" text-anchor="middle" fill="#c62828" font-size="9">Update weights</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 200)">
+    <ns0:rect width="340" height="80" rx="10" fill="#2d2d2d20" stroke="#007bff"/>
+    <ns0:text x="170" y="275.0" text-anchor="middle" fill="#1565c0" font-size="12" font-weight="bold">Classification</ns0:text>
+    <ns0:text x="170" y="300.0" text-anchor="middle" fill="#1a237e" font-size="10">Output: Discrete classes</ns0:text>
+    <ns0:text x="170" y="325.0" text-anchor="middle" fill="#1565c0" font-size="9">Cat vs Dog, Spam detection</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 200)">
+    <ns0:rect width="340" height="80" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="170" y="350.0" text-anchor="middle" fill="#2e7d32" font-size="12" font-weight="bold">Regression</ns0:text>
+    <ns0:text x="170" y="375.0" text-anchor="middle" fill="#1a237e" font-size="10">Output: Continuous values</ns0:text>
+    <ns0:text x="170" y="400.0" text-anchor="middle" fill="#2e7d32" font-size="9">House prices, Temperature</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 300)">
+    <ns0:rect width="700" height="60" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="425.0" text-anchor="middle" fill="#e65100" font-size="11" font-weight="bold">Goal</ns0:text>
+    <ns0:text x="350" y="450.0" text-anchor="middle" fill="#1a237e" font-size="11" font-family="Arial, sans-serif">θ* = argmin_θ Σᵢ L(f_θ(xᵢ), yᵢ) — minimize prediction error</ns0:text>
+  </ns0:g>
+</ns0:svg>

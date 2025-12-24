@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1100">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef2f2"/>
+      <stop offset="100%" style="stop-color:#fee2e2"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#dc2626"/>
+    </marker>
+  </defs>
+  
+  <rect width="1800" height="1100" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#991b1b" font-family="Arial, sans-serif" font-size="52" font-weight="bold">Gradient Descent</text>
+  <text x="900" y="120" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="26">Iteratively move in direction of steepest descent to find minimum</text>
+  
+  <!-- Main Visualization -->
+  <g transform="translate(100, 170)" filter="url(#shadow)">
+    <rect width="1600" height="680" rx="18" fill="#ffffff" stroke="#ef4444" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="36" font-weight="bold">📉 Gradient Descent Path</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#fecaca" stroke-width="2"/>
+    
+    <!-- Graph Area -->
+    <g transform="translate(100, 120)">
+      <!-- Axes -->
+      <line x1="60" y1="480" x2="1350" y2="480" stroke="#475569" stroke-width="3"/>
+      <line x1="60" y1="50" x2="60" y2="480" stroke="#475569" stroke-width="3"/>
+      <text x="700" y="520" text-anchor="middle" fill="#475569" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Parameters (θ) →</text>
+      <text x="20" y="270" text-anchor="middle" fill="#475569" font-family="Arial, sans-serif" font-size="22" font-weight="bold" transform="rotate(-90, 20, 270)">Loss L(θ) →</text>
+      
+      <!-- Convex function curve -->
+      <path d="M 100 120 Q 300 100 500 90 Q 700 100 900 180 Q 1100 100 1300 120" 
+            fill="none" stroke="#3b82f6" stroke-width="5"/>
+      
+      <!-- Global minimum -->
+      <circle cx="700" cy="90" r="15" fill="#10b981" stroke="#ffffff" stroke-width="3"/>
+      <line x1="700" y1="90" x2="700" y2="480" stroke="#10b981" stroke-width="2" stroke-dasharray="8,4"/>
+      <text x="700" y="510" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="20" font-weight="bold">θ* (optimum)</text>
+      
+      <!-- Gradient descent steps -->
+      <circle cx="200" cy="115" r="12" fill="#ef4444"/>
+      <text x="200" y="95" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Start θ₀</text>
+      
+      <line x1="200" y1="115" x2="320" y2="100" stroke="#ef4444" stroke-width="4" marker-end="url(#arrow)"/>
+      <circle cx="320" cy="100" r="10" fill="#f59e0b"/>
+      <text x="260" y="90" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="16">-η∇L</text>
+      
+      <line x1="320" y1="100" x2="440" y2="92" stroke="#ef4444" stroke-width="4" marker-end="url(#arrow)"/>
+      <circle cx="440" cy="92" r="10" fill="#f59e0b"/>
+      
+      <line x1="440" y1="92" x2="550" y2="90" stroke="#ef4444" stroke-width="4" marker-end="url(#arrow)"/>
+      <circle cx="550" cy="90" r="10" fill="#f59e0b"/>
+      
+      <line x1="550" y1="90" x2="640" y2="90" stroke="#ef4444" stroke-width="4" marker-end="url(#arrow)"/>
+      <circle cx="640" cy="90" r="10" fill="#f59e0b"/>
+      
+      <line x1="640" y1="90" x2="700" y2="90" stroke="#ef4444" stroke-width="4" marker-end="url(#arrow)"/>
+      
+      <!-- Gradient vectors -->
+      <g transform="translate(200, 115)">
+        <line x1="0" y1="0" x2="80" y2="80" stroke="#8b5cf6" stroke-width="3" marker-end="url(#arrow)"/>
+        <text x="90" y="90" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="16" font-weight="bold">∇L</text>
+        <text x="40" y="110" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="14">(gradient)</text>
+      </g>
+      
+      <!-- Labels -->
+      <text x="400" y="200" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Iterative Updates:</text>
+      <text x="400" y="235" text-anchor="middle" fill="#dc2626" font-family="Consolas, monospace" font-size="22">θ_{t+1} = θ_t - η∇L(θ_t)</text>
+      
+      <!-- Learning rate boxes -->
+      <g transform="translate(0, 320)">
+        <rect x="850" y="0" width="400" height="150" fill="#eff6ff" rx="12"/>
+        <text x="1050" y="35" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Learning Rate η</text>
+        <text x="1050" y="65" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="17">Too large: oscillation/divergence</text>
+        <text x="1050" y="90" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="17">Too small: slow convergence</text>
+        <text x="1050" y="115" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="17" font-weight="bold">Typical: 0.001 to 0.1</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Update Rule and Variants -->
+  <g transform="translate(100, 910)" filter="url(#shadow)">
+    <rect width="750" height="170" rx="18" fill="#ffffff" stroke="#3b82f6" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="32" font-weight="bold">⚙️ Update Rule</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#bfdbfe" stroke-width="2"/>
+    
+    <g transform="translate(50, 100)">
+      <rect x="0" y="0" width="650" height="60" fill="#eff6ff" rx="12"/>
+      <text x="325" y="40" text-anchor="middle" fill="#1e40af" font-family="Consolas, monospace" font-size="28" font-weight="bold">θ = θ - η × ∇L(θ)</text>
+    </g>
+  </g>
+  
+  <g transform="translate(900, 910)" filter="url(#shadow)">
+    <rect width="800" height="170" rx="18" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="400" y="50" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="32" font-weight="bold">🎯 Variants</text>
+    <line x1="40" y1="70" x2="760" y2="70" stroke="#d1fae5" stroke-width="2"/>
+    
+    <g transform="translate(50, 100)">
+      <text x="0" y="0" fill="#059669" font-family="Arial, sans-serif" font-size="19">• <tspan font-weight="bold">Batch GD:</tspan> Use all data (slow, stable)</text>
+      <text x="0" y="30" fill="#059669" font-family="Arial, sans-serif" font-size="19">• <tspan font-weight="bold">SGD:</tspan> Use one sample (fast, noisy)</text>
+      <text x="0" y="60" fill="#10b981" font-family="Arial, sans-serif" font-size="19" font-weight="bold">• <tspan font-weight="bold">Mini-batch GD:</tspan> Use small batches (best!) ⭐</text>
+    </g>
+  </g>
+</svg>

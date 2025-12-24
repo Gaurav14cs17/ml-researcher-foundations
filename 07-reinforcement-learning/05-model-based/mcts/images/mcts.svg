@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 945.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgMCTS" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="945.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Monte Carlo Tree Search (MCTS)</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect x="0" y="0" width="160" height="100" rx="10" fill="#2d2d2d20" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="80" y="60.0" text-anchor="middle" fill="#1565c0" font-size="12" font-weight="bold">1. Selection</ns0:text>
+    <ns0:circle cx="80" cy="55" r="12" fill="#1565c0"/>
+    <ns0:line x1="80" y1="67" x2="60" y2="85" stroke="#007bff" stroke-width="2"/>
+    <ns0:line x1="80" y1="67" x2="100" y2="85" stroke="#fd7e14" stroke-width="3"/>
+    <ns0:circle cx="60" cy="90" r="8" fill="#1565c0" opacity="0.5"/>
+    <ns0:circle cx="100" cy="90" r="8" fill="#e65100"/>
+    <ns0:text x="80" y="98" text-anchor="middle" fill="#1565c0" font-size="8">UCB select</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(190, 70)">
+    <ns0:rect x="0" y="0" width="160" height="100" rx="10" fill="#2d2d2d20" stroke="#10b981" stroke-width="2"/>
+    <ns0:text x="80" y="123.0" text-anchor="middle" fill="#2e7d32" font-size="12" font-weight="bold">2. Expansion</ns0:text>
+    <ns0:circle cx="80" cy="50" r="10" fill="#10b981"/>
+    <ns0:line x1="80" y1="60" x2="50" y2="80" stroke="#10b981" stroke-width="2"/>
+    <ns0:line x1="80" y1="60" x2="80" y2="80" stroke="#10b981" stroke-width="2"/>
+    <ns0:line x1="80" y1="60" x2="110" y2="80" stroke="#10b981" stroke-width="2"/>
+    <ns0:circle cx="50" cy="85" r="6" fill="#10b981" stroke="#28a745" stroke-width="2"/>
+    <ns0:circle cx="80" cy="85" r="6" fill="#10b981" opacity="0.5"/>
+    <ns0:circle cx="110" cy="85" r="6" fill="#10b981" opacity="0.5"/>
+    <ns0:text x="80" y="148.0" text-anchor="middle" fill="#2e7d32" font-size="8">add child</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(380, 70)">
+    <ns0:rect x="0" y="0" width="160" height="100" rx="10" fill="#2d2d2d20" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="80" y="173.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">3. Simulation</ns0:text>
+    <ns0:circle cx="80" cy="45" r="8" fill="#e65100"/>
+    <ns0:path d="M 80 53 Q 90 60 85 70 Q 75 80 80 90" stroke="#fd7e14" stroke-width="2" stroke-dasharray="3,2" fill="none"/>
+    <ns0:text x="100" y="198.0" fill="#e65100" font-size="8">random</ns0:text>
+    <ns0:text x="100" y="223.0" fill="#e65100" font-size="8">rollout</ns0:text>
+    <ns0:text x="80" y="248.0" text-anchor="middle" fill="#e65100" font-size="8">→ win/lose</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(570, 70)">
+    <ns0:rect x="0" y="0" width="160" height="100" rx="10" fill="#2d2d2d20" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="80" y="273.0" text-anchor="middle" fill="#c62828" font-size="12" font-weight="bold">4. Backprop</ns0:text>
+    <ns0:circle cx="80" cy="50" r="10" fill="#c62828"/>
+    <ns0:line x1="80" y1="60" x2="80" y2="85" stroke="#dc3545" stroke-width="2"/>
+    <ns0:circle cx="80" cy="90" r="6" fill="#c62828"/>
+    <ns0:path d="M 90 85 L 90 55 L 85 55" stroke="#28a745" stroke-width="2" fill="none"/>
+    <ns0:text x="105" y="298.0" fill="#2e7d32" font-size="8">update</ns0:text>
+    <ns0:text x="105" y="323.0" fill="#2e7d32" font-size="8">stats</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 190)">
+    <ns0:rect width="700" height="70" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="348.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">UCT Selection Formula</ns0:text>
+    <ns0:text x="350" y="373.0" text-anchor="middle" fill="#1a237e" font-size="13" font-family="Arial, sans-serif">UCT(s,a) = Q(s,a) + c√(ln N(s) / N(s,a))</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 280)">
+    <ns0:rect width="700" height="110" rx="10" fill="#8b5cf620" stroke="#8b5cf6"/>
+    <ns0:text x="350" y="398.0" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="bold">MCTS + Neural Networks (AlphaGo/AlphaZero)</ns0:text>
+    <ns0:text x="180" y="423.0" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">Policy Network</ns0:text>
+    <ns0:text x="180" y="448.0" text-anchor="middle" fill="#2e7d32" font-size="9">Guides tree search</ns0:text>
+    <ns0:text x="180" y="473.0" text-anchor="middle" fill="#2e7d32" font-size="9">Prior p(a|s)</ns0:text>
+    <ns0:text x="500" y="498.0" text-anchor="middle" fill="#e65100" font-size="10" font-weight="bold">Value Network</ns0:text>
+    <ns0:text x="500" y="523.0" text-anchor="middle" fill="#e65100" font-size="9">Replaces random rollout</ns0:text>
+    <ns0:text x="500" y="548.0" text-anchor="middle" fill="#e65100" font-size="9">Estimates V(s)</ns0:text>
+  </ns0:g>
+</ns0:svg>

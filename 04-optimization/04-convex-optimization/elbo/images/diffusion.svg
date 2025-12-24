@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1350.0 720.0">
+  <ns0:defs>
+    <ns0:linearGradient id="diffBg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#0a0a1a"/>
+      <ns0:stop offset="100%" style="stop-color:#1a1a3e"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1350.0" height="720.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="300" y="25" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">Diffusion Models: Forward &amp;amp; Reverse Process</ns0:text>
+  <ns0:text x="300" y="50" fill="#c62828" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">Forward Process (Add Noise) →</ns0:text>
+  <ns0:rect x="30" y="65" width="70" height="70" rx="5" fill="#2ecc71" opacity="0.8"/>
+  <ns0:text x="65" y="105" fill="#1a237e" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">🖼️</ns0:text>
+  <ns0:text x="65" y="150" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">x₀ clean</ns0:text>
+  <ns0:text x="125" y="175.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="16">→</ns0:text>
+  <ns0:rect x="150" y="65" width="70" height="70" rx="5" fill="#e65100" opacity="0.6"/>
+  <ns0:text x="185" y="200.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">🌫️</ns0:text>
+  <ns0:text x="185" y="225.0" fill="#e65100" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">x_t noisy</ns0:text>
+  <ns0:text x="245" y="250.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="16">→</ns0:text>
+  <ns0:rect x="270" y="65" width="70" height="70" rx="5" fill="#c62828" opacity="0.6"/>
+  <ns0:text x="305" y="275.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">📺</ns0:text>
+  <ns0:text x="305" y="300.0" fill="#c62828" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">x_T noise</ns0:text>
+  <ns0:text x="300" y="325.0" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">← Reverse Process (Denoise with Neural Net)</ns0:text>
+  <ns0:rect x="270" y="200" width="70" height="70" rx="5" fill="#c62828" opacity="0.6"/>
+  <ns0:text x="305" y="350.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">📺</ns0:text>
+  <ns0:text x="365" y="375.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="14">→</ns0:text>
+  <ns0:text x="365" y="400.0" fill="#444444" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">ε_θ(x_t,t)</ns0:text>
+  <ns0:rect x="390" y="200" width="70" height="70" rx="5" fill="#e65100" opacity="0.6"/>
+  <ns0:text x="425" y="425.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">🌫️</ns0:text>
+  <ns0:text x="485" y="450.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="14">→</ns0:text>
+  <ns0:rect x="510" y="200" width="70" height="70" rx="5" fill="#2ecc71" opacity="0.8"/>
+  <ns0:text x="545" y="475.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">🖼️</ns0:text>
+  <ns0:text x="545" y="500.0" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">Generated!</ns0:text>
+  <ns0:rect x="380" y="65" width="200" height="50" rx="5" fill="#1a237e"/>
+  <ns0:text x="480" y="525.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">ELBO-derived Loss:</ns0:text>
+  <ns0:text x="480" y="550.0" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">L = ||ε - ε_θ(x_t, t)||²</ns0:text>
+</ns0:svg>

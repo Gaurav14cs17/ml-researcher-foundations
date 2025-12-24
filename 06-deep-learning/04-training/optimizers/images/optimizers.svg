@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 1012.5">
+  <ns0:defs>
+    <ns0:linearGradient id="bgOpt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="1012.5" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Optimizers: From SGD to Adam</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="220" height="120" rx="10" fill="#2d2d2d20" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="110" y="60.0" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">SGD</ns0:text>
+    <ns0:text x="110" y="85.0" text-anchor="middle" fill="#1a237e" font-size="10" font-family="Arial, sans-serif">θ = θ - η∇L</ns0:text>
+    <ns0:text x="110" y="110.0" text-anchor="middle" fill="#1565c0" font-size="9">Simple, but oscillates</ns0:text>
+    <ns0:text x="110" y="135.0" text-anchor="middle" fill="#1565c0" font-size="9">in ravines</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(290, 70)">
+    <ns0:rect width="220" height="120" rx="10" fill="#2d2d2d20" stroke="#10b981" stroke-width="2"/>
+    <ns0:text x="110" y="160.0" text-anchor="middle" fill="#2e7d32" font-size="13" font-weight="bold">SGD + Momentum</ns0:text>
+    <ns0:text x="110" y="185.0" text-anchor="middle" fill="#1a237e" font-size="10" font-family="Arial, sans-serif">v = βv + ∇L</ns0:text>
+    <ns0:text x="110" y="210.0" text-anchor="middle" fill="#1a237e" font-size="10" font-family="Arial, sans-serif">θ = θ - ηv</ns0:text>
+    <ns0:text x="110" y="235.0" text-anchor="middle" fill="#2e7d32" font-size="9">Accumulates velocity</ns0:text>
+    <ns0:text x="110" y="260.0" text-anchor="middle" fill="#2e7d32" font-size="9">β ≈ 0.9</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(530, 70)">
+    <ns0:rect width="220" height="120" rx="10" fill="#2d2d2d20" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="110" y="285.0" text-anchor="middle" fill="#e65100" font-size="13" font-weight="bold">RMSprop</ns0:text>
+    <ns0:text x="110" y="310.0" text-anchor="middle" fill="#1a237e" font-size="10" font-family="Arial, sans-serif">s = βs + (1-β)∇²</ns0:text>
+    <ns0:text x="110" y="335.0" text-anchor="middle" fill="#1a237e" font-size="10" font-family="Arial, sans-serif">θ = θ - η∇/√s</ns0:text>
+    <ns0:text x="110" y="360.0" text-anchor="middle" fill="#e65100" font-size="9">Adaptive per-param LR</ns0:text>
+    <ns0:text x="110" y="385.0" text-anchor="middle" fill="#e65100" font-size="9">Divides by RMS of grads</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 210)">
+    <ns0:rect width="340" height="150" rx="10" fill="#8b5cf620" stroke="#8b5cf6" stroke-width="3"/>
+    <ns0:text x="170" y="410.0" text-anchor="middle" fill="#c4b5fd" font-size="15" font-weight="bold">Adam 🔥 (Most Popular)</ns0:text>
+    <ns0:text x="170" y="435.0" text-anchor="middle" fill="#1a237e" font-size="10" font-family="Arial, sans-serif">m = β₁m + (1-β₁)∇     (momentum)</ns0:text>
+    <ns0:text x="170" y="460.0" text-anchor="middle" fill="#1a237e" font-size="10" font-family="Arial, sans-serif">v = β₂v + (1-β₂)∇²    (RMSprop)</ns0:text>
+    <ns0:text x="170" y="485.0" text-anchor="middle" fill="#1a237e" font-size="10" font-family="Arial, sans-serif">m̂, v̂ = bias correction</ns0:text>
+    <ns0:text x="170" y="510.0" text-anchor="middle" fill="#1a237e" font-size="10" font-family="Arial, sans-serif">θ = θ - η·m̂/(√v̂ + ε)</ns0:text>
+    <ns0:text x="170" y="535.0" text-anchor="middle" fill="#c4b5fd" font-size="9">β₁=0.9, β₂=0.999, η=1e-3 (typical)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 210)">
+    <ns0:rect width="340" height="150" rx="10" fill="#2d2d2d20" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="170" y="560.0" text-anchor="middle" fill="#c62828" font-size="14" font-weight="bold">AdamW 🔥 (LLMs)</ns0:text>
+    <ns0:text x="170" y="585.0" text-anchor="middle" fill="#1a237e" font-size="10">Adam + decoupled weight decay</ns0:text>
+    <ns0:text x="170" y="610.0" text-anchor="middle" fill="#1a237e" font-size="10" font-family="Arial, sans-serif">θ = θ - η·m̂/(√v̂ + ε) - λθ</ns0:text>
+    <ns0:text x="170" y="635.0" text-anchor="middle" fill="#c62828" font-size="9">Better generalization</ns0:text>
+    <ns0:text x="170" y="660.0" text-anchor="middle" fill="#c62828" font-size="9">Used in GPT, BERT, etc.</ns0:text>
+    <ns0:text x="170" y="685.0" text-anchor="middle" fill="#c62828" font-size="9">λ = weight decay ≠ L2 reg!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 380)">
+    <ns0:rect width="700" height="50" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="710.0" text-anchor="middle" fill="#e65100" font-size="11" font-weight="bold">When to Use</ns0:text>
+    <ns0:text x="350" y="735.0" text-anchor="middle" fill="#1a237e" font-size="10">CNNs: SGD+Momentum | Transformers/LLMs: AdamW | Quick experiments: Adam | Fine-tuning: lower LR</ns0:text>
+  </ns0:g>
+</ns0:svg>

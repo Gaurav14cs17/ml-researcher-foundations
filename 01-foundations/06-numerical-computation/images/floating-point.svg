@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1575.0 787.5">
+  <ns0:defs>
+    <ns0:linearGradient id="signGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#dc3545"/>
+      <ns0:stop offset="100%" style="stop-color:#dc3545"/>
+    </ns0:linearGradient>
+    <ns0:linearGradient id="expGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#28a745"/>
+      <ns0:stop offset="100%" style="stop-color:#28a745"/>
+    </ns0:linearGradient>
+    <ns0:linearGradient id="mantGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#007bff"/>
+      <ns0:stop offset="100%" style="stop-color:#007bff"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1575.0" height="787.5" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="350" y="35" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="22" font-weight="bold">IEEE 754 Floating Point Format</ns0:text>
+  <ns0:text x="50" y="80" fill="#1a237e" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Float32 (32 bits)</ns0:text>
+  <ns0:rect x="50" y="95" width="40" height="50" fill="url(#signGrad)" stroke="#ffffff" stroke-width="2"/>
+  <ns0:text x="70" y="125" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="14" font-weight="bold">S</ns0:text>
+  <ns0:text x="70" y="160" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="11">1 bit</ns0:text>
+  <ns0:rect x="95" y="95" width="150" height="50" fill="url(#expGrad)" stroke="#ffffff" stroke-width="2" rx="8"/>
+  <ns0:text x="170" y="185.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Exponent</ns0:text>
+  <ns0:text x="170" y="210.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11">8 bits</ns0:text>
+  <ns0:rect x="250" y="95" width="400" height="50" fill="url(#mantGrad)" stroke="#ffffff" stroke-width="2" rx="8"/>
+  <ns0:text x="450" y="235.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Mantissa (Fraction)</ns0:text>
+  <ns0:text x="450" y="260.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="11">23 bits</ns0:text>
+  <ns0:text x="50" y="285.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Float16 (16 bits)</ns0:text>
+  <ns0:rect x="50" y="225" width="40" height="50" fill="url(#signGrad)" stroke="#ffffff" stroke-width="2"/>
+  <ns0:text x="70" y="310.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="14" font-weight="bold">S</ns0:text>
+  <ns0:rect x="95" y="225" width="100" height="50" fill="url(#expGrad)" stroke="#ffffff" stroke-width="2" rx="8"/>
+  <ns0:text x="145" y="335.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Exp</ns0:text>
+  <ns0:text x="145" y="360.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11">5 bits</ns0:text>
+  <ns0:rect x="200" y="225" width="200" height="50" fill="url(#mantGrad)" stroke="#ffffff" stroke-width="2" rx="8"/>
+  <ns0:text x="300" y="385.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Mantissa</ns0:text>
+  <ns0:text x="300" y="410.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="11">10 bits</ns0:text>
+  <ns0:rect x="430" y="200" width="250" height="80" rx="8" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+  <ns0:text x="555" y="435.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Value Formula</ns0:text>
+  <ns0:text x="555" y="460.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="13">(-1)^S × 1.M × 2^(E-bias)</ns0:text>
+  <ns0:text x="555" y="485.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">bias = 127 (float32), 15 (float16)</ns0:text>
+  <ns0:text x="50" y="510.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">💡 More mantissa bits = more precision | More exponent bits = larger range</ns0:text>
+</ns0:svg>

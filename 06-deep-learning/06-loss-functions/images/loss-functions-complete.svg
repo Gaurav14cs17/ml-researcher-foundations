@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff7ed"/>
+      <stop offset="100%" style="stop-color:#ffedd5"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  
+  <rect width="1800" height="1400" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#7c2d12" font-family="Arial, sans-serif" font-size="52" font-weight="bold">Loss Functions</text>
+  <text x="900" y="120" text-anchor="middle" fill="#9a3412" font-family="Arial, sans-serif" font-size="26">Measuring the difference between predictions and targets</text>
+  
+  <!-- Regression Losses -->
+  <g transform="translate(100, 180)" filter="url(#shadow)">
+    <rect width="750" height="550" rx="18" fill="#ffffff" stroke="#3b82f6" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="36" font-weight="bold">📊 Regression Losses</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#bfdbfe" stroke-width="2"/>
+    
+    <g transform="translate(50, 110)">
+      <!-- MSE -->
+      <rect width="650" height="120" fill="#eff6ff" rx="12"/>
+      <text x="325" y="30" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Mean Squared Error (MSE)</text>
+      <rect x="50" y="45" width="550" height="50" fill="#dbeafe" rx="10"/>
+      <text x="325" y="80" text-anchor="middle" fill="#1e3a8a" font-family="Consolas, monospace" font-size="26">L = (1/n) Σ(yᵢ - ŷᵢ)²</text>
+      <text x="325" y="110" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="17">✓ Penalizes large errors heavily • Standard choice</text>
+      
+      <!-- MAE -->
+      <g transform="translate(0, 140)">
+        <rect width="650" height="120" fill="#f0fdf4" rx="12"/>
+        <text x="325" y="30" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Mean Absolute Error (MAE)</text>
+        <rect x="50" y="45" width="550" height="50" fill="#dcfce7" rx="10"/>
+        <text x="325" y="80" text-anchor="middle" fill="#065f46" font-family="Consolas, monospace" font-size="26">L = (1/n) Σ|yᵢ - ŷᵢ|</text>
+        <text x="325" y="110" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="17">✓ More robust to outliers • Linear penalty</text>
+      </g>
+      
+      <!-- Huber -->
+      <g transform="translate(0, 280)">
+        <rect width="650" height="140" fill="#fef3c7" rx="12"/>
+        <text x="325" y="30" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Huber Loss</text>
+        <rect x="50" y="45" width="550" height="70" fill="#fde68a" rx="10"/>
+        <text x="325" y="70" text-anchor="middle" fill="#78350f" font-family="Consolas, monospace" font-size="20">L = { ½(y-ŷ)²    if |y-ŷ| ≤ δ</text>
+        <text x="325" y="95" text-anchor="middle" fill="#78350f" font-family="Consolas, monospace" font-size="20">    { δ|y-ŷ| - ½δ²  otherwise</text>
+        <text x="325" y="130" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="17">✓ Best of both: quadratic near 0, linear for outliers</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Classification Losses -->
+  <g transform="translate(900, 180)" filter="url(#shadow)">
+    <rect width="800" height="550" rx="18" fill="#ffffff" stroke="#ef4444" stroke-width="4"/>
+    <text x="400" y="50" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="36" font-weight="bold">🎯 Classification Losses</text>
+    <line x1="40" y1="70" x2="760" y2="70" stroke="#fecaca" stroke-width="2"/>
+    
+    <g transform="translate(50, 110)">
+      <!-- Binary Cross-Entropy -->
+      <rect width="700" height="120" fill="#fee2e2" rx="12"/>
+      <text x="350" y="30" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Binary Cross-Entropy (BCE)</text>
+      <rect x="50" y="45" width="600" height="50" fill="#fecaca" rx="10"/>
+      <text x="350" y="80" text-anchor="middle" fill="#991b1b" font-family="Consolas, monospace" font-size="22">L = -[y log(ŷ) + (1-y) log(1-ŷ)]</text>
+      <text x="350" y="110" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="17">✓ Binary classification • Use with sigmoid</text>
+      
+      <!-- Categorical Cross-Entropy -->
+      <g transform="translate(0, 140)">
+        <rect width="700" height="130" fill="#fef2f2" rx="12"/>
+        <text x="350" y="30" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Categorical Cross-Entropy</text>
+        <rect x="50" y="45" width="600" height="60" fill="#fee2e2" rx="10"/>
+        <text x="350" y="72" text-anchor="middle" fill="#991b1b" font-family="Consolas, monospace" font-size="24">L = -Σ yᵢ log(ŷᵢ)</text>
+        <text x="350" y="97" text-anchor="middle" fill="#b91c1c" font-family="Arial, sans-serif" font-size="17">(y is one-hot encoded)</text>
+        <text x="350" y="120" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="17">✓ Multi-class classification • Use with softmax</text>
+      </g>
+      
+      <!-- Hinge Loss -->
+      <g transform="translate(0, 290)">
+        <rect width="700" height="120" fill="#fef3c7" rx="12"/>
+        <text x="350" y="30" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Hinge Loss (SVM)</text>
+        <rect x="50" y="45" width="600" height="50" fill="#fde68a" rx="10"/>
+        <text x="350" y="80" text-anchor="middle" fill="#78350f" font-family="Consolas, monospace" font-size="24">L = max(0, 1 - y·ŷ)</text>
+        <text x="350" y="110" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="17">✓ SVMs • Margin-based loss</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Advanced Losses -->
+  <g transform="translate(100, 790)" filter="url(#shadow)">
+    <rect width="1600" height="530" rx="18" fill="#ffffff" stroke="#8b5cf6" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="36" font-weight="bold">🚀 Advanced & Specialized Losses</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#e9d5ff" stroke-width="2"/>
+    
+    <g transform="translate(80, 110)">
+      <!-- Focal Loss -->
+      <rect width="700" height="140" fill="#faf5ff" rx="12"/>
+      <text x="350" y="35" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Focal Loss</text>
+      <rect x="50" y="50" width="600" height="60" fill="#f3e8ff" rx="10"/>
+      <text x="350" y="80" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="22">L = -α(1-ŷ)ᵞ log(ŷ)</text>
+      <text x="350" y="103" text-anchor="middle" fill="#6b21a8" font-family="Arial, sans-serif" font-size="17">(γ = focusing parameter)</text>
+      <text x="350" y="130" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="17">✓ Addresses class imbalance • Down-weights easy examples</text>
+      
+      <!-- Triplet Loss -->
+      <g transform="translate(760, 0)">
+        <rect width="680" height="140" fill="#ecfeff" rx="12"/>
+        <text x="340" y="35" text-anchor="middle" fill="#0891b2" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Triplet Loss</text>
+        <rect x="40" y="50" width="600" height="60" fill="#cffafe" rx="10"/>
+        <text x="340" y="87" text-anchor="middle" fill="#155e75" font-family="Consolas, monospace" font-size="20">L = max(||a-p||² - ||a-n||² + margin, 0)</text>
+        <text x="340" y="130" text-anchor="middle" fill="#0891b2" font-family="Arial, sans-serif" font-size="17">✓ Metric learning • Face recognition • Embedding</text>
+      </g>
+      
+      <!-- Contrastive Loss -->
+      <g transform="translate(0, 170)">
+        <rect width="700" height="140" fill="#fff7ed" rx="12"/>
+        <text x="350" y="35" text-anchor="middle" fill="#ea580c" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Contrastive Loss</text>
+        <rect x="50" y="50" width="600" height="60" fill="#fed7aa" rx="10"/>
+        <text x="350" y="75" text-anchor="middle" fill="#7c2d12" font-family="Consolas, monospace" font-size="19">L = y·||f(x₁)-f(x₂)||²</text>
+        <text x="350" y="98" text-anchor="middle" fill="#7c2d12" font-family="Consolas, monospace" font-size="19">    + (1-y)·max(margin-||f(x₁)-f(x₂)||, 0)²</text>
+        <text x="350" y="130" text-anchor="middle" fill="#ea580c" font-family="Arial, sans-serif" font-size="17">✓ Siamese networks • Pull similar, push dissimilar</text>
+      </g>
+      
+      <!-- KL Divergence -->
+      <g transform="translate(760, 170)">
+        <rect width="680" height="140" fill="#f0fdf4" rx="12"/>
+        <text x="340" y="35" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="24" font-weight="bold">KL Divergence</text>
+        <rect x="40" y="50" width="600" height="60" fill="#d1fae5" rx="10"/>
+        <text x="340" y="87" text-anchor="middle" fill="#065f46" font-family="Consolas, monospace" font-size="22">D_KL(P||Q) = Σ P(x) log(P(x)/Q(x))</text>
+        <text x="340" y="130" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="17">✓ VAEs • Distribution matching • Information theory</text>
+      </g>
+      
+      <!-- Selection Guide -->
+      <g transform="translate(0, 340)">
+        <rect width="1440" height="140" fill="#eff6ff" rx="14"/>
+        <text x="720" y="40" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="28" font-weight="bold">🧭 Selection Guide</text>
+        <line x1="40" y1="60" x2="1400" y2="60" stroke="#bfdbfe" stroke-width="2"/>
+        <text x="720" y="90" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="19">Regression → MSE/MAE  •  Binary Class → BCE  •  Multi-class → CE  •  Imbalanced → Focal</text>
+        <text x="720" y="120" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="19">Similarity Learning → Triplet/Contrastive  •  Generative → KL/Wasserstein</text>
+      </g>
+    </g>
+  </g>
+</svg>

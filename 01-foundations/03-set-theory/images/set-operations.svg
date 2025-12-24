@@ -1,0 +1,107 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2700.0 1800.0">
+  <ns0:rect width="2700.0" height="1800.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="600" y="35" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Set Operations: Union, Intersection, Difference, Complement
+  </ns0:text>
+  <ns0:ellipse cx="600" cy="400" rx="500" ry="350" fill="none" stroke="#e0e0e0" stroke-width="3" stroke-dasharray="5,5" opacity="0.5"/>
+  <ns0:text x="1050" y="100" font-family="Arial, sans-serif" font-size="18" fill="#1a237e" font-weight="bold">
+    Ω (Universal Set)
+  </ns0:text>
+  <ns0:ellipse cx="450" cy="400" rx="180" ry="120" fill="#1565c0" fill-opacity="0.4" stroke="#007bff" stroke-width="3"/>
+  <ns0:text x="450" y="280" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#1565c0">
+    A = {1, 2, 3, 4, 5}
+  </ns0:text>
+  <ns0:ellipse cx="750" cy="400" rx="180" ry="120" fill="#c62828" fill-opacity="0.4" stroke="#dc3545" stroke-width="3"/>
+  <ns0:text x="750" y="305.0" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#c62828">
+    B = {4, 5, 6, 7, 8}
+  </ns0:text>
+  <ns0:ellipse cx="600" cy="400" rx="80" ry="120" fill="#6a1b9a" fill-opacity="0.6" stroke="#6f42c1" stroke-width="3"/>
+  <ns0:text x="600" y="400" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    A ∩ B
+  </ns0:text>
+  <ns0:text x="600" y="425" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1a237e">
+    {4, 5}
+  </ns0:text>
+  <ns0:text x="350" y="450.0" font-family="Arial, sans-serif" font-size="16" fill="#1565c0" font-weight="bold">
+    {1, 2, 3}
+  </ns0:text>
+  <ns0:text x="850" y="475.0" font-family="Arial, sans-serif" font-size="16" fill="#c62828" font-weight="bold">
+    {6, 7, 8}
+  </ns0:text>
+  <ns0:g id="operations">
+    <ns0:rect x="50" y="550" width="250" height="200" fill="#1a237e" stroke="#007bff" stroke-width="2" rx="8"/>
+    <ns0:text x="175" y="580" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      Union: A ∪ B
+    </ns0:text>
+    <ns0:text x="175" y="610" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1a237e">
+      Elements in A or B
+    </ns0:text>
+    <ns0:text x="175" y="640" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1a237e" font-weight="bold">
+      {1, 2, 3, 4, 5, 6, 7, 8}
+    </ns0:text>
+    <ns0:ellipse cx="100" cy="700" rx="30" ry="20" fill="#1565c0" fill-opacity="0.3" stroke="#007bff" stroke-width="2"/>
+    <ns0:ellipse cx="250" cy="700" rx="30" ry="20" fill="#c62828" fill-opacity="0.3" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="175" y="730" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1a237e">
+      All elements from both sets
+    </ns0:text>
+    <ns0:rect x="350" y="550" width="250" height="200" fill="#1a237e" stroke="#6f42c1" stroke-width="2" rx="8"/>
+    <ns0:text x="475" y="755.0" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+      Intersection: A ∩ B
+    </ns0:text>
+    <ns0:text x="475" y="780.0" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1a237e">
+      Elements in both A and B
+    </ns0:text>
+    <ns0:text x="475" y="805.0" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1a237e" font-weight="bold">
+      {4, 5}
+    </ns0:text>
+    <ns0:ellipse cx="425" cy="700" rx="30" ry="20" fill="#6a1b9a" fill-opacity="0.5" stroke="#6f42c1" stroke-width="2"/>
+    <ns0:ellipse cx="525" cy="700" rx="30" ry="20" fill="#6a1b9a" fill-opacity="0.5" stroke="#6f42c1" stroke-width="2"/>
+    <ns0:text x="475" y="830.0" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1a237e">
+      Overlapping region only
+    </ns0:text>
+    <ns0:rect x="650" y="550" width="250" height="200" fill="#1a237e" stroke="#dc3545" stroke-width="2" rx="8"/>
+    <ns0:text x="775" y="855.0" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#c62828">
+      Difference: A \ B
+    </ns0:text>
+    <ns0:text x="775" y="880.0" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1a237e">
+      Elements in A but not in B
+    </ns0:text>
+    <ns0:text x="775" y="905.0" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1a237e" font-weight="bold">
+      {1, 2, 3}
+    </ns0:text>
+    <ns0:ellipse cx="700" cy="700" rx="30" ry="20" fill="#1565c0" fill-opacity="0.4" stroke="#007bff" stroke-width="2"/>
+    <ns0:ellipse cx="850" cy="700" rx="30" ry="20" fill="#c62828" fill-opacity="0.2" stroke="#dc3545" stroke-width="2" stroke-dasharray="3,3"/>
+    <ns0:text x="775" y="930.0" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1a237e">
+      A minus intersection
+    </ns0:text>
+    <ns0:rect x="950" y="550" width="200" height="200" fill="#1a237e" stroke="#28a745" stroke-width="2" rx="8"/>
+    <ns0:text x="1050" y="955.0" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      Complement: Aᶜ
+    </ns0:text>
+    <ns0:text x="1050" y="980.0" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1a237e">
+      Elements not in A
+    </ns0:text>
+    <ns0:text x="1050" y="1005.0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1a237e" font-weight="bold">
+      Ω \ A
+    </ns0:text>
+    <ns0:ellipse cx="1050" cy="700" rx="60" ry="40" fill="none" stroke="#28a745" stroke-width="2" stroke-dasharray="5,5"/>
+    <ns0:ellipse cx="1050" cy="700" rx="30" ry="20" fill="#1565c0" fill-opacity="0.3" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="1050" y="1030.0" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1a237e">
+      Everything outside A
+    </ns0:text>
+  </ns0:g>
+  <ns0:rect x="50" y="50" width="300" height="100" fill="#1a237e" stroke="#fd7e14" stroke-width="2" rx="8"/>
+  <ns0:text x="200" y="1055.0" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#e65100">
+    🔥 ML Application
+  </ns0:text>
+  <ns0:text x="200" y="1080.0" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#1a237e">
+    Set operations are fundamental for:
+  </ns0:text>
+  <ns0:text x="200" y="1105.0" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1a237e">
+    • Data filtering (A \ B = remove outliers)
+  </ns0:text>
+  <ns0:text x="200" y="1130.0" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1a237e">
+    • SQL JOINs (A ∩ B = inner join)
+  </ns0:text>
+</ns0:svg>

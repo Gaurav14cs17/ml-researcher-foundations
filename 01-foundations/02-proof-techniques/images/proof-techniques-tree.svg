@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+  <!-- Background -->
+  <rect width="1000" height="700" fill="#f8f9fa" rx="8"/>
+  
+  <!-- Title -->
+  <text x="500" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Proof Techniques Decision Tree
+  </text>
+  
+  <!-- Start -->
+  <rect x="400" y="60" width="200" height="50" fill="#3498db" stroke="#2980b9" stroke-width="2" rx="8"/>
+  <text x="500" y="90" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Want to prove: A → B
+  </text>
+  
+  <!-- Main branches -->
+  <line x1="500" y1="110" x2="250" y2="160" stroke="#34495e" stroke-width="3"/>
+  <line x1="500" y1="110" x2="500" y2="160" stroke="#34495e" stroke-width="3"/>
+  <line x1="500" y1="110" x2="750" y2="160" stroke="#34495e" stroke-width="3"/>
+  
+  <!-- Direct Proof -->
+  <g id="direct">
+    <rect x="150" y="160" width="200" height="80" fill="#27ae60" stroke="#229954" stroke-width="2" rx="8"/>
+    <text x="250" y="185" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+      Direct Proof
+    </text>
+    <text x="250" y="210" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#2c3e50">
+      Assume A, derive B
+    </text>
+    <text x="250" y="228" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#2c3e50" font-style="italic">
+      A ⟹ ... ⟹ B
+    </text>
+    
+    <!-- Example -->
+    <rect x="150" y="260" width="200" height="100" fill="#2c3e50" stroke="#27ae60" stroke-width="2" rx="5"/>
+    <text x="250" y="280" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#27ae60">
+      Example
+    </text>
+    <text x="160" y="300" font-family="Arial, sans-serif" font-size="10" fill="#34495e">
+      <tspan x="160" dy="0">Prove: n even → n² even</tspan>
+      <tspan x="160" dy="15">1. Assume n even</tspan>
+      <tspan x="160" dy="13">2. Then n = 2k for some k</tspan>
+      <tspan x="160" dy="13">3. n² = (2k)² = 4k² = 2(2k²)</tspan>
+      <tspan x="160" dy="13">4. ∴ n² is even ✓</tspan>
+    </text>
+  </g>
+  
+  <!-- Contradiction -->
+  <g id="contradiction">
+    <rect x="400" y="160" width="200" height="80" fill="#e74c3c" stroke="#c0392b" stroke-width="2" rx="8"/>
+    <text x="500" y="185" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+      Contradiction
+    </text>
+    <text x="500" y="210" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#2c3e50">
+      Assume ¬B, find ⊥
+    </text>
+    <text x="500" y="228" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#2c3e50" font-style="italic">
+      A ∧ ¬B ⟹ contradiction
+    </text>
+    
+    <!-- Example -->
+    <rect x="400" y="260" width="200" height="100" fill="#2c3e50" stroke="#e74c3c" stroke-width="2" rx="5"/>
+    <text x="500" y="280" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#e74c3c">
+      Example
+    </text>
+    <text x="410" y="300" font-family="Arial, sans-serif" font-size="10" fill="#34495e">
+      <tspan x="410" dy="0">Prove: √2 is irrational</tspan>
+      <tspan x="410" dy="15">1. Assume √2 = p/q (rational)</tspan>
+      <tspan x="410" dy="13">2. In lowest terms...</tspan>
+      <tspan x="410" dy="13">3. ⟹ p² = 2q²</tspan>
+      <tspan x="410" dy="13">4. ⟹ contradiction ✗</tspan>
+    </text>
+  </g>
+  
+  <!-- Induction -->
+  <g id="induction">
+    <rect x="650" y="160" width="200" height="80" fill="#9b59b6" stroke="#8e44ad" stroke-width="2" rx="8"/>
+    <text x="750" y="185" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+      Induction
+    </text>
+    <text x="750" y="210" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#2c3e50">
+      Base + P(n)→P(n+1)
+    </text>
+    <text x="750" y="228" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#2c3e50" font-style="italic">
+      For all n ≥ n₀
+    </text>
+    
+    <!-- Example -->
+    <rect x="650" y="260" width="200" height="100" fill="#2c3e50" stroke="#9b59b6" stroke-width="2" rx="5"/>
+    <text x="750" y="280" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#9b59b6">
+      Example
+    </text>
+    <text x="660" y="300" font-family="Arial, sans-serif" font-size="10" fill="#34495e">
+      <tspan x="660" dy="0">Prove: Σᵢ₌₁ⁿ i = n(n+1)/2</tspan>
+      <tspan x="660" dy="15">1. Base: n=1 → 1 = 1·2/2 ✓</tspan>
+      <tspan x="660" dy="13">2. Assume P(k) true</tspan>
+      <tspan x="660" dy="13">3. Show P(k+1):</tspan>
+      <tspan x="660" dy="13">  Σᵢ₌₁^(k+1) i = ... ✓</tspan>
+    </text>
+  </g>
+  
+  <!-- When to use which -->
+  <g id="when-to-use">
+    <rect x="50" y="390" width="900" height="280" fill="#f8f9fa" stroke="#3498db" stroke-width="3" rx="10"/>
+    <text x="500" y="420" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#3498db">
+      When to Use Each Technique
+    </text>
+    
+    <!-- Direct Proof -->
+    <g id="when-direct">
+      <rect x="70" y="440" width="270" height="210" fill="#d5f4e6" stroke="#27ae60" stroke-width="2" rx="5"/>
+      <text x="205" y="465" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#27ae60">
+        Use Direct Proof
+      </text>
+      
+      <text x="85" y="490" font-family="Arial, sans-serif" font-size="12" fill="#34495e">
+        <tspan x="85" dy="0" font-weight="bold">When:</tspan>
+        <tspan x="95" dy="20">• A clearly implies B</tspan>
+        <tspan x="95" dy="18">• Straightforward derivation</tspan>
+        <tspan x="95" dy="18">• Positive statement</tspan>
+        
+        <tspan x="85" dy="30" font-weight="bold" fill="#27ae60">ML Examples:</tspan>
+        <tspan x="95" dy="20">• Convexity ⟹ local min</tspan>
+        <tspan x="105" dy="15">is global min</tspan>
+        <tspan x="95" dy="18">• Gradient computation</tspan>
+      </text>
+    </g>
+    
+    <!-- Contradiction -->
+    <g id="when-contradiction">
+      <rect x="365" y="440" width="270" height="210" fill="#fadbd8" stroke="#e74c3c" stroke-width="2" rx="5"/>
+      <text x="500" y="465" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#e74c3c">
+        Use Contradiction
+      </text>
+      
+      <text x="380" y="490" font-family="Arial, sans-serif" font-size="12" fill="#34495e">
+        <tspan x="380" dy="0" font-weight="bold">When:</tspan>
+        <tspan x="390" dy="20">• Hard to prove directly</tspan>
+        <tspan x="390" dy="18">• Proving impossibility</tspan>
+        <tspan x="390" dy="18">• Uniqueness proofs</tspan>
+        
+        <tspan x="380" dy="30" font-weight="bold" fill="#e74c3c">ML Examples:</tspan>
+        <tspan x="390" dy="20">• Uniqueness of global</tspan>
+        <tspan x="400" dy="15">minimum</tspan>
+        <tspan x="390" dy="18">• Irrationality proofs</tspan>
+      </text>
+    </g>
+    
+    <!-- Induction -->
+    <g id="when-induction">
+      <rect x="660" y="440" width="270" height="210" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2" rx="5"/>
+      <text x="795" y="465" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#9b59b6">
+        Use Induction
+      </text>
+      
+      <text x="675" y="490" font-family="Arial, sans-serif" font-size="12" fill="#34495e">
+        <tspan x="675" dy="0" font-weight="bold">When:</tspan>
+        <tspan x="685" dy="20">• Statement involves n</tspan>
+        <tspan x="685" dy="18">• Recursive structure</tspan>
+        <tspan x="685" dy="18">• "For all n ≥ ..."</tspan>
+        
+        <tspan x="675" dy="30" font-weight="bold" fill="#9b59b6">ML Examples:</tspan>
+        <tspan x="685" dy="20">• Backprop correctness</tspan>
+        <tspan x="685" dy="18">• Layer-wise properties</tspan>
+        <tspan x="685" dy="18">• Recursive algorithms</tspan>
+      </text>
+    </g>
+  </g>
+</svg>
+

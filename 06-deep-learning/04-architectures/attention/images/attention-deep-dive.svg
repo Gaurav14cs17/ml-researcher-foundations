@@ -1,0 +1,154 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2475.0 2155.5">
+  <ns0:text x="550" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Attention Mechanisms: Deep Dive into Scaled Dot-Product
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="500" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      1. Core Attention Concept
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="270.0" fill="#f8f9fa" stroke="#007bff" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="80.0" font-size="14" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#1565c0">Key Idea:</ns0:tspan>
+        Dynamically focus on relevant parts of input based on context
+      </ns0:text>
+      <ns0:g transform="translate(0, 30)">
+        <ns0:text x="0" y="105.0" font-size="13" fill="#1a237e">
+          <ns0:tspan x="0" dy="0">Instead of fixed weights, compute attention scores → Weight</ns0:tspan>
+          <ns0:tspan x="0" dy="1.2em">each input differently per query</ns0:tspan>
+        </ns0:text>
+        <ns0:text x="0" y="130.0" font-size="13" fill="#2e7d32" font-weight="bold">
+          <ns0:tspan fill="#145a32">Result:</ns0:tspan>
+          Model can &quot;attend&quot; to important information while ignoring irrelevant parts
+        </ns0:text>
+        <ns0:text x="0" y="155.0" font-size="12" fill="#1a237e">
+          Analogy: When reading, you focus on keywords and skip filler words
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 240)">
+    <ns0:text x="500" y="180.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      2. Scaled Dot-Product Attention (Vaswani et al., 2017)
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="340" fill="#1a237e" stroke="#28a745" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:g>
+        <ns0:text x="0" y="205.0" font-size="14" font-weight="bold" fill="#145a32">
+          Formula:
+        </ns0:text>
+        <ns0:rect x="0" y="15" width="940" height="50" fill="#1a237e" stroke="#28a745" stroke-width="2" rx="5"/>
+        <ns0:text x="470" y="230.0" font-size="16" font-family="Arial, sans-serif" text-anchor="middle" fill="#145a32" font-weight="bold">
+          Attention(Q, K, V) = softmax(QK^T / √d_k) V
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 85)">
+        <ns0:text x="0" y="255.0" font-size="14" font-weight="bold" fill="#145a32">
+          Step-by-Step Breakdown:
+        </ns0:text>
+        <ns0:g transform="translate(0, 25)">
+          <ns0:circle cx="12" cy="0" r="12" fill="#1565c0" stroke="#007bff" stroke-width="2"/>
+          <ns0:text x="12" y="280.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">1</ns0:text>
+          <ns0:text x="35" y="305.0" font-size="13" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#1565c0">Compute Similarity Scores:</ns0:tspan>
+            QK^T (dot product between queries and keys)
+          </ns0:text>
+          <ns0:rect x="35" y="15" width="880" height="30" fill="#1a237e" stroke="#007bff" stroke-width="1" rx="3"/>
+          <ns0:text x="475" y="330.0" font-size="11" text-anchor="middle" fill="#1a237e">
+            <ns0:tspan x="475" dy="0">Q: [batch, seq_len_q, d_k] × K^T: [batch, d_k, seq_len_k] →</ns0:tspan>
+            <ns0:tspan x="475" dy="1.2em">Scores: [batch, seq_len_q, seq_len_k]</ns0:tspan>
+          </ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(0, 80)">
+          <ns0:circle cx="12" cy="0" r="12" fill="#e65100" stroke="#e67e22" stroke-width="2"/>
+          <ns0:text x="12" y="355.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">2</ns0:text>
+          <ns0:text x="35" y="380.0" font-size="13" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#e65100">Scale:</ns0:tspan>
+            Divide by √d_k to prevent softmax saturation
+          </ns0:text>
+          <ns0:rect x="35" y="15" width="880" height="30" fill="#fdebd0" stroke="#fd7e14" stroke-width="1" rx="3"/>
+          <ns0:text x="475" y="405.0" font-size="11" text-anchor="middle" fill="#1a237e">
+            <ns0:tspan x="475" dy="0">Why? For large d_k, dot products grow large → Softmax</ns0:tspan>
+            <ns0:tspan x="475" dy="1.2em">gradients become tiny → Scale to unit variance</ns0:tspan>
+          </ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(0, 135)">
+          <ns0:circle cx="12" cy="0" r="12" fill="#6a1b9a" stroke="#6f42c1" stroke-width="2"/>
+          <ns0:text x="12" y="430.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">3</ns0:text>
+          <ns0:text x="35" y="455.0" font-size="13" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#6a1b9a">Apply Softmax:</ns0:tspan>
+            Convert scores to attention weights (sum to 1)
+          </ns0:text>
+          <ns0:rect x="35" y="15" width="880" height="30" fill="#1a237e" stroke="#6f42c1" stroke-width="1" rx="3"/>
+          <ns0:text x="475" y="480.0" font-size="11" text-anchor="middle" fill="#1a237e">
+            <ns0:tspan x="475" dy="0">α_ij = exp(score_ij) / Σ_k exp(score_ik) → Each query</ns0:tspan>
+            <ns0:tspan x="475" dy="1.2em">attends to all keys (weights sum to 1)</ns0:tspan>
+          </ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(0, 190)">
+          <ns0:circle cx="12" cy="0" r="12" fill="#2e7d32" stroke="#145a32" stroke-width="2"/>
+          <ns0:text x="12" y="505.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">4</ns0:text>
+          <ns0:text x="35" y="530.0" font-size="13" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#2e7d32">Weighted Sum:</ns0:tspan>
+            Multiply attention weights by values
+          </ns0:text>
+          <ns0:rect x="35" y="15" width="880" height="30" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+          <ns0:text x="475" y="555.0" font-size="11" text-anchor="middle" fill="#1a237e">
+            <ns0:tspan x="475" dy="0">Output_i = Σ_j α_ij * V_j → Each output is weighted</ns0:tspan>
+            <ns0:tspan x="475" dy="1.2em">combination of all values</ns0:tspan>
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 620)">
+    <ns0:text x="500" y="580.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+      3. Query, Key, Value (Q, K, V) Intuition
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="160" fill="#1a237e" stroke="#6f42c1" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:g>
+        <ns0:text x="0" y="605.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#1565c0">Query (Q):</ns0:tspan>
+          &quot;What am I looking for?&quot; → Current token asking for information
+        </ns0:text>
+        <ns0:text x="20" y="630.0" font-size="12" fill="#1a237e">
+          <ns0:tspan x="20" dy="0">Example: When processing word &quot;love&quot;, Q represents &quot;What</ns0:tspan>
+          <ns0:tspan x="20" dy="1.2em">context do I need for 'love'?&quot;</ns0:tspan>
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 50)">
+        <ns0:text x="0" y="655.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#e65100">Key (K):</ns0:tspan>
+          &quot;What do I contain?&quot; → Indexing/addressing information in each token
+        </ns0:text>
+        <ns0:text x="20" y="680.0" font-size="12" fill="#1a237e">
+          Example: Each word has a Key describing what information it provides
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 100)">
+        <ns0:text x="0" y="705.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#2e7d32">Value (V):</ns0:tspan>
+          &quot;What information do I actually provide?&quot; → Actual content to retrieve
+        </ns0:text>
+        <ns0:text x="20" y="730.0" font-size="12" fill="#1a237e">
+          Example: The actual embedding/representation that gets passed forward
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:rect x="50" y="810" width="2250.0" height="80" fill="#e1f5fe" stroke="#007bff" stroke-width="2" rx="8"/>
+  <ns0:text x="550" y="838" font-size="14" font-weight="bold" text-anchor="middle" fill="#1a5276">
+    🔑 Key Properties
+  </ns0:text>
+  <ns0:g transform="translate(70, 858)">
+    <ns0:text x="0" y="863.0" font-size="12" fill="#1a5276">
+      • Permutation invariant (order doesn't matter without positional encoding)
+    </ns0:text>
+    <ns0:text x="0" y="888.0" font-size="12" fill="#1a5276">
+      <ns0:tspan x="0" dy="0">• O(n²d) complexity for sequence length n, embedding</ns0:tspan>
+      <ns0:tspan x="0" dy="1.2em">dimension d → Quadratic in sequence length!</ns0:tspan>
+    </ns0:text>
+  </ns0:g>
+</ns0:svg>

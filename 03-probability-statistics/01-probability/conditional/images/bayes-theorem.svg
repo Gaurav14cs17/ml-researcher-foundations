@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1575.0 900.0">
+  <ns0:rect width="1575.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="350" y="40" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Bayes' Theorem</ns0:text>
+  <ns0:rect x="150" y="70" width="400" height="80" rx="15" fill="#1a237e" stroke="#6f42c1" stroke-width="3"/>
+  <ns0:text x="350" y="120" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="20">P(θ|D) = P(D|θ) × P(θ) / P(D)</ns0:text>
+  <ns0:g transform="translate(0, 170)">
+    <ns0:rect x="50" y="0" width="120" height="70" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="110" y="145.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Posterior</ns0:text>
+    <ns0:text x="110" y="170.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="14">P(θ|D)</ns0:text>
+    <ns0:text x="110" y="195.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Updated belief</ns0:text>
+    <ns0:rect x="200" y="0" width="120" height="70" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="260" y="220.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Likelihood</ns0:text>
+    <ns0:text x="260" y="245.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="14">P(D|θ)</ns0:text>
+    <ns0:text x="260" y="270.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Data given params</ns0:text>
+    <ns0:rect x="350" y="0" width="120" height="70" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="410" y="295.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Prior</ns0:text>
+    <ns0:text x="410" y="320.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="14">P(θ)</ns0:text>
+    <ns0:text x="410" y="345.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Initial belief</ns0:text>
+    <ns0:rect x="500" y="0" width="120" height="70" rx="10" fill="#1a237e" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="560" y="370.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Evidence</ns0:text>
+    <ns0:text x="560" y="395.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="14">P(D)</ns0:text>
+    <ns0:text x="560" y="420.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Normalizer</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(100, 280)">
+    <ns0:rect x="0" y="0" width="100" height="40" rx="8" fill="#e65100"/>
+    <ns0:text x="50" y="445.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Prior</ns0:text>
+    <ns0:text x="120" y="470.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="20">+</ns0:text>
+    <ns0:rect x="140" y="0" width="100" height="40" rx="8" fill="#1565c0"/>
+    <ns0:text x="190" y="495.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Data</ns0:text>
+    <ns0:text x="260" y="520.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="20">→</ns0:text>
+    <ns0:rect x="280" y="0" width="100" height="40" rx="8" fill="#2e7d32"/>
+    <ns0:text x="330" y="545.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Posterior</ns0:text>
+  </ns0:g>
+  <ns0:rect x="100" y="340" width="500" height="45" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+  <ns0:text x="350" y="570.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12">💡 Bayesian ML: Start with prior, observe data, update to posterior</ns0:text>
+</ns0:svg>

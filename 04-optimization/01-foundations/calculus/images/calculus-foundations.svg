@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="calcBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="40" text-anchor="middle" fill="#f472b6" font-size="24" font-weight="bold">Calculus for Optimization</ns0:text>
+  <ns0:rect x="50" y="70" width="220" height="140" rx="10" fill="#1a237e" stroke="#f472b6" stroke-width="2"/>
+  <ns0:text x="160" y="100" text-anchor="middle" fill="#f472b6" font-size="16" font-weight="bold">Derivatives</ns0:text>
+  <ns0:text x="160" y="130" text-anchor="middle" fill="#fce7f3" font-size="14">df/dx = lim Δf/Δx</ns0:text>
+  <ns0:text x="160" y="160" text-anchor="middle" fill="#fce7f3" font-size="12">Rate of change</ns0:text>
+  <ns0:text x="160" y="185" text-anchor="middle" fill="#fce7f3" font-size="12">Slope at a point</ns0:text>
+  <ns0:rect x="290" y="70" width="220" height="140" rx="10" fill="#1a237e" stroke="#a78bfa" stroke-width="2"/>
+  <ns0:text x="400" y="210.0" text-anchor="middle" fill="#a78bfa" font-size="16" font-weight="bold">Gradients</ns0:text>
+  <ns0:text x="400" y="235.0" text-anchor="middle" fill="#ede9fe" font-size="14">∇f = [∂f/∂x₁, ..., ∂f/∂xₙ]</ns0:text>
+  <ns0:text x="400" y="260.0" text-anchor="middle" fill="#ede9fe" font-size="12">Direction of steepest</ns0:text>
+  <ns0:text x="400" y="285.0" text-anchor="middle" fill="#ede9fe" font-size="12">ascent in n-D</ns0:text>
+  <ns0:rect x="530" y="70" width="220" height="140" rx="10" fill="#1a237e" stroke="#2dd4bf" stroke-width="2"/>
+  <ns0:text x="640" y="310.0" text-anchor="middle" fill="#2dd4bf" font-size="16" font-weight="bold">Hessian</ns0:text>
+  <ns0:text x="640" y="335.0" text-anchor="middle" fill="#ccfbf1" font-size="14">H = [∂²f/∂xᵢ∂xⱼ]</ns0:text>
+  <ns0:text x="640" y="360.0" text-anchor="middle" fill="#ccfbf1" font-size="12">Curvature info</ns0:text>
+  <ns0:text x="640" y="385.0" text-anchor="middle" fill="#ccfbf1" font-size="12">Second-order methods</ns0:text>
+  <ns0:rect x="200" y="240" width="400" height="130" rx="10" fill="#0f3460" stroke="#007bff" stroke-width="2"/>
+  <ns0:text x="400" y="410.0" text-anchor="middle" fill="#1565c0" font-size="18" font-weight="bold">Chain Rule</ns0:text>
+  <ns0:text x="400" y="435.0" text-anchor="middle" fill="#dbeafe" font-size="16">d(f∘g)/dx = df/dg · dg/dx</ns0:text>
+  <ns0:text x="400" y="460.0" text-anchor="middle" fill="#1565c0" font-size="14">Enables backpropagation in neural networks</ns0:text>
+</ns0:svg>

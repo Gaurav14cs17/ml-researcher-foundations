@@ -1,0 +1,251 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1400">
+  <!-- Modern dark background -->
+  <defs>
+    <linearGradient id="darkBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0f1e"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <rect width="1800" height="1400" fill="url(#darkBg)"/>
+  
+  <!-- Title -->
+  <text x="900" y="60" font-family="Arial, sans-serif" font-size="46" font-weight="bold" text-anchor="middle" fill="#f8fafc">
+    Activation Functions: Complete Comparison
+  </text>
+  <text x="900" y="105" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" fill="#94a3b8">
+    Non-linear transformations for neural network expressivity
+  </text>
+  
+  <!-- Row 1: Sigmoid, Tanh, ReLU -->
+  <!-- Sigmoid -->
+  <g transform="translate(50, 140)" filter="url(#shadow)">
+    <rect x="0" y="0" width="550" height="320" fill="#1e293b" stroke="#3b82f6" stroke-width="4" rx="16"/>
+    <text x="275" y="45" font-family="Arial, sans-serif" font-size="26" font-weight="bold" text-anchor="middle" fill="#60a5fa">
+      Sigmoid: σ(x) = 1/(1+e⁻ˣ)
+    </text>
+    
+    <!-- Graph -->
+    <g transform="translate(50, 80)">
+      <rect x="0" y="0" width="450" height="150" fill="#0f172a" rx="10"/>
+      <line x1="30" y1="75" x2="420" y2="75" stroke="#334155" stroke-width="2"/>
+      <line x1="225" y1="15" x2="225" y2="135" stroke="#334155" stroke-width="2"/>
+      
+      <!-- Sigmoid curve -->
+      <path d="M 40,125 Q 130,120 200,75 Q 270,30 410,20" 
+            fill="none" stroke="#60a5fa" stroke-width="5"/>
+      
+      <text x="430" y="25" font-family="Arial" font-size="16" fill="#60a5fa">1</text>
+      <text x="430" y="135" font-family="Arial" font-size="16" fill="#60a5fa">0</text>
+    </g>
+    
+    <!-- Properties -->
+    <g transform="translate(30, 260)">
+      <text x="0" y="0" font-family="Arial" font-size="17" fill="#10b981">✓ Smooth, differentiable</text>
+      <text x="0" y="28" font-family="Arial" font-size="17" fill="#10b981">✓ Output in (0,1)</text>
+      <text x="280" y="0" font-family="Arial" font-size="17" fill="#ef4444">✗ Vanishing gradients</text>
+      <text x="280" y="28" font-family="Arial" font-size="17" fill="#ef4444">✗ Not zero-centered</text>
+    </g>
+  </g>
+  
+  <!-- Tanh -->
+  <g transform="translate(625, 140)" filter="url(#shadow)">
+    <rect x="0" y="0" width="550" height="320" fill="#1e293b" stroke="#10b981" stroke-width="4" rx="16"/>
+    <text x="275" y="45" font-family="Arial, sans-serif" font-size="26" font-weight="bold" text-anchor="middle" fill="#34d399">
+      Tanh: (eˣ-e⁻ˣ)/(eˣ+e⁻ˣ)
+    </text>
+    
+    <!-- Graph -->
+    <g transform="translate(50, 80)">
+      <rect x="0" y="0" width="450" height="150" fill="#0f172a" rx="10"/>
+      <line x1="30" y1="75" x2="420" y2="75" stroke="#334155" stroke-width="2"/>
+      <line x1="225" y1="15" x2="225" y2="135" stroke="#334155" stroke-width="2"/>
+      
+      <!-- Tanh curve -->
+      <path d="M 40,20 Q 130,25 200,75 Q 270,125 410,130" 
+            fill="none" stroke="#34d399" stroke-width="5"/>
+      
+      <text x="430" y="25" font-family="Arial" font-size="16" fill="#34d399">+1</text>
+      <text x="430" y="135" font-family="Arial" font-size="16" fill="#34d399">-1</text>
+    </g>
+    
+    <g transform="translate(30, 260)">
+      <text x="0" y="0" font-family="Arial" font-size="17" fill="#10b981">✓ Zero-centered output</text>
+      <text x="0" y="28" font-family="Arial" font-size="17" fill="#10b981">✓ Better than sigmoid</text>
+      <text x="280" y="0" font-family="Arial" font-size="17" fill="#ef4444">✗ Vanishing gradients</text>
+      <text x="280" y="28" font-family="Arial" font-size="17" fill="#94a3b8">Use: RNNs, LSTMs</text>
+    </g>
+  </g>
+  
+  <!-- Tanh -->
+  <g transform="translate(1200, 140)" filter="url(#shadow)">
+    <rect x="0" y="0" width="550" height="320" fill="#1e293b" stroke="#f59e0b" stroke-width="4" rx="16"/>
+    <text x="275" y="45" font-family="Arial, sans-serif" font-size="26" font-weight="bold" text-anchor="middle" fill="#fbbf24">
+      ReLU: max(0, x)
+    </text>
+    
+    <!-- Graph -->
+    <g transform="translate(50, 80)">
+      <rect x="0" y="0" width="450" height="150" fill="#0f172a" rx="10"/>
+      <line x1="30" y1="75" x2="420" y2="75" stroke="#334155" stroke-width="2"/>
+      <line x1="225" y1="15" x2="225" y2="135" stroke="#334155" stroke-width="2"/>
+      
+      <!-- ReLU curve -->
+      <path d="M 40,75 L 225,75 L 410,20" 
+            fill="none" stroke="#fbbf24" stroke-width="5"/>
+      
+      <text x="425" y="25" font-family="Arial" font-size="16" fill="#fbbf24">x</text>
+      <text x="40" y="90" font-family="Arial" font-size="16" fill="#fbbf24">0</text>
+    </g>
+    
+    <g transform="translate(30, 260)">
+      <text x="0" y="0" font-family="Arial" font-size="17" fill="#10b981">✓ Fast computation</text>
+      <text x="0" y="28" font-family="Arial" font-size="17" fill="#10b981">✓ No vanishing (x&gt;0)</text>
+      <text x="280" y="0" font-family="Arial" font-size="17" fill="#ef4444">✗ Dying ReLU (x&lt;0)</text>
+      <text x="280" y="28" font-family="Arial" font-size="17" fill="#94a3b8">Default for CNNs</text>
+    </g>
+  </g>
+  
+  <!-- Row 2: Leaky ReLU, ELU, GELU -->
+  <!-- Leaky ReLU -->
+  <g transform="translate(50, 490)" filter="url(#shadow)">
+    <rect x="0" y="0" width="550" height="320" fill="#1e293b" stroke="#ef4444" stroke-width="4" rx="16"/>
+    <text x="275" y="45" font-family="Arial, sans-serif" font-size="26" font-weight="bold" text-anchor="middle" fill="#f87171">
+      Leaky ReLU: max(αx, x)
+    </text>
+    
+    <!-- Graph -->
+    <g transform="translate(50, 80)">
+      <rect x="0" y="0" width="450" height="150" fill="#0f172a" rx="10"/>
+      <line x1="30" y1="75" x2="420" y2="75" stroke="#334155" stroke-width="2"/>
+      <line x1="225" y1="15" x2="225" y2="135" stroke="#334155" stroke-width="2"/>
+      
+      <!-- Leaky ReLU curve -->
+      <path d="M 40,105 L 225,75 L 410,20" 
+            fill="none" stroke="#f87171" stroke-width="5"/>
+      
+      <text x="120" y="95" font-family="Arial" font-size="15" fill="#f87171">slope=α</text>
+      <text x="320" y="40" font-family="Arial" font-size="15" fill="#f87171">slope=1</text>
+    </g>
+    
+    <g transform="translate(30, 260)">
+      <text x="0" y="0" font-family="Arial" font-size="17" fill="#10b981">✓ Fixes dying ReLU</text>
+      <text x="0" y="28" font-family="Arial" font-size="17" fill="#10b981">✓ Small gradient (x&lt;0)</text>
+      <text x="280" y="0" font-family="Arial" font-size="17" fill="#10b981">✓ Better empirically</text>
+      <text x="280" y="28" font-family="Arial" font-size="17" fill="#94a3b8">Variant: PReLU (α learnable)</text>
+    </g>
+  </g>
+  
+  <!-- ELU -->
+  <g transform="translate(625, 490)" filter="url(#shadow)">
+    <rect x="0" y="0" width="550" height="320" fill="#1e293b" stroke="#a78bfa" stroke-width="4" rx="16"/>
+    <text x="275" y="45" font-family="Arial, sans-serif" font-size="26" font-weight="bold" text-anchor="middle" fill="#a78bfa">
+      ELU: x if x&gt;0, α(eˣ-1) else
+    </text>
+    
+    <!-- Graph -->
+    <g transform="translate(50, 80)">
+      <rect x="0" y="0" width="450" height="150" fill="#0f172a" rx="10"/>
+      <line x1="30" y1="75" x2="420" y2="75" stroke="#334155" stroke-width="2"/>
+      <line x1="225" y1="15" x2="225" y2="135" stroke="#334155" stroke-width="2"/>
+      
+      <!-- ELU curve -->
+      <path d="M 40,115 Q 130,95 225,75 L 410,20" 
+            fill="none" stroke="#a78bfa" stroke-width="5"/>
+      
+      <line x1="30" y1="125" x2="225" y2="125" stroke="#64748b" stroke-width="2" stroke-dasharray="6,4"/>
+      <text x="35" y="140" font-family="Arial" font-size="14" fill="#64748b">-α</text>
+    </g>
+    
+    <g transform="translate(30, 260)">
+      <text x="0" y="0" font-family="Arial" font-size="17" fill="#10b981">✓ Smooth everywhere</text>
+      <text x="0" y="28" font-family="Arial" font-size="17" fill="#10b981">✓ Zero mean activations</text>
+      <text x="280" y="0" font-family="Arial" font-size="17" fill="#10b981">✓ Robust to noise</text>
+      <text x="280" y="28" font-family="Arial" font-size="17" fill="#ef4444">✗ Exponential cost</text>
+    </g>
+  </g>
+  
+  <!-- GELU -->
+  <g transform="translate(1200, 490)" filter="url(#shadow)">
+    <rect x="0" y="0" width="550" height="320" fill="#1e293b" stroke="#22d3ee" stroke-width="4" rx="16"/>
+    <text x="275" y="45" font-family="Arial, sans-serif" font-size="26" font-weight="bold" text-anchor="middle" fill="#22d3ee">
+      GELU: x·Φ(x) 🔥
+    </text>
+    
+    <!-- Graph -->
+    <g transform="translate(50, 80)">
+      <rect x="0" y="0" width="450" height="150" fill="#0f172a" rx="10"/>
+      <line x1="30" y1="75" x2="420" y2="75" stroke="#334155" stroke-width="2"/>
+      <line x1="225" y1="15" x2="225" y2="135" stroke="#334155" stroke-width="2"/>
+      
+      <!-- GELU curve -->
+      <path d="M 40,110 Q 130,90 225,75 L 410,20" 
+            fill="none" stroke="#22d3ee" stroke-width="5"/>
+    </g>
+    
+    <g transform="translate(30, 260)">
+      <text x="0" y="0" font-family="Arial" font-size="17" fill="#10b981">✓ Smooth, non-monotonic</text>
+      <text x="0" y="28" font-family="Arial" font-size="17" font-weight="bold" fill="#22d3ee">✓ SOTA for Transformers</text>
+      <text x="280" y="0" font-family="Arial" font-size="17" fill="#10b981">✓ Stochastic regularization</text>
+      <text x="280" y="28" font-family="Arial" font-size="17" font-weight="bold" fill="#fbbf24">⭐ Used in GPT, BERT, ViT</text>
+    </g>
+  </g>
+  
+  <!-- Comparison Table -->
+  <g transform="translate(50, 850)">
+    <text x="850" y="0" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="#f8fafc">
+      📊 Quick Reference Table
+    </text>
+    
+    <rect x="0" y="30" width="1700" height="220" fill="#1e293b" stroke="#334155" stroke-width="3" rx="16" filter="url(#shadow)"/>
+    
+    <!-- Header -->
+    <rect x="0" y="30" width="1700" height="50" fill="#0f172a" rx="16"/>
+    <g transform="translate(40, 68)">
+      <text x="0" y="0" font-family="Arial" font-size="19" font-weight="bold" fill="#f8fafc">Function</text>
+      <text x="220" y="0" font-family="Arial" font-size="19" font-weight="bold" fill="#f8fafc">Formula</text>
+      <text x="550" y="0" font-family="Arial" font-size="19" font-weight="bold" fill="#f8fafc">Range</text>
+      <text x="720" y="0" font-family="Arial" font-size="19" font-weight="bold" fill="#f8fafc">Best For</text>
+      <text x="1300" y="0" font-family="Arial" font-size="19" font-weight="bold" fill="#f8fafc">Main Issue</text>
+    </g>
+    
+    <!-- Rows -->
+    <g transform="translate(40, 115)">
+      <text x="0" y="0" font-family="Arial" font-size="17" fill="#60a5fa">Sigmoid</text>
+      <text x="220" y="0" font-family="Consolas" font-size="17" fill="#cbd5e1">1/(1+e⁻ˣ)</text>
+      <text x="550" y="0" font-family="Arial" font-size="17" fill="#cbd5e1">(0, 1)</text>
+      <text x="720" y="0" font-family="Arial" font-size="17" fill="#cbd5e1">Binary classification output</text>
+      <text x="1300" y="0" font-family="Arial" font-size="17" fill="#ef4444">Vanishing gradient</text>
+      
+      <text x="0" y="38" font-family="Arial" font-size="17" fill="#34d399">Tanh</text>
+      <text x="220" y="38" font-family="Consolas" font-size="17" fill="#cbd5e1">(eˣ-e⁻ˣ)/(eˣ+e⁻ˣ)</text>
+      <text x="550" y="38" font-family="Arial" font-size="17" fill="#cbd5e1">(-1, 1)</text>
+      <text x="720" y="38" font-family="Arial" font-size="17" fill="#cbd5e1">RNNs, LSTMs</text>
+      <text x="1300" y="38" font-family="Arial" font-size="17" fill="#ef4444">Vanishing gradient</text>
+      
+      <text x="0" y="76" font-family="Arial" font-size="17" fill="#fbbf24">ReLU</text>
+      <text x="220" y="76" font-family="Consolas" font-size="17" fill="#cbd5e1">max(0, x)</text>
+      <text x="550" y="76" font-family="Arial" font-size="17" fill="#cbd5e1">[0, ∞)</text>
+      <text x="720" y="76" font-family="Arial" font-size="17" fill="#cbd5e1">CNNs, MLPs (default)</text>
+      <text x="1300" y="76" font-family="Arial" font-size="17" fill="#ef4444">Dying ReLU</text>
+      
+      <text x="0" y="114" font-family="Arial" font-size="17" font-weight="bold" fill="#22d3ee">GELU ⭐</text>
+      <text x="220" y="114" font-family="Consolas" font-size="17" fill="#cbd5e1">x·Φ(x)</text>
+      <text x="550" y="114" font-family="Arial" font-size="17" fill="#cbd5e1">(-0.17x, ∞)</text>
+      <text x="720" y="114" font-family="Arial" font-size="17" font-weight="bold" fill="#10b981">Transformers (SOTA)</text>
+      <text x="1300" y="114" font-family="Arial" font-size="17" fill="#10b981">None significant</text>
+    </g>
+  </g>
+  
+  <!-- Recommendation -->
+  <rect x="50" y="1110" width="1700" height="80" fill="#1e40af" stroke="#3b82f6" stroke-width="3" rx="16" filter="url(#shadow)"/>
+  <text x="900" y="1150" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#f8fafc">
+    💡 General Recommendation
+  </text>
+  <text x="900" y="1180" font-family="Arial, sans-serif" font-size="19" text-anchor="middle" fill="#dbeafe">
+    Default: ReLU for CNNs/MLPs  •  Transformers: GELU  •  RNNs: Tanh  •  Output: Sigmoid (binary), Softmax (multiclass)
+  </text>
+</svg>

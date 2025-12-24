@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fefce8"/>
+      <stop offset="100%" style="stop-color:#fef9c3"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <rect width="1800" height="1200" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#78350f" font-family="Arial, sans-serif" font-size="52" font-weight="bold">K-Fold Cross-Validation</text>
+  <text x="900" y="120" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="26">Robust model evaluation technique</text>
+  
+  <!-- 5-Fold Visualization -->
+  <g transform="translate(100, 170)" filter="url(#shadow)">
+    <rect width="1600" height="720" rx="18" fill="#ffffff" stroke="#eab308" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#eab308" font-family="Arial, sans-serif" font-size="36" font-weight="bold">5-Fold Cross-Validation Example</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#fde68a" stroke-width="2"/>
+    
+    <!-- Fold 1 -->
+    <g transform="translate(100, 120)">
+      <text x="-40" y="35" fill="#78350f" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Fold 1:</text>
+      <rect x="0" y="0" width="260" height="70" fill="#fca5a5" rx="8"/>
+      <text x="130" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Validation</text>
+      <rect x="280" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="410" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="560" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="690" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="840" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="970" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="1120" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="1250" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+    </g>
+    
+    <!-- Fold 2 -->
+    <g transform="translate(100, 220)">
+      <text x="-40" y="35" fill="#78350f" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Fold 2:</text>
+      <rect x="0" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="130" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="280" y="0" width="260" height="70" fill="#fca5a5" rx="8"/>
+      <text x="410" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Validation</text>
+      <rect x="560" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="690" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="840" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="970" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="1120" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="1250" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+    </g>
+    
+    <!-- Fold 3 -->
+    <g transform="translate(100, 320)">
+      <text x="-40" y="35" fill="#78350f" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Fold 3:</text>
+      <rect x="0" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="130" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="280" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="410" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="560" y="0" width="260" height="70" fill="#fca5a5" rx="8"/>
+      <text x="690" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Validation</text>
+      <rect x="840" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="970" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="1120" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="1250" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+    </g>
+    
+    <!-- Fold 4 -->
+    <g transform="translate(100, 420)">
+      <text x="-40" y="35" fill="#78350f" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Fold 4:</text>
+      <rect x="0" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="130" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="280" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="410" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="560" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="690" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="840" y="0" width="260" height="70" fill="#fca5a5" rx="8"/>
+      <text x="970" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Validation</text>
+      <rect x="1120" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="1250" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+    </g>
+    
+    <!-- Fold 5 -->
+    <g transform="translate(100, 520)">
+      <text x="-40" y="35" fill="#78350f" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Fold 5:</text>
+      <rect x="0" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="130" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="280" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="410" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="560" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="690" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="840" y="0" width="260" height="70" fill="#86efac" rx="8"/>
+      <text x="970" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Training</text>
+      <rect x="1120" y="0" width="260" height="70" fill="#fca5a5" rx="8"/>
+      <text x="1250" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Validation</text>
+    </g>
+    
+    <!-- Results -->
+    <g transform="translate(100, 630)">
+      <text x="690" y="0" text-anchor="middle" fill="#78350f" font-family="Arial, sans-serif" font-size="28" font-weight="bold">↓ Average Performance</text>
+      <rect x="200" y="15" width="980" height="60" fill="#fef3c7" rx="12"/>
+      <text x="690" y="55" text-anchor="middle" fill="#78350f" font-family="Consolas, monospace" font-size="26" font-weight="bold">CV Score = (Score₁ + Score₂ + Score₃ + Score₄ + Score₅) / 5</text>
+    </g>
+  </g>
+  
+  <!-- Key Benefits and Algorithm -->
+  <g transform="translate(100, 950)" filter="url(#shadow)">
+    <rect width="750" height="230" rx="18" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="32" font-weight="bold">✓ Key Benefits</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#d1fae5" stroke-width="2"/>
+    
+    <g transform="translate(50, 100)">
+      <text x="0" y="0" fill="#15803d" font-family="Arial, sans-serif" font-size="20">• Uses all data for training & validation</text>
+      <text x="0" y="35" fill="#15803d" font-family="Arial, sans-serif" font-size="20">• Reduces variance in performance estimate</text>
+      <text x="0" y="70" fill="#15803d" font-family="Arial, sans-serif" font-size="20">• More reliable than single train/test split</text>
+      <text x="0" y="105" fill="#15803d" font-family="Arial, sans-serif" font-size="20">• Helps detect overfitting</text>
+    </g>
+  </g>
+  
+  <g transform="translate(900, 950)" filter="url(#shadow)">
+    <rect width="800" height="230" rx="18" fill="#ffffff" stroke="#3b82f6" stroke-width="4"/>
+    <text x="400" y="50" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="32" font-weight="bold">📝 Choosing K</text>
+    <line x1="40" y1="70" x2="760" y2="70" stroke="#bfdbfe" stroke-width="2"/>
+    
+    <g transform="translate(50, 100)">
+      <text x="0" y="0" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="20" font-weight="bold">K = 5 or K = 10:</text>
+      <text x="20" y="28" fill="#1e40af" font-family="Arial, sans-serif" font-size="18">✓ Most common choices, good balance</text>
+      
+      <text x="0" y="63" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="20" font-weight="bold">K = n (LOOCV):</text>
+      <text x="20" y="91" fill="#1e40af" font-family="Arial, sans-serif" font-size="18">✓ Unbiased but computationally expensive</text>
+      <text x="20" y="113" fill="#1e40af" font-family="Arial, sans-serif" font-size="18">✗ High variance in performance estimate</text>
+    </g>
+  </g>
+  
+  <!-- Key Insight -->
+  <rect x="100" y="1120" width="1600" height="70" fill="#eab308" rx="16" filter="url(#shadow)"/>
+  <text x="900" y="1158" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="bold">💡 Cross-validation provides a more robust estimate of model performance</text>
+  <text x="900" y="1183" text-anchor="middle" fill="#fffbeb" font-family="Arial, sans-serif" font-size="20">than a single train/test split by using multiple different splits</text>
+</svg>

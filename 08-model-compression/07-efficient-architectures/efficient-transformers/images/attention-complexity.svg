@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 1080.0">
+  <ns0:defs>
+    <ns0:linearGradient id="acBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="1080.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="30" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Attention Complexity Analysis</ns0:text>
+  <ns0:g transform="translate(30, 60)">
+    <ns0:rect width="360" height="165" rx="10" fill="#1a237e" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="180" y="55.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Standard Self-Attention</ns0:text>
+    <ns0:text x="20" y="80.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Formula:</ns0:text>
+    <ns0:text x="20" y="105.0" fill="#c62828" font-family="Arial, sans-serif" font-size="11">Attn(Q,K,V) = softmax(QK^T/sqrt(d))V</ns0:text>
+    <ns0:text x="20" y="130.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Q, K, V are n x d matrices</ns0:text>
+    <ns0:text x="20" y="155.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">QK^T is n x n matrix (n^2 memory!)</ns0:text>
+    <ns0:text x="20" y="180.0" fill="#c62828" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Time: O(n^2*d), Memory: O(n^2)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 60)">
+    <ns0:rect width="360" height="165" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="180" y="205.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Linear Attention</ns0:text>
+    <ns0:text x="20" y="230.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Key insight:</ns0:text>
+    <ns0:text x="20" y="255.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11">phi(Q) * (phi(K)^T * V)</ns0:text>
+    <ns0:text x="20" y="280.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Compute phi(K)^T * V first (d x d)</ns0:text>
+    <ns0:text x="20" y="305.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Then multiply with phi(Q)</ns0:text>
+    <ns0:text x="20" y="330.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Time: O(n*d^2), Memory: O(n)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(30, 245)">
+    <ns0:rect width="360" height="165" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="180" y="355.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Flash Attention</ns0:text>
+    <ns0:text x="20" y="380.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Key insight: IO-aware tiling</ns0:text>
+    <ns0:text x="20" y="405.0" fill="#e65100" font-family="Arial, sans-serif" font-size="10">Process blocks, accumulate in SRAM</ns0:text>
+    <ns0:text x="20" y="430.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Compute exact attention</ns0:text>
+    <ns0:text x="20" y="455.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Never materialize n x n matrix</ns0:text>
+    <ns0:text x="20" y="480.0" fill="#e65100" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Time: O(n^2*d), Memory: O(n)!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 245)">
+    <ns0:rect width="360" height="165" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="180" y="505.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Practical Comparison (n=8K)</ns0:text>
+    <ns0:text x="20" y="530.0" fill="#c62828" font-family="Arial, sans-serif" font-size="10">Standard: 67M scores, 512MB memory</ns0:text>
+    <ns0:text x="20" y="555.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Linear: ~2x faster, loses quality</ns0:text>
+    <ns0:text x="20" y="580.0" fill="#e65100" font-family="Arial, sans-serif" font-size="10">Flash: Same quality, 10x less memory</ns0:text>
+    <ns0:text x="20" y="605.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">For n = 100K:</ns0:text>
+    <ns0:text x="20" y="630.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Standard impossible, Flash works!</ns0:text>
+  </ns0:g>
+</ns0:svg>

@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 1012.5">
+  <ns0:defs>
+    <ns0:linearGradient id="probBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="1012.5" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="24" font-weight="bold">📈 Probability &amp; Statistics Roadmap</ns0:text>
+  <ns0:text x="400" y="60" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12">Week 7-8 | ~20 hours | Prerequisites: Calculus</ns0:text>
+  <ns0:g transform="translate(50, 90)">
+    <ns0:rect width="220" height="160" rx="12" fill="#1a237e" stroke="#6f42c1" stroke-width="3"/>
+    <ns0:rect width="220" height="40" rx="12" fill="#6a1b9a"/>
+    <ns0:text x="110" y="85.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="13" font-weight="bold">🎲 Probability Theory</ns0:text>
+    <ns0:text x="110" y="110.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="11">~8 hours</ns0:text>
+    <ns0:text x="20" y="135.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Random Variables</ns0:text>
+    <ns0:text x="20" y="160.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Distributions (Gaussian)</ns0:text>
+    <ns0:text x="20" y="185.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Bayes Theorem ⭐</ns0:text>
+    <ns0:text x="20" y="210.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Expectation, Variance</ns0:text>
+  </ns0:g>
+  <ns0:text x="285" y="235.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="20">→</ns0:text>
+  <ns0:g transform="translate(300, 90)">
+    <ns0:rect width="220" height="160" rx="12" fill="#1a237e" stroke="#007bff" stroke-width="3"/>
+    <ns0:rect width="220" height="40" rx="12" fill="#1565c0"/>
+    <ns0:text x="110" y="260.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="13" font-weight="bold">📊 Multivariate Stats</ns0:text>
+    <ns0:text x="110" y="285.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="11">~6 hours</ns0:text>
+    <ns0:text x="20" y="310.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Joint Distributions</ns0:text>
+    <ns0:text x="20" y="335.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Covariance Matrix</ns0:text>
+    <ns0:text x="20" y="360.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Multivariate Gaussian ⭐</ns0:text>
+    <ns0:text x="20" y="385.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Exponential Family</ns0:text>
+  </ns0:g>
+  <ns0:text x="535" y="410.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="20">→</ns0:text>
+  <ns0:g transform="translate(550, 90)">
+    <ns0:rect width="220" height="160" rx="12" fill="#1a237e" stroke="#28a745" stroke-width="3"/>
+    <ns0:rect width="220" height="40" rx="12" fill="#2e7d32"/>
+    <ns0:text x="110" y="435.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="13" font-weight="bold">📡 Information Theory</ns0:text>
+    <ns0:text x="110" y="460.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11">~6 hours</ns0:text>
+    <ns0:text x="20" y="485.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Entropy</ns0:text>
+    <ns0:text x="20" y="510.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Cross-Entropy ⭐</ns0:text>
+    <ns0:text x="20" y="535.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• KL Divergence ⭐</ns0:text>
+    <ns0:text x="20" y="560.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Mutual Information</ns0:text>
+  </ns0:g>
+  <ns0:rect x="100" y="280" width="600" height="140" rx="12" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+  <ns0:text x="400" y="585.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🎯 Why This Matters for ML</ns0:text>
+  <ns0:text x="200" y="610.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Probability</ns0:text>
+  <ns0:text x="200" y="635.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Bayesian ML</ns0:text>
+  <ns0:text x="200" y="660.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Uncertainty estimation</ns0:text>
+  <ns0:text x="400" y="685.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Multivariate</ns0:text>
+  <ns0:text x="400" y="710.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Latent spaces</ns0:text>
+  <ns0:text x="400" y="735.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">VAEs, Diffusion</ns0:text>
+  <ns0:text x="600" y="760.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Info Theory</ns0:text>
+  <ns0:text x="600" y="785.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Loss functions!</ns0:text>
+  <ns0:text x="600" y="810.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">KL in VAEs, RLHF</ns0:text>
+  <ns0:text x="400" y="835.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Next: ML Theory →</ns0:text>
+</ns0:svg>

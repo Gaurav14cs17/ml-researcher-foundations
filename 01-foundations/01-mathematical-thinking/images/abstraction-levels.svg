@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200">
+  <!-- Modern gradient background -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f9ff"/>
+      <stop offset="100%" style="stop-color:#e0f2fe"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <rect width="1600" height="1200" fill="url(#bgGrad)"/>
+  
+  <!-- Title Section -->
+  <text x="800" y="70" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="#1e293b">
+    Levels of Abstraction in Mathematics
+  </text>
+  <text x="800" y="115" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#64748b">
+    From Concrete Examples to Abstract Theory
+  </text>
+  
+  <!-- Pyramid of abstraction with improved spacing -->
+  <g id="pyramid" filter="url(#shadow)">
+    <!-- Level 5: Theory (top) -->
+    <rect x="550" y="170" width="500" height="110" fill="#10b981" stroke="#059669" stroke-width="4" rx="15"/>
+    <text x="800" y="220" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#ffffff">
+      Level 5: Theory
+    </text>
+    <text x="800" y="255" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#f0fdf4">
+      Group Theory, Field Theory, Category Theory
+    </text>
+    
+    <!-- Level 4: Abstraction -->
+    <rect x="425" y="300" width="750" height="110" fill="#8b5cf6" stroke="#7c3aed" stroke-width="4" rx="15"/>
+    <text x="800" y="350" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#ffffff">
+      Level 4: Abstraction
+    </text>
+    <text x="800" y="385" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#faf5ff">
+      Binary operations on sets, Algebraic structures
+    </text>
+    
+    <!-- Level 3: Generalization -->
+    <rect x="300" y="430" width="1000" height="110" fill="#3b82f6" stroke="#2563eb" stroke-width="4" rx="15"/>
+    <text x="800" y="480" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#ffffff">
+      Level 3: Generalization
+    </text>
+    <text x="800" y="515" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#eff6ff">
+      a + b where a, b ∈ ℝ (any real numbers)
+    </text>
+    
+    <!-- Level 2: Pattern Recognition -->
+    <rect x="175" y="560" width="1250" height="110" fill="#f59e0b" stroke="#d97706" stroke-width="4" rx="15"/>
+    <text x="800" y="610" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#ffffff">
+      Level 2: Pattern Recognition
+    </text>
+    <text x="800" y="645" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#fffbeb">
+      "Sum of two positive numbers is always positive"
+    </text>
+    
+    <!-- Level 1: Concrete Examples (bottom) -->
+    <rect x="50" y="690" width="1500" height="110" fill="#ef4444" stroke="#dc2626" stroke-width="4" rx="15"/>
+    <text x="800" y="740" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#ffffff">
+      Level 1: Concrete Examples
+    </text>
+    <text x="800" y="775" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#fef2f2">
+      2 + 3 = 5  •  5 + 7 = 12  •  10 + 15 = 25  •  100 + 200 = 300
+    </text>
+  </g>
+  
+  <!-- ML Example Section with better spacing -->
+  <rect x="50" y="840" width="1500" height="310" fill="#ffffff" stroke="#cbd5e1" stroke-width="3" rx="15" filter="url(#shadow)"/>
+  <text x="800" y="895" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="#1e40af">
+    🧠 ML Example: Neural Networks
+  </text>
+  
+  <!-- Five columns for each level with improved layout -->
+  <g transform="translate(100, 940)">
+    <!-- Concrete -->
+    <rect x="0" y="0" width="260" height="180" fill="#fef2f2" stroke="#ef4444" stroke-width="3" rx="12"/>
+    <text x="130" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#ef4444">Concrete</text>
+    <text x="130" y="70" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1e293b">MNIST classifier</text>
+    <text x="130" y="100" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#475569">28×28 → 128 → 10</text>
+    <text x="130" y="130" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#475569">ReLU activation</text>
+    <text x="130" y="160" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#475569">Cross-entropy loss</text>
+  </g>
+  
+  <g transform="translate(385, 940)">
+    <!-- Pattern -->
+    <rect x="0" y="0" width="260" height="180" fill="#fffbeb" stroke="#f59e0b" stroke-width="3" rx="12"/>
+    <text x="130" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#f59e0b">Pattern</text>
+    <text x="130" y="70" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1e293b">"Layers transform</text>
+    <text x="130" y="100" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1e293b">input to output</text>
+    <text x="130" y="130" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#475569">via learnable</text>
+    <text x="130" y="160" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#475569">weights"</text>
+  </g>
+  
+  <g transform="translate(670, 940)">
+    <!-- Generalization -->
+    <rect x="0" y="0" width="260" height="180" fill="#eff6ff" stroke="#3b82f6" stroke-width="3" rx="12"/>
+    <text x="130" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#3b82f6">Generalization</text>
+    <text x="130" y="80" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#1e293b">f(x) = σ(Wx + b)</text>
+    <text x="130" y="115" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#475569">for any input x</text>
+    <text x="130" y="150" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#475569">Composable layers</text>
+  </g>
+  
+  <g transform="translate(955, 940)">
+    <!-- Abstraction -->
+    <rect x="0" y="0" width="260" height="180" fill="#faf5ff" stroke="#8b5cf6" stroke-width="3" rx="12"/>
+    <text x="130" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#8b5cf6">Abstraction</text>
+    <text x="130" y="80" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1e293b">Universal function</text>
+    <text x="130" y="110" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1e293b">approximator</text>
+    <text x="130" y="150" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#475569">Any continuous f</text>
+  </g>
+  
+  <g transform="translate(1240, 940)">
+    <!-- Theory -->
+    <rect x="0" y="0" width="260" height="180" fill="#f0fdf4" stroke="#10b981" stroke-width="3" rx="12"/>
+    <text x="130" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#10b981">Theory</text>
+    <text x="130" y="70" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1e293b">Optimization on</text>
+    <text x="130" y="100" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1e293b">manifolds</text>
+    <text x="130" y="130" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#475569">Information theory</text>
+    <text x="130" y="160" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#475569">Statistical learning</text>
+  </g>
+</svg>

@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="caseBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="30" text-anchor="middle" fill="#f472b6" font-family="Arial, sans-serif" font-size="20" font-weight="bold">📚 Real-World Case Studies</ns0:text>
+  <ns0:g transform="translate(50, 60)">
+    <ns0:rect width="220" height="140" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="110" y="55.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="12" font-weight="bold">🦙 LLaMA Quantization</ns0:text>
+    <ns0:text x="15" y="80.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Original: 70B params, 140GB</ns0:text>
+    <ns0:text x="15" y="105.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">4-bit: 35GB (4× smaller)</ns0:text>
+    <ns0:text x="15" y="130.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">Runs on: 1× A100!</ns0:text>
+    <ns0:text x="15" y="155.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Tools: llama.cpp, GPTQ</ns0:text>
+    <ns0:text x="15" y="180.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">&lt;1% perplexity increase</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(290, 60)">
+    <ns0:rect width="220" height="140" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="110" y="205.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12" font-weight="bold">📝 DistilBERT</ns0:text>
+    <ns0:text x="15" y="230.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">BERT: 110M, 12 layers</ns0:text>
+    <ns0:text x="15" y="255.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">DistilBERT: 66M, 6 layers</ns0:text>
+    <ns0:text x="15" y="280.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">40% smaller, 60% faster</ns0:text>
+    <ns0:text x="15" y="305.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Method: Distillation</ns0:text>
+    <ns0:text x="15" y="330.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">97% of BERT performance</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(530, 60)">
+    <ns0:rect width="220" height="140" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="110" y="355.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="12" font-weight="bold">📱 MobileNet v3</ns0:text>
+    <ns0:text x="15" y="380.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">ResNet-50: 25.6M, 4.1B FLOPs</ns0:text>
+    <ns0:text x="15" y="405.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">MobileNet: 5.4M, 219M FLOPs</ns0:text>
+    <ns0:text x="15" y="430.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">19× fewer FLOPs!</ns0:text>
+    <ns0:text x="15" y="455.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Method: Efficient arch</ns0:text>
+    <ns0:text x="15" y="480.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Real-time on phones</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 220)">
+    <ns0:rect width="220" height="140" rx="10" fill="#1a237e" stroke="#6f42c1" stroke-width="2"/>
+    <ns0:text x="110" y="505.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="12" font-weight="bold">🎤 Whisper Compression</ns0:text>
+    <ns0:text x="15" y="530.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Original: 1.5B params</ns0:text>
+    <ns0:text x="15" y="555.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">Distilled: 390M (4× smaller)</ns0:text>
+    <ns0:text x="15" y="580.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">INT8: 8× faster inference</ns0:text>
+    <ns0:text x="15" y="605.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Used: Distillation + Quant</ns0:text>
+    <ns0:text x="15" y="630.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Runs on edge devices</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(290, 220)">
+    <ns0:rect width="220" height="140" rx="10" fill="#1a237e" stroke="#ec4899" stroke-width="2"/>
+    <ns0:text x="110" y="655.0" text-anchor="middle" fill="#ec4899" font-family="Arial, sans-serif" font-size="12" font-weight="bold">🎛️ Mixtral 8x7B</ns0:text>
+    <ns0:text x="15" y="680.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Total: 46B params</ns0:text>
+    <ns0:text x="15" y="705.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">Active: 12B per token</ns0:text>
+    <ns0:text x="15" y="730.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">Quality ≈ 70B dense!</ns0:text>
+    <ns0:text x="15" y="755.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Method: MoE</ns0:text>
+    <ns0:text x="15" y="780.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">6× more efficient</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(530, 220)">
+    <ns0:rect width="220" height="140" rx="10" fill="#1a237e" stroke="#17a2b8" stroke-width="2"/>
+    <ns0:text x="110" y="805.0" text-anchor="middle" fill="#00838f" font-family="Arial, sans-serif" font-size="12" font-weight="bold">💡 QLoRA Fine-tuning</ns0:text>
+    <ns0:text x="15" y="830.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">LLaMA-65B: 130GB VRAM</ns0:text>
+    <ns0:text x="15" y="855.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">QLoRA: 48GB (single GPU!)</ns0:text>
+    <ns0:text x="15" y="880.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">Train only 0.1% params</ns0:text>
+    <ns0:text x="15" y="905.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Method: 4-bit + LoRA</ns0:text>
+    <ns0:text x="15" y="930.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Democratized LLM training!</ns0:text>
+  </ns0:g>
+</ns0:svg>

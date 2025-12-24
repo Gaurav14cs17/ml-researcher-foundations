@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 1012.5">
+  <ns0:rect width="1800.0" height="1012.5" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="40" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Probability &amp; Statistics for ML</ns0:text>
+  <ns0:rect x="30" y="80" width="240" height="330" rx="15" fill="#1a237e" stroke="#6f42c1" stroke-width="3"/>
+  <ns0:rect x="30" y="80" width="240" height="50" rx="15" fill="#6a1b9a"/>
+  <ns0:text x="150" y="112" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Probability Theory</ns0:text>
+  <ns0:text x="50" y="155" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Random Variables</ns0:text>
+  <ns0:text x="60" y="175" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Discrete &amp;amp; Continuous</ns0:text>
+  <ns0:text x="50" y="205" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Distributions</ns0:text>
+  <ns0:text x="60" y="225" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• PMF, PDF, CDF</ns0:text>
+  <ns0:text x="60" y="250.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Gaussian, Bernoulli</ns0:text>
+  <ns0:text x="50" y="270" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Expectations</ns0:text>
+  <ns0:text x="60" y="290" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Mean, Variance</ns0:text>
+  <ns0:text x="60" y="315.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Moments</ns0:text>
+  <ns0:text x="50" y="335" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Conditional</ns0:text>
+  <ns0:text x="60" y="355" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Bayes Theorem</ns0:text>
+  <ns0:text x="60" y="380.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Independence</ns0:text>
+  <ns0:rect x="280" y="80" width="240" height="330" rx="15" fill="#1a237e" stroke="#007bff" stroke-width="3"/>
+  <ns0:rect x="280" y="80" width="240" height="50" rx="15" fill="#1565c0"/>
+  <ns0:text x="400" y="405.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Multivariate Stats</ns0:text>
+  <ns0:text x="300" y="430.0" fill="#1565c0" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Random Vectors</ns0:text>
+  <ns0:text x="310" y="455.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Joint distributions</ns0:text>
+  <ns0:text x="310" y="480.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Marginalization</ns0:text>
+  <ns0:text x="300" y="505.0" fill="#1565c0" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Covariance</ns0:text>
+  <ns0:text x="310" y="530.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Covariance matrix Σ</ns0:text>
+  <ns0:text x="310" y="555.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Correlation</ns0:text>
+  <ns0:text x="300" y="580.0" fill="#1565c0" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Multivariate Gaussian</ns0:text>
+  <ns0:text x="310" y="605.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• N(μ, Σ)</ns0:text>
+  <ns0:text x="310" y="630.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Conditioning</ns0:text>
+  <ns0:text x="300" y="655.0" fill="#1565c0" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Exponential Family</ns0:text>
+  <ns0:text x="310" y="680.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Natural parameters</ns0:text>
+  <ns0:rect x="530" y="80" width="240" height="330" rx="15" fill="#1a237e" stroke="#28a745" stroke-width="3"/>
+  <ns0:rect x="530" y="80" width="240" height="50" rx="15" fill="#2e7d32"/>
+  <ns0:text x="650" y="705.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Information Theory</ns0:text>
+  <ns0:text x="550" y="730.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Entropy H(X)</ns0:text>
+  <ns0:text x="560" y="755.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Uncertainty measure</ns0:text>
+  <ns0:text x="560" y="780.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Bits of information</ns0:text>
+  <ns0:text x="550" y="805.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Cross-Entropy</ns0:text>
+  <ns0:text x="560" y="830.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Classification loss!</ns0:text>
+  <ns0:text x="560" y="855.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• H(p, q)</ns0:text>
+  <ns0:text x="550" y="880.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11" font-weight="bold">KL Divergence</ns0:text>
+  <ns0:text x="560" y="905.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• D_KL(p || q)</ns0:text>
+  <ns0:text x="560" y="930.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• VAE, distillation</ns0:text>
+  <ns0:text x="550" y="955.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Mutual Information</ns0:text>
+  <ns0:text x="560" y="980.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• I(X; Y)</ns0:text>
+  <ns0:text x="560" y="1005.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">• Feature selection</ns0:text>
+  <ns0:text x="400" y="1030.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12">📌 Foundation for: Loss functions, VAEs, Bayesian ML, Generative models</ns0:text>
+</ns0:svg>

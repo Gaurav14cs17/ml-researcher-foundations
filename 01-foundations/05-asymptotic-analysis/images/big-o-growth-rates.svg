@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#212529" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="650" fill="#f8f9fa" rx="8"/>
+  
+  <!-- Title -->
+  <text x="450" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#212529">
+    Big-O Complexity: Growth Rates Comparison
+  </text>
+  
+  <!-- Axes -->
+  <line x1="80" y1="550" x2="850" y2="550" stroke="#dee2e6" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="80" y1="550" x2="80" y2="80" stroke="#dee2e6" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Axis labels -->
+  <text x="860" y="555" font-family="Arial, sans-serif" font-size="14" fill="#212529">n (input size)</text>
+  <text x="40" y="70" font-family="Arial, sans-serif" font-size="14" fill="#212529">Time</text>
+  
+  <!-- Grid lines -->
+  <line x1="80" y1="450" x2="850" y2="450" stroke="#444444" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="80" y1="350" x2="850" y2="350" stroke="#444444" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="80" y1="250" x2="850" y2="250" stroke="#444444" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="80" y1="150" x2="850" y2="150" stroke="#444444" stroke-width="1" stroke-dasharray="3,3"/>
+  
+  <!-- O(1) - Constant -->
+  <line x1="80" y1="520" x2="800" y2="520" stroke="#28a745" stroke-width="3"/>
+  <text x="750" y="510" font-family="Arial, sans-serif" font-size="13" fill="#28a745" font-weight="bold">O(1)</text>
+  
+  <!-- O(log n) - Logarithmic -->
+  <path d="M 80 520 Q 200 480, 400 450 T 800 420" fill="none" stroke="#2ecc71" stroke-width="3"/>
+  <text x="750" y="410" font-family="Arial, sans-serif" font-size="13" fill="#2ecc71" font-weight="bold">O(log n)</text>
+  
+  <!-- O(n) - Linear -->
+  <line x1="80" y1="520" x2="800" y2="200" stroke="#007bff" stroke-width="3"/>
+  <text x="750" y="190" font-family="Arial, sans-serif" font-size="13" fill="#007bff" font-weight="bold">O(n)</text>
+  
+  <!-- O(n log n) - Linearithmic -->
+  <path d="M 80 520 Q 300 350, 600 150 T 800 100" fill="none" stroke="#6f42c1" stroke-width="3"/>
+  <text x="730" y="95" font-family="Arial, sans-serif" font-size="13" fill="#6f42c1" font-weight="bold">O(n log n)</text>
+  
+  <!-- O(n²) - Quadratic -->
+  <path d="M 80 520 Q 250 450, 400 300 T 650 100" fill="none" stroke="#fd7e14" stroke-width="3"/>
+  <text x="580" y="95" font-family="Arial, sans-serif" font-size="13" fill="#fd7e14" font-weight="bold">O(n²)</text>
+  
+  <!-- O(2^n) - Exponential -->
+  <path d="M 80 520 L 250 500 L 350 400 L 420 250 L 450 100" fill="none" stroke="#dc3545" stroke-width="3"/>
+  <text x="420" y="95" font-family="Arial, sans-serif" font-size="13" fill="#dc3545" font-weight="bold">O(2ⁿ)</text>
+  
+  <!-- O(n!) - Factorial -->
+  <path d="M 80 520 L 200 510 L 280 450 L 330 300 L 355 100" fill="none" stroke="#dc3545" stroke-width="3"/>
+  <text x="310" y="95" font-family="Arial, sans-serif" font-size="13" fill="#dc3545" font-weight="bold">O(n!)</text>
+  
+  <!-- Legend box -->
+  <rect x="50" y="580" width="800" height="60" fill="#212529" stroke="#444444" stroke-width="2" rx="5"/>
+  <text x="450" y="605" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#212529">
+    Complexity Hierarchy (Best to Worst)
+  </text>
+  <text x="450" y="625" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#212529">
+    O(1) &lt; O(log n) &lt; O(n) &lt; O(n log n) &lt; O(n²) &lt; O(2ⁿ) &lt; O(n!)
+  </text>
+  
+  <!-- Examples panel -->
+  <rect x="50" y="50" width="350" height="280" fill="#212529" stroke="#007bff" stroke-width="2" rx="8"/>
+  <text x="225" y="75" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#007bff">
+    ML Examples
+  </text>
+  
+  <text x="70" y="105" font-family="Arial, sans-serif" font-size="12" fill="#212529">
+    <tspan x="70" dy="0" fill="#28a745" font-weight="bold">O(1):</tspan>
+    <tspan x="90" dy="18">Array access, hash lookup</tspan>
+    
+    <tspan x="70" dy="30" fill="#2ecc71" font-weight="bold">O(log n):</tspan>
+    <tspan x="90" dy="18">Binary search, balanced tree</tspan>
+    
+    <tspan x="70" dy="30" fill="#007bff" font-weight="bold">O(n):</tspan>
+    <tspan x="90" dy="18">Linear scan, single loop</tspan>
+    
+    <tspan x="70" dy="30" fill="#6f42c1" font-weight="bold">O(n log n):</tspan>
+    <tspan x="90" dy="18">Merge sort, FFT</tspan>
+    
+    <tspan x="70" dy="30" fill="#fd7e14" font-weight="bold">O(n²):</tspan>
+    <tspan x="90" dy="18">Standard attention, nested loops</tspan>
+    
+    <tspan x="70" dy="30" fill="#dc3545" font-weight="bold">O(2ⁿ):</tspan>
+    <tspan x="90" dy="18">Subset enumeration, brute force</tspan>
+  </text>
+  
+  <!-- Transformer attention comparison -->
+  <rect x="450" y="50" width="400" height="150" fill="#fff8dc" stroke="#fd7e14" stroke-width="3" rx="8"/>
+  <text x="650" y="75" font-family="Arial, sans-serif" font-size="15" font-weight="bold" text-anchor="middle" fill="#fd7e14">
+    🔥 Transformer Attention
+  </text>
+  
+  <text x="470" y="105" font-family="Arial, sans-serif" font-size="13" fill="#212529">
+    <tspan x="470" dy="0">Standard Attention: </tspan>
+    <tspan fill="#dc3545" font-weight="bold">O(n²·d)</tspan>
+    <tspan x="480" dy="20">• n = sequence length</tspan>
+    <tspan x="480" dy="18">• d = model dimension</tspan>
+    
+    <tspan x="470" dy="28">Flash Attention: </tspan>
+    <tspan fill="#28a745" font-weight="bold">O(n·d)</tspan>
+    <tspan x="480" dy="20">• 🚀 Linear in sequence length!</tspan>
+  </text>
+  
+  <!-- Critical region highlight -->
+  <rect x="450" y="220" width="400" height="100" fill="#212529" stroke="#dc3545" stroke-width="2" rx="8"/>
+  <text x="650" y="245" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#dc3545">
+    ⚠️ Avoid Exponential Complexity!
+  </text>
+  <text x="650" y="270" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#212529">
+    O(2ⁿ) and O(n!) become infeasible fast
+  </text>
+  <text x="650" y="290" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#212529">
+    n=20: ~1 million operations
+  </text>
+  <text x="650" y="305" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#212529">
+    n=30: ~1 billion operations
+  </text>
+</svg>
+

@@ -1,0 +1,173 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2475.0 2025.0">
+  <ns0:text x="550" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Meta-Learning: Learning to Learn
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="500" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      1. What is Meta-Learning?
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="270.0" fill="#f8f9fa" stroke="#007bff" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="80.0" font-size="14" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#1565c0">Goal:</ns0:tspan>
+        Train models that can quickly adapt to new tasks with few examples
+      </ns0:text>
+      <ns0:g transform="translate(0, 30)">
+        <ns0:text x="0" y="105.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold">Regular Learning:</ns0:tspan>
+          Learn θ for specific task T → Good at T only
+        </ns0:text>
+        <ns0:text x="0" y="130.0" font-size="13" fill="#2e7d32" font-weight="bold">
+          <ns0:tspan fill="#145a32">Meta-Learning:</ns0:tspan>
+          Learn initialization θ₀ across many tasks → Fast fine-tune to new task T' with few shots
+        </ns0:text>
+        <ns0:text x="0" y="155.0" font-size="12" fill="#1a237e">
+          <ns0:tspan x="0" dy="0">Applications: Few-shot classification, rapid adaptation,</ns0:tspan>
+          <ns0:tspan x="0" dy="1.2em">personalization, drug discovery</ns0:tspan>
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 240)">
+    <ns0:text x="500" y="180.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      2. Few-Shot Learning Setup
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="200" fill="#1a237e" stroke="#28a745" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="205.0" font-size="14" font-weight="bold" fill="#145a32">
+        N-way K-shot Classification
+      </ns0:text>
+      <ns0:g transform="translate(0, 30)">
+        <ns0:g>
+          <ns0:text x="0" y="230.0" font-size="13" font-weight="bold" fill="#2e7d32">
+            Support Set (Training):
+          </ns0:text>
+          <ns0:text x="0" y="255.0" font-size="12" fill="#1a237e">
+            N classes × K examples each
+          </ns0:text>
+          <ns0:rect x="0" y="35" width="400" height="80" fill="#1a237e" stroke="#28a745" stroke-width="2" rx="5"/>
+          <ns0:g transform="translate(15, 55)">
+            <ns0:text x="0" y="280.0" font-size="11" fill="#1a237e">5-way 1-shot example:</ns0:text>
+            <ns0:g transform="translate(0, 20)">
+              <ns0:rect x="0" y="0" width="30" height="30" fill="#1565c0" opacity="0.7" stroke="#007bff" stroke-width="2"/>
+              <ns0:text x="15" y="305.0" font-size="9" text-anchor="middle" fill="#1a237e">Cat</ns0:text>
+              <ns0:rect x="40" y="0" width="30" height="30" fill="#c62828" opacity="0.7" stroke="#dc3545" stroke-width="2"/>
+              <ns0:text x="55" y="330.0" font-size="9" text-anchor="middle" fill="#1a237e">Dog</ns0:text>
+              <ns0:rect x="80" y="0" width="30" height="30" fill="#e65100" opacity="0.7" stroke="#e67e22" stroke-width="2"/>
+              <ns0:text x="95" y="355.0" font-size="9" text-anchor="middle" fill="#1a237e">Bird</ns0:text>
+              <ns0:rect x="120" y="0" width="30" height="30" fill="#6a1b9a" opacity="0.7" stroke="#6f42c1" stroke-width="2"/>
+              <ns0:text x="135" y="380.0" font-size="9" text-anchor="middle" fill="#1a237e">Fish</ns0:text>
+              <ns0:rect x="160" y="0" width="30" height="30" fill="#1abc9c" opacity="0.7" stroke="#16a085" stroke-width="2"/>
+              <ns0:text x="175" y="405.0" font-size="9" text-anchor="middle" fill="#1a237e">Frog</ns0:text>
+              <ns0:text x="210" y="430.0" font-size="10" fill="#1a237e">
+                (5 classes, 1 example each)
+              </ns0:text>
+            </ns0:g>
+          </ns0:g>
+        </ns0:g>
+        <ns0:g transform="translate(450, 0)">
+          <ns0:text x="0" y="455.0" font-size="13" font-weight="bold" fill="#1565c0">
+            Query Set (Test):
+          </ns0:text>
+          <ns0:text x="0" y="480.0" font-size="12" fill="#1a237e">
+            Unseen examples to classify
+          </ns0:text>
+          <ns0:rect x="0" y="35" width="350" height="80" fill="#1a237e" stroke="#007bff" stroke-width="2" rx="5"/>
+          <ns0:g transform="translate(15, 65)">
+            <ns0:rect x="0" y="0" width="30" height="30" fill="#1565c0" opacity="0.5" stroke="#007bff" stroke-width="2"/>
+            <ns0:text x="15" y="505.0" font-size="9" text-anchor="middle" fill="#1a237e">?</ns0:text>
+            <ns0:rect x="40" y="0" width="30" height="30" fill="#c62828" opacity="0.5" stroke="#dc3545" stroke-width="2"/>
+            <ns0:text x="55" y="530.0" font-size="9" text-anchor="middle" fill="#1a237e">?</ns0:text>
+            <ns0:rect x="80" y="0" width="30" height="30" fill="#e65100" opacity="0.5" stroke="#e67e22" stroke-width="2"/>
+            <ns0:text x="95" y="555.0" font-size="9" text-anchor="middle" fill="#1a237e">?</ns0:text>
+            <ns0:text x="130" y="580.0" font-size="10" fill="#1a237e">
+              Classify these!
+            </ns0:text>
+          </ns0:g>
+        </ns0:g>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 480)">
+    <ns0:text x="500" y="605.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+      3. MAML (Model-Agnostic Meta-Learning)
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="240" fill="#1a237e" stroke="#6f42c1" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="630.0" font-size="14" font-weight="bold" fill="#6c3483">
+        Find initialization θ₀ that's easy to fine-tune (good gradient direction)
+      </ns0:text>
+      <ns0:g transform="translate(0, 30)">
+        <ns0:rect x="0" y="0" width="940" height="180" fill="#1a237e" stroke="#6f42c1" stroke-width="2" rx="5"/>
+        <ns0:g transform="translate(20, 25)">
+          <ns0:text x="0" y="655.0" font-size="13" font-weight="bold" fill="#6a1b9a">
+            Algorithm (Bilevel Optimization):
+          </ns0:text>
+          <ns0:g transform="translate(0, 25)">
+            <ns0:circle cx="8" cy="-3" r="8" fill="#6a1b9a"/>
+            <ns0:text x="8" y="680.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">1</ns0:text>
+            <ns0:text x="25" y="705.0" font-size="12" fill="#1a237e">
+              Sample batch of tasks {T₁, T₂, ..., Tₙ} from task distribution
+            </ns0:text>
+          </ns0:g>
+          <ns0:g transform="translate(0, 50)">
+            <ns0:circle cx="8" cy="-3" r="8" fill="#6a1b9a"/>
+            <ns0:text x="8" y="730.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">2</ns0:text>
+            <ns0:text x="25" y="755.0" font-size="12" fill="#1a237e">
+              For each task Tᵢ:
+            </ns0:text>
+            <ns0:text x="45" y="780.0" font-size="11" font-family="Arial, sans-serif" fill="#2e7d32">
+              <ns0:tspan x="45" dy="0">θ'ᵢ = θ - α∇_θ L_Tᵢ(θ) // Inner loop: task-specific update</ns0:tspan>
+              <ns0:tspan x="45" dy="1.2em">(1 or few steps)</ns0:tspan>
+            </ns0:text>
+          </ns0:g>
+          <ns0:g transform="translate(0, 95)">
+            <ns0:circle cx="8" cy="-3" r="8" fill="#6a1b9a"/>
+            <ns0:text x="8" y="805.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">3</ns0:text>
+            <ns0:text x="25" y="830.0" font-size="12" fill="#1a237e">
+              Update meta-parameters (outer loop):
+            </ns0:text>
+            <ns0:text x="45" y="855.0" font-size="11" font-family="Arial, sans-serif" fill="#1565c0">
+              θ ← θ - β∇_θ Σᵢ L_Tᵢ(θ'ᵢ)     // Optimize for post-update performance
+            </ns0:text>
+          </ns0:g>
+          <ns0:g transform="translate(0, 135)">
+            <ns0:text x="0" y="880.0" font-size="11" fill="#1a237e">
+              <ns0:tspan x="0" dy="0">→ θ learns to be in a region where gradient descent works</ns0:tspan>
+              <ns0:tspan x="0" dy="1.2em">well across tasks!</ns0:tspan>
+            </ns0:text>
+          </ns0:g>
+        </ns0:g>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 760)">
+    <ns0:text x="500" y="905.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#e67e22">
+      4. Other Meta-Learning Approaches
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="100" fill="#1a237e" stroke="#fd7e14" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="930.0" font-size="13" fill="#1a237e">
+        • 
+        <ns0:tspan font-weight="bold" fill="#d84315">Prototypical Networks:</ns0:tspan>
+        Learn embedding space → Classify by distance to class prototypes (mean of support embeddings)
+      </ns0:text>
+      <ns0:text x="0" y="955.0" font-size="13" fill="#1a237e">
+        • 
+        <ns0:tspan font-weight="bold" fill="#d84315">Matching Networks:</ns0:tspan>
+        Attention over support set → Weighted k-NN in learned feature space
+      </ns0:text>
+      <ns0:text x="0" y="980.0" font-size="13" fill="#1a237e">
+        • 
+        <ns0:tspan font-weight="bold" fill="#d84315">Meta-SGD:</ns0:tspan>
+        Learn both initialization AND learning rates per parameter
+      </ns0:text>
+      <ns0:text x="0" y="1005.0" font-size="13" fill="#1a237e">
+        • 
+        <ns0:tspan font-weight="bold" fill="#d84315">Reptile:</ns0:tspan>
+        Simpler than MAML (first-order only), almost as effective
+      </ns0:text>
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>

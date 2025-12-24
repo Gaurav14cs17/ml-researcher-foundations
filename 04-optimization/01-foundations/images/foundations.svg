@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="foundBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d2d2d"/>
+      <stop offset="100%" style="stop-color:#2d2d2d"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="#f8f9fa" rx="8"/>
+  <text x="400" y="40" text-anchor="middle" fill="#00d9ff" font-size="24" font-weight="bold">Mathematical Foundations for Optimization</text>
+  
+  <!-- Calculus -->
+  <rect x="50" y="80" width="200" height="120" rx="10" fill="#2d4a3e" stroke="#28a745" stroke-width="2"/>
+  <text x="150" y="110" text-anchor="middle" fill="#28a745" font-size="16" font-weight="bold">Calculus</text>
+  <text x="150" y="140" text-anchor="middle" fill="#28a745" font-size="12">Derivatives</text>
+  <text x="150" y="160" text-anchor="middle" fill="#28a745" font-size="12">Gradients</text>
+  <text x="150" y="180" text-anchor="middle" fill="#28a745" font-size="12">Chain Rule</text>
+  
+  <!-- Linear Algebra -->
+  <rect x="300" y="80" width="200" height="120" rx="10" fill="#3d2d4a" stroke="#6f42c1" stroke-width="2"/>
+  <text x="400" y="110" text-anchor="middle" fill="#6f42c1" font-size="16" font-weight="bold">Linear Algebra</text>
+  <text x="400" y="140" text-anchor="middle" fill="#e9d5ff" font-size="12">Vectors &amp; Matrices</text>
+  <text x="400" y="160" text-anchor="middle" fill="#e9d5ff" font-size="12">Eigendecomposition</text>
+  <text x="400" y="180" text-anchor="middle" fill="#e9d5ff" font-size="12">SVD</text>
+  
+  <!-- Analysis -->
+  <rect x="550" y="80" width="200" height="120" rx="10" fill="#4a3d2d" stroke="#fd7e14" stroke-width="2"/>
+  <text x="650" y="110" text-anchor="middle" fill="#fd7e14" font-size="16" font-weight="bold">Analysis</text>
+  <text x="650" y="140" text-anchor="middle" fill="#fef3c7" font-size="12">Continuity</text>
+  <text x="650" y="160" text-anchor="middle" fill="#fef3c7" font-size="12">Convexity</text>
+  <text x="650" y="180" text-anchor="middle" fill="#fef3c7" font-size="12">Convergence</text>
+  
+  <!-- Connecting arrows -->
+  <path d="M150 200 L150 260 L400 260" stroke="#28a745" stroke-width="2" fill="none" marker-end="url(#arrowG)"/>
+  <path d="M400 200 L400 260" stroke="#6f42c1" stroke-width="2" fill="none"/>
+  <path d="M650 200 L650 260 L400 260" stroke="#fd7e14" stroke-width="2" fill="none" marker-end="url(#arrowY)"/>
+  
+  <!-- Optimization Methods -->
+  <rect x="250" y="280" width="300" height="100" rx="10" fill="#1e3a5f" stroke="#007bff" stroke-width="2"/>
+  <text x="400" y="310" text-anchor="middle" fill="#007bff" font-size="18" font-weight="bold">Optimization Methods</text>
+  <text x="400" y="340" text-anchor="middle" fill="#007bff" font-size="14">Gradient Descent • Newton's Method</text>
+  <text x="400" y="365" text-anchor="middle" fill="#007bff" font-size="14">Constrained • Stochastic</text>
+</svg>

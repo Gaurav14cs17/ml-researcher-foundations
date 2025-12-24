@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 1170.0">
+  <ns0:defs>
+    <ns0:linearGradient id="mmBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="1170.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Mixture of Experts Mathematics</ns0:text>
+  <ns0:g transform="translate(30, 60)">
+    <ns0:rect width="360" height="170" rx="10" fill="#1a237e" stroke="#6f42c1" stroke-width="2"/>
+    <ns0:text x="180" y="60.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="13" font-weight="bold">MoE Layer Output</ns0:text>
+    <ns0:text x="20" y="85.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Output:</ns0:text>
+    <ns0:text x="20" y="110.0" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="14">y = Sum_i g(x)_i * E_i(x)</ns0:text>
+    <ns0:text x="20" y="135.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">g(x) = router/gating function</ns0:text>
+    <ns0:text x="20" y="160.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">E_i(x) = i-th expert (FFN)</ns0:text>
+    <ns0:text x="20" y="185.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Sparse: only top-k experts active!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 60)">
+    <ns0:rect width="360" height="170" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="180" y="210.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Router/Gating Function</ns0:text>
+    <ns0:text x="20" y="235.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Softmax router:</ns0:text>
+    <ns0:text x="20" y="260.0" fill="#e65100" font-family="Arial, sans-serif" font-size="12">g(x) = softmax(W_g * x)</ns0:text>
+    <ns0:text x="20" y="285.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Top-k selection:</ns0:text>
+    <ns0:text x="20" y="310.0" fill="#e65100" font-family="Arial, sans-serif" font-size="12">g'(x) = TopK(g(x), k)</ns0:text>
+    <ns0:text x="20" y="335.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Mixtral: k=2 out of 8 experts</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(30, 250)">
+    <ns0:rect width="360" height="130" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="180" y="360.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Load Balancing Loss</ns0:text>
+    <ns0:text x="20" y="385.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Auxiliary loss:</ns0:text>
+    <ns0:text x="20" y="410.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12">L_aux = a * n * Sum_i f_i * P_i</ns0:text>
+    <ns0:text x="20" y="435.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">f_i = fraction of tokens to expert i</ns0:text>
+    <ns0:text x="20" y="460.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">P_i = avg routing prob to expert i</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 250)">
+    <ns0:rect width="360" height="130" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="180" y="485.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Expert Capacity</ns0:text>
+    <ns0:text x="20" y="510.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Capacity per expert:</ns0:text>
+    <ns0:text x="20" y="535.0" fill="#1565c0" font-family="Arial, sans-serif" font-size="12">C = (tokens * k / n) * CF</ns0:text>
+    <ns0:text x="20" y="560.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">CF = capacity factor (1.0-2.0)</ns0:text>
+    <ns0:text x="20" y="585.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Tokens beyond capacity: dropped</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(30, 400)">
+    <ns0:rect width="740" height="100" rx="10" fill="#1a237e" stroke="#ec4899" stroke-width="2"/>
+    <ns0:text x="370" y="610.0" text-anchor="middle" fill="#ec4899" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Compute Efficiency</ns0:text>
+    <ns0:text x="50" y="635.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Dense: O(n*d*h) per token</ns0:text>
+    <ns0:text x="300" y="660.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11">MoE (top-k): O(k*d*h) per token</ns0:text>
+    <ns0:text x="50" y="685.0" fill="#f472b6" font-family="Arial, sans-serif" font-size="11">Speedup: n/k (e.g., 8/2 = 4x for Mixtral)</ns0:text>
+  </ns0:g>
+</ns0:svg>

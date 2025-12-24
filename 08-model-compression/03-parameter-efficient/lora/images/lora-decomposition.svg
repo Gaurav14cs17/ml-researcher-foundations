@@ -1,0 +1,131 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2250.0 1687.5">
+  <ns0:defs>
+    <ns0:marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <ns0:path d="M0,0 L0,6 L9,3 z" fill="#c62828"/>
+    </ns0:marker>
+  </ns0:defs>
+  <ns0:text x="500" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    LoRA: Low-Rank Adaptation of Large Language Models
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:g>
+      <ns0:text x="220" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#c62828">
+        Standard Fine-Tuning
+      </ns0:text>
+      <ns0:rect x="0" y="20" width="990.0" height="562.5" fill="#f8f9fa" stroke="#dc3545" stroke-width="2" rx="8"/>
+      <ns0:rect x="140" y="60" width="160" height="160" fill="#c62828" opacity="0.3" stroke="#dc3545" stroke-width="2" rx="8"/>
+      <ns0:text x="220" y="100" font-size="14" font-weight="bold" text-anchor="middle" fill="#1a237e">W ∈ ℝ^{d×d}</ns0:text>
+      <ns0:text x="220" y="120" font-size="12" text-anchor="middle" fill="#1a237e">Pre-trained weights</ns0:text>
+      <ns0:path d="M 220,140 L 220,165" stroke="#dc3545" stroke-width="3" marker-end="url(#arrowRed)"/>
+      <ns0:text x="240" y="155" font-size="12" font-weight="bold" fill="#c62828">ΔW</ns0:text>
+      <ns0:rect x="140" y="170" width="160" height="40" fill="#c62828" stroke="#922b21" stroke-width="2"/>
+      <ns0:text x="220" y="195" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a237e">W + ΔW</ns0:text>
+      <ns0:text x="220" y="240" font-size="12" text-anchor="middle" fill="#922b21">
+        Update ALL d² parameters!
+      </ns0:text>
+      <ns0:text x="220" y="260" font-size="11" text-anchor="middle" fill="#1a237e">
+        d = 4096 → 16M parameters
+      </ns0:text>
+    </ns0:g>
+    <ns0:g transform="translate(510, 0)">
+      <ns0:text x="220" y="285.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+        LoRA (r = 8)
+      </ns0:text>
+      <ns0:rect x="0" y="20" width="990.0" height="562.5" fill="#1a237e" stroke="#28a745" stroke-width="2" rx="8"/>
+      <ns0:rect x="80" y="60" width="140" height="140" fill="#1a237e" opacity="0.3" stroke="#e0e0e0" stroke-width="2" stroke-dasharray="5,5" rx="8"/>
+      <ns0:text x="150" y="310.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a237e">W (frozen)</ns0:text>
+      <ns0:text x="240" y="335.0" font-size="24" font-weight="bold" fill="#2e7d32">+</ns0:text>
+      <ns0:g transform="translate(270, 60)">
+        <ns0:rect x="0" y="0" width="50" height="140" fill="#66bb6a" opacity="0.7" stroke="#2e7d32" stroke-width="2"/>
+        <ns0:text x="25" y="360.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">B</ns0:text>
+        <ns0:text x="25" y="385.0" font-size="10" text-anchor="middle" fill="#1a237e">d×r</ns0:text>
+        <ns0:text x="65" y="410.0" font-size="18" font-weight="bold" fill="#2e7d32">×</ns0:text>
+        <ns0:rect x="85" y="45" width="140" height="50" fill="#81c784" opacity="0.7" stroke="#28a745" stroke-width="2" rx="8"/>
+        <ns0:text x="155" y="435.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">A</ns0:text>
+        <ns0:text x="155" y="460.0" font-size="10" text-anchor="middle" fill="#1a237e">r×d</ns0:text>
+        <ns0:text x="110" y="485.0" font-size="11" text-anchor="middle" fill="#145a32">BA ∈ ℝ^{d×d}</ns0:text>
+      </ns0:g>
+      <ns0:text x="220" y="510.0" font-size="12" text-anchor="middle" fill="#145a32">
+        Only 2dr parameters trainable!
+      </ns0:text>
+      <ns0:text x="220" y="535.0" font-size="11" text-anchor="middle" fill="#1a237e">
+        d=4096, r=8 → 65K params
+      </ns0:text>
+      <ns0:text x="220" y="560.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+        250× fewer parameters! 🎉
+      </ns0:text>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 360)">
+    <ns0:text x="450" y="585.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1a237e">
+      Mathematical Formulation
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="900" height="140" fill="#1a237e" stroke="#007bff" stroke-width="2" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="610.0" font-size="14" font-weight="bold" fill="#1565c0">Forward Pass:</ns0:text>
+      <ns0:rect x="0" y="10" width="840" height="35" fill="#1a237e" stroke="#007bff" stroke-width="1" rx="3"/>
+      <ns0:text x="420" y="635.0" font-size="15" font-family="Arial, sans-serif" text-anchor="middle" fill="#1a5276">
+        h = W₀x + ΔWx = W₀x + BAx
+      </ns0:text>
+      <ns0:text x="0" y="660.0" font-size="14" font-weight="bold" fill="#1565c0">Parameter Count:</ns0:text>
+      <ns0:g transform="translate(0, 80)">
+        <ns0:text x="0" y="685.0" font-size="13" fill="#1a237e">
+          Full fine-tuning: 
+          <ns0:tspan font-family="Arial, sans-serif" fill="#c62828">d²</ns0:tspan>
+           parameters
+        </ns0:text>
+        <ns0:text x="400" y="710.0" font-size="13" fill="#1a237e">
+          LoRA: 
+          <ns0:tspan font-family="Arial, sans-serif" fill="#2e7d32">2dr</ns0:tspan>
+           parameters (B: d×r, A: r×d)
+        </ns0:text>
+      </ns0:g>
+      <ns0:text x="420" y="735.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1565c0">
+        Reduction ratio: d²/(2dr) = d/(2r) ≈ 256 for d=4096, r=8
+      </ns0:text>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 530)">
+    <ns0:text x="450" y="760.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1a237e">
+      Concrete Example: GPT-3 Scale
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="900" height="150" fill="#1a237e" stroke="#fd7e14" stroke-width="2" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="785.0" font-size="13" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#e67e22">Model:</ns0:tspan>
+         175B parameters
+      </ns0:text>
+      <ns0:text x="0" y="810.0" font-size="13" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#e67e22">Attention heads:</ns0:tspan>
+         Q, K, V, O projections in each layer
+      </ns0:text>
+      <ns0:text x="0" y="835.0" font-size="13" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#e67e22">Dimension:</ns0:tspan>
+         d = 12,288 (hidden size)
+      </ns0:text>
+      <ns0:rect x="0" y="70" width="840" height="60" fill="#fdebd0" stroke="#e67e22" stroke-width="1" rx="3"/>
+      <ns0:g transform="translate(10, 90)">
+        <ns0:text x="0" y="860.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#c62828">Full fine-tuning:</ns0:tspan>
+          <ns0:tspan font-family="Arial, sans-serif">4 × d² = 4 × 12288² ≈ 604M params</ns0:tspan>
+           per layer
+        </ns0:text>
+        <ns0:text x="0" y="885.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#2e7d32">LoRA (r=8):</ns0:tspan>
+          <ns0:tspan font-family="Arial, sans-serif">4 × 2dr = 4 × 2 × 12288 × 8 ≈ 787K params</ns0:tspan>
+           per layer
+        </ns0:text>
+        <ns0:text x="420" y="910.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#e65100">
+          768× reduction! Can fine-tune on single GPU 🚀
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:rect x="50" y="710" width="900" height="30" fill="#1a237e" stroke="#28a745" stroke-width="2" rx="8"/>
+  <ns0:text x="500" y="935.0" font-size="13" text-anchor="middle" fill="#145a32">
+    🎯 
+    <ns0:tspan font-weight="bold">Benefits:</ns0:tspan>
+     Drastically fewer params • No inference latency • Merge LoRA weights: W' = W₀ + BA • Switch tasks fast!
+  </ns0:text>
+</ns0:svg>

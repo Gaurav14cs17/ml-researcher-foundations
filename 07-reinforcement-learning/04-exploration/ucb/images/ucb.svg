@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgUCB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Upper Confidence Bound (UCB)</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="700" height="90" rx="10" fill="#2d2d2d20" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="350" y="60.0" text-anchor="middle" fill="#1565c0" font-size="14" font-weight="bold">UCB Action Selection</ns0:text>
+    <ns0:text x="350" y="85.0" text-anchor="middle" fill="#1a237e" font-size="14" font-family="Arial, sans-serif">a = argmax[Q(s,a) + c√(ln(t)/N(s,a))]</ns0:text>
+    <ns0:text x="200" y="110.0" fill="#2e7d32" font-size="10">exploitation</ns0:text>
+    <ns0:text x="480" y="135.0" fill="#e65100" font-size="10">exploration bonus</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 180)">
+    <ns0:text x="350" y="160.0" text-anchor="middle" fill="#e65100" font-size="13" font-weight="bold">Optimism Under Uncertainty</ns0:text>
+    <ns0:rect x="50" y="40" width="40" height="80" fill="#1565c0"/>
+    <ns0:rect x="50" y="20" width="40" height="20" fill="#e65100" opacity="0.7"/>
+    <ns0:text x="70" y="185.0" text-anchor="middle" fill="#1565c0" font-size="10">a₁</ns0:text>
+    <ns0:text x="70" y="210.0" text-anchor="middle" fill="#a5b4fc" font-size="8">tried 100x</ns0:text>
+    <ns0:rect x="150" y="60" width="40" height="60" fill="#1565c0"/>
+    <ns0:rect x="150" y="25" width="40" height="35" fill="#e65100" opacity="0.7"/>
+    <ns0:text x="170" y="235.0" text-anchor="middle" fill="#1565c0" font-size="10">a₂</ns0:text>
+    <ns0:text x="170" y="260.0" text-anchor="middle" fill="#a5b4fc" font-size="8">tried 20x</ns0:text>
+    <ns0:rect x="250" y="70" width="40" height="50" fill="#1565c0"/>
+    <ns0:rect x="250" y="20" width="40" height="50" fill="#e65100" opacity="0.7"/>
+    <ns0:text x="270" y="285.0" text-anchor="middle" fill="#1565c0" font-size="10">a₃</ns0:text>
+    <ns0:text x="270" y="310.0" text-anchor="middle" fill="#a5b4fc" font-size="8">tried 5x</ns0:text>
+    <ns0:rect x="400" y="50" width="20" height="20" fill="#1565c0"/>
+    <ns0:text x="430" y="335.0" fill="#1565c0" font-size="11">Estimated value Q(a)</ns0:text>
+    <ns0:rect x="400" y="80" width="20" height="20" fill="#e65100" opacity="0.7"/>
+    <ns0:text x="430" y="360.0" fill="#e65100" font-size="11">Uncertainty bonus</ns0:text>
+    <ns0:text x="500" y="385.0" fill="#a5b4fc" font-size="10">Less tried = higher bonus</ns0:text>
+    <ns0:text x="500" y="410.0" fill="#a5b4fc" font-size="10">= more likely to explore</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 330)">
+    <ns0:rect width="700" height="50" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="435.0" text-anchor="middle" fill="#10b981" font-size="11">Key: UCB balances exploration/exploitation automatically - no ε parameter needed!</ns0:text>
+  </ns0:g>
+</ns0:svg>

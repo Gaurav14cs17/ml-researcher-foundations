@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgPAC" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">PAC Learning Framework</ns0:text>
+  <ns0:text x="400" y="55" text-anchor="middle" fill="#a5b4fc" font-size="12">Probably Approximately Correct</ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:rect width="700" height="100" rx="10" fill="#2d2d2d20" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="350" y="80.0" text-anchor="middle" fill="#e65100" font-size="14" font-weight="bold">The PAC Guarantee</ns0:text>
+    <ns0:text x="350" y="105.0" text-anchor="middle" fill="#1a237e" font-size="13">With probability at least (1 - δ), the learned hypothesis h has error ≤ ε</ns0:text>
+    <ns0:text x="200" y="130.0" text-anchor="middle" fill="#10b981" font-size="11">ε = accuracy parameter</ns0:text>
+    <ns0:text x="500" y="155.0" text-anchor="middle" fill="#1565c0" font-size="11">δ = confidence parameter</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 200)">
+    <ns0:rect width="340" height="100" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="170" y="180.0" text-anchor="middle" fill="#2e7d32" font-size="13" font-weight="bold">Sample Complexity</ns0:text>
+    <ns0:text x="170" y="205.0" text-anchor="middle" fill="#1a237e" font-size="12" font-family="Arial, sans-serif">m ≥ (1/ε)[ln|H| + ln(1/δ)]</ns0:text>
+    <ns0:text x="170" y="230.0" text-anchor="middle" fill="#2e7d32" font-size="10">More hypotheses → need more samples</ns0:text>
+    <ns0:text x="170" y="255.0" text-anchor="middle" fill="#2e7d32" font-size="10">Smaller ε, δ → need more samples</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 200)">
+    <ns0:rect width="340" height="100" rx="10" fill="#2d2d2d20" stroke="#007bff"/>
+    <ns0:text x="170" y="280.0" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">Interpretation</ns0:text>
+    <ns0:circle cx="80" cy="65" r="30" fill="none" stroke="#10b981" stroke-width="2"/>
+    <ns0:circle cx="80" cy="65" r="20" fill="#10b981" opacity="0.3"/>
+    <ns0:text x="80" y="305.0" text-anchor="middle" fill="#2e7d32" font-size="8">true ≈ learned</ns0:text>
+    <ns0:circle cx="250" cy="65" r="30" fill="none" stroke="#dc3545" stroke-width="2"/>
+    <ns0:circle cx="260" cy="60" r="20" fill="#e65100" opacity="0.3"/>
+    <ns0:text x="250" y="330.0" text-anchor="middle" fill="#e65100" font-size="8">ε error</ns0:text>
+    <ns0:text x="170" y="355.0" text-anchor="middle" fill="#1565c0" font-size="9">Learn hypothesis close to optimal (within ε)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 320)">
+    <ns0:rect width="700" height="60" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="380.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Key Results</ns0:text>
+    <ns0:text x="150" y="405.0" text-anchor="middle" fill="#10b981" font-size="10">Finite H: PAC learnable</ns0:text>
+    <ns0:text x="400" y="430.0" text-anchor="middle" fill="#e65100" font-size="10">VC dimension: Infinite H</ns0:text>
+    <ns0:text x="620" y="455.0" text-anchor="middle" fill="#8b5cf6" font-size="10">No Free Lunch: Need assumptions</ns0:text>
+  </ns0:g>
+</ns0:svg>

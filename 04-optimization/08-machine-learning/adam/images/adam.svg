@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1100">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fafafa"/>
+      <stop offset="100%" style="stop-color:#f0f4f8"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <rect width="1800" height="1100" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="60" text-anchor="middle" fill="#1e293b" font-family="Arial, sans-serif" font-size="48" font-weight="bold">Adam Optimizer</text>
+  <text x="900" y="105" text-anchor="middle" fill="#475569" font-family="Arial, sans-serif" font-size="24">Adaptive Moment Estimation - The Most Popular Optimizer</text>
+  
+  <!-- Main Update Rule Box -->
+  <g transform="translate(80, 150)" filter="url(#shadow)">
+    <rect width="780" height="450" rx="18" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="390" y="50" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="32" font-weight="bold">Adam Update Rule</text>
+    <line x1="30" y1="75" x2="750" y2="75" stroke="#cbd5e1" stroke-width="2"/>
+    
+    <!-- Step 1 -->
+    <g transform="translate(40, 110)">
+      <rect width="700" height="85" rx="12" fill="#f0fdf4"/>
+      <text x="20" y="30" fill="#10b981" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Step 1:</text>
+      <text x="130" y="30" fill="#15803d" font-family="Arial, sans-serif" font-size="22">First Moment (Momentum)</text>
+      <text x="350" y="62" text-anchor="middle" fill="#065f46" font-family="Consolas, monospace" font-size="26">m_t = β₁ × m_{t-1} + (1-β₁) × g_t</text>
+    </g>
+    
+    <!-- Step 2 -->
+    <g transform="translate(40, 210)">
+      <rect width="700" height="85" rx="12" fill="#fff7ed"/>
+      <text x="20" y="30" fill="#f59e0b" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Step 2:</text>
+      <text x="130" y="30" fill="#d97706" font-family="Arial, sans-serif" font-size="22">Second Moment (Variance)</text>
+      <text x="350" y="62" text-anchor="middle" fill="#92400e" font-family="Consolas, monospace" font-size="26">v_t = β₂ × v_{t-1} + (1-β₂) × g_t²</text>
+    </g>
+    
+    <!-- Step 3 -->
+    <g transform="translate(40, 310)">
+      <rect width="700" height="55" rx="12" fill="#eff6ff"/>
+      <text x="20" y="30" fill="#3b82f6" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Step 3:</text>
+      <text x="130" y="30" fill="#1e40af" font-family="Arial, sans-serif" font-size="22">Bias Correction</text>
+      <text x="480" y="30" text-anchor="middle" fill="#1e3a8a" font-family="Consolas, monospace" font-size="22">m̂ = m_t/(1-β₁ᵗ)   v̂ = v_t/(1-β₂ᵗ)</text>
+    </g>
+    
+    <!-- Final Update -->
+    <rect x="40" y="380" width="700" height="50" fill="#10b981" rx="12"/>
+    <text x="390" y="412" text-anchor="middle" fill="#ffffff" font-family="Consolas, monospace" font-size="28" font-weight="bold">θ = θ - η × m̂ / (√v̂ + ε)</text>
+  </g>
+  
+  <!-- Moment Explanations -->
+  <g transform="translate(920, 150)" filter="url(#shadow)">
+    <!-- First Moment -->
+    <rect width="400" height="200" rx="16" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="200" y="45" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="30" font-weight="bold">1st Moment (m)</text>
+    <line x1="30" y1="65" x2="370" y2="65" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="200" y="100" text-anchor="middle" fill="#1e293b" font-family="Arial, sans-serif" font-size="19">Running average of gradients</text>
+    <text x="200" y="135" text-anchor="middle" fill="#475569" font-family="Arial, sans-serif" font-size="17">Acts like momentum</text>
+    <text x="200" y="165" text-anchor="middle" fill="#475569" font-family="Arial, sans-serif" font-size="17">Smooths out noise</text>
+    <rect x="140" y="175" width="120" height="35" fill="#10b981" rx="10"/>
+    <text x="200" y="200" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="19" font-weight="bold">β₁ = 0.9</text>
+  </g>
+  
+  <g transform="translate(920, 380)" filter="url(#shadow)">
+    <!-- Second Moment -->
+    <rect width="400" height="220" rx="16" fill="#ffffff" stroke="#f59e0b" stroke-width="4"/>
+    <text x="200" y="45" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="30" font-weight="bold">2nd Moment (v)</text>
+    <line x1="30" y1="65" x2="370" y2="65" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="200" y="100" text-anchor="middle" fill="#1e293b" font-family="Arial, sans-serif" font-size="19">Running average of grad²</text>
+    <text x="200" y="135" text-anchor="middle" fill="#475569" font-family="Arial, sans-serif" font-size="17">Per-parameter scaling</text>
+    <text x="200" y="165" text-anchor="middle" fill="#475569" font-family="Arial, sans-serif" font-size="17">Adapts learning rate</text>
+    <rect x="130" y="185" width="140" height="35" fill="#f59e0b" rx="10"/>
+    <text x="200" y="210" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="19" font-weight="bold">β₂ = 0.999</text>
+  </g>
+  
+  <!-- AdamW Box -->
+  <g transform="translate(920, 630)" filter="url(#shadow)">
+    <rect width="860" height="200" rx="16" fill="#ffffff" stroke="#3b82f6" stroke-width="4"/>
+    <rect x="680" y="20" width="150" height="35" fill="#10b981" rx="10"/>
+    <text x="755" y="45" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="18" font-weight="bold">⭐ PREFERRED</text>
+    <text x="430" y="50" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="32" font-weight="bold">AdamW (Decoupled Weight Decay)</text>
+    <line x1="30" y1="75" x2="830" y2="75" stroke="#cbd5e1" stroke-width="2"/>
+    <rect x="40" y="95" width="780" height="50" fill="#eff6ff" rx="12"/>
+    <text x="430" y="130" text-anchor="middle" fill="#1e40af" font-family="Consolas, monospace" font-size="26">θ = θ - η × (m̂/(√v̂+ε) + λ×θ)</text>
+    <text x="430" y="175" text-anchor="middle" fill="#475569" font-family="Arial, sans-serif" font-size="18">Better than L2 regularization • Used in modern LLMs &amp; Transformers</text>
+  </g>
+  
+  <!-- Comparison Section -->
+  <g transform="translate(80, 630)" filter="url(#shadow)">
+    <rect width="780" height="410" rx="16" fill="#ffffff" stroke="#8b5cf6" stroke-width="4"/>
+    <text x="390" y="50" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="32" font-weight="bold">🎯 Adam vs SGD: When to Use What?</text>
+    <line x1="390" y1="80" x2="390" y2="390" stroke="#cbd5e1" stroke-width="3"/>
+    
+    <!-- Adam/AdamW -->
+    <g transform="translate(40, 100)">
+      <rect width="310" height="270" rx="14" fill="#f0fdf4" stroke="#10b981" stroke-width="3"/>
+      <text x="155" y="40" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="26" font-weight="bold">Adam / AdamW</text>
+      <line x1="20" y1="60" x2="290" y2="60" stroke="#86efac" stroke-width="2"/>
+      <text x="30" y="95" fill="#15803d" font-family="Arial, sans-serif" font-size="18">✓ Fast convergence</text>
+      <text x="30" y="130" fill="#15803d" font-family="Arial, sans-serif" font-size="18">✓ Good default choice</text>
+      <text x="30" y="165" fill="#15803d" font-family="Arial, sans-serif" font-size="18">✓ Great for NLP/Transformers</text>
+      <text x="30" y="200" fill="#15803d" font-family="Arial, sans-serif" font-size="18">✓ Less hyperparameter tuning</text>
+      <text x="30" y="235" fill="#15803d" font-family="Arial, sans-serif" font-size="18">✓ Handles sparse gradients</text>
+    </g>
+    
+    <!-- SGD + Momentum -->
+    <g transform="translate(430, 100)">
+      <rect width="310" height="270" rx="14" fill="#fff7ed" stroke="#f59e0b" stroke-width="3"/>
+      <text x="155" y="40" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="26" font-weight="bold">SGD + Momentum</text>
+      <line x1="20" y1="60" x2="290" y2="60" stroke="#fcd34d" stroke-width="2"/>
+      <text x="30" y="95" fill="#92400e" font-family="Arial, sans-serif" font-size="18">✓ Can generalize better</text>
+      <text x="30" y="130" fill="#92400e" font-family="Arial, sans-serif" font-size="18">✓ Preferred for vision (CNNs)</text>
+      <text x="30" y="165" fill="#92400e" font-family="Arial, sans-serif" font-size="18">✓ Lower memory usage</text>
+      <text x="30" y="200" fill="#92400e" font-family="Arial, sans-serif" font-size="18">✓ More predictable behavior</text>
+      <text x="30" y="235" fill="#92400e" font-family="Arial, sans-serif" font-size="18">✓ Better for large batches</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1100">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fdfa"/>
+      <stop offset="100%" style="stop-color:#ccfbf1"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  
+  <rect width="1800" height="1100" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#134e4a" font-family="Arial, sans-serif" font-size="52" font-weight="bold">Neural Network Architecture</text>
+  <text x="900" y="120" text-anchor="middle" fill="#0f766e" font-family="Arial, sans-serif" font-size="26">Feedforward Multi-Layer Perceptron (MLP)</text>
+  
+  <!-- Neural Network Diagram -->
+  <g transform="translate(100, 180)" filter="url(#shadow)">
+    <rect width="1600" height="650" rx="18" fill="#ffffff" stroke="#14b8a6" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#14b8a6" font-family="Arial, sans-serif" font-size="36" font-weight="bold">Network Structure</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#99f6e4" stroke-width="2"/>
+    
+    <!-- Input Layer -->
+    <g transform="translate(150, 150)">
+      <text x="80" y="-20" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Input Layer</text>
+      <text x="80" y="10" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="18">(n features)</text>
+      
+      <circle cx="80" cy="80" r="30" fill="#3b82f6" stroke="#1e40af" stroke-width="3"/>
+      <text x="80" y="88" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">x₁</text>
+      
+      <circle cx="80" cy="180" r="30" fill="#3b82f6" stroke="#1e40af" stroke-width="3"/>
+      <text x="80" y="188" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">x₂</text>
+      
+      <circle cx="80" cy="280" r="30" fill="#3b82f6" stroke="#1e40af" stroke-width="3"/>
+      <text x="80" y="288" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">x₃</text>
+      
+      <text x="80" y="360" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="28">⋮</text>
+      
+      <circle cx="80" cy="420" r="30" fill="#3b82f6" stroke="#1e40af" stroke-width="3"/>
+      <text x="80" y="428" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">xₙ</text>
+    </g>
+    
+    <!-- Hidden Layer 1 -->
+    <g transform="translate(500, 120)">
+      <text x="80" y="-20" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Hidden Layer 1</text>
+      <text x="80" y="10" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="18">(h₁ neurons)</text>
+      
+      <circle cx="80" cy="60" r="30" fill="#10b981" stroke="#059669" stroke-width="3"/>
+      <text x="80" y="68" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">h₁</text>
+      
+      <circle cx="80" cy="150" r="30" fill="#10b981" stroke="#059669" stroke-width="3"/>
+      <text x="80" y="158" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">h₂</text>
+      
+      <circle cx="80" cy="240" r="30" fill="#10b981" stroke="#059669" stroke-width="3"/>
+      <text x="80" y="248" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">h₃</text>
+      
+      <circle cx="80" cy="330" r="30" fill="#10b981" stroke="#059669" stroke-width="3"/>
+      <text x="80" y="338" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">h₄</text>
+      
+      <circle cx="80" cy="420" r="30" fill="#10b981" stroke="#059669" stroke-width="3"/>
+      <text x="80" y="428" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">h₅</text>
+    </g>
+    
+    <!-- Hidden Layer 2 -->
+    <g transform="translate(850, 150)">
+      <text x="80" y="-20" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Hidden Layer 2</text>
+      <text x="80" y="10" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="18">(h₂ neurons)</text>
+      
+      <circle cx="80" cy="90" r="30" fill="#8b5cf6" stroke="#7c3aed" stroke-width="3"/>
+      <text x="80" y="98" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">h₁</text>
+      
+      <circle cx="80" cy="190" r="30" fill="#8b5cf6" stroke="#7c3aed" stroke-width="3"/>
+      <text x="80" y="198" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">h₂</text>
+      
+      <circle cx="80" cy="290" r="30" fill="#8b5cf6" stroke="#7c3aed" stroke-width="3"/>
+      <text x="80" y="298" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">h₃</text>
+      
+      <circle cx="80" cy="390" r="30" fill="#8b5cf6" stroke="#7c3aed" stroke-width="3"/>
+      <text x="80" y="398" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">h₄</text>
+    </g>
+    
+    <!-- Output Layer -->
+    <g transform="translate(1200, 200)">
+      <text x="80" y="-20" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Output Layer</text>
+      <text x="80" y="10" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="18">(k classes)</text>
+      
+      <circle cx="80" cy="90" r="30" fill="#f59e0b" stroke="#d97706" stroke-width="3"/>
+      <text x="80" y="98" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">ŷ₁</text>
+      
+      <circle cx="80" cy="190" r="30" fill="#f59e0b" stroke="#d97706" stroke-width="3"/>
+      <text x="80" y="198" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">ŷ₂</text>
+      
+      <text x="80" y="270" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="28">⋮</text>
+      
+      <circle cx="80" cy="330" r="30" fill="#f59e0b" stroke="#d97706" stroke-width="3"/>
+      <text x="80" y="338" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">ŷₖ</text>
+    </g>
+    
+    <!-- Connections (sample) -->
+    <g stroke="#94a3b8" stroke-width="2" opacity="0.3">
+      <!-- Input to Hidden 1 (sample connections) -->
+      <line x1="260" y1="230" x2="580" y2="180"/>
+      <line x1="260" y1="230" x2="580" y2="270"/>
+      <line x1="260" y1="330" x2="580" y2="180"/>
+      <line x1="260" y1="330" x2="580" y2="270"/>
+      <line x1="260" y1="330" x2="580" y2="360"/>
+      
+      <!-- Hidden 1 to Hidden 2 (sample connections) -->
+      <line x1="610" y1="270" x2="930" y2="240"/>
+      <line x1="610" y1="270" x2="930" y2="340"/>
+      <line x1="610" y1="360" x2="930" y2="240"/>
+      <line x1="610" y1="360" x2="930" y2="340"/>
+      
+      <!-- Hidden 2 to Output (sample connections) -->
+      <line x1="960" y1="340" x2="1280" y2="290"/>
+      <line x1="960" y1="340" x2="1280" y2="390"/>
+      <line x1="960" y1="440" x2="1280" y2="290"/>
+      <line x1="960" y1="440" x2="1280" y2="390"/>
+    </g>
+    
+    <!-- Activation annotation -->
+    <rect x="400" y="520" width="800" height="80" fill="#fef3c7" rx="12"/>
+    <text x="800" y="555" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Each neuron: z = Wx + b, a = σ(z)</text>
+    <text x="800" y="585" text-anchor="middle" fill="#78350f" font-family="Arial, sans-serif" font-size="19">Activation function σ: ReLU, sigmoid, tanh, etc.</text>
+  </g>
+  
+  <!-- Key Properties -->
+  <g transform="translate(100, 880)" filter="url(#shadow)">
+    <rect width="1600" height="190" rx="18" fill="#ffffff" stroke="#14b8a6" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#14b8a6" font-family="Arial, sans-serif" font-size="32" font-weight="bold">🔑 Key Properties</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#99f6e4" stroke-width="2"/>
+    
+    <g transform="translate(80, 105)">
+      <text x="0" y="0" fill="#0f766e" font-family="Arial, sans-serif" font-size="20">• <tspan font-weight="bold">Fully Connected:</tspan> Each neuron connects to all neurons in previous layer</text>
+      <text x="0" y="32" fill="#0f766e" font-family="Arial, sans-serif" font-size="20">• <tspan font-weight="bold">Feedforward:</tspan> Information flows from input → hidden → output (no cycles)</text>
+      <text x="0" y="64" fill="#0f766e" font-family="Arial, sans-serif" font-size="20">• <tspan font-weight="bold">Universal Approximator:</tspan> Can approximate any continuous function with enough neurons</text>
+      <text x="0" y="96" fill="#14b8a6" font-family="Arial, sans-serif" font-size="20" font-weight="bold">• <tspan>Parameters:</tspan> Weights (W) and biases (b) learned via backpropagation</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgSS2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Sample Spaces and Events</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="340" height="140" rx="10" fill="#2d2d2d20" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="170" y="60.0" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">Sample Space Ω</ns0:text>
+    <ns0:text x="170" y="85.0" text-anchor="middle" fill="#1565c0" font-size="10">Set of all possible outcomes</ns0:text>
+    <ns0:text x="30" y="110.0" fill="#1565c0" font-size="10">Dice: Ω = {1, 2, 3, 4, 5, 6}</ns0:text>
+    <ns0:text x="30" y="135.0" fill="#1565c0" font-size="10">Coin: Ω = {H, T}</ns0:text>
+    <ns0:text x="30" y="160.0" fill="#1565c0" font-size="10">Real: Ω = ℝ (continuous)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 70)">
+    <ns0:rect width="340" height="140" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="170" y="185.0" text-anchor="middle" fill="#2e7d32" font-size="13" font-weight="bold">Events (Subsets of Ω)</ns0:text>
+    <ns0:text x="170" y="210.0" text-anchor="middle" fill="#2e7d32" font-size="10">Collections of outcomes</ns0:text>
+    <ns0:text x="30" y="235.0" fill="#2e7d32" font-size="10">A = &quot;Roll even&quot; = {2, 4, 6}</ns0:text>
+    <ns0:text x="30" y="260.0" fill="#2e7d32" font-size="10">B = &quot;Roll &gt; 4&quot; = {5, 6}</ns0:text>
+    <ns0:text x="30" y="285.0" fill="#2e7d32" font-size="10">A ∩ B = {6}</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 230)">
+    <ns0:rect width="700" height="140" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="310.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Kolmogorov Axioms</ns0:text>
+    <ns0:text x="40" y="335.0" fill="#e65100" font-size="10" font-weight="bold">1. Non-negativity:</ns0:text>
+    <ns0:text x="180" y="360.0" fill="#e65100" font-size="10">P(A) ≥ 0 for all events A</ns0:text>
+    <ns0:text x="40" y="385.0" fill="#e65100" font-size="10" font-weight="bold">2. Normalization:</ns0:text>
+    <ns0:text x="180" y="410.0" fill="#e65100" font-size="10">P(Ω) = 1</ns0:text>
+    <ns0:text x="40" y="435.0" fill="#e65100" font-size="10" font-weight="bold">3. Additivity:</ns0:text>
+    <ns0:text x="180" y="460.0" fill="#e65100" font-size="10">P(A ∪ B) = P(A) + P(B) if A ∩ B = ∅</ns0:text>
+    <ns0:text x="350" y="485.0" text-anchor="middle" fill="#a5b4fc" font-size="9">These axioms form the foundation of all probability theory!</ns0:text>
+  </ns0:g>
+</ns0:svg>

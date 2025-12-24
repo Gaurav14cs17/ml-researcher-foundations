@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#faf5ff"/>
+      <stop offset="100%" style="stop-color:#f3e8ff"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <rect width="1600" height="1100" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="800" y="70" text-anchor="middle" fill="#6b21a8" font-family="Arial, sans-serif" font-size="50" font-weight="bold">Cartesian Product</text>
+  <text x="800" y="120" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="26">Creating ordered pairs from two sets</text>
+  
+  <!-- Definition -->
+  <g transform="translate(100, 170)" filter="url(#shadow)">
+    <rect width="1400" height="150" rx="18" fill="#ffffff" stroke="#8b5cf6" stroke-width="4"/>
+    <text x="700" y="50" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="34" font-weight="bold">Definition</text>
+    <line x1="40" y1="70" x2="1360" y2="70" stroke="#e9d5ff" stroke-width="2"/>
+    <rect x="100" y="90" width="1200" height="50" fill="#f3e8ff" rx="12"/>
+    <text x="700" y="125" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="32" font-weight="bold">A × B = {(a, b) | a ∈ A and b ∈ B}</text>
+  </g>
+  
+  <!-- Example Sets -->
+  <g transform="translate(100, 380)" filter="url(#shadow)">
+    <rect width="650" height="600" rx="18" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="325" y="50" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="36" font-weight="bold">Input Sets</text>
+    <line x1="40" y1="70" x2="610" y2="70" stroke="#d1fae5" stroke-width="2"/>
+    
+    <!-- Set A -->
+    <g transform="translate(100, 110)">
+      <rect width="450" height="180" rx="14" fill="#f0fdf4"/>
+      <text x="225" y="40" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="30" font-weight="bold">Set A</text>
+      <text x="225" y="80" text-anchor="middle" fill="#065f46" font-family="Consolas, monospace" font-size="32">A = {1, 2, 3}</text>
+      <g transform="translate(60, 110)">
+        <circle cx="60" cy="30" r="35" fill="#10b981"/>
+        <text x="60" y="40" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="28" font-weight="bold">1</text>
+        <circle cx="180" cy="30" r="35" fill="#10b981"/>
+        <text x="180" y="40" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="28" font-weight="bold">2</text>
+        <circle cx="300" cy="30" r="35" fill="#10b981"/>
+        <text x="300" y="40" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="28" font-weight="bold">3</text>
+      </g>
+    </g>
+    
+    <!-- Set B -->
+    <g transform="translate(100, 320)">
+      <rect width="450" height="230" rx="14" fill="#eff6ff"/>
+      <text x="225" y="40" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="30" font-weight="bold">Set B</text>
+      <text x="225" y="80" text-anchor="middle" fill="#1e3a8a" font-family="Consolas, monospace" font-size="32">B = {x, y}</text>
+      <g transform="translate(110, 120)">
+        <circle cx="60" cy="40" r="40" fill="#3b82f6"/>
+        <text x="60" y="50" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="32" font-weight="bold">x</text>
+        <circle cx="220" cy="40" r="40" fill="#3b82f6"/>
+        <text x="220" y="50" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="32" font-weight="bold">y</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Cartesian Product Result -->
+  <g transform="translate(800, 380)" filter="url(#shadow)">
+    <rect width="700" height="600" rx="18" fill="#ffffff" stroke="#8b5cf6" stroke-width="4"/>
+    <text x="350" y="50" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="36" font-weight="bold">A × B (6 pairs)</text>
+    <line x1="40" y1="70" x2="660" y2="70" stroke="#e9d5ff" stroke-width="2"/>
+    
+    <!-- Grid of ordered pairs -->
+    <g transform="translate(80, 110)">
+      <!-- Row 1: (1, x) and (1, y) -->
+      <rect x="0" y="0" width="250" height="80" rx="12" fill="#faf5ff" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="125" y="50" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="28" font-weight="bold">(1, x)</text>
+      
+      <rect x="280" y="0" width="250" height="80" rx="12" fill="#faf5ff" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="405" y="50" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="28" font-weight="bold">(1, y)</text>
+      
+      <!-- Row 2: (2, x) and (2, y) -->
+      <rect x="0" y="100" width="250" height="80" rx="12" fill="#f3e8ff" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="125" y="150" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="28" font-weight="bold">(2, x)</text>
+      
+      <rect x="280" y="100" width="250" height="80" rx="12" fill="#f3e8ff" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="405" y="150" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="28" font-weight="bold">(2, y)</text>
+      
+      <!-- Row 3: (3, x) and (3, y) -->
+      <rect x="0" y="200" width="250" height="80" rx="12" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="125" y="250" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="28" font-weight="bold">(3, x)</text>
+      
+      <rect x="280" y="200" width="250" height="80" rx="12" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="405" y="250" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="28" font-weight="bold">(3, y)</text>
+    </g>
+    
+    <!-- Cardinality -->
+    <rect x="80" y="420" width="540" height="70" fill="#f5f3ff" rx="12"/>
+    <text x="350" y="460" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="24" font-weight="bold">|A × B| = |A| × |B| = 3 × 2 = 6</text>
+    
+    <!-- Key Property -->
+    <rect x="80" y="510" width="540" height="70" fill="#fef3c7" rx="12"/>
+    <text x="350" y="535" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="19" font-weight="bold">Note: (a, b) ≠ (b, a)</text>
+    <text x="350" y="562" text-anchor="middle" fill="#78350f" font-family="Arial, sans-serif" font-size="18">Order matters in ordered pairs!</text>
+  </g>
+  
+  <!-- Key Applications -->
+  <rect x="100" y="1010" width="1400" height="80" fill="#6b21a8" rx="16" filter="url(#shadow)"/>
+  <text x="800" y="1050" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="bold">🎯 Applications in ML:</text>
+  <text x="800" y="1078" text-anchor="middle" fill="#e9d5ff" font-family="Arial, sans-serif" font-size="20">Feature combinations • Coordinate systems • Matrix dimensions • Neural network architectures</text>
+</svg>

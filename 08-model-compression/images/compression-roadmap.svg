@@ -1,0 +1,89 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2025.0 1125.0">
+  <ns0:defs>
+    <ns0:linearGradient id="compBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="2025.0" height="1125.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="450" y="35" text-anchor="middle" fill="#e67e22" font-family="Arial, sans-serif" font-size="24" font-weight="bold">🗜️ Model Compression Roadmap</ns0:text>
+  <ns0:text x="450" y="60" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12">Make models small, fast, and deployable</ns0:text>
+  <ns0:g transform="translate(50, 85)">
+    <ns0:rect width="170" height="120" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="3"/>
+    <ns0:rect width="170" height="35" rx="10" fill="#2e7d32"/>
+    <ns0:text x="85" y="85.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11" font-weight="bold">🔢 Quantization</ns0:text>
+    <ns0:text x="85" y="110.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Most Important!</ns0:text>
+    <ns0:text x="15" y="135.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• INT8, INT4</ns0:text>
+    <ns0:text x="15" y="160.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• PTQ, QAT</ns0:text>
+    <ns0:text x="15" y="185.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• llama.cpp, GGML</ns0:text>
+  </ns0:g>
+  <ns0:text x="230" y="210.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="16">→</ns0:text>
+  <ns0:g transform="translate(250, 85)">
+    <ns0:rect width="170" height="120" rx="10" fill="#1a237e" stroke="#ec4899" stroke-width="3"/>
+    <ns0:rect width="170" height="35" rx="10" fill="#ec4899"/>
+    <ns0:text x="85" y="235.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11" font-weight="bold">🔧 PEFT / LoRA</ns0:text>
+    <ns0:text x="85" y="260.0" text-anchor="middle" fill="#f472b6" font-family="Arial, sans-serif" font-size="10">Fine-tuning Standard</ns0:text>
+    <ns0:text x="15" y="285.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• LoRA, QLoRA</ns0:text>
+    <ns0:text x="15" y="310.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Adapters</ns0:text>
+    <ns0:text x="15" y="335.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• 0.1% params!</ns0:text>
+  </ns0:g>
+  <ns0:text x="430" y="360.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="16">→</ns0:text>
+  <ns0:g transform="translate(450, 85)">
+    <ns0:rect width="170" height="120" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:rect width="170" height="35" rx="10" fill="#1565c0"/>
+    <ns0:text x="85" y="385.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11" font-weight="bold">🎓 Distillation</ns0:text>
+    <ns0:text x="85" y="410.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="10">Teacher → Student</ns0:text>
+    <ns0:text x="15" y="435.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Soft targets</ns0:text>
+    <ns0:text x="15" y="460.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• DistilBERT</ns0:text>
+    <ns0:text x="15" y="485.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Alpaca, Vicuna</ns0:text>
+  </ns0:g>
+  <ns0:text x="630" y="510.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="16">→</ns0:text>
+  <ns0:g transform="translate(650, 85)">
+    <ns0:rect width="170" height="120" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:rect width="170" height="35" rx="10" fill="#e65100"/>
+    <ns0:text x="85" y="535.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11" font-weight="bold">✂️ Pruning</ns0:text>
+    <ns0:text x="85" y="560.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="10">Remove weights</ns0:text>
+    <ns0:text x="15" y="585.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Unstructured</ns0:text>
+    <ns0:text x="15" y="610.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Structured</ns0:text>
+    <ns0:text x="15" y="635.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Lottery ticket</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(100, 240)">
+    <ns0:rect width="160" height="100" rx="10" fill="#1a237e" stroke="#6f42c1" stroke-width="2"/>
+    <ns0:rect width="160" height="30" rx="10" fill="#6a1b9a"/>
+    <ns0:text x="80" y="660.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" font-weight="bold">🎯 MoE</ns0:text>
+    <ns0:text x="80" y="685.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="9">Mixtral style</ns0:text>
+    <ns0:text x="15" y="710.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Conditional compute</ns0:text>
+    <ns0:text x="15" y="735.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">8 experts, top-2</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(280, 240)">
+    <ns0:rect width="160" height="100" rx="10" fill="#1a237e" stroke="#17a2b8" stroke-width="2"/>
+    <ns0:rect width="160" height="30" rx="10" fill="#00838f"/>
+    <ns0:text x="80" y="760.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" font-weight="bold">🏗️ Efficient Arch</ns0:text>
+    <ns0:text x="80" y="785.0" text-anchor="middle" fill="#00838f" font-family="Arial, sans-serif" font-size="9">By design</ns0:text>
+    <ns0:text x="15" y="810.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">MobileNet, EfficientNet</ns0:text>
+    <ns0:text x="15" y="835.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Linformer, Performer</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(460, 240)">
+    <ns0:rect width="160" height="100" rx="10" fill="#1a237e" stroke="#84cc16" stroke-width="2"/>
+    <ns0:rect width="160" height="30" rx="10" fill="#84cc16"/>
+    <ns0:text x="80" y="860.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" font-weight="bold">📊 Factorization</ns0:text>
+    <ns0:text x="80" y="885.0" text-anchor="middle" fill="#a3e635" font-family="Arial, sans-serif" font-size="9">Matrix decomp</ns0:text>
+    <ns0:text x="15" y="910.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">SVD, Tucker</ns0:text>
+    <ns0:text x="15" y="935.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">LoRA = low-rank!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(640, 240)">
+    <ns0:rect width="160" height="100" rx="10" fill="#1a237e" stroke="#e0e0e0" stroke-width="2"/>
+    <ns0:rect width="160" height="30" rx="10" fill="#1a237e"/>
+    <ns0:text x="80" y="960.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" font-weight="bold">🛠️ Tools</ns0:text>
+    <ns0:text x="80" y="985.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Libraries</ns0:text>
+    <ns0:text x="15" y="1010.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">PEFT, bitsandbytes</ns0:text>
+    <ns0:text x="15" y="1035.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">TensorRT, ONNX</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(350, 380)">
+    <ns0:rect width="200" height="60" rx="12" fill="#1a237e" stroke="#28a745" stroke-width="3"/>
+    <ns0:text x="100" y="1060.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🚀 Deploy Efficiently!</ns0:text>
+  </ns0:g>
+  <ns0:path d="M450 345 L450 375" stroke="#28a745" stroke-width="2" fill="none"/>
+  <ns0:text x="450" y="1085.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Essential for: LLMs on consumer hardware • Mobile deployment • Production systems</ns0:text>
+</ns0:svg>

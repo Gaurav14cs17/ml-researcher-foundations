@@ -1,0 +1,194 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2475.0 2025.0">
+  <ns0:defs>
+    <ns0:marker id="arrow3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <ns0:path d="M0,0 L0,6 L9,3 z" fill="#1a237e"/>
+    </ns0:marker>
+    <ns0:marker id="arrowGreen5" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <ns0:path d="M0,0 L0,6 L9,3 z" fill="#2e7d32"/>
+    </ns0:marker>
+    <ns0:marker id="arrowPurple4" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <ns0:path d="M0,0 L0,6 L9,3 z" fill="#6a1b9a"/>
+    </ns0:marker>
+  </ns0:defs>
+  <ns0:text x="550" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Mixture of Experts (MoE): Scaling with Sparse Activation
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="500" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      1. What is Mixture of Experts?
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="270.0" fill="#f8f9fa" stroke="#007bff" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="80.0" font-size="14" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#1565c0">Core Idea:</ns0:tspan>
+        Train many &quot;expert&quot; networks, but only activate a few per input (sparse activation)
+      </ns0:text>
+      <ns0:g transform="translate(0, 30)">
+        <ns0:text x="0" y="105.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold">Problem:</ns0:tspan>
+          Scaling dense models is expensive → Billions of parameters, all activated
+        </ns0:text>
+        <ns0:text x="0" y="130.0" font-size="13" fill="#2e7d32" font-weight="bold">
+          <ns0:tspan fill="#145a32">MoE Solution:</ns0:tspan>
+          1000s of experts, activate top-k (e.g., k=2) per token → Model capacity ↑, compute ↔
+        </ns0:text>
+        <ns0:text x="0" y="155.0" font-size="12" fill="#1a237e">
+          Used in: Switch Transformer, GLaM, GPT-4 (rumored), Mixtral 8x7B
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 240)">
+    <ns0:text x="500" y="180.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      2. MoE Layer Architecture
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="340" fill="#1a237e" stroke="#28a745" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(50, 50)">
+      <ns0:g>
+        <ns0:rect x="350" y="0" width="100" height="40" fill="#1565c0" opacity="0.7" stroke="#007bff" stroke-width="2" rx="3"/>
+        <ns0:text x="400" y="205.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">
+          Input Token x
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 60)">
+        <ns0:path d="M 400,0 L 400,30" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrow3)"/>
+        <ns0:rect x="320" y="30" width="160" height="50" fill="#e65100" opacity="0.8" stroke="#e67e22" stroke-width="3" rx="5"/>
+        <ns0:text x="400" y="230.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">
+          Router / Gating Network
+        </ns0:text>
+        <ns0:text x="400" y="255.0" font-size="10" text-anchor="middle" fill="#1a237e">
+          W_g · x → softmax
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 100)">
+        <ns0:text x="400" y="280.0" font-size="11" text-anchor="middle" fill="#e65100" font-weight="bold">
+          Routing scores: [0.5, 0.3, 0.15, 0.05, ...]
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 120)">
+        <ns0:g>
+          <ns0:rect x="50" y="0" width="120" height="60" fill="#2e7d32" opacity="0.8" stroke="#145a32" stroke-width="3" rx="5"/>
+          <ns0:text x="110" y="305.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">
+            Expert 1
+          </ns0:text>
+          <ns0:text x="110" y="330.0" font-size="10" text-anchor="middle" fill="#1a237e">
+            FFN₁(x)
+          </ns0:text>
+          <ns0:text x="110" y="355.0" font-size="10" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+            ✓ Activated (0.5)
+          </ns0:text>
+          <ns0:path d="M 370,90 L 130,120" stroke="#28a745" stroke-width="3" marker-end="url(#arrowGreen5)"/>
+        </ns0:g>
+        <ns0:g transform="translate(200, 0)">
+          <ns0:rect x="50" y="0" width="120" height="60" fill="#2e7d32" opacity="0.8" stroke="#145a32" stroke-width="3" rx="5"/>
+          <ns0:text x="110" y="380.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">
+            Expert 2
+          </ns0:text>
+          <ns0:text x="110" y="405.0" font-size="10" text-anchor="middle" fill="#1a237e">
+            FFN₂(x)
+          </ns0:text>
+          <ns0:text x="110" y="430.0" font-size="10" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+            ✓ Activated (0.3)
+          </ns0:text>
+          <ns0:path d="M 400,90 L 310,120" stroke="#28a745" stroke-width="3" marker-end="url(#arrowGreen5)"/>
+        </ns0:g>
+        <ns0:g transform="translate(400, 0)">
+          <ns0:rect x="50" y="0" width="120" height="60" fill="#1a237e" opacity="0.5" stroke="#e0e0e0" stroke-width="2" stroke-dasharray="5,5" rx="5"/>
+          <ns0:text x="110" y="455.0" font-size="12" text-anchor="middle" fill="#1a237e">
+            Expert 3
+          </ns0:text>
+          <ns0:text x="110" y="480.0" font-size="10" text-anchor="middle" fill="#1a237e">
+            FFN₃(x)
+          </ns0:text>
+          <ns0:text x="110" y="505.0" font-size="10" text-anchor="middle" fill="#1a237e">
+            ✗ Not used (0.15)
+          </ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(600, 0)">
+          <ns0:rect x="50" y="0" width="120" height="60" fill="#1a237e" opacity="0.5" stroke="#e0e0e0" stroke-width="2" stroke-dasharray="5,5" rx="5"/>
+          <ns0:text x="110" y="530.0" font-size="12" text-anchor="middle" fill="#1a237e">
+            Expert N
+          </ns0:text>
+          <ns0:text x="110" y="555.0" font-size="10" text-anchor="middle" fill="#1a237e">
+            FFN_N(x)
+          </ns0:text>
+          <ns0:text x="110" y="580.0" font-size="10" text-anchor="middle" fill="#1a237e">
+            ✗ Not used (0.05)
+          </ns0:text>
+        </ns0:g>
+        <ns0:text x="560" y="605.0" font-size="16" font-weight="bold" fill="#1a237e">...</ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 210)">
+        <ns0:path d="M 130,0 L 400,40" stroke="#6f42c1" stroke-width="2" marker-end="url(#arrowPurple4)"/>
+        <ns0:path d="M 330,0 L 400,40" stroke="#6f42c1" stroke-width="2" marker-end="url(#arrowPurple4)"/>
+        <ns0:rect x="320" y="40" width="160" height="50" fill="#6a1b9a" opacity="0.8" stroke="#6f42c1" stroke-width="3" rx="5"/>
+        <ns0:text x="400" y="630.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">
+          Weighted Sum
+        </ns0:text>
+        <ns0:text x="400" y="655.0" font-size="10" text-anchor="middle" fill="#1a237e">
+          0.5·FFN₁(x) + 0.3·FFN₂(x)
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 280)">
+        <ns0:path d="M 400,0 L 400,30" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrow3)"/>
+        <ns0:rect x="350" y="30" width="100" height="40" fill="#c62828" opacity="0.7" stroke="#dc3545" stroke-width="2" rx="3"/>
+        <ns0:text x="400" y="680.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">
+          Output
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 620)">
+    <ns0:text x="500" y="705.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+      3. Benefits &amp; Challenges
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="140" fill="#1a237e" stroke="#6f42c1" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:g>
+        <ns0:text x="0" y="730.0" font-size="13" font-weight="bold" fill="#2e7d32">
+          Benefits:
+        </ns0:text>
+        <ns0:text x="0" y="755.0" font-size="12" fill="#2e7d32">
+          <ns0:tspan x="0" dy="0">✓ Conditional computation: Only ~1/N experts active → Huge</ns0:tspan>
+          <ns0:tspan x="0" dy="1.2em">models with manageable compute</ns0:tspan>
+        </ns0:text>
+        <ns0:text x="0" y="780.0" font-size="12" fill="#2e7d32">
+          <ns0:tspan x="0" dy="0">✓ Specialization: Different experts learn different</ns0:tspan>
+          <ns0:tspan x="0" dy="1.2em">patterns (e.g., languages, domains)</ns0:tspan>
+        </ns0:text>
+        <ns0:text x="0" y="805.0" font-size="12" fill="#2e7d32">
+          <ns0:tspan x="0" dy="0">✓ Better sample efficiency: More parameters → Better</ns0:tspan>
+          <ns0:tspan x="0" dy="1.2em">performance per training token</ns0:tspan>
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 80)">
+        <ns0:text x="0" y="830.0" font-size="13" font-weight="bold" fill="#c62828">
+          Challenges:
+        </ns0:text>
+        <ns0:text x="0" y="855.0" font-size="12" fill="#c62828">
+          <ns0:tspan x="0" dy="0">✗ Load balancing: Some experts may be underutilized →</ns0:tspan>
+          <ns0:tspan x="0" dy="1.2em">Auxiliary loss to encourage balance</ns0:tspan>
+        </ns0:text>
+        <ns0:text x="0" y="880.0" font-size="12" fill="#c62828">
+          ✗ Training instability: Router can collapse (all tokens to one expert)
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:rect x="50" y="790" width="2250.0" height="90" fill="#1a237e" stroke="#fd7e14" stroke-width="3" rx="8"/>
+  <ns0:text x="550" y="905.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#d35400">
+    Example: Mixtral 8x7B
+  </ns0:text>
+  <ns0:g transform="translate(70, 840)">
+    <ns0:text x="0" y="930.0" font-size="13" fill="#1a237e">
+      • 8 experts of 7B parameters each = 47B total parameters (shared attention: 13B)
+    </ns0:text>
+    <ns0:text x="0" y="955.0" font-size="13" fill="#1a237e">
+      • But only activates 2 experts per token → Inference cost ~13B model!
+    </ns0:text>
+    <ns0:text x="0" y="980.0" font-size="13" fill="#2e7d32" font-weight="bold">
+      → Achieves 70B model quality at 13B model cost
+    </ns0:text>
+  </ns0:g>
+</ns0:svg>

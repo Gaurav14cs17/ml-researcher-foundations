@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 855.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgSRM" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="855.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Structural Risk Minimization (SRM)</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="700" height="80" rx="10" fill="#2d2d2d20" stroke="#fd7e14"/>
+    <ns0:text x="350" y="60.0" text-anchor="middle" fill="#e65100" font-size="14" font-weight="bold">SRM Objective</ns0:text>
+    <ns0:text x="350" y="85.0" text-anchor="middle" fill="#1a237e" font-size="13" font-family="Arial, sans-serif">f̂ = argmin_f [ R̂(f) + λ·Complexity(f) ]</ns0:text>
+    <ns0:text x="350" y="110.0" text-anchor="middle" fill="#e65100" font-size="10">Balance empirical risk with model complexity</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(150, 170)">
+    <ns0:text x="250" y="135.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Finding the Sweet Spot</ns0:text>
+    <ns0:line x1="50" y1="130" x2="450" y2="130" stroke="#e0e0e0" stroke-width="2"/>
+    <ns0:line x1="50" y1="130" x2="50" y2="20" stroke="#e0e0e0" stroke-width="2"/>
+    <ns0:text x="250" y="155" text-anchor="middle" fill="#a5b4fc" font-size="10">Model Complexity →</ns0:text>
+    <ns0:text x="25" y="180.0" text-anchor="middle" fill="#a5b4fc" font-size="10" transform="rotate(-90, 25, 80)">Error</ns0:text>
+    <ns0:path d="M 80 45 Q 200 80 420 110" stroke="#007bff" stroke-width="2" fill="none"/>
+    <ns0:text x="400" y="205.0" fill="#1565c0" font-size="9">Training Error</ns0:text>
+    <ns0:path d="M 80 40 Q 180 80 250 85 Q 320 90 420 50" stroke="#dc3545" stroke-width="2" fill="none"/>
+    <ns0:text x="400" y="230.0" fill="#c62828" font-size="9">Test Error</ns0:text>
+    <ns0:circle cx="250" cy="85" r="5" fill="#10b981"/>
+    <ns0:text x="250" y="255.0" text-anchor="middle" fill="#2e7d32" font-size="9">Optimal</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 310)">
+    <ns0:rect width="700" height="50" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="280.0" text-anchor="middle" fill="#1a237e" font-size="11">SRM = Regularization (L1, L2) | Early Stopping | Dropout | Model Selection via Validation</ns0:text>
+  </ns0:g>
+</ns0:svg>
