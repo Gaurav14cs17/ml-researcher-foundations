@@ -187,7 +187,7 @@ output = α_1 * op_1(x) + α_2 * op_2(x) + α_3 * op_3(x)
 \alpha^* = \arg\max_\alpha \text{Acc}(w^*(\alpha), \alpha) \quad \text{s.t.} \quad \text{Latency}(\alpha) \leq T
 ```
 
-where $w^*(\alpha)$ are optimal weights for architecture α.
+where w*(α) are optimal weights for architecture α.
 
 ### DARTS Continuous Relaxation
 
@@ -195,7 +195,7 @@ where $w^*(\alpha)$ are optimal weights for architecture α.
 \bar{o}(x) = \sum_{o \in \mathcal{O}} \frac{\exp(\alpha_o)}{\sum_{o'} \exp(\alpha_{o'})} \cdot o(x)
 ```
 
-After search: $o^* = \arg\max_o \alpha_o$
+After search: o* = argmax(αₒ)
 
 ### Bi-level Optimization
 

@@ -261,7 +261,7 @@ x_{t-1} = \sqrt{\bar{\alpha}_{t-1}} \hat{x}_0 + \sqrt{1-\bar{\alpha}_{t-1}} \eps
 
 ### Latent Space Compression
 
-Compression ratio: $\frac{512^2}{64^2} = 64\times$
+Compression ratio: 512²/64² = 64×
 
 ---
 

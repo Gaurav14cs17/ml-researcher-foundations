@@ -242,9 +242,9 @@ YOLOv1 (2016) → YOLOv5 (2020) → YOLOv8 (2023)
 
 ### Depthwise Separable FLOPs
 
-Standard: $C_{in} \times C_{out} \times K^2 \times H \times W$
+Standard: C_in × C_out × K² × H × W
 
-Depthwise Separable: $C_{in} \times (K^2 + C_{out}) \times H \times W$
+Depthwise Separable: C_in × (K² + C_out) × H × W
 
 ### EfficientNet Compound Scaling
 

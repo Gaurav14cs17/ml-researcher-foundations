@@ -256,7 +256,7 @@ Checkpointed: O(\sqrt{N}) activations, O(\sqrt{N}) recompute
 W_{new} = W_0 + BA
 ```
 
-where $B \in \mathbb{R}^{d \times r}$, $A \in \mathbb{R}^{r \times d}$, and $r \ll d$.
+where B ∈ ℝ^(d×r), A ∈ ℝ^(r×d), and r ≪ d.
 
 ---
 

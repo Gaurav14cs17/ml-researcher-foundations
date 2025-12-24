@@ -220,9 +220,9 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ### Straight-Through Estimator (STE)
 
-Forward: $y = \text{round}(x)$
+Forward: y = round(x)
 
-Backward: $\frac{\partial \mathcal{L}}{\partial x} = \frac{\partial \mathcal{L}}{\partial y}$
+Backward: ∂L/∂x = ∂L/∂y
 
 ### SmoothQuant Migration
 

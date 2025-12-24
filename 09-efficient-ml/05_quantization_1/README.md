@@ -221,7 +221,7 @@ where b is the bit-width.
 \epsilon_q = x - \hat{x} = x - s(q - z)
 ```
 
-Mean squared error: $\mathbb{E}[\epsilon_q^2] \approx \frac{s^2}{12}$
+Mean squared error: E[εq²] ≈ s²/12
 
 ---
 

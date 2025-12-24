@@ -275,7 +275,7 @@ Break-even: ~2 years at high utilization
 \text{Memory} = 2 \times L \times N \times d \times \text{dtype\_bytes}
 ```
 
-where $L$ = layers, $N$ = sequence length, $d$ = hidden dimension.
+where L = layers, N = sequence length, d = hidden dimension.
 
 ### Speculative Decoding Speedup
 

@@ -194,7 +194,7 @@ Recent work applies NAS to transformers:
 \max_\alpha \text{Acc}(\alpha) \times \left(\frac{\text{Latency}(\alpha)}{T}\right)^w
 ```
 
-where $w < 0$ penalizes exceeding target latency $T$.
+where w < 0 penalizes exceeding target latency T.
 
 ### EfficientNet Compound Scaling
 
@@ -202,13 +202,13 @@ where $w < 0$ penalizes exceeding target latency $T$.
 d = \alpha^\phi, \quad w = \beta^\phi, \quad r = \gamma^\phi
 ```
 
-Subject to: $\alpha \cdot \beta^2 \cdot \gamma^2 \approx 2$
+Subject to: α · β² · γ² ≈ 2
 
 ### Once-for-All Elastic Dimensions
 
-- **Depth**: Sample $d \in \{d_{min}, ..., d_{max}\}$
-- **Width**: Sample channels $c \in \{c_{min}, ..., c_{max}\}$
-- **Resolution**: Sample $r \in \{r_{min}, ..., r_{max}\}$
+- **Depth**: Sample d ∈ {d_min, ..., d_max}
+- **Width**: Sample channels c ∈ {c_min, ..., c_max}
+- **Resolution**: Sample r ∈ {r_min, ..., r_max}
 
 ---
 

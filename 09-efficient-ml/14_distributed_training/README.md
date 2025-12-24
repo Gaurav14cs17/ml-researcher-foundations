@@ -290,7 +290,7 @@ How do we scale efficiently?
 g = \frac{1}{N} \sum_{i=1}^N g_i
 ```
 
-AllReduce operation across $N$ GPUs.
+AllReduce operation across N GPUs.
 
 ### ZeRO Memory Partition
 
@@ -301,16 +301,16 @@ Per-GPU memory with ZeRO-3:
 
 ### Tensor Parallelism
 
-For $Y = XW$, split $W$ column-wise:
+For Y = XW, split W column-wise:
 ```
 Y = [XW_1, XW_2, ..., XW_p]
 ```
 
 ### Chinchilla Scaling Law
 
-Optimal training: $D \approx 20P$
+Optimal training: D ≈ 20P
 
-where $D$ = tokens, $P$ = parameters.
+where D = tokens, P = parameters.
 
 ---
 

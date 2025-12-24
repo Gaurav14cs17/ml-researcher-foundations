@@ -253,7 +253,7 @@ Complexity: O(N d^2) time, O(d^2) memory
 ### FlashAttention IO Complexity
 
 Standard: O(N^2 d) HBM reads/writes
-FlashAttention: O(N^2 d^2 / M) where $M$ is SRAM size
+FlashAttention: O(N^2 d^2 / M) where M is SRAM size
 
 ---
 

@@ -213,7 +213,7 @@ Distill BERT into a smaller model:
 \mathcal{L}_{\text{soft}} = T^2 \cdot \text{KL}\left(\sigma\left(\frac{z_s}{T}\right) \| \sigma\left(\frac{z_t}{T}\right)\right)
 ```
 
-where $\sigma$ is softmax, $T$ is temperature.
+where σ is softmax, T is temperature.
 
 ### Temperature Effect
 
@@ -221,7 +221,7 @@ where $\sigma$ is softmax, $T$ is temperature.
 p_i = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)}
 ```
 
-Higher $T$ → softer probability distribution → more information transfer.
+Higher T → softer probability distribution → more information transfer.
 
 ---
 
