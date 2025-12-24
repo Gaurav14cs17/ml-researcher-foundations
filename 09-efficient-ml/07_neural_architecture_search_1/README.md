@@ -172,7 +172,7 @@ output = α_1 * op_1(x) + α_2 * op_2(x) + α_3 * op_3(x)
 
 $$\alpha^* = \arg\max_\alpha \text{Acc}(w^*(\alpha), \alpha) \quad \text{s.t.} \quad \text{Latency}(\alpha) \leq T$$
 
-where $w^*(\alpha)$ are optimal weights for architecture $\alpha$.
+where $w^*(\alpha)$ are optimal weights for architecture α.
 
 ### DARTS Continuous Relaxation
 

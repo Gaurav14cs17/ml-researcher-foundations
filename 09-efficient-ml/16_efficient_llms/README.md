@@ -268,8 +268,8 @@ $$\text{Speedup} = \frac{k}{\text{draft\_time} \times k + \text{verify\_time}}$$
 
 ### Attention Complexity (MQA)
 
-Standard MHA: $O(H \times N^2 \times d)$
-MQA: $O(N^2 \times d)$ for KV, shared across heads
+Standard MHA: O(H \times N^2 \times d)
+MQA: O(N^2 \times d) for KV, shared across heads
 
 ---
 

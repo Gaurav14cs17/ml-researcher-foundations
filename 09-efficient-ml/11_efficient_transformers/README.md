@@ -219,13 +219,13 @@ Benefits:
 
 $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
 
-Complexity: $O(N^2 d)$ time, $O(N^2)$ memory
+Complexity: O(N^2 d) time, O(N^2) memory
 
 ### Linear Attention
 
 $$\text{LinAttn}(Q, K, V) = \phi(Q) \cdot \left(\phi(K)^T V\right)$$
 
-Complexity: $O(N d^2)$ time, $O(d^2)$ memory
+Complexity: O(N d^2) time, O(d^2) memory
 
 ### KV Cache Memory
 
@@ -233,8 +233,8 @@ $$\text{KV Memory} = 2 \times L \times N \times d \times \text{dtype\_bytes}$$
 
 ### FlashAttention IO Complexity
 
-Standard: $O(N^2 d)$ HBM reads/writes
-FlashAttention: $O(N^2 d^2 / M)$ where $M$ is SRAM size
+Standard: O(N^2 d) HBM reads/writes
+FlashAttention: O(N^2 d^2 / M) where $M$ is SRAM size
 
 ---
 

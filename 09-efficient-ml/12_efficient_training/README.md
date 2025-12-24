@@ -232,8 +232,8 @@ $$\mathcal{L}_{scaled} = s \cdot \mathcal{L}, \quad g_{unscaled} = \frac{g_{scal
 
 ### Gradient Checkpointing Memory
 
-Standard: $O(N)$ activations
-Checkpointed: $O(\sqrt{N})$ activations, $O(\sqrt{N})$ recompute
+Standard: O(N) activations
+Checkpointed: O(\sqrt{N}) activations, O(\sqrt{N}) recompute
 
 ### LoRA Update
 
