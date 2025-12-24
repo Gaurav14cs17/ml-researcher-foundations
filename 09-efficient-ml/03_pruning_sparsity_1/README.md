@@ -127,23 +127,29 @@ This paper introduced the standard pruning pipeline used today.
 
 The magnitude-based pruning removes weights below a threshold:
 
-$$\mathcal{M}(W) = \{w_{ij} : |w_{ij}| > \tau\}$$
+```
+\mathcal{M}(W) = \{w_{ij} : |w_{ij}| > \tau\}
+```
 
-where $\tau$ is the threshold determined by sparsity target.
+where τ is the threshold determined by sparsity target.
 
 ### Taylor Expansion Criterion
 
 Approximates importance by first-order Taylor expansion of loss:
 
-$$\Delta\mathcal{L}(w) \approx \frac{\partial\mathcal{L}}{\partial w} \cdot w$$
+```
+\Delta\mathcal{L}(w) \approx \frac{\partial\mathcal{L}}{\partial w} \cdot w
+```
 
-Weights with smallest $|\Delta\mathcal{L}|$ are pruned first.
+Weights with smallest |ΔL| are pruned first.
 
 ### Sparsity Pattern
 
 For structured pruning, remove entire filters/channels:
 
-$$\text{Filter Importance} = \sum_{c,h,w} |W_{f,c,h,w}|$$
+```
+\text{Filter Importance} = \sum_{c,h,w} |W_{f,c,h,w}|
+```
 
 ---
 

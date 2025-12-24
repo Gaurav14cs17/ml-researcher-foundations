@@ -80,13 +80,19 @@ Machine learning models are getting bigger every year:
 ### Model Efficiency Metrics
 
 **FLOPs (Floating Point Operations):**
-$$\text{FLOPs} = 2 \times \text{MACs}$$
+```
+\text{FLOPs} = 2 \times \text{MACs}
+```
 
 **Memory Footprint:**
-$$\text{Memory} = \text{Params} \times \text{Bytes per param}$$
+```
+\text{Memory} = \text{Params} \times \text{Bytes per param}
+```
 
 **Efficiency Ratio:**
-$$\text{Efficiency} = \frac{\text{Accuracy}}{\text{FLOPs}} \text{ or } \frac{\text{Accuracy}}{\text{Latency}}$$
+```
+\text{Efficiency} = \frac{\text{Accuracy}}{\text{FLOPs}} \text{ or } \frac{\text{Accuracy}}{\text{Latency}}
+```
 
 ---
 

@@ -228,7 +228,9 @@ def lr_schedule(step, warmup_steps, total_steps, max_lr):
 ### Mixed Precision Loss Scaling
 
 To prevent FP16 underflow:
-$$\mathcal{L}_{scaled} = s \cdot \mathcal{L}, \quad g_{unscaled} = \frac{g_{scaled}}{s}$$
+```
+\mathcal{L}_{scaled} = s \cdot \mathcal{L}, \quad g_{unscaled} = \frac{g_{scaled}}{s}
+```
 
 ### Gradient Checkpointing Memory
 
@@ -237,7 +239,9 @@ Checkpointed: O(\sqrt{N}) activations, O(\sqrt{N}) recompute
 
 ### LoRA Update
 
-$$W_{new} = W_0 + BA$$
+```
+W_{new} = W_0 + BA
+```
 
 where $B \in \mathbb{R}^{d \times r}$, $A \in \mathbb{R}^{r \times d}$, and $r \ll d$.
 

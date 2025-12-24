@@ -190,17 +190,23 @@ Distill BERT into a smaller model:
 
 ### Distillation Objective
 
-$$\mathcal{L} = \alpha \cdot \mathcal{L}_{\text{soft}} + (1-\alpha) \cdot \mathcal{L}_{\text{hard}}$$
+```
+\mathcal{L} = \alpha \cdot \mathcal{L}_{\text{soft}} + (1-\alpha) \cdot \mathcal{L}_{\text{hard}}
+```
 
 ### Soft Target Loss (KL Divergence)
 
-$$\mathcal{L}_{\text{soft}} = T^2 \cdot \text{KL}\left(\sigma\left(\frac{z_s}{T}\right) \| \sigma\left(\frac{z_t}{T}\right)\right)$$
+```
+\mathcal{L}_{\text{soft}} = T^2 \cdot \text{KL}\left(\sigma\left(\frac{z_s}{T}\right) \| \sigma\left(\frac{z_t}{T}\right)\right)
+```
 
 where $\sigma$ is softmax, $T$ is temperature.
 
 ### Temperature Effect
 
-$$p_i = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)}$$
+```
+p_i = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)}
+```
 
 Higher $T$ → softer probability distribution → more information transfer.
 

@@ -279,15 +279,21 @@ Often O(N) just to load data!
 
 ### Qubit State
 
-$$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle, \quad |\alpha|^2 + |\beta|^2 = 1$$
+```
+|\psi\rangle = \alpha|0\rangle + \beta|1\rangle, \quad |\alpha|^2 + |\beta|^2 = 1
+```
 
 ### Hadamard Gate
 
-$$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$$
+```
+H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}
+```
 
 ### Quantum Kernel
 
-$$k(x, y) = |\langle\phi(x)|\phi(y)\rangle|^2$$
+```
+k(x, y) = |\langle\phi(x)|\phi(y)\rangle|^2
+```
 
 ---
 

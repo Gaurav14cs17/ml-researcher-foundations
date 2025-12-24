@@ -177,13 +177,17 @@ Recent work applies NAS to transformers:
 
 ### Hardware-Aware Objective
 
-$$\max_\alpha \text{Acc}(\alpha) \times \left(\frac{\text{Latency}(\alpha)}{T}\right)^w$$
+```
+\max_\alpha \text{Acc}(\alpha) \times \left(\frac{\text{Latency}(\alpha)}{T}\right)^w
+```
 
 where $w < 0$ penalizes exceeding target latency $T$.
 
 ### EfficientNet Compound Scaling
 
-$$d = \alpha^\phi, \quad w = \beta^\phi, \quad r = \gamma^\phi$$
+```
+d = \alpha^\phi, \quad w = \beta^\phi, \quad r = \gamma^\phi
+```
 
 Subject to: $\alpha \cdot \beta^2 \cdot \gamma^2 \approx 2$
 

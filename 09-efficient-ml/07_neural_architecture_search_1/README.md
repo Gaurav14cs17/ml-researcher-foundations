@@ -170,19 +170,25 @@ output = α_1 * op_1(x) + α_2 * op_2(x) + α_3 * op_3(x)
 
 ### NAS Objective
 
-$$\alpha^* = \arg\max_\alpha \text{Acc}(w^*(\alpha), \alpha) \quad \text{s.t.} \quad \text{Latency}(\alpha) \leq T$$
+```
+\alpha^* = \arg\max_\alpha \text{Acc}(w^*(\alpha), \alpha) \quad \text{s.t.} \quad \text{Latency}(\alpha) \leq T
+```
 
 where $w^*(\alpha)$ are optimal weights for architecture α.
 
 ### DARTS Continuous Relaxation
 
-$$\bar{o}(x) = \sum_{o \in \mathcal{O}} \frac{\exp(\alpha_o)}{\sum_{o'} \exp(\alpha_{o'})} \cdot o(x)$$
+```
+\bar{o}(x) = \sum_{o \in \mathcal{O}} \frac{\exp(\alpha_o)}{\sum_{o'} \exp(\alpha_{o'})} \cdot o(x)
+```
 
 After search: $o^* = \arg\max_o \alpha_o$
 
 ### Bi-level Optimization
 
-$$\min_\alpha \mathcal{L}_{val}(w^*(\alpha), \alpha) \quad \text{s.t.} \quad w^*(\alpha) = \arg\min_w \mathcal{L}_{train}(w, \alpha)$$
+```
+\min_\alpha \mathcal{L}_{val}(w^*(\alpha), \alpha) \quad \text{s.t.} \quad w^*(\alpha) = \arg\min_w \mathcal{L}_{train}(w, \alpha)
+```
 
 ---
 

@@ -140,21 +140,27 @@ Pruning large language models is different:
 ### Lottery Ticket Hypothesis
 
 A sparse subnetwork $f(x; m \odot \theta_0)$ can match dense network accuracy when:
-- $m$ is the mask found by training and pruning
+- m is the mask found by training and pruning
 - $\theta_0$ is the **original** initialization
 
 ### Sparse Matrix Formats
 
 **COO Storage:**
-$$\text{Memory} = 3 \times \text{nnz} \times \text{sizeof(dtype)}$$
+```
+\text{Memory} = 3 \times \text{nnz} \times \text{sizeof(dtype)}
+```
 
 **CSR Storage:**
-$$\text{Memory} = 2 \times \text{nnz} + (n+1) \times \text{sizeof(index)}$$
+```
+\text{Memory} = 2 \times \text{nnz} + (n+1) \times \text{sizeof(index)}
+```
 
 ### 2:4 Structured Sparsity
 
 For every 4 elements, exactly 2 are zero:
-$$\text{Compression} = 2\times, \quad \text{Speedup} \approx 2\times$$
+```
+\text{Compression} = 2\times, \quad \text{Speedup} \approx 2\times
+```
 
 ---
 

@@ -213,13 +213,19 @@ Backward: $\frac{\partial \mathcal{L}}{\partial x} = \frac{\partial \mathcal{L}}
 
 ### SmoothQuant Migration
 
-$$\hat{X} = X \text{diag}(s)^{-1}, \quad \hat{W} = \text{diag}(s) W$$
+```
+\hat{X} = X \text{diag}(s)^{-1}, \quad \hat{W} = \text{diag}(s) W
+```
 
-$$s_j = \frac{\max(|X_j|)^\alpha}{\max(|W_j|)^{1-\alpha}}$$
+```
+s_j = \frac{\max(|X_j|)^\alpha}{\max(|W_j|)^{1-\alpha}}
+```
 
 ### GPTQ Error Compensation
 
-$$\Delta W = (W_q - W) H^{-1}$$
+```
+\Delta W = (W_q - W) H^{-1}
+```
 
 where $H$ is the Hessian approximation.
 

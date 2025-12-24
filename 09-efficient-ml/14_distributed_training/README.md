@@ -273,19 +273,25 @@ How do we scale efficiently?
 
 ### Data Parallel Gradient Sync
 
-$$g = \frac{1}{N} \sum_{i=1}^N g_i$$
+```
+g = \frac{1}{N} \sum_{i=1}^N g_i
+```
 
 AllReduce operation across $N$ GPUs.
 
 ### ZeRO Memory Partition
 
 Per-GPU memory with ZeRO-3:
-$$\text{Memory} = \frac{W + W_g + W_{opt}}{N} + A$$
+```
+\text{Memory} = \frac{W + W_g + W_{opt}}{N} + A
+```
 
 ### Tensor Parallelism
 
 For $Y = XW$, split $W$ column-wise:
-$$Y = [XW_1, XW_2, ..., XW_p]$$
+```
+Y = [XW_1, XW_2, ..., XW_p]
+```
 
 ### Chinchilla Scaling Law
 

@@ -188,19 +188,25 @@ print(f"Compression: {original_size/quantized_size:.1f}x")
 
 Map floating-point values to integers:
 
-$$q = \text{round}\left(\frac{x}{s}\right) + z$$
+```
+q = \text{round}\left(\frac{x}{s}\right) + z
+```
 
 where $s$ is scale and $z$ is zero-point.
 
 ### Scale Calculation
 
-$$s = \frac{x_{\max} - x_{\min}}{2^b - 1}$$
+```
+s = \frac{x_{\max} - x_{\min}}{2^b - 1}
+```
 
 where $b$ is the bit-width.
 
 ### Quantization Error
 
-$$\epsilon_q = x - \hat{x} = x - s(q - z)$$
+```
+\epsilon_q = x - \hat{x} = x - s(q - z)
+```
 
 Mean squared error: $\mathbb{E}[\epsilon_q^2] \approx \frac{s^2}{12}$
 

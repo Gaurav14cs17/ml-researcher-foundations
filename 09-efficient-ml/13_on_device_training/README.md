@@ -232,11 +232,15 @@ for round in range(num_rounds):
 
 ### Training Memory Requirement
 
-$$\text{Memory} = W + W_g + W_{opt} + A$$
+```
+\text{Memory} = W + W_g + W_{opt} + A
+```
 
 ### Federated Averaging
 
-$$w_{t+1} = \sum_{k=1}^K \frac{n_k}{n} w_{t+1}^k$$
+```
+w_{t+1} = \sum_{k=1}^K \frac{n_k}{n} w_{t+1}^k
+```
 
 ---
 

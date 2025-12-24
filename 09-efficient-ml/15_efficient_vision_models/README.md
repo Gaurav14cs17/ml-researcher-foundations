@@ -235,7 +235,9 @@ Depthwise Separable: $C_{in} \times (K^2 + C_{out}) \times H \times W$
 
 ### EfficientNet Compound Scaling
 
-$$d = \alpha^\phi, \quad w = \beta^\phi, \quad r = \gamma^\phi$$
+```
+d = \alpha^\phi, \quad w = \beta^\phi, \quad r = \gamma^\phi
+```
 
 ---
 

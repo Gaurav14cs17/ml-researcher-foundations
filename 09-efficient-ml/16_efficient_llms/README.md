@@ -258,13 +258,17 @@ Break-even: ~2 years at high utilization
 
 ### KV Cache Memory
 
-$$\text{Memory} = 2 \times L \times N \times d \times \text{dtype\_bytes}$$
+```
+\text{Memory} = 2 \times L \times N \times d \times \text{dtype\_bytes}
+```
 
 where $L$ = layers, $N$ = sequence length, $d$ = hidden dimension.
 
 ### Speculative Decoding Speedup
 
-$$\text{Speedup} = \frac{k}{\text{draft\_time} \times k + \text{verify\_time}}$$
+```
+\text{Speedup} = \frac{k}{\text{draft\_time} \times k + \text{verify\_time}}
+```
 
 ### Attention Complexity (MQA)
 

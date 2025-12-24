@@ -107,18 +107,26 @@ Time = Data Size / Bandwidth
 ### Roofline Model
 
 **Arithmetic Intensity:**
-$$I = \frac{\text{FLOPs}}{\text{Bytes accessed}}$$
+```
+I = \frac{\text{FLOPs}}{\text{Bytes accessed}}
+```
 
 **Attainable Performance:**
-$$P = \min(\text{Peak FLOPs}, I \times \text{Bandwidth})$$
+```
+P = \min(\text{Peak FLOPs}, I \times \text{Bandwidth})
+```
 
 ### Layer Complexity
 
 **Convolution:**
-$$\text{FLOPs} = 2 \times C_{in} \times C_{out} \times K^2 \times H \times W$$
+```
+\text{FLOPs} = 2 \times C_{in} \times C_{out} \times K^2 \times H \times W
+```
 
 **Attention:**
-$$\text{FLOPs} = 4 \times N^2 \times d + 2 \times N \times d^2$$
+```
+\text{FLOPs} = 4 \times N^2 \times d + 2 \times N \times d^2
+```
 
 ---
 

@@ -199,15 +199,21 @@ External: SD card, very slow
 
 ### Memory Constraint
 
-$$\text{Peak Memory} = \max_l (\text{Input}_l + \text{Output}_l + \text{Weights}_l) \leq \text{SRAM}$$
+```
+\text{Peak Memory} = \max_l (\text{Input}_l + \text{Output}_l + \text{Weights}_l) \leq \text{SRAM}
+```
 
 ### MCUNet Optimization
 
-$$\max_\alpha \text{Acc}(\alpha) \quad \text{s.t.} \quad \text{Flash}(\alpha) \leq F_{max}, \quad \text{SRAM}(\alpha) \leq S_{max}$$
+```
+\max_\alpha \text{Acc}(\alpha) \quad \text{s.t.} \quad \text{Flash}(\alpha) \leq F_{max}, \quad \text{SRAM}(\alpha) \leq S_{max}
+```
 
 ### Patch-Based Memory
 
-$$\text{Memory}_{patch} = \frac{\text{Memory}_{full}}{(\text{patches})^2}$$
+```
+\text{Memory}_{patch} = \frac{\text{Memory}_{full}}{(\text{patches})^2}
+```
 
 ---
 
