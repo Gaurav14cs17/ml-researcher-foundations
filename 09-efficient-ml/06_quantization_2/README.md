@@ -227,7 +227,7 @@ s_j = \frac{\max(|X_j|)^\alpha}{\max(|W_j|)^{1-\alpha}}
 \Delta W = (W_q - W) H^{-1}
 ```
 
-where $H$ is the Hessian approximation.
+where H is the Hessian approximation.
 
 ---
 

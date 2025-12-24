@@ -192,7 +192,7 @@ Map floating-point values to integers:
 q = \text{round}\left(\frac{x}{s}\right) + z
 ```
 
-where $s$ is scale and $z$ is zero-point.
+where s is scale and z is zero-point.
 
 ### Scale Calculation
 
@@ -200,7 +200,7 @@ where $s$ is scale and $z$ is zero-point.
 s = \frac{x_{\max} - x_{\min}}{2^b - 1}
 ```
 
-where $b$ is the bit-width.
+where b is the bit-width.
 
 ### Quantization Error
 

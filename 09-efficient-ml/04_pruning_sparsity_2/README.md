@@ -139,9 +139,9 @@ Pruning large language models is different:
 
 ### Lottery Ticket Hypothesis
 
-A sparse subnetwork $f(x; m \odot \theta_0)$ can match dense network accuracy when:
+A sparse subnetwork f(x; m ⊙ θ₀) can match dense network accuracy when:
 - m is the mask found by training and pruning
-- $\theta_0$ is the **original** initialization
+- θ₀ is the **original** initialization
 
 ### Sparse Matrix Formats
 
