@@ -1,3 +1,16 @@
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=header&text=03 Information Theory&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=flat-square" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=flat-square" alt="Updated"/>
+</p>
+
+---
+
+
 # 📡 Information Theory
 
 > **Measuring information and comparing distributions**
@@ -189,3 +202,9 @@ Information Theory --> Understanding loss functions
 
 ⬅️ [Back: 02-Multivariate](../02-multivariate/) | ➡️ [Next: 04-Estimation](../04-estimation/)
 
+
+---
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=footer" width="100%"/>
+</p>

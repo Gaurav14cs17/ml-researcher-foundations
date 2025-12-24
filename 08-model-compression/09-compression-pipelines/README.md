@@ -1,3 +1,16 @@
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=header&text=09 Compression Pipelines&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=flat-square" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=flat-square" alt="Updated"/>
+</p>
+
+---
+
+
 # 🔄 Compression Pipelines
 
 > **End-to-end compression workflows**
@@ -134,3 +147,9 @@ Example: 7B model, r=16, d=4096
 ---
 
 ⬅️ [Back: 08-PEFT](../08-peft/) | ➡️ [Next: 10-Tools](../10-tools/)
+
+---
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=footer" width="100%"/>
+</p>

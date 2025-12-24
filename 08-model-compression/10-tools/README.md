@@ -1,3 +1,16 @@
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=header&text=10 Tools&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=flat-square" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=flat-square" alt="Updated"/>
+</p>
+
+---
+
+
 # 🛠️ Tools and Frameworks
 
 > **Libraries for model compression**
@@ -128,3 +141,9 @@ import tensorrt as trt
 ---
 
 ⬅️ [Back: 09-Compression Pipelines](../09-compression-pipelines/) | ➡️ [Next: 11-Case Studies](../11-case-studies/)
+
+---
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=footer" width="100%"/>
+</p>

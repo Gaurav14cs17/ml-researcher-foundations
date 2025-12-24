@@ -1,3 +1,16 @@
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=header&text=Kernel Trick&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=flat-square" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=flat-square" alt="Updated"/>
+</p>
+
+---
+
+
 # 🎯 The Kernel Trick
 
 > **Computing in infinite dimensions without the computational cost**
@@ -166,3 +179,9 @@ Example: Linear SVM with RBF kernel
 ---
 
 ⬅️ [Back: Gaussian Processes](../gaussian-processes/) | ➡️ [Next: Kernels](../kernels/)
+
+---
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=footer" width="100%"/>
+</p>

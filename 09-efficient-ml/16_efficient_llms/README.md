@@ -1,3 +1,16 @@
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=header&text=16 Efficient Llms&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=flat-square" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=flat-square" alt="Updated"/>
+</p>
+
+---
+
+
 # Lecture 16: Efficient Large Language Models
 
 [← Back to Course](../README.md) | [← Previous](../15_efficient_vision_models/README.md) | [Next: Efficient Diffusion →](../17_efficient_diffusion_models/README.md)
@@ -298,3 +311,9 @@ MQA: O(N^2 \times d) for KV, shared across heads
 | 📄 | AWQ | [arXiv](https://arxiv.org/abs/2306.00978) |
 | 🎥 | MIT 6.5940 TinyML | [Course](https://hanlab.mit.edu/courses/2024-fall-65940) |
 | 🇨🇳 | 知乎 - 大模型推理优化 | [Zhihu](https://www.zhihu.com/topic/20069893) |
+
+---
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=footer" width="100%"/>
+</p>

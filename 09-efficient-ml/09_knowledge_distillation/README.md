@@ -1,3 +1,16 @@
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=header&text=09 Knowledge Distillation&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=flat-square" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=flat-square" alt="Updated"/>
+</p>
+
+---
+
+
 # Lecture 9: Knowledge Distillation
 
 [← Back to Course](../README.md) | [← Previous](../08_neural_architecture_search_2/README.md) | [Next: MCUNet →](../10_mcunet_tinyml/README.md)
@@ -233,3 +246,9 @@ Higher $T$ → softer probability distribution → more information transfer.
 | 🎥 | MIT 6.5940 TinyML | [Course](https://hanlab.mit.edu/courses/2024-fall-65940) |
 | 🇨🇳 | 知乎 - 知识蒸馏 | [Zhihu](https://www.zhihu.com/topic/20748211) |
 
+
+---
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=footer" width="100%"/>
+</p>

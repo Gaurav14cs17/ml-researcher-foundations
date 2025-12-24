@@ -1,3 +1,16 @@
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=header&text=01 Introduction&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=flat-square" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=flat-square" alt="Updated"/>
+</p>
+
+---
+
+
 # Lecture 1: Introduction to Efficient ML
 
 [← Back to Course](../README.md) | [Next: Basics →](../02_basics/README.md)
@@ -117,3 +130,9 @@ Machine learning models are getting bigger every year:
 | 📄 | Efficient Deep Learning Survey | [arXiv](https://arxiv.org/abs/2106.08962) |
 | 🇨🇳 | 知乎 - 高效机器学习 | [Zhihu](https://www.zhihu.com/topic/19813032) |
 
+
+---
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=footer" width="100%"/>
+</p>

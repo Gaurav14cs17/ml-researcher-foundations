@@ -1,3 +1,16 @@
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=header&text=15 Efficient Vision Models&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=flat-square" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=flat-square" alt="Updated"/>
+</p>
+
+---
+
+
 # Lecture 15: Efficient Vision Models
 
 [← Back to Course](../README.md) | [← Previous](../14_distributed_training/README.md) | [Next: Efficient LLMs →](../16_efficient_llms/README.md)
@@ -260,3 +273,9 @@ d = \alpha^\phi, \quad w = \beta^\phi, \quad r = \gamma^\phi
 | 📄 | Swin Transformer | [arXiv](https://arxiv.org/abs/2103.14030) |
 | 🎥 | MIT 6.5940 TinyML | [Course](https://hanlab.mit.edu/courses/2024-fall-65940) |
 | 🇨🇳 | 知乎 - 高效视觉模型 | [Zhihu](https://www.zhihu.com/topic/20069893) |
+
+---
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=footer" width="100%"/>
+</p>

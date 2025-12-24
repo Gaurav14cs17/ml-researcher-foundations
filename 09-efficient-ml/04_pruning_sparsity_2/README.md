@@ -1,3 +1,16 @@
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=header&text=04 Pruning Sparsity 2&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=flat-square" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=flat-square" alt="Updated"/>
+</p>
+
+---
+
+
 # Lecture 4: Pruning & Sparsity (Part II)
 
 [← Back to Course](../README.md) | [← Previous](../03_pruning_sparsity_1/README.md) | [Next: Quantization I →](../05_quantization_1/README.md)
@@ -185,3 +198,9 @@ For every 4 elements, exactly 2 are zero:
 | 🎥 | MIT 6.5940 TinyML | [Course](https://hanlab.mit.edu/courses/2024-fall-65940) |
 | 🇨🇳 | 知乎 - 稀疏神经网络 | [Zhihu](https://www.zhihu.com/topic/20084746) |
 
+
+---
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=footer" width="100%"/>
+</p>
