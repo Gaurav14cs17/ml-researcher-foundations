@@ -1,21 +1,15 @@
+<!-- Animated Header -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=🎮%20Reinforcement%20Learning&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=32&desc=Learning%20Through%20Trial%20and%20Error&descAlignY=52&descSize=18" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=F39C12&height=120&section=header&text=Topic&fontSize=32&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/📚_Topics-6_Modules-blue?style=for-the-badge" alt="Topics"/>
-  <img src="https://img.shields.io/badge/⏱️_Time-4_Weeks-green?style=for-the-badge" alt="Time"/>
-  <img src="https://img.shields.io/badge/📊_Level-Advanced-red?style=for-the-badge" alt="Level"/>
+  <img src="https://img.shields.io/badge/Section-07-F39C12?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=for-the-badge" alt="Updated"/>
 </p>
 
-<p align="center">
-  <a href="#-topics"><img src="https://img.shields.io/badge/Start_Learning-FF5722?style=for-the-badge&logo=rocket&logoColor=white" alt="Start"/></a>
-  <a href="../08-model-compression/README.md"><img src="https://img.shields.io/badge/Next:_Compression-00C853?style=for-the-badge&logo=arrow-right&logoColor=white" alt="Next"/></a>
-</p>
-
----
-
-**✍️ Author:** [Gaurav Goswami](https://github.com/Gaurav14cs17) • **📅 Updated:** December 2024
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 ---
 
@@ -212,6 +206,10 @@ graph LR
 
 ---
 
+---
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=F39C12&height=80&section=footer" width="100%"/>
 </p>

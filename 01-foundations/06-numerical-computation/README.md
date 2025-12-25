@@ -1,25 +1,15 @@
 <!-- Animated Header -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=F38181&height=120&section=header&text=💻%20Numerical%20Computation&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=6C63FF&height=120&section=header&text=x%20%201000%201001%201002&fontSize=32&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Section-6_of_6-F38181?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
-  <img src="https://img.shields.io/badge/Reading-15_min-00C853?style=for-the-badge&logo=clock&logoColor=white" alt="Reading Time"/>
-  <img src="https://img.shields.io/badge/Level-Intermediate-FF9800?style=for-the-badge&logo=signal&logoColor=white" alt="Difficulty"/>
-</p>
-
-<p align="center">
-  <i>How computers (and GPUs) actually do math</i>
+  <img src="https://img.shields.io/badge/Section-01-6C63FF?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=for-the-badge" alt="Updated"/>
 </p>
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
-
----
-
-**✍️ Author:** [Gaurav Goswami](https://github.com/Gaurav14cs17)  
-**📅 Published:** December 2024  
-**🏷️ Tags:** `floating-point` `numerical-stability` `mixed-precision` `NaN` `overflow`
 
 ---
 
@@ -494,16 +484,11 @@ Value = (-1)ˢ × (1 + m/2²³) × 2⁽ᵉ⁻¹²⁷⁾
 </p>
 
 <!-- Animated Footer -->
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=F38181&height=80&section=footer&animation=twinkling" width="100%"/>
-</p>
+
+---
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 <p align="center">
-  <a href="../README.md"><img src="https://img.shields.io/badge/📚_Part_of-ML_Researcher_Foundations-F38181?style=for-the-badge" alt="Series"/></a>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=6C63FF&height=80&section=footer" width="100%"/>
 </p>
-
-<p align="center">
-  <sub>Made with ❤️ by <a href="https://github.com/Gaurav14cs17">Gaurav Goswami</a></sub>
-</p>
-
-

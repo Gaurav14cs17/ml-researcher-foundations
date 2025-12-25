@@ -1,19 +1,15 @@
-<div align="center">
-
 <!-- Animated Header -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=🖼️%20Images&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32"/>
-
-<!-- Badges -->
-<p>
-<img src="https://img.shields.io/badge/Type-Assets-blue?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/Format-SVG-green?style=for-the-badge"/>
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=F39C12&height=120&section=header&text=Topic&fontSize=32&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
 </p>
 
-</div>
+<p align="center">
+  <img src="https://img.shields.io/badge/Section-07-F39C12?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=for-the-badge" alt="Updated"/>
+</p>
 
----
-
-> **SVG diagrams and visualizations for this section**
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 ---
 
@@ -54,3 +50,11 @@ comparison-chart.svg
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer"/>
 
 </div>
+
+---
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=F39C12&height=80&section=footer" width="100%"/>
+</p>

@@ -1,25 +1,15 @@
 <!-- Animated Header -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=FFE66D&height=120&section=header&text=🔀%20Logic&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=6C63FF&height=120&section=header&text=Topic&fontSize=32&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Section-4_of_6-FFE66D?style=for-the-badge&logo=bookstack&logoColor=black" alt="Section"/>
-  <img src="https://img.shields.io/badge/Reading-18_min-00C853?style=for-the-badge&logo=clock&logoColor=white" alt="Reading Time"/>
-  <img src="https://img.shields.io/badge/Level-Intermediate-FF9800?style=for-the-badge&logo=signal&logoColor=white" alt="Difficulty"/>
-</p>
-
-<p align="center">
-  <i>Formal reasoning for reading and writing proofs</i>
+  <img src="https://img.shields.io/badge/Section-01-6C63FF?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=for-the-badge" alt="Updated"/>
 </p>
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
-
----
-
-**✍️ Author:** [Gaurav Goswami](https://github.com/Gaurav14cs17)  
-**📅 Published:** December 2024  
-**🏷️ Tags:** `logic` `propositional-logic` `predicate-logic` `quantifiers` `boolean`
 
 ---
 
@@ -802,14 +792,11 @@ True initially  ──▶  [Yes]  ──▶  Preserves I  ──┐     I ∧ ¬
 ---
 
 <!-- Animated Footer -->
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=FFE66D&height=80&section=footer&animation=twinkling" width="100%"/>
-</p>
+
+---
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 <p align="center">
-  <a href="../README.md"><img src="https://img.shields.io/badge/📚_Part_of-ML_Researcher_Foundations-FFE66D?style=for-the-badge" alt="Series"/></a>
-</p>
-
-<p align="center">
-  <sub>Made with ❤️ by <a href="https://github.com/Gaurav14cs17">Gaurav Goswami</a></sub>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=6C63FF&height=80&section=footer" width="100%"/>
 </p>

@@ -1,25 +1,15 @@
 <!-- Animated Header -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=4ECDC4&height=120&section=header&text=🔢%20Set%20Theory&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=6C63FF&height=120&section=header&text=Sets%20in%20Python&fontSize=32&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Section-3_of_6-4ECDC4?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
-  <img src="https://img.shields.io/badge/Reading-15_min-00C853?style=for-the-badge&logo=clock&logoColor=white" alt="Reading Time"/>
-  <img src="https://img.shields.io/badge/Level-Intermediate-FF9800?style=for-the-badge&logo=signal&logoColor=white" alt="Difficulty"/>
-</p>
-
-<p align="center">
-  <i>The foundation of all mathematics and probability</i>
+  <img src="https://img.shields.io/badge/Section-01-6C63FF?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=for-the-badge" alt="Updated"/>
 </p>
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
-
----
-
-**✍️ Author:** [Gaurav Goswami](https://github.com/Gaurav14cs17)  
-**📅 Published:** December 2024  
-**🏷️ Tags:** `set-theory` `probability` `sigma-algebra` `relations` `functions`
 
 ---
 
@@ -628,16 +618,11 @@ Attention(Q, K, V) = softmax(QKᵀ / √d) V
 ---
 
 <!-- Animated Footer -->
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=4ECDC4&height=80&section=footer&animation=twinkling" width="100%"/>
-</p>
+
+---
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 <p align="center">
-  <a href="../README.md"><img src="https://img.shields.io/badge/📚_Part_of-ML_Researcher_Foundations-4ECDC4?style=for-the-badge" alt="Series"/></a>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=6C63FF&height=80&section=footer" width="100%"/>
 </p>
-
-<p align="center">
-  <sub>Made with ❤️ by <a href="https://github.com/Gaurav14cs17">Gaurav Goswami</a></sub>
-</p>
-
-
