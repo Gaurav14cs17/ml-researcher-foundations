@@ -1,3 +1,15 @@
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=header&text=Conjugate%20Gradient%20Method&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=flat-square" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=flat-square" alt="Updated"/>
+</p>
+
+---
+
 # Conjugate Gradient Method
 
 > **Efficient iterative solver for large symmetric positive-definite systems**
@@ -244,3 +256,9 @@ Restart: Set β = 0 when directions lose conjugacy
 ---
 
 ➡️ [Next: Quasi Newton](./quasi-newton.md)
+
+---
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=footer" width="100%"/>
+</p>
