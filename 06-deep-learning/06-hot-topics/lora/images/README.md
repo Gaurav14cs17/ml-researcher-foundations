@@ -1,13 +1,56 @@
-# LoRA Images
+<div align="center">
 
-## Suggested Diagrams
+<!-- Animated Header -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=🖼️%20Images&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32"/>
 
-- `lora-architecture.png` - Low-rank adapter structure
-- `parameter-comparison.png` - Full vs LoRA params
-- `svd-connection.png` - Link to matrix factorization
-- `lora-variants.png` - QLoRA, DoRA comparison
+<!-- Badges -->
+<p>
+<img src="https://img.shields.io/badge/Type-Assets-blue?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/Format-SVG-green?style=for-the-badge"/>
+</p>
 
-## Tools
-- matplotlib, tikz, or draw.io
+</div>
 
+---
 
+> **SVG diagrams and visualizations for this section**
+
+---
+
+## 📂 Suggested Images
+
+Add SVG diagrams for:
+- Key concepts
+- Mathematical visualizations
+- Algorithm flowcharts
+- Architecture diagrams
+
+---
+
+## 🎨 Creating SVGs
+
+| Tool | Style |
+|------|-------|
+| [Excalidraw](https://excalidraw.com/) | Hand-drawn |
+| [draw.io](https://draw.io/) | Technical |
+| [Mermaid](https://mermaid.js.org/) | From code |
+| Python matplotlib | Plots |
+
+---
+
+## 📐 Naming Convention
+
+```
+concept-name.svg
+algorithm-step.svg
+comparison-chart.svg
+```
+
+---
+
+<div align="center">
+
+<!-- Animated Footer -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer"/>
+
+</div>

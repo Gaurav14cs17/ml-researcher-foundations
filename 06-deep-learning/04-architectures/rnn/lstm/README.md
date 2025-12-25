@@ -1,0 +1,62 @@
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=header&text=LSTM&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=flat-square" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=flat-square" alt="Updated"/>
+</p>
+
+---
+
+# 🧠 Long Short-Term Memory
+
+> **RNN variant that remembers long-term dependencies**
+
+---
+
+## 📐 LSTM Equations
+
+```
+Forget Gate: fₜ = σ(Wf[hₜ₋₁, xₜ] + bf)
+Input Gate:  iₜ = σ(Wi[hₜ₋₁, xₜ] + bi)
+Candidate:   c̃ₜ = tanh(Wc[hₜ₋₁, xₜ] + bc)
+Cell State:  cₜ = fₜ ⊙ cₜ₋₁ + iₜ ⊙ c̃ₜ
+Output Gate: oₜ = σ(Wo[hₜ₋₁, xₜ] + bo)
+Hidden:      hₜ = oₜ ⊙ tanh(cₜ)
+
+Key insight: Cell state cₜ flows with minimal transformation
+→ Gradient can flow through long sequences
+```
+
+---
+
+## 💻 Code Example
+
+```python
+import torch.nn as nn
+
+class LSTMModel(nn.Module):
+    def __init__(self, vocab_size, embed_dim, hidden_dim):
+        super().__init__()
+        self.embed = nn.Embedding(vocab_size, embed_dim)
+        self.lstm = nn.LSTM(embed_dim, hidden_dim, batch_first=True)
+        self.fc = nn.Linear(hidden_dim, vocab_size)
+    
+    def forward(self, x):
+        x = self.embed(x)
+        out, (h, c) = self.lstm(x)
+        return self.fc(out)
+```
+
+---
+
+⬅️ [Back: RNN](../)
+
+---
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=80&section=footer" width="100%"/>
+</p>
+
