@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,13,14&height=180&section=header&text=⚡%20Efficient%20ML&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=MIT%206.5940%20TinyML%20Course&descAlignY=52&descSize=18" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=⚡%20Efficient%20ML&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=MIT%206.5940%20TinyML%20Course&descAlignY=52&descSize=18" width="100%"/>
 </p>
 
 <p align="center">
@@ -307,5 +307,5 @@ Flash: O(N) memory
 ---
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,13,14&height=100&section=footer" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%"/>
 </p>

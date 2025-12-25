@@ -1,6 +1,6 @@
 <!-- Animated Header -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=4ECDC4&height=120&section=header&text=🔢%20Set%20Theory&fontSize=36&fontColor=fff&animation=fadeIn&fontAlignY=35" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=4ECDC4&height=120&section=header&text=🔢%20Set%20Theory&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
 </p>
 
 <p align="center">
@@ -629,7 +629,7 @@ Attention(Q, K, V) = softmax(QKᵀ / √d) V
 
 <!-- Animated Footer -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=4ECDC4&height=80&section=footer&animation=fadeIn" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=4ECDC4&height=80&section=footer&animation=twinkling" width="100%"/>
 </p>
 
 <p align="center">

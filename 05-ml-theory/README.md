@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=18,19,20&height=180&section=header&text=🎯%20ML%20Theory&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=Understand%20Why%20Things%20Work&descAlignY=52&descSize=18" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=🎯%20ML%20Theory&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=Understand%20Why%20Things%20Work&descAlignY=52&descSize=18" width="100%"/>
 </p>
 
 <p align="center">
@@ -231,5 +231,5 @@ graph LR
 ---
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=18,19,20&height=100&section=footer" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%"/>
 </p>

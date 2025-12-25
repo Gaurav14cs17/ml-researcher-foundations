@@ -162,7 +162,7 @@ def augmented_lagrangian(f, g, x0, lambda0=0, mu=1.0,
     2. Update λ = λ + μg(x)
     3. Optionally increase μ
     """
-    x = np.array(x0, dtype=float)
+    x = np.array(x0, dtype=waving)
     lam = lambda0
     
     for outer in range(max_outer):

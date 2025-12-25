@@ -1,6 +1,6 @@
 <!-- Animated Header -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=FFE66D&height=120&section=header&text=🔀%20Logic&fontSize=36&fontColor=333&animation=fadeIn&fontAlignY=35" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=FFE66D&height=120&section=header&text=🔀%20Logic&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
 </p>
 
 <p align="center">
@@ -803,7 +803,7 @@ True initially  ──▶  [Yes]  ──▶  Preserves I  ──┐     I ∧ ¬
 
 <!-- Animated Footer -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=FFE66D&height=80&section=footer&animation=fadeIn" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=FFE66D&height=80&section=footer&animation=twinkling" width="100%"/>
 </p>
 
 <p align="center">

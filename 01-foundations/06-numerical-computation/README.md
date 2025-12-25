@@ -1,6 +1,6 @@
 <!-- Animated Header -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=F38181&height=120&section=header&text=💻%20Numerical%20Computation&fontSize=36&fontColor=fff&animation=fadeIn&fontAlignY=35" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=F38181&height=120&section=header&text=💻%20Numerical%20Computation&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
 </p>
 
 <p align="center">
@@ -495,7 +495,7 @@ Value = (-1)ˢ × (1 + m/2²³) × 2⁽ᵉ⁻¹²⁷⁾
 
 <!-- Animated Footer -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=F38181&height=80&section=footer&animation=fadeIn" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=F38181&height=80&section=footer&animation=twinkling" width="100%"/>
 </p>
 
 <p align="center">

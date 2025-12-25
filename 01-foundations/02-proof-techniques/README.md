@@ -1,6 +1,6 @@
 <!-- Animated Header -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=FF6B6B&height=120&section=header&text=📝%20Proof%20Techniques&fontSize=36&fontColor=fff&animation=fadeIn&fontAlignY=35" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=FF6B6B&height=120&section=header&text=📝%20Proof%20Techniques&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
 </p>
 
 <p align="center">
@@ -937,7 +937,7 @@ c₁·g(n) ≤ f(n) ≤ c₂·g(n)  ⟹  f(n) = Θ(g(n))
 
 <!-- Animated Footer -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=FF6B6B&height=80&section=footer&animation=fadeIn" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=FF6B6B&height=80&section=footer&animation=twinkling" width="100%"/>
 </p>
 
 <p align="center">

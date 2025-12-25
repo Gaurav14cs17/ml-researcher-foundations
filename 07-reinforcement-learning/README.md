@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=27,28,29&height=180&section=header&text=🎮%20Reinforcement%20Learning&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=32&desc=Learning%20Through%20Trial%20and%20Error&descAlignY=52&descSize=18" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=🎮%20Reinforcement%20Learning&fontSize=36&fontColor=fff&animation=twinkling&fontAlignY=32&desc=Learning%20Through%20Trial%20and%20Error&descAlignY=52&descSize=18" width="100%"/>
 </p>
 
 <p align="center">
@@ -213,5 +213,5 @@ graph LR
 ---
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=27,28,29&height=100&section=footer" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%"/>
 </p>

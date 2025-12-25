@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=2,3,12&height=180&section=header&text=📊%20Mathematics&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=The%20Language%20of%20Machine%20Learning&descAlignY=52&descSize=18" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=📊%20Mathematics&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=The%20Language%20of%20Machine%20Learning&descAlignY=52&descSize=18" width="100%"/>
 </p>
 
 <p align="center">
@@ -282,5 +282,5 @@ graph LR
 ---
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=2,3,12&height=100&section=footer" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%"/>
 </p>
