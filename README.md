@@ -5,11 +5,10 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=flat-square" alt="Author"/>
-  <img src="https://img.shields.io/badge/Updated-December_2024-green?style=flat-square" alt="Updated"/>
+  <img src="https://img.shields.io/badge/Updated-December_2025-green?style=flat-square" alt="Updated"/>
 </p>
 
 ---
-
 
 <div align="center">
 
@@ -68,9 +67,9 @@ Whether you're a **CS graduate**, **self-learner**, or **industry practitioner**
 *New to ML math*
 
 Start here 👇
-1. [Mathematical Thinking](./01-foundations/01-mathematical-thinking/README.md)
-2. [Linear Algebra Basics](./02-mathematics/01-linear-algebra/README.md)
-3. [Probability Fundamentals](./03-probability-statistics/01-probability/README.md)
+1. [Mathematical Thinking](./01_foundations/01_mathematical_thinking/README.md)
+2. [Linear Algebra Basics](./02_mathematics/01_linear_algebra/README.md)
+3. [Probability Fundamentals](./03_probability_statistics/01_probability/README.md)
 
 </td>
 <td width="33%">
@@ -79,9 +78,9 @@ Start here 👇
 *Know basics, want depth*
 
 Jump to 👇
-1. [Backpropagation](./06-deep-learning/02-backpropagation/README.md)
-2. [Optimization Theory](./02-mathematics/03-optimization/README.md)
-3. [Transformers](./06-deep-learning/03-architectures/transformer/README.md)
+1. [Backpropagation](./06_deep_learning/02_backpropagation/README.md)
+2. [Optimization Theory](./02_mathematics/03_optimization/README.md)
+3. [Transformers](./06_deep_learning/03_architectures/06_transformer/README.md)
 
 </td>
 <td width="33%">
@@ -90,9 +89,9 @@ Jump to 👇
 *Prepping for research*
 
 Explore 👇
-1. [🔥 Flash Attention](./06-deep-learning/06-hot-topics/flash-attention/flash-attention.md)
-2. [🔥 RLHF & DPO](./07-reinforcement-learning/06-applications/rlhf/README.md)
-3. [🔥 LoRA](./06-deep-learning/06-hot-topics/lora/lora.md)
+1. [🔥 Flash Attention](./06_deep_learning/06_hot_topics/01_flash_attention/flash-attention.md)
+2. [🔥 RLHF & DPO](./07_reinforcement_learning/06_applications/02_rlhf/README.md)
+3. [🔥 LoRA](./06_deep_learning/06_hot_topics/02_lora/lora.md)
 
 </td>
 </tr>
@@ -146,23 +145,23 @@ This repository includes **detailed mathematical derivations** to help you read 
 <summary>📊 <b>Key Topics with Research Connections</b></summary>
 
 ### 🎯 **Optimization** → Adam, SGD papers
-- [Gradient Descent](./04-optimization/02-basic-methods/gradient-descent/) - **Complete convergence proof**
+- [Gradient Descent](./04_optimization/02_basic_methods/01_gradient_descent/) - **Complete convergence proof**
 - Connections: Adam (2014), ResNet (2015), GPT-3 (2020)
 
 ### 🔄 **Backpropagation** → All neural network papers
-- [Backpropagation](./06-deep-learning/02-backpropagation/) - **Step-by-step chain rule**
+- [Backpropagation](./06_deep_learning/02_backpropagation/) - **Step-by-step chain rule**
 - Connections: AlexNet (2012), Transformer (2017)
 
 ### 📊 **KL Divergence** → VAE, RLHF papers
-- [KL Divergence](./03-probability-statistics/03-information-theory/kl-divergence/) - **Complete proofs**
+- [KL Divergence](./03_probability_statistics/03_information_theory/03_kl_divergence/) - **Complete proofs**
 - Connections: VAE (2013), TRPO (2015), RLHF (2022)
 
 ### 🎯 **Constrained Optimization** → SVM, PCA papers
-- [Lagrange Multipliers](./04-optimization/05-constrained-optimization/lagrange/) - **Why they work**
+- [Lagrange Multipliers](./04_optimization/05_constrained_optimization/02_lagrange/) - **Why they work**
 - Connections: SVM, PCA, Max Entropy
 
 ### 🔥 **Attention Mechanism** → Transformer papers
-- [Transformer](./06-deep-learning/03-architectures/transformer/) - **Complete attention derivation**
+- [Transformer](./06_deep_learning/03_architectures/06_transformer/) - **Complete attention derivation**
 - Connections: BERT (2018), GPT series, LLaMA (2023)
 
 </details>
@@ -185,11 +184,11 @@ This repository includes **detailed mathematical derivations** to help you read 
 
 These sections now include **complete mathematical derivations** with NO steps skipped:
 
-1. **[Gradient Descent](./04-optimization/02-basic-methods/gradient-descent/)** - Convergence proofs, momentum math, paper connections
-2. **[Backpropagation](./06-deep-learning/02-backpropagation/)** - Complete derivation, gradient flow, numerical checking
-3. **[KL Divergence](./03-probability-statistics/03-information-theory/kl-divergence/)** - Gibbs' inequality, VAE derivation, forward/reverse KL
-4. **[Lagrange Multipliers](./04-optimization/05-constrained-optimization/lagrange/)** - Complete proofs, SVM connection, modern ML
-5. **[Transformer Attention](./06-deep-learning/03-architectures/transformer/)** - Attention derivation, complexity analysis, Flash Attention
+1. **[Gradient Descent](./04_optimization/02_basic_methods/01_gradient_descent/)** - Convergence proofs, momentum math, paper connections
+2. **[Backpropagation](./06_deep_learning/02_backpropagation/)** - Complete derivation, gradient flow, numerical checking
+3. **[KL Divergence](./03_probability_statistics/03_information_theory/03_kl_divergence/)** - Gibbs' inequality, VAE derivation, forward/reverse KL
+4. **[Lagrange Multipliers](./04_optimization/05_constrained_optimization/02_lagrange/)** - Complete proofs, SVM connection, modern ML
+5. **[Transformer Attention](./06_deep_learning/03_architectures/06_transformer/)** - Attention derivation, complexity analysis, Flash Attention
 
 ### 📚 **Recommended Paper Reading Order**
 
@@ -252,14 +251,14 @@ Learning Path:
 <details>
 <summary>📖 Click to expand</summary>
 
-<img src="01-foundations/images/learning-path.svg" width="100%">
+<img src="01_foundations/images/learning-path.svg" width="100%">
 
 | Topic | What You'll Learn | Time |
 |-------|-------------------|------|
-| [🧠 Mathematical Thinking](./01-foundations/01-mathematical-thinking/README.md) | Abstraction, pattern recognition | 3h |
-| [📝 Proof Techniques](./01-foundations/02-proof-techniques/README.md) | Direct proof, contradiction, induction | 4h |
-| [⏱️ Asymptotic Analysis](./01-foundations/05-asymptotic-analysis/README.md) | Big-O notation, complexity | 3h |
-| [💻 Numerical Computation](./01-foundations/06-numerical-computation/README.md) | Floating point, stability | 4h |
+| [🧠 Mathematical Thinking](./01_foundations/01_mathematical_thinking/README.md) | Abstraction, pattern recognition | 3h |
+| [📝 Proof Techniques](./01_foundations/02_proof_techniques/README.md) | Direct proof, contradiction, induction | 4h |
+| [⏱️ Asymptotic Analysis](./01_foundations/05_asymptotic_analysis/README.md) | Big-O notation, complexity | 3h |
+| [💻 Numerical Computation](./01_foundations/06_numerical_computation/README.md) | Floating point, stability | 4h |
 
 **Key Takeaway:** *"Think like a mathematician"*
 
@@ -273,13 +272,13 @@ Learning Path:
 <details>
 <summary>📖 Click to expand</summary>
 
-<img src="02-mathematics/images/math-roadmap.svg" width="100%">
+<img src="02_mathematics/images/math-roadmap.svg" width="100%">
 
 | Topic | What You'll Learn | Time |
 |-------|-------------------|------|
-| [📐 Linear Algebra](./02-mathematics/01-linear-algebra/README.md) | Vectors, matrices, SVD, eigenvalues | 12h |
-| [📈 Calculus](./02-mathematics/02-calculus/README.md) | Gradients, Jacobian, Hessian, chain rule | 10h |
-| [🎯 Optimization](./02-mathematics/03-optimization/README.md) | Convexity, GD, SGD, Adam | 10h |
+| [📐 Linear Algebra](./02_mathematics/01_linear_algebra/README.md) | Vectors, matrices, SVD, eigenvalues | 12h |
+| [📈 Calculus](./02_mathematics/02_calculus/README.md) | Gradients, Jacobian, Hessian, chain rule | 10h |
+| [🎯 Optimization](./02_mathematics/03_optimization/README.md) | Convexity, GD, SGD, Adam | 10h |
 
 **Key Takeaway:** *"Gradients are everything"*
 
@@ -293,13 +292,13 @@ Learning Path:
 <details>
 <summary>📖 Click to expand</summary>
 
-<img src="03-probability-statistics/images/prob-roadmap.svg" width="100%">
+<img src="03_probability_statistics/01_probability/images/probability-ml-view.svg" width="100%">
 
 | Topic | What You'll Learn | Time |
 |-------|-------------------|------|
-| [🎲 Probability Theory](./03-probability-statistics/01-probability/README.md) | Distributions, Bayes theorem | 8h |
-| [📊 Multivariate Stats](./03-probability-statistics/02-multivariate/README.md) | Covariance, Gaussian | 6h |
-| [📡 Information Theory](./03-probability-statistics/03-information-theory/README.md) | Entropy, KL divergence | 6h |
+| [🎲 Probability Theory](./03_probability_statistics/01_probability/README.md) | Distributions, Bayes theorem | 8h |
+| [📊 Multivariate Stats](./03_probability_statistics/02_multivariate/README.md) | Covariance, Gaussian | 6h |
+| [📡 Information Theory](./03_probability_statistics/03_information_theory/README.md) | Entropy, KL divergence | 6h |
 
 **Key Takeaway:** *"Cross-entropy is your loss function"*
 
@@ -313,19 +312,19 @@ Learning Path:
 <details>
 <summary>📖 Click to expand</summary>
 
-<img src="04-optimization/images/optimization-roadmap.svg" width="100%">
+<img src="04_optimization/images/optimization-roadmap.svg" width="100%">
 
 | Topic | What You'll Learn | Time |
 |-------|-------------------|------|
-| [🔢 Foundations](./04-optimization/01-foundations/README.md) | Calculus, gradients, Hessian | 6h |
-| [📊 Basic Methods](./04-optimization/02-basic-methods/README.md) | Gradient descent, Newton's method | 8h |
-| [⚡ Advanced Methods](./04-optimization/03-advanced-methods/README.md) | Conjugate gradient, Quasi-Newton | 6h |
-| [📐 Convex Optimization](./04-optimization/04-convex-optimization/README.md) | Convex functions, duality | 8h |
-| [🎯 Constrained Optimization](./04-optimization/05-constrained-optimization/README.md) | Lagrange multipliers, KKT | 8h |
-| [📏 Linear Programming](./04-optimization/06-linear-programming/README.md) | Simplex, duality, interior point | 8h |
-| [🔢 Integer Programming](./04-optimization/07-integer-programming/README.md) | MILP, branch & bound | 6h |
-| [🤖 ML Optimization](./04-optimization/08-machine-learning/README.md) | **SGD**, **Adam**, momentum | 10h |
-| [🧬 Metaheuristics](./04-optimization/09-metaheuristics/README.md) | Genetic algorithms, simulated annealing | 6h |
+| [🔢 Foundations](./04_optimization/01_foundations/README.md) | Calculus, gradients, Hessian | 6h |
+| [📊 Basic Methods](./04_optimization/02_basic_methods/README.md) | Gradient descent, Newton's method | 8h |
+| [⚡ Advanced Methods](./04_optimization/03_advanced_methods/README.md) | Conjugate gradient, Quasi-Newton | 6h |
+| [📐 Convex Optimization](./04_optimization/04_convex_optimization/README.md) | Convex functions, duality | 8h |
+| [🎯 Constrained Optimization](./04_optimization/05_constrained_optimization/README.md) | Lagrange multipliers, KKT | 8h |
+| [📏 Linear Programming](./04_optimization/06_linear_programming/README.md) | Simplex, duality, interior point | 8h |
+| [🔢 Integer Programming](./04_optimization/07_integer_programming/README.md) | MILP, branch & bound | 6h |
+| [🤖 ML Optimization](./04_optimization/08_machine_learning/README.md) | **SGD**, **Adam**, momentum | 10h |
+| [🧬 Metaheuristics](./04_optimization/09_metaheuristics/README.md) | Genetic algorithms, simulated annealing | 6h |
 
 **Key Takeaway:** *"Training is optimization"*
 
@@ -339,13 +338,13 @@ Learning Path:
 <details>
 <summary>📖 Click to expand</summary>
 
-<img src="05-ml-theory/images/ml-theory-roadmap.svg" width="100%">
+<img src="05_ml_theory/images/ml-theory-roadmap.svg" width="100%">
 
 | Topic | What You'll Learn | Time |
 |-------|-------------------|------|
-| [📚 Learning Frameworks](./05-ml-theory/01-learning-frameworks/README.md) | ERM, supervised vs unsupervised | 4h |
-| [🎯 Generalization](./05-ml-theory/02-generalization/README.md) | Bias-variance, VC dimension | 8h |
-| [🔮 Kernel Methods](./05-ml-theory/03-kernel-methods/README.md) | Kernel trick, SVM | 6h |
+| [📚 Learning Frameworks](./05_ml_theory/01_learning_frameworks/README.md) | ERM, supervised vs unsupervised | 4h |
+| [🎯 Generalization](./05_ml_theory/02_generalization/README.md) | Bias-variance, VC dimension | 8h |
+| [🔮 Kernel Methods](./05_ml_theory/03_kernel_methods/README.md) | Kernel trick, SVM | 6h |
 
 **Key Takeaway:** *"Generalization is the goal"*
 
@@ -359,17 +358,17 @@ Learning Path:
 <details>
 <summary>📖 Click to expand</summary>
 
-<img src="06-deep-learning/images/dl-roadmap.svg" width="100%">
+<img src="06_deep_learning/images/dl-roadmap.svg" width="100%">
 
 | Topic | What You'll Learn | Time |
 |-------|-------------------|------|
-| [🧠 Neural Networks](./06-deep-learning/01-neural-networks/README.md) | Neurons, layers, activations | 6h |
-| [🔄 Backpropagation](./06-deep-learning/02-backpropagation/README.md) | Chain rule, autodiff | 6h |
-| [🏗️ Architectures](./06-deep-learning/03-architectures/README.md) | CNN, RNN, **Transformer**, Diffusion, MoE | 15h |
-| [⚙️ Training](./06-deep-learning/04-training/README.md) | Optimizers, normalization | 8h |
-| [📈 Scaling](./06-deep-learning/05-scaling/README.md) | Distributed, mixed precision, efficient | 6h |
-| [🔥 Flash Attention](./06-deep-learning/06-hot-topics/flash-attention/flash-attention.md) | 5x faster, O(n) memory | 3h |
-| [🔥 LoRA](./06-deep-learning/06-hot-topics/lora/lora.md) | Parameter-efficient fine-tuning | 3h |
+| [🧠 Neural Networks](./06_deep_learning/01_neural_networks/README.md) | Neurons, layers, activations | 6h |
+| [🔄 Backpropagation](./06_deep_learning/02_backpropagation/README.md) | Chain rule, autodiff | 6h |
+| [🏗️ Architectures](./06_deep_learning/03_architectures/README.md) | CNN, RNN, **Transformer**, Diffusion, MoE | 15h |
+| [⚙️ Training](./06_deep_learning/04_training/README.md) | Optimizers, normalization | 8h |
+| [📈 Scaling](./06_deep_learning/05_scaling/README.md) | Distributed, mixed precision, efficient | 6h |
+| [🔥 Flash Attention](./06_deep_learning/06_hot_topics/01_flash_attention/flash-attention.md) | 5x faster, O(n) memory | 3h |
+| [🔥 LoRA](./06_deep_learning/06_hot_topics/02_lora/lora.md) | Parameter-efficient fine-tuning | 3h |
 
 **Key Takeaway:** *"Attention is all you need"*
 
@@ -383,16 +382,16 @@ Learning Path:
 <details>
 <summary>📖 Click to expand</summary>
 
-<img src="07-reinforcement-learning/images/rl-roadmap.svg" width="100%">
+<img src="07_reinforcement_learning/images/rl-roadmap.svg" width="100%">
 
 | Topic | What You'll Learn | Time |
 |-------|-------------------|------|
-| [🎲 MDP](./07-reinforcement-learning/01-mdp/README.md) | States, actions, rewards | 4h |
-| [💰 Value Methods](./07-reinforcement-learning/02-value-methods/README.md) | Bellman, Q-learning, DQN | 8h |
-| [🎯 Policy Methods](./07-reinforcement-learning/03-policy-methods/README.md) | Policy gradient, PPO | 8h |
-| [🔍 Exploration](./07-reinforcement-learning/04-exploration/README.md) | ε-greedy, UCB | 4h |
-| [🌍 Model-Based](./07-reinforcement-learning/05-model-based/README.md) | World models, planning | 6h |
-| [🔥 Applications](./07-reinforcement-learning/06-applications/README.md) | **RLHF**, DPO, robotics | 6h |
+| [🎲 MDP](./07_reinforcement_learning/01_mdp/README.md) | States, actions, rewards | 4h |
+| [💰 Value Methods](./07_reinforcement_learning/02_value_methods/README.md) | Bellman, Q-learning, DQN | 8h |
+| [🎯 Policy Methods](./07_reinforcement_learning/03_policy_methods/README.md) | Policy gradient, PPO | 8h |
+| [🔍 Exploration](./07_reinforcement_learning/04_exploration/README.md) | ε-greedy, UCB | 4h |
+| [🌍 Model-Based](./07_reinforcement_learning/05_model_based/README.md) | World models, planning | 6h |
+| [🔥 Applications](./07_reinforcement_learning/06_applications/README.md) | **RLHF**, DPO, robotics | 6h |
 
 **Key Takeaway:** *"Reward is enough"*
 
@@ -406,16 +405,16 @@ Learning Path:
 <details>
 <summary>📖 Click to expand</summary>
 
-<img src="08-model-compression/images/compression-roadmap.svg" width="100%">
+<img src="08_model_compression/images/compression-roadmap.svg" width="100%">
 
 | Topic | What You'll Learn | Time |
 |-------|-------------------|------|
-| [🔢 Quantization](./08-model-compression/03-quantization/README.md) | INT8, INT4, QLoRA | 6h |
-| [🔧 PEFT/LoRA](./08-model-compression/08-peft/README.md) | Parameter-efficient fine-tuning | 6h |
-| [🎓 Distillation](./08-model-compression/04-knowledge-distillation/README.md) | Teacher-student training | 4h |
-| [✂️ Pruning](./08-model-compression/02-parameter-reduction/pruning/README.md) | Weight removal | 4h |
-| [🎯 MoE](./08-model-compression/06-sparsity/moe/README.md) | Mixture of Experts | 4h |
-| [🛠️ Tools](./08-model-compression/10-tools/README.md) | bitsandbytes, PEFT, TensorRT | 4h |
+| [🔢 Quantization](./08_model_compression/03_quantization/README.md) | INT8, INT4, QLoRA | 6h |
+| [🔧 PEFT/LoRA](./08_model_compression/08_peft/README.md) | Parameter-efficient fine-tuning | 6h |
+| [🎓 Distillation](./08_model_compression/04_knowledge_distillation/README.md) | Teacher-student training | 4h |
+| [✂️ Pruning](./08_model_compression/02_parameter_reduction/pruning/README.md) | Weight removal | 4h |
+| [🎯 MoE](./08_model_compression/06_sparsity/moe/README.md) | Mixture of Experts | 4h |
+| [🛠️ Tools](./08_model_compression/10_tools/README.md) | bitsandbytes, PEFT, TensorRT | 4h |
 
 **Key Takeaway:** *"Compression enables deployment"*
 
@@ -429,17 +428,17 @@ Learning Path:
 <details>
 <summary>📖 Click to expand</summary>
 
-[![Open Course](https://img.shields.io/badge/MIT_6.5940-TinyML_Course-red?style=for-the-badge)](./09-efficient-ml/README.md)
+[![Open Course](https://img.shields.io/badge/MIT_6.5940-TinyML_Course-red?style=for-the-badge)](./09_efficient_ml/README.md)
 
-| # | Lecture | What You'll Learn | Colab |
-|:-:|---------|-------------------|:-----:|
-| 1-2 | [Intro & Basics](./09-efficient-ml/01_introduction/) | Why efficiency, FLOPs, roofline | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Gaurav14cs17/ml-researcher-foundations/blob/main/09-efficient-ml/01_introduction/demo.ipynb) |
-| 3-4 | [Pruning](./09-efficient-ml/03_pruning_sparsity_1/) | Magnitude, lottery ticket | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Gaurav14cs17/ml-researcher-foundations/blob/main/09-efficient-ml/03_pruning_sparsity_1/demo.ipynb) |
-| 5-6 | [Quantization](./09-efficient-ml/05_quantization_1/) | INT8, GPTQ, AWQ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Gaurav14cs17/ml-researcher-foundations/blob/main/09-efficient-ml/05_quantization_1/demo.ipynb) |
-| 7-8 | [NAS](./09-efficient-ml/07_neural_architecture_search_1/) | DARTS, Once-for-All | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Gaurav14cs17/ml-researcher-foundations/blob/main/09-efficient-ml/07_neural_architecture_search_1/demo.ipynb) |
-| 9-10 | [Distillation & TinyML](./09-efficient-ml/09_knowledge_distillation/) | MCUNet, 256KB inference | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Gaurav14cs17/ml-researcher-foundations/blob/main/09-efficient-ml/09_knowledge_distillation/demo.ipynb) |
-| 11-14 | [Efficient Training](./09-efficient-ml/11_efficient_transformers/) | FlashAttention, ZeRO, FSDP | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Gaurav14cs17/ml-researcher-foundations/blob/main/09-efficient-ml/11_efficient_transformers/demo.ipynb) |
-| 15-18 | [Efficient Models](./09-efficient-ml/16_efficient_llms/) | LLMs, Diffusion, Vision | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Gaurav14cs17/ml-researcher-foundations/blob/main/09-efficient-ml/16_efficient_llms/demo.ipynb) |
+| # | Lecture | What You'll Learn | Notebook |
+|:-:|---------|-------------------|:--------:|
+| 1-2 | [Intro & Basics](./09_efficient_ml/01_introduction/) | Why efficiency, FLOPs, roofline | [📓 demo.ipynb](./09_efficient_ml/01_introduction/demo.ipynb) |
+| 3-4 | [Pruning](./09_efficient_ml/03_pruning_sparsity_1/) | Magnitude, lottery ticket | [📓 demo.ipynb](./09_efficient_ml/03_pruning_sparsity_1/demo.ipynb) |
+| 5-6 | [Quantization](./09_efficient_ml/05_quantization_1/) | INT8, GPTQ, AWQ | [📓 demo.ipynb](./09_efficient_ml/05_quantization_1/demo.ipynb) |
+| 7-8 | [NAS](./09_efficient_ml/07_neural_architecture_search_1/) | DARTS, Once-for-All | [📓 demo.ipynb](./09_efficient_ml/07_neural_architecture_search_1/demo.ipynb) |
+| 9-10 | [Distillation & TinyML](./09_efficient_ml/09_knowledge_distillation/) | MCUNet, 256KB inference | [📓 demo.ipynb](./09_efficient_ml/09_knowledge_distillation/demo.ipynb) |
+| 11-14 | [Efficient Training](./09_efficient_ml/11_efficient_transformers/) | FlashAttention, ZeRO, FSDP | [📓 demo.ipynb](./09_efficient_ml/11_efficient_transformers/demo.ipynb) |
+| 15-18 | [Efficient Models](./09_efficient_ml/16_efficient_llms/) | LLMs, Diffusion, Vision | [📓 demo.ipynb](./09_efficient_ml/16_efficient_llms/demo.ipynb) |
 
 **Key Takeaway:** *"Efficiency enables real-world deployment"*
 
@@ -458,9 +457,9 @@ Learning Path:
 <td align="center" width="25%">
 
 ### 🤖 Transformers
-<img src="06-deep-learning/03-architectures/transformer/images/attention.svg" width="100%">
+<img src="06_deep_learning/03_architectures/06_transformer/images/attention.svg" width="100%">
 
-[**Learn →**](./06-deep-learning/03-architectures/transformer/README.md)
+[**Learn →**](./06_deep_learning/03_architectures/06_transformer/README.md)
 
 *Foundation of GPT, BERT, LLaMA*
 
@@ -468,9 +467,9 @@ Learning Path:
 <td align="center" width="25%">
 
 ### ⚡ Flash Attention
-<img src="06-deep-learning/06-hot-topics/flash-attention/images/flash-attention.svg" width="100%">
+<img src="06_deep_learning/06_hot_topics/01_flash_attention/images/flash-attention.svg" width="100%">
 
-[**Learn →**](./06-deep-learning/06-hot-topics/flash-attention/flash-attention.md)
+[**Learn →**](./06_deep_learning/06_hot_topics/01_flash_attention/flash-attention.md)
 
 *5x faster, O(n) memory*
 
@@ -478,9 +477,9 @@ Learning Path:
 <td align="center" width="25%">
 
 ### 🎨 Diffusion
-<img src="06-deep-learning/03-architectures/diffusion/images/diffusion-process.svg" width="100%">
+<img src="06_deep_learning/03_architectures/02_diffusion/images/diffusion-process.svg" width="100%">
 
-[**Learn →**](./06-deep-learning/03-architectures/diffusion/README.md)
+[**Learn →**](./06_deep_learning/03_architectures/02_diffusion/README.md)
 
 *Stable Diffusion, DALL-E*
 
@@ -488,9 +487,9 @@ Learning Path:
 <td align="center" width="25%">
 
 ### 🎯 RLHF
-<img src="07-reinforcement-learning/06-applications/rlhf/images/rlhf-pipeline.svg" width="100%">
+<img src="07_reinforcement_learning/06_applications/02_rlhf/images/rlhf-pipeline.svg" width="100%">
 
-[**Learn →**](./07-reinforcement-learning/06-applications/rlhf/README.md)
+[**Learn →**](./07_reinforcement_learning/06_applications/02_rlhf/README.md)
 
 *How ChatGPT is aligned*
 
@@ -654,7 +653,7 @@ If this repo helped you:
 
 ### 🎯 Ready to Begin?
 
-**[Start with Foundations →](./01-foundations/README.md)**
+**[Start with Foundations →](./01_foundations/README.md)**
 
 </div>
 
