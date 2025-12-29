@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f39c12"/>
+    </marker>
+  </defs>
+  
+  <rect width="900" height="500" fill="url(#bgGrad)" rx="12"/>
+  
+  <text x="450" y="40" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Model Compression Overview</text>
+  
+  <!-- Large Model -->
+  <rect x="40" y="120" width="140" height="180" rx="10" fill="#7f1d1d" stroke="#e74c3c" stroke-width="2"/>
+  <text x="110" y="160" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Large Model</text>
+  <text x="110" y="190" text-anchor="middle" fill="#fca5a5" font-family="Arial, sans-serif" font-size="12">175B params</text>
+  <text x="110" y="215" text-anchor="middle" fill="#fca5a5" font-family="Arial, sans-serif" font-size="12">350 GB</text>
+  <text x="110" y="240" text-anchor="middle" fill="#fca5a5" font-family="Arial, sans-serif" font-size="12">Slow</text>
+  <text x="110" y="265" text-anchor="middle" fill="#fca5a5" font-family="Arial, sans-serif" font-size="12">Expensive</text>
+  
+  <path d="M190 210 L250 210" stroke="#f39c12" stroke-width="3" marker-end="url(#arrow)"/>
+  
+  <!-- Techniques -->
+  <rect x="260" y="80" width="380" height="280" rx="12" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="450" y="115" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Compression Techniques</text>
+  
+  <rect x="280" y="135" width="160" height="45" rx="6" fill="#1e3a5f"/>
+  <text x="360" y="163" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="13" font-weight="bold">🔢 Quantization</text>
+  
+  <rect x="460" y="135" width="160" height="45" rx="6" fill="#1e3a5f"/>
+  <text x="540" y="163" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="13" font-weight="bold">✂️ Pruning</text>
+  
+  <rect x="280" y="195" width="160" height="45" rx="6" fill="#1e3a5f"/>
+  <text x="360" y="223" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="13" font-weight="bold">🎓 Distillation</text>
+  
+  <rect x="460" y="195" width="160" height="45" rx="6" fill="#1e3a5f"/>
+  <text x="540" y="223" text-anchor="middle" fill="#1abc9c" font-family="Arial, sans-serif" font-size="13" font-weight="bold">🔧 PEFT/LoRA</text>
+  
+  <rect x="280" y="255" width="160" height="45" rx="6" fill="#1e3a5f"/>
+  <text x="360" y="283" text-anchor="middle" fill="#e67e22" font-family="Arial, sans-serif" font-size="13" font-weight="bold">📊 Factorization</text>
+  
+  <rect x="460" y="255" width="160" height="45" rx="6" fill="#1e3a5f"/>
+  <text x="540" y="283" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="13" font-weight="bold">🧩 MoE/Sparsity</text>
+  
+  <rect x="280" y="315" width="340" height="30" rx="6" fill="#1e3a5f"/>
+  <text x="450" y="336" text-anchor="middle" fill="#00d9ff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">⚡ Efficient Architectures</text>
+  
+  <path d="M650 210 L710 210" stroke="#27ae60" stroke-width="3" marker-end="url(#arrow)"/>
+  
+  <!-- Compact Model -->
+  <rect x="720" y="120" width="140" height="180" rx="10" fill="#14532d" stroke="#27ae60" stroke-width="2"/>
+  <text x="790" y="160" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Compact</text>
+  <text x="790" y="190" text-anchor="middle" fill="#86efac" font-family="Arial, sans-serif" font-size="12">7B params</text>
+  <text x="790" y="215" text-anchor="middle" fill="#86efac" font-family="Arial, sans-serif" font-size="12">~14 GB</text>
+  <text x="790" y="240" text-anchor="middle" fill="#86efac" font-family="Arial, sans-serif" font-size="12">Fast</text>
+  <text x="790" y="265" text-anchor="middle" fill="#86efac" font-family="Arial, sans-serif" font-size="12">Affordable</text>
+  
+  <!-- Benefits -->
+  <rect x="40" y="380" width="820" height="100" rx="10" fill="#2c3e50" opacity="0.8"/>
+  <text x="450" y="415" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Key Benefits</text>
+  
+  <text x="130" y="455" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="12">💾 4-8× Memory ↓</text>
+  <text x="310" y="455" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12">⚡ 2-10× Faster</text>
+  <text x="490" y="455" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="12">📱 Edge Deploy</text>
+  <text x="670" y="455" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="12">💰 Cost ↓</text>
+</svg>
+

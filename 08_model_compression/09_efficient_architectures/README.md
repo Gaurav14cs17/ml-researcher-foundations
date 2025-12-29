@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/efficient-arch-overview.svg" width="100%">
+</p>
+
 ## 📐 Mathematical Foundations
 
 ### 1. Depthwise Separable Convolution

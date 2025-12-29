@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/tools-overview.svg" width="100%">
+</p>
+
 ## 📐 Mathematical Foundations (Tool-Specific)
 
 ### 1. bitsandbytes NF4 Quantization

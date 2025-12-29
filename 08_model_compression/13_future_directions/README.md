@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/future.svg" width="100%">
+</p>
+
 ## 📐 Mathematical Foundations of Emerging Techniques
 
 ### 1. 1-Bit Quantization (BitNet)

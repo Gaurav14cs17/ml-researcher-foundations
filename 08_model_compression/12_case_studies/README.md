@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/case-studies.svg" width="100%">
+</p>
+
 ## 📐 Mathematical Analysis of Real Models
 
 ### 1. DistilBERT (Distillation)

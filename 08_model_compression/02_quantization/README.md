@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/quantization-overview.svg" width="100%">
+</p>
+
 ## 📐 Mathematical Foundations
 
 ### 1. Uniform Quantization Theory

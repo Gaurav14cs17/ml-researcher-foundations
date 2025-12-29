@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/weight-sharing-overview.svg" width="100%">
+</p>
+
 ## 📐 Weight Clustering
 
 ### 1. K-Means Clustering for Weights

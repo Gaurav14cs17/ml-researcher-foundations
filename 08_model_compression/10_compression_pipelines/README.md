@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/pipeline-overview.svg" width="100%">
+</p>
+
 ## 📐 Mathematical Foundations
 
 ### 1. Combined Compression Ratio
