@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Section-08-E74C3C?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Section-08.10.02-F39C12?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
   <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
   <img src="https://img.shields.io/badge/Updated-December_2025-green?style=for-the-badge" alt="Updated"/>
 </p>
@@ -347,7 +347,7 @@ def deep_compression_pipeline(model, train_loader, n_clusters=16, sparsity=0.9):
 
 ---
 
-⬅️ [Back: Deployment](../01_deployment/README.md) | ➡️ [Next: Tools](../../10_tools/README.md)
+⬅️ [Back: Deployment](../01_deployment/README.md) | ➡️ [Next: Tools](../../11_tools/README.md)
 
 ---
 

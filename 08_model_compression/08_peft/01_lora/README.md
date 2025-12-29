@@ -1,4 +1,17 @@
-# LoRA: Low-Rank Adaptation
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=E74C3C&height=100&section=header&text=LoRA:%20Low-Rank%20Adaptation&fontSize=24&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Section-08.08.01-E74C3C?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2025-green?style=for-the-badge" alt="Updated"/>
+</p>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
+---
 
 ## 📐 Mathematical Theory
 
@@ -184,7 +197,87 @@ where $P_d$ projects to $d$-dimensional subspace.
 
 ---
 
-### 8. Implementation
+### 8. Formal Proofs and Analysis
+
+#### 8.1 Theorem: LoRA Approximation Error Bound
+
+**Theorem:** Let $\Delta W^* \in \mathbb{R}^{d \times k}$ be the optimal full-rank weight update. The best rank-$r$ LoRA approximation $BA$ satisfies:
+
+$$\|\Delta W^* - BA\|_F \leq \sqrt{\sum_{i=r+1}^{\min(d,k)} \sigma_i^2}$$
+
+where $\sigma_i$ are singular values of $\Delta W^*$ in descending order.
+
+**Proof:**
+
+By the Eckart-Young-Mirsky theorem, the best rank-$r$ approximation is the truncated SVD.
+
+Let $\Delta W^* = U\Sigma V^T$ be the SVD.
+
+The optimal $B = U_r \Sigma_r^{1/2}$ and $A = \Sigma_r^{1/2} V_r^T$ where subscript $r$ denotes first $r$ components.
+
+Then:
+$$BA = U_r \Sigma_r V_r^T$$
+
+The Frobenius norm error:
+$$\|\Delta W^* - BA\|_F^2 = \|U\Sigma V^T - U_r\Sigma_r V_r^T\|_F^2 = \sum_{i=r+1}^{\min(d,k)} \sigma_i^2$$
+
+Taking square root gives the bound. ∎
+
+**Corollary:** If weight updates have rapidly decaying singular values (low intrinsic rank), LoRA approximation error is small.
+
+#### 8.2 Theorem: Gradient Flow Equivalence
+
+**Theorem:** Under LoRA training with $\alpha = r$, the gradient magnitude w.r.t. the implicit $\Delta W$ is:
+
+$$\left\|\frac{\partial \mathcal{L}}{\partial \Delta W}\right\| = \left\|\frac{\partial \mathcal{L}}{\partial (BA)}\right\|$$
+
+independent of the choice of rank $r$.
+
+**Proof:**
+
+The forward pass with LoRA:
+$$h = W_0 x + \frac{\alpha}{r} BAx$$
+
+With $\alpha = r$:
+$$h = W_0 x + BAx$$
+
+The gradient w.r.t. implicit $\Delta W = BA$:
+$$\frac{\partial \mathcal{L}}{\partial \Delta W} = \frac{\partial \mathcal{L}}{\partial h} x^T$$
+
+This is independent of how we factor $\Delta W$. The LoRA decomposition only affects how gradients propagate to $A$ and $B$ individually, not the total gradient signal. ∎
+
+#### 8.3 Lemma: Initialization Stability
+
+**Lemma:** With initialization $A \sim \mathcal{N}(0, 1/r)$ and $B = 0$:
+
+1. $\Delta W = 0$ at initialization
+2. $\text{Var}(\frac{\partial \mathcal{L}}{\partial A_{ij}}) = O(1)$ (bounded variance)
+3. Training starts from pre-trained model behavior
+
+**Proof of (2):**
+
+$$\frac{\partial \mathcal{L}}{\partial A} = \frac{\alpha}{r} B^T \frac{\partial \mathcal{L}}{\partial h} x^T$$
+
+At initialization, $B = 0$, so:
+$$\frac{\partial \mathcal{L}}{\partial A}\bigg|_{t=0} = 0$$
+
+After first update, $B$ becomes non-zero with magnitude $O(\eta)$ where $\eta$ is learning rate.
+
+$$\text{Var}\left(\frac{\partial \mathcal{L}}{\partial A_{ij}}\right) = O\left(\frac{\alpha^2}{r^2}\right) \cdot \text{Var}(B) \cdot \text{Var}(\text{grad})$$
+
+With $\alpha = O(r)$, this is $O(1)$. ∎
+
+#### 8.4 Connection to Matrix Completion
+
+**Theorem (Implicit Regularization):** LoRA with small initialization implicitly regularizes toward low nuclear norm solutions.
+
+**Sketch:** Consider the matrix sensing problem with parameterization $W = BA$ where $B, A$ have $r$ columns. Gradient descent on this factorized form, starting from small initialization, converges to the minimum nuclear norm solution among all global minima.
+
+This explains why LoRA finds "good" low-rank updates even without explicit regularization. ∎
+
+---
+
+### 9. Implementation
 
 ```python
 import torch

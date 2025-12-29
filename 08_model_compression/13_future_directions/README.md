@@ -235,7 +235,7 @@ Approaches:
 
 ---
 
-⬅️ [Back: Case Studies](../11_case_studies/README.md)
+⬅️ [Back: Case Studies](../12_case_studies/README.md)
 
 ---
 

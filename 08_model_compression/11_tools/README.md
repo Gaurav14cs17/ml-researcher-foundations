@@ -240,7 +240,7 @@ cd llama.cpp && make -j
 
 ---
 
-⬅️ [Back: Compression Pipelines](../09_compression_pipelines/README.md) | ➡️ [Next: Case Studies](../11_case_studies/README.md)
+⬅️ [Back: Compression Pipelines](../10_compression_pipelines/README.md) | ➡️ [Next: Case Studies](../12_case_studies/README.md)
 
 ---
 

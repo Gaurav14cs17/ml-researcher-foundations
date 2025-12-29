@@ -266,7 +266,7 @@ student_quantized = torch.quantization.quantize_dynamic(student, {nn.Linear})
 
 ---
 
-⬅️ [Back: PEFT](../08_peft/README.md) | 📂 [Deployment](./01_deployment/README.md) | ➡️ [Next: Tools](../10_tools/README.md)
+⬅️ [Back: Efficient Architectures](../09_efficient_architectures/README.md) | 📂 [Deployment](./01_deployment/README.md) | ➡️ [Next: Tools](../11_tools/README.md)
 
 ---
 

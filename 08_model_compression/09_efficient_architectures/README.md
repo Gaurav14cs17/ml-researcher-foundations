@@ -112,15 +112,15 @@ Where $M$ = SRAM size. For typical GPU: $10-100\times$ fewer memory accesses!
 
 **Multi-Head Attention (MHA):**
 $$\text{heads} = h, \quad \text{K,V heads} = h$$
-$$\text{KV cache: } O(h \cdot d_k \cdot \text{seq\_len})$$
+$$\text{KV cache: } O(h \cdot d_k \cdot L)$$
 
 **Multi-Query Attention (MQA):**
 $$\text{Q heads} = h, \quad \text{K,V heads} = 1$$
-$$\text{KV cache: } O(d_k \cdot \text{seq\_len})$$
+$$\text{KV cache: } O(d_k \cdot L)$$
 
 **Grouped Query Attention (GQA):**
 $$\text{Q heads} = h, \quad \text{K,V heads} = g$$
-$$\text{KV cache: } O(g \cdot d_k \cdot \text{seq\_len})$$
+$$\text{KV cache: } O(g \cdot d_k \cdot L)$$
 
 **Trade-off:** MHA > GQA > MQA (quality), MQA > GQA > MHA (efficiency)
 
@@ -182,7 +182,7 @@ Examples:
 
 ---
 
-⬅️ [Back: Sparsity](../06_sparsity/README.md) | 📂 [Efficient Networks](./01_efficient_networks/README.md) | ➡️ [Next: PEFT](../08_peft/README.md)
+⬅️ [Back: PEFT](../08_peft/README.md) | 📂 [Efficient Networks](./01_efficient_networks/README.md) | ➡️ [Next: Compression Pipelines](../10_compression_pipelines/README.md)
 
 ---
 

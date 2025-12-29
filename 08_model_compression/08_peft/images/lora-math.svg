@@ -1,55 +1,89 @@
-<?xml version="1.0" ?>
-<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 1170.0">
-  <ns0:defs>
-    <ns0:linearGradient id="lmBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
-      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
-    </ns0:linearGradient>
-  </ns0:defs>
-  <ns0:rect width="1800.0" height="1170.0" fill="#f8f9fa" rx="8"/>
-  <ns0:text x="400" y="35" text-anchor="middle" fill="#ec4899" font-family="Arial, sans-serif" font-size="18" font-weight="bold">LoRA Mathematics</ns0:text>
-  <ns0:g transform="translate(30, 60)">
-    <ns0:rect width="360" height="180" rx="10" fill="#1a237e" stroke="#ec4899" stroke-width="2"/>
-    <ns0:text x="180" y="60.0" text-anchor="middle" fill="#ec4899" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Low-Rank Decomposition</ns0:text>
-    <ns0:text x="20" y="85.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Weight update:</ns0:text>
-    <ns0:text x="20" y="110.0" fill="#f472b6" font-family="Arial, sans-serif" font-size="14">W' = W0 + dW = W0 + B*A</ns0:text>
-    <ns0:text x="20" y="135.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">W0: d x k matrix (frozen pretrained)</ns0:text>
-    <ns0:text x="20" y="160.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">B: d x r matrix (trainable, init Gaussian)</ns0:text>
-    <ns0:text x="20" y="185.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">A: r x k matrix (trainable, init zero)</ns0:text>
-    <ns0:text x="20" y="210.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">r &lt;&lt; min(d,k), typically r = 8, 16, 32</ns0:text>
-  </ns0:g>
-  <ns0:g transform="translate(410, 60)">
-    <ns0:rect width="360" height="180" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
-    <ns0:text x="180" y="235.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Parameter Reduction</ns0:text>
-    <ns0:text x="20" y="260.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Full fine-tuning:</ns0:text>
-    <ns0:text x="20" y="285.0" fill="#c62828" font-family="Arial, sans-serif" font-size="11">#params = d * k</ns0:text>
-    <ns0:text x="20" y="310.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">LoRA:</ns0:text>
-    <ns0:text x="20" y="335.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11">#params = d*r + r*k = r*(d+k)</ns0:text>
-    <ns0:text x="20" y="360.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Example: d=k=4096, r=16</ns0:text>
-    <ns0:text x="20" y="385.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Full: 16.7M vs LoRA: 131K (128x less!)</ns0:text>
-  </ns0:g>
-  <ns0:g transform="translate(30, 260)">
-    <ns0:rect width="360" height="110" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
-    <ns0:text x="180" y="410.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Scaling Factor alpha</ns0:text>
-    <ns0:text x="20" y="435.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Scaled update:</ns0:text>
-    <ns0:text x="20" y="460.0" fill="#e65100" font-family="Arial, sans-serif" font-size="12">h = W0*x + (alpha/r)*B*A*x</ns0:text>
-    <ns0:text x="20" y="485.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Typical: alpha = 2*r (so scaling = 2)</ns0:text>
-  </ns0:g>
-  <ns0:g transform="translate(410, 260)">
-    <ns0:rect width="360" height="110" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
-    <ns0:text x="180" y="510.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Merge for Inference</ns0:text>
-    <ns0:text x="20" y="535.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Merge weights (no runtime cost!):</ns0:text>
-    <ns0:text x="20" y="560.0" fill="#1565c0" font-family="Arial, sans-serif" font-size="12">W_merged = W0 + (alpha/r)*B*A</ns0:text>
-    <ns0:text x="20" y="585.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Zero inference overhead!</ns0:text>
-  </ns0:g>
-  <ns0:g transform="translate(30, 390)">
-    <ns0:rect width="740" height="110" rx="10" fill="#1a237e" stroke="#6f42c1" stroke-width="2"/>
-    <ns0:text x="370" y="610.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="13" font-weight="bold">QLoRA: Quantized LoRA</ns0:text>
-    <ns0:text x="30" y="635.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Forward:</ns0:text>
-    <ns0:text x="100" y="660.0" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="10">h = Dequant(W_4bit)*x + B*A*x</ns0:text>
-    <ns0:text x="400" y="685.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Memory:</ns0:text>
-    <ns0:text x="470" y="710.0" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="10">4-bit base + FP16 adapters</ns0:text>
-    <ns0:text x="30" y="735.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">NF4 (Normal Float 4-bit): Optimal for normally distributed weights</ns0:text>
-    <ns0:text x="30" y="760.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Fine-tune 70B model on single 48GB GPU!</ns0:text>
-  </ns0:g>
-</ns0:svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f39c12"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="550" fill="url(#bgGrad)" rx="12"/>
+  
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="24" font-weight="bold">LoRA: Low-Rank Adaptation</text>
+  
+  <!-- Core Formula Box -->
+  <rect x="200" y="60" width="500" height="80" rx="10" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="450" y="95" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="16">Core Formula:</text>
+  <text x="450" y="125" text-anchor="middle" fill="#2ecc71" font-family="monospace" font-size="20" font-weight="bold">W' = W₀ + (α/r) × B × A</text>
+  
+  <!-- Matrix Visualization -->
+  <rect x="50" y="170" width="380" height="200" rx="10" fill="#2c3e50" stroke="#3498db" stroke-width="2"/>
+  <text x="240" y="200" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Matrix Decomposition</text>
+  
+  <!-- W0 matrix -->
+  <rect x="70" y="230" width="80" height="100" rx="4" fill="#1e3a5f" stroke="#3498db"/>
+  <text x="110" y="285" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="14" font-weight="bold">W₀</text>
+  <text x="110" y="305" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="10">d × k</text>
+  <text x="110" y="345" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="10">FROZEN</text>
+  
+  <text x="165" y="285" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="20">+</text>
+  
+  <!-- B matrix -->
+  <rect x="185" y="230" width="30" height="100" rx="4" fill="#27ae60" stroke="#2ecc71"/>
+  <text x="200" y="285" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" font-weight="bold">B</text>
+  <text x="200" y="345" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="9">d × r</text>
+  
+  <text x="225" y="285" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="16">×</text>
+  
+  <!-- A matrix -->
+  <rect x="240" y="255" width="100" height="30" rx="4" fill="#27ae60" stroke="#2ecc71"/>
+  <text x="290" y="275" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" font-weight="bold">A</text>
+  <text x="290" y="300" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="9">r × k</text>
+  
+  <text x="355" y="285" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="20">=</text>
+  
+  <!-- W' matrix -->
+  <rect x="375" y="230" width="80" height="100" rx="4" fill="#9b59b6" stroke="#8e44ad"/>
+  <text x="415" y="285" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">W'</text>
+  <text x="415" y="305" text-anchor="middle" fill="#d5b8ff" font-family="Arial, sans-serif" font-size="10">d × k</text>
+  
+  <!-- Parameter Comparison -->
+  <rect x="470" y="170" width="400" height="200" rx="10" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="670" y="200" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Parameter Efficiency</text>
+  
+  <text x="490" y="240" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">Full fine-tune:</text>
+  <text x="620" y="240" fill="#e74c3c" font-family="monospace" font-size="13">d × k params</text>
+  
+  <text x="490" y="275" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">LoRA:</text>
+  <text x="620" y="275" fill="#2ecc71" font-family="monospace" font-size="13">r × (d + k) params</text>
+  
+  <text x="490" y="310" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">Reduction:</text>
+  <text x="620" y="310" fill="#3498db" font-family="monospace" font-size="13">dk / r(d+k) ≈ d/2r</text>
+  
+  <rect x="490" y="330" width="360" height="30" rx="5" fill="#1e3a5f"/>
+  <text x="670" y="350" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Example: d=4096, r=16 → 128× fewer params!</text>
+  
+  <!-- Key Properties -->
+  <rect x="50" y="390" width="380" height="140" rx="10" fill="#2c3e50" stroke="#9b59b6" stroke-width="2"/>
+  <text x="240" y="420" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Initialization</text>
+  
+  <text x="70" y="455" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">A ~ N(0, 1/r)</text>
+  <text x="70" y="480" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">B = 0</text>
+  <text x="70" y="510" fill="#95a5a6" font-family="Arial, sans-serif" font-size="12">→ ΔW = BA = 0 at start</text>
+  
+  <text x="240" y="455" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">α = scaling factor</text>
+  <text x="240" y="480" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">Typical: α = 2r</text>
+  <text x="240" y="510" fill="#95a5a6" font-family="Arial, sans-serif" font-size="12">→ Gradients scale as O(1)</text>
+  
+  <!-- Merge for Inference -->
+  <rect x="470" y="390" width="400" height="140" rx="10" fill="#2c3e50" stroke="#1abc9c" stroke-width="2"/>
+  <text x="670" y="420" text-anchor="middle" fill="#1abc9c" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Merge for Inference</text>
+  
+  <text x="490" y="460" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="14">After training:</text>
+  <text x="490" y="490" fill="#1abc9c" font-family="monospace" font-size="15">W_merged = W₀ + (α/r)BA</text>
+  <text x="490" y="520" fill="#95a5a6" font-family="Arial, sans-serif" font-size="12">→ Zero inference overhead!</text>
+</svg>

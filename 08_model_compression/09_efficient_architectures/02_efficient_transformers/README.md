@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Section-08-E74C3C?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Section-08.09.02-00D9FF?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
   <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
   <img src="https://img.shields.io/badge/Updated-December_2025-green?style=for-the-badge" alt="Updated"/>
 </p>
@@ -333,7 +333,7 @@ class SlidingWindowAttention(nn.Module):
 
 ---
 
-⬅️ [Back: Efficient Networks](../01_efficient_networks/README.md) | ➡️ [Next: PEFT](../../08_peft/README.md)
+⬅️ [Back: Efficient Networks](../01_efficient_networks/README.md) | ➡️ [Next: Compression Pipelines](../../10_compression_pipelines/README.md)
 
 ---
 

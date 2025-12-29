@@ -105,7 +105,7 @@ $$\text{Memory} = O(P \times b)$$
 Where $P$ = parameters, $b$ = bytes per parameter
 
 **Compute Complexity:**
-$$\text{FLOPs} = O(\text{ops} \times \text{precision\_factor})$$
+$$\text{FLOPs} = O(\text{ops} \times \text{precision-factor})$$
 
 | Format | Size | Compute Speed | Memory Bandwidth |
 |--------|------|---------------|------------------|
