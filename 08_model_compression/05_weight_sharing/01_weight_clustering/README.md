@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/clustering.svg" width="100%">
+</p>
+
 # Weight Clustering (K-Means Quantization)
 
 ## 📐 Mathematical Theory

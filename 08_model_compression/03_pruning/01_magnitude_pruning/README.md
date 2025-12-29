@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/magnitude.svg" width="100%">
+</p>
+
 # Magnitude Pruning
 
 ## 📐 Mathematical Theory

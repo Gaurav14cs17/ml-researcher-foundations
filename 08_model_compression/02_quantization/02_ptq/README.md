@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/ptq.svg" width="100%">
+</p>
+
 # Post-Training Quantization (PTQ)
 
 ## 📐 Mathematical Theory

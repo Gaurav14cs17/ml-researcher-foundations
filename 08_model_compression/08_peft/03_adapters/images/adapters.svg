@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="350" fill="url(#bgGrad)" rx="12"/>
+  <text x="400" y="35" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Adapter Layers</text>
+  
+  <rect x="40" y="70" width="350" height="130" rx="10" fill="#2c3e50" stroke="#3498db" stroke-width="2"/>
+  <text x="215" y="100" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Architecture</text>
+  <text x="215" y="130" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Input → Down-project → NonLin → Up-project → Output</text>
+  <text x="215" y="155" text-anchor="middle" fill="#ecf0f1" font-family="monospace" font-size="10">h → W_down·h → ReLU → W_up → h'</text>
+  <text x="215" y="185" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10">+ Residual connection: h + h'</text>
+  
+  <rect x="410" y="70" width="350" height="130" rx="10" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="585" y="100" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Efficiency</text>
+  <text x="585" y="130" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Bottleneck dimension: 64-256</text>
+  <text x="585" y="155" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">~2-4% extra parameters</text>
+  <text x="585" y="180" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Matches full fine-tuning!</text>
+  
+  <rect x="40" y="220" width="720" height="110" rx="10" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="400" y="255" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Adapter vs LoRA</text>
+  
+  <text x="200" y="290" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Adapters</text>
+  <text x="200" y="310" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="9">Sequential, add layers</text>
+  <text x="200" y="325" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="9">Small inference cost</text>
+  
+  <text x="600" y="290" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="11" font-weight="bold">LoRA</text>
+  <text x="600" y="310" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="9">Parallel, modify weights</text>
+  <text x="600" y="325" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="9">Zero inference cost (merge)</text>
+</svg>
+

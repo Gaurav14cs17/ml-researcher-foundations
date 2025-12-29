@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/adapters.svg" width="100%">
+</p>
+
 # Adapter Layers
 
 ## 📐 Mathematical Theory

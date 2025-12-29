@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/attention.svg" width="100%">
+</p>
+
 # Attention Sharing (MQA/GQA)
 
 ## 📐 Mathematical Theory

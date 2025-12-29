@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="350" fill="url(#bgGrad)" rx="12"/>
+  <text x="400" y="35" text-anchor="middle" fill="#e67e22" font-family="Arial, sans-serif" font-size="22" font-weight="bold">SVD Compression</text>
+  
+  <rect x="40" y="70" width="720" height="100" rx="10" fill="#2c3e50" stroke="#e67e22" stroke-width="2"/>
+  <text x="400" y="100" text-anchor="middle" fill="#e67e22" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Singular Value Decomposition</text>
+  <text x="400" y="130" text-anchor="middle" fill="#ecf0f1" font-family="monospace" font-size="14">W = U Σ V^T ≈ U_r Σ_r V_r^T</text>
+  <text x="400" y="155" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">Keep top r singular values (low-rank approximation)</text>
+  
+  <rect x="40" y="190" width="230" height="140" rx="10" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="155" y="220" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Original: W</text>
+  <text x="155" y="250" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">m × n matrix</text>
+  <text x="155" y="280" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">mn parameters</text>
+  <text x="155" y="310" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="10">e.g., 1024×1024 = 1M</text>
+  
+  <rect x="285" y="190" width="230" height="140" rx="10" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="400" y="220" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Compressed</text>
+  <text x="400" y="250" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">U_r: m×r, V_r: n×r</text>
+  <text x="400" y="280" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">(m+n)×r parameters</text>
+  <text x="400" y="310" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10">r=64: 128K (8× smaller)</text>
+  
+  <rect x="530" y="190" width="230" height="140" rx="10" fill="#2c3e50" stroke="#3498db" stroke-width="2"/>
+  <text x="645" y="220" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Trade-off</text>
+  <text x="645" y="250" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Lower r = more compression</text>
+  <text x="645" y="275" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Lower r = more error</text>
+  <text x="645" y="300" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="10">Error: ||W - W_r||_F</text>
+  <text x="645" y="320" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10">Use spectral gap analysis</text>
+</svg>
+

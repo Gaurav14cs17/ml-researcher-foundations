@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="380" fill="url(#bgGrad)" rx="12"/>
+  <text x="400" y="35" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="22" font-weight="bold">LoRA: Low-Rank Adaptation</text>
+  
+  <rect x="40" y="70" width="350" height="140" rx="10" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="215" y="100" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Core Idea</text>
+  <text x="215" y="130" text-anchor="middle" fill="#ecf0f1" font-family="monospace" font-size="12">W' = W + ΔW = W + BA</text>
+  <text x="215" y="160" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Freeze W, only train B and A</text>
+  <text x="215" y="185" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11">B: d×r, A: r×k (r ≪ min(d,k))</text>
+  
+  <rect x="410" y="70" width="350" height="140" rx="10" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="585" y="100" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Compression</text>
+  <text x="585" y="130" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Full fine-tune: d×k = 4M params</text>
+  <text x="585" y="155" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">LoRA (r=8): (d+k)×r = 16K</text>
+  <text x="585" y="185" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" font-weight="bold">250× fewer trainable params!</text>
+  
+  <rect x="40" y="230" width="720" height="130" rx="10" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="400" y="265" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="16" font-weight="bold">LoRA in Practice</text>
+  
+  <text x="130" y="300" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Apply to</text>
+  <text x="130" y="320" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Q, K, V, O projections</text>
+  <text x="130" y="340" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="9">(attention layers)</text>
+  
+  <text x="320" y="300" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Rank r</text>
+  <text x="320" y="320" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Typical: 4, 8, 16, 32</text>
+  <text x="320" y="340" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="9">Higher = more capacity</text>
+  
+  <text x="500" y="300" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="11" font-weight="bold">α (scale)</text>
+  <text x="500" y="320" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">ΔW = (α/r) × BA</text>
+  <text x="500" y="340" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="9">Controls update magnitude</text>
+  
+  <text x="680" y="300" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Merge</text>
+  <text x="680" y="320" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">W' = W + BA</text>
+  <text x="680" y="340" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="9">No inference cost!</text>
+</svg>
+

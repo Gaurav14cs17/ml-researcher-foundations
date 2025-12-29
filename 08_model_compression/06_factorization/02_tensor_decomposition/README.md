@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/tensor.svg" width="100%">
+</p>
+
 # Tensor Decomposition
 
 ## 📐 Mathematical Theory

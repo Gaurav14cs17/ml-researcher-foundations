@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/svd.svg" width="100%">
+</p>
+
 # SVD-Based Weight Compression
 
 ## 📐 Mathematical Theory

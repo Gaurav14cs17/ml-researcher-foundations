@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/qat.svg" width="100%">
+</p>
+
 # Quantization-Aware Training (QAT)
 
 ## 📐 Mathematical Theory

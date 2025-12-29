@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/qlora.svg" width="100%">
+</p>
+
 # QLoRA: Quantized LoRA
 
 ## 📐 Mathematical Theory

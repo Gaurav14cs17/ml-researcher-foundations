@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/structured.svg" width="100%">
+</p>
+
 # Structured Pruning
 
 ## 📐 Mathematical Theory

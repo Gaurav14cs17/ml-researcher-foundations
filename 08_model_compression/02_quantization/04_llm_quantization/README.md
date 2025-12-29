@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/llm-quant.svg" width="100%">
+</p>
+
 # LLM Quantization (GPTQ, AWQ, SmoothQuant)
 
 ## 📐 Mathematical Theory

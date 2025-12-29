@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/fundamentals.svg" width="100%">
+</p>
+
 ## 📐 Mathematical Theory
 
 ### 1. Definition of Quantization

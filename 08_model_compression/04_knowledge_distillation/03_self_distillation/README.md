@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/self.svg" width="100%">
+</p>
+
 # Self-Distillation
 
 ## 📐 Mathematical Theory

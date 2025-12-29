@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/depthwise.svg" width="100%">
+</p>
+
 # Depthwise Separable Convolutions
 
 ## 📐 Mathematical Theory

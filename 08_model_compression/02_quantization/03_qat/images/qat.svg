@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="350" fill="url(#bgGrad)" rx="12"/>
+  <text x="400" y="35" text-anchor="middle" fill="#1abc9c" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Quantization-Aware Training (QAT)</text>
+  
+  <rect x="40" y="70" width="350" height="120" rx="10" fill="#2c3e50" stroke="#9b59b6" stroke-width="2"/>
+  <text x="215" y="100" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Fake Quantization</text>
+  <text x="215" y="130" text-anchor="middle" fill="#ecf0f1" font-family="monospace" font-size="11">x̂ = Q(x) during forward</text>
+  <text x="215" y="155" text-anchor="middle" fill="#ecf0f1" font-family="monospace" font-size="11">∇x = ∇x̂ (STE) backward</text>
+  <text x="215" y="180" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="10">Train with quantization simulation</text>
+  
+  <rect x="410" y="70" width="350" height="120" rx="10" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="585" y="100" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Benefits</text>
+  <text x="430" y="130" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">• Model learns to be quantization-robust</text>
+  <text x="430" y="155" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">• Better accuracy than PTQ (esp. INT4)</text>
+  <text x="430" y="180" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11" font-weight="bold">• Near lossless INT8 quantization</text>
+  
+  <rect x="40" y="210" width="720" height="120" rx="10" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="400" y="245" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Straight-Through Estimator (STE)</text>
+  <text x="200" y="280" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="13">Forward: discrete Q(x)</text>
+  <text x="400" y="280" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="13">Backward: ∂L/∂x ≈ ∂L/∂x̂</text>
+  <text x="600" y="280" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="13">Gradients flow through</text>
+  <text x="400" y="315" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">Enables training with non-differentiable quantization</text>
+</svg>
+

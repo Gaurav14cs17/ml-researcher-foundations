@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/prefix.svg" width="100%">
+</p>
+
 # Prefix Tuning
 
 ## 📐 Mathematical Theory

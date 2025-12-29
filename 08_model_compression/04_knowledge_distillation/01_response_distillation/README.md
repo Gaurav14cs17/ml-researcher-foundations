@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/response.svg" width="100%">
+</p>
+
 # Response-Based Knowledge Distillation
 
 ## 📐 Mathematical Theory

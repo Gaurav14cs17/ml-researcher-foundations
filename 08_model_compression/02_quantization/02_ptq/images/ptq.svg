@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f39c12"/>
+    </marker>
+  </defs>
+  <rect width="800" height="350" fill="url(#bgGrad)" rx="12"/>
+  <text x="400" y="35" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Post-Training Quantization (PTQ)</text>
+  
+  <rect x="40" y="70" width="140" height="80" rx="8" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="110" y="100" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Trained Model</text>
+  <text x="110" y="125" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">FP32 weights</text>
+  
+  <path d="M190 110 L230 110" stroke="#f39c12" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="240" y="70" width="140" height="80" rx="8" fill="#2c3e50" stroke="#9b59b6" stroke-width="2"/>
+  <text x="310" y="100" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Calibration</text>
+  <text x="310" y="125" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">~100-1000 samples</text>
+  
+  <path d="M390 110 L430 110" stroke="#f39c12" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="440" y="70" width="140" height="80" rx="8" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="510" y="100" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Quantize</text>
+  <text x="510" y="125" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Compute S, Z</text>
+  
+  <path d="M590 110 L630 110" stroke="#f39c12" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="640" y="70" width="120" height="80" rx="8" fill="#14532d" stroke="#27ae60" stroke-width="2"/>
+  <text x="700" y="100" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="12" font-weight="bold">INT8 Model</text>
+  <text x="700" y="125" text-anchor="middle" fill="#86efac" font-family="Arial, sans-serif" font-size="10">4× smaller</text>
+  
+  <rect x="40" y="180" width="350" height="150" rx="10" fill="#2c3e50" stroke="#3498db" stroke-width="2"/>
+  <text x="215" y="210" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="14" font-weight="bold">✅ Advantages</text>
+  <text x="60" y="240" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">• No retraining required</text>
+  <text x="60" y="265" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">• Fast: minutes to quantize</text>
+  <text x="60" y="290" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">• Works with any pretrained model</text>
+  <text x="60" y="315" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11">• &lt;1% accuracy drop (INT8)</text>
+  
+  <rect x="410" y="180" width="350" height="150" rx="10" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="585" y="210" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="14" font-weight="bold">⚠️ Challenges</text>
+  <text x="430" y="240" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">• Accuracy drops for INT4</text>
+  <text x="430" y="265" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">• Sensitive to outliers</text>
+  <text x="430" y="290" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">• Needs calibration data</text>
+  <text x="430" y="315" fill="#f39c12" font-family="Arial, sans-serif" font-size="11">• Use GPTQ/AWQ for LLMs</text>
+</svg>
+

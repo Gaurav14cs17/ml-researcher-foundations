@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/feature.svg" width="100%">
+</p>
+
 # Feature-Based Knowledge Distillation
 
 ## 📐 Mathematical Theory

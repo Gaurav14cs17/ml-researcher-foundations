@@ -13,6 +13,10 @@
 
 ---
 
+<p align="center">
+<img src="./images/tying.svg" width="100%">
+</p>
+
 # Weight Tying (Embedding Sharing)
 
 ## 📐 Mathematical Theory

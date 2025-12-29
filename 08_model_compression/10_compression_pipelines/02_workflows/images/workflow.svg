@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f39c12"/>
+    </marker>
+  </defs>
+  <rect width="800" height="380" fill="url(#bgGrad)" rx="12"/>
+  <text x="400" y="35" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Compression Workflows</text>
+  
+  <rect x="40" y="60" width="100" height="70" rx="8" fill="#2c3e50" stroke="#3498db" stroke-width="2"/>
+  <text x="90" y="90" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Baseline</text>
+  <text x="90" y="115" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="9">Profile</text>
+  
+  <path d="M150 95 L180 95" stroke="#f39c12" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="190" y="60" width="100" height="70" rx="8" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="240" y="90" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Prune</text>
+  <text x="240" y="115" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="9">50-90%</text>
+  
+  <path d="M300 95 L330 95" stroke="#f39c12" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="340" y="60" width="100" height="70" rx="8" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="390" y="90" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Quantize</text>
+  <text x="390" y="115" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="9">INT8/INT4</text>
+  
+  <path d="M450 95 L480 95" stroke="#f39c12" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="490" y="60" width="100" height="70" rx="8" fill="#2c3e50" stroke="#9b59b6" stroke-width="2"/>
+  <text x="540" y="90" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Fine-tune</text>
+  <text x="540" y="115" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="9">Recover acc</text>
+  
+  <path d="M600 95 L630 95" stroke="#f39c12" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <rect x="640" y="60" width="120" height="70" rx="8" fill="#14532d" stroke="#27ae60" stroke-width="2"/>
+  <text x="700" y="90" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Deploy</text>
+  <text x="700" y="115" text-anchor="middle" fill="#86efac" font-family="Arial, sans-serif" font-size="9">10× faster</text>
+  
+  <rect x="40" y="150" width="720" height="90" rx="10" fill="#2c3e50" stroke="#00d9ff" stroke-width="2"/>
+  <text x="400" y="180" text-anchor="middle" fill="#00d9ff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">LLM-Specific Workflow</text>
+  <text x="400" y="210" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">Base Model → GPTQ/AWQ (4-bit) → LoRA fine-tune → Merge → vLLM/TensorRT-LLM</text>
+  <text x="400" y="230" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10">Result: 4× smaller, 2× faster, same quality</text>
+  
+  <rect x="40" y="260" width="720" height="100" rx="10" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="400" y="295" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Expected Results</text>
+  <text x="150" y="330" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">Size: 4-16× smaller</text>
+  <text x="350" y="330" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">Speed: 2-10× faster</text>
+  <text x="550" y="330" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">Memory: 4-8× less</text>
+  <text x="700" y="330" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Accuracy: &lt;2% drop</text>
+</svg>
+
