@@ -139,13 +139,13 @@ Full Fine-Tuning LLaMA-7B:
 +-- Parameters to train: 7,000,000,000
 +-- GPU memory: 28+ GB (optimizer states)
 +-- Storage per task: 14 GB
-+-- Cost: $$$
++-- Cost: High
 
 PEFT (LoRA) Fine-Tuning:
 +-- Parameters to train: 4,000,000 (0.06%)
 +-- GPU memory: 8 GB (frozen base)
 +-- Storage per task: 16 MB
-+-- Cost: $
++-- Cost: Low
 ```
 
 ---

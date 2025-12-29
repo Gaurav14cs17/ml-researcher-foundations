@@ -56,7 +56,7 @@ $$\text{MSE}_{per-channel} \leq \text{MSE}_{per-tensor}$$
 Per-channel optimizes each $s_c$ independently:
 $$s_c^* = \arg\min_{s_c} \sum_j (w_{cj} - s_c \cdot \text{round}(w_{cj}/s_c))^2$$
 
-The per-tensor solution is a constraint of this: $s_c = s \ \forall c$.
+The per-tensor solution is a constraint of this: $s_c = s \, \forall c$.
 Removing constraints cannot increase the minimum.
 
 ---

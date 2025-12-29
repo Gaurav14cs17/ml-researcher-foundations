@@ -95,9 +95,9 @@ Running LLaMA-70B:
 +-- GGML Q4: ~35 GB (runs on CPU!)
 
 Fine-tuning Costs:
-+-- Full FT LLaMA-7B: ~$1000 (A100 rental)
-+-- LoRA: ~$100 (A6000)
-+-- QLoRA: ~$10 (RTX 3090)
++-- Full FT LLaMA-7B: ~1000 USD (A100 rental)
++-- LoRA: ~100 USD (A6000)
++-- QLoRA: ~10 USD (RTX 3090)
 ```
 
 ---
