@@ -1,3 +1,18 @@
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=3498DB&height=100&section=header&text=Post-Training%20Quantization&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Section-08.02.02-3498DB?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2025-green?style=for-the-badge" alt="Updated"/>
+</p>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
+---
+
 # Post-Training Quantization (PTQ)
 
 ## 📐 Mathematical Theory
@@ -81,8 +96,8 @@ $$Y = s_x s_w \left[X_q W_q^T - z_w X_q \mathbf{1}^T - z_x \mathbf{1} W_q^T + z_
 where $n$ is the inner dimension.
 
 **Optimization:** Pre-compute bias terms:
-- $z_w X_q \mathbf{1}^T = z_w \cdot \text{row\_sum}(X_q)$
-- $z_x \mathbf{1} W_q^T = z_x \cdot \text{col\_sum}(W_q)$
+- $z_w X_q \mathbf{1}^T = z_w \cdot \text{rowsum}(X_q)$
+- $z_x \mathbf{1} W_q^T = z_x \cdot \text{colsum}(W_q)$
 
 #### 4.2 Symmetric Simplification
 

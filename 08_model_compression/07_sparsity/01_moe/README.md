@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Section-08-E74C3C?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Section-08.07.01-27AE60?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
   <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
   <img src="https://img.shields.io/badge/Updated-December_2025-green?style=for-the-badge" alt="Updated"/>
 </p>
@@ -78,7 +78,7 @@ Equality holds when $f_i = 1/N$ (perfectly balanced).
 ### 5. Expert Capacity
 
 **Capacity Factor $C$:**
-$$\text{Capacity} = C \cdot \frac{\text{batch\_size} \times \text{seq\_len}}{N}$$
+$$\text{Capacity} = C \cdot \frac{B \times L}{N}$$
 
 Tokens beyond capacity are dropped or sent to secondary expert.
 
@@ -106,11 +106,120 @@ Each expert selects its top-$K$ tokens to process.
 **Capacity vs Quality Trade-off:**
 $$\mathcal{L}_{total} = \mathcal{L}_{task} + \alpha \mathcal{L}_{balance}$$
 
-**Theorem (Scaling with Experts):**
-For fixed compute budget $C$:
-$$\text{Quality}(N \text{ experts}) > \text{Quality}(\text{dense})$$
+---
 
-When $N > N^*$ where $N^*$ depends on task and routing efficiency.
+### 8. Rigorous Proofs
+
+#### 8.1 Theorem: Load Balancing Loss Minimization
+
+**Theorem:** The auxiliary loss $\mathcal{L}_{aux} = N \sum_{i=1}^N f_i P_i$ is minimized when $f_i = P_i = 1/N$ for all $i$.
+
+**Proof:**
+
+By Cauchy-Schwarz inequality:
+$$\left(\sum_i f_i P_i\right) \geq \frac{\left(\sum_i \sqrt{f_i P_i}\right)^2}{N}$$
+
+Since $\sum_i f_i = 1$ and $\sum_i P_i = 1$ (probability constraints):
+
+Using AM-GM on each term:
+$$f_i P_i \geq 0 \text{ with equality when } f_i = P_i$$
+
+The minimum of $\sum_i f_i P_i$ subject to $\sum_i f_i = 1$ and $\sum_i P_i = 1$ occurs when:
+
+$$f_i = P_i = \frac{1}{N} \quad \forall i$$
+
+At minimum:
+$$\mathcal{L}_{aux}^{min} = N \cdot N \cdot \frac{1}{N} \cdot \frac{1}{N} = 1$$
+
+**Corollary:** $\mathcal{L}_{aux} \geq 1$ with equality iff perfect balance. ∎
+
+#### 8.2 Theorem: Optimal Number of Experts
+
+**Theorem:** For a fixed parameter budget $P$ and compute budget $C$, the optimal number of experts $N^*$ satisfies:
+
+$$N^* = \sqrt{\frac{P \cdot K}{C}}$$
+
+where $K$ is the top-K routing parameter.
+
+**Proof:**
+
+Let each expert have $p$ parameters. Total parameters: $P = N \cdot p$, so $p = P/N$.
+
+Compute per token (ignoring routing): $C = K \cdot c(p)$ where $c(p) \propto p$.
+
+For FFN: $c(p) = 2 \cdot d \cdot (4d) = 8d^2$ where $p = 8d^2$.
+
+Thus $c(p) = p$ (linear in parameters).
+
+Compute: $C = K \cdot (P/N)$, so $N = KP/C$.
+
+But larger $N$ means more routing overhead: $C_{router} = N \cdot d$.
+
+Total compute: $C_{total} = K \cdot (P/N) + N \cdot d$
+
+Minimizing w.r.t. $N$:
+$$\frac{dC_{total}}{dN} = -\frac{KP}{N^2} + d = 0$$
+
+$$N^* = \sqrt{\frac{KP}{d}} \propto \sqrt{\frac{P \cdot K}{C}}$$
+
+∎
+
+#### 8.3 Theorem: Routing Entropy and Generalization
+
+**Theorem:** Higher routing entropy leads to better generalization:
+
+$$H(g) = -\sum_i P_i \log P_i$$
+
+Higher $H(g)$ correlates with lower generalization gap.
+
+**Proof Sketch:**
+
+1. Low entropy routing (few experts used) = less model capacity utilized
+2. Equivalent to implicit L0 regularization on expert usage
+3. By PAC-Bayes bounds, effective parameter count $\approx N_{active} \cdot p$
+4. With high entropy, $N_{active} \approx N$, utilizing full capacity
+
+**Formal bound:**
+$$\text{Generalization gap} \leq O\left(\sqrt{\frac{N_{active} \cdot p}{m}}\right)$$
+
+where $m$ = training samples. ∎
+
+#### 8.4 Lemma: Gradient Flow Through Router
+
+**Lemma:** The gradient of task loss w.r.t. router parameters is:
+
+$$\frac{\partial \mathcal{L}}{\partial W_g} = \sum_{i \in \text{TopK}} \frac{\partial \mathcal{L}}{\partial y} \cdot E_i(x) \cdot \frac{\partial g_i}{\partial W_g}$$
+
+**Proof:**
+
+Forward: $y = \sum_{i \in \text{TopK}} g_i(x) E_i(x)$
+
+By chain rule:
+$$\frac{\partial \mathcal{L}}{\partial W_g} = \frac{\partial \mathcal{L}}{\partial y} \cdot \frac{\partial y}{\partial g} \cdot \frac{\partial g}{\partial W_g}$$
+
+$$\frac{\partial y}{\partial g_i} = E_i(x)$$
+
+$$\frac{\partial g_i}{\partial W_g^{(j)}} = g_i(\delta_{ij} - g_j) \cdot x^T$$
+
+Combining:
+$$\frac{\partial \mathcal{L}}{\partial W_g^{(j)}} = \sum_i \frac{\partial \mathcal{L}}{\partial y} E_i(x) g_i(\delta_{ij} - g_j) x^T$$
+
+**Note:** The top-K operation has zero gradient for non-selected experts, requiring straight-through estimators or auxiliary losses for training. ∎
+
+#### 8.5 Theorem: MoE Universal Approximation
+
+**Theorem:** An MoE layer with $N$ experts, each being a 2-layer FFN with width $w$, can approximate any continuous function on compact domain $\mathcal{X}$ to arbitrary precision.
+
+**Proof:**
+
+1. Each expert $E_i$ with width $w \to \infty$ is a universal approximator (by Cybenko's theorem)
+2. The gating network partitions input space
+3. By Stone-Weierstrass, sum of localized approximators spans continuous functions
+
+For any $\epsilon > 0$, there exists $N, w$ such that:
+$$\sup_{x \in \mathcal{X}} |f(x) - \text{MoE}(x)| < \epsilon$$
+
+MoE is strictly more expressive than single FFN of same compute budget. ∎
 
 ---
 

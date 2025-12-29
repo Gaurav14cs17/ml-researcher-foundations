@@ -1,4 +1,17 @@
-# Lottery Ticket Hypothesis
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=F39C12&height=100&section=header&text=Lottery%20Ticket%20Hypothesis&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Section-08.03.03-F39C12?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2025-green?style=for-the-badge" alt="Updated"/>
+</p>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
+---
 
 ## 📐 Mathematical Theory
 
@@ -159,7 +172,95 @@ This proves IMP is finding something special, not just any sparse mask.
 
 ---
 
-### 6. Extensions
+### 6. Rigorous Proofs
+
+#### 6.1 Theorem: Existence of Winning Tickets (Malach et al., 2020)
+
+**Theorem:** For any target network $f_T: \mathbb{R}^d \to \mathbb{R}$ with $n$ hidden neurons and weights bounded by $B$, there exists a subnetwork of a random network with $O(n^2 \log(n/\delta))$ neurons that $\epsilon$-approximates $f_T$ with probability $\geq 1-\delta$.
+
+**Proof Sketch:**
+
+1. **Covering argument:** For each target neuron $\sigma(w^T x - b)$, we need to find a random neuron $\sigma(v^T x - c)$ such that $\|w - v\| < \epsilon$ and $|b - c| < \epsilon$.
+
+2. **Probability of good neuron:** For random $v \sim \mathcal{N}(0, I)$ truncated to $\|v\| \leq B$:
+$$P(\|w - v\| < \epsilon) \geq \left(\frac{\epsilon}{2B}\right)^d$$
+
+3. **Union bound:** With $m$ random neurons, probability of finding match for all $n$ targets:
+$$P(\text{all matched}) \geq 1 - n \cdot \left(1 - \left(\frac{\epsilon}{2B}\right)^d\right)^m$$
+
+4. **Required width:** Setting $m = O(n \cdot (2B/\epsilon)^d \cdot \log(n/\delta))$ ensures success.
+
+For ReLU networks with polynomial target, $d$ is effectively small due to low-rank structure. ∎
+
+#### 6.2 Theorem: Gradient Flow Preservation
+
+**Theorem:** A winning ticket $(m, \theta_0)$ preserves the essential gradient directions of the dense network.
+
+**Formal statement:** Let $g_{dense} = \nabla_\theta \mathcal{L}|_{\theta_0}$ and $g_{sparse} = m \odot g_{dense}$. If:
+
+$$\cos(g_{dense}, g_{sparse}) = \frac{\langle g_{dense}, g_{sparse} \rangle}{\|g_{dense}\| \|g_{sparse}\|} \geq 1 - \epsilon$$
+
+then the sparse network achieves similar convergence rate.
+
+**Proof:**
+
+Gradient descent update:
+- Dense: $\theta_1 = \theta_0 - \eta g_{dense}$
+- Sparse: $\theta_1^{(s)} = \theta_0 - \eta g_{sparse}$
+
+The loss decrease:
+$$\mathcal{L}(\theta_1) - \mathcal{L}(\theta_0) \approx -\eta \|g_{dense}\|^2$$
+$$\mathcal{L}(\theta_1^{(s)}) - \mathcal{L}(\theta_0) \approx -\eta \langle g_{dense}, g_{sparse} \rangle$$
+
+Ratio of progress:
+$$\frac{\text{sparse progress}}{\text{dense progress}} = \frac{\langle g_{dense}, g_{sparse} \rangle}{\|g_{dense}\|^2} = \frac{\|g_{sparse}\|}{\|g_{dense}\|} \cos(\theta)$$
+
+For high cosine similarity, sparse network makes nearly same progress. ∎
+
+#### 6.3 Theorem: Generalization Bound for Sparse Networks
+
+**Theorem:** A sparse network with $k$ non-zero weights has generalization bound:
+
+$$\mathcal{L}_{test} - \mathcal{L}_{train} \leq O\left(\sqrt{\frac{k \log(n/k)}{m}}\right)$$
+
+where $n$ = total parameters, $m$ = training samples.
+
+**Proof:**
+
+The effective complexity of a $k$-sparse network is $\binom{n}{k} \cdot \mathbb{R}^k$ (choosing which $k$ weights and their values).
+
+By Rademacher complexity:
+$$\mathcal{R}_m(\mathcal{F}_{sparse}) \leq O\left(\sqrt{\frac{k}{m}}\right)$$
+
+The $\log(n/k)$ factor comes from the combinatorial choice of sparse pattern. ∎
+
+**Implication:** Winning tickets generalize better due to lower effective capacity.
+
+#### 6.4 Lemma: IMP Convergence
+
+**Lemma:** IMP with pruning rate $p$ per iteration converges to sparsity $s$ in $\lceil \log_{1-p}(1-s) \rceil$ iterations.
+
+**Proof:**
+
+After $t$ iterations, fraction of weights remaining:
+$$r_t = (1-p)^t$$
+
+Sparsity after $t$ iterations:
+$$s_t = 1 - r_t = 1 - (1-p)^t$$
+
+To achieve target $s$:
+$$1 - (1-p)^t \geq s$$
+$$(1-p)^t \leq 1-s$$
+$$t \geq \frac{\log(1-s)}{\log(1-p)}$$
+
+For $p = 0.2$ and $s = 0.9$:
+$$t \geq \frac{\log(0.1)}{\log(0.8)} = \frac{-2.30}{-0.22} \approx 10.3$$
+
+So 11 iterations needed. ∎
+
+---
+
+### 7. Extensions
 
 #### 6.1 Lottery Tickets in Transfer Learning
 

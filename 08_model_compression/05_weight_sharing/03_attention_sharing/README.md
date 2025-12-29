@@ -1,3 +1,18 @@
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=1ABC9C&height=100&section=header&text=Attention%20Sharing%20(MQA/GQA)&fontSize=24&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Section-08.05.03-1ABC9C?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2025-green?style=for-the-badge" alt="Updated"/>
+</p>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
+---
+
 # Attention Sharing (MQA/GQA)
 
 ## 📐 Mathematical Theory
@@ -70,7 +85,7 @@ where $g(i) = \lfloor i \cdot g / h \rfloor$.
 #### 4.1 The Real Motivation
 
 **Autoregressive generation requires caching K,V:**
-$$\text{Cache size} = \text{batch} \times \text{seq\_len} \times \text{n\_layers} \times \text{n\_kv\_heads} \times d_k$$
+$$\text{Cache size} = B \times L \times N_L \times N_{kv} \times d_k$$
 
 **MHA cache (LLaMA-7B, seq=2048):**
 $$1 \times 2048 \times 32 \times 32 \times 128 = 268M \text{ floats} = 1GB$$

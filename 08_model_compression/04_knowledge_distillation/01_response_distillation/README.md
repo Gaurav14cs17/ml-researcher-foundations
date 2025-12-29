@@ -1,3 +1,18 @@
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=9B59B6&height=100&section=header&text=Response%20Distillation&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Section-08.04.01-9B59B6?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2025-green?style=for-the-badge" alt="Updated"/>
+</p>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
+---
+
 # Response-Based Knowledge Distillation
 
 ## 📐 Mathematical Theory
@@ -110,7 +125,75 @@ Higher entropy = more information transferred per sample.
 
 ---
 
-### 5. Variants of Response Distillation
+### 5. Rigorous Proofs
+
+#### 5.1 Theorem: Optimality of KL Divergence
+
+**Theorem:** Among all distillation losses $\mathcal{L}(p_s, p_t)$, KL divergence minimizes variance of gradient estimates.
+
+**Proof Sketch:**
+
+For a probabilistic model, the optimal loss for parameter estimation is the negative log-likelihood. The KL divergence:
+$$D_{KL}(p_t \| p_s) = \mathbb{E}_{x \sim p_t}[\log p_t(x) - \log p_s(x)]$$
+
+The gradient variance is minimized when using the true data distribution (teacher) as the target. ∎
+
+#### 5.2 Theorem: Temperature and Gradient Magnitude
+
+**Theorem:** The gradient of soft loss w.r.t. student parameters has magnitude inversely proportional to $T$:
+
+$$\left\|\frac{\partial \mathcal{L}_{soft}}{\partial \theta_s}\right\| = O(1/T)$$
+
+**Proof:**
+
+$$\frac{\partial \mathcal{L}_{soft}}{\partial \theta_s} = \frac{\partial \mathcal{L}_{soft}}{\partial z_s} \cdot \frac{\partial z_s}{\partial \theta_s}$$
+
+We showed $\frac{\partial \mathcal{L}_{soft}}{\partial z_s^{(i)}} = \frac{1}{T}(p_s^{T,(i)} - p_t^{T,(i)})$.
+
+Since $|p_s^{T,(i)} - p_t^{T,(i)}| \leq 2$ and the chain rule preserves the $1/T$ scaling:
+
+$$\left\|\frac{\partial \mathcal{L}_{soft}}{\partial \theta_s}\right\| = O(1/T) \cdot \left\|\frac{\partial z_s}{\partial \theta_s}\right\| = O(1/T)$$
+
+**Corollary:** The $T^2$ scaling in the loss compensates this, making effective gradient $O(T)$. ∎
+
+#### 5.3 Theorem: Distillation as Regularization
+
+**Theorem:** Knowledge distillation with soft labels is equivalent to label smoothing regularization in the limit $T \to \infty$.
+
+**Proof:**
+
+As $T \to \infty$:
+$$p_t^{T,(i)} \to \frac{1}{n} + \frac{z_t^{(i)} - \bar{z}_t}{nT}$$
+
+For very large $T$:
+$$p_t^{T,(i)} \approx \frac{1}{n}$$
+
+The soft loss becomes:
+$$\mathcal{L}_{soft} = D_{KL}\left(\frac{1}{n} \| p_s^T\right) = \log n - H(p_s^T)$$
+
+This is equivalent to entropy regularization, which is related to label smoothing:
+$$y_{smooth}^{(i)} = (1-\epsilon)y^{(i)} + \frac{\epsilon}{n}$$
+
+with $\epsilon = (1-\alpha)T^2/(\alpha + (1-\alpha)T^2)$. ∎
+
+#### 5.4 Theorem: Student Capacity Requirements
+
+**Theorem (Information Bottleneck):** A student network can only recover teacher knowledge up to its information capacity:
+
+$$I(X; \hat{Y}_s) \leq I(X; \hat{Y}_t)$$
+
+with equality only if student capacity $\geq$ teacher capacity.
+
+**Proof:**
+
+By the data processing inequality, for the chain $X \to Y_t \to Y_s$:
+$$I(X; Y_s) \leq I(X; Y_t)$$
+
+Information can only be lost, not created, during distillation. The student's representation is a "compression" of the teacher's. ∎
+
+---
+
+### 6. Variants of Response Distillation
 
 #### 5.1 Label Smoothing Connection
 

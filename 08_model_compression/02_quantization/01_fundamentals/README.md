@@ -1,4 +1,17 @@
-# Quantization Fundamentals
+<!-- Animated Header -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=3498DB&height=100&section=header&text=Quantization%20Fundamentals&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Section-08.02.01-3498DB?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
+  <img src="https://img.shields.io/badge/Updated-December_2025-green?style=for-the-badge" alt="Updated"/>
+</p>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
+---
 
 ## 📐 Mathematical Theory
 
@@ -88,6 +101,60 @@ $$\text{SQNR}_{dB} = 10\log_{10}\left(\frac{12 \cdot \alpha^2/3}{(2\alpha/2^b)^2
 $$= 10\log_{10}(2^{2b}) = 20b \cdot \log_{10}(2) \approx 6.02b$$
 
 The +4.77 dB comes from the factor of 12/3 = 4.
+
+---
+
+### 3.4 Bit-Width and Error Relationship
+
+**Theorem (Bit-Width Scaling):** For $b$-bit uniform quantization over range $[-\alpha, \alpha]$:
+
+$$\text{MSE}(b) = \frac{\alpha^2}{3 \cdot 4^b}$$
+
+**Proof:**
+
+Step 1: The step size is:
+$$\Delta = \frac{2\alpha}{2^b} = \frac{\alpha}{2^{b-1}}$$
+
+Step 2: Substituting into the MSE formula:
+$$\text{MSE} = \frac{\Delta^2}{12} = \frac{1}{12} \cdot \frac{\alpha^2}{4^{b-1}} = \frac{\alpha^2}{3 \cdot 4^b}$$
+
+**Corollary:** Each additional bit reduces MSE by factor of 4 (6 dB improvement).
+
+$$\frac{\text{MSE}(b)}{\text{MSE}(b+1)} = \frac{\alpha^2 / (3 \cdot 4^b)}{\alpha^2 / (3 \cdot 4^{b+1})} = 4$$
+
+---
+
+### 3.5 Information-Theoretic Lower Bound
+
+**Theorem (Rate-Distortion for Gaussian):**
+For $X \sim \mathcal{N}(0, \sigma^2)$ with MSE distortion $D$:
+
+$$R(D) = \frac{1}{2}\log_2\left(\frac{\sigma^2}{D}\right) \text{ bits/sample}$$
+
+**Proof:**
+
+The rate-distortion function is defined as:
+$$R(D) = \min_{p(\hat{X}|X): \mathbb{E}[(X-\hat{X})^2] \leq D} I(X; \hat{X})$$
+
+For Gaussian source with MSE distortion, the optimal test channel is:
+$$\hat{X} = X + N, \quad N \sim \mathcal{N}(0, D) \text{ independent of } X$$
+
+The mutual information:
+$$I(X; \hat{X}) = h(\hat{X}) - h(\hat{X}|X) = h(\hat{X}) - h(N)$$
+
+Since $\hat{X} = X + N$ where both are Gaussian:
+$$\text{Var}(\hat{X}) = \sigma^2 + D$$
+
+$$I(X; \hat{X}) = \frac{1}{2}\log_2(2\pi e(\sigma^2 + D)) - \frac{1}{2}\log_2(2\pi e D)$$
+$$= \frac{1}{2}\log_2\left(\frac{\sigma^2 + D}{D}\right) = \frac{1}{2}\log_2\left(1 + \frac{\sigma^2}{D}\right)$$
+
+For small $D$: $R(D) \approx \frac{1}{2}\log_2(\sigma^2/D)$
+
+**Implication for Quantization:**
+With $b$ bits, minimum achievable distortion is:
+$$D_{min} = \sigma^2 \cdot 2^{-2b}$$
+
+This shows 4-bit quantization achieves $D \approx \sigma^2/65536$, often sufficient for neural networks!
 
 ---
 

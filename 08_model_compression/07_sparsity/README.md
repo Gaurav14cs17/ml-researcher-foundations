@@ -211,7 +211,7 @@ Mixtral 8x7B:
 
 ---
 
-⬅️ [Back: Factorization](../05_factorization/README.md) | 📂 [MoE](./01_moe/README.md) | ➡️ [Next: Efficient Architectures](../07_efficient_architectures/README.md)
+⬅️ [Back: Factorization](../06_factorization/README.md) | 📂 [MoE](./01_moe/README.md) | ➡️ [Next: PEFT](../08_peft/README.md)
 
 ---
 

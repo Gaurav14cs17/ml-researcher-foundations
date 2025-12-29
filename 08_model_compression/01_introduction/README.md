@@ -74,7 +74,7 @@ This theoretical limit explains why 4-bit quantization often works!
 $$\text{Memory}(M) = \sum_{l=1}^{L} |W_l| \cdot \frac{b_l}{8} \text{ bytes}$$
 
 **Inference FLOPs:**
-$$\text{FLOPs} = \sum_{l=1}^{L} 2 \cdot |W_l| \cdot \text{input\_size}_l$$
+$$\text{FLOPs} = \sum_{l=1}^{L} 2 \cdot |W_l| \cdot \text{input-size}_l$$
 
 **Roofline Model (Memory-Bound vs Compute-Bound):**
 $$\text{Achieved FLOPS} = \min\left(\text{Peak FLOPS}, \text{Bandwidth} \times \text{Arithmetic Intensity}\right)$$
@@ -98,8 +98,8 @@ For LLMs: Usually memory-bound → compression helps!
 
 | File | Topic | Key Concepts |
 |------|-------|--------------|
-| [../03_quantization/](../03_quantization/) | Quantization | INT8, INT4, GPTQ, AWQ |
-| [../02_parameter_reduction/](../02_parameter_reduction/) | Parameter Reduction | Pruning, Clustering |
+| [../02_quantization/](../02_quantization/) | Quantization | INT8, INT4, GPTQ, AWQ |
+| [../03_pruning/](../03_pruning/) | Pruning | Magnitude, Structured, Lottery Ticket |
 | [../04_knowledge_distillation/](../04_knowledge_distillation/) | Knowledge Distillation | Teacher-Student |
 | [../08_peft/](../08_peft/) | PEFT | LoRA, Adapters |
 
@@ -198,7 +198,7 @@ Where:
 
 ---
 
-⬅️ [Back: Model Compression](../README.md) | ➡️ [Next: Parameter Reduction](../02_parameter_reduction/README.md)
+⬅️ [Back: Model Compression](../README.md) | ➡️ [Next: Quantization](../02_quantization/README.md)
 
 ---
 

@@ -1,50 +1,84 @@
-<?xml version="1.0" ?>
-<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 1170.0">
-  <ns0:defs>
-    <ns0:linearGradient id="svdBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
-      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
-    </ns0:linearGradient>
-  </ns0:defs>
-  <ns0:rect width="1800.0" height="1170.0" fill="#f8f9fa" rx="8"/>
-  <ns0:text x="400" y="35" text-anchor="middle" fill="#00838f" font-family="Arial, sans-serif" font-size="18" font-weight="bold">SVD and Low-Rank Approximation</ns0:text>
-  <ns0:g transform="translate(30, 60)">
-    <ns0:rect width="360" height="170" rx="10" fill="#1a237e" stroke="#17a2b8" stroke-width="2"/>
-    <ns0:text x="180" y="60.0" text-anchor="middle" fill="#00838f" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Singular Value Decomposition</ns0:text>
-    <ns0:text x="20" y="85.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Full SVD:</ns0:text>
-    <ns0:text x="20" y="110.0" fill="#00838f" font-family="Arial, sans-serif" font-size="16">W = U * S * V^T</ns0:text>
-    <ns0:text x="20" y="135.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">U: m x m (left singular vectors)</ns0:text>
-    <ns0:text x="20" y="160.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">S: m x n (singular values, diagonal)</ns0:text>
-    <ns0:text x="20" y="185.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">V: n x n (right singular vectors)</ns0:text>
-  </ns0:g>
-  <ns0:g transform="translate(410, 60)">
-    <ns0:rect width="360" height="170" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
-    <ns0:text x="180" y="210.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Truncated SVD (rank-r)</ns0:text>
-    <ns0:text x="20" y="235.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Best rank-r approximation:</ns0:text>
-    <ns0:text x="20" y="260.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="14">W_hat = U_r * S_r * V_r^T</ns0:text>
-    <ns0:text x="20" y="285.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Keep top-r singular values</ns0:text>
-    <ns0:text x="20" y="310.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">U_r: m x r, S_r: r x r, V_r: n x r</ns0:text>
-    <ns0:text x="20" y="335.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Eckart-Young: Optimal in Frobenius!</ns0:text>
-  </ns0:g>
-  <ns0:g transform="translate(30, 250)">
-    <ns0:rect width="360" height="120" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
-    <ns0:text x="180" y="360.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Approximation Error</ns0:text>
-    <ns0:text x="20" y="385.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Frobenius error:</ns0:text>
-    <ns0:text x="20" y="410.0" fill="#e65100" font-family="Arial, sans-serif" font-size="11">||W - W_hat||_F^2 = Sum_{i=r+1} s_i^2</ns0:text>
-    <ns0:text x="20" y="435.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Error = sum of discarded singular values^2</ns0:text>
-  </ns0:g>
-  <ns0:g transform="translate(410, 250)">
-    <ns0:rect width="360" height="120" rx="10" fill="#1a237e" stroke="#6f42c1" stroke-width="2"/>
-    <ns0:text x="180" y="460.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Compression Analysis</ns0:text>
-    <ns0:text x="20" y="485.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Original: m * n parameters</ns0:text>
-    <ns0:text x="20" y="510.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">SVD storage: r * (m + n)</ns0:text>
-    <ns0:text x="20" y="535.0" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="10">Compression if r &lt; m*n/(m+n)</ns0:text>
-  </ns0:g>
-  <ns0:g transform="translate(30, 390)">
-    <ns0:rect width="740" height="110" rx="10" fill="#1a237e" stroke="#ec4899" stroke-width="2"/>
-    <ns0:text x="370" y="560.0" text-anchor="middle" fill="#ec4899" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Connection to LoRA</ns0:text>
-    <ns0:text x="30" y="585.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">SVD: W = U_r * S_r * V_r^T (decompose existing)</ns0:text>
-    <ns0:text x="30" y="610.0" fill="#f472b6" font-family="Arial, sans-serif" font-size="11">LoRA: dW = B * A (learn low-rank update)</ns0:text>
-    <ns0:text x="30" y="635.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Both exploit: weight matrices have low intrinsic rank!</ns0:text>
-  </ns0:g>
-</ns0:svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="500" fill="url(#bgGrad)" rx="12"/>
+  
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" fill="#e67e22" font-family="Arial, sans-serif" font-size="24" font-weight="bold">SVD for Model Compression</text>
+  
+  <!-- Main SVD Formula -->
+  <rect x="150" y="60" width="600" height="60" rx="10" fill="#2c3e50" stroke="#e67e22" stroke-width="2"/>
+  <text x="450" y="100" text-anchor="middle" fill="#2ecc71" font-family="monospace" font-size="20" font-weight="bold">W = U Σ V^T ≈ U_r Σ_r V_r^T</text>
+  
+  <!-- Matrix Visualization -->
+  <rect x="30" y="140" width="420" height="180" rx="10" fill="#2c3e50" stroke="#3498db" stroke-width="2"/>
+  <text x="240" y="170" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Low-Rank Approximation</text>
+  
+  <!-- W matrix -->
+  <rect x="60" y="200" width="80" height="80" rx="4" fill="#e74c3c" opacity="0.8"/>
+  <text x="100" y="245" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">W</text>
+  <text x="100" y="295" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="10">m × n</text>
+  
+  <text x="155" y="245" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="20">≈</text>
+  
+  <!-- U_r matrix -->
+  <rect x="180" y="200" width="30" height="80" rx="4" fill="#3498db"/>
+  <text x="195" y="245" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="11" font-weight="bold">U_r</text>
+  <text x="195" y="295" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="9">m×r</text>
+  
+  <!-- Sigma_r matrix -->
+  <rect x="220" y="220" width="40" height="40" rx="4" fill="#f39c12"/>
+  <text x="240" y="245" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Σ_r</text>
+  <text x="240" y="275" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="9">r×r</text>
+  
+  <!-- V_r^T matrix -->
+  <rect x="270" y="220" width="80" height="30" rx="4" fill="#27ae60"/>
+  <text x="310" y="240" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="11" font-weight="bold">V_r^T</text>
+  <text x="310" y="265" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="9">r×n</text>
+  
+  <text x="370" y="245" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="20">=</text>
+  
+  <!-- Result matrix -->
+  <rect x="390" y="200" width="80" height="80" rx="4" fill="#9b59b6" opacity="0.8"/>
+  <text x="430" y="245" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">W_r</text>
+  <text x="430" y="295" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="10">m × n</text>
+  
+  <!-- Compression Formula -->
+  <rect x="480" y="140" width="390" height="180" rx="10" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="675" y="170" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Compression Analysis</text>
+  
+  <text x="500" y="210" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">Original params:</text>
+  <text x="640" y="210" fill="#e74c3c" font-family="monospace" font-size="14">m × n</text>
+  
+  <text x="500" y="245" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">Low-rank params:</text>
+  <text x="650" y="245" fill="#2ecc71" font-family="monospace" font-size="14">r × (m + n)</text>
+  
+  <text x="500" y="280" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">Compression Ratio:</text>
+  <text x="660" y="280" fill="#f39c12" font-family="monospace" font-size="14">mn / r(m+n)</text>
+  
+  <rect x="500" y="295" width="350" height="25" rx="4" fill="#1e3a5f"/>
+  <text x="675" y="313" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12">Example: m=n=4096, r=64 → 32× compression!</text>
+  
+  <!-- Error Bound -->
+  <rect x="30" y="340" width="420" height="140" rx="10" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="240" y="370" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Eckart-Young-Mirsky Theorem</text>
+  
+  <text x="50" y="410" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">Truncated SVD is optimal:</text>
+  <text x="50" y="445" fill="#e74c3c" font-family="monospace" font-size="14">||W - W_r||_F² = Σᵢ₌ᵣ₊₁ⁿ σᵢ²</text>
+  <text x="50" y="475" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">Error = sum of discarded singular values squared</text>
+  
+  <!-- LoRA Connection -->
+  <rect x="480" y="340" width="390" height="140" rx="10" fill="#2c3e50" stroke="#9b59b6" stroke-width="2"/>
+  <text x="675" y="370" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Connection to LoRA</text>
+  
+  <text x="500" y="410" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">LoRA: ΔW = BA</text>
+  <text x="500" y="440" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">Implicit low-rank:</text>
+  <text x="500" y="470" fill="#9b59b6" font-family="monospace" font-size="13">rank(BA) ≤ r</text>
+  <text x="700" y="470" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">Same principle!</text>
+</svg>

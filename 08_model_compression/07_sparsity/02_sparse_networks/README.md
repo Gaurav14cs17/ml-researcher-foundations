@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Section-08-E74C3C?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
+  <img src="https://img.shields.io/badge/Section-08.07.02-27AE60?style=for-the-badge&logo=bookstack&logoColor=white" alt="Section"/>
   <img src="https://img.shields.io/badge/Author-Gaurav_Goswami-blue?style=for-the-badge" alt="Author"/>
   <img src="https://img.shields.io/badge/Updated-December_2025-green?style=for-the-badge" alt="Updated"/>
 </p>
@@ -316,7 +316,7 @@ class RigLOptimizer:
 
 ---
 
-⬅️ [Back: MoE](../01_moe/README.md) | ➡️ [Next: Efficient Architectures](../../07_efficient_architectures/README.md)
+⬅️ [Back: MoE](../01_moe/README.md) | ➡️ [Next: PEFT](../../08_peft/README.md)
 
 ---
 
