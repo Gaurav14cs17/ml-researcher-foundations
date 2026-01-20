@@ -45,7 +45,7 @@ Let the true relationship be:
 y = f(x) + \varepsilon, \quad \text{where } \varepsilon \sim \mathcal{N}(0, \sigma^2)
 ```
 
-Given training data $\mathcal{D}$, we learn an estimator \(\hat{f}(x; \mathcal{D})\).
+Given training data $\mathcal{D}$, we learn an estimator $\hat{f}(x; \mathcal{D})$.
 
 ### Theorem: Bias-Variance Decomposition
 
@@ -169,11 +169,11 @@ Expected Error
 
 **Mathematical Example:**
 
-True function: \(f(x) = x^2\)
+True function: $f(x) = x^2$
 
-Model: \(\hat{f}(x) = ax + b\) (linear)
+Model: $\hat{f}(x) = ax + b$ (linear)
 
-Best linear fit minimizes \(\int (x^2 - ax - b)^2 dx\), but cannot represent curvature.
+Best linear fit minimizes $\int (x^2 - ax - b)^2 dx$, but cannot represent curvature.
 
 ```math
 \text{Bias}^2 = \mathbb{E}_x[(x^2 - ax^* - b^*)^2] > 0
@@ -209,13 +209,13 @@ Consider polynomial regression of degree $d$ on $n$ points:
 \text{Var}(\hat{f}(x)) = \sigma^2 \cdot \mathbf{x}^\top (\mathbf{X}^\top\mathbf{X})^{-1} \mathbf{x}
 ```
 
-As $d \to n$, \((\mathbf{X}^\top\mathbf{X})^{-1}\) becomes ill-conditioned and variance explodes.
+As $d \to n$, $(\mathbf{X}^\top\mathbf{X})^{-1}$ becomes ill-conditioned and variance explodes.
 
 ---
 
 ## 📐 Formal Analysis for Linear Regression
 
-For linear regression \(\hat{f}(x) = x^\top \hat{\beta}\) where \(\hat{\beta} = (X^\top X)^{-1} X^\top y\):
+For linear regression $\hat{f}(x) = x^\top \hat{\beta}$ where $\hat{\beta} = (X^\top X)^{-1} X^\top y$:
 
 ### Bias
 
@@ -239,7 +239,7 @@ For linear regression \(\hat{f}(x) = x^\top \hat{\beta}\) where \(\hat{\beta} = 
 
 ### Ridge Regression Reduces Variance
 
-With L2 regularization: \(\hat{\beta}_{\text{ridge}} = (X^\top X + \lambda I)^{-1} X^\top y\)
+With L2 regularization: $\hat{\beta}_{\text{ridge}} = (X^\top X + \lambda I)^{-1} X^\top y$
 
 **Bias (now non-zero):**
 
@@ -253,7 +253,7 @@ With L2 regularization: \(\hat{\beta}_{\text{ridge}} = (X^\top X + \lambda I)^{-
 \text{Var}(\hat{\beta}_{\text{ridge}}) = \sigma^2 (X^\top X + \lambda I)^{-1} X^\top X (X^\top X + \lambda I)^{-1}
 ```
 
-**Theorem:** There exists $\lambda^* > 0$ such that \(\text{MSE}(\hat{\beta}_{\text{ridge}}) < \text{MSE}(\hat{\beta}_{\text{OLS}})\).
+**Theorem:** There exists $\lambda^* > 0$ such that $\text{MSE}(\hat{\beta}_{\text{ridge}}) < \text{MSE}(\hat{\beta}_{\text{OLS}})$.
 
 ---
 

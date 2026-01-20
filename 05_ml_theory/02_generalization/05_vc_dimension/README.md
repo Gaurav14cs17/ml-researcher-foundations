@@ -40,23 +40,23 @@ The **Vapnik-Chervonenkis (VC) dimension** is a fundamental measure of the capac
 
 ### Shattering
 
-**Definition:** A hypothesis class $\mathcal{H}$ **shatters** a set of points $S = \{x_1, \ldots, x_n\}$ if for every possible labeling \((y_1, \ldots, y_n) \in \{-1, +1\}^n\), there exists $h \in \mathcal{H}$ such that \(h(x_i) = y_i\) for all $i$.
+**Definition:** A hypothesis class $\mathcal{H}$ **shatters** a set of points $S = \{x_1, \ldots, x_n\}$ if for every possible labeling $(y_1, \ldots, y_n) \in \{-1, +1\}^n$, there exists $h \in \mathcal{H}$ such that $h(x_i) = y_i$ for all $i$.
 
 In other words, $\mathcal{H}$ can achieve all $2^n$ possible binary labelings of $S$.
 
 ### VC Dimension
 
-**Definition:** The VC dimension of $\mathcal{H}$, denoted \(\text{VC}(\mathcal{H})\), is:
+**Definition:** The VC dimension of $\mathcal{H}$, denoted $\text{VC}(\mathcal{H})$, is:
 
 ```math
 \text{VC}(\mathcal{H}) = \max\{n : \exists S \text{ with } |S| = n \text{ that } \mathcal{H} \text{ shatters}\}
 ```
 
-If $\mathcal{H}$ can shatter arbitrarily large sets, \(\text{VC}(\mathcal{H}) = \infty\).
+If $\mathcal{H}$ can shatter arbitrarily large sets, $\text{VC}(\mathcal{H}) = \infty$.
 
 **Equivalently:**
-- \(\text{VC}(\mathcal{H}) \geq d\) if there exists **some** set of $d$ points that $\mathcal{H}$ shatters
-- \(\text{VC}(\mathcal{H}) < d\) if **no** set of $d$ points can be shattered by $\mathcal{H}$
+- $\text{VC}(\mathcal{H}) \geq d$ if there exists **some** set of $d$ points that $\mathcal{H}$ shatters
+- $\text{VC}(\mathcal{H}) < d$ if **no** set of $d$ points can be shattered by $\mathcal{H}$
 
 ---
 
@@ -64,9 +64,9 @@ If $\mathcal{H}$ can shatter arbitrarily large sets, \(\text{VC}(\mathcal{H}) = 
 
 ### Example 1: Linear Classifiers in $\mathbb{R}^d$
 
-**Hypothesis class:** \(\mathcal{H} = \{x \mapsto \text{sign}(w^\top x + b) : w \in \mathbb{R}^d, b \in \mathbb{R}\}\)
+**Hypothesis class:** $\mathcal{H} = \{x \mapsto \text{sign}(w^\top x + b) : w \in \mathbb{R}^d, b \in \mathbb{R}\}$
 
-**Theorem:** \(\text{VC}(\mathcal{H}) = d + 1\)
+**Theorem:** $\text{VC}(\mathcal{H}) = d + 1$
 
 **Proof of lower bound ($\geq d+1$):**
 
@@ -80,14 +80,14 @@ x_0 = 0, \quad x_i = e_i \text{ for } i = 1, \ldots, d
 
 where $e_i$ is the $i$-th standard basis vector.
 
-For any labeling \((y_0, y_1, \ldots, y_d)\), set:
+For any labeling $(y_0, y_1, \ldots, y_d)$, set:
 
 ```math
 w = \sum_{i=1}^d y_i e_i, \quad b = -\frac{1}{2}(1 + y_0)
 ```
 
 Then:
-- \(w^\top x_0 + b = b = -\frac{1}{2}(1 + y_0)\), which has sign $y_0$
+- $w^\top x_0 + b = b = -\frac{1}{2}(1 + y_0)$, which has sign $y_0$
 - $w^\top x_i + b = y_i + b$, which has sign $y_i$ for appropriate $b$
 
 **Proof of upper bound ($\leq d+1$):**
@@ -98,21 +98,21 @@ For any $d+2$ points in $\mathbb{R}^d$, they are linearly dependent. By Radon's 
 
 **Hypothesis class:** $\mathcal{H} = \{x \mapsto \mathbb{1}[a \leq x \leq b] : a, b \in \mathbb{R}\}$
 
-**Theorem:** \(\text{VC}(\mathcal{H}) = 2\)
+**Theorem:** $\text{VC}(\mathcal{H}) = 2$
 
 **Proof:**
 
 *Lower bound:* Two points $x_1 < x_2$ can be shattered:
-- \((+, +)\): interval $[x_1, x_2]$
-- \((-, -)\): interval $[x_1 - 1, x_1 - 0.5]$ (excludes both)
-- \((+, -)\): interval \([x_1 - 0.5, (x_1 + x_2)/2]\)
-- \((-, +)\): interval \([(x_1 + x_2)/2, x_2 + 0.5]\)
+- $(+, +)$: interval $[x_1, x_2]$
+- $(-, -)$: interval $[x_1 - 1, x_1 - 0.5]$ (excludes both)
+- $(+, -)$: interval $[x_1 - 0.5, (x_1 + x_2)/2]$
+- $(-, +)$: interval $[(x_1 + x_2)/2, x_2 + 0.5]$
 
-*Upper bound:* For any three points $x_1 < x_2 < x_3$, the labeling \((+, -, +)\) cannot be achieved by a single interval.
+*Upper bound:* For any three points $x_1 < x_2 < x_3$, the labeling $(+, -, +)$ cannot be achieved by a single interval.
 
 ### Example 3: Axis-Aligned Rectangles in $\mathbb{R}^2$
 
-**Theorem:** \(\text{VC}(\mathcal{H}) = 4\)
+**Theorem:** $\text{VC}(\mathcal{H}) = 4$
 
 **Proof:**
 
@@ -122,7 +122,7 @@ For any $d+2$ points in $\mathbb{R}^d$, they are linearly dependent. By Radon's 
 
 ### Example 4: k-Nearest Neighbors
 
-**Theorem:** \(\text{VC}(\mathcal{H}_{k\text{-NN}}) = \infty\)
+**Theorem:** $\text{VC}(\mathcal{H}_{k\text{-NN}}) = \infty$
 
 **Proof:** For any $n$ points and any labeling, 1-NN memorizes and achieves the labeling. Hence arbitrarily large sets can be shattered.
 
@@ -141,13 +141,13 @@ m_\mathcal{H}(n) = \max_{x_1, \ldots, x_n} |\{(h(x_1), \ldots, h(x_n)) : h \in \
 This counts the maximum number of distinct classifications on $n$ points.
 
 **Properties:**
-- \(m_\mathcal{H}(n) \leq 2^n\) (at most all labelings)
-- If \(\text{VC}(\mathcal{H}) = d\), then \(m_\mathcal{H}(d) = 2^d\) (some set is shattered)
-- If \(\text{VC}(\mathcal{H}) = d\), then \(m_\mathcal{H}(n) < 2^n\) for $n > d$
+- $m_\mathcal{H}(n) \leq 2^n$ (at most all labelings)
+- If $\text{VC}(\mathcal{H}) = d$, then $m_\mathcal{H}(d) = 2^d$ (some set is shattered)
+- If $\text{VC}(\mathcal{H}) = d$, then $m_\mathcal{H}(n) < 2^n$ for $n > d$
 
 ### Sauer-Shelah Lemma
 
-**Theorem (Sauer, 1972; Shelah, 1972):** If \(\text{VC}(\mathcal{H}) = d\), then:
+**Theorem (Sauer, 1972; Shelah, 1972):** If $\text{VC}(\mathcal{H}) = d$, then:
 
 ```math
 m_\mathcal{H}(n) \leq \sum_{i=0}^{d} \binom{n}{i} \leq \left(\frac{en}{d}\right)^d
@@ -155,7 +155,7 @@ m_\mathcal{H}(n) \leq \sum_{i=0}^{d} \binom{n}{i} \leq \left(\frac{en}{d}\right)
 
 **Proof Sketch:**
 
-By induction on $n + d$. For the base case, if $d = 0$, then \(m_\mathcal{H}(n) = 1\). For the induction step, partition hypotheses based on behavior on the $n$-th point and apply the inductive hypothesis to both subclasses.
+By induction on $n + d$. For the base case, if $d = 0$, then $m_\mathcal{H}(n) = 1$. For the induction step, partition hypotheses based on behavior on the $n$-th point and apply the inductive hypothesis to both subclasses.
 
 **Implication:** For $n > d$, the growth function is polynomial in $n$, not exponential!
 
@@ -172,8 +172,8 @@ By induction on $n + d$. For the base case, if $d = 0$, then \(m_\mathcal{H}(n) 
 ```
 
 where:
-- \(R(h) = \mathbb{E}_{(x,y) \sim P}[\mathbb{1}[h(x) \neq y]]\) is the true risk
-- \(\hat{R}(h) = \frac{1}{n}\sum_{i=1}^n \mathbb{1}[h(x_i) \neq y_i]\) is the empirical risk
+- $R(h) = \mathbb{E}_{(x,y) \sim P}[\mathbb{1}[h(x) \neq y]]$ is the true risk
+- $\hat{R}(h) = \frac{1}{n}\sum_{i=1}^n \mathbb{1}[h(x_i) \neq y_i]$ is the empirical risk
 
 ### Proof Outline
 
@@ -185,11 +185,11 @@ The key insight is to relate uniform deviations to the growth function using a "
 \Pr\left[\sup_{h \in \mathcal{H}} |R(h) - \hat{R}(h)| > \epsilon\right] \leq 2\Pr\left[\sup_{h \in \mathcal{H}} |\hat{R}(h) - \hat{R}'(h)| > \epsilon/2\right]
 ```
 
-where \(\hat{R}'(h)\) is the empirical risk on an independent "ghost" sample.
+where $\hat{R}'(h)$ is the empirical risk on an independent "ghost" sample.
 
 **Step 2: Finite Effective Hypothesis Class**
 
-On $2n$ points, $\mathcal{H}$ induces at most \(m_\mathcal{H}(2n)\) distinct behaviors.
+On $2n$ points, $\mathcal{H}$ induces at most $m_\mathcal{H}(2n)$ distinct behaviors.
 
 **Step 3: Union Bound + Hoeffding**
 
@@ -209,7 +209,7 @@ Setting this to $\delta$ and solving for $\epsilon$ gives the bound.
 
 ### Sample Complexity
 
-**Corollary:** To achieve \(R(\hat{h}) - \hat{R}(\hat{h}) \leq \epsilon\) with probability $\geq 1 - \delta$:
+**Corollary:** To achieve $R(\hat{h}) - \hat{R}(\hat{h}) \leq \epsilon$ with probability $\geq 1 - \delta$:
 
 ```math
 n = O\left(\frac{d + \ln(1/\delta)}{\epsilon^2}\right)
@@ -234,8 +234,8 @@ n = O\left(\frac{d + \ln(1/\delta)}{\epsilon^2}\right)
 | Decision stumps | 2 | Single threshold |
 | Union of $k$ intervals | $2k$ | $2k$ endpoints |
 | k-NN | $\infty$ | Can memorize |
-| Neural network with $W$ weights | \(O(W \log W)\) | Upper bound |
-| Neural network with ReLU | \(O(WL)\) | $L$ = number of layers |
+| Neural network with $W$ weights | $O(W \log W)$ | Upper bound |
+| Neural network with ReLU | $O(WL)$ | $L$ = number of layers |
 
 ---
 
@@ -500,7 +500,7 @@ for d in [3, 10, 100, 1000]:
 
 Classical VC theory predicts:
 - High VC dimension → poor generalization
-- Neural networks have VC dim \(\approx O(WL)\) where $W$ = parameters, $L$ = layers
+- Neural networks have VC dim $\approx O(WL)$ where $W$ = parameters, $L$ = layers
 
 **Reality:** Overparameterized networks generalize well despite huge VC dimension!
 

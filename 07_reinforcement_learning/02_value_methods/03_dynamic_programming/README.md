@@ -37,12 +37,12 @@ Dynamic Programming (DP) computes optimal policies when the MDP model (transitio
 
 ### MDP Definition
 
-An MDP is defined by \((\mathcal{S}, \mathcal{A}, P, R, \gamma)\):
+An MDP is defined by $(\mathcal{S}, \mathcal{A}, P, R, \gamma)$:
 - $\mathcal{S}$: State space
 - $\mathcal{A}$: Action space
-- \(P(s'|s,a)\): Transition probability
-- \(R(s,a,s')\): Reward function
-- \(\gamma \in [0,1)\): Discount factor
+- $P(s'|s,a)$: Transition probability
+- $R(s,a,s')$: Reward function
+- $\gamma \in [0,1)$: Discount factor
 
 ### Bellman Equations
 
@@ -158,7 +158,7 @@ V_k → V^π as k → ∞  ✓
 
 ### Policy Improvement Theorem
 
-**Theorem:** If $\pi'$ is greedy with respect to $V^\pi$, then $\pi' \geq \pi$ (i.e., \(V^{\pi'}(s) \geq V^\pi(s)\) for all $s$).
+**Theorem:** If $\pi'$ is greedy with respect to $V^\pi$, then $\pi' \geq \pi$ (i.e., $V^{\pi'}(s) \geq V^\pi(s)$ for all $s$).
 
 **Proof:**
 ```
@@ -578,10 +578,10 @@ print(f"Value function:\n{V_ps.reshape(4, 4)}")
 
 | Algorithm | Time per Iteration | Convergence | Total |
 |-----------|-------------------|-------------|-------|
-| **Policy Evaluation** | \(O(S^2A)\) | \(O(\log(1/\epsilon)/\log(1/\gamma))\) | \(O(S^2A/\epsilon)\) |
-| **Policy Iteration** | \(O(S^2A + S^3)\) | \(O(A^S)\) worst, \(O(S)\) typical | Varies |
-| **Value Iteration** | \(O(S^2A)\) | \(O(\log(1/\epsilon)/\log(1/\gamma))\) | \(O(S^2A/\epsilon)\) |
-| **Prioritized Sweeping** | \(O(\log S)\) per update | Problem-dependent | Often \(O(S \log S)\) |
+| **Policy Evaluation** | $O(S^2A)$ | $O(\log(1/\epsilon)/\log(1/\gamma))$ | $O(S^2A/\epsilon)$ |
+| **Policy Iteration** | $O(S^2A + S^3)$ | $O(A^S)$ worst, $O(S)$ typical | Varies |
+| **Value Iteration** | $O(S^2A)$ | $O(\log(1/\epsilon)/\log(1/\gamma))$ | $O(S^2A/\epsilon)$ |
+| **Prioritized Sweeping** | $O(\log S)$ per update | Problem-dependent | Often $O(S \log S)$ |
 
 ---
 

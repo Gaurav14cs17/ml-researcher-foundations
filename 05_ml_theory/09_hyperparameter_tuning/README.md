@@ -52,7 +52,7 @@ Exhaustive search over a discretized grid:
 \Lambda_{\text{grid}} = \{\lambda_1^{(1)}, \ldots, \lambda_1^{(k_1)}\} \times \cdots \times \{\lambda_d^{(1)}, \ldots, \lambda_d^{(k_d)}\}
 ```
 
-**Complexity:** \(O(\prod_{i=1}^d k_i)\)
+**Complexity:** $O(\prod_{i=1}^d k_i)$
 
 ### Random Search
 
@@ -62,12 +62,12 @@ Exhaustive search over a discretized grid:
 
 ### Bayesian Optimization
 
-**Objective:** Find \(\lambda^* = \arg\min_\lambda f(\lambda)\) where $f$ is expensive to evaluate.
+**Objective:** Find $\lambda^* = \arg\min_\lambda f(\lambda)$ where $f$ is expensive to evaluate.
 
 **Algorithm:**
-1. Model \(f(\lambda)\) with surrogate (GP or TPE)
+1. Model $f(\lambda)$ with surrogate (GP or TPE)
 2. Select next $\lambda$ using acquisition function
-3. Evaluate \(f(\lambda)\)
+3. Evaluate $f(\lambda)$
 4. Update surrogate
 5. Repeat
 
@@ -89,7 +89,7 @@ f(\lambda) \sim \mathcal{GP}(m(\lambda), k(\lambda, \lambda'))
 \text{EI}(\lambda) = \mathbb{E}[\max(f^+ - f(\lambda), 0)]
 ```
 
-where \(f^+ = \min_i f(\lambda_i)\) is the best observed value.
+where $f^+ = \min_i f(\lambda_i)$ is the best observed value.
 
 **Closed form for GP:**
 
@@ -97,7 +97,7 @@ where \(f^+ = \min_i f(\lambda_i)\) is the best observed value.
 \text{EI}(\lambda) = (f^+ - \mu(\lambda))\Phi(Z) + \sigma(\lambda)\phi(Z)
 ```
 
-where \(Z = \frac{f^+ - \mu(\lambda)}{\sigma(\lambda)}\).
+where $Z = \frac{f^+ - \mu(\lambda)}{\sigma(\lambda)}$.
 
 **Upper Confidence Bound (UCB):**
 
@@ -118,18 +118,18 @@ Given budget $B$ and $n$ configurations:
 2. Evaluate and keep top $1/\eta$ fraction
 3. Repeat with increased budget
 
-**Theorem:** Successive halving finds the best arm with at most \(O(\frac{B}{\log(n)})\) additional evaluations compared to optimal.
+**Theorem:** Successive halving finds the best arm with at most $O(\frac{B}{\log(n)})$ additional evaluations compared to optimal.
 
 ### Hyperband Algorithm
 
-Run successive halving with different \((n, B/n)\) trade-offs:
+Run successive halving with different $(n, B/n)$ trade-offs:
 
 ```math
 s_{\max} = \lfloor \log_\eta(B) \rfloor
 ```
 
 For each $s \in \{s_{\max}, \ldots, 0\}$:
-- \(n = \lceil \frac{B \eta^s}{(s+1)} \rceil\) initial configurations
+- $n = \lceil \frac{B \eta^s}{(s+1)} \rceil$ initial configurations
 - $r = B \eta^{-s}$ minimum budget per configuration
 
 ---

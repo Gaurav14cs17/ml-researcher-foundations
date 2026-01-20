@@ -40,7 +40,7 @@
 
 ### Formal Definition
 
-A concept class $\mathcal{C}$ is **PAC-learnable** if there exists an algorithm $\mathcal{A}$ and a polynomial \(p(\cdot, \cdot, \cdot, \cdot)\) such that:
+A concept class $\mathcal{C}$ is **PAC-learnable** if there exists an algorithm $\mathcal{A}$ and a polynomial $p(\cdot, \cdot, \cdot, \cdot)$ such that:
 
 For all:
 - Concepts $c \in \mathcal{C}$
@@ -48,13 +48,13 @@ For all:
 - Accuracy parameter $\varepsilon > 0$
 - Confidence parameter $\delta > 0$
 
-Given \(m \geq p(1/\varepsilon, 1/\delta, n, \text{size}(c))\) samples drawn i.i.d. from $\mathcal{D}$:
+Given $m \geq p(1/\varepsilon, 1/\delta, n, \text{size}(c))$ samples drawn i.i.d. from $\mathcal{D}$:
 
 ```math
 \Pr[R(h) \leq \varepsilon] \geq 1 - \delta
 ```
 
-where \(R(h) = \Pr_{x \sim \mathcal{D}}[h(x) \neq c(x)]\) is the true error.
+where $R(h) = \Pr_{x \sim \mathcal{D}}[h(x) \neq c(x)]$ is the true error.
 
 ---
 
@@ -70,7 +70,7 @@ m \geq \frac{1}{\varepsilon}\left(\ln|\mathcal{H}| + \ln\frac{1}{\delta}\right)
 
 **Proof:**
 
-Let $h^* \in \mathcal{H}$ be a hypothesis with \(R(h^*) > \varepsilon\).
+Let $h^* \in \mathcal{H}$ be a hypothesis with $R(h^*) > \varepsilon$.
 
 For each training example:
 

@@ -249,10 +249,10 @@ Encoder-decoder models:
 
 | Method | Complexity | Description |
 |--------|------------|-------------|
-| **Standard** | \(O(n^2d)\) | Full attention matrix |
-| **Sparse** | \(O(n\sqrt{n}d)\) | Fixed sparse patterns |
-| **Linear** | \(O(nd^2)\) | Kernel approximation |
-| **Flash Attention** | \(O(n^2d)\) | Memory-efficient |
+| **Standard** | $O(n^2d)$ | Full attention matrix |
+| **Sparse** | $O(n\sqrt{n}d)$ | Fixed sparse patterns |
+| **Linear** | $O(nd^2)$ | Kernel approximation |
+| **Flash Attention** | $O(n^2d)$ | Memory-efficient |
 
 ---
 
@@ -597,9 +597,9 @@ print(f"Parameters: {n_params / 1e6:.2f}M")
 
 | Component | Time | Space |
 |-----------|------|-------|
-| Self-Attention | \(O(n^2 d)\) | \(O(n^2 + nd)\) |
-| FFN | \(O(n d d_{ff})\) | \(O(n d_{ff})\) |
-| Full Layer | \(O(n^2 d + n d d_{ff})\) | \(O(n^2 + n d_{ff})\) |
+| Self-Attention | $O(n^2 d)$ | $O(n^2 + nd)$ |
+| FFN | $O(n d d_{ff})$ | $O(n d_{ff})$ |
+| Full Layer | $O(n^2 d + n d d_{ff})$ | $O(n^2 + n d_{ff})$ |
 
 ---
 

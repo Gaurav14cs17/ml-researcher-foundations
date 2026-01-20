@@ -34,7 +34,7 @@
 ### Supervised Learning
 
 **Problem Setting:**
-Given a training set \(\mathcal{D} = \{(x_i, y_i)\}_{i=1}^{N}\) where $x_i \in \mathcal{X}$ and $y_i \in \mathcal{Y}$, we aim to learn a function $f: \mathcal{X} \rightarrow \mathcal{Y}$.
+Given a training set $\mathcal{D} = \{(x_i, y_i)\}_{i=1}^{N}$ where $x_i \in \mathcal{X}$ and $y_i \in \mathcal{Y}$, we aim to learn a function $f: \mathcal{X} \rightarrow \mathcal{Y}$.
 
 **Objective Function:**
 
@@ -46,10 +46,10 @@ Given a training set \(\mathcal{D} = \{(x_i, y_i)\}_{i=1}^{N}\) where $x_i \in \
 
 | Task | Loss Function | Formula |
 |------|---------------|---------|
-| **Classification** | Cross-Entropy | \(\ell(f(x), y) = -\sum_{c=1}^{C} y_c \log(f(x)_c)\) |
-| **Binary Classification** | Binary Cross-Entropy | \(\ell(f(x), y) = -[y\log(f(x)) + (1-y)\log(1-f(x))]\) |
-| **Regression** | Mean Squared Error | \(\ell(f(x), y) = (f(x) - y)^2\) |
-| **Regression** | Mean Absolute Error | \(\ell(f(x), y) = |f(x) - y|\) |
+| **Classification** | Cross-Entropy | $\ell(f(x), y) = -\sum_{c=1}^{C} y_c \log(f(x)_c)$ |
+| **Binary Classification** | Binary Cross-Entropy | $\ell(f(x), y) = -[y\log(f(x)) + (1-y)\log(1-f(x))]$ |
+| **Regression** | Mean Squared Error | $\ell(f(x), y) = (f(x) - y)^2$ |
+| **Regression** | Mean Absolute Error | $\ell(f(x), y) = |f(x) - y|$ |
 
 ---
 
@@ -73,13 +73,13 @@ where $\mathcal{M}$ is the set of masked token positions.
 
 **3. Contrastive Learning (SimCLR):**
 
-For positive pair \((z_i, z_j)\) from the same image:
+For positive pair $(z_i, z_j)$ from the same image:
 
 ```math
 \mathcal{L}_{i,j} = -\log \frac{\exp(\text{sim}(z_i, z_j)/\tau)}{\sum_{k=1}^{2N} \mathbb{1}_{[k \neq i]} \exp(\text{sim}(z_i, z_k)/\tau)}
 ```
 
-where \(\text{sim}(u, v) = \frac{u^\top v}{\|u\| \|v\|}\) is cosine similarity and $\tau$ is temperature.
+where $\text{sim}(u, v) = \frac{u^\top v}{\|u\| \|v\|}$ is cosine similarity and $\tau$ is temperature.
 
 **Proof: Why Contrastive Loss Works**
 
@@ -89,7 +89,7 @@ The InfoNCE loss is a lower bound on mutual information:
 I(X; Y) \geq \log(N) - \mathcal{L}_{\text{NCE}}
 ```
 
-Maximizing $-\mathcal{L}_{\text{NCE}}$ maximizes a lower bound on \(I(X; Y)\), learning representations that capture shared information between views.
+Maximizing $-\mathcal{L}_{\text{NCE}}$ maximizes a lower bound on $I(X; Y)$, learning representations that capture shared information between views.
 
 ---
 
@@ -109,7 +109,7 @@ Maximizing $-\mathcal{L}_{\text{NCE}}$ maximizes a lower bound on \(I(X; Y)\), l
 \max_{W \in \mathbb{R}^{d \times k}} \text{Var}(Wx) \quad \text{s.t.} \quad W^\top W = I
 ```
 
-**Solution:** $W$ = top-k eigenvectors of covariance matrix \(\Sigma = \frac{1}{N}\sum_i (x_i - \bar{x})(x_i - \bar{x})^\top\)
+**Solution:** $W$ = top-k eigenvectors of covariance matrix $\Sigma = \frac{1}{N}\sum_i (x_i - \bar{x})(x_i - \bar{x})^\top$
 
 **3. Variational Autoencoder (VAE):**
 
@@ -157,7 +157,7 @@ For hypothesis class $\mathcal{H}$ with finite VC dimension $d$:
 \Pr\left[\sup_{h \in \mathcal{H}} |R(h) - \hat{R}(h)| > \epsilon\right] \leq 4 \cdot m_{\mathcal{H}}(2n) \cdot e^{-n\epsilon^2/8}
 ```
 
-where \(m_{\mathcal{H}}(n)\) is the growth function.
+where $m_{\mathcal{H}}(n)$ is the growth function.
 
 ### Generalization Bound
 
@@ -170,7 +170,7 @@ R(\hat{h}) \leq \hat{R}(\hat{h}) + \sqrt{\frac{2d \log(en/d) + 2\log(2/\delta)}{
 **Proof Sketch:**
 1. Apply Hoeffding's inequality to bound deviation for single $h$
 2. Use union bound over effective hypotheses (bounded by growth function)
-3. Apply Sauer's lemma: \(m_{\mathcal{H}}(n) \leq \left(\frac{en}{d}\right)^d\)
+3. Apply Sauer's lemma: $m_{\mathcal{H}}(n) \leq \left(\frac{en}{d}\right)^d$
 
 ### The Overfitting Problem
 
@@ -182,7 +182,7 @@ R(\hat{h}) = \underbrace{\hat{R}(\hat{h})}_{\text{training error}} + \underbrace
 
 | Method | Modification | Effect |
 |--------|-------------|--------|
-| **Regularized ERM** | \(\min \hat{R}(h) + \lambda\Omega(h)\) | Constrains hypothesis complexity |
+| **Regularized ERM** | $\min \hat{R}(h) + \lambda\Omega(h)$ | Constrains hypothesis complexity |
 | **Early Stopping** | Stop before convergence | Implicit regularization |
 | **Cross-Validation** | Holdout set | Estimate true risk |
 | **More Data** | Increase $n$ | Tighter bound |

@@ -41,7 +41,7 @@ where:
 - $K$: number of clients
 - $n_k$: number of samples on client $k$
 - $n = \sum_k n_k$: total samples
-- \(F_k(w) = \frac{1}{n_k} \sum_{i \in \mathcal{D}_k} \ell(w; x_i, y_i)\): local objective
+- $F_k(w) = \frac{1}{n_k} \sum_{i \in \mathcal{D}_k} \ell(w; x_i, y_i)$: local objective
 
 ### Comparison to Centralized Learning
 

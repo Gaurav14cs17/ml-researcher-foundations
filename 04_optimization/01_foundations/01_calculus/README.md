@@ -148,7 +148,7 @@ where $\theta$ is the angle between $\nabla f$ and $\mathbf{d}$.
 
 ## 📐 Proof: Gradient Points in Direction of Steepest Ascent
 
-**Theorem:** For a differentiable function $f$, the gradient \( \nabla f(\mathbf{x}) \) points in the direction of steepest increase at $\mathbf{x}$.
+**Theorem:** For a differentiable function $f$, the gradient $\nabla f(\mathbf{x})$ points in the direction of steepest increase at $\mathbf{x}$.
 
 **Proof:**
 
@@ -343,10 +343,10 @@ Both positive → MINIMUM at (0,0) ✓
 
 ### Second Derivative Test (Proof)
 
-**Theorem:** Let $\mathbf{x}^*$ be a critical point where \( \nabla f(\mathbf{x}^*) = \mathbf{0} \). Then:
-- If \( H(\mathbf{x}^*) \succ 0 \) (positive definite), $\mathbf{x}^*$ is a local minimum
-- If \( H(\mathbf{x}^*) \prec 0 \) (negative definite), $\mathbf{x}^*$ is a local maximum  
-- If \( H(\mathbf{x}^*) \) has both positive and negative eigenvalues, $\mathbf{x}^*$ is a saddle point
+**Theorem:** Let $\mathbf{x}^*$ be a critical point where $\nabla f(\mathbf{x}^*) = \mathbf{0}$. Then:
+- If $H(\mathbf{x}^*) \succ 0$ (positive definite), $\mathbf{x}^*$ is a local minimum
+- If $H(\mathbf{x}^*) \prec 0$ (negative definite), $\mathbf{x}^*$ is a local maximum  
+- If $H(\mathbf{x}^*)$ has both positive and negative eigenvalues, $\mathbf{x}^*$ is a saddle point
 
 **Proof:**
 

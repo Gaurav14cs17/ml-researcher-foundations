@@ -40,15 +40,15 @@
 
 ### Problem Setting
 
-**Source domain:** \(\mathcal{D}_S = \{(x_i^s, y_i^s)\}_{i=1}^{n_s}\) from \(P_S(X, Y)\)
+**Source domain:** $\mathcal{D}_S = \{(x_i^s, y_i^s)\}_{i=1}^{n_s}$ from $P_S(X, Y)$
 
-**Target domain:** \(\mathcal{D}_T = \{(x_i^t, y_i^t)\}_{i=1}^{n_t}\) from \(P_T(X, Y)\)
+**Target domain:** $\mathcal{D}_T = \{(x_i^t, y_i^t)\}_{i=1}^{n_t}$ from $P_T(X, Y)$
 
 **Goal:** Learn $f_T: X \to Y$ using both $\mathcal{D}_S$ and $\mathcal{D}_T$.
 
 ### Types of Transfer
 
-| Setting | \(P_S(X)\) | \(P_S(Y|X)\) | \(P_T(X)\) | \(P_T(Y|X)\) |
+| Setting | $P_S(X)$ | $P_S(Y|X)$ | $P_T(X)$ | $P_T(Y|X)$ |
 |---------|-----------|-------------|-----------|-------------|
 | Covariate Shift | ≠ | = | - | - |
 | Label Shift | = | ≠ | - | - |
@@ -86,7 +86,7 @@ starting from $\theta = \theta^*$.
 
 where:
 - $\epsilon_T, \epsilon_S$ are target/source errors
-- \(d_{\mathcal{H}}(S, T)\) is the $\mathcal{H}$-divergence between domains
+- $d_{\mathcal{H}}(S, T)$ is the $\mathcal{H}$-divergence between domains
 - $\lambda$ is the optimal joint error
 
 ---
@@ -101,7 +101,7 @@ Instead of updating all parameters, learn low-rank updates:
 W' = W + \Delta W = W + BA
 ```
 
-where $B \in \mathbb{R}^{d \times r}$, $A \in \mathbb{R}^{r \times k}$, and \(r \ll \min(d, k)\).
+where $B \in \mathbb{R}^{d \times r}$, $A \in \mathbb{R}^{r \times k}$, and $r \ll \min(d, k)$.
 
 ### Parameter Efficiency
 

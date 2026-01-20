@@ -357,7 +357,7 @@ For 90% sparsity with FP32 values and INT32 indices:
 
 During fine-tuning with pruning mask $M$:
 
-**Forward:** \( Y = (M \odot W) X \)
+**Forward:** $Y = (M \odot W) X$
 
 **Backward:**
 

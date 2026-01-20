@@ -51,7 +51,7 @@ f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!}x^n
 f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k + R_n(x)
 ```
 
-where the remainder \(R_n(x)\) can be expressed as:
+where the remainder $R_n(x)$ can be expressed as:
 
 **Lagrange Form:**
 
@@ -198,8 +198,8 @@ f(x) = f(a) + \nabla f(a)^T (x-a) + \frac{1}{2}(x-a)^T H_f(a) (x-a) + O(\|x-a\|^
 ```
 
 where:
-- \(\nabla f(a)\) is the gradient (vector of first derivatives)
-- \(H_f(a)\) is the Hessian (matrix of second derivatives)
+- $\nabla f(a)$ is the gradient (vector of first derivatives)
+- $H_f(a)$ is the Hessian (matrix of second derivatives)
 
 **Component form:**
 ```
@@ -590,10 +590,10 @@ print(f"Optimal x: {x_opt}")  # Should be [2, 3]
 
 | Theorem | Statement | Importance |
 |---------|-----------|------------|
-| **Taylor's Theorem** | \(f(x) = \sum \frac{f^{(n)}(a)}{n!}(x-a)^n + R_n\) | Foundation |
-| **Lagrange Remainder** | \(R_n = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}\) | Error bounds |
+| **Taylor's Theorem** | $f(x) = \sum \frac{f^{(n)}(a)}{n!}(x-a)^n + R_n$ | Foundation |
+| **Lagrange Remainder** | $R_n = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}$ | Error bounds |
 | **Convergence** | $R \to \infty$ for $e^x$, $\sin x$, $\cos x$ | Global validity |
-| **Multivariate** | \(f(x) \approx f(a) + \nabla f^T(x-a) + \frac{1}{2}(x-a)^T H(x-a)\) | Optimization |
+| **Multivariate** | $f(x) \approx f(a) + \nabla f^T(x-a) + \frac{1}{2}(x-a)^T H(x-a)$ | Optimization |
 
 ---
 

@@ -40,13 +40,13 @@
 
 ### Setting
 
-Given training data \(\{(x_i, y_i)\}_{i=1}^n\) where $x_i \in \mathbb{R}^d$ and $y_i \in \{-1, +1\}$.
+Given training data $\{(x_i, y_i)\}_{i=1}^n$ where $x_i \in \mathbb{R}^d$ and $y_i \in \{-1, +1\}$.
 
 **Goal:** Find hyperplane $w^\top x + b = 0$ that separates classes with maximum margin.
 
 ### Margin Definitions
 
-**Functional Margin:** For point \((x_i, y_i)\):
+**Functional Margin:** For point $(x_i, y_i)$:
 
 ```math
 \hat{\gamma}_i = y_i(w^\top x_i + b)
@@ -103,7 +103,7 @@ For linearly separable data:
 
 **Dual feasibility:** $\alpha_i \geq 0$
 
-**Complementary slackness:** \(\alpha_i[y_i(w^\top x_i + b) - 1] = 0\)
+**Complementary slackness:** $\alpha_i[y_i(w^\top x_i + b) - 1] = 0$
 
 ### Dual Problem
 
@@ -172,10 +172,10 @@ f(x) = \text{sign}\left(\sum_{i=1}^n \alpha_i y_i k(x, x_i) + b\right)
 
 | Kernel | Formula | Use Case |
 |--------|---------|----------|
-| **Linear** | \(k(x,y) = x^\top y\) | Linearly separable |
-| **Polynomial** | \(k(x,y) = (x^\top y + c)^d\) | Polynomial boundaries |
-| **RBF** | \(k(x,y) = e^{-\gamma\|x-y\|^2}\) | General non-linear |
-| **Sigmoid** | \(k(x,y) = \tanh(\alpha x^\top y + c)\) | Neural network-like |
+| **Linear** | $k(x,y) = x^\top y$ | Linearly separable |
+| **Polynomial** | $k(x,y) = (x^\top y + c)^d$ | Polynomial boundaries |
+| **RBF** | $k(x,y) = e^{-\gamma\|x-y\|^2}$ | General non-linear |
+| **Sigmoid** | $k(x,y) = \tanh(\alpha x^\top y + c)$ | Neural network-like |
 
 ---
 
@@ -190,7 +190,7 @@ R(h) \leq \hat{R}_\gamma(h) + \sqrt{\frac{c_1}{n}\left(\frac{R^2 \|w\|^2}{\gamma
 ```
 
 where:
-- \(\hat{R}_\gamma(h)\) = fraction of points with margin $< \gamma$
+- $\hat{R}_\gamma(h)$ = fraction of points with margin $< \gamma$
 - $R$ = radius of data
 - Bound is independent of dimension!
 

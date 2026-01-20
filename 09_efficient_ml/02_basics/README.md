@@ -149,7 +149,7 @@ where:
 
 1. Performance cannot exceed peak compute: $P \leq \pi$
 2. Performance limited by data delivery rate: $P \leq I \times \beta$
-3. Therefore: \( P = \min(\pi, I \times \beta) \)
+3. Therefore: $P = \min(\pi, I \times \beta)$
 
 **Ridge Point:** The intensity where compute and memory bounds meet:
 
@@ -210,7 +210,7 @@ For sequence length $N$, hidden dimension $d$:
 \text{FLOPs}_{scores} = 2N^2d
 ```
 
-**Step 3: Attention × Values** \( O = \text{softmax}(A)V \)
+**Step 3: Attention × Values** $O = \text{softmax}(A)V$
 
 ```math
 \text{FLOPs}_{output} = 2N^2d

@@ -160,7 +160,7 @@ y = x + \text{sg}(\text{round}(x) - x)
 
 where $\text{sg}$ is stop-gradient operator.
 
-Forward: \( y = \text{round}(x) \)
+Forward: $y = \text{round}(x)$
 Backward: $\frac{\partial y}{\partial x} = 1$
 
 **Why it works:** In expectation, the gradient direction is preserved even though magnitude is approximated.
@@ -175,7 +175,7 @@ QAT minimizes:
 \mathcal{L}_{QAT} = \mathcal{L}_{task}(Q(W), X, Y) + \lambda \mathcal{L}_{reg}
 ```
 
-where \( Q(W) \) denotes quantized weights.
+where $Q(W)$ denotes quantized weights.
 
 The network learns to produce weights that are quantization-friendly:
 
@@ -244,7 +244,7 @@ H = 2X X^T
 **Per-column quantization with error compensation:**
 
 For column $j$:
-1. Quantize: \( \hat{w}_j = Q(w_j) \)
+1. Quantize: $\hat{w}_j = Q(w_j)$
 2. Error: $\delta_j = w_j - \hat{w}_j$
 3. Compensate remaining columns:
 
@@ -334,7 +334,7 @@ Y = X \cdot Q_4(W_0) + X \cdot BA
 ```
 
 where:
-- \( Q_4(W_0) \) = 4-bit quantized pretrained weights (frozen)
+- $Q_4(W_0)$ = 4-bit quantized pretrained weights (frozen)
 - $B \in \mathbb{R}^{d \times r}, A \in \mathbb{R}^{r \times d}$ = trainable LoRA adapters (FP16)
 
 **Memory savings:**
@@ -367,7 +367,7 @@ where $\epsilon_l$ is the quantization error at layer $l$.
 
 ### Hessian Computation in GPTQ
 
-The Hessian $H = XX^T$ requires \( O(d^2 \cdot n) \) to compute and \( O(d^2) \) to store.
+The Hessian $H = XX^T$ requires $O(d^2 \cdot n)$ to compute and $O(d^2)$ to store.
 
 **Efficient computation:**
 ```python

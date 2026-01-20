@@ -51,15 +51,15 @@ Given unlabeled data $\mathcal{D} = \{x_i\}_{i=1}^N$, create pseudo-labels from 
 
 ### InfoNCE Loss (SimCLR, MoCo)
 
-For positive pair \((x_i, x_j)\) (two augmentations of same image):
+For positive pair $(x_i, x_j)$ (two augmentations of same image):
 
 ```math
 \mathcal{L}_{i,j} = -\log \frac{\exp(\text{sim}(z_i, z_j)/\tau)}{\sum_{k=1}^{2N} \mathbb{1}_{[k \neq i]} \exp(\text{sim}(z_i, z_k)/\tau)}
 ```
 
 where:
-- \(z_i = g(f(x_i))\) is the projection of encoded representation
-- \(\text{sim}(u, v) = \frac{u^\top v}{\|u\| \|v\|}\) is cosine similarity
+- $z_i = g(f(x_i))$ is the projection of encoded representation
+- $\text{sim}(u, v) = \frac{u^\top v}{\|u\| \|v\|}$ is cosine similarity
 - $\tau$ is temperature parameter
 
 ### Theoretical Justification
@@ -71,7 +71,7 @@ I(X; Y) \geq \log(N) - \mathcal{L}_{\text{NCE}}
 ```
 
 **Proof Sketch:**
-The optimal critic \(f^*(x, y) = \frac{p(y|x)}{p(y)} + c\). InfoNCE with this critic recovers mutual information. Finite samples give a lower bound. $\blacksquare$
+The optimal critic $f^*(x, y) = \frac{p(y|x)}{p(y)} + c$. InfoNCE with this critic recovers mutual information. Finite samples give a lower bound. $\blacksquare$
 
 ---
 

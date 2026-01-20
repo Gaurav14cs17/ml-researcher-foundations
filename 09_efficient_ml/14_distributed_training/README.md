@@ -100,7 +100,7 @@ All GPUs have full copies—redundant!
 |-------|-------------|------------|
 | ZeRO-1 | Optimizer states | $M_{model} + M_{grad} + M_{opt}/N$ |
 | ZeRO-2 | + Gradients | $M_{model} + M_{grad}/N + M_{opt}/N$ |
-| ZeRO-3 | + Parameters | \( (M_{model} + M_{grad} + M_{opt})/N \) |
+| ZeRO-3 | + Parameters | $(M_{model} + M_{grad} + M_{opt})/N$ |
 
 **ZeRO-3 memory:**
 
@@ -213,7 +213,7 @@ M = \frac{M_{model}}{N_{TP} \times N_{PP}} + M_{activation}
 T_{allreduce} = 2(N-1)/N \cdot M_{grad} / BW
 ```
 
-Ring AllReduce achieves bandwidth-optimal \( O(1) \) w.r.t. N GPUs.
+Ring AllReduce achieves bandwidth-optimal $O(1)$ w.r.t. N GPUs.
 
 **Tensor parallel AllReduce:**
 
@@ -272,15 +272,15 @@ For fixed compute $C = 6ND$, minimize loss:
 
 ### AllReduce Complexity
 
-**Naive AllReduce:** \( O(N) \) communication rounds.
+**Naive AllReduce:** $O(N)$ communication rounds.
 
-**Ring AllReduce:** \( O(1) \) with respect to N.
+**Ring AllReduce:** $O(1)$ with respect to N.
 
 Algorithm:
 1. Reduce-scatter: Each GPU sends/receives $M/N$ data $N-1$ times
 2. All-gather: Each GPU sends/receives $M/N$ data $N-1$ times
 
-Total: \( 2(N-1) \times M/N \approx 2M \) data transferred.
+Total: $2(N-1) \times M/N \approx 2M$ data transferred.
 
 ---
 

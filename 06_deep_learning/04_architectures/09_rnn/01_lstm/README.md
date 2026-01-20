@@ -106,12 +106,12 @@ Intuition:
 
 | Parameter | Dimension | Count |
 |-----------|-----------|-------|
-| $W_f, W_i, W_c, W_o$ | \(h \times (h + d)\) | 4 matrices |
+| $W_f, W_i, W_c, W_o$ | $h \times (h + d)$ | 4 matrices |
 | $b_f, b_i, b_c, b_o$ | $h$ | 4 vectors |
-| **Total** | | \(4h(h+d) + 4h = 4h(h+d+1)\) |
+| **Total** | | $4h(h+d) + 4h = 4h(h+d+1)$ |
 
 **Example:** For $h = 512$, $d = 256$:
-- Total parameters per layer: \(4 \times 512 \times (512 + 256 + 1) \approx 1.57M\)
+- Total parameters per layer: $4 \times 512 \times (512 + 256 + 1) \approx 1.57M$
 
 ---
 
@@ -590,7 +590,7 @@ print(f"Output: {output.shape}, h_n: {h_n.shape}, c_n: {c_n.shape}")
 | **Vanishing gradient** | Severe | Solved | Solved | N/A |
 | **Parallelization** | Sequential | Sequential | Sequential | Fully parallel |
 | **Long-range** | Poor | Good | Good | Excellent |
-| **Memory** | \(O(h)\) | \(O(h)\) | \(O(h)\) | \(O(n^2)\) |
+| **Memory** | $O(h)$ | $O(h)$ | $O(h)$ | $O(n^2)$ |
 
 ---
 

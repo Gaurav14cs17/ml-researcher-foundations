@@ -56,7 +56,7 @@ The **empirical risk** approximates true risk using training data:
 \hat{R}(h) = \frac{1}{n}\sum_{i=1}^n \ell(h(x_i), y_i)
 ```
 
-**Law of Large Numbers:** As $n \to \infty$, \(\hat{R}(h) \to R(h)\).
+**Law of Large Numbers:** As $n \to \infty$, $\hat{R}(h) \to R(h)$.
 
 ### Generalization Gap
 
@@ -94,8 +94,8 @@ Add complexity penalty to control overfitting:
 
 | Component | Meaning |
 |-----------|---------|
-| \(\hat{R}(h)\) | Data fit (training loss) |
-| \(\Omega(h)\) | Complexity penalty |
+| $\hat{R}(h)$ | Data fit (training loss) |
+| $\Omega(h)$ | Complexity penalty |
 | $\lambda$ | Trade-off parameter |
 
 ---

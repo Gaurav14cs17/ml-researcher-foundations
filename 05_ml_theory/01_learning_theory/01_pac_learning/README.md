@@ -37,7 +37,7 @@
 
 ### PAC Learnability
 
-**Definition:** A concept class $\mathcal{C}$ is **PAC-learnable** if there exists an algorithm $\mathcal{A}$ and a polynomial \(p(\cdot, \cdot, \cdot, \cdot)\) such that:
+**Definition:** A concept class $\mathcal{C}$ is **PAC-learnable** if there exists an algorithm $\mathcal{A}$ and a polynomial $p(\cdot, \cdot, \cdot, \cdot)$ such that:
 
 For all:
 - Target concept $c \in \mathcal{C}$
@@ -45,15 +45,15 @@ For all:
 - Accuracy parameter $\epsilon > 0$
 - Confidence parameter $\delta > 0$
 
-When given \(m \geq p(1/\epsilon, 1/\delta, n, \text{size}(c))\) i.i.d. samples from $\mathcal{D}$:
+When given $m \geq p(1/\epsilon, 1/\delta, n, \text{size}(c))$ i.i.d. samples from $\mathcal{D}$:
 
 ```math
 \Pr_{S \sim \mathcal{D}^m}\left[\text{error}_{\mathcal{D}}(h_S) \leq \epsilon\right] \geq 1 - \delta
 ```
 
 where:
-- \(h_S = \mathcal{A}(S)\) is the hypothesis output by algorithm
-- \(\text{error}_{\mathcal{D}}(h) = \Pr_{x \sim \mathcal{D}}[h(x) \neq c(x)]\)
+- $h_S = \mathcal{A}(S)$ is the hypothesis output by algorithm
+- $\text{error}_{\mathcal{D}}(h) = \Pr_{x \sim \mathcal{D}}[h(x) \neq c(x)]$
 
 **In plain English:** "With high probability ($1-\delta$), the learned hypothesis is approximately correct (error $\leq \epsilon$)."
 
@@ -71,9 +71,9 @@ m \geq \frac{1}{\epsilon}\left(\ln|\mathcal{H}| + \ln\frac{1}{\delta}\right)
 
 **Proof:**
 
-Let $h$ be a "bad" hypothesis with \(\text{error}_{\mathcal{D}}(h) > \epsilon\).
+Let $h$ be a "bad" hypothesis with $\text{error}_{\mathcal{D}}(h) > \epsilon$.
 
-For any single training example \((x, y)\):
+For any single training example $(x, y)$:
 
 ```math
 \Pr[(x, y) \text{ consistent with } h] = 1 - \text{error}_{\mathcal{D}}(h) < 1 - \epsilon
@@ -126,7 +126,7 @@ for some constant $c$.
 \min_{h \in \mathcal{H}} \text{error}_{\mathcal{D}}(h) = 0
 ```
 
-**Goal:** Find $h$ with \(\text{error}_{\mathcal{D}}(h) \leq \epsilon\).
+**Goal:** Find $h$ with $\text{error}_{\mathcal{D}}(h) \leq \epsilon$.
 
 ### Agnostic Case (More Realistic)
 
@@ -174,9 +174,9 @@ For fixed hypothesis $h$, with probability $\geq 1 - \delta$:
 \left|\hat{\text{error}}_S(h) - \text{error}_{\mathcal{D}}(h)\right| \leq \sqrt{\frac{\ln(2/\delta)}{2m}}
 ```
 
-where \(\hat{\text{error}}_S(h) = \frac{1}{m}\sum_{i=1}^m \mathbb{1}[h(x_i) \neq y_i]\).
+where $\hat{\text{error}}_S(h) = \frac{1}{m}\sum_{i=1}^m \mathbb{1}[h(x_i) \neq y_i]$.
 
-**Proof:** Apply Hoeffding with \(X_i = \mathbb{1}[h(x_i) \neq y_i]\), so $X_i \in [0, 1]$. $\blacksquare$
+**Proof:** Apply Hoeffding with $X_i = \mathbb{1}[h(x_i) \neq y_i]$, so $X_i \in [0, 1]$. $\blacksquare$
 
 ### Uniform Convergence
 
@@ -394,10 +394,10 @@ if __name__ == "__main__":
 
 | Component | Mathematical Form | Meaning |
 |-----------|-------------------|---------|
-| **Accuracy** $\epsilon$ | \(\text{error}(h) \leq \epsilon\) | How close to perfect |
+| **Accuracy** $\epsilon$ | $\text{error}(h) \leq \epsilon$ | How close to perfect |
 | **Confidence** $\delta$ | $\Pr[\text{success}] \geq 1-\delta$ | Probability of achieving accuracy |
-| **Sample Complexity** | \(m(\epsilon, \delta)\) | How many examples needed |
-| **Computational Complexity** | \(\text{poly}(1/\epsilon, 1/\delta, n)\) | Time to find hypothesis |
+| **Sample Complexity** | $m(\epsilon, \delta)$ | How many examples needed |
+| **Computational Complexity** | $\text{poly}(1/\epsilon, 1/\delta, n)$ | Time to find hypothesis |
 
 ---
 

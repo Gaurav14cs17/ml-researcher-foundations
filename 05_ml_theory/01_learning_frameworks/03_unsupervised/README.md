@@ -91,7 +91,7 @@ where $\sum_k \pi_k = 1$ and $\pi_k \geq 0$.
 \max_{w: \|w\|=1} w^\top \Sigma w
 ```
 
-where \(\Sigma = \frac{1}{n}\sum_i (x_i - \bar{x})(x_i - \bar{x})^\top\) is the covariance matrix.
+where $\Sigma = \frac{1}{n}\sum_i (x_i - \bar{x})(x_i - \bar{x})^\top$ is the covariance matrix.
 
 **Solution:** $w_1$ = eigenvector of $\Sigma$ with largest eigenvalue.
 
@@ -107,7 +107,7 @@ where \(\Sigma = \frac{1}{n}\sum_i (x_i - \bar{x})(x_i - \bar{x})^\top\) is the 
 
 For non-linear dimensionality reduction:
 
-1. Compute kernel matrix \(K_{ij} = k(x_i, x_j)\)
+1. Compute kernel matrix $K_{ij} = k(x_i, x_j)$
 2. Center: $\tilde{K} = K - \frac{1}{n}\mathbf{1}\mathbf{1}^\top K - K\frac{1}{n}\mathbf{1}\mathbf{1}^\top + \frac{1}{n^2}\mathbf{1}\mathbf{1}^\top K \mathbf{1}\mathbf{1}^\top$
 3. Eigendecompose $\tilde{K}$ and project
 

@@ -120,8 +120,8 @@ f(x) = \text{sign}\left(\sum_{i=1}^n \alpha_i y_i k(x_i, x) + b\right)
 | Kernel | Formula | Feature Space |
 |--------|---------|---------------|
 | Linear | $x^\top y$ | Original $\mathbb{R}^d$ |
-| Polynomial | \((x^\top y + c)^p\) | $\binom{d+p}{p}$ dimensions |
-| RBF | \(\exp(-\gamma\|x-y\|^2)\) | Infinite dimensional |
+| Polynomial | $(x^\top y + c)^p$ | $\binom{d+p}{p}$ dimensions |
+| RBF | $\exp(-\gamma\|x-y\|^2)$ | Infinite dimensional |
 
 ### RBF Kernel Properties
 

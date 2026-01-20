@@ -38,7 +38,7 @@
 
 **Bias-Variance for Ensembles:**
 
-For averaged predictions \(\bar{f}(x) = \frac{1}{B}\sum_{b=1}^B f_b(x)\):
+For averaged predictions $\bar{f}(x) = \frac{1}{B}\sum_{b=1}^B f_b(x)$:
 
 ```math
 \text{Var}(\bar{f}) = \frac{1}{B^2}\sum_{b=1}^B \text{Var}(f_b) + \frac{1}{B^2}\sum_{b \neq b'} \text{Cov}(f_b, f_{b'})
@@ -61,8 +61,8 @@ If models are independent with equal variance $\sigma^2$:
 1. Generate $B$ bootstrap samples $\mathcal{D}_1, \ldots, \mathcal{D}_B$
 2. Train model $f_b$ on each $\mathcal{D}_b$
 3. Aggregate:
-   - Regression: \(\hat{f}(x) = \frac{1}{B}\sum_{b=1}^B f_b(x)\)
-   - Classification: \(\hat{f}(x) = \text{mode}(\{f_b(x)\}_{b=1}^B)\)
+   - Regression: $\hat{f}(x) = \frac{1}{B}\sum_{b=1}^B f_b(x)$
+   - Classification: $\hat{f}(x) = \text{mode}(\{f_b(x)\}_{b=1}^B)$
 
 ### Variance Reduction Theorem
 
@@ -78,7 +78,7 @@ If models are independent with equal variance $\sigma^2$:
 \text{Var}\left(\frac{1}{B}\sum_b f_b\right) = \frac{1}{B^2}\left[B\sigma^2 + B(B-1)\rho\sigma^2\right] = \rho\sigma^2 + \frac{(1-\rho)\sigma^2}{B}
 ```
 
-As $B \to \infty$: \(\text{Var}(\bar{f}) \to \rho\sigma^2\). $\blacksquare$
+As $B \to \infty$: $\text{Var}(\bar{f}) \to \rho\sigma^2$. $\blacksquare$
 
 ### Random Forest
 
@@ -92,9 +92,9 @@ Adds feature randomization to reduce $\rho$:
 
 ### AdaBoost Algorithm
 
-**Input:** Training data \(\{(x_i, y_i)\}_{i=1}^n\), $y_i \in \{-1, +1\}$, $T$ iterations
+**Input:** Training data $\{(x_i, y_i)\}_{i=1}^n$, $y_i \in \{-1, +1\}$, $T$ iterations
 
-**Initialize:** \(w_i^{(1)} = \frac{1}{n}\)
+**Initialize:** $w_i^{(1)} = \frac{1}{n}$
 
 **For $t = 1, \ldots, T$:**
 
@@ -117,7 +117,7 @@ Adds feature randomization to reduce $\rho$:
 w_i^{(t+1)} = \frac{w_i^{(t)} \exp(-\alpha_t y_i h_t(x_i))}{Z_t}
 ```
 
-**Output:** \(H(x) = \text{sign}\left(\sum_{t=1}^T \alpha_t h_t(x)\right)\)
+**Output:** $H(x) = \text{sign}\left(\sum_{t=1}^T \alpha_t h_t(x)\right)$
 
 ### AdaBoost Training Error Bound
 
@@ -127,7 +127,7 @@ w_i^{(t+1)} = \frac{w_i^{(t)} \exp(-\alpha_t y_i h_t(x_i))}{Z_t}
 \frac{1}{n}\sum_{i=1}^n \mathbb{1}[H(x_i) \neq y_i] \leq \prod_{t=1}^T 2\sqrt{\epsilon_t(1-\epsilon_t)}
 ```
 
-**Proof:** Using \(\exp(-y_i H(x_i)) \geq \mathbb{1}[H(x_i) \neq y_i]\) and telescoping. $\blacksquare$
+**Proof:** Using $\exp(-y_i H(x_i)) \geq \mathbb{1}[H(x_i) \neq y_i]$ and telescoping. $\blacksquare$
 
 ---
 
@@ -151,9 +151,9 @@ r_{im} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]_{F=F_{m-1
 
 | Loss | Pseudo-Residual |
 |------|-----------------|
-| **MSE** \((y-F)^2\) | \(y - F_{m-1}(x)\) |
-| **Absolute** $\|y-F\|$ | \(\text{sign}(y - F_{m-1}(x))\) |
-| **Logistic** | \(y - \sigma(F_{m-1}(x))\) |
+| **MSE** $(y-F)^2$ | $y - F_{m-1}(x)$ |
+| **Absolute** $\|y-F\|$ | $\text{sign}(y - F_{m-1}(x))$ |
+| **Logistic** | $y - \sigma(F_{m-1}(x))$ |
 
 ### XGBoost Objective
 

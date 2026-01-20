@@ -46,8 +46,8 @@ f \sim \mathcal{GP}(m(x), k(x, x'))
 ```
 
 where:
-- \(m(x) = \mathbb{E}[f(x)]\) is the mean function (often \(m(x) = 0\))
-- \(k(x, x') = \text{Cov}(f(x), f(x'))\) is the covariance (kernel) function
+- $m(x) = \mathbb{E}[f(x)]$ is the mean function (often $m(x) = 0$)
+- $k(x, x') = \text{Cov}(f(x), f(x'))$ is the covariance (kernel) function
 
 **Property:** For any finite set $\{x_1, \ldots, x_n\}$:
 
@@ -65,7 +65,7 @@ where:
 y = f(x) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma_n^2)
 ```
 
-**Prior:** \(f \sim \mathcal{GP}(0, k)\)
+**Prior:** $f \sim \mathcal{GP}(0, k)$
 
 **Joint Distribution:**
 
@@ -73,11 +73,11 @@ y = f(x) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma_n^2)
 \begin{bmatrix} \mathbf{f} \\ \mathbf{f}_* \end{bmatrix} \sim \mathcal{N}\left(\mathbf{0}, \begin{bmatrix} K & K_* \\ K_*^\top & K_{**} \end{bmatrix}\right)
 ```
 
-where \(K = k(X, X)\), \(K_* = k(X, X_*)\), \(K_{**} = k(X_*, X_*)\).
+where $K = k(X, X)$, $K_* = k(X, X_*)$, $K_{**} = k(X_*, X_*)$.
 
 ### Posterior Predictive Distribution
 
-**Theorem:** Given training data \((X, \mathbf{y})\) and test points $X_*$:
+**Theorem:** Given training data $(X, \mathbf{y})$ and test points $X_*$:
 
 ```math
 \mathbf{f}_* | X_*, X, \mathbf{y} \sim \mathcal{N}(\boldsymbol{\mu}_*, \boldsymbol{\Sigma}_*)
@@ -87,7 +87,7 @@ where \(K = k(X, X)\), \(K_* = k(X, X_*)\), \(K_{**} = k(X_*, X_*)\).
 
 **Proof:** By properties of Gaussian conditionals:
 
-For \(\begin{bmatrix} \mathbf{a} \\ \mathbf{b} \end{bmatrix} \sim \mathcal{N}\left(\begin{bmatrix} \boldsymbol{\mu}_a \\ \boldsymbol{\mu}_b \end{bmatrix}, \begin{bmatrix} A & C \\ C^\top & B \end{bmatrix}\right)\):
+For $\begin{bmatrix} \mathbf{a} \\ \mathbf{b} \end{bmatrix} \sim \mathcal{N}\left(\begin{bmatrix} \boldsymbol{\mu}_a \\ \boldsymbol{\mu}_b \end{bmatrix}, \begin{bmatrix} A & C \\ C^\top & B \end{bmatrix}\right)$:
 
 ```math
 \mathbf{a} | \mathbf{b} \sim \mathcal{N}(\boldsymbol{\mu}_a + CB^{-1}(\mathbf{b} - \boldsymbol{\mu}_b), A - CB^{-1}C^\top)
@@ -106,9 +106,9 @@ Applying with observation noise $\mathbf{y} = \mathbf{f} + \boldsymbol{\varepsil
 ```
 
 **Interpretation:**
-- **Data fit:** \(-\frac{1}{2}\mathbf{y}^\top(K + \sigma_n^2 I)^{-1}\mathbf{y}\)
+- **Data fit:** $-\frac{1}{2}\mathbf{y}^\top(K + \sigma_n^2 I)^{-1}\mathbf{y}$
 - **Complexity penalty:** $-\frac{1}{2}\log|K + \sigma_n^2 I|$
-- **Normalization:** \(-\frac{n}{2}\log(2\pi)\)
+- **Normalization:** $-\frac{n}{2}\log(2\pi)$
 
 ### Hyperparameter Optimization
 
@@ -118,7 +118,7 @@ Optimize kernel hyperparameters $\boldsymbol{\theta}$ by maximizing log marginal
 \frac{\partial \log p(\mathbf{y}|X, \boldsymbol{\theta})}{\partial \theta_j} = \frac{1}{2}\text{tr}\left((\boldsymbol{\alpha}\boldsymbol{\alpha}^\top - K^{-1})\frac{\partial K}{\partial \theta_j}\right)
 ```
 
-where \(\boldsymbol{\alpha} = (K + \sigma_n^2 I)^{-1}\mathbf{y}\).
+where $\boldsymbol{\alpha} = (K + \sigma_n^2 I)^{-1}\mathbf{y}$.
 
 ---
 

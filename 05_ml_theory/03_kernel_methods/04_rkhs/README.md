@@ -50,7 +50,7 @@ A **Hilbert space** $\mathcal{H}$ is a complete inner product space:
 
 - **Cauchy-Schwarz:** $|\langle f, g \rangle| \leq \|f\| \cdot \|g\|$
 - **Parallelogram law:** $\|f + g\|^2 + \|f - g\|^2 = 2\|f\|^2 + 2\|g\|^2$
-- **Riesz representation:** Every continuous linear functional has form \(\ell(f) = \langle f, g \rangle\) for unique $g$
+- **Riesz representation:** Every continuous linear functional has form $\ell(f) = \langle f, g \rangle$ for unique $g$
 
 ---
 
@@ -60,7 +60,7 @@ A **Hilbert space** $\mathcal{H}$ is a complete inner product space:
 
 A Hilbert space $\mathcal{H}$ of functions $f: \mathcal{X} \to \mathbb{R}$ is an **RKHS** if there exists a kernel $k: \mathcal{X} \times \mathcal{X} \to \mathbb{R}$ such that:
 
-1. **Kernel function in space:** \(\forall x \in \mathcal{X}: k(\cdot, x) \in \mathcal{H}\)
+1. **Kernel function in space:** $\forall x \in \mathcal{X}: k(\cdot, x) \in \mathcal{H}$
 
 2. **Reproducing property:**
 
@@ -92,7 +92,7 @@ k(x, x') = \langle k(\cdot, x'), k(\cdot, x) \rangle_\mathcal{H} \quad \text{(re
 
 ### Construction (Proof Sketch)
 
-1. **Define feature map:** \(\phi(x) = k(\cdot, x)\)
+1. **Define feature map:** $\phi(x) = k(\cdot, x)$
 
 2. **Define pre-Hilbert space:**
 
@@ -144,7 +144,7 @@ for some $\alpha_1, \ldots, \alpha_n \in \mathbb{R}$.
 
 **Step 1:** Decompose any $f \in \mathcal{H}_k$:
 
-Let \(\mathcal{S} = \text{span}\{k(\cdot, x_1), \ldots, k(\cdot, x_n)\}\).
+Let $\mathcal{S} = \text{span}\{k(\cdot, x_1), \ldots, k(\cdot, x_n)\}$.
 
 For any $f \in \mathcal{H}_k$, write $f = f_\mathcal{S} + f_\perp$ where:
 - $f_\mathcal{S} \in \mathcal{S}$
@@ -158,7 +158,7 @@ For training point $x_i$, using reproducing property:
 f(x_i) = \langle f, k(\cdot, x_i) \rangle = \langle f_\mathcal{S} + f_\perp, k(\cdot, x_i) \rangle = \langle f_\mathcal{S}, k(\cdot, x_i) \rangle = f_\mathcal{S}(x_i)
 ```
 
-since \(\langle f_\perp, k(\cdot, x_i) \rangle = 0\) by orthogonality.
+since $\langle f_\perp, k(\cdot, x_i) \rangle = 0$ by orthogonality.
 
 **Step 3:** Show $f_\perp$ only increases regularization:
 
@@ -192,13 +192,13 @@ The Representer Theorem reduces infinite-dimensional optimization to finite-dime
 
 ### Norm Interpretation
 
-For \(f = \sum_i \alpha_i k(\cdot, x_i)\):
+For $f = \sum_i \alpha_i k(\cdot, x_i)$:
 
 ```math
 \|f\|_{\mathcal{H}_k}^2 = \sum_{i,j} \alpha_i \alpha_j k(x_i, x_j) = \alpha^\top K \alpha
 ```
 
-where \(K_{ij} = k(x_i, x_j)\) is the Gram matrix.
+where $K_{ij} = k(x_i, x_j)$ is the Gram matrix.
 
 ### Smoothness Control
 
@@ -207,7 +207,7 @@ The RKHS norm controls smoothness of the function:
 - **Small $\|f\|_{\mathcal{H}}$:** Smooth, slowly varying function
 - **Large $\|f\|_{\mathcal{H}}$:** Can be wiggly, rapidly changing
 
-**For RBF kernel** \(k(x, x') = \exp(-\gamma\|x-x'\|^2)\):
+**For RBF kernel** $k(x, x') = \exp(-\gamma\|x-x'\|^2)$:
 
 ```math
 \|f\|_{\mathcal{H}}^2 = \int \int f(x) k^{-1}(x, x') f(x') dx dx'
@@ -221,7 +221,7 @@ where $k^{-1}$ penalizes high-frequency components.
 
 ### Problem
 
-Given data \(\{(x_i, y_i)\}_{i=1}^n\), solve:
+Given data $\{(x_i, y_i)\}_{i=1}^n$, solve:
 
 ```math
 \min_{f \in \mathcal{H}_k} \frac{1}{n}\sum_{i=1}^n (f(x_i) - y_i)^2 + \lambda \|f\|_{\mathcal{H}_k}^2
@@ -229,7 +229,7 @@ Given data \(\{(x_i, y_i)\}_{i=1}^n\), solve:
 
 ### Solution via Representer Theorem
 
-By representer theorem, \(f^*(x) = \sum_i \alpha_i k(x, x_i)\).
+By representer theorem, $f^*(x) = \sum_i \alpha_i k(x, x_i)$.
 
 Let $K$ be the Gram matrix and $\mathbf{f} = K\alpha$.
 
@@ -259,7 +259,7 @@ K\alpha + n\lambda\alpha = y
 f^*(x) = k_x^\top (K + n\lambda I)^{-1} y
 ```
 
-where \(k_x = [k(x, x_1), \ldots, k(x, x_n)]^\top\).
+where $k_x = [k(x, x_1), \ldots, k(x, x_n)]^\top$.
 
 ---
 

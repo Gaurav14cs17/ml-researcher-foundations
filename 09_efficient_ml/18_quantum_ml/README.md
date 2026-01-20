@@ -127,7 +127,7 @@ R_Y(\theta) = \begin{pmatrix} \cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\ \s
 |\psi_{out}\rangle = U(\theta) |0\rangle^{\otimes n}
 ```
 
-where \( U(\theta) \) is a parameterized unitary:
+where $U(\theta)$ is a parameterized unitary:
 
 ```math
 U(\theta) = \prod_{l=1}^{L} \left( \prod_{i=1}^{n} R_Y(\theta_{l,i}) \cdot \text{Entangle} \right)
@@ -152,7 +152,7 @@ Expectation value of observable $O$.
 ```
 
 **Proof:**
-For \( R_Y(\theta) \) rotation:
+For $R_Y(\theta)$ rotation:
 
 ```math
 \frac{\partial}{\partial \theta} e^{-i\theta Y/2} = \frac{e^{-i(\theta+\pi/2)Y/2} - e^{-i(\theta-\pi/2)Y/2}}{2}
@@ -176,13 +176,13 @@ k(x, y) = \phi(x)^T \phi(y)
 k(x, y) = |\langle\phi(x)|\phi(y)\rangle|^2
 ```
 
-where \( |\phi(x)\rangle = U(x)|0\rangle^{\otimes n} \).
+where $|\phi(x)\rangle = U(x)|0\rangle^{\otimes n}$.
 
 **Potential advantage:** $|\phi\rangle$ can represent exponentially complex features.
 
 **Computation:**
-1. Prepare \( |\phi(x)\rangle \)
-2. Apply \( U^\dagger(y) \)
+1. Prepare $|\phi(x)\rangle$
+2. Apply $U^\dagger(y)$
 3. Measure probability of $|0\rangle^{\otimes n}$
 
 ```math
@@ -215,7 +215,7 @@ For random circuit $U$ with $n$ qubits:
 
 For quantum speedup:
 1. **Problem structure:** Must exploit quantum parallelism
-2. **Data loading:** Encoding classical data is expensive \( O(N) \)
+2. **Data loading:** Encoding classical data is expensive $O(N)$
 3. **Readout:** Need efficient way to extract answer
 
 **Current status:**

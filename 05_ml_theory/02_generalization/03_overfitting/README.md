@@ -46,7 +46,7 @@ The **generalization gap** is the difference between test and training error:
 \text{Gap} = R(h) - \hat{R}(h) = \mathbb{E}_{(x,y) \sim P}[\ell(h(x), y)] - \frac{1}{n}\sum_{i=1}^n \ell(h(x_i), y_i)
 ```
 
-**Overfitting indicator:** \(\hat{R}(h) \ll R(h)\)
+**Overfitting indicator:** $\hat{R}(h) \ll R(h)$
 
 ### Bias-Variance Connection
 

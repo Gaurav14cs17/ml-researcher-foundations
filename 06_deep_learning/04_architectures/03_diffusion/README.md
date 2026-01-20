@@ -29,7 +29,7 @@ Starting from data $x_0$, we gradually add Gaussian noise over $T$ steps:
 q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t} x_{t-1}, \beta_t I)
 ```
 
-where $\beta_t$ is the noise schedule (\(\beta_t \in (0, 1)\)).
+where $\beta_t$ is the noise schedule ($\beta_t \in (0, 1)$).
 
 **Key property: We can sample $x_t$ directly from $x_0$:**
 
@@ -64,7 +64,7 @@ Var[√(α_t β_{t-1}) ε_{t-2} + √β_t ε_{t-1}]
 
 ### Reverse Process
 
-We want to learn \(p_\theta(x_{t-1} | x_t)\) to reverse the diffusion:
+We want to learn $p_\theta(x_{t-1} | x_t)$ to reverse the diffusion:
 
 ```math
 p_\theta(x_{t-1} | x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
@@ -100,9 +100,9 @@ L_{VLB} = L_0 + L_1 + \cdots + L_{T-1} + L_T
 ```
 
 where:
-- \(L_0 = -\log p_\theta(x_0 | x_1)\) (reconstruction)
-- \(L_t = D_{KL}(q(x_{t-1}|x_t, x_0) \| p_\theta(x_{t-1}|x_t))\) (denoising)
-- \(L_T = D_{KL}(q(x_T|x_0) \| p(x_T))\) (prior, no learnable params)
+- $L_0 = -\log p_\theta(x_0 | x_1)$ (reconstruction)
+- $L_t = D_{KL}(q(x_{t-1}|x_t, x_0) \| p_\theta(x_{t-1}|x_t))$ (denoising)
+- $L_T = D_{KL}(q(x_T|x_0) \| p(x_T))$ (prior, no learnable params)
 
 ### Simplified Training Loss (DDPM)
 

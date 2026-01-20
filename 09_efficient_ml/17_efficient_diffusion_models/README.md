@@ -75,7 +75,7 @@ q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t} x_{t-1}, \beta_t I)
 q(x_t | x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0, (1-\bar{\alpha}_t) I)
 ```
 
-where \( \bar{\alpha}_t = \prod_{s=1}^{t}(1-\beta_s) \).
+where $\bar{\alpha}_t = \prod_{s=1}^{t}(1-\beta_s)$.
 
 **Reparameterization:**
 
@@ -105,7 +105,7 @@ p_\theta(x_{t-1}|x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \sigma_t^2 I)
 x_{t-1} = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon_\theta(x_t, t)\right) + \sigma_t z
 ```
 
-where \( z \sim \mathcal{N}(0, I) \).
+where $z \sim \mathcal{N}(0, I)$.
 
 ---
 
@@ -208,7 +208,7 @@ f(x_t, t) = f(x_{t'}, t') \quad \forall t, t' \text{ on same trajectory}
 
 where $\theta^-$ is EMA of $\theta$.
 
-**One-step generation:** \( f(x_T, T) \) directly gives $x_0$!
+**One-step generation:** $f(x_T, T)$ directly gives $x_0$!
 
 ---
 

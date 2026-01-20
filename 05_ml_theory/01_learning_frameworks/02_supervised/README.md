@@ -32,7 +32,7 @@
 
 ## 📂 Overview
 
-**Supervised learning** is the most common ML paradigm where models learn from labeled examples \((x, y)\) to predict outputs for new inputs.
+**Supervised learning** is the most common ML paradigm where models learn from labeled examples $(x, y)$ to predict outputs for new inputs.
 
 ---
 
@@ -40,7 +40,7 @@
 
 ### Problem Setting
 
-Given training data \(\mathcal{D} = \{(x_i, y_i)\}_{i=1}^n\) sampled i.i.d. from distribution $P_{XY}$:
+Given training data $\mathcal{D} = \{(x_i, y_i)\}_{i=1}^n$ sampled i.i.d. from distribution $P_{XY}$:
 
 ```math
 \min_{f \in \mathcal{F}} R(f) = \min_{f \in \mathcal{F}} \mathbb{E}_{(x,y) \sim P}[\ell(f(x), y)]
@@ -100,7 +100,7 @@ h^*(x) = \arg\max_c P(Y = c | X = x)
 \text{error}(h) = \mathbb{E}[\mathbb{1}[h(X) \neq Y]] = \mathbb{E}_X[\mathbb{E}_{Y|X}[\mathbb{1}[h(X) \neq Y]]]
 ```
 
-For each $x$, the inner expectation is minimized by choosing \(h(x) = \arg\max_c P(Y=c|X=x)\). $\blacksquare$
+For each $x$, the inner expectation is minimized by choosing $h(x) = \arg\max_c P(Y=c|X=x)$. $\blacksquare$
 
 ---
 
@@ -292,10 +292,10 @@ class NeuralNetClassifier(nn.Module):
 | Loss | Formula | Use Case | Properties |
 |------|---------|----------|------------|
 | **Cross-Entropy** | $-\sum y_c \log \hat{y}_c$ | Classification | Convex, smooth |
-| **MSE** | \(\frac{1}{n}\sum(y-\hat{y})^2\) | Regression | Penalizes large errors |
+| **MSE** | $\frac{1}{n}\sum(y-\hat{y})^2$ | Regression | Penalizes large errors |
 | **MAE** | $\frac{1}{n}\sum\|y-\hat{y}\|$ | Robust regression | Robust to outliers |
 | **Huber** | MSE if small, MAE if large | Robust regression | Best of both |
-| **Hinge** | \(\max(0, 1-y\hat{y})\) | SVM | Margin-based |
+| **Hinge** | $\max(0, 1-y\hat{y})$ | SVM | Margin-based |
 
 ---
 

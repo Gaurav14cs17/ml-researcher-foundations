@@ -72,11 +72,11 @@ Standard attention is O(N²) in sequence length:
 **Complexity analysis:**
 
 For $Q, K, V \in \mathbb{R}^{N \times d}$:
-- $QK^T$: \( O(N^2 d) \) FLOPs, \( O(N^2) \) memory
-- Softmax: \( O(N^2) \) FLOPs
-- Attention × V: \( O(N^2 d) \) FLOPs
+- $QK^T$: $O(N^2 d)$ FLOPs, $O(N^2)$ memory
+- Softmax: $O(N^2)$ FLOPs
+- Attention × V: $O(N^2 d)$ FLOPs
 
-**Total:** \( O(N^2 d) \) time, \( O(N^2) \) memory
+**Total:** $O(N^2 d)$ time, $O(N^2)$ memory
 
 ---
 
@@ -98,12 +98,12 @@ For each query block Qi (size B_r × d):
         Oi += Pij @ Vj                  # Accumulate
 ```
 
-**Memory:** \( O(N) \) instead of \( O(N^2) \)
+**Memory:** $O(N)$ instead of $O(N^2)$
 
 **I/O Complexity:**
 
-Standard: \( O(Nd + N^2) \) HBM accesses
-FlashAttention: \( O(N^2 d^2 / M) \) HBM accesses
+Standard: $O(Nd + N^2)$ HBM accesses
+FlashAttention: $O(N^2 d^2 / M)$ HBM accesses
 
 where $M$ is SRAM size.
 
@@ -150,10 +150,10 @@ For each new block:
 where $\phi$ is a feature map.
 
 **Complexity:**
-- Compute \( \phi(K)^T V \): \( O(Nd^2) \)
-- Compute \( \phi(Q) \cdot (\phi(K)^T V) \): \( O(Nd^2) \)
+- Compute $\phi(K)^T V$: $O(Nd^2)$
+- Compute $\phi(Q) \cdot (\phi(K)^T V)$: $O(Nd^2)$
 
-**Total:** \( O(Nd^2) \) — linear in $N$!
+**Total:** $O(Nd^2)$ — linear in $N$!
 
 **Performer kernel:**
 
@@ -252,7 +252,7 @@ A_{ij} = \begin{cases}
 \end{cases}
 ```
 
-**Complexity:** \( O(Nw) \) instead of \( O(N^2) \).
+**Complexity:** $O(Nw)$ instead of $O(N^2)$.
 
 **Effective receptive field:** After $L$ layers, each token can attend to $L \cdot w$ positions.
 
@@ -312,12 +312,12 @@ Actual speedup: 2-4× (compute still has overhead).
 ### Memory-Compute Trade-off in KV Cache
 
 **With KV cache:**
-- Memory: \( O(NLd) \)
-- Compute per token: \( O(Nd) \)
+- Memory: $O(NLd)$
+- Compute per token: $O(Nd)$
 
 **Without KV cache:**
-- Memory: \( O(Ld) \)
-- Compute per token: \( O(N^2d) \)
+- Memory: $O(Ld)$
+- Compute per token: $O(N^2d)$
 
 **Break-even point:**
 

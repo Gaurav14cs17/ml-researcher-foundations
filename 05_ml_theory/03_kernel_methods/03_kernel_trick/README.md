@@ -58,7 +58,7 @@ k(x, y) = \langle \phi(x), \phi(y) \rangle_{\mathcal{H}}
 
 for some feature map $\phi$ and inner product space $\mathcal{H}$.
 
-**The Trick:** Compute \(k(x, y)\) directly without explicitly computing \(\phi(x)\) or \(\phi(y)\)!
+**The Trick:** Compute $k(x, y)$ directly without explicitly computing $\phi(x)$ or $\phi(y)$!
 
 ---
 
@@ -88,10 +88,10 @@ k(x, y) = \langle \phi(x), \phi(y) \rangle_{\mathcal{H}}
 
 Given PSD kernel $k$ and points $\{x_1, \ldots, x_n\}$:
 
-1. Form Gram matrix $K$ with \(K_{ij} = k(x_i, x_j)\)
+1. Form Gram matrix $K$ with $K_{ij} = k(x_i, x_j)$
 2. Since $K$ is PSD, eigendecompose: $K = V\Lambda V^\top$ with $\lambda_i \geq 0$
-3. Define \(\phi(x_i) = \sqrt{\Lambda} V^\top e_i\)
-4. Then \(\langle\phi(x_i), \phi(x_j)\rangle = e_i^\top V \Lambda V^\top e_j = K_{ij} = k(x_i, x_j)\) ✓
+3. Define $\phi(x_i) = \sqrt{\Lambda} V^\top e_i$
+4. Then $\langle\phi(x_i), \phi(x_j)\rangle = e_i^\top V \Lambda V^\top e_j = K_{ij} = k(x_i, x_j)$ ✓
 
 ---
 
@@ -103,7 +103,7 @@ Given PSD kernel $k$ and points $\{x_1, \ldots, x_n\}$:
 k(x, y) = x^\top y
 ```
 
-**Feature map:** \(\phi(x) = x\) (identity)
+**Feature map:** $\phi(x) = x$ (identity)
 
 **Use case:** Linear relationships, already separable data
 
@@ -176,12 +176,12 @@ If $k_1, k_2$ are valid kernels, then so are:
 | **Sum** | $k = k_1 + k_2$ | $\phi = [\phi_1; \phi_2]$ |
 | **Product** | $k = k_1 \cdot k_2$ | $\phi = \phi_1 \otimes \phi_2$ |
 | **Scaling** | $k = c \cdot k_1, c > 0$ | $\phi = \sqrt{c}\phi_1$ |
-| **Polynomial** | \(k = (k_1)^d\) | Repeated tensor product |
+| **Polynomial** | $k = (k_1)^d$ | Repeated tensor product |
 | **Exponential** | $k = e^{k_1}$ | Taylor series |
 
 ### Gram Matrix Properties
 
-For Gram matrix $K$ with \(K_{ij} = k(x_i, x_j)\):
+For Gram matrix $K$ with $K_{ij} = k(x_i, x_j)$:
 
 - $K$ is symmetric: $K = K^\top$
 - $K$ is PSD: all eigenvalues $\geq 0$
@@ -209,11 +209,11 @@ f^*(x) = \sum_{i=1}^n \alpha_i k(x, x_i)
 
 ### Proof Sketch
 
-1. Decompose $f = f_\parallel + f_\perp$ where \(f_\parallel \in \text{span}\{k(\cdot, x_i)\}_{i=1}^n\)
-2. By reproducing property: \(f(x_i) = \langle f, k(\cdot, x_i)\rangle = f_\parallel(x_i)\)
+1. Decompose $f = f_\parallel + f_\perp$ where $f_\parallel \in \text{span}\{k(\cdot, x_i)\}_{i=1}^n$
+2. By reproducing property: $f(x_i) = \langle f, k(\cdot, x_i)\rangle = f_\parallel(x_i)$
 3. Loss term depends only on $f_\parallel$
 4. Regularizer: $\|f\|^2 = \|f_\parallel\|^2 + \|f_\perp\|^2 \geq \|f_\parallel\|^2$
-5. Optimal $f_\perp = 0$, so \(f^* = f_\parallel = \sum_i \alpha_i k(\cdot, x_i)\)
+5. Optimal $f_\perp = 0$, so $f^* = f_\parallel = \sum_i \alpha_i k(\cdot, x_i)$
 
 ### Implication
 
@@ -471,10 +471,10 @@ if __name__ == "__main__":
 
 | Method | How Kernel is Used |
 |--------|-------------------|
-| **SVM** | Decision: \(\text{sign}\left(\sum_i \alpha_i y_i k(x, x_i) + b\right)\) |
+| **SVM** | Decision: $\text{sign}\left(\sum_i \alpha_i y_i k(x, x_i) + b\right)$ |
 | **Kernel PCA** | Eigendecomposition of Gram matrix $K$ |
 | **Gaussian Processes** | Kernel = covariance function |
-| **Kernel Ridge Regression** | Solution: \(\alpha = (K + \lambda I)^{-1} y\) |
+| **Kernel Ridge Regression** | Solution: $\alpha = (K + \lambda I)^{-1} y$ |
 | **Kernel k-Means** | Distance in feature space via kernels |
 
 ---

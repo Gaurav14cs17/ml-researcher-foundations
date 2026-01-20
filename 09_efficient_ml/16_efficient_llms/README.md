@@ -124,7 +124,7 @@ M_{KV} = 2 \times L \times N \times d \times b
 
 **Acceptance probability:**
 
-For draft probability \( p(x) \) and target probability \( q(x) \):
+For draft probability $p(x)$ and target probability $q(x)$:
 
 ```math
 P_{accept} = \min\left(1, \frac{q(x)}{p(x)}\right)

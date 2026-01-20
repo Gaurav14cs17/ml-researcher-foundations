@@ -33,7 +33,7 @@ Meta-learning, or "learning to learn," trains models across many tasks so they c
 
 A meta-learning problem consists of:
 
-- **Task distribution:** \(p(\mathcal{T})\)
+- **Task distribution:** $p(\mathcal{T})$
 - **Each task:** $\mathcal{T}_i = \{D_i^{train}, D_i^{test}\}$
 - **Support set:** $D_i^{train}$ (few examples for adaptation)
 - **Query set:** $D_i^{test}$ (for evaluation)

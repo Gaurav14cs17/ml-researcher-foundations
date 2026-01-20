@@ -197,7 +197,7 @@ Assuming uniform quantization with step size $\Delta = s$:
 ```
 
 **Proof:**
-For uniform rounding error \( \epsilon \sim \text{Uniform}(-\Delta/2, \Delta/2) \):
+For uniform rounding error $\epsilon \sim \text{Uniform}(-\Delta/2, \Delta/2)$:
 
 ```math
 \mathbb{E}[\epsilon^2] = \int_{-\Delta/2}^{\Delta/2} \epsilon^2 \cdot \frac{1}{\Delta} d\epsilon = \frac{1}{\Delta} \cdot \frac{\epsilon^3}{3}\Big|_{-\Delta/2}^{\Delta/2} = \frac{\Delta^2}{12}

@@ -70,9 +70,9 @@ r_{ik} = \begin{cases} 1 & \text{if } k = \arg\min_j \|x_i - \mu_j\|^2 \\ 0 & \t
 P(x_i \text{ as next center}) \propto D(x_i)^2
 ```
 
-where \(D(x_i)\) = distance to nearest existing center.
+where $D(x_i)$ = distance to nearest existing center.
 
-**Theorem:** K-means++ achieves \(O(\log k)\)-approximation in expectation.
+**Theorem:** K-means++ achieves $O(\log k)$-approximation in expectation.
 
 ---
 
@@ -380,10 +380,10 @@ def silhouette_score(X, labels):
 
 | Algorithm | Cluster Shape | Complexity | Outliers |
 |-----------|---------------|------------|----------|
-| K-Means | Spherical | \(O(nkd)\) | Sensitive |
-| GMM | Elliptical | \(O(nkd^2)\) | Sensitive |
-| Spectral | Arbitrary | \(O(n^3)\) | Moderate |
-| DBSCAN | Arbitrary | \(O(n^2)\) | Robust |
+| K-Means | Spherical | $O(nkd)$ | Sensitive |
+| GMM | Elliptical | $O(nkd^2)$ | Sensitive |
+| Spectral | Arbitrary | $O(n^3)$ | Moderate |
+| DBSCAN | Arbitrary | $O(n^2)$ | Robust |
 
 ---
 

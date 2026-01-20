@@ -171,13 +171,13 @@ Pruning large language models is different:
 
 ### Lottery Ticket Hypothesis Formalization
 
-Let \( f(x; \theta) \) be a neural network with parameters $\theta \in \mathbb{R}^d$.
+Let $f(x; \theta)$ be a neural network with parameters $\theta \in \mathbb{R}^d$.
 
 **Lottery Ticket Conjecture:**
 
-For a dense network \( f(x; \theta_0) \) with random initialization $\theta_0$, there exists:
+For a dense network $f(x; \theta_0)$ with random initialization $\theta_0$, there exists:
 - A sparse mask $m \in \{0,1\}^d$ with $\|m\|_0 \ll d$
-- Such that training \( f(x; m \odot \theta_0) \) achieves comparable accuracy to training \( f(x; \theta_0) \)
+- Such that training $f(x; m \odot \theta_0)$ achieves comparable accuracy to training $f(x; \theta_0)$
 
 **Formal Statement:**
 
@@ -325,7 +325,7 @@ for j in columns:
         w_j = 0
 ```
 
-**Complexity:** \( O(d^2) \) per layer (one-shot, no retraining!)
+**Complexity:** $O(d^2)$ per layer (one-shot, no retraining!)
 
 ---
 
@@ -356,8 +356,8 @@ where $\Delta \mathcal{L}$ is loss increase when pruning layer $l$ to sparsity $
 
 For sparse matrix $A$ with nnz non-zeros, computing $y = Ax$:
 
-**Dense:** \( O(mn) \) operations
-**Sparse:** \( O(\text{nnz}) \) operations
+**Dense:** $O(mn)$ operations
+**Sparse:** $O(\text{nnz})$ operations
 
 **Speedup ratio:**
 
@@ -385,9 +385,9 @@ I(X; \hat{Y}) \approx I(X; Y)
 where:
 - $Y$ = dense network output
 - $\hat{Y}$ = pruned network output
-- \( I(\cdot; \cdot) \) = mutual information
+- $I(\cdot; \cdot)$ = mutual information
 
-**Data Processing Inequality:** \( I(X; \hat{Y}) \leq I(X; Y) \)
+**Data Processing Inequality:** $I(X; \hat{Y}) \leq I(X; Y)$
 
 Equality (approximately) holds when pruned weights carry redundant information.
 

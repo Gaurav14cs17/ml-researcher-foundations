@@ -94,7 +94,7 @@ a = √(6/(n_in + n_out)) ✓
 
 ### Why ReLU Changes Everything
 
-For ReLU: \(a = \max(0, y)\)
+For ReLU: $a = \max(0, y)$
 
 **Effect on variance:**
 ```
@@ -143,11 +143,11 @@ W \sim U\left[-\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}}\right]
 
 | Method | Variance | Best For | Formula |
 |--------|----------|----------|---------|
-| **Xavier Uniform** | $\frac{2}{n_{in}+n_{out}}$ | tanh, sigmoid | \(U[-\sqrt{6/(n_{in}+n_{out})}, +\sqrt{6/(n_{in}+n_{out})}]\) |
-| **Xavier Normal** | $\frac{2}{n_{in}+n_{out}}$ | tanh, sigmoid | \(N(0, 2/(n_{in}+n_{out}))\) |
+| **Xavier Uniform** | $\frac{2}{n_{in}+n_{out}}$ | tanh, sigmoid | $U[-\sqrt{6/(n_{in}+n_{out})}, +\sqrt{6/(n_{in}+n_{out})}]$ |
+| **Xavier Normal** | $\frac{2}{n_{in}+n_{out}}$ | tanh, sigmoid | $N(0, 2/(n_{in}+n_{out}))$ |
 | **He Uniform** | $\frac{2}{n_{in}}$ | ReLU, LeakyReLU | $U[-\sqrt{6/n_{in}}, +\sqrt{6/n_{in}}]$ |
-| **He Normal** | $\frac{2}{n_{in}}$ | ReLU, LeakyReLU | \(N(0, 2/n_{in})\) |
-| **LeCun** | $\frac{1}{n_{in}}$ | SELU | \(N(0, 1/n_{in})\) |
+| **He Normal** | $\frac{2}{n_{in}}$ | ReLU, LeakyReLU | $N(0, 2/n_{in})$ |
+| **LeCun** | $\frac{1}{n_{in}}$ | SELU | $N(0, 1/n_{in})$ |
 | **Orthogonal** | - | RNNs | $W = QR$ decomposition |
 
 ---
@@ -496,11 +496,11 @@ print(f"Output mean: {y.mean():.4f}, std: {y.std():.4f}")
 
 | Activation | Initialization | Variance |
 |------------|----------------|----------|
-| **tanh, sigmoid** | Xavier/Glorot | \(2/(n_{in}+n_{out})\) |
+| **tanh, sigmoid** | Xavier/Glorot | $2/(n_{in}+n_{out})$ |
 | **ReLU** | He/Kaiming | $2/n_{in}$ |
-| **LeakyReLU(α)** | Modified He | \(2/((1+α^2)n_{in})\) |
+| **LeakyReLU(α)** | Modified He | $2/((1+α^2)n_{in})$ |
 | **SELU** | LeCun | $1/n_{in}$ |
-| **Linear** | Xavier | \(2/(n_{in}+n_{out})\) |
+| **Linear** | Xavier | $2/(n_{in}+n_{out})$ |
 | **LSTM/GRU** | Orthogonal + bias | See above |
 
 ---

@@ -40,12 +40,12 @@
 
 ### What is a Good Representation?
 
-A good representation \(z = f_\theta(x)\) should:
+A good representation $z = f_\theta(x)$ should:
 
-1. **Task-relevant information:** \(I(Z; Y)\) is high
+1. **Task-relevant information:** $I(Z; Y)$ is high
 2. **Invariance:** $Z$ unchanged under irrelevant transformations
 3. **Disentanglement:** Factors of variation are separated
-4. **Compactness:** \(\dim(Z) \ll \dim(X)\)
+4. **Compactness:** $\dim(Z) \ll \dim(X)$
 
 ### Information Bottleneck Principle
 
@@ -54,8 +54,8 @@ A good representation \(z = f_\theta(x)\) should:
 ```
 
 where:
-- \(I(Z; Y)\): Information about labels (maximize)
-- \(I(Z; X)\): Information from input (compress)
+- $I(Z; Y)$: Information about labels (maximize)
+- $I(Z; X)$: Information from input (compress)
 - $\beta$: Trade-off parameter
 
 ---

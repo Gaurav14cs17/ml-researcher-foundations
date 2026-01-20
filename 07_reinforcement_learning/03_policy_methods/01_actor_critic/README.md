@@ -44,7 +44,7 @@ Critic: V_ω(s)    - Value network (parameterized by ω)
 
 ### Policy Gradient with Baseline
 
-The key insight is that we can subtract any baseline \( b(s) \) from the return without changing the expected gradient:
+The key insight is that we can subtract any baseline $b(s)$ from the return without changing the expected gradient:
 
 **Theorem (Baseline Invariance):**
 ```
@@ -57,7 +57,7 @@ E[∇_θ log π_θ(a|s) · b(s)] = Σ_a π_θ(a|s) · ∇_θ log π_θ(a|s) · b
                             = b(s) · ∇_θ 1 = 0
 ```
 
-The optimal baseline that minimizes variance is \( b^*(s) = V^π(s) \).
+The optimal baseline that minimizes variance is $b^*(s) = V^π(s)$.
 
 ### Advantage Function
 

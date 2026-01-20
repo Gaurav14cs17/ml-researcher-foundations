@@ -46,7 +46,7 @@
 
 where:
 - $\mathcal{L}_{\text{data}}$: Data fitting term (e.g., cross-entropy, MSE)
-- \(\Omega(\theta)\): Regularization function (complexity penalty)
+- $\Omega(\theta)$: Regularization function (complexity penalty)
 - $\lambda > 0$: Regularization strength (hyperparameter)
 
 ---
@@ -102,7 +102,7 @@ X^\top X\beta + \lambda\beta = X^\top y
 
 **Theorem:** Ridge regression is equivalent to MAP estimation with Gaussian prior.
 
-**Prior:** \(\theta \sim \mathcal{N}(0, \tau^2 I)\)
+**Prior:** $\theta \sim \mathcal{N}(0, \tau^2 I)$
 
 **Posterior:**
 
@@ -238,7 +238,7 @@ At test time, the scaled network approximates the geometric mean of all subnetwo
 | Aspect | L1 (Lasso) | L2 (Ridge) |
 |--------|------------|------------|
 | **Penalty** | $\sum_i \|\theta_i\|$ | $\sum_i \theta_i^2$ |
-| **Gradient** | \(\text{sign}(\theta)\) | $2\theta$ |
+| **Gradient** | $\text{sign}(\theta)$ | $2\theta$ |
 | **Sparsity** | Yes (zeros out weights) | No (shrinks but ≠ 0) |
 | **Solution uniqueness** | May not be unique | Always unique |
 | **Prior (Bayesian)** | Laplace | Gaussian |

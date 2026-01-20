@@ -45,8 +45,8 @@
 ```
 
 where:
-- \(\mathcal{L}(\theta; \mathcal{D})\): Data-dependent loss
-- \(\Omega(\theta)\): Regularization penalty
+- $\mathcal{L}(\theta; \mathcal{D})$: Data-dependent loss
+- $\Omega(\theta)$: Regularization penalty
 - $\lambda > 0$: Regularization strength
 
 ---
@@ -90,7 +90,7 @@ p(\theta) \propto \exp\left(-\frac{\lambda}{2}\|\theta\|^2\right)
 
 ### Soft Thresholding
 
-For \(\mathcal{L} = \frac{1}{2}(y - \theta)^2\):
+For $\mathcal{L} = \frac{1}{2}(y - \theta)^2$:
 
 ```math
 \hat{\theta} = \text{sign}(y) \cdot \max(|y| - \lambda, 0)

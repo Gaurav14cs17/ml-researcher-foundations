@@ -125,7 +125,7 @@ Make latency differentiable for gradient-based search:
 \mathbb{E}[\text{Lat}] = \sum_{o \in \mathcal{O}} p(o) \cdot \text{Lat}(o)
 ```
 
-where \( p(o) = \text{softmax}(\alpha)_o \).
+where $p(o) = \text{softmax}(\alpha)_o$.
 
 **Gradient:**
 
@@ -285,7 +285,7 @@ Typically $\alpha = \beta = -0.07$.
 
 **Lookup table approach:**
 
-For each operation type $o$ and configuration \( (c_{in}, c_{out}, k, H, W) \):
+For each operation type $o$ and configuration $(c_{in}, c_{out}, k, H, W)$:
 
 ```math
 \text{Lat}(o, c_{in}, c_{out}, k, H, W) = \text{LUT}[o, c_{in}, c_{out}, k, H, W]

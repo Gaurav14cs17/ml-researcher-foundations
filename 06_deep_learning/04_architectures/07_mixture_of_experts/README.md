@@ -29,8 +29,8 @@ y = \sum_{i=1}^{N} G(x)_i \cdot E_i(x)
 
 where:
 - $N$: number of experts
-- \(E_i(x)\): output of expert $i$
-- \(G(x)_i\): gating weight for expert $i$
+- $E_i(x)$: output of expert $i$
+- $G(x)_i$: gating weight for expert $i$
 
 ### Gating Function
 

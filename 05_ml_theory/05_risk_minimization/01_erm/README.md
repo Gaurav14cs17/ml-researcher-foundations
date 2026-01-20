@@ -48,11 +48,11 @@ where:
 - $\mathcal{D}$ is the unknown data distribution
 - $\ell: \mathcal{Y} \times \mathcal{Y} \to \mathbb{R}_{\geq 0}$ is the loss function
 
-**Problem:** We cannot compute \(R(h)\) because $\mathcal{D}$ is unknown!
+**Problem:** We cannot compute $R(h)$ because $\mathcal{D}$ is unknown!
 
 ### Empirical Risk
 
-Given training set \(S = \{(x_i, y_i)\}_{i=1}^n\) sampled i.i.d. from $\mathcal{D}$:
+Given training set $S = \{(x_i, y_i)\}_{i=1}^n$ sampled i.i.d. from $\mathcal{D}$:
 
 ```math
 \hat{R}_S(h) = \frac{1}{n} \sum_{i=1}^{n} \ell(h(x_i), y_i)
@@ -80,7 +80,7 @@ Find the hypothesis in class $\mathcal{H}$ that minimizes training loss.
 \hat{R}_S(h) \xrightarrow{p} R(h)
 ```
 
-**Proof:** By LLN, since \(\ell(h(x_i), y_i)\) are i.i.d.:
+**Proof:** By LLN, since $\ell(h(x_i), y_i)$ are i.i.d.:
 
 ```math
 \frac{1}{n}\sum_{i=1}^n \ell(h(x_i), y_i) \xrightarrow{p} \mathbb{E}[\ell(h(x), y)] = R(h) \quad \blacksquare
@@ -134,7 +134,7 @@ R(\hat{h}_{\text{ERM}}) \leq \hat{R}_S(\hat{h}_{\text{ERM}}) + \sqrt{\frac{8d\ln
 R(\hat{h}_{\text{ERM}}) - R(h^*) = \underbrace{R(\hat{h}_{\text{ERM}}) - \hat{R}_S(\hat{h}_{\text{ERM}})}_{\text{generalization gap}} + \underbrace{\hat{R}_S(\hat{h}_{\text{ERM}}) - \hat{R}_S(h^*)}_{\leq 0 \text{ by ERM}} + \underbrace{\hat{R}_S(h^*) - R(h^*)}_{\text{approximation}}
 ```
 
-where \(h^* = \arg\min_{h \in \mathcal{H}} R(h)\).
+where $h^* = \arg\min_{h \in \mathcal{H}} R(h)$.
 
 ---
 
@@ -142,7 +142,7 @@ where \(h^* = \arg\min_{h \in \mathcal{H}} R(h)\).
 
 ### The Problem
 
-ERM minimizes \(\hat{R}_S(h)\), not \(R(h)\). The gap:
+ERM minimizes $\hat{R}_S(h)$, not $R(h)$. The gap:
 
 ```math
 R(\hat{h}) = \underbrace{\hat{R}_S(\hat{h})}_{\text{training error}} + \underbrace{(R(\hat{h}) - \hat{R}_S(\hat{h}))}_{\text{generalization gap}}
@@ -160,7 +160,7 @@ R(\hat{h}) = \underbrace{\hat{R}_S(\hat{h})}_{\text{training error}} + \underbra
 
 | Method | Modification |
 |--------|-------------|
-| **Regularized ERM** | \(\min \hat{R}_S(h) + \lambda\Omega(h)\) |
+| **Regularized ERM** | $\min \hat{R}_S(h) + \lambda\Omega(h)$ |
 | **Early stopping** | Stop optimization early |
 | **Cross-validation** | Estimate true risk |
 | **More data** | Tighter bounds |
@@ -330,11 +330,11 @@ if __name__ == "__main__":
 
 | Task | Loss | Formula | Properties |
 |------|------|---------|------------|
-| **Classification** | 0-1 Loss | \(\mathbb{1}[h(x) \neq y]\) | Non-differentiable |
-| **Classification** | Cross-Entropy | \(-\sum_c y_c \log h(x)_c\) | Convex, smooth |
-| **Classification** | Hinge Loss | \(\max(0, 1 - y \cdot h(x))\) | Convex, non-smooth |
-| **Regression** | MSE | \((h(x) - y)^2\) | Convex, smooth |
-| **Regression** | MAE | \(|h(x) - y|\) | Convex, robust |
+| **Classification** | 0-1 Loss | $\mathbb{1}[h(x) \neq y]$ | Non-differentiable |
+| **Classification** | Cross-Entropy | $-\sum_c y_c \log h(x)_c$ | Convex, smooth |
+| **Classification** | Hinge Loss | $\max(0, 1 - y \cdot h(x))$ | Convex, non-smooth |
+| **Regression** | MSE | $(h(x) - y)^2$ | Convex, smooth |
+| **Regression** | MAE | $|h(x) - y|$ | Convex, robust |
 | **Regression** | Huber | MSE if small, MAE if large | Robust, smooth |
 
 ---

@@ -108,8 +108,8 @@ T=20: [0.4, 0.3, 0.3]    # Very soft
 ```
 
 where:
-- \( p^T = \text{softmax}(z^T / T) \) = teacher's soft predictions
-- \( p^S = \text{softmax}(z^S / T) \) = student's soft predictions
+- $p^T = \text{softmax}(z^T / T)$ = teacher's soft predictions
+- $p^S = \text{softmax}(z^S / T)$ = student's soft predictions
 - $T$ = temperature
 
 **Why $T^2$ scaling?**

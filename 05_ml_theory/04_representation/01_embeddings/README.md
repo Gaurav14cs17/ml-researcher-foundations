@@ -81,7 +81,7 @@ Approximate softmax with negative sampling:
 \log \sigma(v_{w_O}^\top v_{w_I}) + \sum_{i=1}^k \mathbb{E}_{w_i \sim P_n(w)}[\log \sigma(-v_{w_i}^\top v_{w_I})]
 ```
 
-where \(P_n(w) \propto \text{freq}(w)^{3/4}\).
+where $P_n(w) \propto \text{freq}(w)^{3/4}$.
 
 ---
 
@@ -89,7 +89,7 @@ where \(P_n(w) \propto \text{freq}(w)^{3/4}\).
 
 ### InfoNCE Loss
 
-For positive pair \((x, x^+)\) and negative samples $\{x_i^-\}_{i=1}^{K}$:
+For positive pair $(x, x^+)$ and negative samples $\{x_i^-\}_{i=1}^{K}$:
 
 ```math
 \mathcal{L}_{\text{NCE}} = -\log \frac{\exp(\text{sim}(f(x), f(x^+))/\tau)}{\exp(\text{sim}(f(x), f(x^+))/\tau) + \sum_{i=1}^K \exp(\text{sim}(f(x), f(x_i^-))/\tau)}
@@ -125,7 +125,7 @@ d(u, v) = \|u - v\|_2 = \sqrt{\sum_i (u_i - v_i)^2}
 s(u, v) = u \cdot v = \sum_i u_i v_i
 ```
 
-**Connection:** For normalized vectors: \(\text{cosine}(u,v) = u \cdot v\).
+**Connection:** For normalized vectors: $\text{cosine}(u,v) = u \cdot v$.
 
 ---
 

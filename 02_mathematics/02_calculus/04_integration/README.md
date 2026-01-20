@@ -31,11 +31,11 @@ Integration is the inverse of differentiation. In ML, we rarely compute integral
 
 | Concept | Formula | ML Usage |
 |---------|---------|----------|
-| **Expectation** | \(\mathbb{E}[X] = \int x \cdot p(x) \, dx\) | Mean predictions |
-| **Variance** | \(\text{Var}[X] = \int (x-\mu)^2 p(x) \, dx\) | Uncertainty quantification |
-| **Normalization** | \(\int p(x) \, dx = 1\) | Valid probability distributions |
-| **Marginalization** | \(p(x) = \int p(x,z) \, dz\) | Latent variable models |
-| **ELBO** | \(\mathcal{L} = \mathbb{E}_{q}[\log p(x|z)] - D_{KL}(q||p)\) | VAE training |
+| **Expectation** | $\mathbb{E}[X] = \int x \cdot p(x) \, dx$ | Mean predictions |
+| **Variance** | $\text{Var}[X] = \int (x-\mu)^2 p(x) \, dx$ | Uncertainty quantification |
+| **Normalization** | $\int p(x) \, dx = 1$ | Valid probability distributions |
+| **Marginalization** | $p(x) = \int p(x,z) \, dz$ | Latent variable models |
+| **ELBO** | $\mathcal{L} = \mathbb{E}_{q}[\log p(x|z)] - D_{KL}(q||p)$ | VAE training |
 
 ---
 
@@ -61,7 +61,7 @@ where $\Delta x = \frac{b-a}{n}$ and $x_i^* \in [x_{i-1}, x_i]$.
 F(x) = \int_a^x f(t) \, dt
 ```
 
-is differentiable and \(F'(x) = f(x)\).
+is differentiable and $F'(x) = f(x)$.
 
 **Proof:**
 ```
@@ -107,7 +107,7 @@ Therefore: ∫_a^b f(x)dx = G(b) = F(b) - F(a) ✓
 
 ### 1. Substitution (Change of Variables)
 
-**Theorem:** If \(u = g(x)\) is differentiable and $f$ is continuous, then:
+**Theorem:** If $u = g(x)$ is differentiable and $f$ is continuous, then:
 
 ```math
 \int f(g(x)) \cdot g'(x) \, dx = \int f(u) \, du
@@ -183,7 +183,7 @@ E[X] = [-xe^{-λx}]_0^∞ + ∫_0^∞ e^{-λx} dx
 
 ### 1. Expectation and Variance
 
-**Definition:** For a random variable $X$ with PDF \(p(x)\):
+**Definition:** For a random variable $X$ with PDF $p(x)$:
 
 ```math
 \mathbb{E}[f(X)] = \int_{-\infty}^{\infty} f(x) \cdot p(x) \, dx
@@ -203,7 +203,7 @@ This is the computational formula for variance.
 
 ### 2. Marginalization
 
-**Theorem:** For joint distribution \(p(x, z)\), the marginal is:
+**Theorem:** For joint distribution $p(x, z)$, the marginal is:
 
 ```math
 p(x) = \int p(x, z) \, dz = \int p(x|z) p(z) \, dz
@@ -230,9 +230,9 @@ so we use variational inference with ELBO.
 
 ### 3. ELBO Derivation (Complete Proof)
 
-**Problem:** We want to maximize \(\log p(x)\) but the integral is intractable.
+**Problem:** We want to maximize $\log p(x)$ but the integral is intractable.
 
-**Solution:** Introduce variational distribution \(q(z|x)\) and derive a lower bound.
+**Solution:** Introduce variational distribution $q(z|x)$ and derive a lower bound.
 
 **Complete Derivation:**
 ```
@@ -267,7 +267,7 @@ The bound is tight when q(z|x) = p(z|x) (true posterior).
 
 ### Theory
 
-**Problem:** Computing \(\int f(x) p(x) dx\) analytically is often intractable.
+**Problem:** Computing $\int f(x) p(x) dx$ analytically is often intractable.
 
 **Solution:** Use random sampling to approximate.
 
@@ -304,9 +304,9 @@ This shows convergence rate is O(1/√N).
 
 ### Importance Sampling
 
-**Problem:** What if we can't sample from \(p(x)\) directly?
+**Problem:** What if we can't sample from $p(x)$ directly?
 
-**Solution:** Sample from a proposal distribution \(q(x)\) and reweight.
+**Solution:** Sample from a proposal distribution $q(x)$ and reweight.
 
 **Theorem:**
 
@@ -333,7 +333,7 @@ In practice, choose q to have heavier tails than p.
 
 ### Jacobian Change of Variables
 
-**Theorem:** For transformation \(y = g(x)\) where $x \in \mathbb{R}^n$:
+**Theorem:** For transformation $y = g(x)$ where $x \in \mathbb{R}^n$:
 
 ```math
 \int f(y) \, dy = \int f(g(x)) \cdot |\det(J_g(x))| \, dx
@@ -542,11 +542,11 @@ print(f"∫e^(-x²)dx ≈ {result:.10f}, √π = {np.sqrt(np.pi):.10f}")
 
 | Application | Usage | Mathematical Form |
 |-------------|-------|-------------------|
-| **VAE** | ELBO optimization | \(\mathbb{E}_q[\log p(x|z)] - D_{KL}\) |
+| **VAE** | ELBO optimization | $\mathbb{E}_q[\log p(x|z)] - D_{KL}$ |
 | **Policy Gradient** | Expected reward | $\nabla_\theta \mathbb{E}[\sum r_t]$ |
-| **Bayesian Inference** | Posterior normalization | \(p(\theta|D) = \frac{p(D|\theta)p(\theta)}{\int p(D|\theta)p(\theta)d\theta}\) |
-| **Normalizing Flows** | Change of variables | \(\log p_x(x) = \log p_z(z) - \log|\det J|\) |
-| **Diffusion Models** | Denoising objective | \(\mathbb{E}_{t,\epsilon}[\|\epsilon - \epsilon_\theta(x_t, t)\|^2]\) |
+| **Bayesian Inference** | Posterior normalization | $p(\theta|D) = \frac{p(D|\theta)p(\theta)}{\int p(D|\theta)p(\theta)d\theta}$ |
+| **Normalizing Flows** | Change of variables | $\log p_x(x) = \log p_z(z) - \log|\det J|$ |
+| **Diffusion Models** | Denoising objective | $\mathbb{E}_{t,\epsilon}[\|\epsilon - \epsilon_\theta(x_t, t)\|^2]$ |
 
 ---
 
@@ -554,10 +554,10 @@ print(f"∫e^(-x²)dx ≈ {result:.10f}, √π = {np.sqrt(np.pi):.10f}")
 
 | Theorem | Statement | ML Application |
 |---------|-----------|----------------|
-| **Fundamental Theorem** | \(\frac{d}{dx}\int_a^x f(t)dt = f(x)\) | Gradient computation |
+| **Fundamental Theorem** | $\frac{d}{dx}\int_a^x f(t)dt = f(x)$ | Gradient computation |
 | **Jensen's Inequality** | $\log \mathbb{E}[X] \geq \mathbb{E}[\log X]$ | ELBO derivation |
 | **Law of Large Numbers** | $\bar{X}_n \to \mu$ as $n \to \infty$ | Monte Carlo convergence |
-| **CLT** | \(\sqrt{n}(\bar{X}_n - \mu) \to N(0, \sigma^2)\) | Error bounds |
+| **CLT** | $\sqrt{n}(\bar{X}_n - \mu) \to N(0, \sigma^2)$ | Error bounds |
 
 ---
 

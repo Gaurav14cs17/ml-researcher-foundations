@@ -205,7 +205,7 @@ M_{peak} = C \times H \times W + C' \times H \times W
 **Standard depthwise conv:**
 - Read input: $C \times H \times W$
 - Write output: $C \times H' \times W'$
-- Memory: \( C(HW + H'W') \)
+- Memory: $C(HW + H'W')$
 
 **In-place (when stride=1, padding=same):**
 - Overwrite input with output
@@ -220,12 +220,12 @@ M_{peak} = C \times H \times W + C' \times H \times W
 **Standard im2col:**
 1. Reshape input to matrix: $M_{im2col} = C_{in} \times k^2 \times H' \times W'$
 2. Matrix multiply with reshaped kernel
-3. Memory: \( O(C_{in} \cdot k^2 \cdot H' \cdot W') \)
+3. Memory: $O(C_{in} \cdot k^2 \cdot H' \cdot W')$
 
 **Im2col-free:**
 - Direct loop-based computation
 - No intermediate buffer needed
-- Memory: \( O(1) \) extra
+- Memory: $O(1)$ extra
 
 **Trade-off:** Slower but much less memory.
 
