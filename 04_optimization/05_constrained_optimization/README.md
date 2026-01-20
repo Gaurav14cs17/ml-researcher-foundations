@@ -45,7 +45,6 @@ Unconstrained:              Constrained:
 
 ```
 +---------------------------------------------------------+
-
 |                                                         |
 |   LAGRANGE MULTIPLIERS              KKT CONDITIONS      |
 |   --------------------              --------------      |
@@ -299,7 +298,6 @@ KKT (Karush-Kuhn-Tucker) conditions are **necessary conditions** for optimality 
 
 ```
 +---------------------------------------------------------+
-
 |                                                         |
 |   The Problem:                                          |
 |                                                         |

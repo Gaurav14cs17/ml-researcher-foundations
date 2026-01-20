@@ -26,7 +26,6 @@ KKT (Karush-Kuhn-Tucker) conditions are **necessary conditions** for optimality 
 
 ```
 +---------------------------------------------------------+
-
 |                                                         |
 |   The Problem:                                          |
 |                                                         |

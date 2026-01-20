@@ -157,7 +157,6 @@ Noise   Less Noisy      Cleaner  Clean!
 
 ```
 +---------------------------------------------------------+
-
 |                                                         |
 |  log p(x_0) ≥ ELBO = E_q[ log p(x_T)                   |
 |                          + Σ log p(x_{t-1}|x_t)        |

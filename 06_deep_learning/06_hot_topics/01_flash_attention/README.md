@@ -51,7 +51,6 @@ Memory: O(n²) - prohibitive for long sequences!
 
 ```
 +-------------------------------------+
-
 |  SRAM (on-chip)                     |
 |  • Fast: ~19 TB/s bandwidth         |
 |  • Small: ~20 MB                    |

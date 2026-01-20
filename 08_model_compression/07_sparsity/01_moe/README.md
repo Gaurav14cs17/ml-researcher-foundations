@@ -335,7 +335,6 @@ MoE is strictly more expressive than single FFN of same compute budget. ∎
 
 ```
 +-------------------------------------------------------------+
-
 |                   MoE Layer                                 |
 +-------------------------------------------------------------+
 |                                                             |
