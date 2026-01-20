@@ -1,12 +1,33 @@
-title: "ML Researcher Foundations"
-description: "By Gaurav Goswami"
-theme: jekyll-theme-cayman
-show_downloads: false
-google_analytics:
+title: "🧠 ML Researcher Foundations"
+description: "Your Complete Journey from Zero to ML Research • By Gaurav Goswami"
+author: "Gaurav Goswami"
+url: "https://gaurav14cs17.github.io"
+baseurl: "/ml-researcher-foundations"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+# Plugins
 plugins:
   - jekyll-relative-links
+  - jekyll-seo-tag
+
 relative_links:
   enabled: true
   collections: true
+
 include:
   - README.md
+  - _layouts
+
+exclude:
+  - .git
+  - .gitignore
+  - Gemfile
+  - Gemfile.lock
