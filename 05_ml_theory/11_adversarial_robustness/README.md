@@ -43,6 +43,7 @@ Common norms:
 • L∞: max pixel change ≤ ε
 • L2: Euclidean distance ≤ ε
 • L0: Number of changed pixels ≤ ε
+
 ```
 
 ### Attack Methods
@@ -62,6 +63,7 @@ C&W Attack:
 min_δ ||δ||_p + c · max(Z(x+δ)_y - max_{i≠y}Z(x+δ)_i, -κ)
 
 Optimization-based, very strong
+
 ```
 
 ### Adversarial Training
@@ -74,6 +76,7 @@ Adversarial training:
 min_θ E_{(x,y)}[max_{||δ||≤ε} L(f_θ(x+δ), y)]
 
 Min-max optimization: Train on worst-case perturbations
+
 ```
 
 ---
@@ -185,6 +188,7 @@ try:
     autoattack = torchattacks.AutoAttack(model, eps=0.3)
 except ImportError:
     print("torchattacks not installed")
+
 ```
 
 ---
@@ -213,6 +217,7 @@ Robust Model:
 • Much higher adversarial accuracy
 
 Trade-off is fundamental (theoretically proven for some settings)
+
 ```
 
 ---

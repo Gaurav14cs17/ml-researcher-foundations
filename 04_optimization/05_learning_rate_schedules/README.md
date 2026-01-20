@@ -32,6 +32,7 @@
 |   Too low → slow                End low → converge     |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -54,6 +55,7 @@ Examples that satisfy both:
 • αₜ = 1/t        ✓
 • αₜ = 1/√t       ✓
 • αₜ = constant   ✗ (violates condition 2)
+
 ```
 
 ### Convergence Rate Analysis
@@ -70,6 +72,7 @@ Decaying LR αₜ = α₀/√t:
   E[f(xₜ)] - f* ≤ O(1/√t)
   
   No variance floor - converges to optimum!
+
 ```
 
 ---
@@ -94,6 +97,7 @@ Example (ResNet on ImageNet):
   Epochs 0-30:  η = 0.1
   Epochs 30-60: η = 0.01
   Epochs 60-90: η = 0.001
+
 ```
 
 ### 2. Exponential Decay
@@ -110,6 +114,7 @@ Properties:
 • γ close to 0 → fast decay
 
 Common: γ = 0.95 to 0.99 per epoch
+
 ```
 
 ### 3. Polynomial Decay
@@ -125,6 +130,7 @@ Special case (linear decay):
 η(t) = η_max × (1 - t/T)
 
 Starts at η_max, linearly decreases to 0
+
 ```
 
 ### 4. Cosine Annealing
@@ -142,6 +148,7 @@ Variant with warm restarts (SGDR):
 η(t) = η_min + (η_max - η_min) × (1 + cos(π × t_i/T_i))/2
 
 where t_i is time since last restart
+
 ```
 
 ### 5. Warmup + Decay (Transformers)
@@ -158,6 +165,7 @@ where:
 Behavior:
 • t < warmup: Linear increase (η ∝ t)
 • t > warmup: Inverse square root decay (η ∝ 1/√t)
+
 ```
 
 ### 6. Linear Warmup + Linear Decay (BERT/GPT)
@@ -177,6 +185,7 @@ For t ≤ warmup:
 
 For t > warmup:
   η(t) = η_max × (total - t) / (total - warmup)
+
 ```
 
 ### 7. One Cycle (fast.ai)
@@ -194,6 +203,7 @@ Benefits:
 • Explore early (high LR)
 • Converge late (low LR)
 • Counter-cyclic momentum helps
+
 ```
 
 ---
@@ -222,6 +232,7 @@ Early steps (small t):
   Combined with large gradients → instability
 
 Warmup counteracts this amplification
+
 ```
 
 ### Why Decay Helps
@@ -241,6 +252,7 @@ Constant LR:
 
 Decaying LR (α_t → 0):
   Variance → 0 → converges to x*
+
 ```
 
 ---
@@ -294,6 +306,7 @@ for epoch in range(num_epochs):
     # For other schedulers: step after each epoch
     if not isinstance(scheduler, OneCycleLR):
         scheduler.step()
+
 ```
 
 ### Custom Warmup + Cosine Schedule
@@ -318,6 +331,7 @@ scheduler = LambdaLR(
     optimizer,
     lr_lambda=lambda step: get_lr(step, total_steps, warmup_steps, max_lr) / max_lr
 )
+
 ```
 
 ### Transformer Schedule (Original)
@@ -335,6 +349,7 @@ scheduler = LambdaLR(
     optimizer,
     lr_lambda=lambda step: transformer_lr(step, d_model=512, warmup_steps=4000)
 )
+
 ```
 
 ---
@@ -355,6 +370,7 @@ Modern (ViT):
   • Schedule: Warmup + cosine
   • Warmup: 5-10 epochs
   • Total: 300-1000 epochs
+
 ```
 
 ### NLP (BERT, GPT)
@@ -370,6 +386,7 @@ GPT:
   • Schedule: Warmup + cosine
   • Warmup: 375M tokens (GPT-2)
   • Min LR: 10% of peak
+
 ```
 
 ### Fine-tuning
@@ -384,6 +401,7 @@ BERT fine-tuning:
   • LR: 2e-5 to 5e-5
   • Epochs: 2-4
   • Linear decay
+
 ```
 
 ### Reinforcement Learning
@@ -396,6 +414,7 @@ PPO/A2C:
 SAC/TD3:
   • Constant LR often sufficient
   • LR: 3e-4
+
 ```
 
 ---
@@ -434,6 +453,7 @@ def lr_range_test(model, train_loader, start_lr=1e-7, end_lr=10, num_iters=100):
     # Plot: Good LR is where loss decreases fastest
     # (steepest negative slope)
     return lrs, losses
+
 ```
 
 ### Layer-wise Learning Rates
@@ -444,6 +464,7 @@ optimizer = optim.Adam([
     {'params': model.backbone.parameters(), 'lr': 1e-5},  # Pre-trained
     {'params': model.head.parameters(), 'lr': 1e-3}       # New layers
 ])
+
 ```
 
 ### Cyclic Learning Rates
@@ -458,6 +479,7 @@ scheduler = CyclicLR(
     step_size_up=2000,  # Steps to increase
     mode='triangular2'   # Halve amplitude each cycle
 )
+
 ```
 
 ---

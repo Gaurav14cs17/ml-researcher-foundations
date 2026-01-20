@@ -46,6 +46,7 @@
 
 ```math
 \text{VC}(\mathcal{H}) = \max\{n : \exists S \text{ of size } n \text{ shattered by } \mathcal{H}\}
+
 ```
 
 ### Common VC Dimensions
@@ -68,6 +69,7 @@
 
 ```math
 \hat{\mathcal{R}}_n(\mathcal{H}) = \mathbb{E}_{\boldsymbol{\sigma}}\left[\sup_{h \in \mathcal{H}} \frac{1}{n}\sum_{i=1}^n \sigma_i h(x_i)\right]
+
 ```
 
 where \(\sigma_i \in \{-1, +1\}\) are i.i.d. Rademacher random variables.
@@ -98,6 +100,7 @@ where \(\sigma_i \in \{-1, +1\}\) are i.i.d. Rademacher random variables.
 
 ```math
 R(h) \leq \hat{R}(h) + \sqrt{\frac{d(\log(2n/d) + 1) + \log(4/\delta)}{n}}
+
 ```
 
 **Proof Sketch:**
@@ -111,6 +114,7 @@ R(h) \leq \hat{R}(h) + \sqrt{\frac{d(\log(2n/d) + 1) + \log(4/\delta)}{n}}
 
 ```math
 R(h) \leq \hat{R}(h) + 2\mathcal{R}_n(\mathcal{H}) + \sqrt{\frac{\log(1/\delta)}{2n}}
+
 ```
 
 **Remark:** This is often tighter than VC bounds for specific data distributions.
@@ -127,6 +131,7 @@ Classical theory predicts: more parameters → more overfitting
 
 ```math
 \text{Test Error} = \begin{cases} \text{Classical U-curve} & \text{if params} < n \\ \text{Decrease} & \text{if params} \gg n \end{cases}
+
 ```
 
 ### Theoretical Explanation
@@ -223,6 +228,7 @@ for n in [100, 1000, 10000]:
     vc = 10  # Assume VC dim = 10
     bound = vc_generalization_bound(vc, n)
     print(f"n={n:5d}, VC={vc}: bound = {bound:.4f}")
+
 ```
 
 ---

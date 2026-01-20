@@ -29,12 +29,14 @@ The 2D discrete convolution operation is defined as:
 
 ```math
 (f * g)(i, j) = \sum_{m=-\infty}^{\infty} \sum_{n=-\infty}^{\infty} f(m, n) \cdot g(i-m, j-n)
+
 ```
 
 In practice for images (cross-correlation, which deep learning calls "convolution"):
 
 ```math
 \text{Output}[i,j] = \sum_{m=0}^{k_h-1} \sum_{n=0}^{k_w-1} \text{Input}[i+m, j+n] \cdot \text{Kernel}[m, n] + b
+
 ```
 
 Where:
@@ -47,14 +49,17 @@ For input of size $(H\_{in}, W\_{in})$ with kernel size $k$, padding $p$, stride
 
 ```math
 H_{out} = \left\lfloor \frac{H_{in} + 2p - d(k - 1) - 1}{s} + 1 \right\rfloor
+
 ```
 
 **Proof:**
+
 ```
 Available positions after padding: H_in + 2p
 Effective kernel size with dilation: d(k-1) + 1
 Remaining positions: H_in + 2p - d(k-1) - 1
 Number of valid positions with stride s: floor((remaining)/s) + 1
+
 ```
 
 **Common cases:**
@@ -73,15 +78,18 @@ For a convolutional layer with:
 
 ```math
 \text{Parameters} = C_{out} \times (C_{in} \times k_h \times k_w + 1)
+
 ```
 
 The "+1" accounts for bias per filter.
 
 **Example:**
+
 ```
 Input: 3-channel RGB image
 Conv layer: 64 filters of 3×3
 Parameters = 64 × (3 × 3 × 3 + 1) = 64 × 28 = 1,792
+
 ```
 
 ### 4. Receptive Field Calculation
@@ -90,6 +98,7 @@ The receptive field (RF) of a neuron is the region of input it "sees":
 
 ```math
 RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i
+
 ```
 
 Where:
@@ -105,6 +114,7 @@ Inductive step: Each position at layer $l$ corresponds to $s\_{l-1}$ positions a
 
 ```math
 RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i
+
 ```
 
 ---
@@ -129,13 +139,16 @@ RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i
 
 ```math
 \text{If } x'(i,j) = x(i - \Delta_i, j - \Delta_j), \text{ then } y'(i,j) = y(i - \Delta_i, j - \Delta_j)
+
 ```
 
 **Proof:**
+
 ```
 y'(i,j) = Σ_m Σ_n x'(i+m, j+n) · w(m,n)
         = Σ_m Σ_n x(i+m-Δ_i, j+n-Δ_j) · w(m,n)
         = y(i-Δ_i, j-Δ_j)  ∎
+
 ```
 
 ### Property 2: Parameter Sharing
@@ -143,11 +156,13 @@ y'(i,j) = Σ_m Σ_n x'(i+m, j+n) · w(m,n)
 **Statement:** Same kernel applied at all spatial positions reduces parameters.
 
 **Comparison:**
+
 ```
 Fully connected (100×100 → 100×100): 10^8 parameters
 Convolutional (3×3 kernel):          9 parameters
 
 Reduction: 10^7 times fewer parameters!
+
 ```
 
 ### Property 3: Local Connectivity
@@ -167,6 +182,7 @@ This enables:
 
 ```math
 y = x * w + b
+
 ```
 
 ### Backward Pass (Gradients):
@@ -175,22 +191,26 @@ y = x * w + b
 
 ```math
 \frac{\partial L}{\partial w} = x * \frac{\partial L}{\partial y}
+
 ```
 
 **Gradient w.r.t. input:**
 
 ```math
 \frac{\partial L}{\partial x} = \frac{\partial L}{\partial y} *_{full} \text{rot}_{180}(w)
+
 ```
 
 Where $*\_{full}$ denotes full convolution (with padding = k-1).
 
 **Proof Sketch:**
+
 ```
 For element w_{mn}:
 ∂L/∂w_{mn} = Σ_i Σ_j (∂L/∂y_{ij}) × (∂y_{ij}/∂w_{mn})
            = Σ_i Σ_j (∂L/∂y_{ij}) × x_{i+m, j+n}
            = (∂L/∂y) * x  (cross-correlation form)
+
 ```
 
 ---
@@ -211,6 +231,7 @@ For element w_{mn}:
 **Claim:** Two 3×3 convolutions = One 5×5 convolution (same RF)
 
 **Proof:**
+
 ```
 Parameters for 5×5: 5² = 25
 Parameters for 2×(3×3): 2 × 3² = 18
@@ -218,6 +239,7 @@ Parameters for 2×(3×3): 2 × 3² = 18
 Same receptive field: 3 + 2 = 5
 But: 18 < 25 (fewer parameters)
 Plus: 2 ReLUs vs 1 ReLU (more nonlinearity)
+
 ```
 
 ---
@@ -279,6 +301,7 @@ print(f"Input shape: {x.shape}")
 print(f"Output shape: {y.shape}")
 print(f"Weight shape: {conv.weight.shape}")  # (64, 3, 3, 3)
 print(f"Parameters: {sum(p.numel() for p in conv.parameters())}")  # 1,792
+
 ```
 
 ### Depthwise Separable Convolution (MobileNet)
@@ -307,6 +330,7 @@ class DepthwiseSeparableConv(nn.Module):
         x = self.depthwise(x)
         x = self.pointwise(x)
         return x
+
 ```
 
 ---
@@ -342,6 +366,7 @@ CNN --> Object detection (YOLO, Faster R-CNN)
    --> Diffusion models (U-Net backbone)
    --> Vision encoders (CLIP)
    --> Medical image analysis
+
 ```
 
 ---

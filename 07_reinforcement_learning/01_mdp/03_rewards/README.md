@@ -56,6 +56,7 @@ Alternative formulations:
   R(s, a)    - Reward depends only on state-action
   R(s)       - Reward depends only on state
   R(s, a, s') - Full specification (most general)
+
 ```
 
 ### Expected Reward
@@ -64,6 +65,7 @@ Alternative formulations:
 r(s, a) = E[R(s, a, S')] = Σ_{s'} P(s'|s, a) R(s, a, s')
 
 This is the expected immediate reward for taking action a in state s.
+
 ```
 
 ---
@@ -79,6 +81,7 @@ G_t = R_{t+1} + γR_{t+2} + γ²R_{t+3} + ...
 Properties:
   1. Finite if γ < 1 and rewards bounded: |G_t| ≤ R_max/(1-γ)
   2. Recursive: G_t = R_{t+1} + γG_{t+1}
+
 ```
 
 ### Value Function Derivation
@@ -91,6 +94,7 @@ V^π(s) = E_π[G_t | S_t = s]
 By tower property and Markov:
        = Σ_a π(a|s) r(s,a) + γ Σ_a π(a|s) Σ_{s'} P(s'|s,a) V^π(s')
        = Σ_a π(a|s) [r(s,a) + γ Σ_{s'} P(s'|s,a) V^π(s')]
+
 ```
 
 ---
@@ -117,6 +121,7 @@ Proof sketch:
        
   So V'(s) = V(s) - Φ(s)
   Same ordering of policies: π* unchanged! ∎
+
 ```
 
 ### Non-Potential Shaping
@@ -129,6 +134,7 @@ Example:
   Bad shaping: R'(s,a) = R(s,a) + 0.1 for action "left"
   
   Result: Agent prefers "left" even when suboptimal!
+
 ```
 
 ---
@@ -149,6 +155,7 @@ If P(reach goal) ≈ 0 via random exploration:
   - Gradient ≈ 0 (no learning signal)
   - Credit assignment over long horizons
   - Exploration becomes critical
+
 ```
 
 ### Information-Theoretic View
@@ -162,6 +169,7 @@ Dense reward: H(R) > 0 (varied feedback)
 
 More informative rewards → faster learning
 But risk of reward hacking with dense rewards!
+
 ```
 
 ---
@@ -178,6 +186,7 @@ ICM (Intrinsic Curiosity Module):
   
   Where ŝ' = f(s, a) is predicted next state.
   Novel states → high error → high reward.
+
 ```
 
 ### Count-Based Exploration
@@ -190,6 +199,7 @@ Less-visited states get higher bonus.
 
 Theoretical basis: Upper Confidence Bound
   UCB(s,a) = Q(s,a) + c√(log t / N(s,a))
+
 ```
 
 ---
@@ -204,6 +214,7 @@ Example: Racing game with reward for speed
 - Agent finds walls that give infinite speed glitch
 
 Solution: Careful reward design, human oversight, RLHF
+
 ```
 
 ---
@@ -224,6 +235,7 @@ def shaped_reward(state, prev_state, goal):
     """Potential-based shaping - preserves optimal policy"""
     phi = lambda s: -np.linalg.norm(s - goal)
     return phi(state) - phi(prev_state)
+
 ```
 
 ## 🔗 Where This Topic Is Used

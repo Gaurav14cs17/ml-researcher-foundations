@@ -30,6 +30,7 @@ Optimization is the engine of ML - every trained model is the result of optimiza
 ## 📐 Mathematical Definitions
 
 ### Optimization Problem
+
 ```
 minimize f(θ)  subject to g(θ) ≤ 0, h(θ) = 0
 
@@ -38,9 +39,11 @@ Where:
 • g(θ): inequality constraints
 • h(θ): equality constraints
 • θ*: optimal solution
+
 ```
 
 ### Critical Points
+
 ```
 ∇f(θ*) = 0  (necessary for local optimum)
 
@@ -48,9 +51,11 @@ Types:
 • Local minimum: f(θ*) ≤ f(θ) in neighborhood
 • Global minimum: f(θ*) ≤ f(θ) everywhere
 • Saddle point: ∇f = 0, not min/max
+
 ```
 
 ### Second-Order Conditions
+
 ```
 At critical point θ* where ∇f(θ*) = 0:
 
@@ -58,15 +63,18 @@ At critical point θ* where ∇f(θ*) = 0:
 • H ≻ 0 (positive definite) ⟹ local minimum
 • H ≺ 0 (negative definite) ⟹ local maximum
 • H indefinite ⟹ saddle point
+
 ```
 
 ### Gradient Descent
+
 ```
 θₜ₊₁ = θₜ - α ∇f(θₜ)
 
 • α: learning rate (step size)
 • Converges to local minimum (for smooth, convex f)
 • Rate: O(1/t) for convex, O(e^(-t)) for strongly convex
+
 ```
 
 ---
@@ -98,6 +106,7 @@ for _ in range(100):
     optimizer.zero_grad()
     loss.backward()
     optimizer.step()
+
 ```
 
 ---

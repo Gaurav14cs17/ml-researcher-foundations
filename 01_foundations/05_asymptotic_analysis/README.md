@@ -72,6 +72,7 @@ O(1)   O(log n)   O(n)   O(n log n)   O(n²)   O(n³)   O(2ⁿ)   O(n!)
  |         |        |         |          |        |        |       |
 Hash    Binary   Array    Merge      Attention  MatMul  Brute   Perms
 lookup  search   scan     sort       (naive)    (naive)  force
+
 ```
 
 | Complexity | Name | n=1000 | Example |
@@ -143,6 +144,7 @@ To prove f(n) = O(g(n)):
 > **Big-Omega (Ω):** f(n) = Ω(g(n)) means there exist c > 0 and n₀ such that:
 > $$
 \forall n \geq n_0: f(n) \geq c \cdot g(n)
+
 ```
 
 > *"f grows at least as fast as g"*
@@ -196,6 +198,7 @@ n = o(n²)           # n grows slower than n²
 log n = o(n)        # log grows slower than linear
 n² = o(2ⁿ)          # polynomial < exponential
 n^k = o(n^{k+1})    # lower power < higher power
+
 ```
 
 ### 📐 Proof: n = o(n²)
@@ -213,6 +216,7 @@ n^k = o(n^{k+1})    # lower power < higher power
 1 ≺ log log n ≺ log n ≺ n^ε ≺ n ≺ n log n ≺ n² ≺ ... ≺ 2^n ≺ n!
 
 Where f ≺ g means f = o(g) (f grows strictly slower)
+
 ```
 
 ---
@@ -242,6 +246,7 @@ Step 2: softmax(·/√d)           → O(n²) time
 Step 3: Multiply by V           → O(n²d) time
 
 Total: O(n²d) time, O(n²) space (for attention matrix)
+
 ```
 
 ### 📊 Scaling Impact
@@ -281,6 +286,7 @@ n^{log_b(a)} = n^1 = n
 f(n) = O(n) = Θ(n^1)
 
 Case 2 applies: T(n) = Θ(n log n)
+
 ```
 
 ### 📝 Example: Binary Search
@@ -294,6 +300,7 @@ n^0 = 1
 f(n) = Θ(1) = Θ(n^0)
 
 Case 2 applies: T(n) = Θ(log n)
+
 ```
 
 ---
@@ -319,6 +326,7 @@ Case 2 applies: T(n) = Θ(log n)
 
 ✅ RIGHT: O(2n) = O(n) means they have SAME GROWTH RATE
           In practice, 2n is still 2× slower than n!
+
 ```
 
 ### Mistake 2: Comparing Different Variables
@@ -329,6 +337,7 @@ Case 2 applies: T(n) = Θ(log n)
 ✅ RIGHT: Depends on what n means!
           O(n²) in sequence length vs O(n) in dimension
           might have very different implications
+
 ```
 
 ### Mistake 3: Ignoring Space Complexity
@@ -338,6 +347,7 @@ Case 2 applies: T(n) = Θ(log n)
 
 ✅ RIGHT: GPU memory is limited!
           O(n²) space for attention means 8K sequence on 40GB A100
+
 ```
 
 ---
@@ -402,6 +412,7 @@ sizes = [100, 200, 400, 800, 1600]
 measure_complexity(linear_example, sizes, "O(n) - Linear")
 measure_complexity(quadratic_example, sizes, "O(n²) - Quadratic")
 measure_complexity(nlogn_example, sizes, "O(n log n)")
+
 ```
 
 ---

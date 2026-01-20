@@ -27,6 +27,7 @@ The Transformer architecture, introduced in "Attention Is All You Need" (2017), 
 
 ```math
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V
+
 ```
 
 **Dimensions:**
@@ -40,6 +41,7 @@ The Transformer architecture, introduced in "Attention Is All You Need" (2017), 
 **Problem:** For large \(d_k\), dot products grow large, pushing softmax into saturation.
 
 **Proof:**
+
 ```
 Assume q, k ~ N(0, 1) independently
 
@@ -54,6 +56,7 @@ For large dₖ, values can be very large (e.g., ±10 for dₖ=64)
 softmax(10) ≈ 1, gradients vanish!
 
 Solution: Divide by √dₖ to get q·k/√dₖ ~ N(0, 1)
+
 ```
 
 ### Attention as Soft Dictionary Lookup
@@ -67,6 +70,7 @@ Interpretation:
 q·kᵢ measures "relevance" of position i to query q
 softmax normalizes to get "attention weights"
 Output is weighted combination of values
+
 ```
 
 ---
@@ -77,12 +81,14 @@ Output is weighted combination of values
 
 ```math
 \text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) W^O
+
 ```
 
 where each head:
 
 ```math
 \text{head}_i = \text{Attention}(Q W_i^Q, K W_i^K, V W_i^V)
+
 ```
 
 **Projections:**
@@ -107,6 +113,7 @@ Example with h=8 heads:
 ...
 
 Each head learns different relationship types!
+
 ```
 
 ---
@@ -118,17 +125,21 @@ Each head learns different relationship types!
 ```math
 PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
+
 ```
 
 ### Why Sinusoidal?
 
 **Property 1: Unique encoding for each position**
+
 ```
 Different positions have different PE vectors
 PE(pos) ≠ PE(pos') for pos ≠ pos'
+
 ```
 
 **Property 2: Relative positions via linear transformation**
+
 ```
 For any offset k, there exists a matrix M such that:
 PE(pos + k) = M · PE(pos)
@@ -141,6 +152,7 @@ cos(ωᵢ(pos+k)) = cos(ωᵢpos)cos(ωᵢk) - sin(ωᵢpos)sin(ωᵢk)
 
 This is a linear transformation (2×2 rotation per frequency)!
 Model can learn to attend to relative positions.
+
 ```
 
 ### Rotary Position Embedding (RoPE)
@@ -150,12 +162,14 @@ Modern alternative used in LLaMA, GPT-NeoX:
 ```math
 f_q(x_m, m) = (W_q x_m) e^{im\theta}
 f_k(x_n, n) = (W_k x_n) e^{in\theta}
+
 ```
 
 **Key property:** Attention only depends on relative position \(m - n\):
 
 ```math
 \langle f_q(x_m, m), f_k(x_n, n) \rangle = \text{Re}[(W_q x_m)(W_k x_n)^* e^{i(m-n)\theta}]
+
 ```
 
 ---
@@ -186,6 +200,7 @@ Feed-Forward Network       |
     + ◄--------------------+  (residual)
     |
 Output
+
 ```
 
 ### Pre-LN vs Post-LN
@@ -195,12 +210,14 @@ Output
 ```math
 x = x + \text{Attn}(x)
 x = \text{LN}(x)
+
 ```
 
 **Pre-LN (Modern):**
 
 ```math
 x = x + \text{Attn}(\text{LN}(x))
+
 ```
 
 Pre-LN is more stable for deep networks (gradient scale is bounded).
@@ -209,6 +226,7 @@ Pre-LN is more stable for deep networks (gradient scale is bounded).
 
 ```math
 \text{FFN}(x) = W_2 \cdot \text{activation}(W_1 x + b_1) + b_2
+
 ```
 
 **Dimensions:**
@@ -231,6 +249,7 @@ For autoregressive generation, prevent attending to future:
 
 ```math
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} + M\right) V
+
 ```
 
 where mask \(M_{ij} = -\infty\) if \(j > i\), else 0.
@@ -243,6 +262,7 @@ Encoder-decoder models:
 
 ```math
 \text{CrossAttn}(Q_{dec}, K_{enc}, V_{enc})
+
 ```
 
 ### Efficient Attention Variants
@@ -585,6 +605,7 @@ print(f"Output shape: {logits.shape}")  # (2, 128, 50000)
 # Count parameters
 n_params = sum(p.numel() for p in model.parameters())
 print(f"Parameters: {n_params / 1e6:.2f}M")
+
 ```
 
 ---

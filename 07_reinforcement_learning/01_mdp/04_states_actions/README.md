@@ -55,6 +55,7 @@ Properties:
   1. Complete: Contains all distinguishable situations
   2. Markov: s_t encodes all relevant history
   3. Observable: Agent can perceive s_t at each step
+
 ```
 
 ### Action Space
@@ -66,6 +67,7 @@ A ⊆ ℝᵐ               (continuous)
 
 Can be state-dependent: A(s) ⊆ A
   Example: Legal moves depend on board position
+
 ```
 
 ### Policy as Mapping
@@ -80,6 +82,7 @@ Stochastic policy: π: S → Δ(A)
   Properties:
     π(a|s) ≥ 0  ∀a, s
     Σ_a π(a|s) = 1  ∀s
+
 ```
 
 ---
@@ -96,6 +99,7 @@ Theorem: A state representation φ(h_t) is sufficient if:
 Where h_t = (S_0, A_0, R_1, S_1, ..., S_t) is history.
 
 Sufficient statistics preserve Markov property.
+
 ```
 
 ### State Aggregation
@@ -108,6 +112,7 @@ Aggregated MDP is valid if for all s, s' ∈ G_i:
   R(s, a) = R(s', a)  ∀a
 
 This preserves optimal value function on aggregate states.
+
 ```
 
 ---
@@ -124,6 +129,7 @@ S_discrete = {s_i}  where s_i = centers of grid cells
 Trade-off:
   Fine grid: |S_discrete| large, curse of dimensionality
   Coarse grid: Loss of precision, suboptimal policies
+
 ```
 
 ### Function Approximation
@@ -138,6 +144,7 @@ Common choices:
   - Neural network: V_θ(s) = NN_θ(s)
   
 Advantage: Generalizes to unseen states
+
 ```
 
 ### Continuous Actions
@@ -152,6 +159,7 @@ Gaussian policy:
   σ_θ(s) = learned or fixed variance
 
 Sampling: a ~ π_θ(·|s)
+
 ```
 
 ---
@@ -171,6 +179,7 @@ Total for value iteration:
 Curse of dimensionality: 
   If S ⊆ ℝⁿ discretized with k bins per dimension:
   |S| = kⁿ (exponential in dimension!)
+
 ```
 
 ### Deep RL
@@ -183,6 +192,7 @@ Time per update: O(batch_size × parameter_count)
 
 Generalization to unseen states enables tractable learning
 in high-dimensional spaces.
+
 ```
 
 ---
@@ -212,6 +222,7 @@ print(f"Actions: {env.action_space}")     # Discrete(2) - left/right
 env = gym.make("HalfCheetah-v4")
 print(f"State: {env.observation_space}")  # Box(17,) - joint positions/velocities
 print(f"Actions: {env.action_space}")     # Box(6,) - continuous torques
+
 ```
 
 ## 🔗 Where This Topic Is Used

@@ -28,6 +28,7 @@
 ## 📐 Mathematical Foundations
 
 ### ε-Greedy
+
 ```
 π(a|s) = {
   1 - ε + ε/|A|  if a = argmax Q(s,a)
@@ -35,9 +36,11 @@
 }
 
 ε typically decays: εₜ = ε₀ × decay^t
+
 ```
 
 ### Upper Confidence Bound (UCB)
+
 ```
 UCB1: a = argmax[Q(s,a) + c√(ln(t)/N(s,a))]
 
@@ -45,23 +48,28 @@ Where:
 • Q(s,a) = estimated value (exploitation)
 • √(ln(t)/N(s,a)) = uncertainty bonus (exploration)
 • c = exploration coefficient
+
 ```
 
 ### Entropy Regularization
+
 ```
 Objective: J(π) = E[Σₜ rₜ + α H(π(·|sₜ))]
 
 Where H(π(·|s)) = -Σₐ π(a|s) log π(a|s)
 
 Maximum entropy RL encourages exploration
+
 ```
 
 ### Intrinsic Curiosity
+
 ```
 ICM bonus: rᵢ = ||ŝ' - s'||²  (prediction error)
 
 RND bonus: rᵢ = ||f(s') - f̂(s')||²
 Where f is random fixed, f̂ is learned
+
 ```
 
 ---
@@ -85,6 +93,7 @@ Exploitation: Use what you know to get reward
 
 Too much exploration → Never get good rewards
 Too little → Miss better options
+
 ```
 
 ---
@@ -130,6 +139,7 @@ Exploration --> Any RL algorithm
            --> Bandit algorithms
            --> MCTS (Monte Carlo Tree Search)
            --> Safe reinforcement learning
+
 ```
 
 ---

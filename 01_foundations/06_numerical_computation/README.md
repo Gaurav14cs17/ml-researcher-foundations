@@ -83,6 +83,7 @@ Where:
   S = Sign bit (0 = positive, 1 = negative)
   E = Exponent (8 bits, bias = 127)
   M = Mantissa/Significand (23 bits, implicit leading 1)
+
 ```
 
 ### 📊 Format Comparison
@@ -103,6 +104,7 @@ BF16:  [1 sign] [8 exp] [7 mantissa]   → Range: ±3.4×10³⁸
 BF16 has FP32's range but less precision.
 Better for training (gradients can be large).
 FP16 often needs loss scaling to avoid underflow.
+
 ```
 
 ---
@@ -119,6 +121,7 @@ softmax = np.exp(x) / np.sum(np.exp(x))  # [nan, nan, nan]
 # ✅ GOOD: Subtract max (numerically stable)
 x_shifted = x - np.max(x)  # [0, 1, 2]
 softmax = np.exp(x_shifted) / np.sum(np.exp(x_shifted))  # Works!
+
 ```
 
 **Why it works:** softmax(x - c) = softmax(x) for any constant c.
@@ -133,6 +136,7 @@ logsumexp = np.log(np.sum(np.exp(x)))  # -inf (wrong!)
 # ✅ GOOD: Log-sum-exp trick
 c = np.max(x)
 logsumexp = c + np.log(np.sum(np.exp(x - c)))  # -999.59 (correct!)
+
 ```
 
 ### 🔥 Issue 3: Catastrophic Cancellation
@@ -147,6 +151,7 @@ diff = a - b  # Should be 1e-7, but loses precision!
 x = np.array([1e8, 1e8 + 1, 1e8 + 2])
 var_bad = np.mean(x**2) - np.mean(x)**2  # 0 or negative! (WRONG)
 var_good = np.var(x)  # 0.667 (correct, uses stable algorithm)
+
 ```
 
 ---
@@ -161,6 +166,7 @@ def stable_softmax(x):
     x_max = np.max(x, axis=-1, keepdims=True)
     exp_x = np.exp(x - x_max)
     return exp_x / np.sum(exp_x, axis=-1, keepdims=True)
+
 ```
 
 ### 📐 Stable Log-Sum-Exp
@@ -170,6 +176,7 @@ def stable_logsumexp(x):
     """Numerically stable log-sum-exp."""
     x_max = np.max(x)
     return x_max + np.log(np.sum(np.exp(x - x_max)))
+
 ```
 
 ### 📐 Stable Cross-Entropy
@@ -181,6 +188,7 @@ def stable_cross_entropy(logits, labels):
     # Do: Use log_softmax directly
     log_probs = logits - stable_logsumexp(logits)
     return -np.sum(labels * log_probs)
+
 ```
 
 ### 📐 Proof: Softmax Shift Invariance
@@ -216,6 +224,7 @@ def stable_cross_entropy(logits, labels):
 |                                         Master weights     |
 |                                                             |
 +-------------------------------------------------------------+
+
 ```
 
 ### 💻 PyTorch Implementation
@@ -240,6 +249,7 @@ for data, target in dataloader:
     scaler.scale(loss).backward()
     scaler.step(optimizer)
     scaler.update()
+
 ```
 
 ### 📊 Benefits
@@ -295,6 +305,7 @@ def debug_nan(model, x, y):
     # Clean up
     for h in handles:
         h.remove()
+
 ```
 
 ---
@@ -396,6 +407,7 @@ def demo_cancellation():
 demo_overflow()
 demo_underflow()
 demo_cancellation()
+
 ```
 
 ---

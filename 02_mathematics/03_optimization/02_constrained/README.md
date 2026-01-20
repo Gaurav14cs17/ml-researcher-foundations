@@ -64,6 +64,7 @@
 |   LAGRANGIAN: L(x,λ,μ) = f(x) + λᵀh(x) + μᵀg(x)                            |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -78,12 +79,14 @@
 \text{s.t.} \quad & g_i(\mathbf{x}) \leq 0, \quad i = 1, \ldots, m \quad \text{(inequality)} \\
 & h_j(\mathbf{x}) = 0, \quad j = 1, \ldots, p \quad \text{(equality)}
 \end{align}
+
 ```
 
 ### 📐 The Lagrangian
 
 ```math
 \mathcal{L}(\mathbf{x}, \boldsymbol{\mu}, \boldsymbol{\lambda}) = f(\mathbf{x}) + \sum_{i=1}^{m} \mu_i g_i(\mathbf{x}) + \sum_{j=1}^{p} \lambda_j h_j(\mathbf{x})
+
 ```
 
 where:
@@ -98,6 +101,7 @@ where:
 
 ```math
 \min f(\mathbf{x}) \quad \text{s.t.} \quad h(\mathbf{x}) = 0
+
 ```
 
 ### 📐 Theorem
@@ -106,6 +110,7 @@ At a local minimum $\mathbf{x}^*$ with $\nabla h(\mathbf{x}^*) \neq 0$, there ex
 
 ```math
 \nabla f(\mathbf{x}^*) + \lambda^* \nabla h(\mathbf{x}^*) = 0
+
 ```
 
 ### 🔍 Proof (Geometric Argument)
@@ -127,11 +132,13 @@ Step 4: Therefore ∇f must be parallel to ∇h at optimum:
         ∇f = -λ∇h for some scalar λ
         
         Equivalently: ∇f + λ∇h = 0  ∎
+
 ```
 
 ### 💡 Examples
 
 **Example 1**: Minimize Distance to Plane
+
 ```
 Minimize f(x,y,z) = x² + y² + z²
 Subject to: x + y + z = 3
@@ -147,9 +154,11 @@ Conditions:
 Substitute: -3λ/2 = 3  →  λ = -2
 
 Solution: x = y = z = 1, minimum distance = √3
+
 ```
 
 **Example 2**: Max Entropy Distribution
+
 ```
 Maximize H(p) = -Σᵢ pᵢ log(pᵢ)
 Subject to: Σᵢ pᵢ = 1
@@ -163,6 +172,7 @@ pᵢ = e^(λ-1) = constant!
 With constraint: n·e^(λ-1) = 1  →  pᵢ = 1/n
 
 The uniform distribution maximizes entropy!
+
 ```
 
 ---
@@ -177,24 +187,28 @@ For the constrained problem with both equality and inequality constraints, the *
 
 ```math
 \nabla f(\mathbf{x}^*) + \sum_i \mu_i^* \nabla g_i(\mathbf{x}^*) + \sum_j \lambda_j^* \nabla h_j(\mathbf{x}^*) = 0
+
 ```
 
 **2. Primal Feasibility**:
 
 ```math
 g_i(\mathbf{x}^*) \leq 0, \quad h_j(\mathbf{x}^*) = 0
+
 ```
 
 **3. Dual Feasibility**:
 
 ```math
 \mu_i^* \geq 0
+
 ```
 
 **4. Complementary Slackness**:
 
 ```math
 \mu_i^* g_i(\mathbf{x}^*) = 0 \quad \forall i
+
 ```
 
 ### 🔍 Understanding Complementary Slackness
@@ -210,6 +224,7 @@ Case B: gᵢ(x*) = 0 (constraint is ACTIVE, binding)
 
 Intuition: 
   "You only pay for constraints that are actually restricting you"
+
 ```
 
 ### 📐 When are KKT Sufficient?
@@ -246,6 +261,7 @@ Case B: 1 - x = 0 (active constraint)
   No solution in this case
 
 Final answer: x* = 2, unconstrained optimum is feasible!
+
 ```
 
 ---
@@ -258,12 +274,14 @@ The **dual function**:
 
 ```math
 g(\boldsymbol{\mu}, \boldsymbol{\lambda}) = \inf_{\mathbf{x}} \mathcal{L}(\mathbf{x}, \boldsymbol{\mu}, \boldsymbol{\lambda})
+
 ```
 
 The **dual problem**:
 
 ```math
 \max_{\boldsymbol{\mu} \geq 0, \boldsymbol{\lambda}} g(\boldsymbol{\mu}, \boldsymbol{\lambda})
+
 ```
 
 ### 📐 Weak Duality
@@ -272,14 +290,17 @@ For any feasible primal $\mathbf{x}$ and dual $(\boldsymbol{\mu}, \boldsymbol{\l
 
 ```math
 g(\boldsymbol{\mu}, \boldsymbol{\lambda}) \leq f(\mathbf{x})
+
 ```
 
 **Proof**:
+
 ```
 g(μ, λ) = inf_x L(x, μ, λ)
         ≤ L(x*, μ, λ)  for any feasible x*
         = f(x*) + Σᵢ μᵢgᵢ(x*) + Σⱼ λⱼhⱼ(x*)
         ≤ f(x*)  (since μᵢ ≥ 0, gᵢ(x*) ≤ 0, hⱼ(x*) = 0)  ∎
+
 ```
 
 ### 📐 Strong Duality
@@ -288,6 +309,7 @@ Under **Slater's condition** (exists strictly feasible point), the duality gap i
 
 ```math
 p^* = d^* \quad \text{(optimal values are equal)}
+
 ```
 
 ---
@@ -316,6 +338,7 @@ Dual Problem (substitute w):
 
 Key insight from complementary slackness:
   αᵢ > 0 only when yᵢ(w·xᵢ + b) = 1 (support vectors!)
+
 ```
 
 ---
@@ -426,6 +449,7 @@ def kkt_verification(x, mu, f, g, grad_f, grad_g):
 constrained_optimization_example()
 print("\n")
 lagrangian_method_manual()
+
 ```
 
 ### SVM Implementation
@@ -487,6 +511,7 @@ w, b, alpha = svm_dual(X, y)
 print(f"w = {w}")
 print(f"b = {b}")
 print(f"Support vector alphas: {alpha[alpha > 1e-5]}")
+
 ```
 
 ---

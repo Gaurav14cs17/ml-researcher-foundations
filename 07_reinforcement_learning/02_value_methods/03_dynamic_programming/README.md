@@ -50,18 +50,21 @@ An MDP is defined by \((\mathcal{S}, \mathcal{A}, P, R, \gamma)\):
 
 ```math
 V^\pi(s) = \mathbb{E}_\pi\left[\sum_{t=0}^\infty \gamma^t R_t | S_0 = s\right]
+
 ```
 
 **Bellman Expectation Equation:**
 
 ```math
 V^\pi(s) = \sum_a \pi(a|s) \sum_{s'} P(s'|s,a) \left[R(s,a,s') + \gamma V^\pi(s')\right]
+
 ```
 
 **Action Value Function:**
 
 ```math
 Q^\pi(s,a) = \sum_{s'} P(s'|s,a) \left[R(s,a,s') + \gamma \sum_{a'} \pi(a'|s') Q^\pi(s',a')\right]
+
 ```
 
 ### Bellman Optimality Equations
@@ -70,12 +73,14 @@ Q^\pi(s,a) = \sum_{s'} P(s'|s,a) \left[R(s,a,s') + \gamma \sum_{a'} \pi(a'|s') Q
 
 ```math
 V^*(s) = \max_a \sum_{s'} P(s'|s,a) \left[R(s,a,s') + \gamma V^*(s')\right]
+
 ```
 
 **Optimal Action Value:**
 
 ```math
 Q^*(s,a) = \sum_{s'} P(s'|s,a) \left[R(s,a,s') + \gamma \max_{a'} Q^*(s',a')\right]
+
 ```
 
 ---
@@ -87,6 +92,7 @@ Q^*(s,a) = \sum_{s'} P(s'|s,a) \left[R(s,a,s') + \gamma \max_{a'} Q^*(s',a')\rig
 **Goal:** Compute \(V^\pi\) for a given policy \(\pi\).
 
 **Algorithm:**
+
 ```
 Initialize V(s) arbitrarily for all s ∈ S
 Repeat until Δ < θ:
@@ -95,6 +101,7 @@ Repeat until Δ < θ:
         v ← V(s)
         V(s) ← Σ_a π(a|s) Σ_s' P(s'|s,a) [R(s,a,s') + γV(s')]
         Δ ← max(Δ, |v - V(s)|)
+
 ```
 
 ### Convergence Proof
@@ -102,6 +109,7 @@ Repeat until Δ < θ:
 **Theorem:** Iterative policy evaluation converges to \(V^\pi\).
 
 **Proof:**
+
 ```
 Define Bellman operator T^π:
 (T^π V)(s) = Σ_a π(a|s) Σ_s' P(s'|s,a) [R + γV(s')]
@@ -118,12 +126,14 @@ Proof of contraction:
 
 By Banach fixed-point theorem:
 V_k → V^π as k → ∞  ✓
+
 ```
 
 **Convergence rate:**
 
 ```math
 \|V_k - V^\pi\|_\infty \leq \gamma^k \|V_0 - V^\pi\|_\infty
+
 ```
 
 ---
@@ -154,6 +164,7 @@ V_k → V^π as k → ∞  ✓
    
    If policy_stable: return V, π
    Else: go to step 2
+
 ```
 
 ### Policy Improvement Theorem
@@ -161,6 +172,7 @@ V_k → V^π as k → ∞  ✓
 **Theorem:** If \(\pi'\) is greedy with respect to \(V^\pi\), then \(\pi' \geq \pi\) (i.e., \(V^{\pi'}(s) \geq V^\pi(s)\) for all \(s\)).
 
 **Proof:**
+
 ```
 Let π'(s) = argmax_a Q^π(s,a)
 
@@ -176,6 +188,7 @@ V^π(s) ≤ Q^π(s, π'(s))
        ...
        ≤ E[Σ_{k=0}^∞ γ^k R_k | s, π']
        = V^{π'}(s)  ✓
+
 ```
 
 ### Convergence
@@ -183,6 +196,7 @@ V^π(s) ≤ Q^π(s, π'(s))
 **Theorem:** Policy iteration converges to optimal policy in finite number of iterations.
 
 **Proof sketch:**
+
 ```
 1. Policy space is finite (|A|^|S| policies)
 2. Each improvement step strictly improves V or policy is optimal
@@ -190,6 +204,7 @@ V^π(s) ≤ Q^π(s, π'(s))
 4. Must terminate in ≤ |A|^|S| iterations
 
 In practice: Often converges in O(|S|²|A|) time
+
 ```
 
 ---
@@ -210,6 +225,7 @@ In practice: Often converges in O(|S|²|A|) time
 
 3. Output deterministic policy:
        π(s) = argmax_a Σ_s' P(s'|s,a) [R(s,a,s') + γV(s')]
+
 ```
 
 ### Convergence Proof
@@ -217,6 +233,7 @@ In practice: Often converges in O(|S|²|A|) time
 **Theorem:** Value iteration converges to \(V^*\).
 
 **Proof:**
+
 ```
 Define Bellman optimality operator T*:
 (T* V)(s) = max_a Σ_s' P(s'|s,a) [R + γV(s')]
@@ -232,6 +249,7 @@ Proof:
 ≤ γ ||V₁ - V₂||_∞
 
 By Banach theorem: V_k → V* ✓
+
 ```
 
 ### Value Iteration as Truncated Policy Iteration
@@ -247,6 +265,7 @@ Trade-off:
 - PI: Fewer iterations, expensive per iteration
 - VI: More iterations, cheap per iteration
 - Often VI wins for large state spaces
+
 ```
 
 ---
@@ -260,24 +279,30 @@ Standard DP does full sweeps over all states. Asynchronous methods update states
 ### Variants
 
 **1. In-place DP:**
+
 ```
 Use single value array, update in place
 New values immediately used for next updates
 Often faster convergence
+
 ```
 
 **2. Prioritized Sweeping:**
+
 ```
 Maintain priority queue of states
 Priority = |Bellman error|
 Update highest-priority state first
 Efficient for sparse transitions
+
 ```
 
 **3. Real-time DP:**
+
 ```
 Only update states relevant to current trajectory
 Focus computation where agent actually visits
+
 ```
 
 ---
@@ -568,6 +593,7 @@ print("\n=== Prioritized Sweeping ===")
 ps = PrioritizedSweeping(mdp)
 V_ps = ps.solve()
 print(f"Value function:\n{V_ps.reshape(4, 4)}")
+
 ```
 
 ---

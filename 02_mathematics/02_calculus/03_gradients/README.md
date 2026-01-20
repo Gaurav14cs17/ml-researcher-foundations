@@ -63,6 +63,7 @@
 |   NEWTON'S METHOD: θ ← θ - H⁻¹∇L(θ)                                         |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -75,6 +76,7 @@ For $f: \mathbb{R}^n \to \mathbb{R}$:
 
 ```math
 \nabla f(\mathbf{x}) = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix}
+
 ```
 
 ### 📐 Key Properties
@@ -106,11 +108,13 @@ Step 3: Value of maximum rate
 
 Therefore: ∇f points in direction of steepest ascent
            with rate of increase = ‖∇f‖  ∎
+
 ```
 
 ### 💡 Examples
 
 **Example 1**: Quadratic Function
+
 ```
 f(x, y) = x² + 4y²
 
@@ -123,9 +127,11 @@ At (1, 2):
   ∇f = [2, 16]ᵀ
   Direction of steepest ascent: [2, 16]/‖[2, 16]‖
   Rate of increase: √(4 + 256) = √260 ≈ 16.1
+
 ```
 
 **Example 2**: Cross-Entropy Loss
+
 ```
 L = -Σᵢ yᵢ log(pᵢ)  where pᵢ = softmax(zᵢ)
 
@@ -142,6 +148,7 @@ Proof:
          = -yⱼ + pⱼΣᵢyᵢ
          = -yⱼ + pⱼ  (since Σᵢyᵢ = 1 for one-hot)
          = pⱼ - yⱼ  ∎
+
 ```
 
 ---
@@ -154,6 +161,7 @@ For $\mathbf{f}: \mathbb{R}^n \to \mathbb{R}^m$:
 
 ```math
 J = \begin{bmatrix} \nabla f_1^T \\ \nabla f_2^T \\ \vdots \\ \nabla f_m^T \end{bmatrix} = \begin{bmatrix} \frac{\partial f_1}{\partial x_1} & \cdots & \frac{\partial f_1}{\partial x_n} \\ \vdots & \ddots & \vdots \\ \frac{\partial f_m}{\partial x_1} & \cdots & \frac{\partial f_m}{\partial x_n} \end{bmatrix}
+
 ```
 
 **Key**: Row $i$ = gradient of $f\_i$, Column $j$ = sensitivity to $x\_j$
@@ -162,6 +170,7 @@ J = \begin{bmatrix} \nabla f_1^T \\ \nabla f_2^T \\ \vdots \\ \nabla f_m^T \end{
 
 ```math
 \mathbf{f}(\mathbf{x} + \delta) \approx \mathbf{f}(\mathbf{x}) + J(\mathbf{x}) \cdot \delta
+
 ```
 
 The Jacobian is the **best linear approximation** to $\mathbf{f}$ near $\mathbf{x}$.
@@ -172,6 +181,7 @@ For $\mathbf{h} = \mathbf{f} \circ \mathbf{g}$:
 
 ```math
 J_{\mathbf{h}} = J_{\mathbf{f}} \cdot J_{\mathbf{g}}
+
 ```
 
 This is why backpropagation multiplies Jacobians!
@@ -179,6 +189,7 @@ This is why backpropagation multiplies Jacobians!
 ### 💡 Examples
 
 **Example 1**: Basic Jacobian
+
 ```
 f: ℝ² → ℝ³
 f(x, y) = [x²y, xy², x+y]
@@ -191,9 +202,11 @@ At (1, 2):
 J = [4   1]
     [4   4]
     [1   1]
+
 ```
 
 **Example 2**: Neural Network Layer
+
 ```
 Layer: h = σ(Wx + b)  where σ is element-wise activation
 
@@ -203,6 +216,7 @@ Jacobian = D · W  where D = diagonal matrix of activation derivatives
 
 For ReLU: D = diag(1[Wx+b > 0])
 For sigmoid: D = diag(σ(z)(1-σ(z)))
+
 ```
 
 ### 📐 Jacobian Determinant
@@ -211,6 +225,7 @@ For square Jacobian ($m = n$):
 
 ```math
 \det(J) = \text{local volume scaling factor}
+
 ```
 
 **Applications**:
@@ -227,6 +242,7 @@ For $f: \mathbb{R}^n \to \mathbb{R}$:
 
 ```math
 H = \nabla^2 f = \begin{bmatrix} \frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1 \partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_1 \partial x_n} \\ \frac{\partial^2 f}{\partial x_2 \partial x_1} & \frac{\partial^2 f}{\partial x_2^2} & \cdots & \frac{\partial^2 f}{\partial x_2 \partial x_n} \\ \vdots & \vdots & \ddots & \vdots \\ \frac{\partial^2 f}{\partial x_n \partial x_1} & \frac{\partial^2 f}{\partial x_n \partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_n^2} \end{bmatrix}
+
 ```
 
 **Key**: $H$ is symmetric for $C^2$ functions (Schwarz's theorem)
@@ -235,6 +251,7 @@ H = \nabla^2 f = \begin{bmatrix} \frac{\partial^2 f}{\partial x_1^2} & \frac{\pa
 
 ```math
 f(\mathbf{x} + \delta) \approx f(\mathbf{x}) + \nabla f(\mathbf{x})^T \delta + \frac{1}{2} \delta^T H(\mathbf{x}) \delta
+
 ```
 
 ### 📐 Critical Point Classification
@@ -267,11 +284,13 @@ Step 3: For small enough ‖δ‖:
         So: f(x* + δ) > f(x*) for all small δ ≠ 0
 
 Step 4: This means x* is a local minimum.  ∎
+
 ```
 
 ### 💡 Examples
 
 **Example 1**: Quadratic Function
+
 ```
 f(x, y) = x² + 3xy + 2y²
 
@@ -285,9 +304,11 @@ Eigenvalues of H:
 
 H is indefinite (one positive, one negative eigenvalue)
 → The origin is a SADDLE POINT
+
 ```
 
 **Example 2**: Condition Number
+
 ```
 f(x, y) = x² + 100y²  (ill-conditioned)
 
@@ -299,6 +320,7 @@ Condition number: κ = λ_max/λ_min = 200/2 = 100
 This means gradient descent will be slow!
 - Fast convergence along x (low curvature)
 - Slow convergence along y (high curvature)
+
 ```
 
 ---
@@ -327,6 +349,7 @@ This means gradient descent will be slow!
 |   • For scalar loss L: ∂L/∂x = (J^T) @ (∂L/∂f)                  |
 |                                                                  |
 +-----------------------------------------------------------------+
+
 ```
 
 ---
@@ -360,6 +383,7 @@ Step 3: Set to zero for least squares solution
         0 = Aᵀ(Ax - b)
         AᵀAx = Aᵀb
         x = (AᵀA)⁻¹Aᵀb  (normal equations)
+
 ```
 
 ---
@@ -487,6 +511,7 @@ def rosenbrock(x):
 x0 = torch.tensor([-1., 1.])
 x_opt, history = gradient_descent(rosenbrock, x0, lr=0.001, n_steps=10000)
 print(f"GD solution: {x_opt}")  # Should approach [1, 1]
+
 ```
 
 ---
@@ -507,6 +532,7 @@ for batch in dataloader:
     # Update parameters
     optimizer.step()  # θ ← θ - α∇L(θ)
     optimizer.zero_grad()
+
 ```
 
 ### 🤖 Newton's Method (Second-Order)
@@ -517,6 +543,7 @@ for batch in dataloader:
 
 # Impractical for deep learning (H is n×n where n = millions)
 # Approximations: L-BFGS, K-FAC, Adam (diagonal Hessian)
+
 ```
 
 ### 🤖 Normalizing Flows
@@ -532,6 +559,7 @@ def log_prob_flow(z, flow_layers):
         x, log_det_J = layer.forward_with_log_det(x)
         log_prob -= log_det_J  # Subtract because inverse
     return x, log_prob
+
 ```
 
 ---

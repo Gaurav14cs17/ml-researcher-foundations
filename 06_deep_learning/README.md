@@ -17,6 +17,7 @@
 
 ```
 🚀 Start --▶ 🧠 Neural Nets --▶ 🔄 Backprop --▶ 🖼️ CNN --▶ 📝 RNN --▶ ⚡ Transformer --▶ 🎨 Diffusion --▶ 🔥 Hot Topics --▶ 🏆 Master
+
 ```
 
 ## 🎯 What You'll Learn
@@ -56,6 +57,7 @@ Flash Attention, LoRA, MoE
 
 ```
 Perceptron --▶ MLP --▶ Activations --▶ Forward --▶ Loss
+
 ```
 
 **Core:** Perceptron, MLP, Activations (ReLU, GELU), Loss Functions
@@ -70,6 +72,7 @@ Perceptron --▶ MLP --▶ Activations --▶ Forward --▶ Loss
 
 ```
 Forward --▶ Loss --▶ Backward --▶ Chain Rule --▶ Gradients --▶ Update
+
 ```
 
 > ⭐ **MOST IMPORTANT: How neural networks learn**
@@ -86,6 +89,7 @@ Forward --▶ Loss --▶ Backward --▶ Chain Rule --▶ Gradients --▶ Update
 
 ```
 Conv --▶ Pool --▶ Architectures --▶ ResNet --▶ Skip Connections
+
 ```
 
 **Core:** Convolution, Pooling, ResNet, Skip Connections
@@ -100,6 +104,7 @@ Conv --▶ Pool --▶ Architectures --▶ ResNet --▶ Skip Connections
 
 ```
 RNN --▶ Vanishing --▶ LSTM --▶ GRU --▶ Seq2Seq
+
 ```
 
 **Core:** RNN, LSTM, GRU, Vanishing Gradients
@@ -114,6 +119,7 @@ RNN --▶ Vanishing --▶ LSTM --▶ GRU --▶ Seq2Seq
 
 ```
 Self-Attn --▶ Multi-Head --▶ Pos Enc --▶ Transformer --▶ BERT/GPT --▶ LLMs
+
 ```
 
 > ⭐ **FOUNDATION OF MODERN AI** - Powers GPT, BERT, LLaMA, Claude
@@ -130,6 +136,7 @@ Self-Attn --▶ Multi-Head --▶ Pos Enc --▶ Transformer --▶ BERT/GPT --▶ 
 
 ```
 VAE --▶ GAN --▶ Diffusion --▶ Stable Diffusion --▶ Image Gen
+
 ```
 
 **Core:** VAE, GAN, Diffusion Models, Stable Diffusion
@@ -144,6 +151,7 @@ VAE --▶ GAN --▶ Diffusion --▶ Stable Diffusion --▶ Image Gen
 
 ```
 Init --▶ BatchNorm --▶ Dropout --▶ Augment --▶ LR Schedule
+
 ```
 
 **Core:** Xavier/He Init, BatchNorm, LayerNorm, Dropout
@@ -158,6 +166,7 @@ Init --▶ BatchNorm --▶ Dropout --▶ Augment --▶ LR Schedule
 
 ```
 Flash Attn --▶ LoRA --▶ MoE --▶ ViT --▶ Efficient
+
 ```
 
 | Topic | Impact |
@@ -178,6 +187,7 @@ Flash Attn --▶ LoRA --▶ MoE --▶ ViT --▶ Efficient
  |            |            |            |            |            |
  ▼            ▼            ▼            ▼            ▼            ▼
 Perceptron → Backprop → AlexNet → ResNet → Transformer → ChatGPT
+
 ```
 
 ---
@@ -189,25 +199,31 @@ Perceptron → Backprop → AlexNet → ResNet → Transformer → ChatGPT
 <td>
 
 ### 🧠 Forward Pass
+
 ```
 z = Wx + b
 a = σ(z)
+
 ```
 
 </td>
 <td>
 
 ### 🔄 Backprop
+
 ```
 ∂L/∂W = ∂L/∂a · ∂a/∂z · ∂z/∂W
+
 ```
 
 </td>
 <td>
 
 ### ⚡ Attention
+
 ```
 Attn(Q,K,V) = softmax(QKᵀ/√dₖ)V
+
 ```
 
 </td>
@@ -239,6 +255,7 @@ Attn(Q,K,V) = softmax(QKᵀ/√dₖ)V
        +--------------+          +--------------+
        |    RLHF      |          | Efficient ML |
        +--------------+          +--------------+
+
 ```
 
 <p align="center">

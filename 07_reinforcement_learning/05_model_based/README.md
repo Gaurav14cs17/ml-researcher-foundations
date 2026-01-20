@@ -28,31 +28,38 @@
 ## 📐 Mathematical Foundations
 
 ### World Model
+
 ```
 Learn: p̂(s'|s,a) and r̂(s,a)
 
 From data: D = {(sₜ, aₜ, rₜ, sₜ₊₁)}
 
 Minimize: L = E[||ŝ' - s'||² + (r̂ - r)²]
+
 ```
 
 ### Model Predictive Control (MPC)
+
 ```
 At each step:
 1. Plan: πₜ = argmax E[Σᵢ₌₀ᴴ γⁱ r̂(sₜ₊ᵢ, aₜ₊ᵢ)]
    using model p̂(s'|s,a)
 2. Execute: Take action aₜ
 3. Re-plan with new observation
+
 ```
 
 ### MCTS (UCT formula)
+
 ```
 UCT score = Q(s,a)/N(s,a) + c√(ln N(s)/N(s,a))
 
 Selection → Expansion → Simulation → Backpropagation
+
 ```
 
 ### Dreamer (RSSM)
+
 ```
 Recurrent State-Space Model:
 hₜ = f(hₜ₋₁, zₜ₋₁, aₜ₋₁)  (deterministic)
@@ -60,6 +67,7 @@ zₜ ~ q(zₜ|hₜ, oₜ)          (stochastic)
 
 Learn in imagination:
 Roll out latent trajectories, train actor-critic
+
 ```
 
 ---
@@ -89,6 +97,7 @@ Advantages:
 Disadvantages:
 • Model errors compound
 • More computation
+
 ```
 
 ---

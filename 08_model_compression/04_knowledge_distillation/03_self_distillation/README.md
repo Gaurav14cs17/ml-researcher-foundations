@@ -31,6 +31,7 @@
 
 ```math
 \text{Student}^{(k+1)} \leftarrow \text{Distill}(\text{Student}^{(k)})
+
 ```
 
 Train generation $k+1$ to mimic generation $k$ (which was trained on ground truth).
@@ -46,6 +47,7 @@ Generation 1: Distill from Generation 0
 
 Generation k: Distill from Generation k-1
   θ_k = argmin_θ L_KD(f(x; θ), f(x; θ_{k-1}), y)
+
 ```
 
 #### 1.3 Surprising Result
@@ -54,6 +56,7 @@ Generation k: Distill from Generation k-1
 
 ```math
 \text{Acc}(\theta_k) > \text{Acc}(\theta_0) \text{ for } k > 0
+
 ```
 
 **Why?**
@@ -72,6 +75,7 @@ Generation k: Distill from Generation k-1
 ```math
 \mathcal{L}_1 = \mathcal{L}_{CE}(p_1, y) + D_{KL}(p_2 \| p_1)
 \mathcal{L}_2 = \mathcal{L}_{CE}(p_2, y) + D_{KL}(p_1 \| p_2)
+
 ```
 
 Both networks learn from ground truth AND each other.
@@ -82,6 +86,7 @@ Both networks learn from ground truth AND each other.
 
 ```math
 \mathcal{L}_i = \mathcal{L}_{CE}(p_i, y) + \frac{1}{N-1}\sum_{j \neq i} D_{KL}(p_j \| p_i)
+
 ```
 
 Each network distills from all others.
@@ -104,6 +109,7 @@ Add auxiliary classifiers at intermediate layers.
 
 ```math
 \mathcal{L} = \mathcal{L}_{main} + \sum_l \lambda_l \mathcal{L}_{aux}^l + \sum_l \beta_l D_{KL}(p_{main} \| p_{aux}^l)
+
 ```
 
 Later classifiers teach earlier ones.
@@ -114,6 +120,7 @@ Later classifiers teach earlier ones.
 
 ```math
 F_{aggregated} = \sum_l \alpha_l \cdot r_l(F^l)
+
 ```
 
 Learn $\alpha\_l$ to weight contributions.
@@ -128,6 +135,7 @@ Learn $\alpha\_l$ to weight contributions.
 
 ```math
 p_{teacher} = \sum_i g_i \cdot p_i
+
 ```
 
 where $g = \text{softmax}(W\_g \cdot h)$ is a learned gate.
@@ -138,6 +146,7 @@ where $g = \text{softmax}(W\_g \cdot h)$ is a learned gate.
 
 ```math
 \mathcal{L}_i = \mathcal{L}_{task}(p_i, y) + \lambda D_{KL}(p_{ensemble} \| p_i)
+
 ```
 
 where $p\_{ensemble} = \frac{1}{N}\sum\_j p\_j$ (or weighted).
@@ -152,6 +161,7 @@ where $p\_{ensemble} = \frac{1}{N}\sum\_j p\_j$ (or weighted).
 
 ```math
 \mathcal{L}_{SD} = \mathcal{L}_{CE}(p, y) + \lambda D_{KL}(p_{teacher} \| p)
+
 ```
 
 The KL term acts as a regularizer:
@@ -165,12 +175,14 @@ The KL term acts as a regularizer:
 
 ```math
 y_{smooth} = (1-\epsilon)y + \frac{\epsilon}{K}
+
 ```
 
 **Self-distillation (high T):**
 
 ```math
 p_{soft} \approx \frac{1}{K} + \frac{z - \bar{z}}{KT}
+
 ```
 
 Both add uniform noise to hard labels.
@@ -183,6 +195,7 @@ Multiple generations explore different local minima:
 
 ```math
 \theta_k \sim p(\theta | \text{data}, \theta_{k-1})
+
 ```
 
 Distilling from previous generation transfers ensemble knowledge.
@@ -420,6 +433,7 @@ def analyze_generation_improvement(results: list):
             print("2. Knowledge distillation acts as label smoothing")
             print("3. Later generations find flatter minima")
             print("4. Implicit ensemble effect from multiple generations")
+
 ```
 
 ---

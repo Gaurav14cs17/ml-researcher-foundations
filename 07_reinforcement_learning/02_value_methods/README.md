@@ -32,20 +32,25 @@
 ## 📐 Mathematical Foundations
 
 ### Bellman Expectation Equations
+
 ```
 V^π(s) = Σ_a π(a|s) [R(s,a) + γ Σ_{s'} P(s'|s,a) V^π(s')]
 
 Q^π(s,a) = R(s,a) + γ Σ_{s'} P(s'|s,a) Σ_{a'} π(a'|s') Q^π(s',a')
+
 ```
 
 ### Bellman Optimality Equations
+
 ```
 V*(s) = max_a [R(s,a) + γ Σ_{s'} P(s'|s,a) V*(s')]
 
 Q*(s,a) = R(s,a) + γ Σ_{s'} P(s'|s,a) max_{a'} Q*(s',a')
+
 ```
 
 ### TD Error
+
 ```
 δₜ = rₜ + γV(sₜ₊₁) - V(sₜ)
 
@@ -54,6 +59,7 @@ V(sₜ) ← V(sₜ) + α δₜ
 
 TD(λ) combines n-step returns:
 G^λ = (1-λ) Σₙ₌₁^∞ λⁿ⁻¹ Gₜ:ₜ₊ₙ
+
 ```
 
 ---
@@ -69,6 +75,7 @@ Q(s,a) = E[Σₜ γᵗrₜ | s₀ = s, a₀ = a]
 
 Q-learning update:
 Q(s,a) ← Q(s,a) + α[r + γ max_a' Q(s',a') - Q(s,a)]
+
 ```
 
 ---
@@ -93,6 +100,7 @@ Value Methods --> DQN, Rainbow
              --> Actor-Critic methods
              --> PPO (uses value baseline)
              --> Model-Based RL planning
+
 ```
 
 ### Used By These Papers

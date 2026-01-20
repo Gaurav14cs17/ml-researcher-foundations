@@ -25,6 +25,7 @@
 
 ```math
 \text{Prune } w_{ij} \text{ if } |w_{ij}| < \tau
+
 ```
 
 **Global vs Layer-wise Pruning:**
@@ -33,12 +34,14 @@
 
 ```math
 \mathcal{P} = \{w : |w| < \tau_{global}\}
+
 ```
 
 *Layer-wise:* Per-layer threshold based on percentile
 
 ```math
 \mathcal{P}_l = \{w \in W_l : |w| < \text{Percentile}(|W_l|, p)\}
+
 ```
 
 ### 2. Optimal Brain Damage (OBD)
@@ -47,18 +50,21 @@
 
 ```math
 \Delta\mathcal{L} = \sum_i g_i \delta w_i + \frac{1}{2}\sum_i h_{ii} \delta w_i^2 + O(\delta w^3)
+
 ```
 
 At a minimum, $g\_i = \frac{\partial\mathcal{L}}{\partial w\_i} \approx 0$, so:
 
 ```math
 \Delta\mathcal{L} \approx \frac{1}{2}\sum_i h_{ii} w_i^2
+
 ```
 
 **Saliency (Importance Score):**
 
 ```math
 s_i^{OBD} = \frac{1}{2}h_{ii}w_i^2
+
 ```
 
 Prune weights with lowest saliency.
@@ -71,12 +77,14 @@ When pruning weight $w\_q$, optimal adjustment to other weights:
 
 ```math
 \delta w = -\frac{w_q}{[H^{-1}]_{qq}}H^{-1}e_q
+
 ```
 
 **Saliency:**
 
 ```math
 s_q^{OBS} = \frac{w_q^2}{2[H^{-1}]_{qq}}
+
 ```
 
 **Advantage:** Accounts for weight correlations
@@ -88,6 +96,7 @@ s_q^{OBS} = \frac{w_q^2}{2[H^{-1}]_{qq}}
 
 ```math
 s_i = -w_i \cdot \frac{\partial\mathcal{L}}{\partial w_i}
+
 ```
 
 If $s\_i > 0$: weight is moving away from zero (important)
@@ -103,12 +112,14 @@ Let $f(x; \theta)$ be a dense neural network. There exists a sparse mask $m \in 
 2. $f(x; m \odot \theta\_0)$ trained for $T$ iterations achieves accuracy $\geq f(x; \theta\_T) - \epsilon$
 
 **IMP Algorithm:**
+
 ```
 1. θ₀ ~ init()
 2. θ_T = train(θ₀, T iterations)
 3. m = magnitude_prune(θ_T, keep p%)
 4. θ₀' = m ⊙ θ₀  (reset to init with mask)
 5. Repeat from step 2 with θ₀'
+
 ```
 
 ### 6. Structured Pruning Criteria
@@ -117,12 +128,14 @@ Let $f(x; \theta)$ be a dense neural network. There exists a sparse mask $m \in 
 
 ```math
 s_f = \|W_f\|_p = \left(\sum_{i,j,k} |w_{f,i,j,k}|^p\right)^{1/p}
+
 ```
 
 **Channel Importance (Taylor Expansion):**
 
 ```math
 s_c = \left|\sum_i \frac{\partial\mathcal{L}}{\partial a_c^{(i)}} \cdot a_c^{(i)}\right|
+
 ```
 
 Where $a\_c$ are activations of channel $c$.
@@ -132,6 +145,7 @@ Remove filters closest to geometric median:
 
 ```math
 f^* = \arg\min_f \sum_{f' \neq f} \|W_f - W_{f'}\|_2
+
 ```
 
 ### 7. Sparse Training Theory
@@ -140,6 +154,7 @@ f^* = \arg\min_f \sum_{f' \neq f} \|W_f - W_{f'}\|_2
 
 ```math
 s_t = s_f + (s_i - s_f)\left(1 - \frac{t - t_0}{n\Delta t}\right)^3
+
 ```
 
 Where:
@@ -161,6 +176,7 @@ Where:
 
 ```math
 \forall i: |\{j \in [iM, (i+1)M) : w_j \neq 0\}| = M - N
+
 ```
 
 ---
@@ -185,6 +201,7 @@ Structured Pruning:
 |  Before:  [a, b, c, d, e, f, g, h] |
 |  After:   [a, 0, c, 0, e, 0, g, 0] |  (2 zeros per 4)
 +-------------------------------------+
+
 ```
 
 ---
@@ -261,6 +278,7 @@ def lottery_ticket_pruning(model, train_fn, prune_percent=0.2, iterations=10):
             param.data = initial_state[name] * masks[name]
     
     return model, masks
+
 ```
 
 ---

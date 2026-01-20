@@ -21,6 +21,7 @@
 
 ```math
 s = \frac{\|\mathbf{w}\|_0}{\text{total params}} = \frac{\#\text{zeros}}{\#\text{total}}
+
 ```
 
 **Density:** $d = 1 - s$
@@ -33,6 +34,7 @@ s = \frac{\|\mathbf{w}\|_0}{\text{total params}} = \frac{\#\text{zeros}}{\#\text
 
 ```math
 \text{Storage: } O(\text{nnz} + n)
+
 ```
 
 Components:
@@ -44,6 +46,7 @@ Components:
 
 ```math
 \text{Storage: } 3 \times \text{nnz}
+
 ```
 
 Stores (row, col, value) triplets.
@@ -63,12 +66,15 @@ Stores (row, col, value) triplets.
 
 ```math
 \forall i: \sum_{j=4i}^{4i+3} \mathbf{1}[w_j \neq 0] = 2
+
 ```
 
 **Valid patterns for 2:4:**
+
 ```
 [*, *, 0, 0], [*, 0, *, 0], [*, 0, 0, *],
 [0, *, *, 0], [0, *, 0, *], [0, 0, *, *]
+
 ```
 
 **Hardware Speedup:** 2× on NVIDIA Ampere Tensor Cores
@@ -77,6 +83,7 @@ Stores (row, col, value) triplets.
 
 ```math
 W_{2:4} = W \odot M_{2:4}
+
 ```
 
 Where $M\_{2:4}$ satisfies the 2:4 constraint and minimizes $\|W - W\_{2:4}\|\_F$.
@@ -99,6 +106,7 @@ for round in 1..R:
     m ← KeepTopK(|θ_T|, p%)
     θ ← m ⊙ θ₀  // Reset to init!
 return m, θ₀
+
 ```
 
 **Late Rewinding:** Reset to $\theta\_k$ instead of $\theta\_0$ (more stable for large models).
@@ -119,6 +127,7 @@ return m, θ₀
 ```math
 \text{Drop: } \arg\min_{|\mathcal{S}|=k} \sum_{i \in \mathcal{S}} |w_i|
 \text{Grow: } \arg\max_{|\mathcal{S}|=k} \sum_{i \in \mathcal{S}} |\nabla_i|
+
 ```
 
 Drop smallest magnitude, grow largest gradient.
@@ -130,6 +139,7 @@ Drop smallest magnitude, grow largest gradient.
 ```math
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d}}\right)V
 \text{Memory: } O(n^2), \quad \text{Compute: } O(n^2 d)
+
 ```
 
 **Local Attention:**
@@ -137,6 +147,7 @@ Drop smallest magnitude, grow largest gradient.
 ```math
 A_{ij} = \begin{cases} \text{attention}(q_i, k_j) & |i-j| \leq w \\ 0 & \text{otherwise} \end{cases}
 \text{Complexity: } O(nw)
+
 ```
 
 **Global + Local (Longformer):**
@@ -145,6 +156,7 @@ A_{ij} = \begin{cases} \text{attention}(q_i, k_j) & |i-j| \leq w \\ 0 & \text{ot
 
 ```math
 \text{Complexity: } O(n(w + g))
+
 ```
 
 **Sparse Patterns Comparison:**
@@ -180,6 +192,7 @@ Block Sparsity:
 | Entire blocks are zero              |
 | Very hardware-friendly              |
 +-------------------------------------+
+
 ```
 
 ---
@@ -318,6 +331,7 @@ class RigLOptimizer:
         for name, param in self.model.named_parameters():
             if name in self.masks:
                 param.data *= self.masks[name]
+
 ```
 
 ---

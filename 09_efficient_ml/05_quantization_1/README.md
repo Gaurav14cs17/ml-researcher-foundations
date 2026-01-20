@@ -53,6 +53,7 @@ This lecture introduces **quantization fundamentals** for neural network compres
 ```
 FP32 (32 bits) → INT8 (8 bits) = 4x memory reduction
 FP32 (32 bits) → INT4 (4 bits) = 8x memory reduction
+
 ```
 
 ---
@@ -78,13 +79,16 @@ q = round(x / scale) + zero_point
 
 # Dequantize:
 x_approx = (q - zero_point) * scale
+
 ```
 
 ### Example
+
 ```python
 # FP32 weights: [0.1, 0.5, 0.9, 1.2]
 # Scale = 1.2 / 127 ≈ 0.0094
 # INT8: [11, 53, 96, 127]
+
 ```
 
 ---
@@ -98,6 +102,7 @@ x_approx = (q - zero_point) * scale
 
 ```
 q = round(x / scale)
+
 ```
 
 ### Asymmetric Quantization
@@ -107,6 +112,7 @@ q = round(x / scale)
 
 ```
 q = round(x / scale) + zero_point
+
 ```
 
 ---
@@ -138,6 +144,7 @@ zero_point = round(-min_val / scale)
 
 # 3. Quantize weights
 quantized_weights = round(weights / scale) + zero_point
+
 ```
 
 ---
@@ -150,30 +157,35 @@ Map continuous values \( x \in [x_{min}, x_{max}] \) to discrete integers \( q \
 
 ```math
 q = \text{round}\left(\frac{x - x_{min}}{x_{max} - x_{min}} \cdot (2^b - 1)\right)
+
 ```
 
 **Scale factor:**
 
 ```math
 s = \frac{x_{max} - x_{min}}{2^b - 1}
+
 ```
 
 **Zero-point:**
 
 ```math
 z = \text{round}\left(-\frac{x_{min}}{s}\right)
+
 ```
 
 **Quantization function:**
 
 ```math
 Q(x) = \text{clamp}\left(\text{round}\left(\frac{x}{s}\right) + z, 0, 2^b-1\right)
+
 ```
 
 **Dequantization:**
 
 ```math
 \hat{x} = s \cdot (q - z)
+
 ```
 
 ---
@@ -184,6 +196,7 @@ Q(x) = \text{clamp}\left(\text{round}\left(\frac{x}{s}\right) + z, 0, 2^b-1\righ
 
 ```math
 \epsilon = x - \hat{x} = x - s \cdot (Q(x) - z)
+
 ```
 
 **Mean Squared Error (for uniform distribution):**
@@ -192,6 +205,7 @@ Assuming uniform quantization with step size \( \Delta = s \):
 
 ```math
 \mathbb{E}[\epsilon^2] = \frac{\Delta^2}{12} = \frac{s^2}{12}
+
 ```
 
 **Proof:**
@@ -199,6 +213,7 @@ For uniform rounding error \( \epsilon \sim \text{Uniform}(-\Delta/2, \Delta/2) 
 
 ```math
 \mathbb{E}[\epsilon^2] = \int_{-\Delta/2}^{\Delta/2} \epsilon^2 \cdot \frac{1}{\Delta} d\epsilon = \frac{1}{\Delta} \cdot \frac{\epsilon^3}{3}\Big|_{-\Delta/2}^{\Delta/2} = \frac{\Delta^2}{12}
+
 ```
 
 ---
@@ -209,12 +224,14 @@ For uniform rounding error \( \epsilon \sim \text{Uniform}(-\Delta/2, \Delta/2) 
 
 ```math
 q = \text{round}\left(\frac{x}{s}\right), \quad s = \frac{\max(|x_{max}|, |x_{min}|)}{2^{b-1}-1}
+
 ```
 
 **Asymmetric (zero-point ≠ 0):**
 
 ```math
 q = \text{round}\left(\frac{x}{s}\right) + z, \quad s = \frac{x_{max} - x_{min}}{2^b - 1}
+
 ```
 
 **Trade-off:**
@@ -231,12 +248,14 @@ For weight tensor \( W \in \mathbb{R}^{C_{out} \times C_{in} \times k \times k} 
 
 ```math
 W_q = Q(W; s, z)
+
 ```
 
 **Per-channel:** Separate scale \( s_c \) for each output channel
 
 ```math
 W_q[c,:,:,:] = Q(W[c,:,:,:]; s_c, z_c)
+
 ```
 
 **Why per-channel is better:**
@@ -245,6 +264,7 @@ Different channels can have very different weight distributions:
 
 ```math
 \text{Var}(W[c_1]) \gg \text{Var}(W[c_2])
+
 ```
 
 Per-channel adapts to each distribution → lower quantization error.
@@ -257,6 +277,7 @@ Per-channel adapts to each distribution → lower quantization error.
 
 ```math
 s = \frac{x_{max} - x_{min}}{2^b - 1}
+
 ```
 
 Simple but sensitive to outliers.
@@ -266,6 +287,7 @@ Use 99.9th percentile instead of max:
 
 ```math
 s = \frac{P_{99.9}(|x|)}{2^{b-1} - 1}
+
 ```
 
 Robust to outliers but may clip extreme values.
@@ -275,6 +297,7 @@ Find scale that minimizes reconstruction error:
 
 ```math
 s^* = \arg\min_s \|x - \hat{x}(s)\|_2^2
+
 ```
 
 Solved by grid search over candidate scales.
@@ -284,6 +307,7 @@ Minimize information loss:
 
 ```math
 s^* = \arg\min_s D_{KL}(P_x \| P_{\hat{x}})
+
 ```
 
 where \( P_x \) and \( P_{\hat{x}} \) are histograms of original and quantized values.
@@ -296,12 +320,14 @@ For \( Y = XW \) with quantized inputs:
 
 ```math
 Y = (X_q - z_x) \cdot s_x \cdot (W_q - z_w) \cdot s_w
+
 ```
 
 Expanding:
 
 ```math
 Y = s_x s_w \left[ X_q W_q - z_x \sum W_q - z_w \sum X_q + z_x z_w \cdot \text{const} \right]
+
 ```
 
 **Optimization:** Pre-compute \( z_x \sum W_q \), \( z_w \sum X_q \), and \( z_x z_w \) terms.
@@ -310,6 +336,7 @@ For symmetric quantization (\( z_x = z_w = 0 \)):
 
 ```math
 Y = s_x s_w \cdot X_q W_q
+
 ```
 
 Much simpler! Just integer matmul + single scaling.
@@ -326,18 +353,21 @@ Much simpler! Just integer matmul + single scaling.
 
 ```math
 \mathcal{L}(r) = \mathcal{L}_{quant}(r) + \mathcal{L}_{clip}(r)
+
 ```
 
 **Optimal range minimizes total error:**
 
 ```math
 r^* = \arg\min_r \mathcal{L}(r)
+
 ```
 
 For Gaussian-distributed weights with std \( \sigma \):
 
 ```math
 r^* \approx 2.5\sigma \text{ to } 3\sigma
+
 ```
 
 This clips ~1% of values but significantly reduces quantization error.
@@ -352,6 +382,7 @@ During QAT, the quantization function is:
 
 ```math
 y = Q(x) = s \cdot \text{round}\left(\frac{x}{s}\right)
+
 ```
 
 The gradient is zero almost everywhere (round is step function).
@@ -360,6 +391,7 @@ The gradient is zero almost everywhere (round is step function).
 
 ```math
 \frac{\partial y}{\partial x} \approx 1 \text{ (identity)}
+
 ```
 
 **Proof of STE validity:**
@@ -367,6 +399,7 @@ In expectation, the gradient of round is 1:
 
 ```math
 \mathbb{E}\left[\frac{\partial \text{round}(x)}{\partial x}\right] = 1
+
 ```
 
 because the quantization error has zero mean.

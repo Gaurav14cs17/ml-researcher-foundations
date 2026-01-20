@@ -25,12 +25,14 @@
 
 ```math
 y = Wx, \quad \text{Complexity: } O(mn)
+
 ```
 
 **Sparse Matrix-Vector Multiplication:**
 
 ```math
 y = W_{sparse}x, \quad \text{Complexity: } O(\text{nnz})
+
 ```
 
 Where $\text{nnz}$ = number of non-zeros.
@@ -39,6 +41,7 @@ Where $\text{nnz}$ = number of non-zeros.
 
 ```math
 \text{Speedup} = \frac{mn}{\text{nnz}} = \frac{1}{1 - \text{sparsity}}
+
 ```
 
 For 90% sparsity: $\text{Speedup} = 10\times$ (theoretical)
@@ -49,6 +52,7 @@ For 90% sparsity: $\text{Speedup} = 10\times$ (theoretical)
 
 ```math
 W_{sparse} = W \odot M, \quad M_{ij} \in \{0, 1\}
+
 ```
 
 Any element can be zero. Maximum flexibility but requires sparse hardware.
@@ -57,6 +61,7 @@ Any element can be zero. Maximum flexibility but requires sparse hardware.
 
 ```math
 \forall \text{ group of } M \text{ elements}: \text{exactly } N \text{ are zero}
+
 ```
 
 **2:4 Sparsity (NVIDIA Ampere):**
@@ -68,6 +73,7 @@ Any element can be zero. Maximum flexibility but requires sparse hardware.
 
 ```math
 \sum_{j=iM}^{(i+1)M-1} \mathbf{1}[w_j \neq 0] = M - N
+
 ```
 
 ### 3. Block Sparsity
@@ -76,6 +82,7 @@ Any element can be zero. Maximum flexibility but requires sparse hardware.
 
 ```math
 W = \begin{bmatrix} W_{11} & \mathbf{0} \\ \mathbf{0} & W_{22} \end{bmatrix}
+
 ```
 
 **Benefits:**
@@ -89,12 +96,14 @@ W = \begin{bmatrix} W_{11} & \mathbf{0} \\ \mathbf{0} & W_{22} \end{bmatrix}
 
 ```math
 y = \sum_{i=1}^{N} g_i(x) \cdot E_i(x)
+
 ```
 
 **Routing Function:**
 
 ```math
 g(x) = \text{TopK}(\text{softmax}(W_r \cdot x + \epsilon))
+
 ```
 
 Where $\epsilon \sim \text{Gumbel}(0, 1)$ adds exploration noise.
@@ -103,12 +112,14 @@ Where $\epsilon \sim \text{Gumbel}(0, 1)$ adds exploration noise.
 
 ```math
 y = \sum_{i \in \text{TopK}} g_i(x) \cdot E_i(x)
+
 ```
 
 **Effective Compute:**
 
 ```math
 \text{FLOPs}_{effective} = \text{FLOPs}_{shared} + K \cdot \text{FLOPs}_{expert}
+
 ```
 
 ### 5. Load Balancing Loss (MoE)
@@ -119,6 +130,7 @@ y = \sum_{i \in \text{TopK}} g_i(x) \cdot E_i(x)
 
 ```math
 \mathcal{L}_{aux} = \alpha \cdot N \cdot \sum_{i=1}^{N} f_i \cdot P_i
+
 ```
 
 Where:
@@ -135,6 +147,7 @@ Where:
 ```math
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d}}\right)V
 \text{Complexity: } O(n^2 d)
+
 ```
 
 **Sparse Attention Patterns:**
@@ -143,18 +156,21 @@ Where:
 
 ```math
 A_{ij} = \begin{cases} \text{softmax}(\cdot) & |i-j| \leq w \\ 0 & \text{otherwise} \end{cases}
+
 ```
 
 *Global + Local (Longformer):*
 
 ```math
 A = A_{local} + A_{global}
+
 ```
 
 *Random Sparse (BigBird):*
 
 ```math
 A = A_{local} + A_{global} + A_{random}
+
 ```
 
 **Complexity:** $O(n \cdot w)$ where $w$ = window size
@@ -172,12 +188,14 @@ Let $f(x; \theta\_0)$ be initialized network. $\exists$ mask $m$ s.t.:
 
 ```math
 s_t = s_f + (s_0 - s_f)\left(1 - \frac{t}{T}\right)^3
+
 ```
 
 *Dynamic Sparse Training (SET, RigL):*
 
 ```math
 \theta_{t+1} = \text{TopK}(\theta_t - \alpha \nabla\mathcal{L})
+
 ```
 
 Periodically prune and regrow connections based on gradient magnitude.
@@ -211,6 +229,7 @@ Sparse matrix (50%):
 |  0   0.9   0   |  FLOPs: nnz
 | 0.7   0   0.6  |  → 2× theoretical speedup
 +-----------------+
+
 ```
 
 ### Mixture of Experts
@@ -231,6 +250,7 @@ Input x
                                 |
 Only 2/4 experts run!           v
 → 2× effective compute     Σ weights × outputs
+
 ```
 
 ---
@@ -252,6 +272,7 @@ Mixtral 8x7B:
 +-- Active params: ~12B (per token)
 +-- Quality ≈ LLaMA-70B dense
 +-- 6× more efficient inference!
+
 ```
 
 ---

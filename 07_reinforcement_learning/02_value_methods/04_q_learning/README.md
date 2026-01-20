@@ -34,6 +34,7 @@ Q(s, a) = E[Σₜ₌₀^∞ γᵗ rₜ | s₀ = s, a₀ = a, π]
 
 The expected discounted return starting from state s,
 taking action a, then following policy π
+
 ```
 
 ### Bellman Optimality Equation
@@ -42,6 +43,7 @@ taking action a, then following policy π
 Q*(s, a) = E[r + γ max_a' Q*(s', a') | s, a]
 
 The optimal Q-function satisfies this recursive equation
+
 ```
 
 ### Q-Learning Update Rule
@@ -55,6 +57,7 @@ Q(s, a) ← Q(s, a) + α [r + γ max_a' Q(s', a') - Q(s, a)]
 γ: Discount factor
 r: Immediate reward
 s': Next state
+
 ```
 
 ---
@@ -73,6 +76,7 @@ For each episode:
         Q(s,a) ← Q(s,a) + α[r + γ max_a' Q(s',a') - Q(s,a)]
         
         s ← s'
+
 ```
 
 ---
@@ -96,6 +100,7 @@ SARSA (On-policy):
     Uses Q(s', a')        ← Uses actual next action
     
 Q-Learning learns optimal policy even with random exploration!
+
 ```
 
 ---
@@ -111,6 +116,7 @@ Q-Learning converges to Q* if:
    (e.g., αₜ = 1/t works)
 
 3. Stochastic approximation conditions hold
+
 ```
 
 ---
@@ -150,6 +156,7 @@ def q_learning(env, num_episodes, alpha=0.1, gamma=0.99, epsilon=0.1):
             state = next_state
     
     return Q
+
 ```
 
 ### Single Update Step
@@ -165,6 +172,7 @@ def q_learning_step(Q, s, a, r, s_next, done, alpha=0.1, gamma=0.99):
     td_error = td_target - Q[s, a]
     Q[s, a] += alpha * td_error
     return Q
+
 ```
 
 ---
@@ -185,6 +193,7 @@ State s --> [Neural Network θ] --> Q(s, a₁), Q(s, a₂), ..., Q(s, aₙ)
 
 Loss = (r + γ max_a' Q(s', a'; θ⁻) - Q(s, a; θ))²
                     +--- Target network (frozen) ---+
+
 ```
 
 ---

@@ -27,6 +27,7 @@ Full fine-tuning:
   • Cost: $1000s per adapter
 
 For 1000 tasks → 280 TB storage + $1M+ cost
+
 ```
 
 ---
@@ -39,12 +40,14 @@ For 1000 tasks → 280 TB storage + $1M+ cost
 
 ```math
 \text{Full fine-tuning: } W \rightarrow W + \Delta W
+
 ```
 
 **Hypothesis:** $\Delta W$ can be approximated by low-rank matrices:
 
 ```math
 \Delta W \approx BA
+
 ```
 
 Where:
@@ -58,12 +61,14 @@ Where:
 
 ```math
 y = Wx
+
 ```
 
 **With LoRA:**
 
 ```math
 y = Wx + \frac{\alpha}{r} \cdot BAx
+
 ```
 
 Where:
@@ -83,6 +88,7 @@ Input x (k-dim)
      +-→ (α/r)·BAx (trainable) -+
          ↓        ↓
         A(r×k)  B(d×r)
+
 ```
 
 ---
@@ -110,6 +116,7 @@ full_params = 4 * (d_model * d_inner)  # 67M parameters
 lora_params = 4 * r * (d_model + d_inner)  # 262K parameters
 
 # Reduction: 67M / 262K = 256x fewer parameters!
+
 ```
 
 ### Scaling to Large Models
@@ -131,12 +138,14 @@ Any matrix can be decomposed:
 
 ```math
 W = U\Sigma V^\top \quad \text{(SVD)}
+
 ```
 
 Low-rank approximation:
 
 ```math
 W \approx U_r \Sigma_r V_r^\top = (U_r \Sigma_r) \cdot V_r^\top = B \cdot A
+
 ```
 
 **Interpretation:** LoRA learns the "important directions" for adaptation.
@@ -147,6 +156,7 @@ The best rank-$r$ approximation of $\Delta W$ is:
 
 ```math
 \Delta W_r = \sum_{i=1}^{r} \sigma_i u_i v_i^\top
+
 ```
 
 LoRA learns $B$ and $A$ such that $BA \approx \Delta W\_r$.
@@ -170,12 +180,14 @@ LoRA learns $B$ and $A$ such that $BA \approx \Delta W\_r$.
 
 ```math
 A \sim \mathcal{N}(0, \sigma^2)
+
 ```
 
 **For $B$:** Zero initialization
 
 ```math
 B = 0
+
 ```
 
 **Reason:** At initialization, $\Delta W = BA = 0$, so we start from the pretrained weights.
@@ -184,6 +196,7 @@ B = 0
 
 ```math
 \text{scaling} = \frac{\alpha}{r}
+
 ```
 
 **Intuition:**
@@ -198,6 +211,7 @@ B = 0
 ```math
 \frac{\partial L}{\partial A} = \frac{\alpha}{r} \cdot B^\top \frac{\partial L}{\partial y} x^\top
 \frac{\partial L}{\partial B} = \frac{\alpha}{r} \cdot \frac{\partial L}{\partial y} (Ax)^\top
+
 ```
 
 The scaling ensures gradients are well-behaved regardless of rank.
@@ -286,6 +300,7 @@ def add_lora_to_model(model, target_modules, rank=8, alpha=16):
             module.lora_B.requires_grad = True
     
     return model
+
 ```
 
 ### Using PEFT Library
@@ -336,6 +351,7 @@ model.save_pretrained("./lora_adapter")  # ~17 MB vs 13 GB
 from peft import PeftModel
 base_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-hf")
 model = PeftModel.from_pretrained(base_model, "./lora_adapter")
+
 ```
 
 ### QLoRA: 4-bit Quantization + LoRA
@@ -361,6 +377,7 @@ model = AutoModelForCausalLM.from_pretrained(
 # Add LoRA on top of quantized model
 model = get_peft_model(model, lora_config)
 # Now trainable with 24GB GPU!
+
 ```
 
 ---
@@ -377,6 +394,7 @@ model = get_peft_model(model, lora_config)
 
 ```math
 W + \Delta W = m \cdot \frac{W + BA}{\|W + BA\|}
+
 ```
 
 - Learns magnitude $m$ and directional update $BA$
@@ -421,6 +439,7 @@ Task 1000                   + adapter_1000 (17 MB)
 
 Total: 13 GB + 17 GB adapters = 30 GB
 vs. 13 TB for full fine-tuning (1000 × 13 GB)
+
 ```
 
 ### Serving Multiple Adapters
@@ -441,6 +460,7 @@ def inference(prompt, task):
     # Apply adapter (just add BA to forward pass)
     output = base_model(prompt, adapter=adapter)
     return output
+
 ```
 
 ### Efficient Batching

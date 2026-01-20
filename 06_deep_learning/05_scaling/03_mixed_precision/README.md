@@ -24,6 +24,7 @@
 ## 📐 Mathematical Foundations
 
 ### Floating Point Representation
+
 ```
 FP32 (IEEE 754):
 sign (1) | exponent (8) | mantissa (23)
@@ -36,9 +37,11 @@ Value = (-1)^s × 2^(e-15) × (1 + m/2¹⁰)
 BF16:
 sign (1) | exponent (8) | mantissa (7)
 Same range as FP32, less precision
+
 ```
 
 ### Loss Scaling
+
 ```
 Problem: Small gradients underflow in FP16
 
@@ -49,9 +52,11 @@ Solution:
 4. Update: θ ← θ - α × gradient
 
 Dynamic scaling: Adjust scale_factor based on overflow detection
+
 ```
 
 ### Numerical Error Analysis
+
 ```
 FP16 precision: ~3.3 decimal digits
 FP32 precision: ~7.2 decimal digits
@@ -61,6 +66,7 @@ If a ≈ b, then (a - b) loses precision
 
 Accumulation in FP32:
 sum = Σᵢ xᵢ  (computed in FP32 to avoid error accumulation)
+
 ```
 
 ---
@@ -81,6 +87,7 @@ sum = Σᵢ xᵢ  (computed in FP32 to avoid error accumulation)
 1. Forward/Backward in FP16 (fast!)
 2. Master weights in FP32 (accurate updates)
 3. Loss scaling (prevent underflow)
+
 ```
 
 ---
@@ -101,6 +108,7 @@ for batch in dataloader:
     scaler.scale(loss).backward()  # Scaled backward
     scaler.step(optimizer)
     scaler.update()
+
 ```
 
 ---

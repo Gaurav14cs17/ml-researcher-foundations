@@ -21,6 +21,7 @@
 
 ```math
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+
 ```
 
 Where $Q, K, V \in \mathbb{R}^{n \times d}$
@@ -42,6 +43,7 @@ Where $Q, K, V \in \mathbb{R}^{n \times d}$
 
 ```math
 \tilde{K} = E_K K, \quad \tilde{V} = E_V V
+
 ```
 
 Where $E\_K, E\_V \in \mathbb{R}^{k \times n}$ project to $k \ll n$ dimensions.
@@ -50,6 +52,7 @@ Where $E\_K, E\_V \in \mathbb{R}^{k \times n}$ project to $k \ll n$ dimensions.
 
 ```math
 \text{Attention} = \text{softmax}\left(\frac{Q\tilde{K}^T}{\sqrt{d}}\right)\tilde{V}
+
 ```
 
 **Complexity:** $O(nkd)$ instead of $O(n^2d)$
@@ -59,6 +62,7 @@ For any $\epsilon > 0$, random projection preserves distances with high probabil
 
 ```math
 \|E_K x - E_K y\|_2 \approx (1 \pm \epsilon)\|x - y\|_2
+
 ```
 
 ### 3. Performer: Kernel Approximation
@@ -67,12 +71,14 @@ For any $\epsilon > 0$, random projection preserves distances with high probabil
 
 ```math
 \text{Att}(q, K, V) = \frac{\sum_i \exp(q^T k_i) v_i}{\sum_i \exp(q^T k_i)}
+
 ```
 
 **Kernel View:**
 
 ```math
 \text{Att}(q, K, V) = \frac{\sum_i \kappa(q, k_i) v_i}{\sum_i \kappa(q, k_i)}
+
 ```
 
 Where $\kappa(q, k) = \exp(q^T k)$ (softmax kernel)
@@ -81,18 +87,21 @@ Where $\kappa(q, k) = \exp(q^T k)$ (softmax kernel)
 
 ```math
 \kappa(q, k) \approx \phi(q)^T \phi(k)
+
 ```
 
 Using random features:
 
 ```math
 \phi(x) = \frac{1}{\sqrt{m}}\left[\exp\left(w_1^T x - \frac{\|x\|^2}{2}\right), ..., \exp\left(w_m^T x - \frac{\|x\|^2}{2}\right)\right]
+
 ```
 
 **Linear Attention:**
 
 ```math
 \text{Att}(Q, K, V) = \phi(Q)\left(\phi(K)^T V\right)
+
 ```
 
 Compute $\phi(K)^T V$ first: $O(md)$ per position → $O(nmd)$ total
@@ -121,6 +130,7 @@ Compute $\phi(K)^T V$ first: $O(md)$ per position → $O(nmd)$ total
 ```math
 \text{Standard: } O(n^2 d + n^2)
 \text{Flash: } O(n^2 d^2 / M)
+
 ```
 
 Where $M$ = SRAM size. Typical reduction: $10-100\times$
@@ -132,6 +142,7 @@ Where $M$ = SRAM size. Typical reduction: $10-100\times$
 ```math
 \text{MHA}(X) = \text{Concat}(head_1, ..., head_h)W^O
 head_i = \text{Attention}(XW_Q^i, XW_K^i, XW_V^i)
+
 ```
 
 **Memory:** $h$ sets of K,V projections
@@ -141,6 +152,7 @@ Share K,V across all heads:
 
 ```math
 head_i = \text{Attention}(XW_Q^i, XW_K, XW_V)
+
 ```
 
 **Memory:** 1 set of K,V projections (but quality degrades)
@@ -150,6 +162,7 @@ Share K,V within groups of heads:
 
 ```math
 head_i = \text{Attention}(XW_Q^i, XW_K^{g(i)}, XW_V^{g(i)})
+
 ```
 
 Where $g(i)$ maps head $i$ to its group.
@@ -160,6 +173,7 @@ Where $g(i)$ maps head $i$ to its group.
 \text{MHA: } O(h \cdot d_k \cdot L)
 \text{GQA: } O(G \cdot d_k \cdot L)
 \text{MQA: } O(d_k \cdot L)
+
 ```
 
 ### 6. Sliding Window Attention
@@ -168,6 +182,7 @@ Where $g(i)$ maps head $i$ to its group.
 
 ```math
 A_{ij} = \begin{cases} \text{softmax}(\cdot) & |i-j| \leq w \\ 0 & \text{otherwise} \end{cases}
+
 ```
 
 **Complexity:** $O(nw)$ instead of $O(n^2)$
@@ -203,6 +218,7 @@ Solutions:
 | Local Attn  |   O(nw)    | Window only  |
 | GQA/MQA     |   O(n²)    | Share KV     |
 +-------------+------------+--------------+
+
 ```
 
 ---
@@ -340,6 +356,7 @@ class SlidingWindowAttention(nn.Module):
         
         out = out.transpose(1, 2).reshape(B, L, D)
         return self.W_o(out)
+
 ```
 
 ---

@@ -30,6 +30,7 @@
 
 3. RL Optimization (PPO)
    Maximize: E[r(x, y) - β KL(π || π_ref)]
+
 ```
 
 ---

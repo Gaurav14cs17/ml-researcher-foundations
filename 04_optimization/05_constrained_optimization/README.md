@@ -36,6 +36,7 @@ Unconstrained:              Constrained:
    ↓                         ↓
    
    Just set ∇f = 0           Need Lagrange/KKT!
+
 ```
 
 ---
@@ -56,6 +57,7 @@ Unconstrained:              Constrained:
 |   Solve: ∇L = 0                     μᵢ ≥ 0              |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -74,6 +76,7 @@ Unconstrained:            Constrained:
     ╱     ╲                 ╱   |   ╲ region
    
    Interior optimum        Boundary optimum
+
 ```
 
 ---
@@ -89,6 +92,7 @@ minimize    f(x)
 subject to  gᵢ(x) = 0,  i = 1, ..., m
 
 where x ∈ ℝⁿ, m < n (fewer constraints than variables)
+
 ```
 
 ### The Lagrangian Function
@@ -101,6 +105,7 @@ where λ = (λ₁, ..., λₘ) are Lagrange multipliers
 Alternative form (with +):
 L(x, λ) = f(x) + Σᵢ λᵢ gᵢ(x)
 (sign convention varies by textbook)
+
 ```
 
 ### First-Order Necessary Conditions
@@ -118,6 +123,7 @@ Geometric interpretation:
 ∇f(x*) = Σᵢ λᵢ*∇gᵢ(x*)
 
 The objective gradient is a linear combination of constraint gradients!
+
 ```
 
 ---
@@ -128,6 +134,7 @@ The objective gradient is a linear combination of constraint gradients!
 
 ```
 ∇f(x*) + λ*∇g(x*) = 0
+
 ```
 
 **Proof:**
@@ -164,6 +171,7 @@ Therefore: ∇f(x*) ∈ T⊥ = span(∇g(x*))
 Step 5: Conclusion
 ∇f(x*) = -λ*∇g(x*) for some λ* ∈ ℝ
 ⟹ ∇f(x*) + λ*∇g(x*) = 0  ∎
+
 ```
 
 ---
@@ -185,6 +193,7 @@ At optimum on constraint surface:
 (otherwise we could move along surface and improve)
 
 This means ∇f is parallel to ∇g: ∇f = λ∇g
+
 ```
 
 ---
@@ -200,6 +209,7 @@ For minimum: H_L positive definite on tangent space of constraints
 Tangent space: {v : ∇gᵢ(x*)ᵀv = 0 for all i}
 
 Check: vᵀ H_L v > 0 for all v in tangent space
+
 ```
 
 ---
@@ -255,6 +265,7 @@ def lagrange_example():
     return result
 
 result = lagrange_example()
+
 ```
 
 ---
@@ -274,6 +285,7 @@ Example:
 • λ* = 5
 • Meaning: $1 more budget → $5 more profit
 • This is the "shadow price" of money!
+
 ```
 
 ---
@@ -298,6 +310,7 @@ KKT (Karush-Kuhn-Tucker) conditions are **necessary conditions** for optimality 
 |   L(x,μ,λ) = f(x) + Σᵢ μᵢgᵢ(x) + Σⱼ λⱼhⱼ(x)           |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -330,6 +343,7 @@ At the optimal point (x*, μ*, λ*):
 |      If f, gᵢ convex and hⱼ affine → KKT sufficient    |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -364,6 +378,7 @@ Case 2: Constraint INACTIVE (gᵢ < 0)
 |   μᵢ = 0 (constraint irrelevant)|
 |                                 |
 +---------------------------------+
+
 ```
 
 ---
@@ -371,38 +386,48 @@ Case 2: Constraint INACTIVE (gᵢ < 0)
 ## 📐 Example: Quadratic with Inequality
 
 ### Problem
+
 ```
 minimize   f(x,y) = x² + y²
 subject to g(x,y) = x + y - 1 ≤ 0
+
 ```
 
 ### Step 1: Lagrangian
+
 ```
 L(x,y,μ) = x² + y² + μ(x + y - 1)
+
 ```
 
 ### Step 2: KKT Conditions
+
 ```
 ∂L/∂x = 2x + μ = 0  →  x = -μ/2
 ∂L/∂y = 2y + μ = 0  →  y = -μ/2
 
 Complementarity: μ(x + y - 1) = 0
+
 ```
 
 ### Step 3: Solve Cases
 
 **Case A: μ = 0** (constraint inactive)
+
 ```
 x = 0, y = 0
 Check: g(0,0) = -1 ≤ 0 ✓
 Solution: (0, 0), f* = 0
+
 ```
 
 **Case B: g = 0** (constraint active)
+
 ```
 x + y = 1
 x = y = -μ/2
 → -μ = 1 → μ = -1 < 0 ✗ (violates dual feasibility)
+
 ```
 
 **Answer: (0, 0) with f* = 0**
@@ -435,6 +460,7 @@ print(f"Constraint g(x): {g(result.x)}")
 # Check KKT manually
 grad_f = 2 * result.x
 print(f"∇f at optimum: {grad_f}")
+
 ```
 
 ---
@@ -466,6 +492,7 @@ Step 4: Complementary slackness
   
   With μ* ≥ 0 and g(x*) ≤ 0:
   μᵢ*gᵢ(x*) = 0 for each i ∎
+
 ```
 
 ---
@@ -512,6 +539,7 @@ basic-methods/gradient-descent
          ↓
     Interior Point Methods
     (linear-programming/)
+
 ```
 
 ---

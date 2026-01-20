@@ -19,6 +19,7 @@
 
 ```math
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
+
 ```
 
 Where:
@@ -35,6 +36,7 @@ If $q\_i, k\_j \sim \mathcal{N}(0, 1)$ independently:
 
 ```math
 \text{Var}(q^\top k) = \text{Var}\left(\sum_{i=1}^{d_k} q_i k_i\right) = d_k
+
 ```
 
 Large variance → softmax becomes very peaked → vanishing gradients.
@@ -49,6 +51,7 @@ Scaling by $\sqrt{d\_k}$: $\text{Var}\left(\frac{q^\top k}{\sqrt{d\_k}}\right) =
 
 ```math
 \text{output}_i = \sum_j \alpha_{ij} v_j
+
 ```
 
 Where $\alpha\_{ij} = \text{softmax}\left(\frac{q\_i^\top k\_j}{\sqrt{d\_k}}\right)\_j$
@@ -62,6 +65,7 @@ Where $\alpha\_{ij} = \text{softmax}\left(\frac{q\_i^\top k\_j}{\sqrt{d\_k}}\rig
 
 ```math
 \text{score}(q, k) = q^\top k
+
 ```
 
 High score = high relevance = more weight in output.
@@ -74,6 +78,7 @@ High score = high relevance = more weight in output.
 
 ```math
 \text{score}(q, k) = \frac{q^\top k}{\sqrt{d_k}}
+
 ```
 
 **Complexity:** $O(n \cdot m \cdot d\_k)$
@@ -82,6 +87,7 @@ High score = high relevance = more weight in output.
 
 ```math
 \text{score}(q, k) = v^\top \tanh(W_q q + W_k k)
+
 ```
 
 Where $W\_q, W\_k, v$ are learnable parameters.
@@ -92,6 +98,7 @@ Where $W\_q, W\_k, v$ are learnable parameters.
 
 ```math
 \text{score}(q, k) = q^\top W k
+
 ```
 
 Where $W$ is learnable.
@@ -100,6 +107,7 @@ Where $W$ is learnable.
 
 ```math
 \text{score}(q_i, k_j) = q_i^\top k_j + q_i^\top r_{i-j}
+
 ```
 
 Where $r\_{i-j}$ is a learnable relative position embedding.
@@ -110,12 +118,14 @@ Where $r\_{i-j}$ is a learnable relative position embedding.
 
 ```math
 \text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, ..., \text{head}_h)W^O
+
 ```
 
 Where each head:
 
 ```math
 \text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)
+
 ```
 
 ### Projections
@@ -129,12 +139,14 @@ Where each head:
 
 ```math
 \text{Total params} = h(d_{model} \cdot d_k + d_{model} \cdot d_k + d_{model} \cdot d_v) + hd_v \cdot d_{model}
+
 ```
 
 With $d\_k = d\_v = d\_{model}/h$:
 
 ```math
 = 4 \cdot d_{model}^2
+
 ```
 
 ### Why Multiple Heads?
@@ -155,6 +167,7 @@ $Q, K, V$ all come from the same sequence $X$:
 
 ```math
 Q = XW^Q, \quad K = XW^K, \quad V = XW^V
+
 ```
 
 **Use:** Transformers encoder, GPT decoder
@@ -165,6 +178,7 @@ $Q$ from one sequence, $K, V$ from another:
 
 ```math
 Q = XW^Q, \quad K = YW^K, \quad V = YW^V
+
 ```
 
 **Use:** Encoder-decoder (translation), CLIP, Stable Diffusion
@@ -177,6 +191,7 @@ Q = XW^Q, \quad K = YW^K, \quad V = YW^V
 
 ```math
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}} + M\right)V
+
 ```
 
 Where $M\_{ij} = \begin{cases} 0 & i \geq j \\ -\infty & i < j \end{cases}$
@@ -196,6 +211,7 @@ Mask out padding tokens to prevent attention to them.
 ```math
 A = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)
 O = AV
+
 ```
 
 ### Backward
@@ -205,12 +221,14 @@ Given $\frac{\partial \mathcal{L}}{\partial O}$:
 ```math
 \frac{\partial \mathcal{L}}{\partial V} = A^\top \frac{\partial \mathcal{L}}{\partial O}
 \frac{\partial \mathcal{L}}{\partial A} = \frac{\partial \mathcal{L}}{\partial O} V^\top
+
 ```
 
 For softmax with scores $S = QK^\top / \sqrt{d\_k}$:
 
 ```math
 \frac{\partial \mathcal{L}}{\partial S_{ij}} = A_{ij}\left(\frac{\partial \mathcal{L}}{\partial A_{ij}} - \sum_k A_{ik}\frac{\partial \mathcal{L}}{\partial A_{ik}}\right)
+
 ```
 
 Then:
@@ -218,6 +236,7 @@ Then:
 ```math
 \frac{\partial \mathcal{L}}{\partial Q} = \frac{1}{\sqrt{d_k}}\frac{\partial \mathcal{L}}{\partial S} K
 \frac{\partial \mathcal{L}}{\partial K} = \frac{1}{\sqrt{d_k}}\frac{\partial \mathcal{L}}{\partial S}^\top Q
+
 ```
 
 ---
@@ -332,6 +351,7 @@ mask = causal_mask(seq_len, x.device)
 output, attn_weights = mha(x, x, x, mask)  # Self-attention
 print(f"Output shape: {output.shape}")  # (32, 100, 512)
 print(f"Attention weights: {attn_weights.shape}")  # (32, 8, 100, 100)
+
 ```
 
 ---

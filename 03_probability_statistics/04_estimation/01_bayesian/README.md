@@ -27,6 +27,7 @@
 
 ```math
 P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}
+
 ```
 
 | Term | Name | Role |
@@ -40,6 +41,7 @@ P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}
 
 ```math
 \log P(\theta|D) = \underbrace{\log P(D|\theta)}_{\text{log-likelihood}} + \underbrace{\log P(\theta)}_{\text{log-prior}} - \underbrace{\log P(D)}_{\text{constant}}
+
 ```
 
 **Key insight:** Posterior ∝ Likelihood × Prior
@@ -52,6 +54,7 @@ For new observation $x^*$:
 
 ```math
 P(x^*|D) = \int P(x^*|\theta) \cdot P(\theta|D) \, d\theta
+
 ```
 
 **This is the key advantage of Bayesian inference:**
@@ -69,6 +72,7 @@ Prior $P(\theta)$ is **conjugate** to likelihood $P(D|\theta)$ if:
 
 ```math
 P(\theta|D) \in \text{same family as } P(\theta)
+
 ```
 
 ### Proof: Beta-Bernoulli Conjugacy
@@ -77,12 +81,14 @@ P(\theta|D) \in \text{same family as } P(\theta)
 
 ```math
 P(\theta) = \frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha, \beta)}
+
 ```
 
 **Likelihood:** $D = \{x\_1, \ldots, x\_n\}$ where $x\_i \sim \text{Bernoulli}(\theta)$
 
 ```math
 P(D|\theta) = \theta^k (1-\theta)^{n-k}
+
 ```
 
 where $k = \sum\_{i=1}^n x\_i$ (number of successes).
@@ -94,6 +100,7 @@ P(\theta|D) \propto P(D|\theta) \cdot P(\theta)
 \propto \theta^k (1-\theta)^{n-k} \cdot \theta^{\alpha-1}(1-\theta)^{\beta-1}
 = \theta^{(\alpha+k)-1}(1-\theta)^{(\beta+n-k)-1}
 \therefore \theta|D \sim \text{Beta}(\alpha + k, \beta + n - k) \quad \blacksquare
+
 ```
 
 **Interpretation:**
@@ -124,6 +131,7 @@ P(\theta|D) \propto P(D|\theta) \cdot P(\theta)
 
 ```math
 \mu | D \sim \mathcal{N}(\mu_n, \sigma_n^2)
+
 ```
 
 where:
@@ -131,6 +139,7 @@ where:
 ```math
 \frac{1}{\sigma_n^2} = \frac{1}{\sigma_0^2} + \frac{n}{\sigma^2}
 \frac{\mu_n}{\sigma_n^2} = \frac{\mu_0}{\sigma_0^2} + \frac{n\bar{x}}{\sigma^2}
+
 ```
 
 **Precision form (more intuitive):**
@@ -138,6 +147,7 @@ where:
 ```math
 \text{Posterior precision} = \text{Prior precision} + \text{Data precision}
 \text{Posterior mean} = \text{Weighted average of prior mean and sample mean}
+
 ```
 
 ---
@@ -152,12 +162,14 @@ Start with log-evidence:
 
 ```math
 \log P(D) = \log \int P(D, \theta) \, d\theta
+
 ```
 
 Introduce approximate posterior $q(\theta)$:
 
 ```math
 \log P(D) = \log \int \frac{P(D, \theta)}{q(\theta)} q(\theta) \, d\theta
+
 ```
 
 Apply Jensen's inequality ($\log$ is concave):
@@ -166,6 +178,7 @@ Apply Jensen's inequality ($\log$ is concave):
 \log P(D) \geq \int q(\theta) \log \frac{P(D, \theta)}{q(\theta)} d\theta
 = \int q(\theta) \log \frac{P(D|\theta)P(\theta)}{q(\theta)} d\theta
 = \underbrace{E_q[\log P(D|\theta)]}_{\text{reconstruction}} - \underbrace{D_{KL}(q(\theta) \| P(\theta))}_{\text{regularization}}
+
 ```
 
 This is the **ELBO** (Evidence Lower Bound).
@@ -174,6 +187,7 @@ This is the **ELBO** (Evidence Lower Bound).
 
 ```math
 \text{ELBO} = \log P(D) - D_{KL}(q(\theta) \| P(\theta|D))
+
 ```
 
 Since $D\_{KL} \geq 0$, ELBO ≤ log P(D). Maximizing ELBO:
@@ -196,6 +210,7 @@ The smallest interval containing 95% posterior probability:
 
 ```math
 \text{HPD}_{0.95} = \{\theta : P(\theta|D) \geq k\}
+
 ```
 
 where $k$ is chosen so $\int\_{\text{HPD}} P(\theta|D) d\theta = 0.95$.
@@ -263,6 +278,7 @@ posterior = bayesian_coin_flip(data, prior_alpha=1, prior_beta=1)
 
 # With informative prior (believing coin is fair)
 posterior_informative = bayesian_coin_flip(data, prior_alpha=10, prior_beta=10)
+
 ```
 
 ### Gaussian-Gaussian Conjugate Update
@@ -305,6 +321,7 @@ def gaussian_posterior(data, prior_mean, prior_var, likelihood_var):
 # Example
 data = np.random.normal(5, 2, 50)  # True mean = 5
 gaussian_posterior(data, prior_mean=0, prior_var=10, likelihood_var=4)
+
 ```
 
 ### Variational Inference
@@ -373,6 +390,7 @@ def log_likelihood(theta):
 vi = VariationalInference(dim=1)
 mu, std = vi.fit(log_likelihood)
 print(f"\nApproximate posterior: N({mu.item():.4f}, {std.item():.4f})")
+
 ```
 
 ### MCMC with PyMC
@@ -424,6 +442,7 @@ true_beta = np.array([2.0, -1.0])
 y = 1.0 + X @ true_beta + 0.5 * np.random.randn(100)
 
 trace, model = bayesian_linear_regression(X, y)
+
 ```
 
 ---

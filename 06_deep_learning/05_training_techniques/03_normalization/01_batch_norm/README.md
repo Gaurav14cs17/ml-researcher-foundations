@@ -30,18 +30,21 @@ For a mini-batch \(\mathcal{B} = \{x_1, \ldots, x_m\}\):
 ```math
 \mu_{\mathcal{B}} = \frac{1}{m} \sum_{i=1}^{m} x_i
 \sigma^2_{\mathcal{B}} = \frac{1}{m} \sum_{i=1}^{m} (x_i - \mu_{\mathcal{B}})^2
+
 ```
 
 **Step 2: Normalize**
 
 ```math
 \hat{x}_i = \frac{x_i - \mu_{\mathcal{B}}}{\sqrt{\sigma^2_{\mathcal{B}} + \epsilon}}
+
 ```
 
 **Step 3: Scale and shift (learnable)**
 
 ```math
 y_i = \gamma \hat{x}_i + \beta
+
 ```
 
 where:
@@ -67,6 +70,7 @@ With BatchNorm:
 Layer 2 always sees normalized inputs (μ≈0, σ≈1)
 → Stable learning dynamics
 → Faster convergence
+
 ```
 
 ### 2. Smoothing the Loss Landscape (Modern Understanding)
@@ -81,11 +85,13 @@ Mathematical insight:
 Without BatchNorm: ∇L has high variance across batches
 With BatchNorm: ∇L is more consistent
 → Optimization becomes easier
+
 ```
 
 ### 3. Regularization Effect
 
 BatchNorm adds noise during training (batch statistics vary):
+
 ```
 Training: Use batch statistics (noisy)
 - μ_B varies between batches
@@ -94,6 +100,7 @@ Training: Use batch statistics (noisy)
 Inference: Use running averages (stable)
 - μ_running = α · μ_running + (1-α) · μ_B
 - σ²_running = α · σ²_running + (1-α) · σ²_B
+
 ```
 
 ---
@@ -108,35 +115,43 @@ Given \(\frac{\partial L}{\partial y_i}\), compute gradients with respect to \(\
 
 ```math
 \frac{\partial L}{\partial \gamma} = \sum_{i=1}^{m} \frac{\partial L}{\partial y_i} \cdot \hat{x}_i
+
 ```
 
 **Gradient with respect to \(\beta\):**
 
 ```math
 \frac{\partial L}{\partial \beta} = \sum_{i=1}^{m} \frac{\partial L}{\partial y_i}
+
 ```
 
 **Gradient with respect to \(\hat{x}_i\):**
 
 ```math
 \frac{\partial L}{\partial \hat{x}_i} = \frac{\partial L}{\partial y_i} \cdot \gamma
+
 ```
 
 **Gradient with respect to \(\sigma^2_{\mathcal{B}}\):**
+
 ```
 ∂L/∂σ²_B = Σᵢ ∂L/∂x̂ᵢ · (xᵢ - μ_B) · (-1/2)(σ²_B + ε)^(-3/2)
          = -1/2 · (σ²_B + ε)^(-3/2) · Σᵢ ∂L/∂x̂ᵢ · (xᵢ - μ_B)
+
 ```
 
 **Gradient with respect to \(\mu_{\mathcal{B}}\):**
+
 ```
 ∂L/∂μ_B = Σᵢ ∂L/∂x̂ᵢ · (-1/√(σ²_B + ε))
         + ∂L/∂σ²_B · (-2/m) Σᵢ (xᵢ - μ_B)
         = -1/√(σ²_B + ε) · Σᵢ ∂L/∂x̂ᵢ + 0
         (second term is 0 because Σᵢ(xᵢ - μ_B) = 0)
+
 ```
 
 **Gradient with respect to \(x_i\):**
+
 ```
 ∂L/∂xᵢ = ∂L/∂x̂ᵢ · 1/√(σ²_B + ε)
        + ∂L/∂σ²_B · 2(xᵢ - μ_B)/m
@@ -144,6 +159,7 @@ Given \(\frac{\partial L}{\partial y_i}\), compute gradients with respect to \(\
 
 Simplified form:
 ∂L/∂xᵢ = (1/m) · (1/√(σ²_B + ε)) · [m · ∂L/∂x̂ᵢ - Σⱼ ∂L/∂x̂ⱼ - x̂ᵢ · Σⱼ ∂L/∂x̂ⱼ · x̂ⱼ]
+
 ```
 
 ---
@@ -175,6 +191,7 @@ Instance Norm: Normalize over (H, W) for each (N, C)
 
 Group Norm: Normalize over (C/G, H, W) for G groups
 → Statistics: μ, σ² ∈ ℝᴺˣᴳ
+
 ```
 
 ---
@@ -296,6 +313,7 @@ print(f"Output var: {out.var(axis=0)[:5]}")    # Should be close to gamma² (1)
 dout = np.random.randn(*out.shape)
 dx, dgamma, dbeta = bn.backward(dout)
 print(f"Gradient shapes: dx={dx.shape}, dgamma={dgamma.shape}, dbeta={dbeta.shape}")
+
 ```
 
 ### PyTorch Implementation
@@ -436,6 +454,7 @@ def test_batchnorm_effect():
             print(f"  After layer {i}: mean={out.mean():.4f}, std={out.std():.4f}")
 
 test_batchnorm_effect()
+
 ```
 
 ### Fused BatchNorm for Inference
@@ -494,6 +513,7 @@ x_test = torch.randn(1, 64, 32, 32)
 out_original = bn(conv(x_test))
 out_fused = fused(x_test)
 print(f"Max difference: {(out_original - out_fused).abs().max():.2e}")
+
 ```
 
 ---
@@ -527,6 +547,7 @@ x = relu(bn(conv(x)))  # Standard (usually fine)
 
 # ✅ Consider: For residual connections
 x = bn(relu(conv(x)))  # Sometimes better for gradients
+
 ```
 
 ---

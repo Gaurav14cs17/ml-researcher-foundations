@@ -62,6 +62,7 @@ Finding Winning Tickets:
 2. Prune smallest weights
 3. Reset remaining weights to ORIGINAL initialization
 4. Retrain from scratch → Same accuracy!
+
 ```
 
 ---
@@ -81,17 +82,21 @@ Finding Winning Tickets:
 
 ### COO (Coordinate)
 Store (row, col, value) for each non-zero:
+
 ```python
 # Dense: [[1, 0, 2], [0, 0, 3], [4, 0, 0]]
 # COO: rows=[0,0,1,2], cols=[0,2,2,0], vals=[1,2,3,4]
+
 ```
 
 ### CSR (Compressed Sparse Row)
 More efficient for row-wise operations:
+
 ```python
 # vals = [1, 2, 3, 4]
 # col_idx = [0, 2, 2, 0]  
 # row_ptr = [0, 2, 3, 4]  # Start of each row
+
 ```
 
 ---
@@ -107,10 +112,12 @@ More efficient for row-wise operations:
 
 ### NVIDIA 2:4 Sparsity
 Every 4 consecutive elements, exactly 2 must be zero:
+
 ```
 [1.0, 0.0, 0.5, 0.0]  ✓ Valid
 [1.0, 0.5, 0.0, 0.0]  ✓ Valid
 [1.0, 0.5, 0.3, 0.0]  ✗ Invalid
+
 ```
 **Result:** 2x speedup with 50% sparsity!
 
@@ -133,6 +140,7 @@ for epoch in training:
         # Grow new weights based on gradient
         grow_mask = gradient_threshold(gradients)
         update_sparsity_mask(drop_mask, grow_mask)
+
 ```
 
 ---
@@ -178,6 +186,7 @@ For a dense network \( f(x; \theta_0) \) with random initialization \( \theta_0 
 
 ```math
 \text{Acc}(f(\cdot; m \odot \theta^*_{sparse})) \approx \text{Acc}(f(\cdot; \theta^*_{dense}))
+
 ```
 
 where:
@@ -195,24 +204,28 @@ where:
 
 ```math
 \text{Memory}_{COO} = \text{nnz} \times (2 \times \text{idx\_size} + \text{val\_size})
+
 ```
 
 For nnz non-zeros with INT32 indices and FP32 values:
 
 ```math
 \text{Memory}_{COO} = \text{nnz} \times (2 \times 4 + 4) = 12 \times \text{nnz} \text{ bytes}
+
 ```
 
 #### CSR (Compressed Sparse Row) Storage
 
 ```math
 \text{Memory}_{CSR} = \text{nnz} \times (\text{idx\_size} + \text{val\_size}) + (n_{rows}+1) \times \text{ptr\_size}
+
 ```
 
 For matrix \( A \in \mathbb{R}^{m \times n} \):
 
 ```math
 \text{Memory}_{CSR} = 8 \times \text{nnz} + 4 \times (m+1) \text{ bytes}
+
 ```
 
 **CSR is more efficient for row-wise operations** (common in ML).
@@ -223,12 +236,14 @@ Dense is better when:
 
 ```math
 m \times n \times \text{val\_size} < \text{nnz} \times (\text{idx\_size} + \text{val\_size})
+
 ```
 
 For FP32 with INT32 indices:
 
 ```math
 \frac{\text{nnz}}{m \times n} > \frac{4}{8} = 0.5
+
 ```
 
 **Conclusion:** Use dense format when >50% non-zeros.
@@ -247,12 +262,14 @@ For weights \( W = [w_1, w_2, w_3, w_4] \), the 2:4 approximation keeps the 2 la
 
 ```math
 \hat{W} = [w_1, 0, w_3, 0] \text{ if } |w_1|, |w_3| \geq |w_2|, |w_4|
+
 ```
 
 **Approximation Error:**
 
 ```math
 \|\hat{W} - W\|_F^2 = w_2^2 + w_4^2
+
 ```
 
 **Theorem:** 2:4 pruning retains the top-50% magnitude weights within each group.
@@ -272,12 +289,14 @@ At each update step:
 
 ```math
 \mathcal{D} = \{(i,j) : |w_{ij}| < \tau_{\text{drop}}\}
+
 ```
 
 **Grow criterion:**
 
 ```math
 \mathcal{G} = \{(i,j) : |g_{ij}| > \tau_{\text{grow}} \land (i,j) \notin \text{active}\}
+
 ```
 
 where \( g_{ij} = \frac{\partial \mathcal{L}}{\partial w_{ij}} \).
@@ -286,6 +305,7 @@ where \( g_{ij} = \frac{\partial \mathcal{L}}{\partial w_{ij}} \).
 
 ```math
 \alpha_t = \alpha_0 \left(1 - \frac{t}{T}\right)^3
+
 ```
 
 Cubic decay: More exploration early, more exploitation later.
@@ -298,6 +318,7 @@ Cubic decay: More exploration early, more exploitation later.
 
 ```math
 \min_{\hat{W}} \|WX - \hat{W}X\|_F^2 \quad \text{s.t.} \quad \hat{W} \text{ is } s\text{-sparse}
+
 ```
 
 **Solution using Hessian information:**
@@ -306,17 +327,20 @@ For each column \( j \), the optimal update when pruning \( w_j \):
 
 ```math
 \delta_{j:} = -\frac{w_j}{[H^{-1}]_{jj}} \cdot [H^{-1}]_{:j}
+
 ```
 
 where \( H = XX^T \) is the Hessian approximation.
 
 **Algorithm (column-by-column):**
+
 ```
 for j in columns:
     if should_prune(w_j):
         # Compensate remaining weights
         w_{j+1:} += w_j * H^{-1}_{j+1:,j} / H^{-1}_{jj}
         w_j = 0
+
 ```
 
 **Complexity:** \( O(d^2) \) per layer (one-shot, no retraining!)
@@ -329,6 +353,7 @@ for j in columns:
 
 ```math
 S_l = \frac{\Delta \mathcal{L}}{\Delta s_l}
+
 ```
 
 where \( \Delta \mathcal{L} \) is loss increase when pruning layer \( l \) to sparsity \( s_l \).
@@ -357,6 +382,7 @@ For sparse matrix \( A \) with nnz non-zeros, computing \( y = Ax \):
 
 ```math
 \text{Speedup} = \frac{mn}{\text{nnz}} = \frac{1}{1-s}
+
 ```
 
 At 90% sparsity: theoretical 10× speedup.
@@ -374,6 +400,7 @@ At 90% sparsity: theoretical 10× speedup.
 
 ```math
 I(X; \hat{Y}) \approx I(X; Y)
+
 ```
 
 where:
@@ -468,6 +495,7 @@ def sparse_gpt_prune(W, X, sparsity=0.5):
                 W_pruned[i, j] = 0
     
     return W_pruned
+
 ```
 
 ### RigL Dynamic Sparsity
@@ -533,6 +561,7 @@ class RigLScheduler:
             
             # Zero out dropped weights
             param.data *= self.masks[name]
+
 ```
 
 ---

@@ -38,6 +38,7 @@ It combines:
 |               ravines                                   |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -64,6 +65,7 @@ For each step:
 |   6. θ_t = θ_{t-1} - α·m̂_t/(√v̂_t + ε)  # Update       |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -94,6 +96,7 @@ For each step:
 ## 💻 Code Examples
 
 ### PyTorch
+
 ```python
 import torch.optim as optim
 
@@ -119,9 +122,11 @@ for epoch in range(epochs):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+
 ```
 
 ### With Learning Rate Schedule (GPT-style)
+
 ```python
 from transformers import get_linear_schedule_with_warmup
 
@@ -135,6 +140,7 @@ scheduler = get_linear_schedule_with_warmup(
 # In training loop:
 optimizer.step()
 scheduler.step()
+
 ```
 
 ---
@@ -198,6 +204,7 @@ For each iteration:
 |  6. θₜ ← θₜ₋₁ - α·m̂ₜ/(√v̂ₜ + ε)  # Parameter update    |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -221,6 +228,7 @@ Effective window:
   β₁ = 0.99 → w = 100 gradients
 
 Effect: Smooths noisy gradients (like momentum)
+
 ```
 
 **Component 2: Adaptive Learning Rate (RMSprop)**
@@ -243,6 +251,7 @@ Update:
   
   Effect: Larger steps for parameters with small gradients
           Smaller steps for parameters with large gradients
+
 ```
 
 **Component 3: Bias Correction**
@@ -265,6 +274,7 @@ Solution: Divide by (1 - β₁ᵗ)
         = E[gₜ]  ✓ (unbiased!)
 
 As t → ∞: (1 - β₁ᵗ) → 1, so correction vanishes
+
 ```
 
 **Putting It Together: Adam Update**
@@ -280,6 +290,7 @@ Interpretation:
   • Numerator: Bias-corrected momentum
   • Denominator: Bias-corrected RMS of gradients
   • Result: Adaptive per-parameter learning rates
+
 ```
 
 ---
@@ -298,6 +309,7 @@ Early iterations (t=1):
             = θ₀ - 3.16·α·sign(g₁)
   
   Problem: Step size 3× too large in early iterations!
+
 ```
 
 **With Bias Correction:**
@@ -311,6 +323,7 @@ Early iterations (t=1):
             ≈ θ₀ - α·sign(g₁)
   
   Correct behavior! Step size ≈ α as expected
+
 ```
 
 **Convergence of Bias:**
@@ -323,6 +336,7 @@ Bias factor: bₜ = 1 - β₁ᵗ
   t=100:  b₁₀₀ = 0.9999 (essentially 1)
 
 After ~20-30 iterations, bias correction has minimal effect
+
 ```
 
 ---
@@ -342,6 +356,7 @@ Counterexample: Simple online learning problem
 
 Problem: Adaptive learning rate can cause non-convergence
          when gradient variance is high
+
 ```
 
 **AMSGrad Fix:**
@@ -357,6 +372,7 @@ Effect: Ensures learning rate never increases
 Result: Provable convergence (under standard assumptions)
 
 Practical note: AMSGrad rarely better than Adam empirically
+
 ```
 
 **Convergence Rate (Under Assumptions):**
@@ -371,6 +387,7 @@ For non-convex f:
   Interpretation: Finds stationary point in O(1/ε²) iterations
 
 Similar to SGD, but often faster in practice due to adaptivity
+
 ```
 
 ---
@@ -391,6 +408,7 @@ Standard L2 regularization:
     
   Problem: Weight decay gets scaled by adaptive learning rate!
            Not equivalent to L2 regularization
+
 ```
 
 **AdamW Solution (Loshchilov & Hutter, 2019):**
@@ -409,6 +427,7 @@ Decouple weight decay from gradient:
 
 Effect: Weight decay independent of learning rate and adaptivity
 Result: Much better for transformer training
+
 ```
 
 **Why AdamW Works Better:**
@@ -428,6 +447,7 @@ AdamW:
 
 Empirical result (BERT, GPT):
   AdamW consistently outperforms Adam + L2
+
 ```
 
 ---
@@ -448,6 +468,7 @@ Consider neural network:
   With fixed LR α = 0.01:
     Δb₁ = 0.00001  (too small!)
     ΔW₂ = 0.1       (too large!)
+
 ```
 
 **Adam's Adaptive Scaling:**
@@ -464,6 +485,7 @@ Effect:
   Small typical gradients → Small √vᵢ → Large α_eff
   
   Automatically balances learning rates!
+
 ```
 
 **Mathematical Justification:**
@@ -486,6 +508,7 @@ Adam approximates Newton with diagonal Hessian!
   Vₜ ≈ diag(H)  (diagonal of Hessian)
   
   Cost: O(n) instead of O(n³) for full Newton
+
 ```
 
 ---
@@ -505,6 +528,7 @@ At t=1 with random initialization:
     ||Δθ₁|| = α·||m̂₁||/√v̂₁ can be huge
     
   Result: Training instability, NaN loss
+
 ```
 
 **Linear Warmup Solution:**
@@ -522,6 +546,7 @@ For first T_warmup steps:
 
 Effect: Start with tiny LR, gradually increase
 Result: Stable training from start
+
 ```
 
 **Why Transformers Especially Need Warmup:**
@@ -536,6 +561,7 @@ Transformers have:
   
   Without warmup: Embedding gradients destroy initialization
   With warmup: Gradual adaptation to data statistics
+
 ```
 
 **Typical Schedule (BERT/GPT):**
@@ -551,6 +577,7 @@ Schedule:
   or
   
   t > 10k:    α(t) = α_max · (T-t)/(T-T_warmup)   (linear decay)
+
 ```
 
 ---
@@ -558,6 +585,7 @@ Schedule:
 ### 8. Adam Variants: A Zoo of Optimizers
 
 **RMSprop (Hinton, 2012):**
+
 ```
 No momentum, just adaptive LR:
   
@@ -565,9 +593,11 @@ No momentum, just adaptive LR:
   θₜ = θₜ₋₁ - α·gₜ/√(vₜ + ε)
   
   Used in: Early RNNs, some RL
+
 ```
 
 **AdaGrad (Duchi et al., 2011):**
+
 ```
 Sum all past gradients (no exponential decay):
   
@@ -576,16 +606,20 @@ Sum all past gradients (no exponential decay):
   
   Problem: vₜ grows unbounded → learning rate → 0
   Good for: Sparse gradients (NLP with count features)
+
 ```
 
 **AdamW (Loshchilov & Hutter, 2019):**
+
 ```
 Adam + decoupled weight decay (covered above)
   
   Default for: Transformers (BERT, GPT, etc.)
+
 ```
 
 **Nadam (Dozat, 2016):**
+
 ```
 Adam + Nesterov momentum:
   
@@ -593,17 +627,21 @@ Adam + Nesterov momentum:
   θₜ = θₜ₋₁ - α·(β₁·m̂ₜ + (1-β₁)·gₜ/(1-β₁ᵗ))/√(v̂ₜ + ε)
   
   Slightly better than Adam in some cases
+
 ```
 
 **RAdam (Liu et al., 2020):**
+
 ```
 Rectified Adam: Better bias correction
   
   Adapts learning rate based on variance estimate quality
   Claims to avoid need for warmup (debated)
+
 ```
 
 **LAMB (You et al., 2020):**
+
 ```
 Layer-wise Adaptive Moments:
   
@@ -613,6 +651,7 @@ Layer-wise Adaptive Moments:
   Effect: Layer-wise learning rate adaptation
   Used for: Very large batch training (batch 64k+)
   Application: BERT trained in 76 minutes!
+
 ```
 
 ---
@@ -638,6 +677,7 @@ Tuning strategy:
   2. If unstable, reduce by 3× (3e-4)
   3. If too slow, increase by 3× (3e-3)
   4. Fine-tune within ±30%
+
 ```
 
 **β₁ (First Moment Decay):**
@@ -655,6 +695,7 @@ Typical adjustments:
   • Need responsiveness: β₁ = 0.85 (less smoothing)
   
 Most people never change this!
+
 ```
 
 **β₂ (Second Moment Decay):**
@@ -674,6 +715,7 @@ When to change:
   • Sparse gradients: β₂ = 0.98
   
 99% of users: Keep default 0.999
+
 ```
 
 **ε (Numerical Stability):**
@@ -689,6 +731,7 @@ Only matters when:
   • Mixed precision training (fp16): Use ε = 1e-7
 
 Advice: Forget this parameter exists
+
 ```
 
 ---
@@ -716,6 +759,7 @@ Tie:
   ≈ Small fully connected networks
   ≈ Logistic regression
   ≈ Simple problems
+
 ```
 
 **Why the Difference?**
@@ -737,6 +781,7 @@ Recommendation:
   2. If not good enough, try SGD+Momentum
   3. Tune LR carefully for SGD
   4. For transformers: Always AdamW
+
 ```
 
 ---
@@ -744,6 +789,7 @@ Recommendation:
 ### 11. Common Pitfalls and Solutions
 
 **1. Forgetting Weight Decay:**
+
 ```
 Problem: Adam without weight decay → overfitting
 
@@ -752,17 +798,21 @@ Solution:
   
   NOT:
   optimizer = torch.optim.Adam(params, lr=1e-4, weight_decay=0.01)
+
 ```
 
 **2. No Learning Rate Schedule:**
+
 ```
 Problem: Constant LR → suboptimal final performance
 
 Solution: Add cosine annealing or linear decay
   scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(...)
+
 ```
 
 **3. Wrong Warmup:**
+
 ```
 Problem: Start with full LR → NaN loss
 
@@ -771,9 +821,11 @@ Solution: Always warmup for transformers
       lr = max_lr * step / warmup_steps
       for param_group in optimizer.param_groups:
           param_group['lr'] = lr
+
 ```
 
 **4. Batch Size Scaling:**
+
 ```
 Problem: Increase batch size, keep same LR → worse results
 
@@ -781,6 +833,7 @@ Linear scaling rule (Goyal et al.):
   batch=256, lr=1e-4  →  batch=1024, lr=4e-4
   
   But: Only works up to certain batch size (∼2048)
+
 ```
 
 ---
@@ -833,6 +886,7 @@ optimizer = Adam(params, lr=1e-3, betas=(0.9, 0.999))
 for epoch in range(1000):
     grads = compute_gradients(params)  # Your gradient computation
     optimizer.step(grads)
+
 ```
 
 ---

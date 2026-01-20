@@ -40,6 +40,7 @@ Solutions:
 3. Architecture:
    Add new modules for new tasks
    Freeze old modules
+
 ```
 
 ---
@@ -58,6 +59,7 @@ class EWC:
         for n, p in model.named_parameters():
             loss += (self.fisher[n] * (p - self.saved_params[n])**2).sum()
         return self.importance * loss
+
 ```
 
 ---

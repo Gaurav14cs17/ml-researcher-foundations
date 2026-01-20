@@ -22,15 +22,18 @@
 ## 📐 Key Components
 
 ### 1. **Representation (Chromosome)**
+
 ```
 Solution encoded as "genes"
 Examples:
 • Binary string: 101101001
 • Real vector: [2.3, -1.5, 0.8]
 • Permutation: [3, 1, 4, 2]
+
 ```
 
 ### 2. **Fitness Function**
+
 ```
 Evaluates quality of a solution
 f(x) → ℝ  (higher = better)
@@ -38,18 +41,22 @@ f(x) → ℝ  (higher = better)
 Examples:
 • Minimize distance → fitness = -distance
 • Maximize accuracy → fitness = accuracy
+
 ```
 
 ### 3. **Selection**
+
 ```
 Choose parents for breeding
 Methods:
 • Roulette wheel: P(select) ∝ fitness
 • Tournament: Best of k random
 • Rank-based: Sort by fitness
+
 ```
 
 ### 4. **Crossover (Recombination)**
+
 ```
 Combine two parents → offspring
 
@@ -59,15 +66,18 @@ Parent 2: 01101|110
          -----+---
 Child 1:  11011|110
 Child 2:  01101|001
+
 ```
 
 ### 5. **Mutation**
+
 ```
 Random changes to maintain diversity
 
 Binary: Flip bit with probability p
 Real: Add Gaussian noise
 Permutation: Swap two positions
+
 ```
 
 ---
@@ -102,6 +112,7 @@ for generation in range(max_generations):
     population = select_survivors(population + offspring, size=N)
 
 return best(population)
+
 ```
 
 ---
@@ -180,6 +191,7 @@ class GeneticAlgorithm:
 ga = GeneticAlgorithm(pop_size=50, gene_length=20)
 best = ga.evolve(generations=50)
 print(f"Best solution: {best}")
+
 ```
 
 ---
@@ -187,27 +199,33 @@ print(f"Best solution: {best}")
 ## 📊 Example Problems
 
 ### 1. **Traveling Salesman Problem (TSP)**
+
 ```python
 # Chromosome: Permutation of cities [3,1,4,2,5]
 # Fitness: -total_distance
 # Crossover: Order crossover (preserve relative order)
 # Mutation: Swap two cities
+
 ```
 
 ### 2. **Function Optimization**
+
 ```python
 # Chromosome: Real vector [x₁, x₂, ..., xₙ]
 # Fitness: f(x)
 # Crossover: Arithmetic (0.5*parent1 + 0.5*parent2)
 # Mutation: Gaussian noise
+
 ```
 
 ### 3. **Neural Network Architecture Search**
+
 ```python
 # Chromosome: [layers, neurons, activation, ...]
 # Fitness: Validation accuracy
 # Crossover: Mix architectures
 # Mutation: Change layer size/type
+
 ```
 
 ---
@@ -226,21 +244,25 @@ print(f"Best solution: {best}")
 ## 🌍 Advantages & Limitations
 
 ### ✅ Advantages
+
 ```
 • No gradient needed
 • Handles discrete/combinatorial problems
 • Parallelizable
 • Explores diverse solutions
 • Can escape local optima
+
 ```
 
 ### ❌ Limitations
+
 ```
 • Slow convergence
 • Many hyperparameters
 • No convergence guarantees
 • Expensive function evaluations
 • Not suitable for high-dimensional continuous problems
+
 ```
 
 ---
@@ -248,24 +270,30 @@ print(f"Best solution: {best}")
 ## 🔄 Variants
 
 ### **Evolution Strategies (ES)**
+
 ```
 • Focus on mutation, not crossover
 • Self-adaptive parameters
 • Used in RL (OpenAI ES)
+
 ```
 
 ### **Genetic Programming (GP)**
+
 ```
 • Evolve programs/trees
 • Variable-length chromosomes
 • Symbolic regression
+
 ```
 
 ### **Differential Evolution**
+
 ```
 • For continuous optimization
 • Mutation: xᵢ + F(xⱼ - xₖ)
 • Often outperforms GA on continuous problems
+
 ```
 
 ---

@@ -24,13 +24,16 @@
 ## 📐 Mathematical Foundations
 
 ### MLP (Multi-Layer Perceptron)
+
 ```
 y = Wₙσ(Wₙ₋₁σ(...σ(W₁x + b₁)...) + bₙ₋₁) + bₙ
 
 Parameters: Σᵢ dᵢ × dᵢ₊₁ + dᵢ₊₁
+
 ```
 
 ### CNN (Convolutional Neural Network)
+
 ```
 Convolution:
 (f * g)(x) = Σₖ f(k) g(x - k)
@@ -39,24 +42,29 @@ Convolution:
 yᵢⱼ = Σₘ Σₙ Wₘₙ xᵢ₊ₘ,ⱼ₊ₙ + b
 
 Output size: (W - K + 2P) / S + 1
+
 ```
 
 ### Transformer Self-Attention
+
 ```
 Attention(Q, K, V) = softmax(QKᵀ / √dₖ) V
 
 Multi-head:
 MultiHead = Concat(head₁, ..., headₕ) Wᴼ
 headᵢ = Attention(XWᵢᴽ, XWᵢᴷ, XWᵢⱽ)
+
 ```
 
 ### Diffusion Forward/Reverse
+
 ```
 Forward (add noise):
 q(xₜ|xₜ₋₁) = N(xₜ; √(1-βₜ)xₜ₋₁, βₜI)
 
 Reverse (denoise):
 p_θ(xₜ₋₁|xₜ) = N(xₜ₋₁; μ_θ(xₜ, t), Σ_θ(xₜ, t))
+
 ```
 
 ---
@@ -86,6 +94,7 @@ p_θ(xₜ₋₁|xₜ) = N(xₜ₋₁; μ_θ(xₜ, t), Σ_θ(xₜ, t))
 2020:  ViT (Vision Transformer)
 2020:  🔥 Diffusion Models
 2022:  🔥 MoE (Mixtral)
+
 ```
 
 ---
@@ -123,6 +132,7 @@ Neural Network Basics
     +--> Transformer --> GPT, BERT, ViT
                     --> Cross-attention in Diffusion
                     --> MoE (Transformer + routing)
+
 ```
 
 ### Which Architecture For Which Task

@@ -43,6 +43,7 @@ Each operation f_i:
     z_2 = f_2(z_1)            (second operation)
     ...
     z_n = f_n(z_{n-1}) = y    (output)
+
 ```
 
 ### Backward Pass (Chain Rule)
@@ -51,6 +52,7 @@ Each operation f_i:
 ∂y/∂x = ∂y/∂z_{n-1} · ∂z_{n-1}/∂z_{n-2} · ... · ∂z_1/∂x
 
         = ∂f_n/∂z_{n-1} · ∂f_{n-1}/∂z_{n-2} · ... · ∂f_1/∂x
+
 ```
 
 ### Example: Simple Network
@@ -69,6 +71,7 @@ Backward (given ∂L/∂y):
     ∂L/∂z = ∂L/∂a · 1 = ∂L/∂a
     ∂L/∂w = ∂L/∂z · x
     ∂L/∂x = ∂L/∂z · w
+
 ```
 
 ---
@@ -97,6 +100,7 @@ Properties:
 2. Sources = inputs/parameters
 3. Sinks = outputs
 4. Topological order for forward/backward
+
 ```
 
 ---
@@ -185,6 +189,7 @@ y.backward()
 print(f"∂y/∂w = {w.grad}")
 print(f"∂y/∂x = {x.grad}")
 print(f"∂y/∂b = {b.grad}")
+
 ```
 
 ### PyTorch Computational Graph
@@ -212,6 +217,7 @@ y.backward()
 print(f"∂y/∂w = {w.grad}")
 print(f"∂y/∂x = {x.grad}")
 print(f"∂y/∂b = {b.grad}")
+
 ```
 
 ### Visualizing the Graph
@@ -231,6 +237,7 @@ y = model(x)
 # Visualize
 dot = make_dot(y, params=dict(model.named_parameters()))
 dot.render("computational_graph", format="png")
+
 ```
 
 ---
@@ -265,6 +272,7 @@ Example: y = sin(x²)
   dy/dx = dy/du · du/dx
         = cos(u) · 2x
         = 2x·cos(x²)
+
 ```
 
 **Multivariable Chain Rule (The Key!):**
@@ -279,6 +287,7 @@ Then:
   ∂y/∂x_j = Σᵢ (∂y/∂z_i) · (∂z_i/∂x_j)
 
 This is the mathematical heart of backpropagation!
+
 ```
 
 **Vector-to-Scalar Case (Neural Network Loss):**
@@ -295,6 +304,7 @@ where:
   ∂L/∂x ∈ ℝⁿ = gradient wrt input x
 
 Matrix multiplication accumulates gradients through layers!
+
 ```
 
 ---
@@ -321,6 +331,7 @@ Constraints:
   1. DAG: No cycles (topological order exists)
   2. Sources: Input nodes (no incoming edges)
   3. Sink: Output node (typically loss L)
+
 ```
 
 **Topological Ordering:**
@@ -343,6 +354,7 @@ Example:
 Used in:
   • Forward pass: Process nodes in topological order
   • Backward pass: Process nodes in reverse topological order
+
 ```
 
 ---
@@ -361,6 +373,7 @@ For each node v in topological order:
   3. Store x_v for backward pass
 
 Return x_output (typically goes into loss function)
+
 ```
 
 **Example: 2-Layer Network**
@@ -377,6 +390,7 @@ Forward computation:
 
 Each arrow is an operation node in the graph
 Values stored: {x, z₁, a₁, z₂, a₂, L}
+
 ```
 
 **Memory Cost:**
@@ -390,6 +404,7 @@ Deep networks (L=100, d=1000):
   Batch of 32: ≈ 12.8MB
 
 This is why deep learning needs GPUs with large memory!
+
 ```
 
 ---
@@ -411,6 +426,7 @@ For each node v in reverse topological order:
     ∂L/∂u += ∂L/∂v · ∂v/∂u  # Chain rule!
 
 Return {∂L/∂θ_i}
+
 ```
 
 **Key Insight: Gradient Accumulation at Fan-In**
@@ -430,6 +446,7 @@ Example:
 ∂L/∂x = ∂L/∂y₁·∂y₁/∂x + ∂L/∂y₂·∂y₂/∂x
 
 This is why gradients must be accumulated (+=) not overwritten (=)!
+
 ```
 
 **Example: Complete 2-Layer Backprop**
@@ -452,6 +469,7 @@ Backward (given ∂L/∂L = 1):
   ∂L/∂x = W₁ᵀ · ∂L/∂z₁                # If needed
 
 where ⊙ is element-wise multiplication (Hadamard product)
+
 ```
 
 **Computation Cost:**
@@ -463,6 +481,7 @@ Backward: O(L·d²) (same operations, just transposed matrices)
 Total: 2× forward pass (roughly)
 
 Key: Backward pass is NOT more expensive than forward!
+
 ```
 
 ---
@@ -482,6 +501,7 @@ Example: f(x₁,x₂) = [x₁², x₁x₂, x₂²]
   J = [2x₁    0   ]
       [x₂     x₁  ]
       [0      2x₂ ]
+
 ```
 
 **Forward-Mode Autodiff (Jacobian-Vector Product):**
@@ -494,6 +514,7 @@ Total: O(n) forward passes
 
 Good when: n << m (few inputs, many outputs)
 Example: Computing ∂f/∂xᵢ for specific i
+
 ```
 
 **Reverse-Mode Autodiff (Vector-Jacobian Product):**
@@ -508,6 +529,7 @@ Good when: m << n (many inputs, few outputs)
 Example: Neural network (m=1 output loss, n=millions of parameters)
 
 This is why reverse-mode is used in deep learning!
+
 ```
 
 **Proof that Backprop is Efficient:**
@@ -525,6 +547,7 @@ For n = 1,000,000 parameters:
 Speedup: 1,000,000× !
 
 This is why backpropagation revolutionized neural networks.
+
 ```
 
 ---
@@ -544,6 +567,7 @@ Examples:
 
 Gradient: Same shape as input
 Cost: O(size(x))
+
 ```
 
 **Matrix Multiplication:**
@@ -566,6 +590,7 @@ Sum over i,j:
   ∂L/∂W_kl = Σᵢ (∂L/∂Y_ij)·X_ik = [Xᵀ·(∂L/∂Y)]_kl ✓
 
 Memory: Store X and W for backward pass
+
 ```
 
 **Sum/Mean (Reduction Operations):**
@@ -583,6 +608,7 @@ Example:
   ∂L/∂x = [5, 5, 5]  (broadcast)
 
 For mean: ∂L/∂xᵢ = (∂L/∂y)/n
+
 ```
 
 **Indexing/Slicing:**
@@ -597,6 +623,7 @@ Example:
   ∂L/∂x = [0, 7, 0, 0]
 
 Gather/scatter operations in neural networks!
+
 ```
 
 **Concatenation:**
@@ -610,6 +637,7 @@ Example:
   ∂L/∂z = [a, b, c, d]
   ∂L/∂x = [a, b]
   ∂L/∂y = [c, d]
+
 ```
 
 ---
@@ -626,6 +654,7 @@ Deep network (100 layers):
 For ResNet-152 on ImageNet:
   Batch 256 requires ~16GB GPU memory!
   Can't fit larger batches
+
 ```
 
 **Solution: Gradient Checkpointing**
@@ -644,6 +673,7 @@ Extra Compute: O(k) recomputations
 Optimal k = √depth:
   Memory: O(√depth)
   Compute: O(√depth) extra forward passes
+
 ```
 
 **Algorithm:**
@@ -665,6 +695,7 @@ Cost analysis (for n layers):
   
   n = 100: 2×100 = 200 vs 100(1+10) + 100 = 1200
   Overhead: 6× compute for 10× memory savings
+
 ```
 
 **PyTorch Implementation:**
@@ -689,6 +720,7 @@ class CheckpointedModel(nn.Module):
         return x
 
 # Memory usage: ~10× less than without checkpointing!
+
 ```
 
 ---
@@ -717,6 +749,7 @@ Example:
   
   session = tf.Session(graph=graph)
   session.run(y, feed_dict={x: data})
+
 ```
 
 **Dynamic Graph (PyTorch):**
@@ -736,6 +769,7 @@ Example:
   W = torch.randn(784, 10, requires_grad=True)
   y = x @ W  # Graph built on-the-fly
   y.backward(torch.ones_like(y))  # Graph freed after backward
+
 ```
 
 **Modern Approach:**
@@ -746,6 +780,7 @@ Both frameworks now support both modes:
   • PyTorch: torch.jit for static graphs
 
 Trend: Dynamic for research, compile for production
+
 ```
 
 ---
@@ -769,6 +804,7 @@ PyTorch:
   grad_y = torch.autograd.grad(y, x, create_graph=True)[0]
   grad2_y = torch.autograd.grad(grad_y, x)[0]  # Second derivative
   print(grad2_y)  # 12.0 = 6*2
+
 ```
 
 **Applications:**
@@ -785,6 +821,7 @@ PyTorch:
    
 4. Meta-learning:
    MAML requires second-order gradients
+
 ```
 
 ---
@@ -798,6 +835,7 @@ PyTorch:
 2. Need custom backward pass for efficiency
 3. Want to stop gradients in specific way
 4. Implement non-differentiable operations with surrogate gradients
+
 ```
 
 **PyTorch Example:**
@@ -828,6 +866,7 @@ relu = MyReLU.apply
 x = torch.randn(10, requires_grad=True)
 y = relu(x)
 y.sum().backward()
+
 ```
 
 **Straight-Through Estimator (STE):**
@@ -845,6 +884,7 @@ class QuantizeFunction(torch.autograd.Function):
         return grad_output
 
 # Allows training with discrete operations!
+
 ```
 
 ---
@@ -866,6 +906,7 @@ Gradient Checkpointing:
     Don't store all activations
     Recompute during backward
     Trade O(√n) memory for O(√n) extra compute
+
 ```
 
 ---
@@ -885,6 +926,7 @@ Computational Graph
         +-- PyTorch (dynamic graph)
         +-- TensorFlow (static/eager)
         +-- JAX (functional transforms)
+
 ```
 
 ---

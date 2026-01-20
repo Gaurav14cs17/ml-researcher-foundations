@@ -35,6 +35,7 @@ Let $f(x; \theta)$ be a neural network with parameters $\theta\_0$ at initializa
 
 ```math
 \text{Acc}(f_{m \odot \theta_T}) \geq \text{Acc}(f_{\theta_T}) - \epsilon
+
 ```math
 The sparse subnetwork $(m, \theta\_0)$ is called a **winning ticket**.
 
@@ -57,6 +58,7 @@ Output: Winning ticket (m, θ₀)
    d. Reset: θ ← θ₀
    e. m ← m'
 3. Return (m, θ₀)
+
 ```
 
 #### 2.2 Key Insight: Reset to Initialization
@@ -94,6 +96,7 @@ Sparse networks have lower capacity → better generalization.
 **Linear Mode Connectivity (Frankle et al., 2020):**
 
 Two networks $\theta\_1, \theta\_2$ are linearly mode connected if:
+
 ```
 \mathcal{L}(\alpha\theta_1 + (1-\alpha)\theta_2) \leq \max(\mathcal{L}(\theta_1), \mathcal{L}(\theta_2)) \quad \forall \alpha \in [0,1]
 
@@ -105,12 +108,14 @@ This suggests winning tickets lie in the same "basin" of the loss landscape.
 #### 3.3 Neural Tangent Kernel Perspective
 
 **At initialization, network behaves linearly:**
+
 ```
 
 f(x; \theta) \approx f(x; \theta_0) + \nabla_\theta f(x; \theta_0)^T (\theta - \theta_0)
 
 ```math
 **Sparse subnetwork:**
+
 ```
 
 f_m(x; \theta) \approx f(x; \theta_0) + (m \odot \nabla_\theta f(x; \theta_0))^T (\theta - \theta_0)
@@ -140,6 +145,7 @@ Modified IMP:
 3. Prune based on |θ_T|
 4. Reset to θ_k (not θ₀)
 5. Repeat
+
 ```
 
 **Typical:** $k \approx 0.1\% - 1\%$ of total training iterations.
@@ -152,6 +158,7 @@ Modified IMP:
 - Resetting before stabilization fails
 
 **Mathematical view:**
+
 ```
 \theta_k = \theta_0 + \sum_{t=0}^{k-1} \eta \nabla\mathcal{L}(\theta_t)
 
@@ -175,6 +182,7 @@ Specifically, if $f$ has width $w$, then with high probability, a subnetwork can
 **Claim:** Winning tickets exist at initialization without any training.
 
 **SNIP (Lee et al., 2018):** Find tickets using gradient-based saliency at init:
+
 ```
 
 s_i = |w_i \cdot \nabla_{w_i}\mathcal{L}|
@@ -204,12 +212,14 @@ This proves IMP is finding something special, not just any sparse mask.
 1. **Covering argument:** For each target neuron $\sigma(w^T x - b)$, we need to find a random neuron $\sigma(v^T x - c)$ such that $\|w - v\| < \epsilon$ and $|b - c| < \epsilon$.
 
 2. **Probability of good neuron:** For random $v \sim \mathcal{N}(0, I)$ truncated to $\|v\| \leq B$:
+
 ```
 
 P(\|w - v\| < \epsilon) \geq \left(\frac{\epsilon}{2B}\right)^d
 
 ```math
 3. **Union bound:** With $m$ random neurons, probability of finding match for all $n$ targets:
+
 ```
 
 P(\text{all matched}) \geq 1 - n \cdot \left(1 - \left(\frac{\epsilon}{2B}\right)^d\right)^m
@@ -224,6 +234,7 @@ For ReLU networks with polynomial target, $d$ is effectively small due to low-ra
 **Theorem:** A winning ticket $(m, \theta\_0)$ preserves the essential gradient directions of the dense network.
 
 **Formal statement:** Let $g\_{dense} = \nabla\_\theta \mathcal{L}|\_{\theta\_0}$ and $g\_{sparse} = m \odot g\_{dense}$. If:
+
 ```
 
 \cos(g_{dense}, g_{sparse}) = \frac{\langle g_{dense}, g_{sparse} \rangle}{\|g_{dense}\| \|g_{sparse}\|} \geq 1 - \epsilon
@@ -238,6 +249,7 @@ Gradient descent update:
 - Sparse: $\theta\_1^{(s)} = \theta\_0 - \eta g\_{sparse}$
 
 The loss decrease:
+
 ```
 
 \mathcal{L}(\theta_1) - \mathcal{L}(\theta_0) \approx -\eta \|g_{dense}\|^2
@@ -245,6 +257,7 @@ The loss decrease:
 
 ```math
 Ratio of progress:
+
 ```
 
 \frac{\text{sparse progress}}{\text{dense progress}} = \frac{\langle g_{dense}, g_{sparse} \rangle}{\|g_{dense}\|^2} = \frac{\|g_{sparse}\|}{\|g_{dense}\|} \cos(\theta)
@@ -255,6 +268,7 @@ For high cosine similarity, sparse network makes nearly same progress. ∎
 #### 6.3 Theorem: Generalization Bound for Sparse Networks
 
 **Theorem:** A sparse network with $k$ non-zero weights has generalization bound:
+
 ```
 
 \mathcal{L}_{test} - \mathcal{L}_{train} \leq O\left(\sqrt{\frac{k \log(n/k)}{m}}\right)
@@ -267,6 +281,7 @@ where $n$ = total parameters, $m$ = training samples.
 The effective complexity of a $k$-sparse network is $\binom{n}{k} \cdot \mathbb{R}^k$ (choosing which $k$ weights and their values).
 
 By Rademacher complexity:
+
 ```
 
 \mathcal{R}_m(\mathcal{F}_{sparse}) \leq O\left(\sqrt{\frac{k}{m}}\right)
@@ -283,18 +298,21 @@ The $\log(n/k)$ factor comes from the combinatorial choice of sparse pattern. �
 **Proof:**
 
 After $t$ iterations, fraction of weights remaining:
+
 ```
 
 r_t = (1-p)^t
 
 ```math
 Sparsity after $t$ iterations:
+
 ```
 
 s_t = 1 - r_t = 1 - (1-p)^t
 
 ```math
 To achieve target $s$:
+
 ```
 
 1 - (1-p)^t \geq s
@@ -303,9 +321,11 @@ t \geq \frac{\log(1-s)}{\log(1-p)}
 
 ```math
 For $p = 0.2$ and $s = 0.9$:
+
 ```
 
 t \geq \frac{\log(0.1)}{\log(0.8)} = \frac{-2.30}{-0.22} \approx 10.3
+
 ```
 
 So 11 iterations needed. ∎
@@ -570,6 +590,7 @@ def compare_lottery_vs_random(model_fn, train_fn, sparsity=0.9, num_trials=5):
           f"± {torch.tensor(results['random']).std():.2%}")
     
     return results
+
 ```
 
 ---

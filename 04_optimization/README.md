@@ -39,6 +39,7 @@
                                     |
                                     ▼
                                🏆 Master
+
 ```
 
 ## 🎯 What You'll Learn
@@ -104,6 +105,7 @@ KKT, SVM derivation
 
 ```
 Gradients --▶ Hessian --▶ Taylor --▶ Convexity --▶ Lipschitz
+
 ```
 
 **Core:** Gradients, Hessian, Taylor Series, Convexity, Linear Algebra
@@ -123,6 +125,7 @@ Gradients --▶ Hessian --▶ Taylor --▶ Convexity --▶ Lipschitz
 
 ```
 GD --▶ Line Search --▶ Newton --▶ Convergence
+
 ```
 
 **Core:** GD: θ ← θ - η∇L(θ), Newton's Method, Convergence Analysis
@@ -142,6 +145,7 @@ GD --▶ Line Search --▶ Newton --▶ Convergence
 
 ```
 Quasi-Newton --▶ BFGS --▶ L-BFGS --▶ Conjugate Gradient
+
 ```
 
 **Core:** Quasi-Newton Methods, BFGS, L-BFGS, Conjugate Gradient
@@ -156,6 +160,7 @@ Quasi-Newton --▶ BFGS --▶ L-BFGS --▶ Conjugate Gradient
 
 ```
 Convex Sets --▶ Convex Funcs --▶ Optimality --▶ Duality --▶ ML Apps
+
 ```
 
 **Core:** Convex Functions, First-Order Optimality, Duality, ELBO
@@ -174,6 +179,7 @@ Convex Sets --▶ Convex Funcs --▶ Optimality --▶ Duality --▶ ML Apps
 
 ```
 Lagrange --▶ KKT --▶ Inequality --▶ SVM --▶ Dual
+
 ```
 
 **Core:** Lagrange Multipliers, KKT Conditions, SVM Derivation
@@ -193,6 +199,7 @@ Lagrange --▶ KKT --▶ Inequality --▶ SVM --▶ Dual
 
 ```
 LP Formulation --▶ Simplex --▶ Duality --▶ Interior Point
+
 ```
 
 **Core:** Simplex Algorithm, LP Duality, Interior Point Methods
@@ -211,6 +218,7 @@ LP Formulation --▶ Simplex --▶ Duality --▶ Interior Point
 
 ```
 IP Formulation --▶ Branch & Bound --▶ Cutting Planes --▶ MILP
+
 ```
 
 **Core:** Branch & Bound, Mixed Integer Linear Programming (MILP)
@@ -225,6 +233,7 @@ IP Formulation --▶ Branch & Bound --▶ Cutting Planes --▶ MILP
 
 ```
 SGD --▶ Momentum --▶ RMSprop --▶ Adam --▶ AdamW
+
 ```
 
 > ⭐ **Adam is the default optimizer for 90% of models**
@@ -251,6 +260,7 @@ SGD --▶ Momentum --▶ RMSprop --▶ Adam --▶ AdamW
 
 ```
 Genetic --▶ Annealing --▶ Swarm --▶ Evolution
+
 ```
 
 **Core:** Genetic Algorithms, Simulated Annealing, Particle Swarm
@@ -270,27 +280,33 @@ Genetic --▶ Annealing --▶ Swarm --▶ Evolution
 <td>
 
 ### 📉 Gradient Descent
+
 ```python
 θ ← θ - η∇L(θ)
+
 ```
 
 </td>
 <td>
 
 ### 🏃 Momentum
+
 ```python
 v ← βv + ∇L(θ)
 θ ← θ - ηv
+
 ```
 
 </td>
 <td>
 
 ### 🚀 Adam
+
 ```python
 m ← β₁m + (1-β₁)∇L
 v ← β₂v + (1-β₂)(∇L)²
 θ ← θ - η·m̂/(√v̂+ε)
+
 ```
 
 </td>
@@ -303,6 +319,7 @@ v ← β₂v + (1-β₂)(∇L)²
 
 ```
 📊 Math --▶ 🎯 Optimization --▶ 🧬 ML Theory --▶ 🚀 Deep Learning --▶ ⚡ Training
+
 ```
 
 <p align="center">

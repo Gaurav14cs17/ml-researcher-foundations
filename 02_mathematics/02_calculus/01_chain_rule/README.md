@@ -61,6 +61,7 @@
 |   Each layer receives ∂L/∂(its output) and passes back ∂L/∂(its input)     |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -73,11 +74,13 @@ If $y = f(u)$ and $u = g(x)$, then:
 
 ```math
 \frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx} = f'(g(x)) \cdot g'(x)
+
 ```
 
 ### 💡 Examples
 
 **Example 1**: $y = \sin(x^2)$
+
 ```
 Let u = x², y = sin(u)
 
@@ -85,17 +88,21 @@ dy/dx = dy/du · du/dx
       = cos(u) · 2x
       = cos(x²) · 2x
       = 2x·cos(x²)
+
 ```
 
 **Example 2**: $y = e^{3x^2 + 2x}$
+
 ```
 Let u = 3x² + 2x, y = eᵘ
 
 dy/dx = eᵘ · (6x + 2)
       = (6x + 2)·e^(3x²+2x)
+
 ```
 
 **Example 3**: Triple Composition $y = \ln(\cos(\sqrt{x}))$
+
 ```
 Let v = √x, u = cos(v), y = ln(u)
 
@@ -103,6 +110,7 @@ dy/dx = dy/du · du/dv · dv/dx
       = (1/u) · (-sin(v)) · (1/2√x)
       = -sin(√x) / (2√x · cos(√x))
       = -tan(√x) / (2√x)
+
 ```
 
 ---
@@ -115,6 +123,7 @@ If $z = f(u, v)$ where $u = u(x, y)$ and $v = v(x, y)$:
 
 ```math
 \frac{\partial z}{\partial x} = \frac{\partial z}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial z}{\partial v}\frac{\partial v}{\partial x}
+
 ```
 
 ### 📐 General Form
@@ -123,12 +132,14 @@ For $L = L(y\_1, y\_2, \ldots, y\_m)$ where each $y\_i = y\_i(x\_1, \ldots, x\_n
 
 ```math
 \frac{\partial L}{\partial x_j} = \sum_{i=1}^{m} \frac{\partial L}{\partial y_i} \cdot \frac{\partial y_i}{\partial x_j}
+
 ```
 
 **Matrix Form** (using Jacobians):
 
 ```math
 \frac{\partial L}{\partial \mathbf{x}} = J_\mathbf{y}^T \frac{\partial L}{\partial \mathbf{y}}
+
 ```
 
 ### 💡 Example
@@ -150,6 +161,7 @@ Actually, easier to use inverse:
 where:
   ∂z/∂x = 2xy + y³
   ∂z/∂y = x² + 3xy²
+
 ```
 
 ---
@@ -188,6 +200,7 @@ Step 4: Take limit as x → a
         
         Therefore:
         (f ∘ g)'(a) = f'(g(a)) · g'(a) + 0 · g'(a) = f'(g(a)) · g'(a)  ∎
+
 ```
 
 ---
@@ -215,6 +228,7 @@ For each node in REVERSE topological order:
     For each input:
         Compute: ∂(output)/∂(input)  [local gradient]
         Accumulate: ∂L/∂(input) += ∂L/∂(output) · ∂(output)/∂(input)
+
 ```
 
 ### 🔍 Detailed Example: 2-Layer Network
@@ -237,6 +251,7 @@ Backward:
   ∂L/∂h = ∂L/∂a · ∂a/∂h = ∂L/∂a ⊙ 1[h>0]   [ReLU gradient]
   
   ∂L/∂W₁ = ∂L/∂h · ∂h/∂W₁ = ∂L/∂h · xᵀ     [W₁ gradient]
+
 ```
 
 ### 💻 Implementation from Scratch
@@ -293,6 +308,7 @@ class ComputationalGraph:
                     grads[id(inp)] = grad
         
         return grads
+
 ```
 
 ---
@@ -326,6 +342,7 @@ Backward mode needs: 1 backward pass
 Forward mode needs: millions of forward passes
 
 → Backward mode (backprop) is the only practical choice!
+
 ```
 
 ### 📊 Visual Comparison
@@ -337,6 +354,7 @@ dx = 1 -→ ∂h₁/∂x -→ ∂h₂/∂x -→ ∂L/∂x    1 = ∂L/∂L ←- 
                                  
 "Push forward infinitesimal    "Pull back sensitivity
  perturbations"                  to loss"
+
 ```
 
 ---
@@ -367,6 +385,7 @@ dL/dt1 = dL/dt2 * 1 = 2*t2       # d(x+c)/dx = 1
 dL/dc = dL/dt2 * 1 = 2*t2        # d(x+c)/dc = 1
 dL/da = dL/dt1 * b = 2*t2*b      # d(ab)/da = b
 dL/db = dL/dt1 * a = 2*t2*a      # d(ab)/db = a
+
 ```
 
 ### 🔍 Handling Multiple Paths
@@ -381,6 +400,7 @@ x ----+        +--→ L
 ∂L/∂x = ∂L/∂f · ∂f/∂x + ∂L/∂g · ∂g/∂x
 
 This is why PyTorch accumulates gradients with +=
+
 ```
 
 ---
@@ -445,6 +465,7 @@ print(f"Jacobian:\n{J}")
 # [[2x₀, 1  ],
 #  [x₁,  x₀ ],
 #  [cos(x₀), 0]] = [[2, 1], [2, 1], [0.54, 0]]
+
 ```
 
 ### Gradient Checking
@@ -475,6 +496,7 @@ numerical = numerical_gradient(test_function, x.detach())
 print(f"Analytical gradient: {analytical}")
 print(f"Numerical gradient:  {numerical}")
 print(f"Difference: {(analytical - numerical).abs().max():.2e}")
+
 ```
 
 ---

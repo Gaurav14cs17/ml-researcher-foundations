@@ -45,6 +45,7 @@ Where:
     γ: Discount factor
     rₜ₊₁: Reward received after action
     V(sₜ₊₁): Estimated value of next state (bootstrap!)
+
 ```
 
 ### TD Error (δ)
@@ -56,6 +57,7 @@ Where:
 δ > 0: Better than expected → increase V(sₜ)
 δ < 0: Worse than expected  → decrease V(sₜ)
 δ = 0: Exactly as expected  → no change
+
 ```
 
 ### TD(λ) - Eligibility Traces
@@ -71,6 +73,7 @@ Update with eligibility trace e(s):
     δₜ = rₜ₊₁ + γV(sₜ₊₁) - V(sₜ)
     e(sₜ) ← γλ e(sₜ) + 1
     V(s) ← V(s) + α δₜ e(s)  for all s
+
 ```
 
 ---
@@ -93,6 +96,7 @@ Monte Carlo:
 TD(0):
     Target = rₜ₊₁ + γV(sₜ₊₁)
     Biased (if V wrong) but low variance (one random step)
+
 ```
 
 ---
@@ -128,6 +132,7 @@ Algorithm:
             a' ← ε-greedy(Q, s')  ← Choose next action
             Q(s,a) ← Q(s,a) + α[r + γQ(s',a') - Q(s,a)]
             s ← s', a ← a'
+
 ```
 
 ---
@@ -161,6 +166,7 @@ def td_zero(env, policy, num_episodes, alpha=0.1, gamma=0.99):
             state = next_state
     
     return V
+
 ```
 
 ### TD Update Step
@@ -177,6 +183,7 @@ def td_update(V, s, r, s_next, done, alpha=0.1, gamma=0.99):
     V[s] += alpha * td_error
     
     return V, td_error
+
 ```
 
 ### SARSA (On-policy TD Control)
@@ -209,6 +216,7 @@ def sarsa(env, num_episodes, alpha=0.1, gamma=0.99, epsilon=0.1):
             state, action = next_state, next_action
     
     return Q
+
 ```
 
 ### TD(λ) with Eligibility Traces
@@ -245,6 +253,7 @@ def td_lambda(env, policy, num_episodes, alpha=0.1, gamma=0.99, lam=0.9):
             state = next_state
     
     return V
+
 ```
 
 ---
@@ -258,6 +267,7 @@ TD(0) converges to true V^π if:
 3. All states visited infinitely often
 
 In practice: α = 0.01 to 0.1 works well
+
 ```
 
 ---
@@ -276,6 +286,7 @@ TD Learning
     +-- TD(λ) ----------> Multi-step returns
                          +-- n-step TD
                          +-- GAE (PPO/A3C)
+
 ```
 
 ---

@@ -39,6 +39,7 @@ The goal is to find a policy that maximizes expected return:
 
 ```
 max_π J(π) = E_{τ~π}[Σ_t γ^t r_t]
+
 ```
 
 The challenge: How do we update the policy without making it worse?
@@ -56,6 +57,7 @@ Where:
 • ρ_π(s) = Σ_t γ^t P(s_t = s | π) is the discounted state visitation
 • A_π(s,a) = Q_π(s,a) - V_π(s) is the advantage
 • C = 2γε_max / (1-γ)² where ε_max = max_s KL(π' || π)
+
 ```
 
 This bound guarantees improvement if we control the KL divergence!
@@ -73,6 +75,7 @@ L(θ) = E_{s~ρ_{θ_old}, a~π_{θ_old}} [π_θ(a|s) / π_{θ_old}(a|s) · A_{θ
      = E [ρ(θ) · A]
 
 Where ρ(θ) = π_θ(a|s) / π_{θ_old}(a|s) is the probability ratio.
+
 ```
 
 ### Trust Region Constraint
@@ -85,6 +88,7 @@ max_θ  L(θ) = E[ρ(θ) · A]
 subject to:  E_s[KL(π_{θ_old}(·|s) || π_θ(·|s))] ≤ δ
 
 Where δ is the trust region size (typically 0.01).
+
 ```
 
 ---
@@ -99,6 +103,7 @@ Near θ_old, the objective is approximately linear:
 L(θ) ≈ L(θ_old) + g^T(θ - θ_old)
 
 Where g = ∇_θ L(θ)|_{θ=θ_old}
+
 ```
 
 ### Step 2: Quadratic Approximation of Constraint
@@ -109,6 +114,7 @@ The KL divergence is approximately quadratic:
 KL(π_{θ_old} || π_θ) ≈ ½(θ - θ_old)^T F (θ - θ_old)
 
 Where F = E[∇_θ log π · (∇_θ log π)^T] is the Fisher Information Matrix.
+
 ```
 
 ### Step 3: Constrained Optimization
@@ -123,6 +129,7 @@ Using Lagrangian:
 L = g^T d - λ(½ d^T F d - δ)
 
 Taking derivative: g - λFd = 0  →  d = λ^{-1} F^{-1} g
+
 ```
 
 ### Step 4: Natural Gradient Direction
@@ -138,6 +145,7 @@ The step size α is chosen to satisfy the constraint:
 Final update:
 θ ← θ_old + α · F^{-1} g
 θ ← θ_old + √(2δ / g^T F^{-1} g) · F^{-1} g
+
 ```
 
 ---
@@ -150,6 +158,7 @@ Final update:
 F = E_{s~ρ, a~π}[∇_θ log π_θ(a|s) · (∇_θ log π_θ(a|s))^T]
 
 This is the expected outer product of the score function.
+
 ```
 
 ### Properties
@@ -159,6 +168,7 @@ This is the expected outer product of the score function.
 2. F measures the curvature of the KL divergence
 3. F^{-1} transforms gradients to natural gradient space
 4. Natural gradients are invariant to parameterization
+
 ```
 
 ### Fisher-Vector Product (Efficient Computation)
@@ -171,6 +181,7 @@ Solve: Fx = g  for x using conjugate gradient
 The Fisher-vector product Fv can be computed efficiently:
 
 Fv = ∇_θ [∇_θ L(θ)^T v]  (Hessian-vector product on KL)
+
 ```
 
 ---
@@ -190,6 +201,7 @@ For k = 0, 1, 2, ..., until convergence:
     p_{k+1} = r_{k+1} + β_k p_k
 
 The key is that F p_k (Fisher-vector product) can be computed efficiently!
+
 ```
 
 ---
@@ -207,6 +219,7 @@ For step_size in [1, 0.5, 0.25, 0.125, ...]:
     if KL(π_{θ_old} || π_{θ_new}) ≤ δ  and  L(θ_new) > L(θ_old):
         Accept θ_new
         break
+
 ```
 
 ---
@@ -379,6 +392,7 @@ class TRPOAgent:
             'value_loss': value_loss.item(),
             'kl': kl.item() if 'kl' in dir() else 0
         }
+
 ```
 
 ---
@@ -407,6 +421,7 @@ Benefits:
 3. Works with standard SGD
 4. Easier to implement and tune
 5. Comparable or better performance
+
 ```
 
 ---

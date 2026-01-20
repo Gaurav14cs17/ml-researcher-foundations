@@ -78,12 +78,14 @@ Running machine learning on **microcontrollers** (MCUs):
 
 ```math
 M_{peak} = \max_l \left(M_{input}^l + M_{output}^l + M_{weights}^l\right)
+
 ```
 
 **Constraint:**
 
 ```math
 M_{peak} \leq \text{SRAM}_{available}
+
 ```
 
 For STM32F746: \( \text{SRAM} = 320\text{KB} \)
@@ -98,6 +100,7 @@ For STM32F746: \( \text{SRAM} = 320\text{KB} \)
 \max_\alpha \text{Acc}(\alpha)
 \text{s.t.} \quad M_{peak}(\alpha) \leq S_{max}
 \quad\quad\quad M_{weights}(\alpha) \leq F_{max}
+
 ```
 
 where:
@@ -115,6 +118,7 @@ For layer \( l \) with input \( X \in \mathbb{R}^{C_{in} \times H \times W} \) a
 
 ```math
 M_l = C_{in} \cdot H \cdot W + C_{out} \cdot H' \cdot W'
+
 ```
 
 (assuming in-place computation for weights)
@@ -123,6 +127,7 @@ M_l = C_{in} \cdot H \cdot W + C_{out} \cdot H' \cdot W'
 
 ```math
 M_{peak} = \max_l (M_{input}^l + M_{output}^l)
+
 ```
 
 ---
@@ -133,12 +138,14 @@ M_{peak} = \max_l (M_{input}^l + M_{output}^l)
 
 ```math
 M = C \times H \times W
+
 ```
 
 **Patch-based (divide into \( P \times P \) patches):**
 
 ```math
 M_{patch} = C \times \frac{H}{P} \times \frac{W}{P} = \frac{M}{P^2}
+
 ```
 
 **Memory reduction:** \( P^2 \times \)
@@ -155,6 +162,7 @@ M_{patch} = C \times \frac{H}{P} \times \frac{W}{P} = \frac{M}{P^2}
 
 ```math
 \min_\pi \max_{t} M_{\pi(t)}
+
 ```
 
 **For networks with skip connections:**
@@ -162,10 +170,12 @@ M_{patch} = C \times \frac{H}{P} \times \frac{W}{P} = \frac{M}{P^2}
 The optimal schedule depends on when to compute branches.
 
 **Example:** ResNet block
+
 ```
 x → conv1 → bn1 → relu → conv2 → bn2 → + → relu
 ↓                                       ↑
 +---------------------------------------+ (skip)
+
 ```
 
 **Schedule A:** Compute skip path first, store result
@@ -188,12 +198,14 @@ For inverted bottleneck with expansion ratio \( e \):
 
 ```math
 M_{peak} = C \times H \times W + eC \times H \times W = (1+e) \cdot C \cdot H \cdot W
+
 ```
 
 **With fused operations:**
 
 ```math
 M_{peak} = C \times H \times W + C' \times H \times W
+
 ```
 
 (Fusing avoids materializing expanded tensor)
@@ -242,6 +254,7 @@ M_{peak} = C \times H \times W + C' \times H \times W
 
 ```math
 W_l^{int8} = \text{round}\left(\frac{W_l}{s_l}\right)
+
 ```
 
 ---
@@ -254,18 +267,21 @@ W_l^{int8} = \text{round}\left(\frac{W_l}{s_l}\right)
 
 ```math
 F_{available} = \text{freq} \times \text{cycles/FLOP} \times t_{budget}
+
 ```
 
 For STM32F746 at 216MHz, 1 FLOP/cycle:
 
 ```math
 F_{available} = 216\text{M} \times 1 \times 0.1\text{s} = 21.6 \text{ MFLOPS}
+
 ```
 
 **MobileNetV2 0.35× at 96×96:**
 
 ```math
 F_{required} \approx 20 \text{ MFLOPS}
+
 ```
 
 Feasible!
@@ -278,6 +294,7 @@ Feasible!
 
 ```math
 M_{weights} = \sum_l |\theta_l| \text{ bytes}
+
 ```
 
 **Must fit in Flash:** \( M_{weights} \leq 1\text{MB} \)
@@ -286,6 +303,7 @@ M_{weights} = \sum_l |\theta_l| \text{ bytes}
 
 ```math
 M_{act} = \max_l (|X_l| + |Y_l|) \text{ bytes}
+
 ```
 
 **Must fit in SRAM:** \( M_{act} \leq 320\text{KB} \)
@@ -298,18 +316,21 @@ M_{act} = \max_l (|X_l| + |Y_l|) \text{ bytes}
 
 ```math
 E = P \times t = P \times \frac{\text{FLOPs}}{\text{FLOPS}}
+
 ```
 
 For MCU at 100mW computing 100 MFLOPs:
 
 ```math
 E = 0.1\text{W} \times \frac{10^8}{10^8} = 0.1 \text{ Joule}
+
 ```
 
 **Battery life (3.7V, 500mAh):**
 
 ```math
 \text{Inferences} = \frac{3.7 \times 0.5 \times 3600}{0.1} = 66,600
+
 ```
 
 ---

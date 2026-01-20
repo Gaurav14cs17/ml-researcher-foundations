@@ -35,6 +35,7 @@ Given input $x \in \mathbb{R}^d$ and $N$ experts $\{E\_1, E\_2, ..., E\_N\}$:
 
 ```math
 y = \sum_{i=1}^{N} G(x)_i \cdot E_i(x)
+
 ```
 
 Where:
@@ -48,6 +49,7 @@ Where:
 
 ```math
 G(x) = \text{softmax}(W_g \cdot x)
+
 ```
 
 Where $W\_g \in \mathbb{R}^{N \times d}$ is the learnable gating weight matrix.
@@ -59,6 +61,7 @@ G(x)_i = \begin{cases}
 \frac{\exp(h_i)}{\sum_{j \in \text{TopK}} \exp(h_j)} & \text{if } i \in \text{TopK}(h) \\
 0 & \text{otherwise}
 \end{cases}
+
 ```
 
 Where $h = W\_g \cdot x$ and TopK selects indices with highest values.
@@ -69,18 +72,21 @@ Where $h = W\_g \cdot x$ and TopK selects indices with highest values.
 
 ```math
 \text{FLOPs}_{\text{dense}} = O(d \cdot d_{ff})
+
 ```
 
 **Sparse MoE (Top-K routing):**
 
 ```math
 \text{FLOPs}_{\text{MoE}} = O(d \cdot N) + K \cdot O(d \cdot d_{ff}) = O(K \cdot d \cdot d_{ff})
+
 ```
 
 **Parameters:**
 
 ```math
 \text{Params}_{\text{MoE}} = N \cdot \text{Params}_{\text{expert}} + \text{Params}_{\text{router}}
+
 ```
 
 **Insight:** With $K=2$ and $N=8$:
@@ -105,6 +111,7 @@ Algorithm:
 4. Compute output: y = Σ_{i∈indices} w_i · E_i(x)
 
 Output: y ∈ ℝ^d
+
 ```
 
 ### Routing Variants
@@ -122,6 +129,7 @@ To encourage exploration and load balancing:
 
 ```math
 h_i = (W_g \cdot x)_i + \epsilon_i \cdot \text{softplus}((W_{\text{noise}} \cdot x)_i)
+
 ```
 
 Where $\epsilon\_i \sim \mathcal{N}(0, 1)$ is random noise during training.
@@ -140,6 +148,7 @@ Without balancing, all tokens route to same experts → some experts undertraine
 
 ```math
 L_{\text{importance}} = \text{CV}\left(\sum_{x \in B} G(x)\right)^2
+
 ```
 
 Where CV is coefficient of variation: $\text{CV} = \frac{\sigma}{\mu}$
@@ -148,6 +157,7 @@ Where CV is coefficient of variation: $\text{CV} = \frac{\sigma}{\mu}$
 
 ```math
 L_{\text{load}} = N \cdot \sum_{i=1}^{N} f_i \cdot P_i
+
 ```
 
 Where:
@@ -158,6 +168,7 @@ Where:
 
 ```math
 L_{\text{total}} = L_{\text{task}} + \alpha \cdot L_{\text{aux}}
+
 ```
 
 Where $\alpha \approx 0.01$ typically.
@@ -168,6 +179,7 @@ To prevent expert overload:
 
 ```math
 \text{Capacity} = \left\lceil \frac{\text{tokens per batch} \times K}{N} \times c \right\rceil
+
 ```
 
 Where $c \in [1.0, 2.0]$ is the capacity factor.
@@ -187,6 +199,7 @@ For a token routed to expert $i$:
 
 ```math
 \frac{\partial L}{\partial W_i} = G(x)_i \cdot \frac{\partial L}{\partial E_i(x)} \cdot \frac{\partial E_i(x)}{\partial W_i}
+
 ```
 
 **Issue:** Experts with low $G(x)\_i$ receive small gradients.
@@ -199,6 +212,7 @@ For Top-K routing with K=2, N=8 experts:
 
 ```math
 \text{Effective Combinations} = \binom{N}{K} = \binom{8}{2} = 28 \text{ distinct expert pairs}
+
 ```
 
 This allows the model to specialize for 28 different "modes" of input.
@@ -319,6 +333,7 @@ class MoETransformerBlock(nn.Module):
         # MoE FFN
         x = x + self.moe(self.ln2(x))
         return x
+
 ```
 
 ---

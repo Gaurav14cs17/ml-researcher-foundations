@@ -35,12 +35,14 @@ Taylor series represent smooth functions as infinite polynomials. The first few 
 
 ```math
 f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f'''(a)}{3!}(x-a)^3 + \cdots
+
 ```
 
 **Maclaurin Series:** Taylor series centered at \(a = 0\):
 
 ```math
 f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!}x^n
+
 ```
 
 ### Taylor's Theorem with Remainder
@@ -49,6 +51,7 @@ f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!}x^n
 
 ```math
 f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k + R_n(x)
+
 ```
 
 where the remainder \(R_n(x)\) can be expressed as:
@@ -57,6 +60,7 @@ where the remainder \(R_n(x)\) can be expressed as:
 
 ```math
 R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}
+
 ```
 
 for some \(c\) between \(a\) and \(x\).
@@ -65,6 +69,7 @@ for some \(c\) between \(a\) and \(x\).
 
 ```math
 R_n(x) = \frac{1}{n!}\int_a^x (x-t)^n f^{(n+1)}(t) \, dt
+
 ```
 
 ---
@@ -77,9 +82,11 @@ R_n(x) = \frac{1}{n!}\int_a^x (x-t)^n f^{(n+1)}(t) \, dt
 
 ```math
 f(x) = c_0 + c_1(x-a) + c_2(x-a)^2 + c_3(x-a)^3 + \cdots
+
 ```
 
 **Derivation:**
+
 ```
 Step 1: At x = a
 f(a) = c₀ + 0 + 0 + ... = c₀
@@ -100,11 +107,13 @@ f⁽ⁿ⁾(a) = n! · cₙ
 Therefore: cₙ = f⁽ⁿ⁾(a)/n!
 
 This proves the Taylor series formula! ✓
+
 ```
 
 ### Proof of Taylor's Theorem (Remainder)
 
 **Proof using integration by parts:**
+
 ```
 Start with: f(x) - f(a) = ∫ₐˣ f'(t) dt
 
@@ -121,6 +130,7 @@ Continuing this pattern:
 f(x) = f(a) + f'(a)(x-a) + f''(a)(x-a)²/2! + ... + f⁽ⁿ⁾(a)(x-a)ⁿ/n! + Rₙ(x)
 
 where Rₙ(x) = (1/n!) ∫ₐˣ f⁽ⁿ⁺¹⁾(t)(x-t)ⁿ dt ✓
+
 ```
 
 ---
@@ -131,9 +141,11 @@ where Rₙ(x) = (1/n!) ∫ₐˣ f⁽ⁿ⁺¹⁾(t)(x-t)ⁿ dt ✓
 
 ```math
 e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
+
 ```
 
 **Proof:**
+
 ```
 f(x) = eˣ
 f'(x) = eˣ
@@ -145,6 +157,7 @@ At x = 0: f⁽ⁿ⁾(0) = e⁰ = 1 for all n
 Taylor series: eˣ = Σₙ (1/n!) xⁿ = 1 + x + x²/2! + x³/3! + ... ✓
 
 Radius of convergence: ∞ (converges for all x)
+
 ```
 
 ### Sine and Cosine
@@ -152,9 +165,11 @@ Radius of convergence: ∞ (converges for all x)
 ```math
 \sin(x) = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots
 \cos(x) = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots
+
 ```
 
 **Proof for sin(x):**
+
 ```
 f(x) = sin(x)
 f'(x) = cos(x)
@@ -167,12 +182,14 @@ f(0) = 0, f'(0) = 1, f''(0) = 0, f'''(0) = -1, f⁽⁴⁾(0) = 0, ...
 
 Only odd powers survive:
 sin(x) = x - x³/3! + x⁵/5! - x⁷/7! + ... ✓
+
 ```
 
 ### Natural Logarithm
 
 ```math
 \ln(1+x) = \sum_{n=1}^{\infty} \frac{(-1)^{n+1} x^n}{n} = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots
+
 ```
 
 **Radius of convergence:** \(-1 < x \leq 1\)
@@ -181,6 +198,7 @@ sin(x) = x - x³/3! + x⁵/5! - x⁷/7! + ... ✓
 
 ```math
 \frac{1}{1-x} = \sum_{n=0}^{\infty} x^n = 1 + x + x^2 + x^3 + \cdots
+
 ```
 
 **Radius of convergence:** \(|x| < 1\)
@@ -195,6 +213,7 @@ For \(f: \mathbb{R}^n \to \mathbb{R}\), the Taylor expansion around \(a\) is:
 
 ```math
 f(x) = f(a) + \nabla f(a)^T (x-a) + \frac{1}{2}(x-a)^T H_f(a) (x-a) + O(\|x-a\|^3)
+
 ```
 
 where:
@@ -202,13 +221,16 @@ where:
 - \(H_f(a)\) is the Hessian (matrix of second derivatives)
 
 **Component form:**
+
 ```
 f(x) ≈ f(a) + Σᵢ (∂f/∂xᵢ)|ₐ (xᵢ - aᵢ) + (1/2) Σᵢⱼ (∂²f/∂xᵢ∂xⱼ)|ₐ (xᵢ - aᵢ)(xⱼ - aⱼ)
+
 ```
 
 ### Gradient Descent Justification
 
 **Why gradient descent works:**
+
 ```
 First-order Taylor approximation:
 f(x + Δx) ≈ f(x) + ∇f(x)ᵀ Δx
@@ -221,11 +243,13 @@ The direction that maximizes decrease:
 Then: ∇f(x)ᵀ Δx = -η ||∇f(x)||² < 0 ✓
 
 This proves gradient descent always decreases f locally!
+
 ```
 
 ### Newton's Method Justification
 
 **Why Newton's method uses the Hessian:**
+
 ```
 Second-order Taylor approximation:
 f(x + Δx) ≈ f(x) + ∇f(x)ᵀ Δx + (1/2) Δxᵀ H Δx
@@ -237,6 +261,7 @@ To find minimum, take derivative w.r.t. Δx and set to 0:
 
 This is the Newton step! It uses curvature information
 to take larger steps in flat directions.
+
 ```
 
 ---
@@ -246,6 +271,7 @@ to take larger steps in flat directions.
 ### 1. Loss Landscape Analysis
 
 **Characterizing Critical Points:**
+
 ```
 At a critical point x* where ∇f(x*) = 0:
 
@@ -257,11 +283,13 @@ The nature of x* depends on H:
 - Mixed signs → Saddle point
 
 For neural networks, most critical points are saddle points!
+
 ```
 
 ### 2. Learning Rate Bounds
 
 **Maximum stable learning rate:**
+
 ```
 For gradient descent on f(x):
 x_{t+1} = x_t - η ∇f(x_t)
@@ -273,11 +301,13 @@ Convergence requires: η < 2/λ_max(H)
 
 where λ_max is the largest eigenvalue of H.
 This explains why large learning rates cause divergence!
+
 ```
 
 ### 3. Second-Order Optimization
 
 **Adam approximates second-order:**
+
 ```
 Adam update: Δx = -α * m / (√v + ε)
 
@@ -286,11 +316,13 @@ where m ≈ ∇f (momentum) and v ≈ (∇f)² (adaptive scaling)
 This approximates: Δx ∝ -H⁻¹ ∇f
 
 by scaling each dimension by its curvature estimate.
+
 ```
 
 ### 4. Softmax Temperature Scaling
 
 **Taylor expansion of softmax:**
+
 ```
 softmax(z/T)ᵢ = exp(zᵢ/T) / Σⱼ exp(zⱼ/T)
 
@@ -303,6 +335,7 @@ For small T (low temperature):
 softmax → one-hot (argmax)
 
 This explains temperature in knowledge distillation!
+
 ```
 
 ---
@@ -317,19 +350,23 @@ This explains temperature in knowledge distillation!
 
 ```math
 R = \lim_{n \to \infty} \left| \frac{a_n}{a_{n+1}} \right|
+
 ```
 
 **Examples:**
+
 ```
 eˣ: R = lim |n!/(n+1)!| = lim 1/(n+1) = 0⁻¹ = ∞
 sin(x): R = ∞
 ln(1+x): R = 1
 1/(1-x): R = 1
+
 ```
 
 ### Approximation Error
 
 **Lagrange Error Bound:**
+
 ```
 |Rₙ(x)| ≤ M |x-a|ⁿ⁺¹ / (n+1)!
 
@@ -341,6 +378,7 @@ f⁽ⁿ⁺¹⁾(t) = eᵗ ≤ e for t ∈ [0,1]
 |Rₙ(1)| ≤ e · 1ⁿ⁺¹ / (n+1)! = e/(n+1)!
 
 For n=10: |R₁₀| ≤ e/11! ≈ 6.8 × 10⁻⁸
+
 ```
 
 ---
@@ -413,6 +451,7 @@ for n in [3, 5, 7]:
     approx = taylor_sin(1, n)
     error = abs(np.sin(1) - approx)
     print(f"        taylor({n} terms)={approx:.10f}, error={error:.2e}")
+
 ```
 
 ### Multivariate Taylor Expansion
@@ -479,6 +518,7 @@ print(f"H(x0) = \n{hess}")
 eigenvalues = np.linalg.eigvalsh(hess)
 print(f"Eigenvalues of H: {eigenvalues}")
 print(f"Condition number: {max(eigenvalues)/min(eigenvalues):.1f}")
+
 ```
 
 ### PyTorch Automatic Taylor Expansion
@@ -518,6 +558,7 @@ terms = compute_taylor_terms(f, 0.0, order=3)
 print(f"Taylor coefficients of e^x at 0:")
 print(f"f(0) = {terms[0]}, f'(0) = {terms[1]}, f''(0) = {terms[2]}, f'''(0) = {terms[3]}")
 # Should all be 1.0
+
 ```
 
 ### Newton's Method Implementation
@@ -566,6 +607,7 @@ def hess_f(x):
 
 x_opt = newtons_method(f, grad_f, hess_f, [0.0, 0.0])
 print(f"Optimal x: {x_opt}")  # Should be [2, 3]
+
 ```
 
 ---

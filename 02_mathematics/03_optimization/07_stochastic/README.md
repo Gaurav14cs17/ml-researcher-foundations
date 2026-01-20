@@ -68,6 +68,7 @@
 |   • Fine-tuning: Lower lr + AdamW                                           |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -80,12 +81,14 @@
 
 ```math
 \theta_{t+1} = \theta_t - \eta \nabla L(\theta_t) = \theta_t - \eta \frac{1}{n}\sum_{i=1}^{n} \nabla \ell_i(\theta_t)
+
 ```
 
 **Stochastic Gradient Descent**:
 
 ```math
 \theta_{t+1} = \theta_t - \eta \nabla \ell_{i_t}(\theta_t)
+
 ```
 
 where $i\_t$ is randomly sampled.
@@ -94,6 +97,7 @@ where $i\_t$ is randomly sampled.
 
 ```math
 \theta_{t+1} = \theta_t - \eta \frac{1}{|B|}\sum_{i \in B} \nabla \ell_i(\theta_t)
+
 ```
 
 ### 📐 Key Properties
@@ -120,6 +124,7 @@ where $i\_t$ is randomly sampled.
 3. ESCAPING SADDLES:
    Noise helps escape saddle points and bad local minima
    Pure GD can get stuck in saddles (gradient = 0)
+
 ```
 
 ### 💡 Example: Variance Reduction
@@ -139,6 +144,7 @@ Example:
 
   Increasing batch to 256:
   Variance = 100/256 ≈ 0.39 (4× reduction)
+
 ```
 
 ---
@@ -152,6 +158,7 @@ Example:
 v_{t+1} &= \beta v_t + \nabla L(\theta_t) \\
 \theta_{t+1} &= \theta_t - \eta v_{t+1}
 \end{align}
+
 ```
 
 Or equivalently (with damping factor):
@@ -161,6 +168,7 @@ Or equivalently (with damping factor):
 v_{t+1} &= \beta v_t + (1-\beta) \nabla L(\theta_t) \\
 \theta_{t+1} &= \theta_t - \eta v_{t+1}
 \end{align}
+
 ```
 
 ### 📐 Intuition
@@ -186,6 +194,7 @@ WHY IT HELPS:
   |   (oscillates)          (smooth path)      |
   |                                            |
   +--------------------------------------------+
+
 ```
 
 ### 📐 Nesterov Momentum
@@ -198,6 +207,7 @@ v_{t+1} = β v_t + ∇L(θ_t - η·β·v_t)  # Gradient at "lookahead" position
 
 Intuition: Evaluate gradient where we're going, not where we are
 Often slightly better than standard momentum
+
 ```
 
 ---
@@ -214,6 +224,7 @@ v_t &= \beta_2 v_{t-1} + (1 - \beta_2) (\nabla L(\theta_t))^2 \quad &\text{(Seco
 \hat{v}_t &= v_t / (1 - \beta_2^t) \quad &\text{(Bias correction)} \\
 \theta_{t+1} &= \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
 \end{align}
+
 ```
 
 ### 📐 Default Hyperparameters
@@ -237,6 +248,7 @@ With correction:
   m̂₁ = m₁/(1-β₁¹) = 0.1g₁/0.1 = g₁  ✓
 
 As t → ∞: 1 - β^t → 1, so correction vanishes
+
 ```
 
 ### 📐 Understanding Adam
@@ -258,6 +270,7 @@ ADAPTIVE LEARNING RATE:
   
   Large avg gradient → small step (careful in "steep" directions)
   Small avg gradient → large step (faster in "flat" directions)
+
 ```
 
 ---
@@ -277,12 +290,14 @@ This gets divided by √v̂, effectively making regularization
 adaptive too - NOT what we want!
 
 Weight decay should be constant, not adaptive.
+
 ```
 
 ### 📌 AdamW Algorithm
 
 ```math
 \theta_{t+1} = \theta_t - \eta \left( \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} + \lambda \theta_t \right)
+
 ```
 
 Decoupled weight decay: subtract $\eta \lambda \theta$ directly, bypassing Adam's adaptive scaling.
@@ -299,6 +314,7 @@ AdamW:
   update = m̂ / √v̂ + λθ  # Weight decay is NOT scaled
 
 AdamW is what you actually want for regularization!
+
 ```
 
 ---
@@ -311,18 +327,21 @@ AdamW is what you actually want for regularization!
 
 ```math
 \mathbb{E}[L(\theta_T) - L(\theta^*)] = O\left(\frac{1}{\sqrt{T}}\right)
+
 ```
 
 **Strongly Convex Functions**:
 
 ```math
 \mathbb{E}[\|\theta_T - \theta^*\|^2] = O\left(\frac{1}{T}\right)
+
 ```
 
 **Non-Convex Functions** (finding stationary point):
 
 ```math
 \min_{t \leq T} \mathbb{E}[\|\nabla L(\theta_t)\|^2] = O\left(\frac{1}{\sqrt{T}}\right)
+
 ```
 
 ### 📐 Learning Rate Decay
@@ -331,6 +350,7 @@ For convergence guarantees, need:
 
 ```math
 \sum_{t=1}^{\infty} \eta_t = \infty \quad \text{and} \quad \sum_{t=1}^{\infty} \eta_t^2 < \infty
+
 ```
 
 Examples:
@@ -371,6 +391,7 @@ def warmup_cosine(step, warmup_steps, total_steps):
     return 0.5 * (1 + math.cos(math.pi * progress))
 
 scheduler = lr_scheduler.LambdaLR(optimizer, warmup_cosine)
+
 ```
 
 ---
@@ -526,6 +547,7 @@ opt_adam = optim.Adam(model.parameters(), lr=0.001)
 
 # AdamW (transformers)
 opt_adamw = optim.AdamW(model.parameters(), lr=1e-4, weight_decay=0.01)
+
 ```
 
 ---
@@ -564,6 +586,7 @@ opt_adamw = optim.AdamW(model.parameters(), lr=1e-4, weight_decay=0.01)
 5. WEIGHT DECAY:
    Transformers: 0.01 - 0.1
    CNNs: 1e-4 - 1e-3
+
 ```
 
 ---

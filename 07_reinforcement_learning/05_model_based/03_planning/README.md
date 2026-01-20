@@ -57,6 +57,7 @@ Find:
   a*_{t:t+H} = argmax_{a_{t:t+H}} E[Σ_{k=0}^H γ^k R(s_{t+k}, a_{t+k})]
   
   Subject to: s_{t+k+1} = f(s_{t+k}, a_{t+k})
+
 ```
 
 ### Model Predictive Control (MPC)
@@ -73,6 +74,7 @@ Receding Horizon Property:
   - Re-plan at every step
   - Corrects for model errors
   - Adapts to new observations
+
 ```
 
 ---
@@ -99,6 +101,7 @@ For n = 1 to N:
   4. Refit: μ = mean(E), σ = std(E)
 
 Return: a*_0 = μ[0]  (first action of final mean)
+
 ```
 
 ### CEM Convergence
@@ -110,6 +113,7 @@ Proof sketch:
   - Each iteration reduces entropy of distribution
   - Elite selection biases toward high-return regions
   - In limit, distribution concentrates on local max
+
 ```
 
 ---
@@ -128,6 +132,7 @@ Properties:
   - Simple to implement
   - No gradient needed
   - Scales poorly with horizon (exponential)
+
 ```
 
 ---
@@ -145,6 +150,7 @@ Multiple Shooting:
   - Optimize over both states and actions
   - Add constraints: x_{t+1} = f(x_t, u_t)
   - More stable numerically
+
 ```
 
 ### iLQR (Iterative Linear Quadratic Regulator)
@@ -165,6 +171,7 @@ Repeat until convergence.
 
 LQR solution gives optimal linear feedback:
   δu_t = -K_t δx_t
+
 ```
 
 ---
@@ -182,6 +189,7 @@ For planning:
   where s^m_{t+1} = f_m(s^m_t, a_t)
 
 Accounts for epistemic uncertainty in dynamics.
+
 ```
 
 ### Probabilistic Planning
@@ -194,6 +202,7 @@ For stochastic dynamics p(s'|s, a):
   where s_{t+1} ~ p(·|s_t, a_t)
 
 Requires sampling or moment matching.
+
 ```
 
 ---
@@ -228,6 +237,7 @@ def cem_planning(model, state, horizon, n_samples=500, n_elite=50, n_iters=5):
         std = elite_actions.std(axis=0)
     
     return mean[0]  # Return first action
+
 ```
 
 ---

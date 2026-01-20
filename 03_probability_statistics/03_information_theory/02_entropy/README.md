@@ -42,6 +42,7 @@ Interpretation:
 Units:
 - log₂: bits (most common in CS)
 - logₑ: nats (natural units)
+
 ```
 
 ### Key Properties
@@ -51,6 +52,7 @@ Units:
 2. Maximum: H(X) ≤ log|X|  (uniform distribution)
 3. Concavity: H(λp₁ + (1-λ)p₂) ≥ λH(p₁) + (1-λ)H(p₂)
 4. Chain rule: H(X,Y) = H(X) + H(Y|X)
+
 ```
 
 ### Examples
@@ -60,6 +62,7 @@ Fair coin:   H(X) = -½log(½) - ½log(½) = 1 bit
 Biased coin: p=0.9 → H = -0.9log(0.9) - 0.1log(0.1) ≈ 0.47 bits
 Fair die:    H(X) = log₂(6) ≈ 2.58 bits
 Deterministic: H(X) = 0 (no uncertainty)
+
 ```
 
 ---
@@ -85,6 +88,7 @@ I(X;Y) = H(X) + H(Y) - H(X,Y)
 H(X,Y) = H(X) + H(Y|X) = H(Y) + H(X|Y)
 
 D_KL(p||q) = H(p,q) - H(p) ≥ 0
+
 ```
 
 ---
@@ -111,6 +115,7 @@ H(y, ŷ) = -Σ yᵢ log ŷᵢ = -log(0.6) ≈ 0.51
 
 Lower is better!
 Perfect prediction (ŷ[2]=1) → H = 0
+
 ```
 
 ---
@@ -142,6 +147,7 @@ uniform_die = [1/6] * 6
 print(f"Fair coin: {entropy_numpy(fair_coin):.4f} bits")      # 1.0
 print(f"Biased coin: {entropy_numpy(biased_coin):.4f} bits")  # 0.469
 print(f"Fair die: {entropy_numpy(uniform_die):.4f} bits")     # 2.585
+
 ```
 
 ### Cross-Entropy Loss
@@ -162,6 +168,7 @@ probs = F.softmax(logits, dim=-1)
 print(f"Probabilities: {probs}")
 manual_loss = -torch.log(probs[0, labels[0]])
 print(f"Manual loss: {manual_loss.item():.4f}")
+
 ```
 
 ### Entropy Regularization in RL
@@ -184,6 +191,7 @@ def policy_loss_with_entropy(logits, actions, advantages, entropy_coef=0.01):
     
     # Total loss (subtract entropy to maximize it)
     return policy_loss - entropy_coef * entropy
+
 ```
 
 ### Maximum Entropy Distribution
@@ -219,6 +227,7 @@ def max_entropy_distribution(constraints):
     )
     
     return result.x
+
 ```
 
 ---
@@ -250,6 +259,7 @@ Entropy
     |
     +-- Maximum Entropy Principle
             +-- → Exponential family, Softmax
+
 ```
 
 ---

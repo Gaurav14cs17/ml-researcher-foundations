@@ -45,6 +45,7 @@ Properties:
 • Missingness: Missing features get φ = 0
 
 For tree models: TreeSHAP is O(TL²) instead of O(2ⁿ)
+
 ```
 
 ### LIME (Local Interpretable Model-agnostic Explanations)
@@ -60,6 +61,7 @@ Where:
 • Ω(g) = complexity penalty (encourage sparse g)
 
 g is typically a linear model or decision tree
+
 ```
 
 ### Integrated Gradients
@@ -72,6 +74,7 @@ Where x' is baseline (e.g., zero image)
 Properties:
 • Sensitivity: If feature matters, IG ≠ 0
 • Completeness: Σᵢ IGᵢ = f(x) - f(x')
+
 ```
 
 ---
@@ -169,6 +172,7 @@ try:
     print(f"IG attributions shape: {attributions.shape}")
 except ImportError:
     print("Captum not installed")
+
 ```
 
 ---
@@ -194,6 +198,7 @@ Linear Regression               Deep Learning + SHAP
 Decision Trees                  Neural Networks + LIME
 Rule Lists                      Transformers + Attention
 GAMs                            CNNs + GradCAM
+
 ```
 
 ---

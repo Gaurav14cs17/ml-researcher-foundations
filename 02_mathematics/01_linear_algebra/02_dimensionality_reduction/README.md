@@ -64,6 +64,7 @@
 |   • Feature extract  • 2D/3D plots    • Large datasets • Compression       |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -80,12 +81,14 @@ Given centered data $X \in \mathbb{R}^{n \times d}$ (n samples, d features):
 
 ```math
 \text{Covariance matrix: } \Sigma = \frac{1}{n-1}X^TX
+
 ```
 
 **Goal**: Find projection $W \in \mathbb{R}^{d \times k}$ that maximizes:
 
 ```math
 \text{Var}(XW) = W^T \Sigma W
+
 ```
 
 subject to $W^TW = I$ (orthonormal columns)
@@ -122,6 +125,7 @@ Step 6: Second Principal Component
 Step 7: General Solution
         Principal components = eigenvectors of Σ sorted by eigenvalue
         PC₁, PC₂, ..., PCₖ = top k eigenvectors
+
 ```
 
 ### 📐 PCA via SVD (Numerically Stable)
@@ -140,11 +144,13 @@ Then:
 
 Projection:
   X_reduced = X·V[:,:k] = U[:,:k]·Σ[:k,:k]
+
 ```
 
 ### 💡 Examples
 
 **Example 1**: 2D to 1D PCA
+
 ```
 Data points: (1,2), (2,4), (3,6), (4,8)
 
@@ -164,9 +170,11 @@ Step 4: First PC explains 8.33/(8.33+0) = 100% of variance
 
 Step 5: Project onto first PC
   The data lies exactly on the line y = 2x!
+
 ```
 
 **Example 2**: Explained Variance Ratio
+
 ```
 Given eigenvalues: [4.0, 2.0, 1.0, 0.5, 0.3, 0.2]
 
@@ -184,6 +192,7 @@ Cumulative:
   PC1+PC2+PC3: 87.5%
 
 To capture 95% variance, need first 5 components.
+
 ```
 
 ### 💻 Code Implementation
@@ -253,6 +262,7 @@ X = np.random.randn(1000, 100)
 X_pca, components, explained_var = pca_from_scratch(X, n_components=10)
 print(f"Shape: {X.shape} → {X_pca.shape}")
 print(f"Explained variance: {explained_var.sum():.2%}")
+
 ```
 
 ---
@@ -280,6 +290,7 @@ Step 4: Minimize KL divergence
 
 Step 5: Gradient descent on Y
         ∂C/∂yᵢ = 4Σⱼ(pᵢⱼ - qᵢⱼ)(yᵢ - yⱼ)(1 + ‖yᵢ-yⱼ‖²)⁻¹
+
 ```
 
 ### ⚠️ Key Hyperparameter: Perplexity
@@ -292,6 +303,7 @@ Perplexity ≈ effective number of neighbors
   Typical values: 5-50
   Low perplexity → tight clusters, may miss global structure
   High perplexity → may merge distinct clusters
+
 ```
 
 ### 💻 Code
@@ -323,6 +335,7 @@ def tsne_visualization(X, labels=None, perplexity=30):
     plt.ylabel('t-SNE 2')
     
     return X_tsne
+
 ```
 
 ---
@@ -344,6 +357,7 @@ UMAP models data as a fuzzy topological structure:
 2. Find low-D representation with similar topology
 
 3. Minimize cross-entropy between high-D and low-D graphs
+
 ```
 
 ### Advantages over t-SNE
@@ -373,6 +387,7 @@ def umap_visualization(X, labels=None, n_neighbors=15, min_dist=0.1):
     X_umap = reducer.fit_transform(X)
     
     return X_umap
+
 ```
 
 ---
@@ -405,6 +420,7 @@ Use UMAP when:
   ✓ Large datasets
   ✓ Want global structure preserved
   ✓ Need reproducibility
+
 ```
 
 ---
@@ -489,6 +505,7 @@ labels = np.random.randint(0, 5, 1000)
 
 reducer = DimensionalityReduction(X)
 fig = reducer.plot_comparison(labels)
+
 ```
 
 ---

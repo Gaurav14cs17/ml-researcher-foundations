@@ -42,6 +42,7 @@
 
 ```math
 J = \sum_{i=1}^n \sum_{k=1}^K r_{ik} \|x_i - \mu_k\|^2
+
 ```
 
 where \(r_{ik} \in \{0,1\}\) indicates if \(x_i\) belongs to cluster \(k\).
@@ -52,12 +53,14 @@ where \(r_{ik} \in \{0,1\}\) indicates if \(x_i\) belongs to cluster \(k\).
 
 ```math
 r_{ik} = \begin{cases} 1 & \text{if } k = \arg\min_j \|x_i - \mu_j\|^2 \\ 0 & \text{otherwise} \end{cases}
+
 ```
 
 **M-step (Update):**
 
 ```math
 \mu_k = \frac{\sum_i r_{ik} x_i}{\sum_i r_{ik}}
+
 ```
 
 **Theorem:** K-means converges to a local minimum.
@@ -68,6 +71,7 @@ r_{ik} = \begin{cases} 1 & \text{if } k = \arg\min_j \|x_i - \mu_j\|^2 \\ 0 & \t
 
 ```math
 P(x_i \text{ as next center}) \propto D(x_i)^2
+
 ```
 
 where \(D(x_i)\) = distance to nearest existing center.
@@ -82,6 +86,7 @@ where \(D(x_i)\) = distance to nearest existing center.
 
 ```math
 p(x) = \sum_{k=1}^K \pi_k \mathcal{N}(x | \mu_k, \Sigma_k)
+
 ```
 
 ### EM Algorithm
@@ -90,6 +95,7 @@ p(x) = \sum_{k=1}^K \pi_k \mathcal{N}(x | \mu_k, \Sigma_k)
 
 ```math
 \gamma_{ik} = \frac{\pi_k \mathcal{N}(x_i | \mu_k, \Sigma_k)}{\sum_j \pi_j \mathcal{N}(x_i | \mu_j, \Sigma_j)}
+
 ```
 
 **M-step:** Update parameters:
@@ -99,6 +105,7 @@ N_k = \sum_i \gamma_{ik}
 \mu_k = \frac{1}{N_k}\sum_i \gamma_{ik} x_i
 \Sigma_k = \frac{1}{N_k}\sum_i \gamma_{ik}(x_i - \mu_k)(x_i - \mu_k)^\top
 \pi_k = \frac{N_k}{n}
+
 ```
 
 **Theorem:** EM monotonically increases log-likelihood.
@@ -369,6 +376,7 @@ def silhouette_score(X, labels):
             scores.append((b - a) / max(a, b))
     
     return np.mean(scores)
+
 ```
 
 ---

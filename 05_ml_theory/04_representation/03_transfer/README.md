@@ -64,12 +64,14 @@
 
 ```math
 \theta^* = \arg\min_\theta \mathcal{L}_S(\phi_\theta; \mathcal{D}_S)
+
 ```
 
 **Stage 2 (Fine-tuning):** Adapt to target with small learning rate:
 
 ```math
 \theta^{**} = \arg\min_\theta \mathcal{L}_T(\phi_\theta; \mathcal{D}_T)
+
 ```
 
 starting from \(\theta = \theta^*\).
@@ -82,6 +84,7 @@ starting from \(\theta = \theta^*\).
 
 ```math
 \epsilon_T(h) \leq \epsilon_S(h) + d_{\mathcal{H}}(S, T) + \lambda
+
 ```
 
 where:
@@ -99,6 +102,7 @@ Instead of updating all parameters, learn low-rank updates:
 
 ```math
 W' = W + \Delta W = W + BA
+
 ```
 
 where \(B \in \mathbb{R}^{d \times r}\), \(A \in \mathbb{R}^{r \times k}\), and \(r \ll \min(d, k)\).
@@ -289,6 +293,7 @@ class DomainAdaptationModel(nn.Module):
             return class_output, domain_output
         
         return class_output
+
 ```
 
 ---

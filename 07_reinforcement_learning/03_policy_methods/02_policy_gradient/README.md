@@ -42,6 +42,7 @@ Where:
     τ = (s₀, a₀, r₀, s₁, a₁, r₁, ...) is a trajectory
     π_θ(a|s) is the parameterized policy
     R(τ) is the total return of trajectory τ
+
 ```
 
 ### Policy Gradient Theorem
@@ -61,6 +62,7 @@ Proof sketch:
           = E_τ [∇_θ log P(τ|θ) · R(τ)]
           
     And: log P(τ|θ) = Σₜ log π_θ(aₜ|sₜ) + terms not depending on θ
+
 ```
 
 ### REINFORCE Algorithm
@@ -70,6 +72,7 @@ Proof sketch:
 2. Compute returns Gₜ = Σₖ₌ₜ^T γᵏ⁻ᵗ rₖ
 3. Update: θ ← θ + α Σₜ ∇_θ log π_θ(aₜ|sₜ) · Gₜ
 4. Repeat
+
 ```
 
 ---
@@ -102,6 +105,7 @@ Solutions:
 3. GAE: λ-weighted combination of n-step advantages
     Â_t^GAE = Σₗ₌₀^∞ (γλ)ˡ δₜ₊ₗ
     where δₜ = rₜ + γV(sₜ₊₁) - V(sₜ)
+
 ```
 
 ---
@@ -175,6 +179,7 @@ def reinforce(env, policy, optimizer, num_episodes, gamma=0.99):
         optimizer.step()
     
     return policy
+
 ```
 
 ### REINFORCE with Baseline
@@ -248,6 +253,7 @@ def reinforce_with_baseline(env, model, optimizer, num_episodes, gamma=0.99):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+
 ```
 
 ### Generalized Advantage Estimation (GAE)
@@ -275,6 +281,7 @@ def compute_gae(rewards, values, dones, gamma=0.99, lam=0.95):
         advantages.insert(0, gae)
     
     return torch.FloatTensor(advantages)
+
 ```
 
 ---
@@ -304,6 +311,7 @@ Policy Gradient
     +-- Connection to Value Methods
             Q(s,a) ≈ advantage estimation
             V(s) as baseline reduces variance
+
 ```
 
 ---

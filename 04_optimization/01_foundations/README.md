@@ -40,6 +40,7 @@
 |   "Which way to go?"          "How fast to get there?" |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -68,6 +69,7 @@ foundations/
     +-- linear-algebra/ --------+
         +-- eigenvalues.md
         +-- positive-definite.md
+
 ```
 
 ---

@@ -29,6 +29,7 @@
 
 ```math
 \theta_{t+1} = \theta_t - \alpha \cdot \nabla L(\theta_t; B_t)
+
 ```
 
 Where:
@@ -47,6 +48,7 @@ For $L$-smooth, convex $f$ with optimal $f^*$:
 
 ```math
 \mathbb{E}[f(\theta_T)] - f^* \leq O\left(\frac{1}{\sqrt{T}}\right)
+
 ```
 
 ---
@@ -58,6 +60,7 @@ For $L$-smooth, convex $f$ with optimal $f^*$:
 ```math
 v_{t+1} = \beta v_t + \nabla L(\theta_t)
 \theta_{t+1} = \theta_t - \alpha v_{t+1}
+
 ```
 
 Where $\beta \in [0.9, 0.99]$ is the momentum coefficient.
@@ -72,6 +75,7 @@ Where $\beta \in [0.9, 0.99]$ is the momentum coefficient.
 ```math
 v_{t+1} = \beta v_t + \nabla L(\theta_t - \alpha \beta v_t)
 \theta_{t+1} = \theta_t - \alpha v_{t+1}
+
 ```
 
 **Why look-ahead?** Evaluate gradient at "future" position → more accurate update.
@@ -107,6 +111,7 @@ Consider loss: $L(\theta) = \frac{1}{2}(a\theta\_1^2 + b\theta\_2^2)$ with $a \g
 ```math
 s_{t+1} = \beta s_t + (1-\beta) (\nabla L)^2
 \theta_{t+1} = \theta_t - \frac{\alpha}{\sqrt{s_{t+1} + \epsilon}} \nabla L
+
 ```
 
 Where:
@@ -128,6 +133,7 @@ Where:
 ```math
 m_t = \beta_1 m_{t-1} + (1-\beta_1) \nabla L \quad \text{(first moment = momentum)}
 v_t = \beta_2 v_{t-1} + (1-\beta_2) (\nabla L)^2 \quad \text{(second moment = RMSprop)}
+
 ```
 
 **Bias Correction:**
@@ -135,12 +141,14 @@ v_t = \beta_2 v_{t-1} + (1-\beta_2) (\nabla L)^2 \quad \text{(second moment = RM
 ```math
 \hat{m}_t = \frac{m_t}{1 - \beta_1^t}
 \hat{v}_t = \frac{v_t}{1 - \beta_2^t}
+
 ```
 
 **Update:**
 
 ```math
 \theta_{t+1} = \theta_t - \alpha \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
+
 ```
 
 **Default hyperparameters:** $\beta\_1=0.9$, $\beta\_2=0.999$, $\epsilon=10^{-8}$, $\alpha=10^{-3}$
@@ -155,18 +163,21 @@ For first moment at step $t$:
 
 ```math
 m_t = (1-\beta_1) \sum_{i=1}^{t} \beta_1^{t-i} g_i
+
 ```
 
 Taking expectation (assuming $g\_i$ has mean $\bar{g}$):
 
 ```math
 \mathbb{E}[m_t] = (1-\beta_1) \sum_{i=1}^{t} \beta_1^{t-i} \bar{g} = (1-\beta_1^t) \bar{g}
+
 ```
 
 To get unbiased estimate:
 
 ```math
 \hat{m}_t = \frac{m_t}{1-\beta_1^t} \implies \mathbb{E}[\hat{m}_t] = \bar{g}
+
 ```
 
 ---
@@ -179,6 +190,7 @@ Standard L2 regularization in Adam:
 
 ```math
 \theta_{t+1} = \theta_t - \alpha \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} - \alpha \lambda \theta_t
+
 ```
 
 **Issue:** Weight decay gets scaled by $1/\sqrt{\hat{v}\_t}$ → inconsistent regularization!
@@ -188,6 +200,7 @@ Standard L2 regularization in Adam:
 ```math
 \theta_{t+1} = \theta_t - \alpha \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
 \theta_{t+1} = \theta_{t+1} - \alpha \lambda \theta_t \quad \text{(separate step)}
+
 ```
 
 **Why better?**
@@ -204,6 +217,7 @@ For large batch training (batch size 32K+):
 ```math
 \phi_l = \frac{\|\theta_l\|}{\|\text{update}_l\|} \quad \text{(trust ratio per layer)}
 \theta_l^{t+1} = \theta_l^t - \alpha \cdot \phi_l \cdot \left(\frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} + \lambda\theta_l^t\right)
+
 ```
 
 **Key Insight:** Scale updates per layer based on parameter and gradient norms.
@@ -370,6 +384,7 @@ optimizer = optim.AdamW([
     {'params': model.weight, 'lr': 1e-5},
     {'params': model.bias, 'lr': 1e-4},
 ], weight_decay=0.01)
+
 ```
 
 ### Learning Rate Scheduling
@@ -396,6 +411,7 @@ scheduler = get_scheduler(optimizer, warmup_steps=1000, total_steps=100000)
 for step in range(100000):
     train_step()
     scheduler.step()
+
 ```
 
 ---

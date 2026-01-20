@@ -93,6 +93,7 @@
 |   +----------------------------------------------------------------------+  |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -105,6 +106,7 @@ A **vector** is an ordered list of numbers representing a point or direction in 
 
 ```math
 \mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix} \in \mathbb{R}^n
+
 ```
 
 ### 📐 Vector Operations
@@ -121,6 +123,7 @@ A **vector** is an ordered list of numbers representing a point or direction in 
 **Theorem**: $\mathbf{x} \cdot \mathbf{y} = \|\mathbf{x}\| \|\mathbf{y}\| \cos\theta$
 
 **Proof**:
+
 ```
 Step 1: Start with the Law of Cosines
         ‖x - y‖² = ‖x‖² + ‖y‖² - 2‖x‖‖y‖cos(θ)
@@ -136,18 +139,22 @@ Step 3: Equate the two expressions
 Step 4: Simplify
         -2xᵀy = -2‖x‖‖y‖cos(θ)
         xᵀy = ‖x‖‖y‖cos(θ)  ∎
+
 ```
 
 ### 💡 Examples
 
 **Example 1**: Basic Dot Product
+
 ```python
 x = [1, 2, 3]
 y = [4, 5, 6]
 x·y = 1×4 + 2×5 + 3×6 = 4 + 10 + 18 = 32
+
 ```
 
 **Example 2**: Angle Between Vectors
+
 ```python
 x = [1, 0]
 y = [1, 1]
@@ -155,21 +162,26 @@ x·y = 1
 ‖x‖ = 1, ‖y‖ = √2
 cos(θ) = 1/(1×√2) = 1/√2
 θ = 45°
+
 ```
 
 **Example 3**: Orthogonality Check
+
 ```python
 x = [1, 1]
 y = [1, -1]
 x·y = 1×1 + 1×(-1) = 0  ⟹ x ⊥ y (orthogonal)
+
 ```
 
 **Example 4**: Projection
+
 ```python
 # Project x onto y
 x = [3, 4]
 y = [1, 0]
 proj_y(x) = (x·y / ‖y‖²) × y = (3/1) × [1,0] = [3, 0]
+
 ```
 
 ### 💻 Code Implementation
@@ -214,6 +226,7 @@ print(f"Angle (degrees): {np.degrees(angle_between_vectors(x, y)):.2f}")  # 12.9
 x_gpu = torch.tensor([1.0, 2.0, 3.0], device='cuda' if torch.cuda.is_available() else 'cpu')
 y_gpu = torch.tensor([4.0, 5.0, 6.0], device='cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Dot product (GPU): {dot_product_torch(x_gpu, y_gpu)}")
+
 ```
 
 ### 🤖 ML Application: Attention Scores
@@ -250,6 +263,7 @@ def scaled_dot_product_attention(Q, K, V, d_k):
 # If q, k ~ N(0, 1), then q·k ~ N(0, d_k)
 # Large variance → softmax saturates → vanishing gradients
 # Scaling by √d_k → q·k/√d_k ~ N(0, 1) → stable gradients
+
 ```
 
 ---
@@ -277,24 +291,31 @@ Matrix Multiplication Visualization:
     
     cᵢⱼ = (row i of A) · (column j of B)
         = Σₖ Aᵢₖ Bₖⱼ
+
 ```
 
 ### 🔍 Three Interpretations of Matrix Multiplication
 
 **1. Row-Column Dot Products**
+
 ```
 (AB)ᵢⱼ = Aᵢ,: · B:,ⱼ  (dot product of row i and column j)
+
 ```
 
 **2. Column Combinations**
+
 ```
 Each column of AB is a linear combination of columns of A:
 (AB):,ⱼ = b₁ⱼ·A:,₁ + b₂ⱼ·A:,₂ + ... + bₙⱼ·A:,ₙ
+
 ```
 
 **3. Sum of Outer Products**
+
 ```
 AB = Σₖ A:,ₖ ⊗ Bₖ,:  (sum of rank-1 matrices)
+
 ```
 
 ### 🔍 Why Matrix Multiplication is NOT Commutative
@@ -302,6 +323,7 @@ AB = Σₖ A:,ₖ ⊗ Bₖ,:  (sum of rank-1 matrices)
 **Theorem**: In general, $AB \neq BA$
 
 **Counterexample**:
+
 ```
 A = [1 0]    B = [0 1]
     [0 0]        [0 0]
@@ -310,6 +332,7 @@ AB = [0 1]    BA = [0 0]
      [0 0]         [0 0]
 
 AB ≠ BA  ∎
+
 ```
 
 **Geometric Intuition**: Rotation then scaling ≠ Scaling then rotation
@@ -376,6 +399,7 @@ def efficient_trace(A, B):
     """Compute tr(AB) without forming AB"""
     # tr(AB) = sum of element-wise product of A and B^T
     return np.sum(A * B.T)  # O(n²) instead of O(n³)
+
 ```
 
 ---
@@ -408,6 +432,7 @@ For any norm $\|\cdot\|$:
 **Theorem (Cauchy-Schwarz)**: $|\mathbf{x} \cdot \mathbf{y}| \leq \|\mathbf{x}\|\_2 \|\mathbf{y}\|\_2$
 
 **Proof**:
+
 ```
 Step 1: Consider f(t) = ‖x + ty‖² ≥ 0 for all t ∈ ℝ
 
@@ -423,9 +448,11 @@ Step 4: Apply discriminant condition
         4(xᵀy)² - 4‖y‖²‖x‖² ≤ 0
         (xᵀy)² ≤ ‖x‖²‖y‖²
         |xᵀy| ≤ ‖x‖‖y‖  ∎
+
 ```
 
 **Triangle Inequality Proof**:
+
 ```
 Step 1: Square both sides (valid since norms are non-negative)
         ‖x + y‖² ≤ (‖x‖ + ‖y‖)²
@@ -440,6 +467,7 @@ Step 4: Need to show: ‖x‖² + 2xᵀy + ‖y‖² ≤ ‖x‖² + 2‖x‖‖
         ⟺ xᵀy ≤ ‖x‖‖y‖
         
 Step 5: This follows from Cauchy-Schwarz  ∎
+
 ```
 
 ### 💻 Code Implementation
@@ -485,6 +513,7 @@ print(f"Vector: {x}")
 print(f"L1 norm: {np.linalg.norm(x, 1)}")   # 7
 print(f"L2 norm: {np.linalg.norm(x, 2)}")   # 5
 print(f"Linf norm: {np.linalg.norm(x, np.inf)}")  # 4
+
 ```
 
 ---
@@ -504,6 +533,7 @@ print(f"Linf norm: {np.linalg.norm(x, np.inf)}")  # 4
 **Theorem**: $\|A\|\_F^2 = \sum\_i \sigma\_i^2$ (sum of squared singular values)
 
 **Proof**:
+
 ```
 Step 1: Express in terms of trace
         ‖A‖²_F = Σᵢⱼ A²ᵢⱼ = tr(AᵀA)
@@ -513,6 +543,7 @@ Step 2: Use SVD: A = UΣVᵀ
 
 Step 3: Apply cyclic property of trace
         tr(AᵀA) = tr(VΣ²Vᵀ) = tr(Σ²VᵀV) = tr(Σ²) = Σᵢ σᵢ²  ∎
+
 ```
 
 ### 🔍 Submultiplicativity
@@ -520,6 +551,7 @@ Step 3: Apply cyclic property of trace
 **Theorem**: $\|AB\|\_F \leq \|A\|\_F \|B\|\_F$
 
 **Proof**:
+
 ```
 Step 1: Write AB in terms of columns
         (AB)ⱼ = A · Bⱼ  (j-th column of AB is A times j-th column of B)
@@ -529,6 +561,7 @@ Step 2: Apply triangle inequality
 
 Step 3: Sum over columns
         ‖AB‖²_F = Σⱼ ‖(AB)ⱼ‖² ≤ ‖A‖²_F · Σⱼ ‖Bⱼ‖² = ‖A‖²_F · ‖B‖²_F  ∎
+
 ```
 
 ### 💻 Code Implementation
@@ -568,6 +601,7 @@ def spectral_norm(W, num_iters=1):
 
 # PyTorch spectral norm (built-in)
 # torch.nn.utils.spectral_norm(layer)
+
 ```
 
 ---
@@ -580,6 +614,7 @@ For a square matrix $A \in \mathbb{R}^{n \times n}$:
 
 ```math
 A\mathbf{v} = \lambda\mathbf{v}
+
 ```
 
 where:
@@ -603,11 +638,13 @@ The eigenvector v only gets SCALED by λ, not rotated.
 - 0 < λ < 1: compressed  
 - λ < 0: flipped and scaled
 - λ = 0: collapsed to zero (singular)
+
 ```
 
 ### 🔍 Finding Eigenvalues: Characteristic Polynomial
 
 **Derivation**:
+
 ```
 Step 1: Start with eigenvalue equation
         Av = λv
@@ -621,11 +658,13 @@ Step 3: For non-trivial solution (v ≠ 0), the matrix (A - λI) must be singula
 
 Step 4: This is a polynomial of degree n in λ
         det(A - λI) = (-1)ⁿ(λⁿ - (tr A)λⁿ⁻¹ + ... + det A)
+
 ```
 
 ### 💡 Examples
 
 **Example 1**: 2×2 Matrix
+
 ```
 A = [4  1]
     [2  3]
@@ -650,9 +689,11 @@ For λ₂ = 2: (A - 2I)v = 0
 [2  1][v₁]   [0]
 [2  1][v₂] = [0]
 ⟹ 2v₁ + v₂ = 0, so v₂ = [1, -2]ᵀ
+
 ```
 
 **Example 2**: Rotation Matrix (Complex Eigenvalues)
+
 ```
 R(θ) = [cos θ  -sin θ]
        [sin θ   cos θ]
@@ -664,9 +705,11 @@ det(R - λI) = (cos θ - λ)² + sin²θ
 
 Real interpretation: 2D rotation has no real eigenvectors
 (no direction is preserved except at θ = 0 or π)
+
 ```
 
 **Example 3**: Symmetric Matrix (Real, Orthogonal Eigenvectors)
+
 ```
 A = [2  1]
     [1  2]
@@ -675,6 +718,7 @@ Eigenvalues: λ₁ = 3, λ₂ = 1
 Eigenvectors: v₁ = [1, 1]ᵀ/√2, v₂ = [1, -1]ᵀ/√2
 
 Note: v₁ · v₂ = 0 (orthogonal!)
+
 ```
 
 ### 📐 Key Properties
@@ -764,6 +808,7 @@ def pca_eigen(X, n_components):
     explained_var = eigenvalues[:n_components] / eigenvalues.sum()
     
     return X_projected, explained_var
+
 ```
 
 ---
@@ -780,6 +825,7 @@ def pca_eigen(X, n_components):
 ### 🔍 Complete Proof
 
 **Part 1: Eigenvalues are Real**
+
 ```
 Step 1: Let λ be an eigenvalue with eigenvector v (possibly complex)
         Av = λv
@@ -800,9 +846,11 @@ Step 5: Equate
         λ = λ̄  (since ‖v‖² > 0)
         
 Therefore λ is real.  ∎
+
 ```
 
 **Part 2: Eigenvectors of Distinct Eigenvalues are Orthogonal**
+
 ```
 Step 1: Let Av₁ = λ₁v₁ and Av₂ = λ₂v₂ with λ₁ ≠ λ₂
 
@@ -821,9 +869,11 @@ Step 3: Equate
 
 Step 4: Since λ₁ ≠ λ₂:
         v₁ᵀv₂ = 0  (orthogonal)  ∎
+
 ```
 
 **Part 3: Matrix Form**
+
 ```
 Collect orthonormal eigenvectors as columns of Q:
 Q = [v₁ | v₂ | ... | vₙ]
@@ -833,6 +883,7 @@ AQ = A[v₁|...|vₙ] = [λ₁v₁|...|λₙvₙ] = QΛ
 
 Since Q is orthogonal (QᵀQ = I):
 A = QΛQᵀ  ∎
+
 ```
 
 ### 💡 Why This Matters for ML
@@ -851,6 +902,7 @@ A = QΛQᵀ  ∎
 
 3. Positive Definiteness:
    A ≻ 0 ⟺ all λᵢ > 0 ⟺ xᵀAx > 0 for all x ≠ 0
+
 ```
 
 ---
@@ -863,6 +915,7 @@ A = QΛQᵀ  ∎
 
 ```math
 A = U\Sigma V^T
+
 ```
 
 where:
@@ -884,6 +937,7 @@ SVD Visualization:
    
    Any matrix    Rotation/        Scaling        Rotation/
                  reflection                      reflection
+
 ```
 
 ### 🔍 Complete Proof of SVD Existence
@@ -929,6 +983,7 @@ For each vⱼ:
 In matrix form:
   AV = UΣ
   A = UΣVᵀ  ∎
+
 ```
 
 ### 📐 Key Properties of SVD
@@ -992,6 +1047,7 @@ def svd_torch(A_tensor):
     """PyTorch SVD for GPU computation"""
     U, S, Vh = torch.linalg.svd(A_tensor)
     return U, S, Vh
+
 ```
 
 ---
@@ -1004,12 +1060,14 @@ The best rank-$k$ approximation to $A$ (in Frobenius norm) is:
 
 ```math
 A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T = U_k \Sigma_k V_k^T
+
 ```
 
 with approximation error:
 
 ```math
 \|A - A_k\|_F^2 = \sum_{i=k+1}^{r} \sigma_i^2
+
 ```
 
 ### 🔍 Proof (Eckart-Young)
@@ -1047,6 +1105,7 @@ More careful analysis shows:
   ‖A - B‖²_F ≥ Σᵢ₌ₖ₊₁ʳ σᵢ² = ‖A - Aₖ‖²_F
 
 Therefore Aₖ is optimal.  ∎
+
 ```
 
 ### 💡 Application to LoRA
@@ -1072,6 +1131,7 @@ LoRA parameterization:
 
 This reduces parameters from d×k to r×(d+k)!
 For r << min(d,k), massive compression.
+
 ```
 
 ### 💻 Code Implementation
@@ -1146,6 +1206,7 @@ def compress_image(image, rank):
     error = np.linalg.norm(image - compressed) / np.linalg.norm(image)
     
     return compressed, compression, error
+
 ```
 
 ---
@@ -1195,6 +1256,7 @@ For any x ≠ 0, let y = Qᵀx (so x = Qy):
 Since Q is orthogonal, y ≠ 0 when x ≠ 0.
 So at least one yᵢ ≠ 0.
 Since all λᵢ > 0: Σᵢ λᵢyᵢ² > 0  ✓
+
 ```
 
 ### 📐 Cholesky Decomposition
@@ -1202,12 +1264,14 @@ Since all λᵢ > 0: Σᵢ λᵢyᵢ² > 0  ✓
 For $A \succ 0$: $A = LL^T$ where $L$ is lower triangular with positive diagonal.
 
 **Algorithm**:
+
 ```
 For j = 1 to n:
     L[j,j] = sqrt(A[j,j] - sum(L[j,1:j-1]²))
     
     For i = j+1 to n:
         L[i,j] = (A[i,j] - sum(L[i,1:j-1] * L[j,1:j-1])) / L[j,j]
+
 ```
 
 **Complexity**: $O(n^3/3)$ — faster than LU decomposition!
@@ -1282,6 +1346,7 @@ def compute_covariance(X):
     cov += 1e-6 * np.eye(cov.shape[0])
     
     return cov
+
 ```
 
 ---
@@ -1294,6 +1359,7 @@ For any matrix $A \in \mathbb{R}^{m \times n}$ with $m \geq n$:
 
 ```math
 A = QR
+
 ```
 
 where:
@@ -1321,6 +1387,7 @@ For j = 1 to n:
     rⱼⱼ = ‖ũⱼ‖
 
 Result: Q = [q₁|...|qₙ], R = [rᵢⱼ]
+
 ```
 
 ### 💡 Applications
@@ -1390,6 +1457,7 @@ def solve_least_squares_qr(A, b):
     x = np.linalg.solve(R, c)
     
     return x
+
 ```
 
 ---
@@ -1422,6 +1490,7 @@ eigenvalues, eigenvectors = np.linalg.eig(A)  # ERROR!
 
 # CORRECT: Use SVD for rectangular matrices
 U, S, Vt = np.linalg.svd(A)
+
 ```
 
 ### ❌ Mistake 2: Forgetting Transpose Order Reverses
@@ -1432,6 +1501,7 @@ wrong = A.T @ B.T
 
 # CORRECT: (AB)ᵀ = BᵀAᵀ
 correct = B.T @ A.T
+
 ```
 
 ### ❌ Mistake 3: Assuming Matrix Multiplication Commutes
@@ -1440,6 +1510,7 @@ correct = B.T @ A.T
 # WRONG: Assuming AB = BA
 result1 = A @ B
 result2 = B @ A  # Generally different!
+
 ```
 
 ### ❌ Mistake 4: Numerical Instability with Matrix Inverse
@@ -1454,6 +1525,7 @@ x = np.linalg.solve(A, b)
 # EVEN BETTER for PD: Use Cholesky
 L = np.linalg.cholesky(A)
 x = np.linalg.solve(L.T, np.linalg.solve(L, b))
+
 ```
 
 ### ❌ Mistake 5: Not Checking Positive Definiteness
@@ -1466,6 +1538,7 @@ inv_cov = np.linalg.inv(cov)  # May fail if singular!
 # CORRECT: Add regularization
 cov = X.T @ X / n + 1e-6 * np.eye(X.shape[1])
 inv_cov = np.linalg.inv(cov)
+
 ```
 
 ---

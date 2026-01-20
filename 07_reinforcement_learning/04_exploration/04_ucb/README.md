@@ -44,6 +44,7 @@ Setup:
 Objective:
 Minimize regret: R_T = Σ_{t=1}^T (μ* - μ_{a_t})
 where μ* = max_a μ_a
+
 ```
 
 ### UCB1 Algorithm
@@ -60,6 +61,7 @@ Where:
 • N(a) = number of times action a was selected
 • t = total time steps
 • c = exploration coefficient (typically √2)
+
 ```
 
 ---
@@ -78,6 +80,7 @@ P(|X̄_n - μ| > ε) ≤ 2 exp(-2nε²)
 
 Setting the RHS to 1/t² and solving for ε:
 ε = √(ln(t) / (2n))
+
 ```
 
 ### Upper Confidence Bound Derivation
@@ -90,6 +93,7 @@ With probability ≥ 1 - 1/t², the true mean μ_a lies in the interval:
 UCB uses the upper bound: UCB(a) = Q̂(a) + √(2ln(t)/N(a))
 
 The factor √2 ensures high probability bounds.
+
 ```
 
 ### Regret Bound
@@ -102,6 +106,7 @@ R_T ≤ [8 Σ_{a:μ_a < μ*} (ln T)/Δ_a] + (1 + π²/3) Σ_a Δ_a
 Where Δ_a = μ* - μ_a is the suboptimality gap.
 
 This is asymptotically optimal! No algorithm can do better than O(ln T).
+
 ```
 
 ### Proof Sketch
@@ -115,6 +120,7 @@ Key insight: An arm a with Δ_a > 0 can only be pulled if either:
 
 The probability of (1) and (2) decreases with t.
 (3) happens at most O(ln T / Δ_a²) times.
+
 ```
 
 ---
@@ -129,6 +135,7 @@ Uses variance estimates for tighter bounds:
 UCB1-Tuned(a) = Q̂(a) + √(ln(t)/N(a) · min(1/4, V(a)))
 
 Where V(a) = σ̂²(a) + √(2ln(t)/N(a)) is the empirical variance + exploration
+
 ```
 
 ### UCB-V (Variance-Aware)
@@ -137,6 +144,7 @@ Where V(a) = σ̂²(a) + √(2ln(t)/N(a)) is the empirical variance + exploratio
 UCB-V(a) = Q̂(a) + √(2σ̂²(a)ln(t)/N(a)) + 3b·ln(t)/N(a)
 
 Better in high-variance settings
+
 ```
 
 ### KL-UCB
@@ -147,6 +155,7 @@ Uses KL divergence for Bernoulli bandits:
 KL-UCB(a) = max{q ∈ [0,1] : N(a)·KL(Q̂(a), q) ≤ ln(t)}
 
 Where KL(p,q) = p·ln(p/q) + (1-p)·ln((1-p)/(1-q))
+
 ```
 
 ### LinUCB (Contextual)
@@ -160,6 +169,7 @@ Where:
 • θ̂_a = A_a^{-1} b_a (ridge regression estimate)
 • A_a = Σ x_t x_t^T + λI
 • b_a = Σ r_t x_t
+
 ```
 
 ---
@@ -182,6 +192,7 @@ For episode k = 1, 2, ...:
     
     Execute policy π(s) = argmax_a Q(s,a)
     Update counts N(s,a) and transition estimates P̂
+
 ```
 
 ---
@@ -198,6 +209,7 @@ In AlphaGo, this is modified with a policy prior p(a|s):
 PUCT(s, a) = Q(s, a) + c·p(a|s)·√N(s)/(1 + N(s, a))
 
 The policy network guides exploration toward promising actions.
+
 ```
 
 ---
@@ -345,6 +357,7 @@ if __name__ == "__main__":
     print(f"Arm pulls: {ucb.counts}")
     print(f"Estimated values: {ucb.values}")
     print(f"Best arm: {np.argmax(ucb.values)} (true best: {np.argmax(true_means)})")
+
 ```
 
 ---

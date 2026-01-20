@@ -45,6 +45,7 @@ Where:
   β = intrinsic reward coefficient
 
 Goal: Maximize E[Σ_t γ^t (r_t^e + β · r_t^i)]
+
 ```
 
 ### Types of Intrinsic Rewards
@@ -75,6 +76,7 @@ Where:
   ρ(s) = density estimate
   n = total samples seen
   N̂(s) = "pseudocount"
+
 ```
 
 ### Theoretical Foundation
@@ -91,6 +93,7 @@ Proof idea:
   1. Bonus ensures under-explored actions are tried
   2. As N(s,a) → ∞, bonus → 0
   3. Eventually exploits optimal action
+
 ```
 
 ---
@@ -110,6 +113,7 @@ Where:
   
 Intuition: Reward for transitions that change our 
 understanding of the world.
+
 ```
 
 ### Empowerment
@@ -122,6 +126,7 @@ Empowerment = mutual information between actions and future states:
 
 Maximize control: Choose states where actions 
 have maximum influence on outcomes.
+
 ```
 
 ---
@@ -139,6 +144,7 @@ Exploration bonus:
            = standard deviation across ensemble
 
 High disagreement → high uncertainty → explore!
+
 ```
 
 ### Epistemic Uncertainty
@@ -154,6 +160,7 @@ Aleatoric: Inherent randomness (noisy rewards)
 Epistemic: Model uncertainty (lack of data)
 
 Exploration should target epistemic uncertainty!
+
 ```
 
 ---
@@ -172,6 +179,7 @@ Where μ_i, σ_i are running mean/std of intrinsic rewards.
 
 Or use reward clipping:
   r_i^clip = clip(r_i, -c, c)
+
 ```
 
 ### Adaptive Scaling
@@ -182,6 +190,7 @@ Adaptive β (intrinsic coefficient):
 
 Start with high exploration (large β)
 Gradually shift to exploitation (small β)
+
 ```
 
 ---
@@ -224,6 +233,7 @@ class IntrinsicReward:
         self.optimizer.step()
         
         return intrinsic_reward.item()
+
 ```
 
 ## 🔗 Where This Topic Is Used

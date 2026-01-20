@@ -35,6 +35,7 @@ Prompt Structure:
 2. Context/examples
 3. User query
 4. Output format specification
+
 ```
 
 ---
@@ -62,6 +63,7 @@ A: Let's think step by step.
    3. 5 + 3 = 8
    Answer: 8 apples
 """
+
 ```
 
 ---

@@ -42,6 +42,7 @@ Backward pass: Compute gradients (chain rule!)
 
 Update: Gradient descent
     W ← W - α · ∂L/∂W
+
 ```
 
 ---
@@ -53,6 +54,7 @@ Update: Gradient descent
 
 Where:
 ∂L/∂hₗ = ∂L/∂hₗ₊₁ · ∂hₗ₊₁/∂hₗ  (recursive!)
+
 ```
 
 ---
@@ -62,11 +64,13 @@ Where:
 ### 1. Complete Backpropagation Derivation
 
 **Problem:** 2-layer neural network
+
 ```
 Input: x ∈ ℝⁿ
 Layer 1: h = σ(W₁x + b₁)     where σ(z) = max(0, z)  (ReLU)
 Layer 2: ŷ = W₂h + b₂
 Loss: L = 1/2||ŷ - y||²
+
 ```
 
 **Goal:** Compute ∂L/∂W₁, ∂L/∂b₁, ∂L/∂W₂, ∂L/∂b₂
@@ -82,20 +86,24 @@ h = ReLU(z₁)          # Activation layer 1
 z₂ = W₂h + b₂        # Pre-activation layer 2
 ŷ = z₂                # Output (linear)
 L = 1/2 * ||ŷ - y||²  # Loss
+
 ```
 
 **Step 2: Backward pass (compute gradients)**
 
 **2.1: Gradient at output**
+
 ```
 ∂L/∂ŷ = ŷ - y                    [shape: m × 1]
 
 Why? 
 L = 1/2 Σᵢ(ŷᵢ - yᵢ)²
 ∂L/∂ŷᵢ = ŷᵢ - yᵢ
+
 ```
 
 **2.2: Gradient of W₂**
+
 ```
 ∂L/∂W₂ = ∂L/∂ŷ · ∂ŷ/∂W₂
        = (ŷ - y) · hᵀ            [shape: m × n]
@@ -104,9 +112,11 @@ Detailed:
 ŷⱼ = Σₖ W₂ⱼₖhₖ + b₂ⱼ
 ∂ŷⱼ/∂W₂ⱼₖ = hₖ
 ∂L/∂W₂ⱼₖ = (ŷⱼ - yⱼ) · hₖ
+
 ```
 
 **2.3: Gradient of b₂**
+
 ```
 ∂L/∂b₂ = ∂L/∂ŷ · ∂ŷ/∂b₂
        = ŷ - y                   [shape: m × 1]
@@ -114,9 +124,11 @@ Detailed:
 Why?
 ŷⱼ = Σₖ W₂ⱼₖhₖ + b₂ⱼ
 ∂ŷⱼ/∂b₂ⱼ = 1
+
 ```
 
 **2.4: Gradient of h (chain rule!)**
+
 ```
 ∂L/∂h = ∂L/∂ŷ · ∂ŷ/∂h
       = W₂ᵀ(ŷ - y)              [shape: n × 1]
@@ -127,9 +139,11 @@ Detailed:
 ∂L/∂hₖ = Σⱼ ∂L/∂ŷⱼ · ∂ŷⱼ/∂hₖ
        = Σⱼ (ŷⱼ - yⱼ) · W₂ⱼₖ
        = [W₂ᵀ(ŷ - y)]ₖ
+
 ```
 
 **2.5: Gradient of z₁ (through ReLU)**
+
 ```
 ∂L/∂z₁ = ∂L/∂h · ∂h/∂z₁
        = ∂L/∂h ⊙ 𝟙{z₁ > 0}      [shape: n × 1]
@@ -140,9 +154,11 @@ h = ReLU(z₁) = max(0, z₁)
          { 0 if z₁ ≤ 0
 
 ⊙ denotes element-wise multiplication
+
 ```
 
 **2.6: Gradient of W₁**
+
 ```
 ∂L/∂W₁ = ∂L/∂z₁ · ∂z₁/∂W₁
        = ∂L/∂z₁ · xᵀ             [shape: n × d]
@@ -151,12 +167,15 @@ Detailed:
 z₁ᵢ = Σₖ W₁ᵢₖxₖ + b₁ᵢ
 ∂z₁ᵢ/∂W₁ᵢₖ = xₖ
 ∂L/∂W₁ᵢₖ = ∂L/∂z₁ᵢ · xₖ
+
 ```
 
 **2.7: Gradient of b₁**
+
 ```
 ∂L/∂b₁ = ∂L/∂z₁ · ∂z₁/∂b₁
        = ∂L/∂z₁                  [shape: n × 1]
+
 ```
 
 ---
@@ -285,6 +304,7 @@ gradients = backward_pass(cache)
 print(f"\nGradient magnitudes:")
 for name, grad in gradients.items():
     print(f"  {name}: ||∇|| = {np.linalg.norm(grad):.6f}")
+
 ```
 
 ---
@@ -320,6 +340,7 @@ Backward pass:
   ∂L/∂Z₁ ∈ ℝ^(n×B)        = (∂L/∂H) ⊙ σ'(Z₁)
   ∂L/∂W₁ ∈ ℝ^(n×d)        = (∂L/∂Z₁) · Xᵀ
   ∂L/∂b₁ ∈ ℝ^(n×1)        = (∂L/∂Z₁) · 𝟙
+
 ```
 
 **Memory tip:** Output gradient @ Input_transpose = Weight gradient
@@ -338,6 +359,7 @@ Backward pass:
 | **Softmax** | eᶻⁱ/Σⱼeᶻʲ | sᵢ(δᵢⱼ - sⱼ) | For classification |
 
 **GELU derivation** (used in Transformers):
+
 ```
 GELU(x) = x · Φ(x)    where Φ(x) = P(X ≤ x), X ~ N(0,1)
 
@@ -346,6 +368,7 @@ GELU(x) ≈ 0.5x(1 + tanh(√(2/π)(x + 0.044715x³)))
 
 Derivative:
 GELU'(x) = Φ(x) + x·φ(x)    where φ(x) = e^(-x²/2)/√(2π)
+
 ```
 
 ---
@@ -353,57 +376,71 @@ GELU'(x) = Φ(x) + x·φ(x)    where φ(x) = e^(-x²/2)/√(2π)
 ### 5. Vanishing/Exploding Gradients
 
 **Problem:** In deep networks (L layers):
+
 ```
 ∂L/∂W₁ = ∂L/∂hₗ · ∂hₗ/∂hₗ₋₁ · ... · ∂h₂/∂h₁ · ∂h₁/∂W₁
 
 Product of L terms!
+
 ```
 
 **Vanishing:** If each ∂hₗ/∂hₗ₋₁ < 1:
+
 ```
 ||∂L/∂W₁|| ≈ (0.5)^L → 0  as L → ∞
 
 Early layers don't learn!
+
 ```
 
 **Exploding:** If each ∂hₗ/∂hₗ₋₁ > 1:
+
 ```
 ||∂L/∂W₁|| ≈ (2)^L → ∞  as L → ∞
 
 Gradient overflow (NaN)!
+
 ```
 
 **Solutions:**
 
 1. **Residual connections** (ResNet):
+
 ```
 h_{l+1} = σ(W_l h_l) + h_l    (skip connection)
 
 ∂h_{l+1}/∂h_l = ∂σ/∂h_l + I
 
 Gradient can flow directly through identity!
+
 ```
 
 2. **Layer normalization:**
+
 ```
 h_norm = (h - μ)/σ
 
 Keeps activations in reasonable range
 → Gradients don't explode/vanish
+
 ```
 
 3. **Gradient clipping:**
+
 ```python
 if ||g|| > threshold:
     g = g * (threshold / ||g||)
+
 ```
 
 4. **Careful initialization** (Xavier/He):
+
 ```
 Xavier:  W ~ N(0, 2/(n_in + n_out))
 He:      W ~ N(0, 2/n_in)  # For ReLU
 
 Keeps variance of activations constant across layers
+
 ```
 
 ---
@@ -424,9 +461,11 @@ Forward pass: Compute z (left to right)
 Backward pass: Compute ∂z/∂x, ∂z/∂y (right to left)
 
 Chain rule automatically applied!
+
 ```
 
 **Example: ∂z/∂x**
+
 ```
 z = x·y + sin(x)
 
@@ -437,6 +476,7 @@ Graph perspective:
 ∂z/∂x = ∂z/∂(x·y) · ∂(x·y)/∂x + ∂z/∂sin(x) · ∂sin(x)/∂x
       = 1 · y + 1 · cos(x)
       = y + cos(x)  ✓
+
 ```
 
 ---
@@ -463,9 +503,11 @@ Backward (gradients):
   ∂L/∂W_Q = Xᵀ · ∂L/∂Q
   ∂L/∂W_K = Xᵀ · ∂L/∂K
   ∂L/∂W_V = Xᵀ · ∂L/∂V
+
 ```
 
 **Softmax gradient** (critical for attention):
+
 ```
 If y = softmax(z), then:
 ∂yᵢ/∂zⱼ = yᵢ(δᵢⱼ - yⱼ)
@@ -475,6 +517,7 @@ In matrix form:
 
 For backprop:
 ∂L/∂z = ∂L/∂y · (diag(y) - y·yᵀ)
+
 ```
 
 ---
@@ -530,6 +573,7 @@ def f(W1):
 analytical = gradients['dW1']
 numerical = numerical_gradient(f, W1)
 check_gradient(analytical, numerical)
+
 ```
 
 ---
@@ -545,6 +589,7 @@ loss = y.sum()
 
 loss.backward()  # Computes all gradients!
 print(x.grad)    # ∂loss/∂x = 2x
+
 ```
 
 ---
@@ -571,6 +616,7 @@ Backpropagation --> Training any neural network
                --> Understanding gradient flow
                --> Debugging training issues
                --> Custom layer implementation
+
 ```
 
 ### Concepts Built On Backprop

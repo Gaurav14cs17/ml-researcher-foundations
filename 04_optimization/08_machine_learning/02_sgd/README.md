@@ -16,37 +16,45 @@
 ## 📐 Mathematical Foundations
 
 ### Vanilla SGD
+
 ```
 θₜ₊₁ = θₜ - η ∇L_B(θₜ)
 
 Where B is a mini-batch (random subset)
 E[∇L_B] = ∇L (unbiased estimator)
+
 ```
 
 ### SGD with Momentum
+
 ```
 vₜ₊₁ = β vₜ + ∇L_B(θₜ)
 θₜ₊₁ = θₜ - η vₜ₊₁
 
 β typically 0.9 (exponential moving average of gradients)
+
 ```
 
 ### Nesterov Accelerated Gradient
+
 ```
 θ_lookahead = θₜ - β vₜ
 vₜ₊₁ = β vₜ + ∇L_B(θ_lookahead)
 θₜ₊₁ = θₜ - η vₜ₊₁
 
 Evaluates gradient at "lookahead" position
+
 ```
 
 ### Convergence Rate
+
 ```
 For convex functions with σ² gradient variance:
 E[f(θₜ) - f*] ≤ O(1/√t) + O(σ²/η)
 
 Learning rate schedule:
 ηₜ = η₀ / √t or step decay
+
 ```
 
 ---
@@ -83,6 +91,7 @@ foundations/linear-algebra
          |
          v
     machine-learning/adam
+
 ```
 
 ---
@@ -102,6 +111,7 @@ foundations/linear-algebra
 |   • (x_i, y_i) = random sample from dataset    |
 |                                                 |
 +-------------------------------------------------+
+
 ```
 
 ---
@@ -121,26 +131,32 @@ foundations/linear-algebra
 ## 🌍 Real-World Applications
 
 ### 1. **Language Model Training (GPT, BERT)**
+
 ```
 Dataset: Trillions of tokens
 Batch size: 512 - 4096
 Why SGD: Impossible to fit full dataset in memory
+
 ```
 
 ### 2. **Image Classification (ResNet on ImageNet)**
+
 ```
 Dataset: 1.2M images
 Batch size: 256
 Why SGD: Memory efficient, good generalization
 Paper: "Deep Residual Learning" (2015)
+
 ```
 
 ### 3. **Diffusion Models (Stable Diffusion)**
+
 ```
 Training: Predict noise at each timestep
 Loss: ||ε - ε_θ(x_t, t)||²
 SGD variant: Adam (covered later)
 Paper: "Denoising Diffusion Probabilistic Models"
+
 ```
 
 ---
@@ -162,6 +178,7 @@ Why noise helps:
        | ╲            ╲      ╱
        |  •           ╲•----╱
    Overfits!          Generalizes!
+
 ```
 
 ---
@@ -189,6 +206,7 @@ for epoch in range(100):
         
         # SGD update: θ = θ - α∇L
         optimizer.step()
+
 ```
 
 ---
@@ -208,6 +226,7 @@ for epoch in range(100):
 ### 1. SGD Algorithm: From Full Batch to Stochastic
 
 **Full Batch Gradient Descent:**
+
 ```
 Loss: L(θ) = (1/N) Σᵢ₌₁ⁿ ℓ(θ; xᵢ, yᵢ)
 
@@ -216,9 +235,11 @@ Update:
        = θₜ - α·(1/N) Σᵢ₌₁ⁿ ∇ℓ(θₜ; xᵢ, yᵢ)
 
 Cost per iteration: O(N) gradient computations
+
 ```
 
 **Stochastic Gradient Descent (SGD):**
+
 ```
 Sample: Pick i uniformly at random from {1,...,N}
 
@@ -231,9 +252,11 @@ Update:
 Cost per iteration: O(1) gradient computation
 
 Key property: E[g̃ₜ | θₜ] = ∇L(θₜ)  (unbiased!)
+
 ```
 
 **Mini-Batch SGD (Practical):**
+
 ```
 Sample: Pick batch B ⊂ {1,...,N} of size b
 
@@ -246,6 +269,7 @@ Update:
 Cost per iteration: O(b) gradient computations
 
 Variance reduction: Var[g̃ₜ] ∝ 1/b
+
 ```
 
 ---
@@ -267,6 +291,7 @@ Then:
                      = O(1/√T)  when α = O(1/√T)
 
 where θ̄_T = (1/T) Σₜ₌₁ᵀ θₜ (average iterate)
+
 ```
 
 **Proof:**
@@ -302,9 +327,11 @@ Step 5: Optimize step size
   Set α = ||θ₀ - θ*||/(G√T) to balance terms
   
   L(θ̄_T) - L(θ*) ≤ (G||θ₀ - θ*||)/√T = O(1/√T) ✓  QED
+
 ```
 
 **Key Insight:**
+
 ```
 SGD converges O(1/√T) vs GD's O(1/T)
   
@@ -315,6 +342,7 @@ Total cost to reach ε-accuracy:
   SGD: O(1/ε²) gradient evaluations
 
 SGD wins when N > 1/ε (almost always in ML!)
+
 ```
 
 ---
@@ -332,6 +360,7 @@ With decreasing step size αₜ = α₀/(1 + μα₀t):
   E[L(θₜ) - L(θ*)] ≤ C/(μα₀t) = O(1/t)
 
 Much faster than O(1/√t)!
+
 ```
 
 ---
@@ -350,6 +379,7 @@ where σG² = E[||g̃ₜ - ∇L(θₜ)||²] (gradient variance)
 
 To find ε-stationary point (||∇L|| ≤ ε):
   T = O(1/ε²) iterations
+
 ```
 
 **Why This Matters for Deep Learning:**
@@ -362,6 +392,7 @@ Empirical observations:
   2. High dimensionality → saddle points, not local mins
   3. SGD noise helps escape saddle points
   4. Wide networks → loss landscape becomes "nicer"
+
 ```
 
 ---
@@ -382,6 +413,7 @@ Trade-off:
   • Larger b → Less variance, smoother convergence
   • Smaller b → More noise, better exploration
   • Optimal b depends on problem (typically 32-512)
+
 ```
 
 ---
@@ -399,6 +431,7 @@ Examples:
   • αₜ = α₀/t          ✓ (satisfies both)
   • αₜ = α₀/√t         ✓
   • αₜ = constant      ✗ (violates condition 2)
+
 ```
 
 **Practical Schedules:**
@@ -425,6 +458,7 @@ Examples:
    α(t) = α_max · min(t/t_warmup, (t/t_warmup)^{-0.5})
    
    Critical for transformer training
+
 ```
 
 ---
@@ -450,6 +484,7 @@ Mathematical intuition:
   Effect: SGD explores around minimum
   → Finds wider valleys (flatter minima)
   → Better generalization!
+
 ```
 
 ---
@@ -470,6 +505,7 @@ Mathematical intuition:
 |   • α = learning rate                           |
 |                                                 |
 +-------------------------------------------------+
+
 ```
 
 ---
@@ -488,6 +524,7 @@ Without Momentum:              With Momentum:
     | ╱                              (faster!)
     •
   Oscillates                   Smooth path
+
 ```
 
 ---
@@ -514,6 +551,7 @@ Ball rolling down a hill:
          Minimum
 
 β = 0.9 means: "Remember 90% of previous velocity"
+
 ```
 
 ---
@@ -547,6 +585,7 @@ where:
   β ∈ [0,1) = momentum coefficient (typically 0.9)
   gₜ = ∇L(θₜ) or stochastic gradient
   α = learning rate
+
 ```
 
 **Exponential Moving Average Interpretation:**
@@ -565,6 +604,7 @@ Effective averaging window:
   β = 0.9 → w_eff = 10 gradients
   β = 0.99 → w_eff = 100 gradients
   β = 0.999 → w_eff = 1000 gradients
+
 ```
 
 ---
@@ -581,6 +621,7 @@ Convergence rate for condition number κ = L/μ:
 
 Number of iterations to reach ε-accuracy:
   T_GD = O(κ log(1/ε))
+
 ```
 
 **With Optimal Momentum:**
@@ -601,6 +642,7 @@ Speedup factor:
   
   κ = 100 → 10× fewer iterations!
   κ = 10000 → 100× fewer iterations!
+
 ```
 
 **Proof Sketch (Strongly Convex Quadratics):**
@@ -626,6 +668,7 @@ Step 3: General convex case
   For general smooth strongly convex f:
     Similar analysis via Polyak-Lojasiewicz condition
     Result: O(√κ) acceleration holds ✓  QED
+
 ```
 
 ---
@@ -643,6 +686,7 @@ Algorithm:
     θₜ₊₁ = θₜ - α·vₜ₊₁
 
 Key difference: Evaluate gradient at lookahead position!
+
 ```
 
 **Why Lookahead Helps:**
@@ -661,6 +705,7 @@ Nesterov momentum: "Informed momentum"
   3. Correct velocity based on future gradient
   
   Benefit: Better anticipation of future gradient
+
 ```
 
 **Convergence Guarantee:**
@@ -673,6 +718,7 @@ For smooth convex f:
 
 For smooth strongly convex f:
   Same O(√κ) as standard momentum, but better constants
+
 ```
 
 ---
@@ -698,6 +744,7 @@ Mathematical intuition:
   At saddle with Hessian eigenvalue λ < 0:
     Momentum amplifies motion in negative curvature direction
     Escape time: O(log(1/|λ|)) vs O(1/|λ|) for GD
+
 ```
 
 ---
@@ -720,6 +767,7 @@ Heuristic rule:
   Very ill-conditioned (κ ≈ 10000): β = 0.99
 
 In practice: Just use β = 0.9 as starting point
+
 ```
 
 **Learning Rate with Momentum:**
@@ -735,6 +783,7 @@ Example:
   With β = 0.9: α = 0.01
   
   Effective step: (1/(1-β))·α = 10·0.01 = 0.1 (same!)
+
 ```
 
 ---
@@ -783,6 +832,7 @@ for epoch in range(100):
         loss = criterion(model(x), y)
         loss.backward()
         optimizer.step()
+
 ```
 
 ---
@@ -814,6 +864,7 @@ RMSprop (adaptive):
   θₜ₊₁ = θₜ - α·g̃ₜ/√(vₜ + ε)
   
   Effect: Per-parameter learning rates
+
 ```
 
 ---

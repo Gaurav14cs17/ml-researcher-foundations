@@ -35,6 +35,7 @@ Federated Learning (FL) enables training ML models across decentralized data sou
 
 ```math
 \min_w F(w) = \sum_{k=1}^{K} \frac{n_k}{n} F_k(w)
+
 ```
 
 where:
@@ -49,12 +50,14 @@ where:
 
 ```math
 w^* = \arg\min_w \frac{1}{n} \sum_{i=1}^{n} \ell(w; x_i, y_i)
+
 ```
 
 **Federated (equivalent if IID):**
 
 ```math
 w^* = \arg\min_w \sum_{k=1}^{K} \frac{n_k}{n} \cdot \frac{1}{n_k} \sum_{i \in \mathcal{D}_k} \ell(w; x_i, y_i)
+
 ```
 
 ---
@@ -81,6 +84,7 @@ For round t = 0, 1, ..., T-1:
         Send Δw_k to server
     4. Server aggregates:
         w_{t+1} = w_t + Σ_{k∈S_t} (n_k/Σ_{j∈S_t} n_j) Δw_k
+
 ```
 
 ### Convergence Analysis
@@ -89,6 +93,7 @@ For round t = 0, 1, ..., T-1:
 
 ```math
 \mathbb{E}[F(w_T)] - F(w^*) \leq O\left(\frac{1}{T} + \frac{E\eta^2L\sigma^2}{K} + E^2\eta^2L^2\Gamma\right)
+
 ```
 
 where:
@@ -110,6 +115,7 @@ E[||w_{t+1} - w^*||²] ≤ (1 - μη)E[||w_t - w^*||²]
 
 The "client drift" term is bounded by Γ (non-IID factor).
 Summing over T rounds gives the convergence bound.
+
 ```
 
 ---
@@ -122,12 +128,14 @@ Adds proximal term to prevent client drift:
 
 ```math
 \min_w F_k(w) + \frac{\mu}{2}\|w - w_t\|^2
+
 ```
 
 **Local update:**
 
 ```math
 w_k^{e+1} = w_k^e - \eta(\nabla F_k(w_k^e) + \mu(w_k^e - w_t))
+
 ```
 
 ### 2. SCAFFOLD
@@ -136,6 +144,7 @@ Uses control variates to correct client drift:
 
 ```math
 w_k^{e+1} = w_k^e - \eta(\nabla F_k(w_k^e) - c_k + c)
+
 ```
 
 where:
@@ -143,9 +152,11 @@ where:
 - \(c\): server control variate (tracks \(\nabla F\))
 
 **Update rule:**
+
 ```
 c_k^{new} = c_k - c + (w_t - w_k)/(K·η)
 c^{new} = c + (1/K) Σ_k (c_k^{new} - c_k)
+
 ```
 
 ### 3. FedNova
@@ -154,6 +165,7 @@ Normalizes updates by local computation:
 
 ```math
 w_{t+1} = w_t - \tau_{eff} \cdot \frac{\sum_k \Delta w_k / \tau_k}{\sum_k n_k/n}
+
 ```
 
 where \(\tau_k\) is the number of local steps on client \(k\).
@@ -168,6 +180,7 @@ Add noise to gradients before aggregation:
 
 ```math
 \tilde{g}_k = g_k + \mathcal{N}(0, \sigma^2 C^2 I)
+
 ```
 
 where \(C\) is the clipping threshold.
@@ -176,15 +189,18 @@ where \(C\) is the clipping threshold.
 
 ```math
 (\epsilon, \delta)\text{-DP with } \sigma \geq \frac{c \cdot C \sqrt{T \log(1/\delta)}}{n\epsilon}
+
 ```
 
 ### Secure Aggregation
 
 Clients share secret keys to mask updates:
+
 ```
 1. Client k generates random mask r_k such that Σ_k r_k = 0
 2. Client sends masked update: Δw_k + r_k
 3. Server computes: Σ_k (Δw_k + r_k) = Σ_k Δw_k
+
 ```
 Server learns only the sum, not individual updates!
 
@@ -463,6 +479,7 @@ clients = [
 print("Running federated training...")
 # run_federated_training(server, clients, num_rounds=10, clients_per_round=5)
 print("Federated learning complete!")
+
 ```
 
 ---

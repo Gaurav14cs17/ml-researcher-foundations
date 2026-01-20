@@ -47,6 +47,7 @@ Components:
 3. Inverse Model: g: ℝᵈ × ℝᵈ → A
    â_t = g(φ(s_t), φ(s_{t+1}))
    Predicts action from state transitions
+
 ```
 
 ### Curiosity Reward Definition
@@ -60,6 +61,7 @@ Where:
   φ(s_{t+1}) = encoder output   (actual features)
   
 Total reward: r_total = r_extrinsic + r_intrinsic
+
 ```
 
 ### Training Objective
@@ -75,6 +77,7 @@ Where:
 Why inverse model?
   Forces φ to encode action-relevant features
   Ignores noise that doesn't affect dynamics
+
 ```
 
 ### Theoretical Justification
@@ -93,6 +96,7 @@ Proof sketch:
 This solves the "noisy TV problem":
   Random noise on screen → high prediction error
   But noise is action-independent → filtered out
+
 ```
 
 ---
@@ -112,6 +116,7 @@ Intrinsic reward:
 Intuition:
   Novel states → predictor hasn't seen them → high error
   Familiar states → predictor learned them → low error
+
 ```
 
 ### RND Loss Function
@@ -123,6 +128,7 @@ Properties:
   1. Self-supervised (no labels needed)
   2. Density estimation: r_i ∝ 1/ρ(s)
   3. Non-episodic: works across episodes
+
 ```
 
 ### Comparison: ICM vs RND
@@ -135,6 +141,7 @@ Properties:
 | Noise handling  | Inverse model        | Inherent           |
 | Complexity      | Higher               | Lower              |
 | Performance     | Good on visual       | Better on Atari    |
+
 ```
 
 ---
@@ -189,6 +196,7 @@ class ICM(nn.Module):
         
         # Curiosity = prediction error
         return ((phi_s_next_pred - phi_s_next.detach()) ** 2).mean(dim=-1)
+
 ```
 
 ## 🔗 Where This Topic Is Used

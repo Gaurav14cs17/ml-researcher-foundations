@@ -24,6 +24,7 @@ Long Short-Term Memory (LSTM) networks solve the vanishing gradient problem in R
 ### The Vanishing Gradient Problem (Why LSTMs Exist)
 
 **Standard RNN:**
+
 ```
 hₜ = tanh(Wₕₕ hₜ₋₁ + Wₓₕ xₜ + b)
 
@@ -37,6 +38,7 @@ Since |tanh'(x)| ≤ 1 and typically < 1:
 ||∂hₜ/∂h₀|| → 0 as T → ∞ (vanishing)
 or
 ||∂hₜ/∂h₀|| → ∞ as T → ∞ (exploding)
+
 ```
 
 **LSTM Solution:** Introduce gates that control information flow.
@@ -51,12 +53,14 @@ or
 
 ```math
 f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)
+
 ```
 
 ```
 Intuition: f_t ∈ (0, 1)ʰ controls what fraction of old information to keep
 - f_t ≈ 1: Keep everything
 - f_t ≈ 0: Forget everything
+
 ```
 
 **2. Input Gate:** What new information to store
@@ -64,18 +68,21 @@ Intuition: f_t ∈ (0, 1)ʰ controls what fraction of old information to keep
 ```math
 i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)
 \tilde{c}_t = \tanh(W_c \cdot [h_{t-1}, x_t] + b_c)
+
 ```
 
 ```
 Intuition:
 - i_t ∈ (0, 1)ʰ: How much of new info to write
 - c̃_t ∈ (-1, 1)ʰ: New candidate values
+
 ```
 
 **3. Cell State Update:** The key to long-term memory
 
 ```math
 c_t = f_t \odot c_{t-1} + i_t \odot \tilde{c}_t
+
 ```
 
 ```
@@ -85,6 +92,7 @@ Intuition: Linear combination of old and new information
 
 Key insight: This is nearly a linear operation!
 Gradient flows easily through c_t → c_{t-1}
+
 ```
 
 **4. Output Gate:** What to output from cell state
@@ -92,12 +100,14 @@ Gradient flows easily through c_t → c_{t-1}
 ```math
 o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)
 h_t = o_t \odot \tanh(c_t)
+
 ```
 
 ```
 Intuition:
 - o_t ∈ (0, 1)ʰ: What parts of cell state to expose
 - h_t: Filtered version of cell state
+
 ```
 
 ---
@@ -120,6 +130,7 @@ Intuition:
 ### Why LSTMs Solve Vanishing Gradients
 
 **Cell State Gradient:**
+
 ```
 ∂cₜ/∂cₜ₋₁ = diag(fₜ) + terms involving ∂fₜ/∂cₜ₋₁
 
@@ -131,9 +142,11 @@ For T timesteps:
 
 Key insight: If fₖ ≈ 1, gradient flows unchanged!
 Unlike tanh which always shrinks gradients.
+
 ```
 
 **Formal Proof:**
+
 ```
 ∂L/∂c₀ = ∂L/∂cₜ · ∂cₜ/∂cₜ₋₁ · ... · ∂c₁/∂c₀
 
@@ -144,11 +157,13 @@ If forget gates are close to 1:
 ∂L/∂c₀ ≈ ∂L/∂cₜ · (1 × 1 × ... × 1) = ∂L/∂cₜ
 
 The gradient reaches c₀ almost unchanged!
+
 ```
 
 ### Constant Error Carousel
 
 The cell state update can be written as:
+
 ```
 cₜ = fₜ ⊙ cₜ₋₁ + iₜ ⊙ c̃ₜ
 
@@ -157,6 +172,7 @@ cₜ = cₜ₋₁ (information preserved perfectly)
 
 This is the "constant error carousel" - 
 error signals can flow through time without decay.
+
 ```
 
 ---
@@ -171,6 +187,7 @@ Add cell state to gate computations:
 f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + W_{cf} \cdot c_{t-1} + b_f)
 i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + W_{ci} \cdot c_{t-1} + b_i)
 o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + W_{co} \cdot c_t + b_o)
+
 ```
 
 **Benefit:** Gates can observe cell state directly.
@@ -182,6 +199,7 @@ Simplified version with 2 gates instead of 3:
 ```math
 z_t = \sigma(W_z \cdot [h_{t-1}, x_t])
 $$ (update gate)
+
 ```
 
 r_t = \sigma(W_r \cdot [h_{t-1}, x_t])
@@ -190,6 +208,7 @@ $$ (reset gate)
 ```math
 \tilde{h}_t = \tanh(W \cdot [r_t \odot h_{t-1}, x_t])
 h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t
+
 ```
 
 **Key difference:** No separate cell state; fewer parameters.
@@ -200,6 +219,7 @@ Force \(i_t = 1 - f_t\):
 
 ```math
 c_t = f_t \odot c_{t-1} + (1 - f_t) \odot \tilde{c}_t
+
 ```
 
 **Benefit:** Reduces parameters, enforces conservation of information.
@@ -228,6 +248,7 @@ for t in range(T):
     
     # Hidden state
     h_t = o_t * tanh(c_t)
+
 ```
 
 ### Backward Pass (Gradient Derivation)
@@ -253,6 +274,7 @@ Step 4: Input gate gradients
 Step 5: Propagate to previous timestep
 ∂L/∂cₜ₋₁ = ∂L/∂cₜ ⊙ fₜ  ← KEY: multiplied by fₜ ≈ 1
 ∂L/∂hₜ₋₁ = W'∂L/∂(gates)  ← Standard backprop through weights
+
 ```
 
 ---
@@ -429,6 +451,7 @@ lstm = LSTM(input_dim, hidden_dim, output_dim)
 X = np.random.randn(batch_size, seq_len, input_dim)
 outputs = lstm.forward(X)
 print(f"Output shape: {outputs.shape}")  # (32, 10, 10)
+
 ```
 
 ### PyTorch Implementation
@@ -573,6 +596,7 @@ model = LSTMFromScratch(input_dim=256, hidden_dim=512)
 x = torch.randn(32, 20, 256)  # (batch, seq, features)
 output, (h_n, c_n) = model(x)
 print(f"Output: {output.shape}, h_n: {h_n.shape}, c_n: {c_n.shape}")
+
 ```
 
 ---

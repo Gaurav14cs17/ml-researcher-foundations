@@ -41,6 +41,7 @@ P(Y = y | P̂ = p) = p  for all p ∈ [0, 1]
  it's correct 80% of the time"
 
 Modern neural networks are often overconfident!
+
 ```
 
 ### Calibration Metrics
@@ -60,6 +61,7 @@ Brier Score:
 BS = (1/n) Σᵢ (pᵢ - yᵢ)²
 
 Measures both calibration and refinement
+
 ```
 
 ### Temperature Scaling
@@ -76,6 +78,7 @@ Where:
 • T < 1: Sharper probabilities (more confident)
 
 Find T by minimizing NLL on validation set
+
 ```
 
 ---
@@ -184,6 +187,7 @@ def smooth_labels(labels, num_classes, smoothing=0.1):
     one_hot.scatter_(1, labels.unsqueeze(1), confidence)
     
     return one_hot
+
 ```
 
 ---
@@ -217,6 +221,7 @@ Solutions:
 • Label smoothing during training
 • Ensemble methods
 • Bayesian neural networks
+
 ```
 
 ---

@@ -31,6 +31,7 @@ Where:
   A ∈ ℝᵐˣⁿ: constraint matrix
   b ∈ ℝᵐ: right-hand side
   c ∈ ℝⁿ: objective coefficients
+
 ```
 
 **Standard form:** All constraints are equalities, all variables non-negative
@@ -47,6 +48,7 @@ If an optimal solution exists, then:
 • The optimum occurs at a vertex of the feasible polytope
 
 Therefore: Only check vertices, not interior points!
+
 ```
 
 ### Why Simplex Works
@@ -60,6 +62,7 @@ Simplex:
 1. Start at a vertex
 2. Move to adjacent vertex with better objective
 3. Repeat until no improvement possible
+
 ```
 
 ---
@@ -76,6 +79,7 @@ Simplex:
    c. Perform pivot operation
    d. Update tableau
 3. Return optimal solution
+
 ```
 
 ### Tableau Form
@@ -88,6 +92,7 @@ Simplex:
 +------------------------------------+
     ↑      ↑     ↑
     z    vars  RHS
+
 ```
 
 ---
@@ -95,22 +100,27 @@ Simplex:
 ## 💻 Example
 
 **Problem:**
+
 ```
 maximize   3x₁ + 2x₂
 subject to x₁ + x₂ ≤ 4
           2x₁ + x₂ ≤ 5
           x₁, x₂ ≥ 0
+
 ```
 
 **Convert to standard form:**
+
 ```
 minimize   -3x₁ - 2x₂
 subject to x₁ + x₂ + s₁ = 4
           2x₁ + x₂ + s₂ = 5
           x₁, x₂, s₁, s₂ ≥ 0
+
 ```
 
 **Initial tableau:**
+
 ```
 +---------------------------------+
 | z | 3  2  0  0 | 0 |
@@ -118,12 +128,15 @@ subject to x₁ + x₂ + s₁ = 4
 |s₁ | 1  1  1  0 | 4 |
 |s₂ | 2  1  0  1 | 5 |
 +---------------------------------+
+
 ```
 
 **After pivots:**
+
 ```
 Optimal: x₁ = 1, x₂ = 3
 Objective: 3(1) + 2(3) = 9
+
 ```
 
 ---
@@ -152,6 +165,7 @@ result = linprog(
 
 print(f"Optimal solution: {result.x}")      # [1, 3]
 print(f"Optimal value: {-result.fun}")      # 9
+
 ```
 
 ---
@@ -159,25 +173,31 @@ print(f"Optimal value: {-result.fun}")      # 9
 ## 📊 Complexity
 
 ### Worst Case
+
 ```
 Exponential: O(2ⁿ) iterations possible
 (Klee-Minty cube example)
+
 ```
 
 ### Average Case
+
 ```
 Polynomial in practice: O(m) to O(3m) pivots
 where m = number of constraints
 
 Empirical: Very fast on real problems
+
 ```
 
 ### Why It Works Well
+
 ```
 Despite exponential worst-case:
 • Typical problems reach optimum quickly
 • Heuristics (Dantzig's rule, steepest edge) help
 • Warm-starting enables fast updates
+
 ```
 
 ---
@@ -185,24 +205,30 @@ Despite exponential worst-case:
 ## 🔄 Variants
 
 ### Revised Simplex
+
 ```
 • More efficient: O(m³) per iteration vs O(mn)
 • Works with basis matrix directly
 • Standard in modern solvers
+
 ```
 
 ### Dual Simplex
+
 ```
 • Maintains dual feasibility
 • Useful for re-optimization
 • Used in branch-and-bound
+
 ```
 
 ### Primal-Dual Methods
+
 ```
 • Maintain both primal and dual feasibility
 • Interior-point methods
 • Polynomial worst-case complexity
+
 ```
 
 ---

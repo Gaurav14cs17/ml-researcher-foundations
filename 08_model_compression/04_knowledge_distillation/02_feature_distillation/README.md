@@ -30,6 +30,7 @@ Transfer intermediate representations, not just outputs.
 
 ```math
 \mathcal{L}_{hint} = \|r(F_s^l) - F_t^{l'}\|_2^2
+
 ```
 
 where:
@@ -55,11 +56,14 @@ where:
 
 ```math
 \min_{\theta_s^{1:l}, W_r} \|r(F_s^l) - F_t^{l'}\|_2^2
+
 ```math
 2. **Stage 2:** Train full network with KD
+
 ```
 
 \min_{\theta_s} \mathcal{L}_{KD}
+
 ```
 
 ---
@@ -72,6 +76,7 @@ where:
 
 ```math
 A = \sum_{c=1}^{C} |F_c|^p
+
 ```
 
 where $F\_c$ is the feature map of channel $c$ and $p \in \{1, 2\}$.
@@ -82,6 +87,7 @@ where $F\_c$ is the feature map of channel $c$ and $p \in \{1, 2\}$.
 
 ```math
 \mathcal{L}_{AT} = \sum_l \left\|\frac{A_s^l}{\|A_s^l\|_2} - \frac{A_t^l}{\|A_t^l\|_2}\right\|_p^p
+
 ```
 
 **Normalization:** Makes attention maps comparable across layers/networks.
@@ -92,6 +98,7 @@ where $F\_c$ is the feature map of channel $c$ and $p \in \{1, 2\}$.
 
 ```math
 \frac{\partial \mathcal{L}_{AT}}{\partial F_s^{(c)}} = p \cdot |F_s^{(c)}|^{p-1} \cdot \text{sign}(F_s^{(c)}) \cdot \frac{\partial}{\partial A_s}\left\|\frac{A_s}{\|A_s\|} - \frac{A_t}{\|A_t\|}\right\|
+
 ```
 
 ---
@@ -107,6 +114,7 @@ Transfer activation patterns, not values.
 
 ```math
 B = \mathbf{1}[F > 0]
+
 ```
 
 #### 3.2 Maximum Mean Discrepancy
@@ -115,6 +123,7 @@ B = \mathbf{1}[F > 0]
 
 ```math
 \mathcal{L}_{MMD} = \left\|\frac{1}{n}\sum_{i=1}^n \phi(F_s^{(i)}) - \frac{1}{n}\sum_{i=1}^n \phi(F_t^{(i)})\right\|^2
+
 ```
 
 where $\phi$ is a kernel feature map.
@@ -136,6 +145,7 @@ where $\phi$ is a kernel feature map.
 
 ```math
 \mathcal{L}_{multi} = \sum_{(l_s, l_t) \in \mathcal{P}} \lambda_l \|r_l(F_s^{l_s}) - F_t^{l_t}\|_2^2
+
 ```
 
 where $\mathcal{P}$ is a set of layer pairs.
@@ -146,12 +156,14 @@ where $\mathcal{P}$ is a set of layer pairs.
 
 ```math
 G = F^T F \in \mathbb{R}^{n \times n}
+
 ```
 
 **Loss:**
 
 ```math
 \mathcal{L}_{corr} = \|G_s - G_t\|_F^2
+
 ```
 
 Matches relationships between samples, not absolute values.
@@ -166,6 +178,7 @@ Matches relationships between samples, not absolute values.
 
 ```math
 G = \sum_{s=1}^{h \times w} F_1(s) \otimes F_2(s)
+
 ```
 
 where $\otimes$ is outer product, $F\_1, F\_2$ are features from consecutive layers.
@@ -176,12 +189,14 @@ where $\otimes$ is outer product, $F\_1, F\_2$ are features from consecutive lay
 
 ```math
 G_{FSP} = \frac{1}{hw} F_1^T F_2 \in \mathbb{R}^{c_1 \times c_2}
+
 ```
 
 **Loss:**
 
 ```math
 \mathcal{L}_{FSP} = \sum_l \|G_s^l - G_t^l\|_F^2
+
 ```
 
 ---
@@ -433,6 +448,7 @@ class FeatureDistillationTrainer:
         )
         
         return total_loss, hard_loss, soft_loss, feature_loss
+
 ```
 
 ---

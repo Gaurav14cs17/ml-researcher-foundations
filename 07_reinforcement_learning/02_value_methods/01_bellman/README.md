@@ -39,6 +39,7 @@ Where:
 • Gₜ = rₜ + γrₜ₊₁ + γ²rₜ₊₂ + ... (return)
 • γ ∈ [0, 1] (discount factor)
 • π(a|s) (policy: probability of action a in state s)
+
 ```
 
 ### Action-Value Function Q(s, a)
@@ -51,6 +52,7 @@ Qπ(s, a) = Eπ[Gₜ | sₜ = s, aₜ = a]
 Relationship:
 Vπ(s) = Σₐ π(a|s) Qπ(s, a)  (V is expectation of Q over actions)
 Qπ(s, a) = R(s,a) + γ Σₛ' P(s'|s,a) Vπ(s')
+
 ```
 
 ---
@@ -67,6 +69,7 @@ Vπ(s) = Σₐ π(a|s) [R(s,a) + γ Σₛ' P(s'|s,a) Vπ(s')]
 Matrix form:
 Vπ = Rπ + γ Pπ Vπ
 Vπ = (I - γPπ)⁻¹ Rπ  (closed-form solution!)
+
 ```
 
 ### For Q (Action-Value)
@@ -75,6 +78,7 @@ Vπ = (I - γPπ)⁻¹ Rπ  (closed-form solution!)
 Qπ(s, a) = R(s,a) + γ Σₛ' P(s'|s,a) Σₐ' π(a'|s') Qπ(s', a')
            ------------------------------------------------
            Immediate reward + expected Q of next state-action
+
 ```
 
 ---
@@ -95,6 +99,7 @@ Q*(s, a) = R(s,a) + γ Σₛ' P(s'|s,a) maxₐ' Q*(s', a')
 Relationship:
 V*(s) = maxₐ Q*(s, a)
 Q*(s, a) = R(s,a) + γ Σₛ' P(s'|s,a) V*(s')
+
 ```
 
 ### Optimal Policy
@@ -103,6 +108,7 @@ Q*(s, a) = R(s,a) + γ Σₛ' P(s'|s,a) V*(s')
 π*(s) = argmaxₐ Q*(s, a)
 
 Once we have Q*, the optimal policy is to be greedy with respect to Q*.
+
 ```
 
 ---
@@ -120,6 +126,7 @@ Policy Iteration:
 1. Policy Evaluation: Compute Vπ (solve linear system)
 2. Policy Improvement: π'(s) = argmaxₐ Qπ(s,a)
 Repeat until policy doesn't change.
+
 ```
 
 ### Temporal Difference (Model-Free)
@@ -132,6 +139,7 @@ V(sₜ) ← V(sₜ) + α [rₜ + γV(sₜ₊₁) - V(sₜ)]
 
 Q-Learning:
 Q(sₜ, aₜ) ← Q(sₜ, aₜ) + α [rₜ + γ maxₐ Q(sₜ₊₁, a) - Q(sₜ, aₜ)]
+
 ```
 
 ---
@@ -209,6 +217,7 @@ def compute_td_error(V, states, rewards, next_states, dones, gamma=0.99):
     td_target = rewards + gamma * V_next
     td_error = td_target - V(states)
     return td_error
+
 ```
 
 ---

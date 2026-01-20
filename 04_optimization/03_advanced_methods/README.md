@@ -45,6 +45,7 @@ Advanced methods go beyond basic gradient descent by:
 ```
 κ = condition number = λ_max / λ_min
 Larger κ = harder optimization
+
 ```
 
 ---
@@ -61,6 +62,7 @@ Newton: x_{k+1} = x_k - H_k⁻¹ ∇f_k   (requires O(n²) Hessian)
 Quasi-Newton: x_{k+1} = x_k - B_k⁻¹ ∇f_k   (B_k approximates H_k)
 
 Key insight: Build B from gradient differences only!
+
 ```
 
 ### Secant Condition
@@ -75,6 +77,7 @@ where:
   y_k = ∇f_{k+1} - ∇f_k      (gradient change)
 
 This matches curvature along the direction traveled
+
 ```
 
 ### BFGS Update Formula
@@ -86,6 +89,7 @@ Properties:
 • Maintains positive definiteness (if B_0 > 0 and y_kᵀs_k > 0)
 • Rank-2 update (efficient)
 • Self-correcting behavior
+
 ```
 
 ### Inverse BFGS (Direct H⁻¹ Update)
@@ -96,6 +100,7 @@ H_{k+1} = (I - ρ_k s_k y_kᵀ) H_k (I - ρ_k y_k s_kᵀ) + ρ_k s_k s_kᵀ
 where ρ_k = 1/(y_kᵀ s_k)
 
 Sherman-Morrison formula avoids matrix inversion!
+
 ```
 
 ### L-BFGS (Limited Memory)
@@ -116,6 +121,7 @@ Algorithm (Two-Loop Recursion):
       β = ρ_i y_iᵀ r
       r = r + (α_i - β) s_i
 5. return r = H_k ∇f_k
+
 ```
 
 ---
@@ -210,6 +216,7 @@ def lbfgs(f, grad_f, x0, m=10, tol=1e-6, max_iter=1000):
         g = g_new
     
     return x
+
 ```
 
 ---
@@ -228,6 +235,7 @@ Superlinear means:
 ‖x_{k+1} - x*‖ / ‖x_k - x*‖ → 0 as k → ∞
 
 Faster than linear, slower than quadratic
+
 ```
 
 ---
@@ -245,6 +253,7 @@ Equivalent to minimizing:
 f(x) = ½xᵀAx - bᵀx
 
 Gradient: ∇f(x) = Ax - b = -r  (negative residual)
+
 ```
 
 ### Conjugate (A-orthogonal) Directions
@@ -257,6 +266,7 @@ pᵢᵀ A pⱼ = 0  for i ≠ j
 Key insight: With n A-conjugate directions, solve in n steps!
 
 Expansion: x* = Σᵢ αᵢ pᵢ  where αᵢ = (pᵢᵀb)/(pᵢᵀApᵢ)
+
 ```
 
 ### CG Algorithm Derivation
@@ -272,6 +282,7 @@ Choose βₖ to ensure pₖᵀ A pₖ₋₁ = 0:
 
 Optimal step along pₖ:
 αₖ = (rₖᵀrₖ)/(pₖᵀApₖ)
+
 ```
 
 ### The Complete CG Iteration
@@ -297,6 +308,7 @@ Key properties:
 • rᵢᵀrⱼ = 0 for i ≠ j (residuals orthogonal)
 • pᵢᵀApⱼ = 0 for i ≠ j (directions A-conjugate)
 • Converges in ≤ n iterations (exact arithmetic)
+
 ```
 
 ### Convergence Rate
@@ -315,6 +327,7 @@ CG is MUCH faster for ill-conditioned problems!
 Example: κ = 100
   GD ratio: 0.98^k
   CG ratio: 0.82^k (sqrt effect!)
+
 ```
 
 ---
@@ -405,6 +418,7 @@ b = np.random.randn(n)
 x_cg = conjugate_gradient(A, b)
 x_exact = np.linalg.solve(A, b)
 print(f"Error: {np.linalg.norm(x_cg - x_exact)}")
+
 ```
 
 ---
@@ -427,6 +441,7 @@ Common preconditioners:
 | Incomplete Cholesky| Approximate L Lᵀ          |
 | Multigrid          | Hierarchical approach      |
 +--------------------+----------------------------+
+
 ```
 
 ---
@@ -446,6 +461,7 @@ Hestenes-Stiefel:
 βₖᴴˢ = (∇fₖ₊₁ᵀ(∇fₖ₊₁ - ∇fₖ)) / (pₖᵀ(∇fₖ₊₁ - ∇fₖ))
 
 Restart: Set β = 0 when directions lose conjugacy
+
 ```
 
 ---
@@ -462,6 +478,7 @@ Find flat minima for better generalization:
 Approximation:
     1. Compute ε = ρ ∇L(θ) / ||∇L(θ)||
     2. Update θ ← θ - α ∇L(θ + ε)
+
 ```
 
 ### Lion Optimizer
@@ -471,6 +488,7 @@ Memory-efficient alternative to Adam:
     Uses sign() instead of full gradient moments
     Much lower memory than Adam
     Strong performance on transformers
+
 ```
 
 ### Sophia (2nd-Order for LLMs)
@@ -480,6 +498,7 @@ Scalable 2nd-order optimizer for LLMs:
     Uses Hessian diagonal approximation
     Clip updates based on Hessian
     Faster convergence than Adam
+
 ```
 
 ---

@@ -59,6 +59,7 @@ At iteration i:
 Theoretical guarantee (fictitious play):
   In two-player zero-sum games, self-play converges to Nash equilibrium
   as iterations → ∞ (under certain conditions).
+
 ```
 
 ### MCTS with Neural Network Guidance (AlphaGo/AlphaZero)
@@ -82,6 +83,7 @@ Training targets:
   Value: v_θ(s) → game outcome z ∈ {-1, +1}
 
 Loss: L = (z - v_θ(s))² - π_MCTS^T log π_θ + c||θ||²
+
 ```
 
 ### AlphaZero Training Pipeline
@@ -101,6 +103,7 @@ Loss: L = (z - v_θ(s))² - π_MCTS^T log π_θ + c||θ||²
 3. Evaluation:
    New network plays against current best
    Replace if win rate > 55%
+
 ```
 
 ### Deep Q-Network (DQN) for Atari
@@ -118,6 +121,7 @@ Key innovations:
 Rainbow DQN combines 6 improvements:
   Double DQN, Prioritized Replay, Dueling, Multi-step,
   Distributional, Noisy Networks
+
 ```
 
 ---
@@ -160,6 +164,7 @@ def self_play_episode(agent):
         actions.append(action)
         rewards.append(reward)
     return states, actions, rewards
+
 ```
 
 ---

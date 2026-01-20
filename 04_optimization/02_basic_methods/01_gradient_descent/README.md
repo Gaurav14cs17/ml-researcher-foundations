@@ -38,6 +38,7 @@
 |   That's it! Simple but powerful.                      |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -52,6 +53,7 @@ for i in range(max_iterations):
     x = x - learning_rate * gradient
     if converged(gradient):
         break
+
 ```
 
 ---
@@ -75,6 +77,7 @@ for i in range(max_iterations):
      ╱____________________●  Minimum!
      
    Each step: Move opposite to gradient (downhill)
+
 ```
 
 ---
@@ -84,6 +87,7 @@ for i in range(max_iterations):
 ### 1. Gradient Descent: Complete Convergence Analysis
 
 **Algorithm:**
+
 ```
 Input: f: ℝⁿ → ℝ, starting point x₀, learning rate α
 Output: x* ≈ argmin f
@@ -94,6 +98,7 @@ For k = 0, 1, 2, ...:
   3. Check convergence: ||g_k|| < ε
 
 Return x_k
+
 ```
 
 ---
@@ -101,6 +106,7 @@ Return x_k
 ### 2. Convergence for Convex + L-Smooth Functions
 
 **Theorem 1: Sublinear Convergence**
+
 ```
 Assumptions:
   1. f is convex
@@ -110,6 +116,7 @@ Assumptions:
 Then: f(x_k) - f(x*) ≤ (2L||x_0 - x*||²)/k
 
 Convergence rate: O(1/k) iterations
+
 ```
 
 **Proof:**
@@ -163,6 +170,7 @@ Step 9: Sum telescoping series from 0 to k-1
   k·(f(x_k) - f(x*)) ≤ Σᵢ₌₀^{k-1} (f(x_{i+1}) - f(x*)) ≤ (L/2)||x_0 - x*||²
 
   Therefore: f(x_k) - f(x*) ≤ (L||x_0 - x*||²)/(2k) ✓  QED
+
 ```
 
 ---
@@ -170,6 +178,7 @@ Step 9: Sum telescoping series from 0 to k-1
 ### 3. Strongly Convex Case: Linear Convergence
 
 **Theorem 2: Exponential Convergence**
+
 ```
 Additional assumption:
   f is μ-strongly convex: f(y) ≥ f(x) + ∇f(x)ᵀ(y-x) + (μ/2)||y-x||²
@@ -178,9 +187,11 @@ Then with α = 1/L:
   f(x_k) - f(x*) ≤ (1 - μ/L)^k (f(x_0) - f(x*))
 
 Convergence rate: O((1 - μ/L)^k) = O(ρ^k) where ρ = 1 - μ/L
+
 ```
 
 **Key Quantity: Condition Number**
+
 ```
 κ = L/μ  (condition number)
 
@@ -194,6 +205,7 @@ Examples:
 
 Number of iterations to reach ε-accuracy:
   k ≥ κ·log(1/ε)
+
 ```
 
 **Proof Sketch:**
@@ -212,6 +224,7 @@ Step 1: Combine descent lemma with strong convexity
 
 Step 2: Apply recursively
   f(x_k) - f(x*) ≤ (1 - μ/L)^k (f(x_0) - f(x*)) ✓  QED
+
 ```
 
 ---
@@ -219,6 +232,7 @@ Step 2: Apply recursively
 ### 4. Non-Convex Case: Stationary Points
 
 **Theorem 3: First-Order Stationary Point**
+
 ```
 For non-convex f (L-smooth):
 
@@ -228,6 +242,7 @@ GD with α = 1/L satisfies:
 where f_inf = inf_x f(x)
 
 Interpretation: Find ε-stationary point (||∇f|| ≤ ε) in O(1/ε²) iterations
+
 ```
 
 **Proof:**
@@ -248,15 +263,18 @@ Step 4: Minimum of LHS terms
   K · min_{k} ||∇f(x_k)||² ≤ Σₖ ||∇f(x_k)||² ≤ 2L(f(x_0) - f_inf)
 
   Therefore: min_k ||∇f(x_k)||² ≤ (2L(f(x_0) - f_inf))/K ✓  QED
+
 ```
 
 **Important Note:**
+
 ```
 For non-convex functions:
   • GD finds stationary points (∇f = 0)
   • Could be local min, local max, or saddle point!
   • No guarantee of global minimum
   • Neural networks are non-convex, yet GD works well (mystery!)
+
 ```
 
 ---
@@ -277,6 +295,7 @@ How to estimate L?
   
   Method 3: Start large, decay over time
     α_k = α_0 / (1 + k·decay_rate)
+
 ```
 
 **Practical Schedules:**
@@ -315,6 +334,7 @@ How to estimate L?
    α_k = α_max · min(k/k_warmup, (k/k_warmup)^{-0.5})
    
    Used in: BERT, GPT training
+
 ```
 
 ---
@@ -331,9 +351,11 @@ Algorithm:
     x_{k+1} = x_k - α·v_{k+1}
 
 where β ∈ [0,1) is momentum coefficient (typically 0.9)
+
 ```
 
 **Intuition:**
+
 ```
 v_k = exponential moving average of gradients
     = β·v_{k-1} + g_k
@@ -344,6 +366,7 @@ Effect:
   • Accumulates gradients in consistent directions
   • Dampens oscillations in inconsistent directions
   • "Velocity" builds up downhill
+
 ```
 
 **Convergence Improvement:**
@@ -358,6 +381,7 @@ With momentum (optimal β):
 Speedup: √κ
   κ = 100 → 10× fewer iterations!
   κ = 10000 → 100× fewer iterations!
+
 ```
 
 **Nesterov Momentum (Nesterov 1983):**
@@ -371,6 +395,7 @@ Algorithm:
     x_{k+1} = x_k - α·v_{k+1}
 
 Key difference: Evaluate gradient at lookahead position
+
 ```
 
 **Why Nesterov is Better:**
@@ -388,6 +413,7 @@ Nesterov: "Look ahead"
 
 Result: Better correction when approaching minimum
 Convergence: Same O(√κ) but better constants
+
 ```
 
 ---
@@ -409,6 +435,7 @@ Algorithm:
 Typical values: β = 0.5, c = 0.1
 
 Guarantees: O(log(1/α_final)) backtracking steps
+
 ```
 
 **Wolfe Conditions:**
@@ -425,6 +452,7 @@ Typical: c₁ = 10⁻⁴, c₂ = 0.9
 Together ensure:
   • Step not too short (sufficient progress)
   • Step not too long (gradient decreases)
+
 ```
 
 ---
@@ -450,6 +478,7 @@ Explanations:
   3. Stochasticity: Noise helps escape bad regions  
   4. Landscape geometry: High-dim → saddles, not local mins
   5. Implicit regularization: SGD prefers flat minima
+
 ```
 
 **Empirical Observations:**
@@ -470,6 +499,7 @@ Explanations:
    Too high: Divergence or oscillation
    Too low: Slow convergence
    Just right: Fast convergence to good solution
+
 ```
 
 ---
@@ -477,14 +507,17 @@ Explanations:
 ### 9. Common Failure Modes
 
 **1. Exploding Gradients:**
+
 ```
 Symptom: Loss becomes NaN
 Cause: ||∇f|| → ∞
 Solution: Gradient clipping
   ∇ → ∇ · min(1, threshold/||∇||)
+
 ```
 
 **2. Vanishing Gradients:**
+
 ```
 Symptom: No learning progress
 Cause: ||∇f|| → 0 prematurely
@@ -493,9 +526,11 @@ Solution:
   • Normalization (BatchNorm/LayerNorm)
   • Skip connections (ResNet)
   • Better activations (ReLU instead of sigmoid)
+
 ```
 
 **3. Oscillation:**
+
 ```
 Symptom: Loss bounces up and down
 Cause: Learning rate too large
@@ -503,9 +538,11 @@ Solution:
   • Reduce learning rate
   • Add momentum
   • Use adaptive methods (Adam)
+
 ```
 
 **4. Plateau:**
+
 ```
 Symptom: Loss stops decreasing
 Cause: Saddle point or flat region
@@ -513,6 +550,7 @@ Solution:
   • Add noise (larger batch, dropout)
   • Change learning rate (increase then decrease)
   • Change architecture
+
 ```
 
 ---
@@ -543,6 +581,7 @@ Too Small (α = 0.0001):           Just Right (α = 0.01):           Too Large (
      ●                           ●                                   DIVERGES!
      |                          ╱
    SLOW!                       CONVERGES!
+
 ```
 
 ---
@@ -560,6 +599,7 @@ Too Small (α = 0.0001):           Just Right (α = 0.01):           Too Large (
 ## 💻 Implementation
 
 ### NumPy
+
 ```python
 import numpy as np
 
@@ -587,9 +627,11 @@ def grad_f(x):
 
 x_opt, history = gradient_descent(f, grad_f, np.array([5.0, 3.0]))
 print(f"Optimal: {x_opt}")  # Close to [0, 0]
+
 ```
 
 ### PyTorch
+
 ```python
 import torch
 
@@ -603,6 +645,7 @@ for i in range(100):
     optimizer.step()
     
 print(f"Optimal: {x.data}")  # Close to [0, 0]
+
 ```
 
 ---
@@ -627,14 +670,17 @@ print(f"Optimal: {x.data}")  # Close to [0, 0]
 **Proof:**
 
 **Step 1: Setup**
+
 ```
 Assumptions:
 1. f is μ-strongly convex: f(y) ≥ f(x) + ∇f(x)ᵀ(y-x) + (μ/2)||y-x||²
 2. ∇f is L-Lipschitz: ||∇f(x) - ∇f(y)|| ≤ L||x-y||
 3. Step size: α = 1/L
+
 ```
 
 **Step 2: One-step progress**
+
 ```
 Let eₖ = f(xₖ) - f(x*) be the error at iteration k
 
@@ -645,18 +691,22 @@ Using L-smoothness:
 f(xₖ₊₁) ≤ f(xₖ) + ∇f(xₖ)ᵀ(xₖ₊₁ - xₖ) + (L/2)||xₖ₊₁ - xₖ||²
          = f(xₖ) - α||∇f(xₖ)||² + (Lα²/2)||∇f(xₖ)||²
          = f(xₖ) - (α - Lα²/2)||∇f(xₖ)||²
+
 ```
 
 **Step 3: Use strong convexity**
+
 ```
 From μ-strong convexity:
 f(xₖ) - f(x*) ≤ (1/2μ)||∇f(xₖ)||²
 
 Therefore:
 ||∇f(xₖ)||² ≥ 2μ(f(xₖ) - f(x*)) = 2μeₖ
+
 ```
 
 **Step 4: Combine**
+
 ```
 With α = 1/L:
 
@@ -664,9 +714,11 @@ eₖ₊₁ = f(xₖ₊₁) - f(x*)
      ≤ f(xₖ) - (1/L - 1/(2L)) · 2μeₖ - f(x*)
      = eₖ - (μ/L)eₖ
      = (1 - μ/L)eₖ
+
 ```
 
 **Step 5: Iterate**
+
 ```
 eₖ ≤ (1 - μ/L)ᵏ · e₀
 
@@ -675,6 +727,7 @@ Convergence rate: ρ = 1 - μ/L < 1
 Condition number: κ = L/μ
   • Small κ → fast convergence
   • Large κ → slow convergence (ill-conditioned)
+
 ```
 
 **Conclusion:** Linear convergence with rate O((1-μ/L)ᵏ) = O(e⁻ᵏ/κ) ∎
@@ -684,22 +737,27 @@ Condition number: κ = L/μ
 ### 2. Step Size Selection: Theory
 
 **Theorem (Armijo Rule):** Choose α such that:
+
 ```
 f(xₖ - α∇f(xₖ)) ≤ f(xₖ) - c·α||∇f(xₖ)||²
 
 where c ∈ (0, 1) (typically c = 0.0001)
+
 ```
 
 **Proof of sufficient decrease:**
+
 ```
 Taylor expansion:
 f(xₖ - α∇f(xₖ)) ≈ f(xₖ) - α||∇f(xₖ)||² + O(α²)
 
 For small α, quadratic term is negligible
 → Linear decrease guaranteed
+
 ```
 
 **Backtracking line search algorithm:**
+
 ```python
 def backtracking_line_search(f, grad_f, x, p, alpha=1.0, rho=0.5, c=1e-4):
     """
@@ -727,6 +785,7 @@ x = current_point
 grad = grad_f(x)
 alpha = backtracking_line_search(f, grad_f, x, -grad)
 x_new = x - alpha * grad
+
 ```
 
 ---
@@ -734,19 +793,24 @@ x_new = x - alpha * grad
 ### 3. Momentum: Mathematical Intuition
 
 **Standard Gradient Descent:**
+
 ```
 xₖ₊₁ = xₖ - α∇f(xₖ)
+
 ```
 
 **Gradient Descent with Momentum:**
+
 ```
 vₖ₊₁ = βvₖ + ∇f(xₖ)     (velocity)
 xₖ₊₁ = xₖ - αvₖ₊₁        (position)
+
 ```
 
 **Why does it work?**
 
 **Step 1: Exponential moving average**
+
 ```
 Expanding vₖ₊₁:
 vₖ₊₁ = ∇f(xₖ) + β∇f(xₖ₋₁) + β²∇f(xₖ₋₂) + ...
@@ -754,9 +818,11 @@ vₖ₊₁ = ∇f(xₖ) + β∇f(xₖ₋₁) + β²∇f(xₖ₋₂) + ...
 
 Interpretation: Weighted average of past gradients
 Recent gradients have more weight (β ≈ 0.9)
+
 ```
 
 **Step 2: Oscillation damping**
+
 ```
 Consider f(x, y) = x²/100 + y² (ill-conditioned)
 
@@ -768,9 +834,11 @@ With momentum:
   Averages out y-oscillations
   Accumulates x-direction movement
   → Faster convergence!
+
 ```
 
 **Step 3: Mathematical analysis**
+
 ```
 For quadratic f(x) = (1/2)xᵀQx:
 
@@ -778,6 +846,7 @@ Optimal β = ((√κ - 1)/(√κ + 1))²
 where κ = λₘₐₓ/λₘᵢₙ (condition number)
 
 Convergence rate improves from O(κ) to O(√κ)!
+
 ```
 
 ---
@@ -881,9 +950,11 @@ def detailed_gd_example():
 
 # Run example
 history = detailed_gd_example()
+
 ```
 
 **Expected output:**
+
 ```
 Iteration | Loss      | ||∇f||   | w
 ------------------------------------------------------------
@@ -901,6 +972,7 @@ Iteration | Loss      | ||∇f||   | w
 True weights:   [2.000, -1.500]
 Found weights:  [1.999, -1.500]
 Error: 0.001234
+
 ```
 
 ---
@@ -917,6 +989,7 @@ Error: 0.001234
 | **GPT-3 (2020)** | Adam, gradient clipping | Scale to 175B parameters |
 
 **Attention's learning rate schedule (from paper):**
+
 ```python
 def transformer_lr_schedule(step, d_model=512, warmup_steps=4000):
     """
@@ -925,6 +998,7 @@ def transformer_lr_schedule(step, d_model=512, warmup_steps=4000):
     arg1 = step ** (-0.5)
     arg2 = step * (warmup_steps ** (-1.5))
     return (d_model ** (-0.5)) * min(arg1, arg2)
+
 ```
 
 ---

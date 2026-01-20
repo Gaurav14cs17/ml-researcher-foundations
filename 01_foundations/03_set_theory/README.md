@@ -100,6 +100,7 @@ By the end of this article, you will be able to:
 |   "Everything not A"      "(A or B) but not both"                          |
 |                                                                             |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ### Function Types Visualization
@@ -125,6 +126,7 @@ By the end of this article, you will be able to:
 |  • Embeddings             • Full class coverage    • Autoencoders (ideal)  |
 |                                                                             |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -156,6 +158,7 @@ A ∩ B = {3, 4}                  (Intersection: common elements)
 A \ B = {1, 2}                  (Difference: in A, not in B)
 B \ A = {5, 6}                  (Difference: in B, not in A)
 A △ B = {1, 2, 5, 6}            (Symmetric difference)
+
 ```
 
 #### Example 2: Power Set (Intermediate)
@@ -166,6 +169,7 @@ Let A = {1, 2}
 P(A) = {∅, {1}, {2}, {1,2}}
 
 |P(A)| = 2^|A| = 2² = 4
+
 ```
 
 **Proof that |P(A)| = 2^|A|:**
@@ -186,12 +190,14 @@ Let Y = {1, 2, 3}
 X × Y = {(red,1), (red,2), (red,3), (blue,1), (blue,2), (blue,3)}
 
 |X × Y| = |X| · |Y| = 2 · 3 = 6
+
 ```
 
 **ML Application:** Feature space is Cartesian product of feature domains!
 
 ```
 Features: Height × Weight × Age = ℝ × ℝ × ℝ = ℝ³
+
 ```
 
 ### 💻 Code Implementation
@@ -224,6 +230,7 @@ def power_set(s):
     return [set(c) for i in range(len(s)+1) for c in combinations(s, i)]
 
 print(f"P({{1,2}}) = {power_set({1,2})}")
+
 ```
 
 ---
@@ -278,18 +285,21 @@ print(f"P({{1,2}}) = {power_set({1,2})}")
 
 ```math
 |A \cup B| = |A| + |B| - |A \cap B|
+
 ```
 
 **For 3 sets:**
 
 ```math
 |A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|
+
 ```
 
 **General form:**
 
 ```math
 \left|\bigcup_{i=1}^n A_i\right| = \sum_{i}|A_i| - \sum_{i<j}|A_i \cap A_j| + \sum_{i<j<k}|A_i \cap A_j \cap A_k| - \cdots
+
 ```
 
 ### 📐 Proof: Inclusion-Exclusion for 2 Sets
@@ -401,6 +411,7 @@ domain = np.linspace(-10, 10, 1000)
 
 print(f"f(x) = 2x injective: {is_injective(f_injective, domain)}")
 print(f"f(x) = x² injective: {is_injective(f_not_injective, domain)}")
+
 ```
 
 ---
@@ -489,6 +500,7 @@ domain = range(10)
 result = check_equivalence(same_parity, domain)
 print(f"Same parity relation: {result}")
 # Output: is_equivalence: True
+
 ```
 
 ---
@@ -516,12 +528,14 @@ print(f"Same parity relation: {result}")
 ```
 n:    0  1  2  3  4  5  6  ...
 f(n): 0  1 -1  2 -2  3 -3  ...
+
 ```
 
 **Formula:**
 
 ```math
 f(n) = \begin{cases} n/2 & \text{if } n \text{ even} \\ -(n+1)/2 & \text{if } n \text{ odd} \end{cases}
+
 ```
 
 | Step | Statement | Justification |
@@ -558,6 +572,7 @@ r₃ = 0. d₃₁ d₃₂[d₃₃]d₃₄ ...
 r₄ = 0. d₄₁ d₄₂ d₄₃[d₄₄]...
 ...
 x  = 0. b₁  b₂  b₃  b₄ ...   where bᵢ ≠ dᵢᵢ
+
 ```
 
 ### 📝 ML Implications
@@ -609,6 +624,7 @@ Verify F is σ-algebra:
 1. Ω = {H,T} ∈ F  ✓
 2. {H}ᶜ = {T} ∈ F, {T}ᶜ = {H} ∈ F, etc.  ✓
 3. {H} ∪ {T} = {H,T} ∈ F  ✓
+
 ```
 
 ### 📝 Example: Borel σ-Algebra
@@ -665,6 +681,7 @@ omega = {1, 2}
 F_bad = [set(), {1}, {1, 2}]  # Missing {2}
 result, msg = is_sigma_algebra(F_bad, omega)
 print(f"{{∅, {{1}}, Ω}} is σ-algebra: {result} - {msg}")
+
 ```
 
 ---
@@ -694,6 +711,7 @@ print(f"{{∅, {{1}}, Ω}} is σ-algebra: {result} - {msg}")
 
 ✅ RIGHT: 1 ∈ {1, 2, 3}
           {1} ⊆ {1, 2, 3}
+
 ```
 
 ### Mistake 2: Forgetting Empty Set in Power Set
@@ -703,6 +721,7 @@ print(f"{{∅, {{1}}, Ω}} is σ-algebra: {result} - {msg}")
    Missing ∅!
 
 ✅ RIGHT: P({1,2}) = {∅, {1}, {2}, {1,2}}
+
 ```
 
 ### Mistake 3: Thinking Surjective ⟹ Injective
@@ -712,6 +731,7 @@ print(f"{{∅, {{1}}, Ω}} is σ-algebra: {result} - {msg}")
 
 ✅ RIGHT: f(x) = x² is surjective on ℝ → [0,∞)
           but NOT injective (f(1) = f(-1) = 1)
+
 ```
 
 ### Mistake 4: Confusing Cardinality
@@ -721,6 +741,7 @@ print(f"{{∅, {{1}}, Ω}} is σ-algebra: {result} - {msg}")
 
 ✅ RIGHT: |ℤ| = |ℕ| = ℵ₀
           Both are countably infinite!
+
 ```
 
 ---
@@ -991,6 +1012,7 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("DEMONSTRATIONS COMPLETE")
     print("=" * 60)
+
 ```
 
 ---

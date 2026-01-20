@@ -43,6 +43,7 @@ RSSM:      p(z_t | h_t)           Dynamics prediction
            h_t = f(h_{t-1}, z_{t-1}, a_{t-1})
 Reward:    p(r_t | h_t, z_t)      Latent → reward
 Decoder:   p(x_t | h_t, z_t)      Latent → image
+
 ```
 
 ### Training Objective (ELBO)
@@ -55,6 +56,7 @@ Terms:
     log p(x_t | ...) : Reconstruction (image prediction)
     log p(r_t | ...) : Reward prediction
     KL(...) : Regularization (match prior)
+
 ```
 
 ---
@@ -86,6 +88,7 @@ z_t ~ q(z_t | h_t, x_t)                  # Posterior (training)
 Why both?
 - Deterministic: Captures long-term dependencies
 - Stochastic: Models environment uncertainty
+
 ```
 
 ### RSSM Architecture
@@ -110,6 +113,7 @@ Why both?
     |       |      ▼      |
     |  [h_{t-1}, z_{t-1}, a_{t-1}]   State (h_t, z_t)  |
     +---------------------------------------------+
+
 ```
 
 ---
@@ -124,6 +128,7 @@ Why both?
 5. Repeat
 
 Key insight: Backprop through differentiable world model!
+
 ```
 
 ### Imagination Process
@@ -138,6 +143,7 @@ For t = 1 to H (imagination horizon):
     r_t = reward_model(h_t, z_t) # Predicted reward
 
 Gradients flow through the entire imagined trajectory!
+
 ```
 
 ---
@@ -151,6 +157,7 @@ V_λ(z_t) = (1-λ) Σ_{n=1}^{H-t} λ^{n-1} V_n(z_t) + λ^{H-t} V_H(z_t)
 
 Where V_n is n-step return:
 V_n(z_t) = E[r_t + γr_{t+1} + ... + γ^{n-1}r_{t+n-1} + γ^n V(z_{t+n})]
+
 ```
 
 ### Actor Objective
@@ -159,6 +166,7 @@ V_n(z_t) = E[r_t + γr_{t+1} + ... + γ^{n-1}r_{t+n-1} + γ^n V(z_{t+n})]
 max E[Σ_t (V_λ(z_t) - η H[π(·|z_t)])]
 
 With entropy regularization for exploration
+
 ```
 
 ---
@@ -288,6 +296,7 @@ class DreamerAgent:
         self.world_opt.step()
         
         return total_loss.item()
+
 ```
 
 ---
@@ -314,6 +323,7 @@ Model-Based RL
             |
             +-- DreamerV2 (discrete latents)
             +-- DreamerV3 (scaling + symlog)
+
 ```
 
 ---

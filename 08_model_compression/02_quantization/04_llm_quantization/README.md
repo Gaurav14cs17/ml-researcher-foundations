@@ -38,6 +38,7 @@
 
 ```math
 \min_{\hat{W}} \|WX - \hat{W}X\|_F^2
+
 ```
 
 where $X \in \mathbb{R}^{d\_{in} \times n}$ is calibration data.
@@ -50,6 +51,7 @@ where $X \in \mathbb{R}^{d\_{in} \times n}$ is calibration data.
 
 ```math
 H = 2X X^T
+
 ```
 
 **When quantizing weight $w\_q$ to $\hat{w}\_q$:**
@@ -60,6 +62,7 @@ The quantization error is $\delta\_q = \hat{w}\_q - w\_q$.
 
 ```math
 \delta_{-q} = -\frac{\delta_q}{[H^{-1}]_{qq}} \cdot H^{-1}_{:,q}
+
 ```
 
 **Proof:**
@@ -67,18 +70,21 @@ We want to minimize the change in output:
 
 ```math
 \min_{\delta_{-q}} \|(w_q + \delta_q, w_{-q} + \delta_{-q}) X\|_2^2 - \|w X\|_2^2
+
 ```
 
 The second-order approximation gives:
 
 ```math
 \Delta = \delta_q^2 [H]_{qq} + 2\delta_q H_{q,-q} \delta_{-q} + \delta_{-q}^T H_{-q,-q} \delta_{-q}
+
 ```
 
 Taking derivative w.r.t. $\delta\_{-q}$:
 
 ```math
 \frac{\partial \Delta}{\partial \delta_{-q}} = 2\delta_q H_{-q,q} + 2H_{-q,-q}\delta_{-q} = 0
+
 ```
 
 Solving: $\delta\_{-q} = -H\_{-q,-q}^{-1} H\_{-q,q} \delta\_q$
@@ -97,6 +103,7 @@ Update Hessian inverse in blocks:
 
 ```math
 H^{-1}_{new} = H^{-1} - \frac{H^{-1}_{:,B} (H^{-1}_{B,B})^{-1} H^{-1}_{B,:}}{1}
+
 ```
 
 **Solution 3: Lazy batch updates**
@@ -116,6 +123,7 @@ Output: Quantized W_q
       - Update remaining: W[:,q:] -= δ_q / [H_inv]_{qq} · H_inv[q,q:]
    b. Update H_inv using block formula
 3. Return W_q
+
 ```
 
 ---
@@ -131,6 +139,7 @@ Weights connected to large activations matter more.
 
 ```math
 s_j = \mathbb{E}[|X_j|] = \frac{1}{n}\sum_{i=1}^{n} |x_{ij}|
+
 ```
 
 #### 3.2 Per-Channel Scaling
@@ -141,6 +150,7 @@ s_j = \mathbb{E}[|X_j|] = \frac{1}{n}\sum_{i=1}^{n} |x_{ij}|
 
 ```math
 Y = XW = (X \cdot \text{diag}(s)^{-1}) \cdot (\text{diag}(s) \cdot W) = \hat{X} \hat{W}
+
 ```
 
 **Effect:**
@@ -153,12 +163,14 @@ Y = XW = (X \cdot \text{diag}(s)^{-1}) \cdot (\text{diag}(s) \cdot W) = \hat{X} 
 
 ```math
 \min_s \|Q(\text{diag}(s) \cdot W) \cdot \text{diag}(s)^{-1} \cdot X - WX\|_F^2
+
 ```
 
 **Closed-form approximation:**
 
 ```math
 s_j^* = \left(\frac{\mathbb{E}[|X_j|]}{\mathbb{E}[|X|]}\right)^\alpha \cdot \left(\frac{\max|W_{:,j}|}{\max|W|}\right)^{1-\alpha}
+
 ```
 
 where $\alpha \in [0, 1]$ balances activation and weight importance.
@@ -177,6 +189,7 @@ Output: Quantized W_q, Scales s
 4. Scale weights: W_scaled = W * s
 5. Quantize: W_q = Quantize(W_scaled)
 6. Store s for inference rescaling
+
 ```
 
 ---
@@ -189,6 +202,7 @@ Output: Quantized W_q, Scales s
 
 ```math
 \frac{\max|X|}{\text{mean}|X|} \sim 100\text{-}1000
+
 ```
 
 These outliers make activation quantization very difficult.
@@ -199,12 +213,14 @@ These outliers make activation quantization very difficult.
 
 ```math
 Y = XW = (X \cdot \text{diag}(s)^{-1}) \cdot (\text{diag}(s) \cdot W)
+
 ```
 
 **Choose $s$ to balance difficulties:**
 
 ```math
 s_j = \frac{\max|X_{:,j}|^\alpha}{\max|W_{j,:}|^{1-\alpha}}
+
 ```
 
 **Effect:**
@@ -218,12 +234,14 @@ s_j = \frac{\max|X_{:,j}|^\alpha}{\max|W_{j,:}|^{1-\alpha}}
 
 ```math
 \epsilon_X = \frac{\Delta_X}{2} = \frac{\max|X|}{2(2^b - 1)}
+
 ```
 
 **After smoothing:**
 
 ```math
 \epsilon_{\hat{X}} = \frac{\max|\hat{X}|}{2(2^b - 1)} = \frac{\max|X|/s}{2(2^b - 1)}
+
 ```
 
 **Similarly for weights, error increases by factor $s$.**
@@ -243,6 +261,7 @@ For each linear layer:
 4. Compute smoothing factor: s[j] = (max_X[j])^α / (max_W[j])^(1-α)
 5. Apply to preceding LayerNorm: γ_new = γ / s
 6. Apply to weights: W_new = W * s
+
 ```
 
 ---
@@ -257,6 +276,7 @@ For each linear layer:
 
 ```math
 O = \{j : \max_i |X_{ij}| > \tau\}
+
 ```
 
 where $\tau = 6.0$ is typical threshold.
@@ -267,6 +287,7 @@ where $\tau = 6.0$ is typical threshold.
 
 ```math
 Y = XW = X_{:,O}W_{O,:} + X_{:,\bar{O}}W_{\bar{O},:}
+
 ```
 
 **Apply:**
@@ -275,6 +296,7 @@ Y = XW = X_{:,O}W_{O,:} + X_{:,\bar{O}}W_{\bar{O},:}
 
 ```math
 Y = \underbrace{X_{:,O}^{fp16} W_{O,:}^{fp16}}_{\text{~0.1% dims, FP16}} + \underbrace{Q(X_{:,\bar{O}}) \cdot Q(W_{\bar{O},:})}_{\text{~99.9% dims, INT8}}
+
 ```
 
 #### 5.3 Efficiency Analysis
@@ -494,6 +516,7 @@ def quantize_llm(model, calibration_loader, method='gptq', bits=4):
         # Then apply standard INT8 quantization
     
     return model
+
 ```
 
 ---

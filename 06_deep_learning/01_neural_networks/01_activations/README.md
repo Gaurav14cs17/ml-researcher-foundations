@@ -42,6 +42,7 @@ Tanh:           tanh(x) = (eˣ - e⁻ˣ) / (eˣ + e⁻ˣ)
 ReLU:           ReLU(x) = max(0, x)
                 Range: [0, ∞)
                 ReLU'(x) = 1 if x > 0, else 0
+
 ```
 
 ### Modern Activations
@@ -60,6 +61,7 @@ SiLU/Swish:     SiLU(x) = x · σ(x) = x / (1 + e⁻ˣ)
 Softmax:        softmax(xᵢ) = exp(xᵢ) / Σⱼexp(xⱼ)
                 Output: probability distribution (sums to 1)
                 Gradient: ∂softmax(x)ᵢ/∂xⱼ = sᵢ(δᵢⱼ - sⱼ)
+
 ```
 
 ---
@@ -96,6 +98,7 @@ Non-linearity enables:
 • Universal approximation (any continuous function)
 • Learning complex decision boundaries
 • Deep feature hierarchies
+
 ```
 
 ### Universal Approximation Theorem
@@ -107,6 +110,7 @@ function on a compact set to arbitrary accuracy.
 
 But: May require exponentially many neurons!
      Deep networks are more parameter-efficient.
+
 ```
 
 ---
@@ -157,6 +161,7 @@ class MLP(nn.Module):
     def forward(self, x):
         x = self.act(self.fc1(x))
         return self.fc2(x)  # No activation on output (let loss handle it)
+
 ```
 
 ---

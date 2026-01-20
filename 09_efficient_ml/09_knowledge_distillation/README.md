@@ -54,6 +54,7 @@ Transfer knowledge from a large "teacher" model to a small "student" model.
 Teacher (Large): ResNet-152, 60M params, 78% acc
      ↓ Distill knowledge
 Student (Small): MobileNet, 3M params, 76% acc (was 72% without distillation!)
+
 ```
 
 ---
@@ -81,6 +82,7 @@ Higher temperature → softer probability distribution:
 T=1:  [0.9, 0.05, 0.05]  # Very confident
 T=4:  [0.6, 0.2, 0.2]    # More uniform (more information)
 T=20: [0.4, 0.3, 0.3]    # Very soft
+
 ```
 
 ---
@@ -93,18 +95,21 @@ T=20: [0.4, 0.3, 0.3]    # Very soft
 
 ```math
 \mathcal{L} = \alpha \cdot \mathcal{L}_{soft} + (1-\alpha) \cdot \mathcal{L}_{hard}
+
 ```
 
 **Hard target loss (standard cross-entropy):**
 
 ```math
 \mathcal{L}_{hard} = -\sum_i y_i \log(p_i^S)
+
 ```
 
 **Soft target loss (KL divergence):**
 
 ```math
 \mathcal{L}_{soft} = T^2 \cdot \text{KL}(p^T \| p^S)
+
 ```
 
 where:
@@ -124,12 +129,14 @@ The gradients of soft loss are scaled by \( 1/T^2 \) due to temperature. The \( 
 
 ```math
 p_i = \frac{\exp(z_i)}{\sum_j \exp(z_j)}
+
 ```
 
 **Temperature-scaled softmax:**
 
 ```math
 p_i^{(T)} = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)}
+
 ```
 
 **Proof of softening effect:**
@@ -138,6 +145,7 @@ As \( T \to \infty \):
 
 ```math
 \lim_{T \to \infty} p_i^{(T)} = \frac{1}{K}
+
 ```
 
 All classes become equally likely (maximum entropy).
@@ -146,6 +154,7 @@ As \( T \to 0 \):
 
 ```math
 \lim_{T \to 0} p_i^{(T)} = \mathbb{1}[i = \arg\max_j z_j]
+
 ```
 
 Becomes hard one-hot (minimum entropy).
@@ -172,6 +181,7 @@ The soft labels encode **class similarities**:
 
 ```math
 \text{sim}(c_i, c_j) \propto \mathbb{E}_{x}[p^T_i(x) \cdot p^T_j(x)]
+
 ```
 
 ---
@@ -182,6 +192,7 @@ The soft labels encode **class similarities**:
 
 ```math
 \frac{\partial \mathcal{L}_{soft}}{\partial z_i^S} = \frac{1}{T}(p_i^S - p_i^T)
+
 ```
 
 **Interpretation:**
@@ -198,6 +209,7 @@ Match intermediate representations, not just outputs:
 
 ```math
 \mathcal{L}_{feat} = \sum_{l \in \mathcal{L}} \|g_l(F_l^S) - F_l^T\|_2^2
+
 ```
 
 where:
@@ -211,6 +223,7 @@ where:
 
 ```math
 \mathcal{L}_{AT} = \sum_l \left\| \frac{A_l^S}{\|A_l^S\|_2} - \frac{A_l^T}{\|A_l^T\|_2} \right\|_2^2
+
 ```
 
 where \( A_l = \sum_c |F_l^c|^2 \) is the spatial attention map.
@@ -235,6 +248,7 @@ where \( A_l = \sum_c |F_l^c|^2 \) is the spatial attention map.
 
 ```math
 \text{Acc}(M_{n+1}) > \text{Acc}(M_n)
+
 ```
 
 for several generations of self-distillation.
@@ -247,6 +261,7 @@ for several generations of self-distillation.
 
 ```math
 W^S_l = W^T_{2l}
+
 ```
 
 **Training objectives:**
@@ -256,6 +271,7 @@ W^S_l = W^T_{2l}
 
 ```math
 \mathcal{L} = \mathcal{L}_{MLM} + \alpha \mathcal{L}_{KD} + \beta \mathcal{L}_{cos}
+
 ```
 
 **Result:** 40% smaller, 60% faster, 97% of BERT performance.
@@ -277,6 +293,7 @@ W^S_l = W^T_{2l}
 
 ```math
 \min_\theta \mathbb{E}_{(x,y) \sim \text{GPT-4}}[-\log p_\theta(y|x)]
+
 ```
 
 This is maximum likelihood on teacher-generated data.
@@ -309,6 +326,7 @@ This is maximum likelihood on teacher-generated data.
 
 ```math
 r = \frac{|\theta_S|}{|\theta_T|}
+
 ```
 
 **Empirical observation:**
@@ -319,6 +337,7 @@ r = \frac{|\theta_S|}{|\theta_T|}
 
 ```math
 \text{Teacher} \to \text{TA} \to \text{Student}
+
 ```
 
 Intermediate-sized model bridges the gap.
@@ -331,18 +350,21 @@ Intermediate-sized model bridges the gap.
 
 ```math
 \mathcal{L}_{dist} = \text{KL}(p^T(x) \| p^S(x))
+
 ```
 
 **Data augmentation:** Applies transformations to inputs
 
 ```math
 \mathcal{L}_{aug} = \text{CE}(y, p^S(t(x)))
+
 ```
 
 **Combination is best:**
 
 ```math
 \mathcal{L}_{total} = \mathcal{L}_{dist}(t(x)) + \mathcal{L}_{hard}(t(x))
+
 ```
 
 ---

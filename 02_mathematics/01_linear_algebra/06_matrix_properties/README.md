@@ -47,6 +47,7 @@
 
 ```math
 \text{rank}(A) = \dim(\text{column space}) = \dim(\text{row space})
+
 ```
 
 Equivalently: number of non-zero singular values.
@@ -81,11 +82,13 @@ Step 3: Similarly, column space dimension ≤ r
         The r pivot columns span the column space
 
 Therefore: row rank = column rank = r  ∎
+
 ```
 
 ### 💡 Examples
 
 **Example 1**: Compute Rank
+
 ```
 A = [1  2  3]
     [2  4  6]
@@ -101,9 +104,11 @@ Swap R₂, R₃: [1  2  3]
              [0  0  0]
 
 Two non-zero rows → rank(A) = 2
+
 ```
 
 **Example 2**: Rank in ML (LoRA)
+
 ```
 Weight matrix W: (768 × 768) → rank up to 768
 LoRA update ΔW = BA where B: (768 × 4), A: (4 × 768)
@@ -111,6 +116,7 @@ LoRA update ΔW = BA where B: (768 × 4), A: (4 × 768)
 rank(ΔW) = rank(BA) ≤ min(rank(B), rank(A)) ≤ 4
 
 Only 4 degrees of freedom for update! (vs 589K for full W)
+
 ```
 
 ---
@@ -148,11 +154,13 @@ det(A) = ad - bc
 • det(A) > 0: preserves orientation
 • det(A) < 0: reverses orientation (reflection)
 • det(A) = 0: collapses to lower dimension (singular)
+
 ```
 
 ### 💡 Examples
 
 **Example 1**: 2×2 Determinant
+
 ```
 A = [3  1]
     [2  4]
@@ -160,9 +168,11 @@ A = [3  1]
 det(A) = 3×4 - 1×2 = 12 - 2 = 10
 
 Geometric: Area of parallelogram = 10 square units
+
 ```
 
 **Example 2**: Determinant via Eigenvalues
+
 ```
 A = [2  1]
     [1  2]
@@ -172,6 +182,7 @@ Eigenvalues: λ₁ = 3, λ₂ = 1
 det(A) = λ₁ × λ₂ = 3 × 1 = 3
 
 Verify: det(A) = 2×2 - 1×1 = 4 - 1 = 3 ✓
+
 ```
 
 ---
@@ -182,6 +193,7 @@ Verify: det(A) = 2×2 - 1×1 = 4 - 1 = 3 ✓
 
 ```math
 \text{tr}(A) = \sum_{i=1}^{n} A_{ii}
+
 ```
 
 ### 📐 Key Properties
@@ -205,11 +217,13 @@ These are the same double sum, just indexed differently!
 
 For three matrices:
 tr(ABC) = tr((AB)C) = tr(C(AB)) = tr(CAB)  ∎
+
 ```
 
 ### 💡 Applications
 
 **Efficient Gradient Computation**:
+
 ```python
 # Goal: Compute tr(ABᵀC)
 # Naive: O(n³) to form products, O(n) for trace
@@ -219,6 +233,7 @@ tr(ABC) = tr((AB)C) = tr(C(AB)) = tr(CAB)  ∎
 
 # Even better with element-wise:
 # tr(ABᵀ) = Σᵢⱼ AᵢⱼBᵢⱼ = sum(A * B)
+
 ```
 
 ---
@@ -229,6 +244,7 @@ tr(ABC) = tr((AB)C) = tr(C(AB)) = tr(CAB)  ∎
 
 ```math
 \kappa(A) = \|A\| \cdot \|A^{-1}\| = \frac{\sigma_{\max}}{\sigma_{\min}}
+
 ```
 
 ### 📐 Interpretation
@@ -251,11 +267,13 @@ So:
 
 Rule of thumb: Lose log₁₀(κ) digits of precision
   κ = 10⁶ → lose 6 digits (from 16 to 10 significant digits)
+
 ```
 
 ### 💡 Examples
 
 **Example 1**: Hilbert Matrix (Notoriously Ill-Conditioned)
+
 ```
 H_{ij} = 1/(i+j-1)
 
@@ -268,14 +286,17 @@ H₃ = [1    1/2  1/3]
 κ(H₁₀) ≈ 10¹³
 
 Almost impossible to invert numerically for n > 10!
+
 ```
 
 **Example 2**: Orthogonal Matrix (Perfectly Conditioned)
+
 ```
 Q is orthogonal ⟹ σᵢ = 1 for all i
 ⟹ κ(Q) = 1/1 = 1
 
 This is why QR decomposition is numerically stable!
+
 ```
 
 ---
@@ -316,11 +337,13 @@ For any x ≠ 0, write x = Σᵢ αᵢvᵢ (eigenbasis)
        = Σᵢ Σⱼ αᵢαⱼ vᵢᵀAvⱼ
        = Σᵢ αᵢ² λᵢ  (since vᵢᵀvⱼ = δᵢⱼ and Avⱼ = λⱼvⱼ)
        > 0  (all λᵢ > 0 and not all αᵢ = 0)  ✓
+
 ```
 
 ### 💡 Applications
 
 **Covariance Matrices are PSD**:
+
 ```
 Σ = E[(X - μ)(X - μ)ᵀ]
 
@@ -331,15 +354,18 @@ For any vector a:
        ≥ 0
 
 So covariance matrices are always PSD!
+
 ```
 
 **Hessian Analysis for Optimization**:
+
 ```
 At critical point x* where ∇f(x*) = 0:
 
 • H(x*) ≻ 0 → x* is strict local minimum
 • H(x*) ≺ 0 → x* is strict local maximum
 • H(x*) indefinite → x* is saddle point
+
 ```
 
 ---
@@ -439,6 +465,7 @@ for key, value in props.items():
 
 print("\n=== Stability Analysis ===")
 stability_analysis(A)
+
 ```
 
 ---

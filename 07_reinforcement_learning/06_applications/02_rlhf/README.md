@@ -48,6 +48,7 @@ Where:
 • r(x, y): Learned reward model
 • π_ref: Reference policy (typically SFT model)
 • β: KL penalty coefficient (typically 0.01-0.1)
+
 ```
 
 ---
@@ -63,6 +64,7 @@ L_SFT(θ) = -E_{(x,y)~D_demo} [log π_θ(y|x)]
          = -E [Σ_t log π_θ(y_t | x, y_{1:t-1})]
 
 This is standard language modeling on curated data.
+
 ```
 
 ### Purpose
@@ -73,6 +75,7 @@ Pretrained LLM (knows language, not task)
 SFT Model (understands instruction format, basic helpfulness)
          ↓ RLHF
 Aligned Model (optimized for human preferences)
+
 ```
 
 ---
@@ -92,6 +95,7 @@ Where:
 • y_l: Dispreferred (losing) response
 • σ: Sigmoid function
 • r(x, y): Scalar reward for response y given prompt x
+
 ```
 
 ### Maximum Likelihood Estimation
@@ -103,6 +107,7 @@ L_RM(φ) = -E_{(x,y_w,y_l)~D} [log σ(r_φ(x, y_w) - r_φ(x, y_l))]
 
 Gradient:
 ∇_φ L_RM = -E[(1 - P(y_w ≻ y_l)) · (∇_φ r(x, y_w) - ∇_φ r(x, y_l))]
+
 ```
 
 ### Proof of Bradley-Terry MLE
@@ -116,6 +121,7 @@ log L = log σ(r(y_w) - r(y_l))
       = r(y_w) - r(y_l) - log(1 + exp(r(y_w) - r(y_l)))
 
 This is the negative cross-entropy loss for binary classification.
+
 ```
 
 ### Reward Model Architecture
@@ -129,6 +135,7 @@ Where:
 • h_final: Last token's hidden state from transformer
 • W ∈ R^{1×d}: Learned projection
 • b ∈ R: Bias term
+
 ```
 
 ---
@@ -147,6 +154,7 @@ The KL term prevents:
 • Reward hacking
 • Catastrophic forgetting
 • Collapse to degenerate solutions
+
 ```
 
 ### Per-Token KL Penalty
@@ -159,6 +167,7 @@ KL(π_θ || π_ref) = Σ_t E[log π_θ(y_t|x,y_{1:t-1}) - log π_ref(y_t|x,y_{1:
 Modified reward at each step:
 r'_t = r_RM(x, y) · 𝟙[t = T] - β · (log π_θ(y_t) - log π_ref(y_t))
                   +- reward at end -+   +----- KL penalty at each step -----+
+
 ```
 
 ### PPO Clipped Objective for RLHF
@@ -170,6 +179,7 @@ Where:
 • ρ_t = π_θ(a_t|s_t) / π_θ_old(a_t|s_t)  (probability ratio)
 • A_t = GAE advantage estimate
 • ε = 0.2 (typical clipping parameter)
+
 ```
 
 ### Advantage Estimation for LLMs
@@ -180,6 +190,7 @@ A_t^GAE = Σ_{l=0}^{T-t} (γλ)^l δ_{t+l}
 Where:
 δ_t = r'_t + γ · V(s_{t+1}) - V(s_t)
     = [r_RM · 𝟙[t=T] - β·KL_t] + γ · V(s_{t+1}) - V(s_t)
+
 ```
 
 ---
@@ -207,6 +218,7 @@ r(y) - β log(π(y)/π_ref(y)) - β + λ = 0
 π(y) = π_ref(y) · exp((r(y) + λ - β)/β)
 
 Normalizing: π*(y) = π_ref(y) · exp(r(y)/β) / Z
+
 ```
 
 ### Rearranging for Implicit Reward
@@ -217,6 +229,7 @@ From π*(y|x) = π_ref(y|x) · exp(r(x,y)/β) / Z(x):
 r(x, y) = β · log(π*(y|x) / π_ref(y|x)) + β · log Z(x)
 
 Key insight: The reward is implicitly defined by the policy!
+
 ```
 
 ### DPO Loss Function
@@ -232,6 +245,7 @@ The log Z(x) terms cancel!
 DPO Loss:
 L_DPO(θ) = -E_{(x,y_w,y_l)~D} [log σ(β · (log(π_θ(y_w|x)/π_ref(y_w|x)) 
                                         - log(π_θ(y_l|x)/π_ref(y_l|x))))]
+
 ```
 
 ### Gradient of DPO
@@ -245,6 +259,7 @@ Intuition:
 • Increase probability of preferred response y_w
 • Decrease probability of dispreferred response y_l
 • Weighted by how wrong the current model is (1 - σ(β·Δ))
+
 ```
 
 ---
@@ -311,6 +326,7 @@ def train_reward_model(model, dataloader, optimizer, epochs=3):
         
         accuracy = correct / total
         print(f"Epoch {epoch+1}: Loss={total_loss/len(dataloader):.4f}, Acc={accuracy:.4f}")
+
 ```
 
 ### PPO for RLHF
@@ -406,6 +422,7 @@ class RLHFTrainer:
             'kl': kl.item(),
             'reward': rewards.mean().item()
         }
+
 ```
 
 ### DPO Implementation
@@ -480,6 +497,7 @@ class DPOTrainer:
         
         metrics['loss'] = loss.item()
         return metrics
+
 ```
 
 ---
@@ -546,6 +564,7 @@ Pretraining → SFT → RLHF/DPO
 (language)   (task) (preference)
                         ↑
                    You are here!
+
 ```
 
 ---

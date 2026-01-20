@@ -64,6 +64,7 @@
 |   +------------------------------------------------------+                  |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -75,11 +76,13 @@
 **Definition**: $\rho(A) = \max\_i |\lambda\_i|$ (largest eigenvalue magnitude)
 
 **Key Properties**:
+
 ```
 1. ρ(A) ≤ ‖A‖ for any matrix norm
 2. For normal matrices: ρ(A) = ‖A‖₂ (spectral norm)
 3. limₖ→∞ Aᵏ = 0 iff ρ(A) < 1
 4. Aᵏ bounded iff ρ(A) ≤ 1 (with equality only for semisimple λ)
+
 ```
 
 ### 📐 Cayley-Hamilton Theorem
@@ -88,9 +91,11 @@
 
 ```math
 p_A(A) = 0 \text{ where } p_A(\lambda) = \det(A - \lambda I)
+
 ```
 
 **Example**:
+
 ```
 A = [1  2]
     [3  4]
@@ -107,9 +112,11 @@ A² = [7   10]
 
 A² - 5A - 2I = [7-5-2    10-10-0] = [0  0] ✓
                [15-15-0  22-20-2]   [0  0]
+
 ```
 
 **Application**: Express $A^{-1}$ as polynomial in $A$:
+
 ```
 From A² - 5A - 2I = 0:
   A² = 5A + 2I
@@ -119,6 +126,7 @@ From A² - 5A - 2I = 0:
   A⁻¹ = (5I - A)/2  [using A² = 5A + 2I ⟹ A⁻¹ = (A-5I)/(-2)]
 
 Actually: A⁻¹ = (-1/2)(A - 5I) = (5I - A)/2
+
 ```
 
 ---
@@ -131,6 +139,7 @@ Every eigenvalue of $A$ lies in at least one Gershgorin disc:
 
 ```math
 D_i = \{z \in \mathbb{C} : |z - A_{ii}| \leq R_i\}
+
 ```
 
 where $R\_i = \sum\_{j \neq i} |A\_{ij}|$ (sum of off-diagonal elements in row $i$).
@@ -156,6 +165,7 @@ Since xᵢ ≠ 0:
   |λ - Aᵢᵢ| ≤ Rᵢ
 
 Therefore λ ∈ Dᵢ.  ∎
+
 ```
 
 ### 💡 Example
@@ -174,6 +184,7 @@ All eigenvalues lie in the union [3, 8] ∩ [4, 6] ∩ [4, 8]
 
 Actually computing: eigenvalues ≈ 3.6, 5.2, 6.2
 All within predicted regions!
+
 ```
 
 ---
@@ -208,6 +219,7 @@ where:
   1·1ᵀ/n = uniform probability matrix
 
 PageRank = dominant eigenvector of G
+
 ```
 
 ### 🔍 Why Dominant Eigenvector?
@@ -223,6 +235,7 @@ Intuition:
   PageRank = stationary distribution of random web surfer
   who follows links with probability α
   and jumps to random page with probability 1-α
+
 ```
 
 ### 💻 Implementation
@@ -266,6 +279,7 @@ A = np.array([
 ranks = pagerank(A)
 print(f"PageRanks: {ranks}")
 print(f"Most important: Page {np.argmax(ranks) + 1}")
+
 ```
 
 ---
@@ -278,6 +292,7 @@ In RNNs, gradients flow through time via:
 
 ```math
 \frac{\partial h_t}{\partial h_0} = \prod_{k=1}^{t} W_h^T \text{diag}(\sigma'(z_k))
+
 ```
 
 ### 📐 Eigenvalue Analysis
@@ -302,6 +317,7 @@ Case 3: ρ(Wₕ) = 1 with orthogonal Wₕ
   All |λᵢ| = 1
   ⟹ (Wₕ)ᵗ bounded
   ⟹ STABLE GRADIENTS
+
 ```
 
 ### 💻 Solution: Orthogonal Initialization
@@ -337,6 +353,7 @@ print(f"Random init: {check_rnn_stability(W)}")
 
 W_orth = orthogonal_init((256, 256))
 print(f"Orthogonal init: {check_rnn_stability(W_orth)}")
+
 ```
 
 ---
@@ -350,6 +367,7 @@ For graph with adjacency matrix $A$ and degree matrix $D$:
 ```math
 L = D - A \quad \text{(unnormalized)}
 L_{sym} = I - D^{-1/2}AD^{-1/2} \quad \text{(normalized)}
+
 ```
 
 ### 📐 Properties of Laplacian
@@ -366,6 +384,7 @@ L_{sym} = I - D^{-1/2}AD^{-1/2} \quad \text{(normalized)}
 4. Second smallest eigenvalue (Fiedler value) measures connectivity
    λ₂ large → well connected
    λ₂ small → nearly disconnected
+
 ```
 
 ### 💻 Spectral Clustering
@@ -414,6 +433,7 @@ np.fill_diagonal(A, 0)
 labels, eigenvalues = spectral_clustering(A, n_clusters=2)
 print(f"Fiedler value (λ₂): {eigenvalues[1]:.4f}")
 print(f"Clustering accuracy: {np.mean(labels[:n] == labels[0]):.2%} / {np.mean(labels[n:] == labels[n]):.2%}")
+
 ```
 
 ---
@@ -485,6 +505,7 @@ centers, radii, eigenvalues = gershgorin_discs(A)
 for i, (c, r, ev) in enumerate(zip(centers, radii, sorted(eigenvalues.real))):
     print(f"Disc {i+1}: center={c:.2f}, radius={r:.2f}")
 print(f"Actual eigenvalues: {sorted(eigenvalues.real)}")
+
 ```
 
 ---

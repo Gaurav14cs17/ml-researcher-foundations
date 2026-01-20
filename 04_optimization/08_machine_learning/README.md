@@ -39,6 +39,7 @@
 |   • Memory-bound                                        |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -57,6 +58,7 @@ where fᵢ = loss on data point i
       θ = model parameters (millions/billions)
 
 Computing full gradient is expensive: O(n)
+
 ```
 
 ### SGD Update Rule
@@ -67,6 +69,7 @@ Computing full gradient is expensive: O(n)
 where iₜ is randomly sampled from {1,...,n}
 
 Key insight: E[∇fᵢ(θ)] = ∇f(θ)  (unbiased!)
+
 ```
 
 ### Mini-batch SGD
@@ -80,6 +83,7 @@ Properties:
 • Variance ∝ 1/b
 • Parallelizable (GPU-friendly)
 • Typical b: 32, 64, 128, 256, 512
+
 ```
 
 ---
@@ -92,6 +96,7 @@ Properties:
 1. L-smoothness: ||∇f(x) - ∇f(y)|| ≤ L||x - y||
 2. Bounded variance: E[||∇fᵢ(θ) - ∇f(θ)||²] ≤ σ²
 3. (Optional) μ-strong convexity: f(y) ≥ f(x) + ∇f(x)ᵀ(y-x) + (μ/2)||y-x||²
+
 ```
 
 ### Convex Case: Convergence Theorem
@@ -102,6 +107,7 @@ Properties:
 E[f(θ̄ₜ)] - f* ≤ O(||θ₀ - θ*||²L/T + σ||θ₀ - θ*||/√T)
 
 = O(1/√T)
+
 ```
 
 **Proof:**
@@ -131,6 +137,7 @@ Step 5: Telescope sum over T iterations
 For η = 1/(L√T), summing and using convexity of f(θ̄):
 
 E[f(θ̄)] - f* ≤ O(1/√T)  ∎
+
 ```
 
 ### Strongly Convex Case
@@ -141,6 +148,7 @@ With μ-strong convexity and η = 1/(μt):
 E[f(θₜ)] - f* ≤ O(σ²/(μT))
 
 Linear convergence to neighborhood of optimum!
+
 ```
 
 ### Non-Convex Case
@@ -152,6 +160,7 @@ For L-smooth non-convex f:
 
 SGD finds approximate stationary point!
 (but may be saddle or local min)
+
 ```
 
 ---
@@ -169,6 +178,7 @@ vₜ = γvₜ₋₁ + η∇f(θₜ)
 θₜ₊₁ = θₜ - vₜ
 
 where γ ∈ [0.9, 0.99] typically
+
 ```
 
 ### Why Momentum Helps
@@ -185,6 +195,7 @@ Without momentum:          With momentum:
    
    Oscillates in            Accelerates in
    narrow valleys           consistent direction
+
 ```
 
 ### Convergence Improvement
@@ -196,6 +207,7 @@ Without momentum: κ = λ_max/λ_min iterations
 With momentum:    √κ iterations
 
 Optimal γ = (√κ - 1)/(√κ + 1) ≈ 1 - 2/√κ
+
 ```
 
 ---
@@ -242,6 +254,7 @@ for x, y in dataloader:
     loss = criterion(model(x), y)
     loss.backward()
     optimizer.step()
+
 ```
 
 ### Nesterov Momentum
@@ -255,6 +268,7 @@ vₜ = γvₜ₋₁ + η∇f(θ_lookahead)
 
 Intuition: Correct momentum direction using future position
 Achieves optimal O(1/T²) rate for convex problems!
+
 ```
 
 ---
@@ -280,6 +294,7 @@ v̂ₜ = vₜ/(1-β₂ᵗ)                   (bias-corrected second)
 
 Default values:
 β₁ = 0.9, β₂ = 0.999, ε = 10⁻⁸
+
 ```
 
 ---
@@ -298,6 +313,7 @@ E[vₜ] = (1-β₂ᵗ) E[g²] ≠ E[g²] (biased!)
 Bias correction fixes this:
 E[m̂ₜ] = E[mₜ]/(1-β₁ᵗ) = E[g]    ✓
 E[v̂ₜ] = E[vₜ]/(1-β₂ᵗ) = E[g²]   ✓
+
 ```
 
 ### Derivation of Bias Correction
@@ -311,6 +327,7 @@ E[mₜ] = (1-β₁) Σᵢ₌₁ᵗ β₁ᵗ⁻ⁱ E[g]
 
 Therefore:
 E[mₜ/(1-β₁ᵗ)] = E[g]  ✓
+
 ```
 
 ---
@@ -325,6 +342,7 @@ Regret ≤ O(d√T)
 where d = dimension, T = iterations
 
 Equivalent to O(1/√T) convergence rate
+
 ```
 
 **Proof Sketch:**
@@ -344,6 +362,7 @@ With v̂ₜ tracking gradient magnitudes:
 Step 4: Bound via potential function
 Careful analysis of ||θₜ - θ*||²_diag(√v̂ₜ)
 yields O(d√T) regret ∎
+
 ```
 
 ---
@@ -365,6 +384,7 @@ yields O(d√T) regret ∎
 Why SGD generalizes better (conjecture):
 • Adam finds "sharp" minima (poor generalization)
 • SGD's noise helps find "flat" minima (good generalization)
+
 ```
 
 ---
@@ -385,6 +405,7 @@ mₜ = β₁mₜ₋₁ + (1-β₁)gₜ  (no λθ here)
 θₜ₊₁ = θₜ - η(m̂ₜ/(√v̂ₜ + ε) + λθₜ)  (add separately)
 
 This is the standard for modern transformers!
+
 ```
 
 ---
@@ -447,6 +468,7 @@ for epoch in range(num_epochs):
         loss.backward()
         optimizer.step()
     scheduler.step()
+
 ```
 
 ---
@@ -460,6 +482,7 @@ vₜ = γvₜ₋₁ + (1-γ)gₜ²
 θₜ₊₁ = θₜ - η gₜ/√(vₜ + ε)
 
 Adam's predecessor, no momentum or bias correction
+
 ```
 
 ### AdaGrad
@@ -470,6 +493,7 @@ vₜ = vₜ₋₁ + gₜ²
 
 Problem: Learning rate decays to zero
 Good for sparse gradients
+
 ```
 
 ### Comparison
@@ -499,6 +523,7 @@ Why warmup?
 Why decay?
 • Helps convergence to better minima
 • Reduces final oscillation
+
 ```
 
 ---

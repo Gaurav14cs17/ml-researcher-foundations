@@ -25,18 +25,21 @@
 
 ```math
 T_{total} = T_{compute} + T_{memory} + T_{communication}
+
 ```
 
 **Compute-Bound:**
 
 ```math
 T_{compute} = \frac{\text{FLOPs}}{\text{Peak Throughput}}
+
 ```
 
 **Memory-Bound (LLMs during decoding):**
 
 ```math
 T_{memory} = \frac{\text{Model Parameters} \times \text{bytes/param}}{\text{Memory Bandwidth}}
+
 ```
 
 **Example (LLaMA-7B on A100):**
@@ -49,12 +52,14 @@ T_{memory} = \frac{\text{Model Parameters} \times \text{bytes/param}}{\text{Memo
 
 ```math
 \text{Throughput} = \frac{\text{Batch Size}}{T_{batch}}
+
 ```
 
 **Tokens per Second:**
 
 ```math
 \text{tok/s} = \frac{B \times L}{T_{prefill} + L \times T_{decode}}
+
 ```
 
 Where:
@@ -69,12 +74,14 @@ Where:
 
 ```math
 M_{inference} = M_{model} + M_{KV} + M_{activations}
+
 ```
 
 **KV Cache:**
 
 ```math
 M_{KV} = 2 \times L \times H \times d_k \times B \times S \times b_{kv}
+
 ```
 
 Where:
@@ -89,6 +96,7 @@ Where:
 
 ```math
 M_{KV} = 2 \times 32 \times 32 \times 128 \times 1 \times 4096 \times 2 = 2.1\text{GB}
+
 ```
 
 ### 4. Hardware Efficiency
@@ -97,12 +105,14 @@ M_{KV} = 2 \times 32 \times 32 \times 128 \times 1 \times 4096 \times 2 = 2.1\te
 
 ```math
 \text{AI} = \frac{\text{FLOPs}}{\text{Bytes Transferred}}
+
 ```
 
 **Roofline Model:**
 
 ```math
 \text{Achieved FLOPS} = \min(\text{Peak FLOPS}, \text{AI} \times \text{Bandwidth})
+
 ```
 
 **LLM Decoding:** Very low AI (~1) → Memory-bound → Compression helps!
@@ -151,6 +161,7 @@ M_{KV} = 2 \times 32 \times 32 \times 128 \times 1 \times 4096 \times 2 = 2.1\te
 |  +-- Cost: Pay per compute second                           |
 |                                                              |
 +-------------------------------------------------------------+
+
 ```
 
 ---
@@ -181,6 +192,7 @@ tflite_model = converter.convert()
 # Save
 with open('model.tflite', 'wb') as f:
     f.write(tflite_model)
+
 ```
 
 ### Server (TensorRT)
@@ -191,6 +203,7 @@ trtexec --onnx=model.onnx \
         --saveEngine=model.trt \
         --fp16 \
         --workspace=4096
+
 ```
 
 ```python
@@ -203,6 +216,7 @@ with open("model.trt", "rb") as f:
 
 context = engine.create_execution_context()
 # ... allocate buffers and run inference
+
 ```
 
 ### Local LLM (llama.cpp)
@@ -216,6 +230,7 @@ context = engine.create_execution_context()
        -p "Hello, how are you?" \
        -n 100 \
        -t 8  # threads
+
 ```
 
 ### vLLM (High-throughput serving)
@@ -234,6 +249,7 @@ llm = LLM(
 # Batch inference
 sampling_params = SamplingParams(temperature=0.7, max_tokens=100)
 outputs = llm.generate(prompts, sampling_params)
+
 ```
 
 ---

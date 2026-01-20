@@ -21,6 +21,7 @@ Map input sequence to output sequence:
 
 ```math
 (x_1, x_2, ..., x_n) \rightarrow (y_1, y_2, ..., y_m)
+
 ```
 
 Where input length $n$ and output length $m$ may differ.
@@ -29,6 +30,7 @@ Where input length $n$ and output length $m$ may differ.
 
 ```math
 P(y_1, ..., y_m | x_1, ..., x_n) = \prod_{t=1}^{m} P(y_t | y_1, ..., y_{t-1}, x_1, ..., x_n)
+
 ```
 
 ---
@@ -41,6 +43,7 @@ Process input sequence to fixed representation:
 
 ```math
 h_t = \text{RNN}(x_t, h_{t-1})
+
 ```
 
 Final hidden state: $c = h\_n$ (context vector)
@@ -49,6 +52,7 @@ For bidirectional:
 
 ```math
 h_t = [\overrightarrow{h}_t; \overleftarrow{h}_t]
+
 ```
 
 ### Decoder
@@ -58,6 +62,7 @@ Generate output sequence:
 ```math
 s_t = \text{RNN}(y_{t-1}, s_{t-1}, c)
 P(y_t | y_{1:t-1}, x) = \text{softmax}(W_o s_t)
+
 ```
 
 ### Information Bottleneck
@@ -78,24 +83,28 @@ Long sequences → information loss.
 
 ```math
 e_{t,s} = v^T \tanh(W_a s_{t-1} + U_a h_s)
+
 ```
 
 **Attention weights:**
 
 ```math
 \alpha_{t,s} = \frac{\exp(e_{t,s})}{\sum_{k=1}^{n} \exp(e_{t,k})}
+
 ```
 
 **Context vector:**
 
 ```math
 c_t = \sum_{s=1}^{n} \alpha_{t,s} h_s
+
 ```
 
 **Decoder update:**
 
 ```math
 s_t = \text{RNN}(y_{t-1}, s_{t-1}, c_t)
+
 ```
 
 ### Luong Attention (Multiplicative)
@@ -118,6 +127,7 @@ During training, use ground truth $y\_{t-1}$ as input:
 
 ```math
 s_t = \text{RNN}(y_{t-1}^{*}, s_{t-1}, c_t)
+
 ```
 
 **Pros:** Faster convergence  
@@ -132,6 +142,7 @@ Mix teacher forcing and free-running:
 y_{t-1}^{*} & \text{with probability } \epsilon \\
 \hat{y}_{t-1} & \text{with probability } 1-\epsilon
 \end{cases}
+
 ```
 
 Decrease $\epsilon$ during training.
@@ -140,6 +151,7 @@ Decrease $\epsilon$ during training.
 
 ```math
 \mathcal{L} = -\sum_{t=1}^{m} \log P(y_t^* | y_{1:t-1}^*, x)
+
 ```
 
 ---
@@ -150,6 +162,7 @@ Decrease $\epsilon$ during training.
 
 ```math
 \hat{y}_t = \arg\max_y P(y | y_{1:t-1}, x)
+
 ```
 
 Fast but suboptimal.
@@ -160,12 +173,14 @@ Maintain top-$k$ candidates at each step:
 
 ```math
 \text{score}(y_{1:t}) = \sum_{i=1}^{t} \log P(y_i | y_{1:i-1}, x)
+
 ```
 
 **Length normalization:**
 
 ```math
 \text{score}_{norm} = \frac{\text{score}(y_{1:t})}{t^\alpha}
+
 ```
 
 ### Nucleus (Top-p) Sampling
@@ -174,6 +189,7 @@ Sample from smallest set with cumulative probability $\geq p$:
 
 ```math
 V_p = \arg\min_V \sum_{y \in V} P(y) \geq p
+
 ```
 
 ---
@@ -358,6 +374,7 @@ def beam_search(model, src, beam_width=5, max_len=50, sos_idx=1, eos_idx=2):
         # Return best (length-normalized)
         best = max(complete, key=lambda x: x[0] / len(x[1]))
         return best[1]
+
 ```
 
 ---

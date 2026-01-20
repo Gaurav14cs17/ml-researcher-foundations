@@ -30,21 +30,26 @@ Limits formalize "approaching" behavior. Continuity ensures no jumps or breaks. 
 ## 📐 Mathematical Definitions
 
 ### Limit Definition (ε-δ)
+
 ```
 lim_{x→a} f(x) = L
 
 Means: ∀ε > 0, ∃δ > 0 such that
        0 < |x - a| < δ ⟹ |f(x) - L| < ε
+
 ```
 
 ### Limit Properties
+
 ```
 lim [f(x) + g(x)] = lim f(x) + lim g(x)
 lim [f(x) · g(x)] = lim f(x) · lim g(x)
 lim [f(x)/g(x)] = lim f(x) / lim g(x)  (if lim g(x) ≠ 0)
+
 ```
 
 ### Continuity
+
 ```
 f is continuous at a if:
 1. f(a) is defined
@@ -52,14 +57,17 @@ f is continuous at a if:
 3. lim_{x→a} f(x) = f(a)
 
 Continuous functions: polynomials, exp, log, sin, cos
+
 ```
 
 ### Importance in ML
+
 ```
 • ReLU: max(0, x) is continuous but not differentiable at 0
 • Sigmoid: σ(x) = 1/(1+e^{-x}) is smooth (infinitely differentiable)
 • Softmax: exp(xᵢ)/Σexp(xⱼ) is smooth
 • Loss landscapes need continuity for optimization
+
 ```
 
 ---
@@ -93,6 +101,7 @@ activations = {
     'GELU': torch.nn.functional.gelu,
     'Softplus': torch.nn.functional.softplus  # Smooth ReLU
 }
+
 ```
 
 ---

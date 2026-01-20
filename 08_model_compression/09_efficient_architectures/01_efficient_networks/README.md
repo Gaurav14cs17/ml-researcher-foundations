@@ -26,6 +26,7 @@
 ```math
 Y = W * X
 W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
+
 ```
 
 **Parameters:** $C\_{out} \times C\_{in} \times K^2$
@@ -38,6 +39,7 @@ W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
 ```math
 H_c = W_c^{dw} * X_c, \quad c = 1, ..., C_{in}
 W^{dw} \in \mathbb{R}^{C_{in} \times 1 \times K \times K}
+
 ```
 
 *Pointwise (channel mixing):*
@@ -45,6 +47,7 @@ W^{dw} \in \mathbb{R}^{C_{in} \times 1 \times K \times K}
 ```math
 Y = W^{pw} \cdot H
 W^{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 \times 1}
+
 ```
 
 **Total Parameters:** $C\_{in} \times K^2 + C\_{out} \times C\_{in}$
@@ -53,6 +56,7 @@ W^{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 \times 1}
 
 ```math
 \frac{C_{out} \times C_{in} \times K^2}{C_{in} \times K^2 + C_{out} \times C_{in}} = \frac{C_{out} \times K^2}{K^2 + C_{out}}
+
 ```
 
 For $K=3$, $C\_{out}=256$: $\frac{256 \times 9}{9 + 256} = 8.7\times$
@@ -63,6 +67,7 @@ For $K=3$, $C\_{out}=256$: $\frac{256 \times 9}{9 + 256} = 8.7\times$
 
 ```math
 Y = X + \text{Proj}(\text{DW}(\text{Expand}(X)))
+
 ```
 
 **Expansion Phase:**
@@ -70,12 +75,14 @@ Y = X + \text{Proj}(\text{DW}(\text{Expand}(X)))
 ```math
 H_1 = \text{ReLU6}(\text{BN}(\text{Conv}_{1\times1}(X)))
 H_1 \in \mathbb{R}^{B \times (t \cdot C) \times H \times W}
+
 ```
 
 **Depthwise Phase:**
 
 ```math
 H_2 = \text{ReLU6}(\text{BN}(\text{DWConv}_{K\times K}(H_1)))
+
 ```
 
 **Projection Phase (Linear):**
@@ -83,6 +90,7 @@ H_2 = \text{ReLU6}(\text{BN}(\text{DWConv}_{K\times K}(H_1)))
 ```math
 Y = \text{BN}(\text{Conv}_{1\times1}(H_2))
 Y \in \mathbb{R}^{B \times C' \times H \times W}
+
 ```
 
 **Why Linear in Projection?**
@@ -99,6 +107,7 @@ Nonlinearity destroys information in low-dimensional space. Linear projection pr
 
 ```math
 d = \alpha^\phi, \quad w = \beta^\phi, \quad r = \gamma^\phi
+
 ```
 
 **FLOPS Constraint:**
@@ -106,12 +115,14 @@ d = \alpha^\phi, \quad w = \beta^\phi, \quad r = \gamma^\phi
 ```math
 \text{FLOPS} \propto d \cdot w^2 \cdot r^2
 \alpha \cdot \beta^2 \cdot \gamma^2 \approx 2
+
 ```
 
 **Grid Search Results:**
 
 ```math
 \alpha = 1.2, \quad \beta = 1.1, \quad \gamma = 1.15
+
 ```
 
 **Scaling Examples:**
@@ -130,6 +141,7 @@ d = \alpha^\phi, \quad w = \beta^\phi, \quad r = \gamma^\phi
 z = F_{sq}(U) = \frac{1}{H \times W}\sum_{i,j} u_{ij}
 s = F_{ex}(z) = \sigma(W_2 \cdot \delta(W_1 \cdot z))
 \tilde{X}_c = s_c \cdot U_c
+
 ```
 
 Where:
@@ -151,12 +163,14 @@ Where:
 
 ```math
 \max_{\alpha} \text{Accuracy}(N(\alpha)) \quad \text{s.t.} \quad \text{Latency}(N(\alpha)) \leq T
+
 ```
 
 **MnasNet/EfficientNet used reinforcement learning with:**
 
 ```math
 R(\alpha) = \text{Acc}(\alpha) \times \left(\frac{\text{Latency}(\alpha)}{T}\right)^w
+
 ```
 
 ---
@@ -177,6 +191,7 @@ Depthwise Separable (MobileNet):
 
 Total: K² × C_in + C_in × C_out
 Savings: ~8-9× fewer params and FLOPs!
+
 ```
 
 ---
@@ -287,6 +302,7 @@ print(f"Standard Conv: {count_params(standard):,} params")
 dw_sep = DepthwiseSeparableConv(256, 256, 3)
 print(f"DW Separable: {count_params(dw_sep):,} params")
 print(f"Reduction: {count_params(standard) / count_params(dw_sep):.1f}×")
+
 ```
 
 ---

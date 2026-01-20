@@ -46,6 +46,7 @@ A: Action space    — What the agent can do
 P: P(s'|s,a)       — Transition probability (dynamics)
 R: r(s,a,s')       — Reward function
 γ: Discount factor — γ ∈ [0,1], importance of future rewards
+
 ```
 
 ### The Markov Property
@@ -56,6 +57,7 @@ P(sₜ₊₁ | sₜ, aₜ, sₜ₋₁, aₜ₋₁, ..., s₀, a₀) = P(sₜ₊�
 "The future is independent of the past given the present"
 
 This simplifies planning: we only need to know the current state!
+
 ```
 
 ---
@@ -74,6 +76,7 @@ Optimal Value:
     
 Optimal Policy:
     π*(s) = argmax_a Q*(s, a)
+
 ```
 
 ---
@@ -86,6 +89,7 @@ Optimal Policy:
 V^π(s) = E_π[rₜ + γV^π(sₜ₊₁) | sₜ = s]
 
        = Σ_a π(a|s) Σ_s' P(s'|s,a) [R(s,a,s') + γV^π(s')]
+
 ```
 
 ### Q-Function (Action Value)
@@ -94,6 +98,7 @@ V^π(s) = E_π[rₜ + γV^π(sₜ₊₁) | sₜ = s]
 Q^π(s, a) = E_π[rₜ + γV^π(sₜ₊₁) | sₜ = s, aₜ = a]
 
           = Σ_s' P(s'|s,a) [R(s,a,s') + γV^π(s')]
+
 ```
 
 ### Bellman Optimality Equations
@@ -102,6 +107,7 @@ Q^π(s, a) = E_π[rₜ + γV^π(sₜ₊₁) | sₜ = s, aₜ = a]
 V*(s) = max_a Σ_s' P(s'|s,a) [R(s,a,s') + γV*(s')]
 
 Q*(s,a) = Σ_s' P(s'|s,a) [R(s,a,s') + γ max_a' Q*(s',a')]
+
 ```
 
 ---
@@ -176,6 +182,7 @@ def value_iteration(mdp, theta=1e-6):
         ])
     
     return V, policy
+
 ```
 
 ---
@@ -203,6 +210,7 @@ MDP --> Value Methods (Q-learning, DQN)
     --> Model-Based RL (Dreamer)
     --> RLHF / DPO
     --> Multi-Agent RL
+
 ```
 
 ---

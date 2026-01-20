@@ -29,6 +29,7 @@
 
 ```math
 W = U \Sigma V^T
+
 ```
 
 where:
@@ -42,6 +43,7 @@ where:
 
 ```math
 W = U_n \Sigma_n V^T
+
 ```
 
 where $U\_n \in \mathbb{R}^{m \times n}$, $\Sigma\_n \in \mathbb{R}^{n \times n}$.
@@ -56,6 +58,7 @@ where $U\_n \in \mathbb{R}^{m \times n}$, $\Sigma\_n \in \mathbb{R}^{n \times n}
 
 ```math
 W_k = U_k \Sigma_k V_k^T
+
 ```
 
 where:
@@ -69,12 +72,14 @@ where:
 
 ```math
 W_k = \arg\min_{\text{rank}(A) \leq k} \|W - A\|_F
+
 ```
 
 **Optimal error:**
 
 ```math
 \|W - W_k\|_F = \sqrt{\sum_{i=k+1}^{r} \sigma_i^2}
+
 ```
 
 where $r = \text{rank}(W)$ and $\sigma\_i$ are singular values.
@@ -97,12 +102,14 @@ where $A \in \mathbb{R}^{m \times k}$, $B \in \mathbb{R}^{k \times n}$.
 
 ```math
 CR = \frac{mn}{k(m+n)} = \frac{mn}{km + kn}
+
 ```
 
 **For square matrices ($m = n$):**
 
 ```math
 CR = \frac{n^2}{2kn} = \frac{n}{2k}
+
 ```
 
 #### 3.3 Break-even Analysis
@@ -112,6 +119,7 @@ CR = \frac{n^2}{2kn} = \frac{n}{2k}
 ```math
 k(m + n) < mn
 k < \frac{mn}{m + n}
+
 ```
 
 **For $m = n$:** $k < n/2$
@@ -126,18 +134,21 @@ k < \frac{mn}{m + n}
 
 ```math
 E_{total} = \|W\|_F^2 = \sum_{i=1}^{r} \sigma_i^2
+
 ```
 
 **Energy captured by rank-$k$:**
 
 ```math
 E_k = \sum_{i=1}^{k} \sigma_i^2
+
 ```
 
 **Energy ratio:**
 
 ```math
 \rho_k = \frac{E_k}{E_{total}} = \frac{\sum_{i=1}^k \sigma_i^2}{\sum_{i=1}^r \sigma_i^2}
+
 ```
 
 #### 4.2 Rank Selection
@@ -146,6 +157,7 @@ E_k = \sum_{i=1}^{k} \sigma_i^2
 
 ```math
 \rho_k \geq \tau
+
 ```
 
 where $\tau \in [0.9, 0.99]$ is the target energy threshold.
@@ -154,6 +166,7 @@ where $\tau \in [0.9, 0.99]$ is the target energy threshold.
 
 ```math
 \frac{\|W - W_k\|_F^2}{\|W\|_F^2} = 1 - \rho_k \leq 1 - \tau
+
 ```
 
 ---
@@ -351,6 +364,7 @@ def compress_model(model: nn.Module, energy_threshold: float = 0.95,
                 print(f"Compressed {name}: {weight.shape} -> rank {rank} ({cr:.2f}x)")
     
     return model
+
 ```
 
 ---

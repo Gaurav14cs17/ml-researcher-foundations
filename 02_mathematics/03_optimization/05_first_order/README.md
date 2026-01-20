@@ -69,6 +69,7 @@
 |   +===================================================================+     |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -79,6 +80,7 @@
 
 ```math
 \theta_{k+1} = \theta_k - \eta \nabla f(\theta_k)
+
 ```
 
 where:
@@ -101,6 +103,7 @@ By Cauchy-Schwarz:
 Minimum achieved when d = -∇f(x)/‖∇f(x)‖
 
 So the direction of steepest descent is -∇f(x)!
+
 ```
 
 ### 📐 Assumptions
@@ -149,6 +152,7 @@ Step 3: By convexity: f(x_k) - f(x*) ≤ ∇f(x_k)ᵀ(x_k - x*)
         So: ‖∇f(x_k)‖ ≥ (f(x_k) - f(x*)) / ‖x_k - x*‖
 
 Step 4: Telescope and bound to get O(1/k) rate  ∎
+
 ```
 
 ### 📐 Condition Number Intuition
@@ -166,6 +170,7 @@ Geometric interpretation:
 Example: f(x,y) = x² + 100y²
   L = 200, μ = 2, κ = 100
   GD will oscillate along y, move slowly along x
+
 ```
 
 ---
@@ -179,6 +184,7 @@ Example: f(x,y) = x² + 100y²
 v_{k+1} &= \beta v_k + \nabla f(\theta_k) \\
 \theta_{k+1} &= \theta_k - \eta v_{k+1}
 \end{align}
+
 ```
 
 where $\beta \in [0, 1)$ is the momentum coefficient (typically 0.9).
@@ -202,6 +208,7 @@ The ball:
 Effect on ill-conditioned problems:
   Without momentum: ↓↗↓↗↓↗ (oscillates)
   With momentum:    --------→ (smooth path)
+
 ```
 
 ### 📐 Equivalent Forms
@@ -220,6 +227,7 @@ Dampened:
   θ = θ - ηv
 
 All equivalent with rescaling of η and β
+
 ```
 
 ---
@@ -233,6 +241,7 @@ All equivalent with rescaling of η and β
 v_{k+1} &= \beta v_k + \nabla f(\theta_k - \eta \beta v_k) \quad \text{(gradient at lookahead)} \\
 \theta_{k+1} &= \theta_k - \eta v_{k+1}
 \end{align}
+
 ```
 
 Alternative form:
@@ -242,6 +251,7 @@ Alternative form:
 y_k &= \theta_k + \beta(\theta_k - \theta_{k-1}) \\
 \theta_{k+1} &= y_k - \eta \nabla f(y_k)
 \end{align}
+
 ```
 
 ### 💡 Intuition: "Look Ahead"
@@ -263,6 +273,7 @@ Why better?
   • Corrects "overshooting" before it happens
   • Uses more up-to-date gradient information
   • Achieves optimal O(1/k²) rate for smooth convex functions
+
 ```
 
 ### 📊 Convergence
@@ -285,12 +296,14 @@ For L-smooth functions, convergence guaranteed if:
 
 ```math
 \eta \leq \frac{1}{L}
+
 ```
 
 For optimal convergence in strongly convex case:
 
 ```math
 \eta = \frac{1}{L}
+
 ```
 
 ### 📊 Practical Guidelines
@@ -319,6 +332,7 @@ def warmup_cosine(step, warmup_steps=1000, total_steps=10000, initial_lr=0.001):
         return initial_lr * step / warmup_steps
     progress = (step - warmup_steps) / (total_steps - warmup_steps)
     return initial_lr * (1 + np.cos(np.pi * progress)) / 2
+
 ```
 
 ---
@@ -333,12 +347,14 @@ For $f(\theta) = g(\theta) + h(\theta)$ where $g$ is smooth and $h$ is non-smoot
 
 ```math
 \theta_{k+1} = \text{prox}_{\eta h}(\theta_k - \eta \nabla g(\theta_k))
+
 ```
 
 where the proximal operator is:
 
 ```math
 \text{prox}_{\eta h}(x) = \arg\min_z \left( h(z) + \frac{1}{2\eta}\|z - x\|^2 \right)
+
 ```
 
 ### 💡 Example: LASSO (L1 Regularization)
@@ -352,6 +368,7 @@ prox_{ηλ‖·‖₁}(x) = sign(x) · max(|x| - ηλ, 0)
 
 Algorithm (ISTA):
   θ = soft_threshold(θ - η·Xᵀ(Xθ - y), ηλ)
+
 ```
 
 ---
@@ -504,6 +521,7 @@ def pytorch_optimizers():
 if __name__ == "__main__":
     compare_methods()
     pytorch_optimizers()
+
 ```
 
 ---

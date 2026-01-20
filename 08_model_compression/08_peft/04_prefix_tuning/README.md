@@ -28,6 +28,7 @@ Prepend learnable "virtual tokens" to keys and values.
 
 ```math
 \text{Attention}(Q, [P_K; K], [P_V; V])
+
 ```
 
 where:
@@ -43,6 +44,7 @@ where:
 
 ```math
 \text{Attn}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d}}\right)V
+
 ```
 
 #### 2.2 With Prefix
@@ -52,12 +54,14 @@ where:
 ```math
 K' = [P_K; K] \in \mathbb{R}^{(l+n) \times d}
 V' = [P_V; V] \in \mathbb{R}^{(l+n) \times d}
+
 ```
 
 **Attention becomes:**
 
 ```math
 \text{Attn}(Q, K', V') = \text{softmax}\left(\frac{Q[P_K; K]^T}{\sqrt{d}}\right)[P_V; V]
+
 ```
 
 #### 2.3 Decomposition
@@ -67,6 +71,7 @@ V' = [P_V; V] \in \mathbb{R}^{(l+n) \times d}
 ```math
 O = \text{softmax}\left(\frac{[Q P_K^T | QK^T]}{\sqrt{d}}\right) \begin{bmatrix} P_V \\ V \end{bmatrix}
 = \alpha \cdot \text{softmax}\left(\frac{QP_K^T}{\sqrt{d}}\right)P_V + (1-\alpha) \cdot \text{softmax}\left(\frac{QK^T}{\sqrt{d}}\right)V
+
 ```
 
 The prefix "steers" attention by providing additional context.
@@ -79,6 +84,7 @@ The prefix "steers" attention by providing additional context.
 
 ```math
 |\theta_{prefix}^{layer}| = 2 \times l \times d
+
 ```
 
 (One for keys, one for values)
@@ -89,12 +95,14 @@ The prefix "steers" attention by providing additional context.
 
 ```math
 |\theta_{prefix}| = 2 \times L \times l \times d
+
 ```
 
 **Example (GPT-2 Medium, $L=24$, $d=1024$, $l=100$):**
 
 ```math
 |\theta_{prefix}| = 2 \times 24 \times 100 \times 1024 = 4.9M
+
 ```
 
 vs. 345M for full model → **1.4%**
@@ -116,6 +124,7 @@ vs. 345M for full model → **1.4%**
 ```math
 P_K = \text{MLP}(E_K)
 P_V = \text{MLP}(E_V)
+
 ```
 
 where:
@@ -144,6 +153,7 @@ where:
 
 ```math
 X' = [P; X]
+
 ```
 
 where $P \in \mathbb{R}^{l \times d}$ is learned.
@@ -176,12 +186,14 @@ where $P \in \mathbb{R}^{l \times d}$ is learned.
 
 ```math
 \text{Input: } \text{"Translate to French: "} + \text{sentence}
+
 ```
 
 **Soft prompt:** Learned embeddings
 
 ```math
 \text{Input: } P + \text{Embed(sentence)}
+
 ```
 
 Soft prompts can express things hard prompts cannot.
@@ -405,6 +417,7 @@ if __name__ == "__main__":
     # Compare to full model
     full_params = num_layers * (4 * d_model * d_model)  # Rough estimate
     print(f"Prefix / Full: {100 * n_params / full_params:.2f}%")
+
 ```
 
 ---

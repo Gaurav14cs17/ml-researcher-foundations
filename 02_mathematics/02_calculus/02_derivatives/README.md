@@ -68,6 +68,7 @@
 |   If ∂L/∂θ < 0: Increase θ to decrease loss                                 |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -78,6 +79,7 @@
 
 ```math
 f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+
 ```
 
 Alternative notation: $\frac{df}{dx}$, $\frac{dy}{dx}$, $Df$, $\dot{f}$
@@ -96,6 +98,7 @@ Key insight:
   The derivative tells you how sensitive the output is to small changes in input.
   
   If f'(x) = 5, then increasing x by 0.01 increases f(x) by approximately 0.05
+
 ```
 
 ### 🔍 Proof: Derivative of $x^2$
@@ -109,6 +112,7 @@ f'(x) = lim[h→0] (f(x+h) - f(x)) / h
       = lim[h→0] (2xh + h²) / h
       = lim[h→0] (2x + h)
       = 2x  ∎
+
 ```
 
 ---
@@ -137,6 +141,7 @@ Add and subtract f(x+h)g(x):
 = lim[h→0] [f(x+h) · (g(x+h) - g(x))/h + g(x) · (f(x+h) - f(x))/h]
 
 = f(x) · g'(x) + g(x) · f'(x)  ∎
+
 ```
 
 ---
@@ -159,21 +164,27 @@ Add and subtract f(x+h)g(x):
 ### 💡 Examples
 
 **Example 1**: Polynomial
+
 ```
 f(x) = 3x⁴ - 2x³ + x - 7
 f'(x) = 12x³ - 6x² + 1
+
 ```
 
 **Example 2**: Exponential
+
 ```
 f(x) = e^(2x + 1)
 f'(x) = e^(2x+1) · 2 = 2e^(2x+1)  (chain rule)
+
 ```
 
 **Example 3**: Logarithm
+
 ```
 f(x) = ln(x² + 1)
 f'(x) = (1/(x²+1)) · 2x = 2x/(x²+1)  (chain rule)
+
 ```
 
 ---
@@ -211,6 +222,7 @@ Now simplify:
 Note: e^(-x)/(1 + e^(-x)) = 1 - 1/(1 + e^(-x)) = 1 - σ(x)
 
 Therefore: σ'(x) = σ(x)(1 - σ(x))  ∎
+
 ```
 
 ### 📐 Vanishing Gradient Problem
@@ -227,6 +239,7 @@ In deep networks with n layers:
 
 This is why ReLU works better:
   ReLU'(x) = 1 for x > 0 (no vanishing!)
+
 ```
 
 ---
@@ -239,6 +252,7 @@ For $f(x\_1, x\_2, \ldots, x\_n)$:
 
 ```math
 \frac{\partial f}{\partial x_i} = \lim_{h \to 0} \frac{f(x_1, \ldots, x_i + h, \ldots, x_n) - f(x_1, \ldots, x_n)}{h}
+
 ```
 
 *Differentiate with respect to one variable, treating others as constants.*
@@ -251,6 +265,7 @@ f(x, y) = x²y + 3xy² + y³
 ∂f/∂x = 2xy + 3y²  (treat y as constant)
 
 ∂f/∂y = x² + 6xy + 3y²  (treat x as constant)
+
 ```
 
 ### 📐 Gradient
@@ -259,6 +274,7 @@ The **gradient** collects all partial derivatives:
 
 ```math
 \nabla f = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix}
+
 ```
 
 ---
@@ -384,6 +400,7 @@ def higher_order_example():
     print(f"f''(2) = {grad2.item()}")  # 12*4 = 48
 
 higher_order_example()
+
 ```
 
 ---

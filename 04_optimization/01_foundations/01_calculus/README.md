@@ -33,6 +33,7 @@ Function f(x)
 |   (first-order)            (second-order)           |
 |                                                     |
 +-----------------------------------------------------+
+
 ```
 
 ---
@@ -57,6 +58,7 @@ The gradient is a vector of all partial derivatives. It points in the direction 
 |   Size: n × 1 vector                                    |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -79,6 +81,7 @@ The gradient is a vector of all partial derivatives. It points in the direction 
    x_new = x_old - α∇f(x_old)
            -----------------
            Gradient Descent!
+
 ```
 
 ---
@@ -121,27 +124,35 @@ where \( \theta \) is the angle between \( \nabla f \) and \( \mathbf{d} \).
 ### Function: f(x, y) = x² + 2y²
 
 **Step 1: Partial Derivatives**
+
 ```
 ∂f/∂x = 2x    (derivative treating y as constant)
 ∂f/∂y = 4y    (derivative treating x as constant)
+
 ```
 
 **Step 2: Gradient Vector**
+
 ```
 ∇f(x,y) = [2x, 4y]ᵀ
+
 ```
 
 **Step 3: Evaluate at Point (3, 2)**
+
 ```
 ∇f(3,2) = [2(3), 4(2)]ᵀ = [6, 8]ᵀ
+
 ```
 
 **Step 4: Gradient Descent Step**
+
 ```
 α = 0.1  (learning rate)
 
 [x_new]   [3]         [6]   [3 - 0.6]   [2.4]
 [y_new] = [2] - 0.1 × [8] = [2 - 0.8] = [1.2]
+
 ```
 
 ---
@@ -166,6 +177,7 @@ Step 4: Maximum value is:
   ||∇f(x)|| · cos(0) = ||∇f(x)||
 
 Therefore: ∇f points in direction of steepest ascent with magnitude ||∇f||. ∎
+
 ```
 
 ---
@@ -185,6 +197,7 @@ Therefore: ∇f points in direction of steepest ascent with magnitude ||∇f||. 
 ## 💻 Code Examples
 
 ### PyTorch (Autograd)
+
 ```python
 import torch
 
@@ -200,9 +213,11 @@ loss = f(x)
 loss.backward()
 
 print(f"∇f = {x.grad}")  # tensor([6., 8.])
+
 ```
 
 ### NumPy (Manual)
+
 ```python
 import numpy as np
 
@@ -214,9 +229,11 @@ def gradient_f(x, y):
 
 grad = gradient_f(3, 2)
 print(f"∇f(3,2) = {grad}")  # [6, 8]
+
 ```
 
 ### JAX (Automatic)
+
 ```python
 import jax
 import jax.numpy as jnp
@@ -229,6 +246,7 @@ grad_f = jax.grad(f)
 
 x = jnp.array([3.0, 2.0])
 print(f"∇f = {grad_f(x)}")  # [6., 8.]
+
 ```
 
 ---
@@ -264,6 +282,7 @@ The Hessian is a matrix of **second partial derivatives**. It tells us about the
 |   Size: n × n matrix (symmetric!)                       |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -281,6 +300,7 @@ Hessian tells us the SHAPE of the bowl:
         MINIMUM                 MAXIMUM               SADDLE POINT
         
     "Bowl up"                "Bowl down"             "Saddle"
+
 ```
 
 ---
@@ -308,33 +328,41 @@ H(f) = \nabla^2 f = \begin{bmatrix}
 ## 📐 Example: f(x, y) = x² + 3y²
 
 **Step 1: First Derivatives**
+
 ```
 ∂f/∂x = 2x
 ∂f/∂y = 6y
+
 ```
 
 **Step 2: Second Derivatives**
+
 ```
 ∂²f/∂x² = 2       (how ∂f/∂x changes with x)
 ∂²f/∂y² = 6       (how ∂f/∂y changes with y)
 ∂²f/∂x∂y = 0      (how ∂f/∂x changes with y)
 ∂²f/∂y∂x = 0      (how ∂f/∂y changes with x)
+
 ```
 
 **Step 3: Hessian Matrix**
+
 ```
       +     +
 H =   | 2  0 |
       | 0  6 |
       +     +
+
 ```
 
 **Step 4: Analyze Eigenvalues**
+
 ```
 λ₁ = 2 > 0
 λ₂ = 6 > 0
 
 Both positive → MINIMUM at (0,0) ✓
+
 ```
 
 ---
@@ -363,6 +391,7 @@ Step 3: For small Δx, the quadratic term dominates
 Step 4: Positive definite H means ΔxᵀHΔx > 0 for all Δx ≠ 0
   Therefore f(x* + Δx) > f(x*) for all small perturbations
   → x* is a local minimum ∎
+
 ```
 
 | Hessian Eigenvalues | Type | Example |
@@ -385,6 +414,7 @@ f(x + Δx) ≈ f(x) + ∇f(x)ᵀΔx + ½ΔxᵀHΔx
                     term        term (curvature)
 
 Newton's method minimizes this quadratic approximation!
+
 ```
 
 ### Newton's Method Derivation
@@ -402,6 +432,7 @@ Step 3: Solve for optimal Δx
 
 Step 4: Newton update
   x_{k+1} = x_k - H(x_k)⁻¹∇f(x_k)
+
 ```
 
 ---
@@ -421,6 +452,7 @@ Step 4: Newton update
 ## 💻 Computing Hessian in Code
 
 ### PyTorch
+
 ```python
 import torch
 from torch.autograd.functional import hessian
@@ -433,9 +465,11 @@ H = hessian(f, x)
 print(f"Hessian:\n{H}")
 # [[2., 0.],
 #  [0., 6.]]
+
 ```
 
 ### JAX
+
 ```python
 import jax
 import jax.numpy as jnp
@@ -446,6 +480,7 @@ def f(x):
 hess_f = jax.hessian(f)
 x = jnp.array([1.0, 1.0])
 print(f"Hessian:\n{hess_f(x)}")
+
 ```
 
 ---

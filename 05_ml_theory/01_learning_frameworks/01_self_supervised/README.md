@@ -43,6 +43,7 @@ Given unlabeled data \(\mathcal{D} = \{x_i\}_{i=1}^N\), create pseudo-labels fro
 
 ```math
 \mathcal{L}_{\text{SSL}} = \mathbb{E}_{x \sim \mathcal{D}}[\ell(f_\theta(x), \text{pretext}(x))]
+
 ```
 
 ---
@@ -55,6 +56,7 @@ For positive pair \((x_i, x_j)\) (two augmentations of same image):
 
 ```math
 \mathcal{L}_{i,j} = -\log \frac{\exp(\text{sim}(z_i, z_j)/\tau)}{\sum_{k=1}^{2N} \mathbb{1}_{[k \neq i]} \exp(\text{sim}(z_i, z_k)/\tau)}
+
 ```
 
 where:
@@ -68,6 +70,7 @@ where:
 
 ```math
 I(X; Y) \geq \log(N) - \mathcal{L}_{\text{NCE}}
+
 ```
 
 **Proof Sketch:**
@@ -83,6 +86,7 @@ Mask ~15% of tokens and predict them:
 
 ```math
 \mathcal{L}_{\text{MLM}} = -\mathbb{E}_{x \sim \mathcal{D}} \left[\sum_{i \in \mathcal{M}} \log P(x_i | x_{\backslash \mathcal{M}}; \theta)\right]
+
 ```
 
 where \(\mathcal{M}\) = set of masked positions.
@@ -93,6 +97,7 @@ Mask ~75% of image patches and reconstruct:
 
 ```math
 \mathcal{L}_{\text{MAE}} = \frac{1}{|\mathcal{M}|}\sum_{i \in \mathcal{M}} \|x_i - \hat{x}_i\|^2
+
 ```
 
 ---
@@ -103,6 +108,7 @@ Mask ~75% of image patches and reconstruct:
 
 ```math
 \mathcal{L}_{\text{AR}} = -\sum_{t=1}^{T} \log P(x_t | x_{1:t-1}; \theta)
+
 ```
 
 **Connection to Information Theory:**
@@ -111,6 +117,7 @@ This is equivalent to minimizing the cross-entropy between the true distribution
 
 ```math
 H(P, Q) = -\mathbb{E}_{x \sim P}[\log Q(x)] = H(P) + D_{\text{KL}}(P \| Q)
+
 ```
 
 ---
@@ -254,6 +261,7 @@ if __name__ == "__main__":
     contrastive = ContrastiveLoss(temperature=0.5)
     loss = contrastive(z_i, z_j)
     print(f"Contrastive loss: {loss.item():.4f}")
+
 ```
 
 ---

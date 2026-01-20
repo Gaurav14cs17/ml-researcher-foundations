@@ -27,6 +27,7 @@ Starting from data \(x_0\), we gradually add Gaussian noise over \(T\) steps:
 
 ```math
 q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t} x_{t-1}, \beta_t I)
+
 ```
 
 where \(\beta_t\) is the noise schedule (\(\beta_t \in (0, 1)\)).
@@ -35,6 +36,7 @@ where \(\beta_t\) is the noise schedule (\(\beta_t \in (0, 1)\)).
 
 ```math
 q(x_t | x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0, (1-\bar{\alpha}_t) I)
+
 ```
 
 where:
@@ -42,6 +44,7 @@ where:
 - \(\bar{\alpha}_t = \prod_{s=1}^{t} \alpha_s\)
 
 **Proof:**
+
 ```
 By reparameterization, x_t = √α_t x_{t-1} + √β_t ε_{t-1}
 
@@ -60,6 +63,7 @@ Var[√(α_t β_{t-1}) ε_{t-2} + √β_t ε_{t-1}]
 = α_t(1-α_{t-1}) + (1-α_t)
 = 1 - α_t α_{t-1}
 = 1 - ᾱ_t (after recursion) ✓
+
 ```
 
 ### Reverse Process
@@ -68,12 +72,14 @@ We want to learn \(p_\theta(x_{t-1} | x_t)\) to reverse the diffusion:
 
 ```math
 p_\theta(x_{t-1} | x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
+
 ```
 
 **The true reverse has a tractable form given \(x_0\):**
 
 ```math
 q(x_{t-1} | x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t, x_0), \tilde{\beta}_t I)
+
 ```
 
 where:
@@ -81,6 +87,7 @@ where:
 ```math
 \tilde{\mu}_t = \frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1 - \bar{\alpha}_t} x_0 + \frac{\sqrt{\alpha_t}(1 - \bar{\alpha}_{t-1})}{1 - \bar{\alpha}_t} x_t
 \tilde{\beta}_t = \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \beta_t
+
 ```
 
 ---
@@ -91,12 +98,14 @@ where:
 
 ```math
 \log p(x_0) \geq \mathbb{E}_q\left[\log \frac{p(x_{0:T})}{q(x_{1:T}|x_0)}\right] = -L_{VLB}
+
 ```
 
 Decomposing the VLB:
 
 ```math
 L_{VLB} = L_0 + L_1 + \cdots + L_{T-1} + L_T
+
 ```
 
 where:
@@ -110,9 +119,11 @@ Instead of predicting \(\mu_\theta\), we predict the noise \(\epsilon_\theta\):
 
 ```math
 L_{simple} = \mathbb{E}_{t, x_0, \epsilon}\left[\|\epsilon - \epsilon_\theta(\sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon, t)\|^2\right]
+
 ```
 
 **Why this works:**
+
 ```
 The mean can be parameterized as:
 μ_θ(x_t, t) = (1/√α_t)(x_t - (β_t/√(1-ᾱ_t))ε_θ(x_t, t))
@@ -121,6 +132,7 @@ If ε_θ(x_t, t) ≈ ε (the actual noise added), then:
 μ_θ ≈ (1/√α_t)(x_t - (β_t/√(1-ᾱ_t))ε)
     = (1/√α_t)(√ᾱ_t x_0 + √(1-ᾱ_t)ε - (β_t/√(1-ᾱ_t))ε)
     ≈ true posterior mean ✓
+
 ```
 
 ---
@@ -131,6 +143,7 @@ If ε_θ(x_t, t) ≈ ε (the actual noise added), then:
 
 ```math
 \beta_t = \beta_1 + \frac{t-1}{T-1}(\beta_T - \beta_1)
+
 ```
 
 Typically: \(\beta_1 = 10^{-4}\), \(\beta_T = 0.02\), \(T = 1000\)
@@ -139,6 +152,7 @@ Typically: \(\beta_1 = 10^{-4}\), \(\beta_T = 0.02\), \(T = 1000\)
 
 ```math
 \bar{\alpha}_t = \frac{f(t)}{f(0)}, \quad f(t) = \cos\left(\frac{t/T + s}{1 + s} \cdot \frac{\pi}{2}\right)^2
+
 ```
 
 **Advantage:** More uniform signal-to-noise ratio across timesteps.
@@ -147,6 +161,7 @@ Typically: \(\beta_1 = 10^{-4}\), \(\beta_T = 0.02\), \(T = 1000\)
 
 ```math
 SNR(t) = \frac{\bar{\alpha}_t}{1 - \bar{\alpha}_t}
+
 ```
 
 Linear schedule: SNR drops quickly, wastes steps
@@ -166,6 +181,7 @@ x_T ~ N(0, I)
 for t = T, T-1, ..., 1:
     z ~ N(0, I) if t > 1 else 0
     x_{t-1} = (1/√α_t)(x_t - (β_t/√(1-ᾱ_t))ε_θ(x_t, t)) + √β̃_t z
+
 ```
 
 ### DDIM (Deterministic Sampling)
@@ -174,6 +190,7 @@ Denoising Diffusion Implicit Models allow non-Markovian sampling:
 
 ```math
 x_{t-1} = \sqrt{\bar{\alpha}_{t-1}} \underbrace{\left(\frac{x_t - \sqrt{1-\bar{\alpha}_t}\epsilon_\theta(x_t, t)}{\sqrt{\bar{\alpha}_t}}\right)}_{\text{predicted } x_0} + \sqrt{1-\bar{\alpha}_{t-1}-\sigma_t^2} \cdot \epsilon_\theta(x_t, t) + \sigma_t \epsilon
+
 ```
 
 Setting \(\sigma_t = 0\) gives deterministic sampling.
@@ -472,6 +489,7 @@ ddim = DDIMSampler(diffusion, ddim_steps=50)
 # samples = ddim.sample(model, (4, 3, 64, 64), device)
 
 print("Model ready for training!")
+
 ```
 
 ---

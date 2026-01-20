@@ -51,6 +51,7 @@ Just compute:
 k(x, x') directly (often cheaper!)
 
 Example: φ(x) might be ∞-dimensional, but k is finite!
+
 ```
 
 ### Mercer's Condition
@@ -63,6 +64,7 @@ positive semi-definite:
 K_{ij} = k(xᵢ, xⱼ)
 
 ∀v: v^T K v ≥ 0
+
 ```
 
 ---
@@ -90,6 +92,7 @@ Where:
 
 As γ → ∞: k(x,x') → δ(x-x')  (identity kernel)
 As γ → 0: k(x,x') → 1        (all points similar)
+
 ```
 
 ### Polynomial Kernel
@@ -103,6 +106,7 @@ k([x₁,x₂], [y₁,y₂]) = (x₁y₁ + x₂y₂ + 1)²
 
 Equivalent to feature map:
 φ([x₁,x₂]) = [1, √2x₁, √2x₂, √2x₁x₂, x₁², x₂²]
+
 ```
 
 ---
@@ -127,6 +131,7 @@ Product:      k(x,x') = k₁(x,x') × k₂(x,x')  ✓ valid
 Scaling:      k(x,x') = c × k₁(x,x')         ✓ valid (c > 0)
 Exponent:     k(x,x') = exp(k₁(x,x'))        ✓ valid
 Polynomial:   k(x,x') = (k₁(x,x') + c)^d     ✓ valid (c ≥ 0)
+
 ```
 
 ---
@@ -166,6 +171,7 @@ K_linear = kernel_matrix(X, linear_kernel)
 K_rbf = kernel_matrix(X, rbf_kernel, gamma=0.5)
 print("Linear kernel matrix:\n", K_linear)
 print("RBF kernel matrix:\n", K_rbf)
+
 ```
 
 ### Using Scikit-Learn
@@ -194,6 +200,7 @@ gp = GaussianProcessClassifier(kernel=RBF(length_scale=1.0))
 X = np.random.randn(100, 10)
 K = rbf_kernel(X, gamma=0.5)
 print(f"Kernel matrix shape: {K.shape}")
+
 ```
 
 ### Kernel PCA
@@ -225,6 +232,7 @@ axes[0].set_title('Original Data')
 axes[1].scatter(X_kpca[:, 0], X_kpca[:, 1], c=t)
 axes[1].set_title('Kernel PCA (RBF)')
 plt.show()
+
 ```
 
 ---
@@ -255,6 +263,7 @@ Too large γ (small σ):
     
 Typically: Cross-validation over grid
     γ ∈ {10⁻³, 10⁻², 10⁻¹, 1, 10, 10², 10³}
+
 ```
 
 ---

@@ -30,32 +30,39 @@ Duality provides lower bounds on optimization problems and enables efficient alg
 ## 📐 Mathematical Definitions
 
 ### Primal Problem
+
 ```
 minimize   f(x)
 subject to gᵢ(x) ≤ 0,  i = 1,...,m
            hⱼ(x) = 0,  j = 1,...,p
 
 Optimal value: p*
+
 ```
 
 ### Lagrangian
+
 ```
 L(x, λ, ν) = f(x) + Σᵢ λᵢgᵢ(x) + Σⱼ νⱼhⱼ(x)
 
 Where:
 • λᵢ ≥ 0: dual variables for inequalities
 • νⱼ: dual variables for equalities
+
 ```
 
 ### Dual Problem
+
 ```
 maximize   g(λ, ν) = inf_x L(x, λ, ν)
 subject to λ ≥ 0
 
 Optimal value: d*
+
 ```
 
 ### Weak and Strong Duality
+
 ```
 Weak duality (always):
 d* ≤ p*
@@ -64,9 +71,11 @@ Strong duality (under Slater's condition for convex):
 d* = p*
 
 Duality gap: p* - d* = 0 under strong duality
+
 ```
 
 ### KKT Conditions
+
 ```
 Necessary conditions for optimality (under constraint qualification):
 
@@ -76,6 +85,7 @@ Necessary conditions for optimality (under constraint qualification):
 4. Complementary slackness: λᵢ*gᵢ(x*) = 0
 
 For convex problems: KKT ⟺ optimal
+
 ```
 
 ---
@@ -114,6 +124,7 @@ res_dual = minimize(lambda l: -dual_problem(l, A, b),  # Maximize by negating
 
 from sklearn.svm import SVC
 svm = SVC(kernel='rbf')  # Solved via dual!
+
 ```
 
 ---

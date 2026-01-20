@@ -17,6 +17,7 @@
 
 ```
 🚀 Start --▶ 📊 Basics --▶ ✂️ Pruning --▶ 🔢 Quantize --▶ 🔍 NAS --▶ 📱 TinyML --▶ ⚡ Training --▶ 🏆 Expert
+
 ```
 
 ## 🎯 What You'll Learn
@@ -62,6 +63,7 @@ GPTQ, AWQ, QLoRA
 
 ```
 Why Efficiency --▶ FLOPs --▶ Memory --▶ Roofline --▶ Profiling
+
 ```
 
 > 💡 **"Memory is the bottleneck, not compute"**
@@ -77,6 +79,7 @@ Why Efficiency --▶ FLOPs --▶ Memory --▶ Roofline --▶ Profiling
 
 ```
 Dense --▶ Magnitude --▶ Sparse --▶ Lottery Ticket --▶ Structured
+
 ```
 
 **Key:** Lottery Ticket Hypothesis, 50-90% sparsity
@@ -92,6 +95,7 @@ Dense --▶ Magnitude --▶ Sparse --▶ Lottery Ticket --▶ Structured
 
 ```
 FP32 --▶ INT8 --▶ INT4 --▶ GPTQ --▶ QLoRA
+
 ```
 
 > 🔥 **QLoRA: Train 65B on single GPU**
@@ -107,6 +111,7 @@ FP32 --▶ INT8 --▶ INT4 --▶ GPTQ --▶ QLoRA
 
 ```
 Manual --▶ AutoML --▶ DARTS --▶ Once-for-All --▶ Efficient
+
 ```
 
 <a href="./07_neural_architecture_search_1/"><img src="https://img.shields.io/badge/📖_Notes-4CAF50?style=for-the-badge" alt="Notes"/></a>
@@ -120,6 +125,7 @@ Manual --▶ AutoML --▶ DARTS --▶ Once-for-All --▶ Efficient
 
 ```
 Teacher --▶ Distill --▶ Student --▶ MCUNet --▶ 256KB
+
 ```
 
 > 📱 **MCUNet: Run ML on 256KB microcontrollers**
@@ -135,6 +141,7 @@ Teacher --▶ Distill --▶ Student --▶ MCUNet --▶ 256KB
 
 ```
 Standard --▶ FlashAttention --▶ Linear --▶ Sparse --▶ 10x Fast
+
 ```
 
 > ⚡ **Flash Attention: 5x faster, O(n) memory** - In all modern LLMs
@@ -150,6 +157,7 @@ Standard --▶ FlashAttention --▶ Linear --▶ Sparse --▶ 10x Fast
 
 ```
 Single GPU --▶ Data Parallel --▶ Model Parallel --▶ ZeRO --▶ Trillion
+
 ```
 
 **Core:** ZeRO, FSDP, DeepSpeed, Megatron
@@ -165,6 +173,7 @@ Single GPU --▶ Data Parallel --▶ Model Parallel --▶ ZeRO --▶ Trillion
 
 ```
 LLMs --▶ Diffusion --▶ Vision --▶ Production
+
 ```
 
 **Covered:** LLaMA, Stable Diffusion, MobileNets, Edge Deployment
@@ -182,29 +191,35 @@ LLMs --▶ Diffusion --▶ Vision --▶ Production
 <td>
 
 ### 📊 Roofline Model
+
 ```
 Perf = min(Peak_Compute, 
            Peak_BW × Intensity)
+
 ```
 
 </td>
 <td>
 
 ### 🔢 Quantization
+
 ```
 FP32 → INT8: 4x smaller
 FP32 → INT4: 8x smaller
 2-4x speedup
+
 ```
 
 </td>
 <td>
 
 ### ⚡ Flash Attention
+
 ```
 Standard: O(N²) memory
 Flash: O(N) memory
 5x faster!
+
 ```
 
 </td>

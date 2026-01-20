@@ -52,6 +52,7 @@ P: S × A × S → [0, 1]
 P(s'|s, a) = Pr(S_{t+1} = s' | S_t = s, A_t = a)
 
 "Probability of transitioning to state s' given current state s and action a"
+
 ```
 
 ### Formal Properties
@@ -67,6 +68,7 @@ P(s'|s, a) = Pr(S_{t+1} = s' | S_t = s, A_t = a)
    P(S_{t+1}|S_t, A_t, S_{t-1}, A_{t-1}, ..., S_0, A_0) = P(S_{t+1}|S_t, A_t)
    
    "The future depends only on the present, not the past"
+
 ```
 
 ---
@@ -91,6 +93,7 @@ Proof:
   Expanding expectations:
          = Σ_a π(a|s) R(s,a) + γ Σ_a π(a|s) Σ_{s'} P(s'|s,a) V^π(s')
          = Σ_a π(a|s) [R(s,a) + γ Σ_{s'} P(s'|s,a) V^π(s')]  ∎
+
 ```
 
 ### Why Markov Property Matters
@@ -104,6 +107,7 @@ With Markov property:
   V(s) only depends on current state s
   State space is fixed: |S| states
   Enables tractable algorithms (DP, TD, etc.)
+
 ```
 
 ---
@@ -126,6 +130,7 @@ Solving:
   V^π = (I - γP^π)^{-1} R^π
 
 Where R^π[i] = Σ_a π(a|s_i) R(s_i, a)
+
 ```
 
 ### Eigenvalue Analysis
@@ -140,6 +145,7 @@ Proof:
 Consequence: 
   Stationary distribution d^π exists where (P^π)ᵀ d^π = d^π
   This is the long-run state distribution under policy π.
+
 ```
 
 ---
@@ -158,6 +164,7 @@ Examples:
   • Chess, Go (game rules)
   • Idealized physics simulations
   • Deterministic control systems
+
 ```
 
 ### Stochastic Dynamics
@@ -172,6 +179,7 @@ Examples:
   
 Modeling: Often use Gaussian transitions
   s' ~ N(f(s,a), Σ(s,a))
+
 ```
 
 ---
@@ -189,6 +197,7 @@ MLE estimate:
   Where:
     Count(s,a,s') = Σ_i 𝟙[s_i=s, a_i=a, s'_i=s']
     Count(s,a) = Σ_i 𝟙[s_i=s, a_i=a]
+
 ```
 
 ### Neural Network Dynamics Model
@@ -200,6 +209,7 @@ Learn f_θ: S × A → S (deterministic)
 Loss function:
   L(θ) = E_{(s,a,s')~D}[||s' - f_θ(s,a)||²]  (deterministic)
   L(θ) = -E_{(s,a,s')~D}[log p_θ(s'|s,a)]   (probabilistic)
+
 ```
 
 ---
@@ -233,6 +243,7 @@ def transition_stochastic(state, action):
         return intended_next_state(state, action)
     else:
         return random_adjacent_state(state)
+
 ```
 
 ## 🔗 Where This Topic Is Used

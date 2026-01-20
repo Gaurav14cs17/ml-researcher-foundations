@@ -38,6 +38,7 @@ KKT (Karush-Kuhn-Tucker) conditions are **necessary conditions** for optimality 
 |   L(x,μ,λ) = f(x) + Σᵢ μᵢgᵢ(x) + Σⱼ λⱼhⱼ(x)           |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -70,6 +71,7 @@ At the optimal point (x*, μ*, λ*):
 |      If f, gᵢ convex and hⱼ affine → KKT sufficient    |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -104,6 +106,7 @@ Case 2: Constraint INACTIVE (gᵢ < 0)
 |   μᵢ = 0 (constraint irrelevant)|
 |                                 |
 +---------------------------------+
+
 ```
 
 ---
@@ -123,38 +126,48 @@ Case 2: Constraint INACTIVE (gᵢ < 0)
 ## 💻 Example: Quadratic with Inequality
 
 ### Problem
+
 ```
 minimize   f(x,y) = x² + y²
 subject to g(x,y) = x + y - 1 ≤ 0
+
 ```
 
 ### Step 1: Lagrangian
+
 ```
 L(x,y,μ) = x² + y² + μ(x + y - 1)
+
 ```
 
 ### Step 2: KKT Conditions
+
 ```
 ∂L/∂x = 2x + μ = 0  →  x = -μ/2
 ∂L/∂y = 2y + μ = 0  →  y = -μ/2
 
 Complementarity: μ(x + y - 1) = 0
+
 ```
 
 ### Step 3: Solve Cases
 
 **Case A: μ = 0** (constraint inactive)
+
 ```
 x = 0, y = 0
 Check: g(0,0) = -1 ≤ 0 ✓
 Solution: (0, 0), f* = 0
+
 ```
 
 **Case B: g = 0** (constraint active)
+
 ```
 x + y = 1
 x = y = -μ/2
 → -μ = 1 → μ = -1 < 0 ✗ (violates dual feasibility)
+
 ```
 
 **Answer: (0, 0) with f* = 0**
@@ -187,6 +200,7 @@ print(f"Constraint g(x): {g(result.x)}")
 # Check KKT manually
 grad_f = 2 * result.x
 print(f"∇f at optimum: {grad_f}")
+
 ```
 
 ---

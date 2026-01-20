@@ -28,6 +28,7 @@
 ## 📐 Mathematical Foundations
 
 ### RLHF Objective
+
 ```
 J(π) = E[r_human(x, y)] - β KL(π || π_ref)
 
@@ -36,21 +37,26 @@ Where:
 • π = current policy (LLM)
 • π_ref = reference policy (pre-RLHF)
 • β = KL penalty coefficient
+
 ```
 
 ### Bradley-Terry Reward Model
+
 ```
 P(y₁ > y₂ | x) = σ(r(x, y₁) - r(x, y₂))
 
 Train reward model on human preference pairs
+
 ```
 
 ### DPO (Direct Preference Optimization)
+
 ```
 L_DPO = -log σ(β log(π/π_ref)(y_w) - β log(π/π_ref)(y_l))
 
 Directly optimizes policy from preferences
 No separate reward model needed!
+
 ```
 
 ---
@@ -90,6 +96,7 @@ RLHF (human preferences)
          |
          v
 Aligned, helpful AI assistant
+
 ```
 
 ---

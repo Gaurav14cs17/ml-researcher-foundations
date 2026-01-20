@@ -22,6 +22,7 @@ graph LR
     C --> D[📡 Info Theory]
     D --> E[📊 Estimation]
     E --> F[✅ Ready for ML]
+
 ```
 
 ---
@@ -94,24 +95,28 @@ graph LR
 
 ```math
 P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)} = \frac{\text{Likelihood} \times \text{Prior}}{\text{Evidence}}
+
 ```
 
 ### Multivariate Gaussian
 
 ```math
 p(\mathbf{x}) = (2\pi)^{-d/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^\top\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)
+
 ```
 
 ### Cross-Entropy & KL Divergence
 
 ```math
 H(p,q) = -\sum_x p(x)\log q(x) = H(p) + D_{KL}(p \| q)
+
 ```
 
 ### MLE = Training
 
 ```math
 \theta_{MLE} = \arg\max_\theta P(D|\theta) = \arg\min_\theta \left[-\sum_i \log P(y_i|x_i;\theta)\right]
+
 ```
 
 ---
@@ -123,20 +128,24 @@ H(p,q) = -\sum_x p(x)\log q(x) = H(p) + D_{KL}(p \| q)
 <td>
 
 ### 🎲 Probability
+
 ```
 Bayes: P(A|B) = P(B|A)P(A)/P(B)
 E[X] = Σ x·p(x)
 Var(X) = E[X²] - (E[X])²
+
 ```
 
 </td>
 <td>
 
 ### 📡 Information Theory
+
 ```
 H(X) = -Σ p(x)log p(x)
 H(p,q) = -Σ p(x)log q(x)
 KL(p||q) = Σ p(x)log[p(x)/q(x)]
+
 ```
 
 </td>
@@ -145,20 +154,24 @@ KL(p||q) = Σ p(x)log[p(x)/q(x)]
 <td>
 
 ### 📈 Multivariate
+
 ```
 Cov(X,Y) = E[(X-μₓ)(Y-μᵧ)]
 Σ = E[(X-μ)(X-μ)ᵀ]
 X|Y ~ N(μ₁|₂, Σ₁|₂)
+
 ```
 
 </td>
 <td>
 
 ### 📊 Estimation
+
 ```
 MLE: θ* = argmax P(D|θ)
 MAP: θ* = argmax P(D|θ)P(θ)
 Bayesian: P(θ|D) = P(D|θ)P(θ)/P(D)
+
 ```
 
 </td>
@@ -207,6 +220,7 @@ def vae_kl(mu, log_var):
 data = np.random.randn(1000)
 mu_mle = data.mean()      # Sample mean
 sigma_mle = data.std()     # Sample std
+
 ```
 
 ---
@@ -219,6 +233,7 @@ graph LR
     B --> C[🎯 Optimization]
     C --> D[🧬 ML Theory]
     D --> E[🚀 Deep Learning]
+
 ```
 
 ---

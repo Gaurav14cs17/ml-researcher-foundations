@@ -47,6 +47,7 @@ Integration is the inverse of differentiation. In ML, we rarely compute integral
 
 ```math
 \int_a^b f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x
+
 ```
 
 where \(\Delta x = \frac{b-a}{n}\) and \(x_i^* \in [x_{i-1}, x_i]\).
@@ -59,11 +60,13 @@ where \(\Delta x = \frac{b-a}{n}\) and \(x_i^* \in [x_{i-1}, x_i]\).
 
 ```math
 F(x) = \int_a^x f(t) \, dt
+
 ```
 
 is differentiable and \(F'(x) = f(x)\).
 
 **Proof:**
+
 ```
 By definition of derivative:
 F'(x) = lim_{h→0} [F(x+h) - F(x)] / h
@@ -76,15 +79,18 @@ By Mean Value Theorem for Integrals:
 So: F'(x) = lim_{h→0} f(c) · h / h = lim_{h→0} f(c)
 
 As h → 0, c → x, so by continuity: F'(x) = f(x) ✓
+
 ```
 
 **Theorem (Part 2):** If \(F\) is an antiderivative of \(f\) on \([a, b]\), then:
 
 ```math
 \int_a^b f(x) \, dx = F(b) - F(a)
+
 ```
 
 **Proof:**
+
 ```
 Let G(x) = ∫_a^x f(t)dt
 
@@ -99,6 +105,7 @@ So: 0 = F(a) + C, which gives C = -F(a)
 At x = b: G(b) = F(b) + C = F(b) - F(a)
 
 Therefore: ∫_a^b f(x)dx = G(b) = F(b) - F(a) ✓
+
 ```
 
 ---
@@ -111,9 +118,11 @@ Therefore: ∫_a^b f(x)dx = G(b) = F(b) - F(a) ✓
 
 ```math
 \int f(g(x)) \cdot g'(x) \, dx = \int f(u) \, du
+
 ```
 
 **Proof:**
+
 ```
 Let F be an antiderivative of f, so F'(u) = f(u)
 
@@ -123,9 +132,11 @@ d/dx[F(g(x))] = F'(g(x)) · g'(x) = f(g(x)) · g'(x)
 Therefore F(g(x)) is an antiderivative of f(g(x))·g'(x)
 
 ∫f(g(x))·g'(x)dx = F(g(x)) + C = F(u) + C = ∫f(u)du ✓
+
 ```
 
 **Example (Gaussian normalization):**
+
 ```
 ∫_{-∞}^{∞} e^{-x²/2} dx
 
@@ -145,6 +156,7 @@ I² = 2π ∫_0^{∞} e^{-u} du = 2π[-e^{-u}]_0^{∞} = 2π
 Therefore: I = √(2π)
 
 This proves: ∫_{-∞}^{∞} e^{-x²/2} dx = √(2π) ✓
+
 ```
 
 ### 2. Integration by Parts
@@ -153,16 +165,20 @@ This proves: ∫_{-∞}^{∞} e^{-x²/2} dx = √(2π) ✓
 
 ```math
 \int u \, dv = uv - \int v \, du
+
 ```
 
 **Proof:**
+
 ```
 From product rule: d(uv) = u dv + v du
 Rearranging: u dv = d(uv) - v du
 Integrating both sides: ∫u dv = uv - ∫v du ✓
+
 ```
 
 **Example (Computing E[X] for exponential distribution):**
+
 ```
 For X ~ Exp(λ): p(x) = λe^{-λx} for x ≥ 0
 
@@ -175,6 +191,7 @@ E[X] = [-xe^{-λx}]_0^∞ + ∫_0^∞ e^{-λx} dx
      = 0 + [-1/λ · e^{-λx}]_0^∞
      = 0 - (-1/λ)
      = 1/λ ✓
+
 ```
 
 ---
@@ -187,9 +204,11 @@ E[X] = [-xe^{-λx}]_0^∞ + ∫_0^∞ e^{-λx} dx
 
 ```math
 \mathbb{E}[f(X)] = \int_{-\infty}^{\infty} f(x) \cdot p(x) \, dx
+
 ```
 
 **Variance derivation:**
+
 ```
 Var[X] = E[(X - μ)²]
        = E[X² - 2μX + μ²]
@@ -199,6 +218,7 @@ Var[X] = E[(X - μ)²]
        = E[X²] - (E[X])²
 
 This is the computational formula for variance.
+
 ```
 
 ### 2. Marginalization
@@ -207,9 +227,11 @@ This is the computational formula for variance.
 
 ```math
 p(x) = \int p(x, z) \, dz = \int p(x|z) p(z) \, dz
+
 ```
 
 **Proof:**
+
 ```
 By definition of conditional probability:
 p(x, z) = p(x|z) · p(z)
@@ -218,14 +240,17 @@ Therefore:
 p(x) = ∫ p(x, z) dz = ∫ p(x|z) · p(z) dz ✓
 
 This is the law of total probability (continuous form).
+
 ```
 
 **ML Application:** In VAEs, the marginal likelihood is:
+
 ```
 p(x) = ∫ p(x|z) p(z) dz
 
 This integral is intractable for complex decoders,
 so we use variational inference with ELBO.
+
 ```
 
 ### 3. ELBO Derivation (Complete Proof)
@@ -235,6 +260,7 @@ so we use variational inference with ELBO.
 **Solution:** Introduce variational distribution \(q(z|x)\) and derive a lower bound.
 
 **Complete Derivation:**
+
 ```
 log p(x) = log ∫ p(x, z) dz
          = log ∫ p(x, z) · q(z|x)/q(z|x) dz
@@ -252,13 +278,16 @@ log p(x) ≥ E_{q(z|x)}[log(p(x, z)/q(z|x))]
          = ELBO
 
 This is the Evidence Lower BOund used in VAE training!
+
 ```
 
 **Why it's a bound:**
+
 ```
 Gap = log p(x) - ELBO = D_{KL}(q(z|x) || p(z|x)) ≥ 0
 
 The bound is tight when q(z|x) = p(z|x) (true posterior).
+
 ```
 
 ---
@@ -275,9 +304,11 @@ The bound is tight when q(z|x) = p(z|x) (true posterior).
 
 ```math
 \mathbb{E}[f(X)] \approx \frac{1}{N} \sum_{i=1}^{N} f(x_i) \quad \text{where } x_i \sim p(x)
+
 ```
 
 **Proof of Unbiasedness:**
+
 ```
 Let μ̂ = (1/N) Σᵢ f(xᵢ)
 
@@ -288,9 +319,11 @@ E[μ̂] = E[(1/N) Σᵢ f(xᵢ)]
       = ∫ f(x) p(x) dx ✓
 
 The estimator is unbiased.
+
 ```
 
 **Variance of Estimator:**
+
 ```
 Var[μ̂] = Var[(1/N) Σᵢ f(xᵢ)]
        = (1/N²) Σᵢ Var[f(xᵢ)]   (independence)
@@ -300,6 +333,7 @@ Var[μ̂] = Var[(1/N) Σᵢ f(xᵢ)]
 Standard error = σ / √N
 
 This shows convergence rate is O(1/√N).
+
 ```
 
 ### Importance Sampling
@@ -312,19 +346,24 @@ This shows convergence rate is O(1/√N).
 
 ```math
 \mathbb{E}_p[f(X)] = \mathbb{E}_q\left[f(X) \cdot \frac{p(X)}{q(X)}\right] \approx \frac{1}{N} \sum_{i=1}^{N} f(x_i) \cdot \frac{p(x_i)}{q(x_i)}
+
 ```
 
 **Proof:**
+
 ```
 E_q[f(X) · p(X)/q(X)] = ∫ f(x) · p(x)/q(x) · q(x) dx
                       = ∫ f(x) · p(x) dx
                       = E_p[f(X)] ✓
+
 ```
 
 **Optimal proposal:**
+
 ```
 Var is minimized when q(x) ∝ |f(x)| · p(x)
 In practice, choose q to have heavier tails than p.
+
 ```
 
 ---
@@ -337,19 +376,23 @@ In practice, choose q to have heavier tails than p.
 
 ```math
 \int f(y) \, dy = \int f(g(x)) \cdot |\det(J_g(x))| \, dx
+
 ```
 
 where \(J_g\) is the Jacobian matrix.
 
 **Proof sketch:**
+
 ```
 The Jacobian determinant |det(J)| measures how volumes scale
 under the transformation. Each small volume element transforms as:
 
 dy₁ dy₂ ... dyₙ = |det(J)| dx₁ dx₂ ... dxₙ
+
 ```
 
 **Example (Normalizing Flows):**
+
 ```
 In normalizing flows, we transform z ~ p_z(z) to x = f(z)
 
@@ -360,6 +403,7 @@ Log-likelihood:
 log p_x(x) = log p_z(z) - log|det(∂f/∂z)|
 
 This is tractable if the Jacobian has special structure.
+
 ```
 
 ---
@@ -388,6 +432,7 @@ print(f"E[X²] = {mean:.4f} ± {std_err:.4f}")  # ≈ 1.0
 # Analytical: E[e^X] = e^{μ + σ²/2} = e^{0.5} ≈ 1.6487
 mean, std_err = monte_carlo_expectation(lambda x: np.exp(x))
 print(f"E[e^X] = {mean:.4f} ± {std_err:.4f}")  # ≈ 1.6487
+
 ```
 
 ### Importance Sampling
@@ -437,6 +482,7 @@ estimate_is = importance_sampling(f, p, q)
 print(f"True P(X > 3) = {1 - p.cdf(3):.6f}")
 print(f"Standard MC estimate = {estimate_standard:.6f}")
 print(f"Importance sampling estimate = {estimate_is:.6f}")
+
 ```
 
 ### Reparameterization Trick (VAE)
@@ -495,6 +541,7 @@ def vae_loss(x, x_recon, mu, logvar):
     kl_loss = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
     
     return recon_loss + kl_loss
+
 ```
 
 ### Numerical Integration (Simpson's Rule)
@@ -532,6 +579,7 @@ print(f"∫sin(x)dx from 0 to π = {result:.10f}")  # Should be 2.0
 # Example: Gaussian integral ∫_{-10}^{10} e^{-x²} dx ≈ √π
 result = simpsons_rule(lambda x: np.exp(-x**2), -10, 10, n=1000)
 print(f"∫e^(-x²)dx ≈ {result:.10f}, √π = {np.sqrt(np.pi):.10f}")
+
 ```
 
 ---

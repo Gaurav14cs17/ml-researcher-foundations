@@ -44,6 +44,7 @@ The **generalization gap** is the difference between test and training error:
 
 ```math
 \text{Gap} = R(h) - \hat{R}(h) = \mathbb{E}_{(x,y) \sim P}[\ell(h(x), y)] - \frac{1}{n}\sum_{i=1}^n \ell(h(x_i), y_i)
+
 ```
 
 **Overfitting indicator:** \(\hat{R}(h) \ll R(h)\)
@@ -54,6 +55,7 @@ For squared error loss:
 
 ```math
 \mathbb{E}[(y - \hat{f}(x))^2] = \underbrace{(\mathbb{E}[\hat{f}(x)] - f(x))^2}_{\text{Bias}^2} + \underbrace{\mathbb{E}[(\hat{f}(x) - \mathbb{E}[\hat{f}(x)])^2]}_{\text{Variance}} + \underbrace{\sigma^2}_{\text{Noise}}
+
 ```
 
 - **Underfitting:** High bias (model too simple)
@@ -65,6 +67,7 @@ For squared error loss:
 
 ```math
 R(h) \leq \hat{R}(h) + O\left(\sqrt{\frac{d \log(n/d) + \log(1/\delta)}{n}}\right)
+
 ```
 
 **Implication:** Overfitting risk increases with \(d/n\) (complexity/data ratio).
@@ -84,6 +87,7 @@ R(h) \leq \hat{R}(h) + O\left(\sqrt{\frac{d \log(n/d) + \log(1/\delta)}{n}}\righ
 \nearrow & \text{(optimal → interpolation)} \\
 \searrow & \text{(interpolation → overparameterized)}
 \end{cases}
+
 ```
 
 ### Implicit Regularization
@@ -92,6 +96,7 @@ R(h) \leq \hat{R}(h) + O\left(\sqrt{\frac{d \log(n/d) + \log(1/\delta)}{n}}\righ
 
 ```math
 \hat{w} = X^\top(XX^\top)^{-1}y = \arg\min_w \|w\|_2 \text{ s.t. } Xw = y
+
 ```
 
 This is the **minimum-norm interpolating solution**.
@@ -106,12 +111,14 @@ This is the **minimum-norm interpolating solution**.
 
 ```math
 \min_w \frac{1}{n}\sum_{i=1}^n \ell(w^\top x_i, y_i) + \lambda\|w\|_2^2
+
 ```
 
 **L1 Regularization (Lasso):**
 
 ```math
 \min_w \frac{1}{n}\sum_{i=1}^n \ell(w^\top x_i, y_i) + \lambda\|w\|_1
+
 ```
 
 ### 2. Early Stopping
@@ -120,6 +127,7 @@ This is the **minimum-norm interpolating solution**.
 
 ```math
 w^{(t)} \approx w_\lambda \quad \text{where } \lambda = \frac{1}{\eta t}
+
 ```
 
 Early stopping is equivalent to implicit L2 regularization.
@@ -130,6 +138,7 @@ At training time, randomly drop neurons with probability \(p\):
 
 ```math
 \tilde{h}_i = \frac{1}{1-p} m_i \cdot h_i, \quad m_i \sim \text{Bernoulli}(1-p)
+
 ```
 
 **Theoretical interpretation:** Approximate Bayesian inference / ensemble averaging.
@@ -288,6 +297,7 @@ if __name__ == "__main__":
     demonstrate_overfitting()
     early_stopping_demo()
     regularization_effect()
+
 ```
 
 ---

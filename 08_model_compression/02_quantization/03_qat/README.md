@@ -28,6 +28,7 @@
 ```math
 Q(x) = s \cdot \text{round}(x/s)
 \frac{\partial Q}{\partial x} = 0 \text{ almost everywhere}
+
 ```
 
 This breaks backpropagation!
@@ -44,12 +45,14 @@ This breaks backpropagation!
 
 ```math
 \hat{x} = Q(x)
+
 ```
 
 **Backward pass:** Pass gradients through as identity
 
 ```math
 \frac{\partial \mathcal{L}}{\partial x} \approx \frac{\partial \mathcal{L}}{\partial \hat{x}}
+
 ```
 
 #### 2.2 Mathematical Justification
@@ -61,6 +64,7 @@ The true gradient is:
 
 ```math
 \frac{\partial \mathcal{L}}{\partial x} = \frac{\partial \mathcal{L}}{\partial \hat{x}} \cdot \frac{\partial \hat{x}}{\partial x}
+
 ```
 
 With STE, we approximate $\frac{\partial \hat{x}}{\partial x} \approx 1$.
@@ -69,6 +73,7 @@ With STE, we approximate $\frac{\partial \hat{x}}{\partial x} \approx 1$.
 
 ```math
 \mathbb{E}\left[\frac{\partial Q}{\partial x}\right] = \mathbb{E}[\mathbf{1}_{Q \text{ continuous at } x}] = 0
+
 ```
 
 But STE gives $\mathbb{E}[1] = 1$, which captures the "direction" of change.
@@ -79,11 +84,13 @@ But STE gives $\mathbb{E}[1] = 1$, which captures the "direction" of change.
 
 ```math
 \frac{\partial Q}{\partial x} \approx \mathbf{1}_{x \in [x_{min}, x_{max}]}
+
 ```
 
 This sets gradient to 0 for clipped values (saturation).
 
 **Implementation:**
+
 ```python
 class STEQuantize(torch.autograd.Function):
     @staticmethod
@@ -102,6 +109,7 @@ class STEQuantize(torch.autograd.Function):
         mask = (x_q >= ctx.qmin) & (x_q <= ctx.qmax)
         grad_input = grad_output * mask.float()
         return grad_input, None, None, None, None
+
 ```
 
 ---
@@ -114,6 +122,7 @@ class STEQuantize(torch.autograd.Function):
 
 ```math
 \text{FakeQuant}(x) = s \cdot \text{clamp}\left(\text{round}\left(\frac{x}{s}\right), q_{min}, q_{max}\right)
+
 ```
 
 **Key insight:** Output is still FP32, but values are restricted to quantization grid.
@@ -128,6 +137,7 @@ x̂ = s · round(x/s) = s · [x/s + ε]
   = x + s·ε
   
 where ε ∈ [-0.5, 0.5] is rounding error
+
 ```
 
 ---
@@ -140,6 +150,7 @@ where ε ∈ [-0.5, 0.5] is rounding error
 
 ```math
 s = f_\theta(W) \quad \text{or} \quad s = \text{learnable parameter}
+
 ```
 
 **Gradient of loss w.r.t. scale:**
@@ -147,6 +158,7 @@ s = f_\theta(W) \quad \text{or} \quad s = \text{learnable parameter}
 ```math
 \frac{\partial \mathcal{L}}{\partial s} = \frac{\partial \mathcal{L}}{\partial \hat{W}} \cdot \frac{\partial \hat{W}}{\partial s}
 \frac{\partial \hat{W}}{\partial s} = W_q - \frac{W}{s^2} \cdot s = W_q - \frac{W}{s}
+
 ```
 
 #### 4.2 LSQ (Learned Step Size Quantization)
@@ -155,12 +167,14 @@ s = f_\theta(W) \quad \text{or} \quad s = \text{learnable parameter}
 
 ```math
 \hat{W} = s \cdot \text{clip}\left(\text{round}\left(\frac{W}{s}\right), -Q_N, Q_P\right)
+
 ```
 
 **Scale gradient with normalization:**
 
 ```math
 \frac{\partial \mathcal{L}}{\partial s} = \frac{\partial \mathcal{L}}{\partial \hat{W}} \cdot \frac{\partial \hat{W}}{\partial s} \cdot \frac{1}{\sqrt{n \cdot Q_P}}
+
 ```
 
 The normalization $\frac{1}{\sqrt{n \cdot Q\_P}}$ balances gradient magnitudes.
@@ -177,6 +191,7 @@ The normalization $\frac{1}{\sqrt{n \cdot Q\_P}}$ balances gradient magnitudes.
 3. Initialize quantization parameters (scale, zero-point)
 4. Fine-tune with lower learning rate (10-100x lower)
 5. After training, convert to true quantized model
+
 ```
 
 #### 5.2 Quantization Schedule
@@ -190,6 +205,7 @@ The normalization $\frac{1}{\sqrt{n \cdot Q\_P}}$ balances gradient magnitudes.
 
 ```math
 Q_\tau(x) = s \cdot \text{softround}_\tau(x/s)
+
 ```
 
 where $\text{softround}\_\tau \to \text{round}$ as $\tau \to 0$.
@@ -239,6 +255,7 @@ class QATLinear(nn.Module):
         
         x_q = torch.clamp(torch.round(x / scale), qmin, qmax)
         return x_q * scale  # Fake quantize
+
 ```
 
 #### 6.2 Batch Normalization Folding
@@ -248,6 +265,7 @@ class QATLinear(nn.Module):
 ```math
 W_{folded} = \frac{\gamma}{\sqrt{\sigma^2 + \epsilon}} \cdot W
 b_{folded} = \gamma \cdot \frac{-\mu}{\sqrt{\sigma^2 + \epsilon}} + \beta + \frac{\gamma}{\sqrt{\sigma^2 + \epsilon}} \cdot b
+
 ```
 
 **Why fold?**
@@ -429,6 +447,7 @@ def train_qat(model, train_loader, val_loader, epochs=10, lr=1e-4):
         print(f'Epoch {epoch+1}: Accuracy = {accuracy:.2f}%')
     
     return qat_model
+
 ```
 
 ---

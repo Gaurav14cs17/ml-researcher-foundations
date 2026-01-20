@@ -27,18 +27,21 @@ For input \(I\) and kernel \(K\):
 
 ```math
 (I * K)[i,j] = \sum_{m=0}^{k_h-1} \sum_{n=0}^{k_w-1} I[i+m, j+n] \cdot K[m, n]
+
 ```
 
 **With multiple channels (cross-correlation):**
 
 ```math
 Y[c_{out}, i, j] = \sum_{c_{in}=0}^{C_{in}-1} \sum_{m=0}^{k_h-1} \sum_{n=0}^{k_w-1} X[c_{in}, i+m, j+n] \cdot W[c_{out}, c_{in}, m, n] + b[c_{out}]
+
 ```
 
 ### Output Size Formula
 
 ```math
 H_{out} = \left\lfloor \frac{H_{in} + 2P - K}{S} \right\rfloor + 1
+
 ```
 
 where:
@@ -53,6 +56,7 @@ For Conv2d(C_in, C_out, K×K):
 
 ```math
 \text{Parameters} = C_{out} \times (C_{in} \times K \times K + 1)
+
 ```
 
 The "+1" is for the bias per output channel.
@@ -64,6 +68,7 @@ The "+1" is for the bias per output channel.
 ### 1. Local Connectivity
 
 Each output depends only on a local region (receptive field):
+
 ```
 Unlike fully connected:
 FC: y = Wx + b  (each output depends on ALL inputs)
@@ -77,11 +82,13 @@ FC: 224 × 224 × 3 × 224 × 224 × 64 ≈ 483 billion!
 Conv (3×3): 64 × 3 × 3 × 3 = 1,728
 
 Massive parameter reduction!
+
 ```
 
 ### 2. Weight Sharing
 
 Same kernel applied at all positions:
+
 ```
 Traditional: Different weights for each position
 Conv: Same weights everywhere
@@ -90,6 +97,7 @@ Benefits:
 - Fewer parameters
 - Translation equivariance
 - Better generalization
+
 ```
 
 ### 3. Translation Equivariance
@@ -98,9 +106,11 @@ If input shifts, output shifts by the same amount:
 
 ```math
 f(T_x \cdot I) = T_x \cdot f(I)
+
 ```
 
 **Proof:**
+
 ```
 Let I' = I shifted by (a, b)
 I'[i, j] = I[i-a, j-b]
@@ -110,6 +120,7 @@ I'[i, j] = I[i-a, j-b]
                = (I * K)[i-a, j-b]
 
 Output is shifted by same (a, b)! ✓
+
 ```
 
 ---
@@ -126,9 +137,11 @@ For a stack of convolutions:
 
 ```math
 R_{out} = R_{in} + (K - 1) \times \prod_{i=1}^{l-1} S_i
+
 ```
 
 **Example (VGG-style):**
+
 ```
 Layer 1: Conv 3×3, stride 1 → RF = 3
 Layer 2: Conv 3×3, stride 1 → RF = 3 + (3-1)×1 = 5
@@ -137,6 +150,7 @@ Layer 4: Conv 3×3, stride 1 → RF = 6 + (3-1)×2 = 10
 ...
 
 After 5 Conv + Pool layers: RF ≈ 180 pixels!
+
 ```
 
 ### Why Deep > Wide?
@@ -146,6 +160,7 @@ Two 3×3 layers: RF = 5×5, Params = 2 × 3² × C² = 18C²
 One 5×5 layer:  RF = 5×5, Params = 5² × C² = 25C²
 
 Same receptive field, fewer parameters, more nonlinearity!
+
 ```
 
 ---
@@ -158,28 +173,33 @@ Same receptive field, fewer parameters, more nonlinearity!
 
 ```math
 Y[i,j] = \max_{m,n \in \text{window}} X[i \cdot s + m, j \cdot s + n]
+
 ```
 
 **Average Pooling:**
 
 ```math
 Y[i,j] = \frac{1}{k^2} \sum_{m,n \in \text{window}} X[i \cdot s + m, j \cdot s + n]
+
 ```
 
 **Global Average Pooling (GAP):**
 
 ```math
 Y[c] = \frac{1}{H \times W} \sum_{i,j} X[c, i, j]
+
 ```
 
 ### 2. Strided Convolution
 
 Alternative to pooling - use stride > 1:
+
 ```
 Benefits:
 - Learnable downsampling (vs fixed pooling)
 - More computation efficient
 - Used in ResNet (stride-2 conv instead of pool)
+
 ```
 
 ### 3. Dilated (Atrous) Convolution
@@ -188,6 +208,7 @@ Insert zeros between kernel elements:
 
 ```math
 Y[i,j] = \sum_{m,n} X[i + r \cdot m, j + r \cdot n] \cdot K[m,n]
+
 ```
 
 where \(r\) is the dilation rate.
@@ -467,6 +488,7 @@ print(f"Output: {y.shape}")
 # Parameter count
 n_params = sum(p.numel() for p in model.parameters())
 print(f"Parameters: {n_params:,}")
+
 ```
 
 ---

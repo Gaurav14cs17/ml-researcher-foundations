@@ -42,6 +42,7 @@
 
 ```math
 \mathcal{L}_{\text{reg}}(\theta) = \underbrace{\mathcal{L}_{\text{data}}(\theta)}_{\text{empirical risk}} + \underbrace{\lambda \Omega(\theta)}_{\text{regularization penalty}}
+
 ```
 
 where:
@@ -57,18 +58,21 @@ where:
 
 ```math
 \Omega(\theta) = \|\theta\|_2^2 = \sum_{i} \theta_i^2
+
 ```
 
 **Full Objective:**
 
 ```math
 \mathcal{L}_{\text{ridge}}(\theta) = \frac{1}{n}\sum_{i=1}^{n} \ell(f_\theta(x_i), y_i) + \lambda \|\theta\|_2^2
+
 ```
 
 ### Gradient
 
 ```math
 \nabla_\theta \Omega = 2\theta
+
 ```
 
 **Effect:** Shrinks weights proportionally toward zero.
@@ -77,6 +81,7 @@ where:
 
 ```math
 \theta \leftarrow \theta - \eta \nabla_\theta \mathcal{L}_{\text{data}} - 2\eta\lambda\theta = (1 - 2\eta\lambda)\theta - \eta \nabla_\theta \mathcal{L}_{\text{data}}
+
 ```
 
 ### Closed-Form Solution (Linear Regression)
@@ -85,6 +90,7 @@ For linear regression \(y = X\beta + \varepsilon\):
 
 ```math
 \hat{\beta}_{\text{ridge}} = (X^\top X + \lambda I)^{-1} X^\top y
+
 ```
 
 **Proof:**
@@ -96,6 +102,7 @@ Set gradient to zero:
 X^\top X\beta + \lambda\beta = X^\top y
 (X^\top X + \lambda I)\beta = X^\top y
 \boxed{\hat{\beta}_{\text{ridge}} = (X^\top X + \lambda I)^{-1} X^\top y}
+
 ```
 
 ### Bayesian Interpretation
@@ -109,12 +116,14 @@ X^\top X\beta + \lambda\beta = X^\top y
 ```math
 p(\theta | \mathcal{D}) \propto p(\mathcal{D} | \theta) \cdot p(\theta)
 \log p(\theta | \mathcal{D}) = -\frac{1}{2\sigma^2}\|y - X\theta\|^2 - \frac{1}{2\tau^2}\|\theta\|^2 + \text{const}
+
 ```
 
 **MAP estimate:**
 
 ```math
 \hat{\theta}_{\text{MAP}} = \arg\max_\theta \log p(\theta | \mathcal{D}) = \arg\min_\theta \left[\|y - X\theta\|^2 + \frac{\sigma^2}{\tau^2}\|\theta\|^2\right]
+
 ```
 
 Setting \(\lambda = \frac{\sigma^2}{\tau^2}\) gives ridge regression.
@@ -127,18 +136,21 @@ Setting \(\lambda = \frac{\sigma^2}{\tau^2}\) gives ridge regression.
 
 ```math
 \Omega(\theta) = \|\theta\|_1 = \sum_{i} |\theta_i|
+
 ```
 
 **Full Objective:**
 
 ```math
 \mathcal{L}_{\text{lasso}}(\theta) = \frac{1}{n}\sum_{i=1}^{n} \ell(f_\theta(x_i), y_i) + \lambda \|\theta\|_1
+
 ```
 
 ### Subgradient
 
 ```math
 \partial_{\theta_i} \Omega = \text{sign}(\theta_i) = \begin{cases} 1 & \theta_i > 0 \\ [-1, 1] & \theta_i = 0 \\ -1 & \theta_i < 0 \end{cases}
+
 ```
 
 **Effect:** Constant push toward zero → **sparse solutions**.
@@ -153,6 +165,7 @@ The L1 ball \(\|\theta\|_1 \leq t\) has corners aligned with axes. The solution 
 
 ```math
 \text{prox}_{\lambda\|\cdot\|_1}(\theta) = \text{sign}(\theta) \odot \max(|\theta| - \lambda, 0)
+
 ```
 
 This explicitly sets small weights to exactly zero.
@@ -166,6 +179,7 @@ This explicitly sets small weights to exactly zero.
 ```math
 p(\theta_i) = \frac{1}{2b} \exp\left(-\frac{|\theta_i|}{b}\right)
 \log p(\theta) = -\frac{1}{b}\|\theta\|_1 + \text{const}
+
 ```
 
 ---
@@ -178,12 +192,14 @@ Combines L1 and L2:
 
 ```math
 \Omega(\theta) = \alpha\|\theta\|_1 + (1-\alpha)\|\theta\|_2^2
+
 ```
 
 **Full Objective:**
 
 ```math
 \mathcal{L}_{\text{elastic}} = \mathcal{L}_{\text{data}} + \lambda \left[\alpha\|\theta\|_1 + (1-\alpha)\|\theta\|_2^2\right]
+
 ```
 
 ### Advantages
@@ -205,12 +221,14 @@ During training, randomly zero out each hidden unit with probability \(p\):
 
 ```math
 \tilde{h}_i = h_i \cdot m_i, \quad m_i \sim \text{Bernoulli}(1-p)
+
 ```
 
 During inference, scale activations:
 
 ```math
 \tilde{h}_i = (1-p) \cdot h_i
+
 ```
 
 ### Mathematical Interpretation
@@ -219,6 +237,7 @@ During inference, scale activations:
 
 ```math
 \mathbb{E}[\mathcal{L}_{\text{dropout}}] \approx \mathcal{L}_{\text{data}} + \lambda \sum_i p(1-p) \left(\frac{\partial \mathcal{L}}{\partial h_i}\right)^2 h_i^2
+
 ```
 
 ### Ensemble Interpretation
@@ -229,6 +248,7 @@ At test time, the scaled network approximates the geometric mean of all subnetwo
 
 ```math
 \tilde{f}(x) \approx \left(\prod_{S \subseteq \{1,...,n\}} f_S(x)\right)^{1/2^n}
+
 ```
 
 ---
@@ -263,6 +283,7 @@ L1 Constraint Region (Diamond):       L2 Constraint Region (Circle):
 
 Corners → Solutions at axes            Smooth → Solutions rarely at axes
 (sparse)                               (non-sparse)
+
 ```
 
 ---
@@ -487,6 +508,7 @@ def train_with_regularization(model, train_loader, val_loader, epochs=100):
         if early_stopping(val_loss):
             print(f"Early stopping at epoch {epoch+1}")
             break
+
 ```
 
 ---

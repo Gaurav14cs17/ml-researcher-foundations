@@ -30,6 +30,7 @@ minimize    f(x)
 subject to  g(x) = 0
 
 where g(x) = [g₁(x), g₂(x), ..., gₘ(x)]ᵀ
+
 ```
 
 ### The Lagrangian Function
@@ -39,6 +40,7 @@ L(x, λ) = f(x) + λᵀg(x)
         = f(x) + Σᵢ λᵢgᵢ(x)
 
 where λ = [λ₁, λ₂, ..., λₘ]ᵀ are Lagrange multipliers
+
 ```
 
 ### First-Order Necessary Conditions
@@ -53,6 +55,7 @@ Geometric interpretation:
 ∇f(x*) = -Σᵢ λᵢ*∇gᵢ(x*)
 
 "The objective gradient is a linear combination of constraint gradients"
+
 ```
 
 ---
@@ -95,6 +98,7 @@ Step 5: Express ∇f as combination
 Therefore: ∇f(x*) = -∇g(x*)λ* for some λ* ∈ ℝᵐ
 
 Rearranging: ∇f(x*) + ∇g(x*)λ* = 0  ∎
+
 ```
 
 ---
@@ -107,6 +111,7 @@ Rearranging: ∇f(x*) + ∇g(x*)λ* = 0  ∎
 minimize    f(x)
 subject to  gᵢ(x) ≤ 0,  i = 1,...,m   (inequalities)
             hⱼ(x) = 0,  j = 1,...,p   (equalities)
+
 ```
 
 ### The KKT Lagrangian
@@ -117,6 +122,7 @@ L(x, μ, λ) = f(x) + Σᵢ μᵢgᵢ(x) + Σⱼ λⱼhⱼ(x)
 where:
 • μᵢ ≥ 0: multipliers for inequalities
 • λⱼ ∈ ℝ: multipliers for equalities
+
 ```
 
 ### The 5 KKT Conditions
@@ -139,6 +145,7 @@ At optimum (x*, μ*, λ*):
 
 5. (For convex problems) SUFFICIENCY
    If f, gᵢ convex and hⱼ affine → KKT sufficient for optimality
+
 ```
 
 ---
@@ -178,6 +185,7 @@ Case 2: ACTIVE constraint (gᵢ = 0)
 |   Constraint is binding           |
 |   ⟹ μᵢ* > 0 possible             |
 +-----------------------------------+
+
 ```
 
 ---
@@ -189,12 +197,14 @@ Case 2: ACTIVE constraint (gᵢ = 0)
 ```
 minimize   f(x,y) = x² + y²
 subject to g(x,y) = 1 - x - y ≤ 0  (i.e., x + y ≥ 1)
+
 ```
 
 ### Step 1: Write Lagrangian
 
 ```
 L(x, y, μ) = x² + y² + μ(1 - x - y)
+
 ```
 
 ### Step 2: KKT Conditions
@@ -212,17 +222,21 @@ Dual feasibility:
 
 Complementary slackness:
 μ(1 - x - y) = 0
+
 ```
 
 ### Step 3: Solve by Cases
 
 **Case A: μ = 0 (constraint inactive)**
+
 ```
 x = 0, y = 0
 Check: 1 - 0 - 0 = 1 > 0  ✗ (violates primal feasibility!)
+
 ```
 
 **Case B: μ > 0 (constraint active)**
+
 ```
 From complementary slackness: x + y = 1
 From stationarity: x = y = μ/2
@@ -230,6 +244,7 @@ Therefore: μ/2 + μ/2 = 1 ⟹ μ = 1 > 0 ✓
 
 Solution: x* = y* = 1/2, μ* = 1
 Optimal value: f* = 1/4 + 1/4 = 1/2
+
 ```
 
 ---
@@ -277,6 +292,7 @@ def solve_kkt_example():
     return result
 
 result = solve_kkt_example()
+
 ```
 
 ---
@@ -292,6 +308,7 @@ subject to  yᵢ(wᵀxᵢ + b) ≥ 1,  i = 1,...,n
 Or equivalently:
 minimize    (1/2)||w||²
 subject to  1 - yᵢ(wᵀxᵢ + b) ≤ 0
+
 ```
 
 ### Lagrangian
@@ -299,6 +316,7 @@ subject to  1 - yᵢ(wᵀxᵢ + b) ≤ 0
 ```
 L(w, b, α) = (1/2)||w||² - Σᵢ αᵢ[yᵢ(wᵀxᵢ + b) - 1]
            = (1/2)||w||² - Σᵢ αᵢyᵢwᵀxᵢ - bΣᵢ αᵢyᵢ + Σᵢ αᵢ
+
 ```
 
 ### KKT Conditions
@@ -317,6 +335,7 @@ Complementary slackness:
 Interpretation:
 • αᵢ = 0: Point is NOT a support vector
 • αᵢ > 0: Point IS a support vector (on margin)
+
 ```
 
 ### Dual Problem
@@ -329,6 +348,7 @@ subject to αᵢ ≥ 0
            Σᵢ αᵢyᵢ = 0
 
 This is a quadratic program in α!
+
 ```
 
 ---
@@ -349,6 +369,7 @@ In ML:
 • SVM: αᵢ = "importance" of data point i
 • Large αᵢ ⟹ Important support vector
 • Zero αᵢ ⟹ Point doesn't affect decision boundary
+
 ```
 
 ---

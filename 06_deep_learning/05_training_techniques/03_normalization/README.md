@@ -24,6 +24,7 @@ Layer Norm: Normalize over features
   
 Instance Norm: Normalize per sample
 Group Norm: Normalize over groups
+
 ```
 
 ---
@@ -39,6 +40,7 @@ ln = nn.LayerNorm(768)
 
 # Group Norm
 gn = nn.GroupNorm(num_groups=32, num_channels=64)
+
 ```
 
 ---

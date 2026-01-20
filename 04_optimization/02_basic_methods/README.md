@@ -46,6 +46,7 @@
 |   Used: Small problems, L-BFGS                          |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -70,6 +71,7 @@
 |   That's it! Simple but powerful.                      |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -84,6 +86,7 @@ for i in range(max_iterations):
     x = x - learning_rate * gradient
     if converged(gradient):
         break
+
 ```
 
 ---
@@ -107,6 +110,7 @@ for i in range(max_iterations):
      ╱____________________●  Minimum!
      
    Each step: Move opposite to gradient (downhill)
+
 ```
 
 ---
@@ -116,6 +120,7 @@ for i in range(max_iterations):
 ### 1. Gradient Descent: Complete Convergence Analysis
 
 **Algorithm:**
+
 ```
 Input: f: ℝⁿ → ℝ, starting point x₀, learning rate α
 Output: x* ≈ argmin f
@@ -126,6 +131,7 @@ For k = 0, 1, 2, ...:
   3. Check convergence: ||g_k|| < ε
 
 Return x_k
+
 ```
 
 ---
@@ -194,6 +200,7 @@ Step 9: Sum telescoping series from 0 to k-1
   k·(f(x_k) - f(x*)) ≤ Σᵢ₌₀^{k-1} (f(x_{i+1}) - f(x*)) ≤ (L/2)||x_0 - x*||²
 
   Therefore: f(x_k) - f(x*) ≤ (L||x_0 - x*||²)/(2k) ✓  QED
+
 ```
 
 ---
@@ -208,6 +215,7 @@ Step 9: Sum telescoping series from 0 to k-1
 \[f(x_k) - f(x^*) \leq (1 - \mu/L)^k (f(x_0) - f(x^*))\]
 
 **Key Quantity: Condition Number**
+
 ```
 κ = L/μ  (condition number)
 
@@ -221,6 +229,7 @@ Examples:
 
 Number of iterations to reach ε-accuracy:
   k ≥ κ·log(1/ε)
+
 ```
 
 **Proof Sketch:**
@@ -239,6 +248,7 @@ Step 1: Combine descent lemma with strong convexity
 
 Step 2: Apply recursively
   f(x_k) - f(x*) ≤ (1 - μ/L)^k (f(x_0) - f(x*)) ✓  QED
+
 ```
 
 ---
@@ -296,6 +306,7 @@ where \(f_{inf} = \inf_x f(x)\)
    α_k = α_max · min(k/k_warmup, (k/k_warmup)^{-0.5})
    
    Used in: BERT, GPT training
+
 ```
 
 ---
@@ -312,6 +323,7 @@ Algorithm:
     x_{k+1} = x_k - α·v_{k+1}
 
 where β ∈ [0,1) is momentum coefficient (typically 0.9)
+
 ```
 
 **Convergence Improvement:**
@@ -326,6 +338,7 @@ With momentum (optimal β):
 Speedup: √κ
   κ = 100 → 10× fewer iterations!
   κ = 10000 → 100× fewer iterations!
+
 ```
 
 **Nesterov Momentum (Nesterov 1983):**
@@ -339,6 +352,7 @@ Algorithm:
     x_{k+1} = x_k - α·v_{k+1}
 
 Key difference: Evaluate gradient at lookahead position
+
 ```
 
 ---
@@ -356,6 +370,7 @@ Key difference: Evaluate gradient at lookahead position
 ## 💻 Implementation
 
 ### NumPy
+
 ```python
 import numpy as np
 
@@ -383,9 +398,11 @@ def grad_f(x):
 
 x_opt, history = gradient_descent(f, grad_f, np.array([5.0, 3.0]))
 print(f"Optimal: {x_opt}")  # Close to [0, 0]
+
 ```
 
 ### PyTorch
+
 ```python
 import torch
 
@@ -399,6 +416,7 @@ for i in range(100):
     optimizer.step()
     
 print(f"Optimal: {x.data}")  # Close to [0, 0]
+
 ```
 
 ---
@@ -419,6 +437,7 @@ print(f"Optimal: {x.data}")  # Close to [0, 0]
 |   Why better? Captures curvature!                       |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -440,6 +459,7 @@ Newton Step:
 |   (The Hessian provides natural step size)              |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -459,6 +479,7 @@ Gradient Descent:              Newton's Method:
                                          • minimum
 
 Takes many small steps           Takes one big accurate step
+
 ```
 
 ---
@@ -475,6 +496,7 @@ Where:
 • H(x) = ∇²f(x) is the Hessian matrix
 • ∇f(x) is the gradient
 • H⁻¹∇f is the Newton direction
+
 ```
 
 ### Derivation from Taylor Expansion
@@ -488,6 +510,7 @@ Setting derivative to zero:
 
 Solving for optimal step:
 Δx* = -H⁻¹∇f(x)
+
 ```
 
 ### Newton Decrement
@@ -498,6 +521,7 @@ Solving for optimal step:
 Interpretation:
 • λ² ≈ f(x) - f(x*)  (approximate suboptimality)
 • Stopping criterion: λ² < ε
+
 ```
 
 ### Convergence Analysis
@@ -515,6 +539,7 @@ Global convergence (with damping):
 x_{k+1} = x_k - α_k · H⁻¹∇f
 
 where α_k found by line search
+
 ```
 
 ---
@@ -540,6 +565,7 @@ Step 3: error = 0.0001
 Step 4: error = 0.00000001
 
 4 steps to machine precision!
+
 ```
 
 ---
@@ -572,6 +598,7 @@ def backtracking_line_search(f, x, g, d, alpha=1.0, beta=0.5, c=0.1):
     while f(x + alpha * d) > f(x) + c * alpha * (g @ d):
         alpha *= beta
     return alpha
+
 ```
 
 ---
@@ -589,6 +616,7 @@ Solutions:
 • Modified Newton: Use |H| eigenvalues
 • Trust region: Constrain step size
 • Line search: Ensure descent
+
 ```
 
 ---
@@ -618,6 +646,7 @@ Step 4: Since H is continuous, H(x_k) → H(x*) as x_k → x*
   H(x_k)⁻¹H(x*) → I
   
   Therefore: ||x_{k+1} - x*|| = O(||x_k - x*||²)  ∎
+
 ```
 
 ---

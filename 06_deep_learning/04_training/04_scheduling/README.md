@@ -33,6 +33,7 @@ Learning rate scheduling adjusts the learning rate during training. Starting hig
 
 ```math
 \theta_{t+1} = \theta_t - \eta_t \nabla_\theta \mathcal{L}(\theta_t)
+
 ```
 
 Where $\eta\_t$ is the learning rate at step $t$.
@@ -45,6 +46,7 @@ For strongly convex functions, SGD converges with rate:
 
 ```math
 \mathbb{E}[\|\theta_T - \theta^*\|^2] = O\left(\frac{1}{T}\right) \text{ when } \eta_t = O\left(\frac{1}{t}\right)
+
 ```
 
 **Intuition:**
@@ -59,6 +61,7 @@ For strongly convex functions, SGD converges with rate:
 
 ```math
 \eta_t = \eta_0
+
 ```
 
 **Use:** Quick experiments, baselines.
@@ -67,6 +70,7 @@ For strongly convex functions, SGD converges with rate:
 
 ```math
 \eta_t = \eta_0 \cdot \gamma^{\lfloor t/s \rfloor}
+
 ```
 
 Where $\gamma \in (0, 1)$ is the decay factor and $s$ is the step size.
@@ -80,18 +84,21 @@ Where $\gamma \in (0, 1)$ is the decay factor and $s$ is the step size.
 
 ```math
 \eta_t = \eta_0 \cdot \gamma^t
+
 ```
 
 **Continuous version:**
 
 ```math
 \eta_t = \eta_0 \cdot e^{-\lambda t}
+
 ```
 
 ### 4. Polynomial Decay
 
 ```math
 \eta_t = \eta_0 \cdot \left(1 - \frac{t}{T}\right)^p
+
 ```
 
 Where $p$ controls decay speed (typically $p = 1$ for linear, $p = 2$ for quadratic).
@@ -100,6 +107,7 @@ Where $p$ controls decay speed (typically $p = 1$ for linear, $p = 2$ for quadra
 
 ```math
 \eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{\pi t}{T}\right)\right)
+
 ```
 
 **Properties:**
@@ -111,6 +119,7 @@ Where $p$ controls decay speed (typically $p = 1$ for linear, $p = 2$ for quadra
 
 ```math
 \eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{\pi T_{cur}}{T_i}\right)\right)
+
 ```
 
 Where $T\_{cur}$ is steps since last restart and $T\_i$ is the $i$-th restart period.
@@ -127,6 +136,7 @@ Where $T\_{cur}$ is steps since last restart and $T\_i$ is the $i$-th restart pe
 
 ```math
 m_0 = 0, \quad v_0 = 0
+
 ```math
 Bias correction helps, but initial steps are still noisy.
 
@@ -135,6 +145,7 @@ Bias correction helps, but initial steps are still noisy.
 3. **Batch normalization:** Running statistics not calibrated
 
 ### Linear Warmup
+
 ```
 
 \eta_t = \begin{cases}
@@ -144,6 +155,7 @@ Bias correction helps, but initial steps are still noisy.
 
 ```math
 ### Warmup + Cosine Decay (LLM Standard)
+
 ```
 
 \eta_t = \begin{cases}
@@ -165,6 +177,7 @@ Bias correction helps, but initial steps are still noisy.
 1. **Warmup:** LR increases from $\eta\_{low}$ to $\eta\_{max}$
 2. **Annealing:** LR decreases from $\eta\_{max}$ to $\eta\_{low}$
 3. **Fine-tune:** LR drops further to $\eta\_{low}/10$
+
 ```
 
 \eta_t = \begin{cases}
@@ -172,6 +185,7 @@ Bias correction helps, but initial steps are still noisy.
 \eta_{max} - (\eta_{max} - \eta_{low}) \cdot \frac{t - T_1}{T_2 - T_1} & T_1 \leq t < T_2 \\
 \eta_{low} \cdot \left(1 - \frac{t - T_2}{T - T_2}\right) & t \geq T_2
 \end{cases}
+
 ```
 
 **Momentum also changes:** High momentum when LR is low, low momentum when LR is high.
@@ -270,6 +284,7 @@ def plot_schedule(scheduler, total_steps):
     plt.ylabel('Learning Rate')
     plt.title('Learning Rate Schedule')
     plt.show()
+
 ```
 
 ### Complete LLM Training Schedule
@@ -302,6 +317,7 @@ for step in range(total_steps):
     # Training step
     loss.backward()
     optimizer.step()
+
 ```
 
 ---
@@ -345,6 +361,7 @@ def lr_range_test(model, dataloader, optimizer, start_lr=1e-7, end_lr=10, num_st
     plt.show()
     
     return lrs, losses
+
 ```
 
 ---

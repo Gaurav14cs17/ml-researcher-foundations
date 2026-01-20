@@ -29,12 +29,14 @@ For an $L$-layer network with loss $\mathcal{L}$:
 
 ```math
 \frac{\partial \mathcal{L}}{\partial W_1} = \frac{\partial \mathcal{L}}{\partial h_L} \cdot \left(\prod_{l=2}^{L} \frac{\partial h_l}{\partial h_{l-1}}\right) \cdot \frac{\partial h_1}{\partial W_1}
+
 ```
 
 **Jacobian at each layer:**
 
 ```math
 \frac{\partial h_l}{\partial h_{l-1}} = W_l^\top \cdot \text{diag}(\sigma'(z_{l-1}))
+
 ```
 
 Where $z\_l = W\_l h\_{l-1} + b\_l$ and $h\_l = \sigma(z\_l)$.
@@ -43,6 +45,7 @@ Where $z\_l = W\_l h\_{l-1} + b\_l$ and $h\_l = \sigma(z\_l)$.
 
 ```math
 \prod_{l=2}^{L} \frac{\partial h_l}{\partial h_{l-1}} = \prod_{l=2}^{L} W_l^\top \cdot \text{diag}(\sigma'(z_{l-1}))
+
 ```
 
 **Spectral Analysis:**
@@ -51,6 +54,7 @@ Let $\sigma\_{\max}(M)$ denote the largest singular value of matrix $M$.
 
 ```math
 \left\|\prod_{l=2}^{L} J_l\right\| \leq \prod_{l=2}^{L} \sigma_{\max}(J_l)
+
 ```
 
 ---
@@ -63,6 +67,7 @@ Let $\sigma\_{\max}(M)$ denote the largest singular value of matrix $M$.
 
 ```math
 \left\|\frac{\partial \mathcal{L}}{\partial W_1}\right\| \leq \left\|\frac{\partial \mathcal{L}}{\partial h_L}\right\| \cdot \prod_{l=2}^{L} \sigma_{\max}(J_l) \rightarrow 0 \text{ as } L \rightarrow \infty
+
 ```
 
 ### Activation Function Analysis
@@ -71,6 +76,7 @@ Let $\sigma\_{\max}(M)$ denote the largest singular value of matrix $M$.
 
 ```math
 \sigma'(x) = \sigma(x)(1-\sigma(x)) \leq \frac{1}{4}
+
 ```
 
 **Proof:** $\max\_{x} \sigma(x)(1-\sigma(x)) = \frac{1}{4}$ at $x=0$.
@@ -79,6 +85,7 @@ For $L$ layers:
 
 ```math
 \left\|\frac{\partial h_L}{\partial h_1}\right\| \leq \left(\frac{1}{4}\right)^{L-1} \|W_2\| \cdots \|W_L\|
+
 ```
 
 Even if $\|W\_l\| = 2$, gradients vanish as $\left(\frac{1}{2}\right)^{L-1}$!
@@ -103,6 +110,7 @@ Still saturates at large $|x|$, causing vanishing gradients.
 
 ```math
 \left\|\frac{\partial \mathcal{L}}{\partial W_1}\right\| \geq c \cdot \prod_{l=2}^{L} \sigma_{\min}(J_l) \rightarrow \infty \text{ as } L \rightarrow \infty
+
 ```
 
 ### Symptoms
@@ -119,6 +127,7 @@ After $L$ layers:
 
 ```math
 \frac{\partial h_L}{\partial h_1} = W^{L-1} = \begin{pmatrix} 1.5^{L-1} & 0 \\ 0 & 1.5^{L-1} \end{pmatrix}
+
 ```
 
 For $L = 50$: $1.5^{49} \approx 6.4 \times 10^8$ (explodes!)
@@ -133,24 +142,28 @@ For $L = 50$: $1.5^{49} \approx 6.4 \times 10^8$ (explodes!)
 
 ```math
 h_{l+1} = h_l + F(h_l; W_l)
+
 ```
 
 **Gradient:**
 
 ```math
 \frac{\partial h_{l+1}}{\partial h_l} = I + \frac{\partial F}{\partial h_l}
+
 ```
 
 **Why it works:**
 
 ```math
 \frac{\partial h_L}{\partial h_1} = \prod_{l=1}^{L-1} \left(I + \frac{\partial F_l}{\partial h_l}\right)
+
 ```
 
 Expanding:
 
 ```math
 = I + \sum_l \frac{\partial F_l}{\partial h_l} + \sum_{l_1 < l_2} \frac{\partial F_{l_1}}{\partial h_{l_1}} \frac{\partial F_{l_2}}{\partial h_{l_2}} + \cdots
+
 ```
 
 The identity $I$ ensures gradient of at least 1 flows through!
@@ -164,12 +177,14 @@ The identity $I$ ensures gradient of at least 1 flows through!
 g & \text{if } \|g\| \leq \tau \\
 \frac{\tau g}{\|g\|} & \text{if } \|g\| > \tau
 \end{cases}
+
 ```
 
 **Why:** Prevents gradient explosion while maintaining direction.
 
 ```python
 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+
 ```
 
 ### 3. Layer Normalization
@@ -178,6 +193,7 @@ torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 
 ```math
 \hat{h} = \frac{h - \mu}{\sigma} \cdot \gamma + \beta
+
 ```
 
 **Effect on gradients:**
@@ -190,12 +206,14 @@ Normalizing activations prevents them from growing unboundedly, which stabilizes
 
 ```math
 W \sim \mathcal{N}\left(0, \frac{2}{n_{in} + n_{out}}\right)
+
 ```
 
 **Kaiming (ReLU):**
 
 ```math
 W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)
+
 ```
 
 **Goal:** Keep $\text{Var}(h\_l) \approx \text{Var}(h\_{l-1})$ across layers.
@@ -218,6 +236,7 @@ W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)
 
 ```math
 \kappa(J) = \frac{\sigma_{\max}(J)}{\sigma_{\min}(J)}
+
 ```
 
 **Well-conditioned:** $\kappa \approx 1$ (all directions treated equally)
@@ -234,6 +253,7 @@ For orthogonal $W$: $W^\top W = I$
 
 ```python
 nn.init.orthogonal_(layer.weight)
+
 ```
 
 ---
@@ -262,6 +282,7 @@ check_gradient_flow(model.named_parameters())
 # Gradient clipping
 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 optimizer.step()
+
 ```
 
 ### Visualizing Gradient Distribution
@@ -278,6 +299,7 @@ def plot_gradient_histograms(model):
             ax.set_title(f"{name}\nmean={param.grad.mean():.2e}")
     plt.tight_layout()
     plt.show()
+
 ```
 
 ---
@@ -288,18 +310,21 @@ def plot_gradient_histograms(model):
 
 ```math
 C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t
+
 ```
 
 **Gradient through cell state:**
 
 ```math
 \frac{\partial C_t}{\partial C_{t-1}} = f_t
+
 ```
 
 If $f\_t \approx 1$:
 
 ```math
 \frac{\partial C_T}{\partial C_1} = \prod_{t=2}^{T} f_t \approx 1
+
 ```
 
 **Key insight:** Additive updates (not multiplicative) preserve gradients!

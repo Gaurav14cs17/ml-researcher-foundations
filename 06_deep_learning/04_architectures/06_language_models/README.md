@@ -24,6 +24,7 @@ Masked (BERT):
 
 Seq2Seq (T5):
   P(output|input)
+
 ```
 
 ---
@@ -40,6 +41,7 @@ def generate(model, prompt, max_len=100):
         if next_token == EOS:
             break
     return tokens
+
 ```
 
 ---

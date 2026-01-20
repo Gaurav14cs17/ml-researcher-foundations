@@ -58,6 +58,7 @@ Common rewards:
   R_task = -||s - s_goal||²     (reach target)
   R_energy = -||a||²            (minimize effort)
   R_safety = -1{s ∈ S_unsafe}   (safety constraint)
+
 ```
 
 ### Sim-to-Real Transfer
@@ -75,6 +76,7 @@ Goal: Find π* such that:
   
 If P(ξ) is broad enough, π* generalizes to real:
   E_τ~π*,p_real [R(τ)] ≈ E_τ~π*,p_sim [R(τ)]
+
 ```
 
 ### System Identification vs Domain Randomization
@@ -94,6 +96,7 @@ Domain Randomization:
   
   Pro: No real data needed
   Con: May be overly conservative
+
 ```
 
 ### Safe Reinforcement Learning
@@ -112,6 +115,7 @@ Solution approaches:
   1. Lagrangian relaxation: L = R - λ(C - d)
   2. Constrained Policy Optimization (CPO)
   3. Safety layers: project actions to safe set
+
 ```
 
 ### Model-Based RL for Sample Efficiency
@@ -132,6 +136,7 @@ Rollout horizon H matters:
   Large H: More synthetic data, but errors compound
   
   Optimal H ≈ log(1/ε) / log(1/γ) where ε = model error
+
 ```
 
 ---
@@ -174,6 +179,7 @@ def train_sim2real(agent, sim_env, real_env):
     # Fine-tune on real (few samples)
     for _ in range(100):
         real_step(agent, real_env)
+
 ```
 
 ---

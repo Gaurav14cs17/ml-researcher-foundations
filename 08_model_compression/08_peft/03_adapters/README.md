@@ -29,6 +29,7 @@
 
 ```math
 \text{Adapter}(x) = x + f(x W_{down}) W_{up}
+
 ```
 
 where:
@@ -44,6 +45,7 @@ where:
 ```math
 h = \text{LayerNorm}(x + \text{Attn}(x))
 h' = h + \text{Adapter}_{attn}(h)
+
 ```
 
 **After FFN:**
@@ -51,6 +53,7 @@ h' = h + \text{Adapter}_{attn}(h)
 ```math
 z = \text{LayerNorm}(h' + \text{FFN}(h'))
 z' = z + \text{Adapter}_{ffn}(z)
+
 ```
 
 ---
@@ -61,6 +64,7 @@ z' = z + \text{Adapter}_{ffn}(z)
 
 ```math
 |\theta_{adapter}| = 2 \times d \times r = 2dr
+
 ```
 
 **With bias:** $2dr + d + r$
@@ -71,12 +75,14 @@ z' = z + \text{Adapter}_{ffn}(z)
 
 ```math
 |\theta_{layer}| = 4dr
+
 ```
 
 **Full model (L layers):**
 
 ```math
 |\theta_{total}| = 4Ldr
+
 ```
 
 #### 2.3 Efficiency
@@ -85,6 +91,7 @@ z' = z + \text{Adapter}_{ffn}(z)
 
 ```math
 |\theta_{adapters}| = 4 \times 12 \times 768 \times 64 = 2.36M
+
 ```
 
 vs. 110M for full BERT → **2.1%** of parameters!
@@ -101,12 +108,14 @@ vs. 110M for full BERT → **2.1%** of parameters!
 
 ```math
 \text{Adapter}(x) = x + \sigma(xW_{down})W_{up}
+
 ```
 
 If $\sigma$ is linear (or linearized):
 
 ```math
 \text{Adapter}(x) \approx x + x W_{down} W_{up} = x(I + W_{down}W_{up})
+
 ```
 
 This is a rank-$r$ perturbation of identity!
@@ -117,12 +126,14 @@ This is a rank-$r$ perturbation of identity!
 
 ```math
 h' = h + h W_{down} W_{up}
+
 ```
 
 **LoRA:**
 
 ```math
 h' = Wh + BAh
+
 ```
 
 Both learn low-rank adaptations, but:
@@ -139,6 +150,7 @@ Both learn low-rank adaptations, but:
 
 ```math
 h' = h + \sum_i \alpha_i \text{Adapter}_i(h)
+
 ```
 
 where $\alpha = \text{softmax}(W\_\alpha h)$ are learned attention weights.
@@ -149,6 +161,7 @@ where $\alpha = \text{softmax}(W\_\alpha h)$ are learned attention weights.
 
 ```math
 \text{Attn}'(x) = \text{Attn}(x) + s \cdot \text{Adapter}(x)
+
 ```
 
 where $s$ is a learned scaling factor.
@@ -159,6 +172,7 @@ where $s$ is a learned scaling factor.
 
 ```math
 W_{down} = A_1 \otimes A_2
+
 ```
 
 where $A\_1 \in \mathbb{R}^{d\_1 \times r\_1}$, $A\_2 \in \mathbb{R}^{d\_2 \times r\_2}$, and $d = d\_1 d\_2$.
@@ -314,6 +328,7 @@ def freeze_except_adapters(model: nn.Module):
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
     total = sum(p.numel() for p in model.parameters())
     print(f"Trainable: {trainable:,} / {total:,} ({100*trainable/total:.2f}%)")
+
 ```
 
 ---

@@ -32,6 +32,7 @@ Agent-Environment Interaction Loop:
     |        | <--------------- |           |
     +--------+   state s_t      +-----------+
                  reward r_t
+
 ```
 
 ### Formal Definition
@@ -46,6 +47,7 @@ At each timestep t:
 
 Goal: Find policy π* that maximizes expected cumulative reward
       π* = argmax_π E_π[Σ_{t=0}^∞ γ^t r_t]
+
 ```
 
 ---
@@ -72,6 +74,7 @@ given the present:
 P(s_{t+1} | s_t, a_t, s_{t-1}, a_{t-1}, ..., s_0, a_0) = P(s_{t+1} | s_t, a_t)
 
 This is the key assumption that makes RL tractable!
+
 ```
 
 ### Value Functions
@@ -91,6 +94,7 @@ Q^π(s,a) = E_π[Σ_{t=0}^∞ γ^t r_t | s_0 = s, a_0 = a]
 Relationship:
 V^π(s) = Σ_a π(a|s) Q^π(s,a)
 Q^π(s,a) = R(s,a) + γ Σ_{s'} P(s'|s,a) V^π(s')
+
 ```
 
 ### Bellman Equations
@@ -110,6 +114,7 @@ Q*(s,a) = R(s,a) + γ Σ_{s'} P(s'|s,a) max_{a'} Q*(s',a')
 
 Optimal Policy:
 π*(s) = argmax_a Q*(s,a)
+
 ```
 
 ---
@@ -132,6 +137,7 @@ V^π(s) ≤ max_a Q^π(s,a)           (by definition of π')
        ≤ R(s,π'(s)) + γ Σ_{s'} P(s'|s,π'(s)) max_{a'} Q^π(s',a')
        = ... (repeat recursively)
        = V^{π'}(s)
+
 ```
 
 ### Theorem 2: Contraction Property
@@ -145,6 +151,7 @@ This guarantees:
 1. Value iteration converges
 2. Q* is the unique fixed point
 3. Convergence rate is O(γ^n)
+
 ```
 
 ### Theorem 3: Policy Gradient
@@ -153,6 +160,7 @@ This guarantees:
 ∇_θ J(θ) = E_{τ~π_θ} [Σ_t ∇_θ log π_θ(a_t|s_t) · Q^{π_θ}(s_t, a_t)]
 
 This allows gradient-based optimization of policies!
+
 ```
 
 ---
@@ -181,6 +189,7 @@ RL Methods
     +-- Dyna
     +-- MCTS (AlphaGo)
     +-- World Models (Dreamer)
+
 ```
 
 ---
@@ -269,6 +278,7 @@ def compute_value_function(env, policy, gamma=0.99, theta=1e-6):
             break
     
     return V
+
 ```
 
 ---

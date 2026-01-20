@@ -34,6 +34,7 @@
 |   Why better? Captures curvature!                       |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -55,6 +56,7 @@ Newton Step:
 |   (The Hessian provides natural step size)              |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -74,6 +76,7 @@ Gradient Descent:              Newton's Method:
                                          • minimum
 
 Takes many small steps           Takes one big accurate step
+
 ```
 
 ---
@@ -99,6 +102,7 @@ Step 3: error = 0.0001
 Step 4: error = 0.00000001
 
 4 steps to machine precision!
+
 ```
 
 ---
@@ -130,6 +134,7 @@ For GPT (1.7T params): Impossible!
 Solution: Quasi-Newton methods (BFGS, L-BFGS)
 • Approximate Hessian using gradients only
 • O(n) per step, O(n) memory (L-BFGS)
+
 ```
 
 ---
@@ -137,6 +142,7 @@ Solution: Quasi-Newton methods (BFGS, L-BFGS)
 ## 💻 Implementation
 
 ### NumPy (Full Newton)
+
 ```python
 import numpy as np
 
@@ -166,9 +172,11 @@ def hess_f(x):
 
 x_opt = newton_method(None, grad_f, hess_f, np.array([10.0, 10.0]))
 print(f"Optimal: {x_opt}")  # [0, 0] in 1 iteration!
+
 ```
 
 ### SciPy (L-BFGS)
+
 ```python
 from scipy.optimize import minimize
 
@@ -178,6 +186,7 @@ def f(x):
 result = minimize(f, [0, 0], method='L-BFGS-B')
 print(f"Optimal: {result.x}")
 print(f"Iterations: {result.nit}")
+
 ```
 
 ---

@@ -30,6 +30,7 @@ subject to  Ax ≤ b
 
 Complexity: NP-hard in general
 Special cases: Some polynomial (e.g., totally unimodular A)
+
 ```
 
 ### Mixed Integer LP (MIP/MILP)
@@ -45,6 +46,7 @@ Applications:
 • Vehicle routing
 • Scheduling
 • Network design
+
 ```
 
 ### Binary Integer Program (BIP)
@@ -56,6 +58,7 @@ subject to  Ax ≤ b
 
 Special case of ILP
 Models: selection, assignment, knapsack
+
 ```
 
 ---
@@ -71,6 +74,7 @@ LP relaxation provides:
 • Fractional solutions guide branching
 
 Integrality gap = (ILP optimal) / (LP relaxation optimal)
+
 ```
 
 ### Integrality Gap Analysis
@@ -91,6 +95,7 @@ Example - Vertex Cover:
 
 This means LP-based approximations can be at most
 2x worse than optimal for vertex cover!
+
 ```
 
 ---
@@ -119,6 +124,7 @@ Algorithm:
         Create two children: xᵢ ≤ ⌊x̄ᵢ⌋ and xᵢ ≥ ⌈x̄ᵢ⌉
 
 3. Return z* and corresponding solution
+
 ```
 
 ### Visualization
@@ -137,6 +143,7 @@ Algorithm:
     (integer!)      ← Pruned
     
     Best found: z* = 17
+
 ```
 
 ---
@@ -171,6 +178,7 @@ Step 4: Optimality
   - Pruned solutions are no better than z*
   
   Therefore z* is optimal. ∎
+
 ```
 
 ### Branching Strategies
@@ -210,6 +218,7 @@ def select_branch_variable_strong(x_frac, model, fractional_vars):
             best_var = j
     
     return best_var
+
 ```
 
 ---
@@ -230,6 +239,7 @@ Properties:
 • Cut off fractional solution
 • Do not cut off any integer feasible point
 • Finite convergence (Gomory's algorithm)
+
 ```
 
 ### Derivation of Gomory Cut
@@ -259,6 +269,7 @@ For integer solution:
 
 Since 0 < f₀ < 1 and fⱼ ∈ [0,1), xⱼ ≥ 0:
 Either Σⱼ fⱼ xⱼ ≥ f₀ or Σⱼ fⱼ xⱼ ≤ f₀ - 1 < 0 (impossible) ∎
+
 ```
 
 ---
@@ -276,6 +287,7 @@ Combine branch & bound with cutting planes:
 2. Branch when no more cuts found
 
 Most successful approach for modern MIP solvers
+
 ```
 
 ### Branch and Cut Algorithm
@@ -324,6 +336,7 @@ def branch_and_cut(c, A, b, integer_vars):
             queue.append(Node(bounds={**node.bounds, j: ('>=', ceil(x_lp[j]))}))
     
     return best_solution, best_obj
+
 ```
 
 ---
@@ -340,6 +353,7 @@ subject to  Ax + By ≤ b
             x, y ≥ 0
 
 Combines discrete decisions with continuous optimization
+
 ```
 
 ### Big-M Formulation
@@ -356,6 +370,7 @@ Where M is a large constant.
 
 When x = 1: y ≤ 5 + 0 = 5 (constraint active)
 When x = 0: y ≤ 5 + M (constraint inactive, M large enough)
+
 ```
 
 ### Indicator Constraints
@@ -370,6 +385,7 @@ y ≥ ε·z           (if z=1, then y≥ε)
 Or equivalently:
 y - ε ≤ (M-ε)·z
 y ≥ ε·z
+
 ```
 
 ---
@@ -419,6 +435,7 @@ capacity = 50
 opt_value, selection = solve_knapsack_milp(values, weights, capacity)
 print(f"Optimal value: {opt_value}")
 print(f"Selected items: {np.where(selection > 0.5)[0]}")
+
 ```
 
 ### Facility Location with PuLP
@@ -459,6 +476,7 @@ def facility_location(n_facilities, n_customers, costs, demands, capacities):
     
     prob.solve()
     return prob
+
 ```
 
 ### Traveling Salesman with OR-Tools
@@ -505,6 +523,7 @@ def solve_tsp(distance_matrix):
         return route, solution.ObjectiveValue()
     
     return None, None
+
 ```
 
 ---
@@ -538,6 +557,7 @@ Technique for deriving integer solutions from LP:
 Example - Set Cover:
 Randomized rounding achieves O(log n) approximation
 (optimal unless P=NP!)
+
 ```
 
 ### Approximation Guarantee Proof (Set Cover)
@@ -559,6 +579,7 @@ P(e covered) = 1 - Πᵢ:e∈Sᵢ (1 - x*ᵢ)
              ≥ 1 - 1/e           (since Σᵢ x*ᵢ ≥ 1)
 
 Repeat O(log n) times → high probability all covered
+
 ```
 
 ---

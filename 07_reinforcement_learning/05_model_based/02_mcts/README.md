@@ -40,6 +40,7 @@ MCTS repeats four phases for each simulation:
 2. EXPANSION:    Add one or more child nodes to the leaf
 3. SIMULATION:   Random rollout from new node to terminal state
 4. BACKPROPAGATION: Update statistics along the path
+
 ```
 
 ---
@@ -56,6 +57,7 @@ Where:
 • N(s) = number of visits to state s
 • N(s, a) = number of times action a was taken at s
 • c = exploration constant (typically √2 or 1.41)
+
 ```
 
 ### Intuition
@@ -67,6 +69,7 @@ UCT = Exploitation + Exploration
 • Q(s,a): Choose actions that have worked well
 • Exploration term: Choose actions tried fewer times
 • As N(s,a) → ∞, exploration term → 0 (converge to best action)
+
 ```
 
 ### Theoretical Guarantee
@@ -78,6 +81,7 @@ The exploration term ensures:
 1. Every action is tried infinitely often
 2. Best actions are tried exponentially more often
 3. Regret is O(√N log N)
+
 ```
 
 ---
@@ -122,6 +126,7 @@ function MCTS(root_state, n_simulations):
             value = -value  # For two-player games
     
     return argmax_a N(root, a)  # Return most visited action
+
 ```
 
 ---
@@ -144,6 +149,7 @@ Key differences from vanilla UCT:
 1. Policy prior p(a|s) guides exploration toward good moves
 2. Value network v(s) replaces random rollouts
 3. No simulation phase needed!
+
 ```
 
 ### AlphaGo MCTS Algorithm
@@ -179,6 +185,7 @@ function AlphaGoMCTS(root_state, n_simulations):
     
     # Return action proportional to visit counts
     return sample_action(root, temperature)
+
 ```
 
 ---
@@ -197,6 +204,7 @@ Training loop:
 1. Self-play: Generate games using MCTS
 2. Train network: Minimize loss on (state, policy, value) tuples
 3. Repeat
+
 ```
 
 ### Training Objective
@@ -210,6 +218,7 @@ Where:
 • π = MCTS search probabilities
 • p(s) = policy network output
 • c||θ||² = L2 regularization
+
 ```
 
 ---
@@ -228,6 +237,7 @@ Proof sketch:
 - UCT ensures infinite exploration (log term)
 - Monte Carlo estimates converge (LLN)
 - Tree policy becomes optimal
+
 ```
 
 ### Regret Bound
@@ -243,6 +253,7 @@ Where:
 • N = number of simulations
 
 This is much better than exhaustive search O(K^D).
+
 ```
 
 ---
@@ -443,6 +454,7 @@ class AlphaZeroMCTS:
             data['value'] = result if data['player'] == 0 else -result
         
         return game_data
+
 ```
 
 ---

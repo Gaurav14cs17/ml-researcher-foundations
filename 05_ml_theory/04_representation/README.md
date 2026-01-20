@@ -51,6 +51,7 @@ A good representation \(z = f_\theta(x)\) should:
 
 ```math
 \max_\theta I(Z; Y) - \beta I(Z; X)
+
 ```
 
 where:
@@ -78,6 +79,7 @@ Learn features jointly with task:
 
 ```math
 \min_{\theta, \phi} \mathbb{E}[\ell(g_\phi(f_\theta(x)), y)]
+
 ```
 
 ### Self-Supervised Learning
@@ -93,6 +95,7 @@ Learn from data structure without labels:
 
 ```math
 \mathcal{L} = \mathbb{E}_{q(z|x)}[\log p(x|z)] - \beta D_{KL}(q(z|x) \| p(z))
+
 ```
 
 Large \(\beta\) encourages disentanglement.
@@ -227,6 +230,7 @@ def extract_features(model, dataloader, device='cuda'):
             labels.append(y)
     
     return torch.cat(features), torch.cat(labels)
+
 ```
 
 ---

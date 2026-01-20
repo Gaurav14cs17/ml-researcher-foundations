@@ -63,6 +63,7 @@
 |   • Transpose: (Aᵀ)ᵢⱼ = Aⱼᵢ             → Backpropagation                 |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -75,6 +76,7 @@ A **vector** $\mathbf{x} \in \mathbb{R}^n$ is an ordered list of $n$ real number
 
 ```math
 \mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix}
+
 ```
 
 ### 📐 Vector Operations
@@ -95,6 +97,7 @@ A **vector** $\mathbf{x} \in \mathbb{R}^n$ is an ordered list of $n$ real number
 
 ```math
 \mathbf{x} \cdot \mathbf{y} = \mathbf{x}^T\mathbf{y} = \sum_{i=1}^{n} x_i y_i = \|\mathbf{x}\| \|\mathbf{y}\| \cos\theta
+
 ```
 
 ### 🔍 Proof: Geometric Formula
@@ -117,6 +120,7 @@ Step 3: Equate the two expressions
 Step 4: Simplify
         -2(xᵀy) = -2‖x‖‖y‖cos(θ)
         xᵀy = ‖x‖‖y‖cos(θ)  ∎
+
 ```
 
 ### 🔍 Cauchy-Schwarz Inequality
@@ -124,6 +128,7 @@ Step 4: Simplify
 **Theorem**: $|\mathbf{x} \cdot \mathbf{y}| \leq \|\mathbf{x}\| \|\mathbf{y}\|$
 
 **Proof**:
+
 ```
 Step 1: For any real t, consider f(t) = ‖x + ty‖² ≥ 0
 
@@ -142,11 +147,13 @@ Step 4: For a quadratic to be non-negative, discriminant ≤ 0
         |xᵀy| ≤ ‖x‖‖y‖  ∎
 
 Equality holds iff x and y are linearly dependent (parallel).
+
 ```
 
 ### 💡 Examples
 
 **Example 1**: Orthogonality
+
 ```
 x = [1, 0, 1]
 y = [0, 1, 0]
@@ -154,9 +161,11 @@ y = [0, 1, 0]
 x·y = 1×0 + 0×1 + 1×0 = 0
 
 Since x·y = 0, vectors x and y are orthogonal.
+
 ```
 
 **Example 2**: Projection
+
 ```
 Project x = [3, 4] onto y = [1, 0]
 
@@ -164,9 +173,11 @@ proj_y(x) = (x·y / ‖y‖²) × y
           = (3×1 + 4×0) / (1² + 0²) × [1, 0]
           = 3 × [1, 0]
           = [3, 0]
+
 ```
 
 **Example 3**: Angle Between Vectors
+
 ```
 x = [1, 1]
 y = [1, 0]
@@ -176,6 +187,7 @@ cos(θ) = (x·y) / (‖x‖‖y‖)
        = 1/√2
 
 θ = arccos(1/√2) = 45°
+
 ```
 
 ---
@@ -221,6 +233,7 @@ Step 4: Need to show:
         ⟺ xᵀy ≤ ‖x‖‖y‖
 
 Step 5: This follows from Cauchy-Schwarz!  ∎
+
 ```
 
 ### 📐 L1 vs L2 Regularization
@@ -247,6 +260,7 @@ L2 Regularization (Ridge/Weight Decay):
 |  → Small weights get small push toward 0                |
 |  → Approach 0 asymptotically, never reach it            |
 +----------------------------------------------------------+
+
 ```
 
 ---
@@ -259,6 +273,7 @@ L2 Regularization (Ridge/Weight Decay):
 
 ```math
 (AB)_{ij} = \sum_{k=1}^{n} A_{ik}B_{kj}
+
 ```
 
 **Dimensions**: $(m \times n) \cdot (n \times p) = (m \times p)$
@@ -266,22 +281,28 @@ L2 Regularization (Ridge/Weight Decay):
 ### 🔍 Three Interpretations
 
 **1. Row-Column Dot Products**
+
 ```
 (AB)ᵢⱼ = (row i of A) · (column j of B)
        = Σₖ AᵢₖBₖⱼ
+
 ```
 
 **2. Linear Combination of Columns**
+
 ```
 Each column of AB is a linear combination of columns of A:
 (AB):,ⱼ = b₁ⱼ·A:,₁ + b₂ⱼ·A:,₂ + ... + bₙⱼ·A:,ₙ
+
 ```
 
 **3. Sum of Outer Products**
+
 ```
 AB = Σₖ A:,ₖ ⊗ Bₖ,:
    = (column 1 of A)(row 1 of B) + (column 2 of A)(row 2 of B) + ...
    = sum of n rank-1 matrices
+
 ```
 
 ### 📐 Key Properties
@@ -310,6 +331,7 @@ AB ≠ BA  ∎
 Geometric intuition:
   A projects onto x-axis, B rotates by 90°
   "Project then rotate" ≠ "Rotate then project"
+
 ```
 
 ---
@@ -344,6 +366,7 @@ Step 3: Apply cyclic property of trace
                 = tr(Σ²VᵀV)    (cyclic: tr(XY) = tr(YX))
                 = tr(Σ²)        (since VᵀV = I)
                 = Σᵢ σᵢ²  ∎
+
 ```
 
 ### 🔍 Submultiplicativity
@@ -358,6 +381,7 @@ Proof:
         ≤ Σⱼ ‖A‖²_F · ‖B:,ⱼ‖²   (since ‖A‖₂ ≤ ‖A‖_F)
         = ‖A‖²_F · Σⱼ ‖B:,ⱼ‖²
         = ‖A‖²_F · ‖B‖²_F  ∎
+
 ```
 
 ---
@@ -394,6 +418,7 @@ Property 4: det(Q) = ±1
   det(Q) = ±1
 
 Examples: Rotation matrices, reflection matrices, permutation matrices
+
 ```
 
 ---
@@ -404,6 +429,7 @@ Examples: Rotation matrices, reflection matrices, permutation matrices
 
 ```math
 \text{tr}(A) = \sum_{i=1}^{n} A_{ii}
+
 ```
 
 ### Key Properties
@@ -428,12 +454,14 @@ tr(AB) = tr(BA)  ∎
 
 For three matrices:
 tr(ABC) = tr((AB)C) = tr(C(AB)) = tr(CAB)  ∎
+
 ```
 
 ### 📌 Determinant
 
 ```math
 \det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^{n} A_{i,\sigma(i)}
+
 ```
 
 ### Key Properties
@@ -458,6 +486,7 @@ For 2×2 matrix A = [a b]:
   • If det(A) > 0: Preserves orientation
   • If det(A) < 0: Reverses orientation (reflection)
   • If det(A) = 0: Collapses to lower dimension (singular)
+
 ```
 
 ---
@@ -576,6 +605,7 @@ if __name__ == "__main__":
     
     PD = C @ C.T + 0.1 * np.eye(100)
     print(f"PD is positive definite: {is_positive_definite(PD)}")
+
 ```
 
 ### PyTorch Implementation
@@ -629,6 +659,7 @@ def attention_scores(Q, K):
     d_k = Q.size(-1)
     scores = torch.matmul(Q, K.transpose(-2, -1)) / (d_k ** 0.5)
     return scores
+
 ```
 
 ---
@@ -654,6 +685,7 @@ def layer_norm(x, gamma, beta, eps=1e-5):
     
     # Scale and shift
     return gamma * x_norm + beta
+
 ```
 
 ### 🤖 Application 2: Cosine Similarity for Retrieval
@@ -677,6 +709,7 @@ def cosine_similarity_search(query, database):
     top_k_scores, top_k_indices = torch.topk(similarities, k=10)
     
     return top_k_indices, top_k_scores
+
 ```
 
 ### 🤖 Application 3: Weight Decay Regularization
@@ -694,6 +727,7 @@ def weight_decay_loss(model, lambda_l2=0.01):
 
 # In practice, use optimizer's weight_decay parameter:
 # optimizer = torch.optim.AdamW(model.parameters(), weight_decay=0.01)
+
 ```
 
 ---

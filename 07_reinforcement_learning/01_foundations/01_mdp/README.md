@@ -30,6 +30,7 @@ Where:
   P: S × A × S → [0,1], transition probability P(s'|s,a)
   R: S × A × S → ℝ, reward function R(s,a,s')
   γ: [0,1], discount factor
+
 ```
 
 ---
@@ -42,6 +43,7 @@ The future is conditionally independent of the past given the present:
 
 ```
 P(s_{t+1} | s_t, a_t, s_{t-1}, a_{t-1}, ..., s_0, a_0) = P(s_{t+1} | s_t, a_t)
+
 ```
 
 ### Intuition
@@ -57,6 +59,7 @@ P(s_{t+1}, r_{t+1} | s_0, a_0, r_1, s_1, a_1, ..., s_t, a_t)
     = P(s_{t+1}, r_{t+1} | s_t, a_t)
 
 This is the foundation of all RL algorithms!
+
 ```
 
 ---
@@ -71,6 +74,7 @@ V^π(s) = E_π[G_t | S_t = s]
        = E_π[Σ_{k=0}^∞ γ^k R_{t+k+1} | S_t = s]
 
 Where G_t = R_{t+1} + γR_{t+2} + γ²R_{t+3} + ... is the return.
+
 ```
 
 ### Action-Value Function Q^π(s,a)
@@ -79,6 +83,7 @@ Where G_t = R_{t+1} + γR_{t+2} + γ²R_{t+3} + ... is the return.
 Definition:
 Q^π(s,a) = E_π[G_t | S_t = s, A_t = a]
          = E_π[Σ_{k=0}^∞ γ^k R_{t+k+1} | S_t = s, A_t = a]
+
 ```
 
 ### Relationship Between V and Q
@@ -90,6 +95,7 @@ Q^π(s,a) = R(s,a) + γ Σ_{s'} P(s'|s,a) V^π(s')
 
 Combining:
 V^π(s) = Σ_a π(a|s) [R(s,a) + γ Σ_{s'} P(s'|s,a) V^π(s')]
+
 ```
 
 ---
@@ -107,6 +113,7 @@ V^π(s) = E_π[G_t | S_t = s]
        = Σ_a π(a|s) [R(s,a) + γ Σ_{s'} P(s'|s,a) V^π(s')]
 
 This is the Bellman Expectation Equation for V!
+
 ```
 
 ### Bellman Expectation Equation for Q
@@ -116,6 +123,7 @@ Q^π(s,a) = E_π[G_t | S_t = s, A_t = a]
          = E[R_{t+1} + γ E_π[G_{t+1}] | S_t = s, A_t = a]
          = R(s,a) + γ Σ_{s'} P(s'|s,a) Σ_{a'} π(a'|s') Q^π(s',a')
          = R(s,a) + γ Σ_{s'} P(s'|s,a) V^π(s')
+
 ```
 
 ### Bellman Optimality Equations
@@ -128,6 +136,7 @@ V*(s) = max_a Q*(s,a)
 
 Q*(s,a) = R(s,a) + γ Σ_{s'} P(s'|s,a) max_{a'} Q*(s',a')
         = R(s,a) + γ Σ_{s'} P(s'|s,a) V*(s')
+
 ```
 
 ---
@@ -151,6 +160,7 @@ For any MDP, there exists an optimal policy π* that is:
    π*(s) = argmax_a Q*(s,a)
 
 3. If multiple actions are optimal, any deterministic selection works.
+
 ```
 
 ---
@@ -163,6 +173,7 @@ For any MDP, there exists an optimal policy π* that is:
 Define the Bellman optimality operator T:
 
 (TQ)(s,a) = R(s,a) + γ Σ_{s'} P(s'|s,a) max_{a'} Q(s',a')
+
 ```
 
 ### Contraction Property
@@ -180,6 +191,7 @@ Proof:
     = γ ||Q₁ - Q₂||_∞
 
 Since γ < 1, T is a contraction.
+
 ```
 
 ### Consequences
@@ -188,6 +200,7 @@ Since γ < 1, T is a contraction.
 1. Q* is the unique fixed point: TQ* = Q*
 2. Value iteration converges: Q_{n+1} = TQ_n → Q*
 3. Convergence rate: ||Q_n - Q*||_∞ ≤ γⁿ ||Q₀ - Q*||_∞
+
 ```
 
 ---
@@ -355,6 +368,7 @@ def value_iteration(mdp: MDP, theta: float = 1e-8) -> Tuple[np.ndarray, np.ndarr
     policy = policy_improvement(mdp, V)
     
     return V, policy
+
 ```
 
 ---

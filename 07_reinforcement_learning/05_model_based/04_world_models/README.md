@@ -59,6 +59,7 @@ A world model consists of:
 
 4. (Optional) Decoder: ŝ_t = D_ω(z_t)
    Reconstructs observations
+
 ```
 
 ### Latent Space Dynamics
@@ -75,6 +76,7 @@ Benefits:
   - Lower-dimensional (faster planning)
   - Captures relevant features
   - Ignores irrelevant details
+
 ```
 
 ---
@@ -95,6 +97,7 @@ Where:
   q_ψ(z|s) = encoder (posterior)
   p(z) = prior (typically N(0,I))
   p_θ(z'|z,a) = dynamics model
+
 ```
 
 ### Reparameterization Trick
@@ -107,6 +110,7 @@ Sample via:
   z = μ_ψ(s) + σ_ψ(s) ⊙ ε,  where ε ~ N(0, I)
 
 This allows gradient flow: ∂L/∂ψ well-defined
+
 ```
 
 ---
@@ -125,6 +129,7 @@ Stochastic latent:
 Combined state: (h_t, z_t)
   - h_t: Deterministic, long-term memory
   - z_t: Stochastic, captures uncertainty
+
 ```
 
 ### RSSM Loss (Dreamer-style)
@@ -138,6 +143,7 @@ L = E_t [ -log p(x_t|z_t,h_t)         (reconstruction)
 Where:
   p(z_t|h_t) = prior (prediction before observation)
   q(z_t|h_t,x_t) = posterior (after seeing observation)
+
 ```
 
 ---
@@ -158,6 +164,7 @@ Aleatoric (environment stochasticity):
   - Inherent randomness
   - Irreducible
   - Model with distribution: p(s'|s,a)
+
 ```
 
 ### Ensemble World Models
@@ -172,6 +179,7 @@ Prediction:
 Use uncertainty for:
   - Exploration bonus: r_i ∝ σ(s,a)
   - Conservative planning: penalize high variance
+
 ```
 
 ---
@@ -190,6 +198,7 @@ Algorithm:
   6. Repeat
 
 Ratio of real:synthetic typically 1:10 or higher
+
 ```
 
 ### Analytic Policy Gradient (Dreamer)
@@ -204,6 +213,7 @@ Can backprop through imagined trajectory:
   ∂s_{t+1}/∂a_t = ∂f_θ/∂a_t
 
 This is more efficient than REINFORCE!
+
 ```
 
 ---
@@ -243,6 +253,7 @@ class WorldModel(nn.Module):
             r = self.reward_head(h)
             imagined.append((z, r))
         return imagined
+
 ```
 
 ---

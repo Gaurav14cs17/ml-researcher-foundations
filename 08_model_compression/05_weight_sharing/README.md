@@ -25,6 +25,7 @@
 
 ```math
 \min_{\{c_j\}, \{a_i\}} \sum_{i=1}^{n} \|w_i - c_{a_i}\|^2
+
 ```
 
 Where:
@@ -44,12 +45,14 @@ Where:
 
 ```math
 \text{Bits}_{original} = n \times 32 \text{ bits}
+
 ```
 
 **Clustered Storage:**
 
 ```math
 \text{Bits}_{clustered} = K \times 32 + n \times \lceil\log_2(K)\rceil \text{ bits}
+
 ```
 
 - $K \times 32$: Store $K$ centroids in FP32
@@ -59,12 +62,14 @@ Where:
 
 ```math
 CR = \frac{32n}{32K + n\lceil\log_2(K)\rceil}
+
 ```
 
 **For $n \gg K$:**
 
 ```math
 CR \approx \frac{32}{\lceil\log_2(K)\rceil}
+
 ```
 
 | K | Bits/Index | CR |
@@ -80,6 +85,7 @@ CR \approx \frac{32}{\lceil\log_2(K)\rceil}
 
 ```math
 H = -\sum_{j=1}^{K} p_j \log_2(p_j)
+
 ```
 
 Where $p\_j = \frac{|S\_j|}{n}$ is the fraction of weights in cluster $j$.
@@ -88,6 +94,7 @@ Where $p\_j = \frac{|S\_j|}{n}$ is the fraction of weights in cluster $j$.
 
 ```math
 H \leq \mathbb{E}[\text{bits per weight}] \leq H + 1
+
 ```
 
 ---
@@ -101,24 +108,28 @@ H \leq \mathbb{E}[\text{bits per weight}] \leq H + 1
 ```math
 \text{Input embedding: } E_{in} \in \mathbb{R}^{V \times d}
 \text{Output projection: } W_{out} \in \mathbb{R}^{d \times V}
+
 ```
 
 **With Weight Tying:**
 
 ```math
 W_{out} = E_{in}^T
+
 ```
 
 **Parameter Savings:**
 
 ```math
 \Delta P = V \times d
+
 ```
 
 For LLaMA-7B ($V=32000$, $d=4096$):
 
 ```math
 \Delta P = 32000 \times 4096 = 131M \text{ parameters} \approx 500 \text{ MB}
+
 ```
 
 ### 5. Cross-Layer Parameter Sharing (ALBERT)
@@ -127,18 +138,21 @@ For LLaMA-7B ($V=32000$, $d=4096$):
 
 ```math
 \theta_l = \{W_Q^l, W_K^l, W_V^l, W_O^l, W_1^l, W_2^l\}
+
 ```
 
 **ALBERT:** All layers share the same parameters
 
 ```math
 \theta = \theta_1 = \theta_2 = ... = \theta_L
+
 ```
 
 **Compression Factor:**
 
 ```math
 CR = L \times
+
 ```
 
 For BERT-Large ($L=24$): 24× parameter reduction in attention/FFN layers!
@@ -151,6 +165,7 @@ For BERT-Large ($L=24$): 24× parameter reduction in attention/FFN layers!
 
 ```math
 E = E_1 \times E_2
+
 ```
 
 Where:
@@ -161,12 +176,14 @@ Where:
 
 ```math
 V \times H \to V \times E + E \times H
+
 ```
 
 For $V=30000$, $H=1024$, $E=128$:
 
 ```math
 30M \to 3.84M + 0.13M = 3.97M \quad (7.5\times \text{ reduction})
+
 ```
 
 ### 7. Multi-Query Attention (MQA)
@@ -178,12 +195,14 @@ Single K,V projection shared across all heads:
 
 ```math
 W_K, W_V \text{ shared for all heads}
+
 ```
 
 **Parameter Reduction (MQA):**
 
 ```math
 \frac{h \times d_k \times 2}{d_k \times 2} = h \times
+
 ```
 
 ---
@@ -191,6 +210,7 @@ W_K, W_V \text{ shared for all heads}
 ## 🎯 Core Ideas
 
 ### Weight Clustering
+
 ```
 Original weights:
 [1.23, 1.19, 1.25, 0.01, 0.03, -0.02, 0.89, 0.91, 0.87]
@@ -203,15 +223,18 @@ Storage:
 +-- 3 centroids (FP32): 12 bytes
 +-- 9 indices (2 bits each): 3 bytes
 +-- Total: 15 bytes vs 36 bytes original (2.4× compression)
+
 ```
 
 ### Weight Sharing
+
 ```
 ALBERT Cross-Layer Sharing:
 +-------------------------------------+
 |  Layer 1-12: All use same W         |
 |  Parameters: 1/12 of BERT!          |
 +-------------------------------------+
+
 ```
 
 ---
@@ -311,6 +334,7 @@ class MultiQueryAttention(nn.Module):
         out = torch.einsum('bhlm,bmhd->blhd', attn, V.expand(-1,-1,self.n_heads,-1))
         
         return self.W_o(out.reshape(B, L, D))
+
 ```
 
 ---

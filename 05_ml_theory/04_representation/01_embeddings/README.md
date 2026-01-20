@@ -43,6 +43,7 @@ An embedding is a mapping:
 
 ```math
 E: \mathcal{V} \to \mathbb{R}^d
+
 ```
 
 where \(\mathcal{V}\) is a discrete vocabulary and \(d\) is the embedding dimension.
@@ -51,6 +52,7 @@ Implemented as a lookup table \(E \in \mathbb{R}^{|\mathcal{V}| \times d}\):
 
 ```math
 e_i = E[i] = E^\top \mathbf{1}_i
+
 ```
 
 where \(\mathbf{1}_i\) is a one-hot vector.
@@ -65,12 +67,14 @@ Given word \(w_t\), predict context words \(w_{t+j}\):
 
 ```math
 P(w_{t+j} | w_t) = \frac{\exp(v_{w_{t+j}}^\top v_{w_t})}{\sum_{w \in \mathcal{V}} \exp(v_w^\top v_{w_t})}
+
 ```
 
 **Objective:** Maximize log-likelihood:
 
 ```math
 \mathcal{L} = \sum_{t=1}^T \sum_{-c \leq j \leq c, j \neq 0} \log P(w_{t+j} | w_t)
+
 ```
 
 ### Negative Sampling
@@ -79,6 +83,7 @@ Approximate softmax with negative sampling:
 
 ```math
 \log \sigma(v_{w_O}^\top v_{w_I}) + \sum_{i=1}^k \mathbb{E}_{w_i \sim P_n(w)}[\log \sigma(-v_{w_i}^\top v_{w_I})]
+
 ```
 
 where \(P_n(w) \propto \text{freq}(w)^{3/4}\).
@@ -93,12 +98,14 @@ For positive pair \((x, x^+)\) and negative samples \(\{x_i^-\}_{i=1}^{K}\):
 
 ```math
 \mathcal{L}_{\text{NCE}} = -\log \frac{\exp(\text{sim}(f(x), f(x^+))/\tau)}{\exp(\text{sim}(f(x), f(x^+))/\tau) + \sum_{i=1}^K \exp(\text{sim}(f(x), f(x_i^-))/\tau)}
+
 ```
 
 **Theorem:** InfoNCE optimizes a lower bound on mutual information:
 
 ```math
 I(X; X^+) \geq \log K - \mathcal{L}_{\text{NCE}}
+
 ```
 
 ---
@@ -109,6 +116,7 @@ I(X; X^+) \geq \log K - \mathcal{L}_{\text{NCE}}
 
 ```math
 \text{sim}(u, v) = \frac{u \cdot v}{\|u\| \|v\|} = \cos \theta
+
 ```
 
 **Property:** Scale-invariant, range \([-1, 1]\).
@@ -117,12 +125,14 @@ I(X; X^+) \geq \log K - \mathcal{L}_{\text{NCE}}
 
 ```math
 d(u, v) = \|u - v\|_2 = \sqrt{\sum_i (u_i - v_i)^2}
+
 ```
 
 ### Dot Product
 
 ```math
 s(u, v) = u \cdot v = \sum_i u_i v_i
+
 ```
 
 **Connection:** For normalized vectors: \(\text{cosine}(u,v) = u \cdot v\).
@@ -264,6 +274,7 @@ def mean_pooling(token_embeddings, attention_mask):
     sum_embeddings = (token_embeddings * mask_expanded).sum(dim=1)
     sum_mask = mask_expanded.sum(dim=1).clamp(min=1e-9)
     return sum_embeddings / sum_mask
+
 ```
 
 ---

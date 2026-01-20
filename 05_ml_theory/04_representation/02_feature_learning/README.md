@@ -49,6 +49,7 @@ Formally:
     h* = argmin_h E_x[L(f ∘ h(x), y)]
     
 Where h is the feature extractor, f is the task head
+
 ```
 
 ### Information Bottleneck View
@@ -63,6 +64,7 @@ Where:
     I(Z; X) = information from input (compression)
     
 Good features: High I(Z;Y), Low I(Z;X) = discard noise
+
 ```
 
 ### Hierarchical Feature Decomposition
@@ -76,6 +78,7 @@ Layer 3: h₃(h₂) = σ(W₃ * h₂)    → Parts, shapes
 Layer N: hₙ(hₙ₋₁) = σ(Wₙ * hₙ₋₁) → Objects, concepts
 
 Each layer builds on the previous, creating abstraction hierarchy
+
 ```
 
 ---
@@ -108,6 +111,7 @@ With Deep Learning (Learned Features):
 |           Learned                             |
 |           (2012+)                             |
 +----------------------------------------------+
+
 ```
 
 ---
@@ -135,6 +139,7 @@ def get_features(image):
 
 # Features for transfer learning
 features = get_features(my_image)
+
 ```
 
 ### Visualizing Learned Features
@@ -160,6 +165,7 @@ def visualize_first_layer_filters(model):
         ax.axis('off')
     plt.suptitle('Learned First Layer Filters (Edge Detectors)')
     plt.show()
+
 ```
 
 ### Self-Supervised Feature Learning
@@ -192,6 +198,7 @@ class ContrastiveLearning(nn.Module):
     def get_features(self, x):
         """Use encoder output as features (not projection)"""
         return self.encoder(x)
+
 ```
 
 ---
@@ -207,6 +214,7 @@ Feature Learning
     |   +-- Masked (BERT, MAE)
     +-- Autoencoders (reconstruction objective)
     +-- Disentanglement (VAE, β-VAE)
+
 ```
 
 ---

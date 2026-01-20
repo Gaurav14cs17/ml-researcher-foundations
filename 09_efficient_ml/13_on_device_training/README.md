@@ -65,18 +65,21 @@ This lecture covers **training on edge devices**:
 
 ```math
 M_{inf} = M_{weights} + M_{act}
+
 ```
 
 **Training:**
 
 ```math
 M_{train} = M_{weights} + M_{grad} + M_{opt} + M_{act} + M_{act\_backward}
+
 ```
 
 **Ratio:**
 
 ```math
 \frac{M_{train}}{M_{inf}} = 1 + 1 + 2 + \frac{M_{act\_backward}}{M_{act}} \approx 10-20\times
+
 ```
 
 ---
@@ -87,6 +90,7 @@ M_{train} = M_{weights} + M_{grad} + M_{opt} + M_{act} + M_{act\_backward}
 
 ```math
 \nabla_W \mathcal{L} = \frac{\partial \mathcal{L}}{\partial Y} X^T
+
 ```
 
 Requires storing \( X \) (full activation).
@@ -95,6 +99,7 @@ Requires storing \( X \) (full activation).
 
 ```math
 \nabla_b \mathcal{L} = \frac{\partial \mathcal{L}}{\partial Y} \mathbf{1}
+
 ```
 
 Only requires output gradient, not input activation!
@@ -103,6 +108,7 @@ Only requires output gradient, not input activation!
 
 ```math
 \frac{M_{bias}}{M_{full}} = \frac{d_{out}}{d_{in} \times d_{out}} = \frac{1}{d_{in}}
+
 ```
 
 For \( d_{in} = 1024 \): ~1000× reduction in trainable parameters, ~10× reduction in activation memory.
@@ -115,18 +121,21 @@ For \( d_{in} = 1024 \): ~1000× reduction in trainable parameters, ~10× reduct
 
 ```math
 I_l = \left\| \frac{\partial \mathcal{L}}{\partial W_l} \right\|_F
+
 ```
 
 **Update only top-k layers:**
 
 ```math
 \mathcal{L}_{update} = \{l : I_l > \tau\}
+
 ```
 
 **Memory reduction:**
 
 ```math
 \frac{M_{sparse}}{M_{full}} = \frac{k}{L}
+
 ```
 
 ---
@@ -140,12 +149,14 @@ I_l = \left\| \frac{\partial \mathcal{L}}{\partial W_l} \right\|_F
 
 ```math
 w_{t+1}^k = w_t - \eta \sum_{i=1}^{E} \nabla \mathcal{L}_k(w_t^{(i)})
+
 ```
 
 3. Server aggregates:
 
 ```math
 w_{t+1} = \sum_{k=1}^{K} \frac{n_k}{n} w_{t+1}^k
+
 ```
 
 where \( n_k \) is samples on client \( k \), \( n = \sum_k n_k \).
@@ -154,6 +165,7 @@ where \( n_k \) is samples on client \( k \), \( n = \sum_k n_k \).
 
 ```math
 \mathbb{E}[\mathcal{L}(w_T)] - \mathcal{L}(w^*) \leq O\left(\frac{1}{\sqrt{KT}}\right)
+
 ```
 
 ---
@@ -169,6 +181,7 @@ where \( n_k \) is samples on client \( k \), \( n = \sum_k n_k \).
 ```math
 e_{t+1} = g_t - Q(g_t + e_t)
 \tilde{g}_t = Q(g_t + e_t)
+
 ```
 
 Accumulate quantization error, add to next gradient.
@@ -183,18 +196,21 @@ Accumulate quantization error, add to next gradient.
 
 ```math
 g_t^{DP} = \text{clip}(g_t, C) + \mathcal{N}(0, \sigma^2 C^2 I)
+
 ```
 
 **Privacy budget:**
 
 ```math
 (\epsilon, \delta)\text{-DP}
+
 ```
 
 Composition over rounds:
 
 ```math
 \epsilon_{total} = \sqrt{2T \ln(1/\delta)} \cdot \epsilon_{step}
+
 ```
 
 ---
@@ -207,18 +223,21 @@ Composition over rounds:
 
 ```math
 M_{act}^{full} = B \times L \times d_{in} \times d_{out}
+
 ```
 
 **Bias training (storing output only):**
 
 ```math
 M_{act}^{bias} = B \times L \times d_{out}
+
 ```
 
 **Reduction:**
 
 ```math
 \frac{M_{act}^{bias}}{M_{act}^{full}} = \frac{1}{d_{in}}
+
 ```
 
 ---
@@ -229,12 +248,14 @@ M_{act}^{bias} = B \times L \times d_{out}
 
 ```math
 E_{train} = P \times t = P \times \frac{B \times \text{epochs} \times \text{FLOPs\_per\_sample}}{\text{FLOPS}}
+
 ```
 
 **Battery constraint:**
 
 ```math
 E_{train} < E_{battery} \times \text{fraction}
+
 ```
 
 Typically limit training to 10% of battery.

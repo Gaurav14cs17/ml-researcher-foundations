@@ -46,6 +46,7 @@ For a probability measure $P$ on sample space $\Omega$:
 \textbf{Axiom 1: } P(A) \geq 0 \text{ for all events } A
 \textbf{Axiom 2: } P(\Omega) = 1
 \textbf{Axiom 3: } P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i) \text{ for disjoint } A_i
+
 ```
 
 ### Derived Properties
@@ -54,18 +55,21 @@ For a probability measure $P$ on sample space $\Omega$:
 
 ```math
 P(A^c) = 1 - P(A)
+
 ```
 
 **Inclusion-Exclusion:**
 
 ```math
 P(A \cup B) = P(A) + P(B) - P(A \cap B)
+
 ```
 
 **Union Bound:**
 
 ```math
 P\left(\bigcup_{i=1}^{n} A_i\right) \leq \sum_{i=1}^{n} P(A_i)
+
 ```
 
 ---
@@ -74,6 +78,7 @@ P\left(\bigcup_{i=1}^{n} A_i\right) \leq \sum_{i=1}^{n} P(A_i)
 
 ```math
 P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}
+
 ```
 
 | Term | Name | Interpretation |
@@ -87,6 +92,7 @@ P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}
 
 ```math
 \text{Posterior} \propto \text{Likelihood} \times \text{Prior}
+
 ```
 
 ---
@@ -97,6 +103,7 @@ P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}
 
 ```math
 E[X] = \begin{cases} \sum_x x \cdot P(X=x) & \text{discrete} \\ \int x \cdot f(x) \, dx & \text{continuous} \end{cases}
+
 ```
 
 **Properties:**
@@ -107,6 +114,7 @@ E[X] = \begin{cases} \sum_x x \cdot P(X=x) & \text{discrete} \\ \int x \cdot f(x
 
 ```math
 \text{Var}(X) = E[(X - \mu)^2] = E[X^2] - (E[X])^2
+
 ```
 
 **Properties:**
@@ -141,12 +149,14 @@ E[X] = \begin{cases} \sum_x x \cdot P(X=x) & \text{discrete} \\ \int x \cdot f(x
 
 ```math
 \bar{X}_n = \frac{1}{n}\sum_{i=1}^{n} X_i \xrightarrow{p} \mu \quad \text{as } n \to \infty
+
 ```
 
 ### Central Limit Theorem
 
 ```math
 \frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma} \xrightarrow{d} \mathcal{N}(0, 1) \quad \text{as } n \to \infty
+
 ```
 
 **Key insight:** Sum of ANY i.i.d. random variables → Gaussian!
@@ -167,6 +177,7 @@ This perspective gives us:
 • Regularization = priors on θ
 • Uncertainty quantification
 • Generalization theory
+
 ```
 
 ---
@@ -203,6 +214,7 @@ print(f"Sample means are Gaussian: {stats.normaltest(sample_means).pvalue:.4f}")
 dist = torch.distributions.Normal(0, 1)
 samples = dist.sample((1000,))
 log_prob = dist.log_prob(samples)  # For likelihood computation
+
 ```
 
 ---

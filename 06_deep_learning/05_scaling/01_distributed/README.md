@@ -24,6 +24,7 @@
 ## 📐 Mathematical Foundations
 
 ### Gradient Aggregation
+
 ```
 With N GPUs, each computing gradients on batch Bᵢ:
 
@@ -31,9 +32,11 @@ All-reduce gradient:
 ∇L = (1/N) Σᵢ₌₁ᴺ ∇L(Bᵢ)
 
 Equivalent to single GPU with batch size N × B
+
 ```
 
 ### Memory Analysis (per GPU)
+
 ```
 Dense Training:
 • Model params: P
@@ -45,15 +48,18 @@ FSDP/ZeRO Stage 3:
 • Sharded across N GPUs
 • Per GPU: 4P / N
 • Enables training N× larger models!
+
 ```
 
 ### Communication Costs
+
 ```
 All-reduce: 2(N-1)/N × P × sizeof(dtype)
 
 Ring all-reduce:
 • Time: 2(N-1) × P / (N × bandwidth)
 • Nearly linear scaling for large N
+
 ```
 
 ---
@@ -77,6 +83,7 @@ Each GPU processes different batch
 Gradients synchronized via all-reduce
 
 torch.nn.parallel.DistributedDataParallel
+
 ```
 
 ---
@@ -89,6 +96,7 @@ Each GPU only holds 1/N of parameters
 Gather before forward, release after
 
 Enables training models larger than single GPU memory!
+
 ```
 
 ---
@@ -107,6 +115,7 @@ model = DDP(model.cuda(), device_ids=[local_rank])
 loss = model(batch)
 loss.backward()
 optimizer.step()
+
 ```
 
 ---

@@ -24,6 +24,7 @@
 ## 📐 Mathematical Foundations
 
 ### Chinchilla Scaling Laws
+
 ```
 L(N, D) = E + A/N^α + B/D^β
 
@@ -35,9 +36,11 @@ Where:
 
 Optimal compute allocation:
 N_opt ∝ C^0.5, D_opt ∝ C^0.5
+
 ```
 
 ### Memory Requirements
+
 ```
 Model parameters: P bytes (FP16 = 2P)
 Gradients: P bytes
@@ -46,9 +49,11 @@ Activations: O(batch × seq × hidden)
 
 Total for training: ~16P (FP32 + Adam)
 With mixed precision: ~8-12P
+
 ```
 
 ### FlashAttention I/O Complexity
+
 ```
 Standard Attention: O(N² d) memory
 FlashAttention: O(N) memory (uses tiling)
@@ -56,15 +61,18 @@ FlashAttention: O(N) memory (uses tiling)
 Key insight:
 softmax(QKᵀ) V computed in blocks
 avoiding N² intermediate storage
+
 ```
 
 ### Gradient Accumulation
+
 ```
 Effective batch size:
 B_eff = B × accumulation_steps × num_gpus
 
 Update:
 θ ← θ - η (1/K) Σₖ ∇L(B_k)
+
 ```
 
 ---
@@ -90,6 +98,7 @@ Where:
 • C = compute (FLOPs)
 
 More compute → better models (predictably!)
+
 ```
 
 ---
@@ -135,6 +144,7 @@ Scaling --> Training models > 1B params
        --> Long context (128K+ tokens)
        --> Affordable fine-tuning
        --> Research on limited hardware
+
 ```
 
 ---

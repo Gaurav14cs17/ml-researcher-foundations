@@ -100,6 +100,7 @@ By the end of this article, you will be able to:
 |    derive Q       exist...    + step     object       find contradiction |
 |                                                                             |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ### Proof Structure Templates
@@ -123,6 +124,7 @@ By the end of this article, you will be able to:
 |  3. Often easier              3. All cases covered      3. Conclude ∃x ∎   |
 |                                                                             |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -167,6 +169,7 @@ By the end of this article, you will be able to:
 |   ∎                                                             |
 |                                                                 |
 +-----------------------------------------------------------------+
+
 ```
 
 ### 📝 Example 1: Sum of Even Numbers (Simple)
@@ -206,6 +209,7 @@ By the end of this article, you will be able to:
 
 ```math
 f(x_k) - f(x^*) \leq \frac{2L\|x_0 - x^*\|^2}{k}
+
 ```
 
 **Proof:**
@@ -286,6 +290,7 @@ def direct_proof_gradient_descent():
 
 # Run demonstration
 gaps = direct_proof_gradient_descent()
+
 ```
 
 ---
@@ -315,6 +320,7 @@ gaps = direct_proof_gradient_descent()
 |   ∎                                                             |
 |                                                                 |
 +-----------------------------------------------------------------+
+
 ```
 
 ### 📝 Example 1: √2 is Irrational (Classic)
@@ -458,6 +464,7 @@ def proof_unique_minimum():
 # Run demonstrations
 proof_sqrt2_irrational()
 proof_unique_minimum()
+
 ```
 
 ---
@@ -498,6 +505,7 @@ proof_unique_minimum()
 |   By induction, P(n) holds for all n ≥ n₀.  ∎                  |
 |                                                                 |
 +-----------------------------------------------------------------+
+
 ```
 
 ### 📝 Example 1: Sum Formula (Simple)
@@ -693,6 +701,7 @@ def verify_backprop_induction():
 
 verify_sum_formula()
 verify_backprop_induction()
+
 ```
 
 ---
@@ -726,6 +735,7 @@ verify_backprop_induction()
 |   Since ¬Q → ¬P, we have P → Q.  ∎                             |
 |                                                                 |
 +-----------------------------------------------------------------+
+
 ```
 
 ### 📝 Example 1: n² Even → n Even (Simple)
@@ -825,6 +835,7 @@ verify_backprop_induction()
 |   P is true.  ∎                                                 |
 |                                                                 |
 +-----------------------------------------------------------------+
+
 ```
 
 ### 📝 Example 1: ReLU is 1-Lipschitz (Simple)
@@ -893,6 +904,7 @@ Two types:
 |                                                                 |
 |   Note: This doesn't tell you WHAT x is!                       |
 +-----------------------------------------------------------------+
+
 ```
 
 ### 📐 Uniqueness Template
@@ -909,6 +921,7 @@ Two types:
 |                        Show x₁ = x₂.                            |
 |   ∎                                                             |
 +-----------------------------------------------------------------+
+
 ```
 
 ### 📝 Example: Unique Fixed Point (Banach)
@@ -954,6 +967,7 @@ Application: Generalization error
 |R(h) - R̂(h)| ≤ |R(h) - R(h*)| + |R(h*) - R̂(h*)|+ |R̂(h*) - R̂(h)|
                   +-------------+   +---------------+   +------------+
                    Approximation      Estimation          Optimization
+
 ```
 
 ### Pattern 2: Telescoping Sum
@@ -964,6 +978,7 @@ Application: Generalization error
 Application: Convergence analysis
 f(x₀) - f(x*) = Σₖ [f(xₖ) - f(xₖ₊₁)]
                     +- progress per step
+
 ```
 
 ### Pattern 3: Squeeze/Sandwich Theorem
@@ -974,6 +989,7 @@ Then lim f(n) = L
 
 Application: Big-Θ bounds
 c₁g(n) ≤ f(n) ≤ c₂g(n) ⟹ f(n) = Θ(g(n))
+
 ```
 
 ### Pattern 4: Contraction/Fixed Point
@@ -984,6 +1000,7 @@ Then T has unique fixed point x*
 
 Application: Value iteration in RL
 ||TV₁ - TV₂||∞ ≤ γ||V₁ - V₂||∞ ⟹ V* exists, unique
+
 ```
 
 ---
@@ -1013,6 +1030,7 @@ Application: Value iteration in RL
 
 ✅ RIGHT:
    Start from P, use OTHER known facts to derive Q.
+
 ```
 
 ### Mistake 2: Proving Converse Instead
@@ -1026,6 +1044,7 @@ Application: Value iteration in RL
 
 ✅ RIGHT:
    "Assume it's raining. Rain falls on ground. Ground gets wet."
+
 ```
 
 ### Mistake 3: Incomplete Case Analysis
@@ -1037,6 +1056,7 @@ Application: Value iteration in RL
 
 ✅ RIGHT:
    Prove for x > 0, x = 0, and x < 0.
+
 ```
 
 ### Mistake 4: Wrong Induction Base
@@ -1047,6 +1067,7 @@ Application: Value iteration in RL
 
 ✅ RIGHT:
    Match base case to the claim's starting point.
+
 ```
 
 ### Mistake 5: Using Inductive Hypothesis Wrong
@@ -1057,6 +1078,7 @@ Application: Value iteration in RL
 
 ✅ RIGHT:
    Only use P(k) (or P(1),...,P(k) for strong induction).
+
 ```
 
 ---
@@ -1347,6 +1369,7 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("ALL DEMONSTRATIONS COMPLETE")
     print("=" * 60)
+
 ```
 
 ---

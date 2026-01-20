@@ -27,15 +27,18 @@ For a fully connected layer \(y = Wx\) where \(W \in \mathbb{R}^{m \times n}\):
 
 ```math
 y_i = \sum_{j=1}^{n} w_{ij} x_j
+
 ```
 
 **Variance of output:**
+
 ```
 Var[yᵢ] = Var[Σⱼ wᵢⱼ xⱼ]
         = Σⱼ Var[wᵢⱼ xⱼ]         (assuming independence)
         = Σⱼ E[wᵢⱼ²] E[xⱼ²]      (if E[w]=E[x]=0)
         = n · Var[w] · E[x²]
         = n · Var[w] · Var[x]     (if E[x]=0)
+
 ```
 
 **Key insight:** If \(\text{Var}[w] = 1/n\), then \(\text{Var}[y] = \text{Var}[x]\)
@@ -49,6 +52,7 @@ Var[yᵢ] = Var[Σⱼ wᵢⱼ xⱼ]
 **Goal:** Keep variance constant in both forward and backward passes.
 
 **Forward pass analysis:**
+
 ```
 For layer l: y⁽ˡ⁾ = W⁽ˡ⁾ a⁽ˡ⁻¹⁾
 
@@ -56,9 +60,11 @@ Var[y⁽ˡ⁾] = n_in · Var[W] · Var[a⁽ˡ⁻¹⁾]
 
 For Var[y] = Var[a], we need:
 Var[W] = 1/n_in
+
 ```
 
 **Backward pass analysis:**
+
 ```
 Gradient: ∂L/∂a⁽ˡ⁻¹⁾ = W⁽ˡ⁾ᵀ · ∂L/∂y⁽ˡ⁾
 
@@ -66,26 +72,32 @@ Var[∂L/∂a⁽ˡ⁻¹⁾] = n_out · Var[W] · Var[∂L/∂y⁽ˡ⁾]
 
 For gradient variance preservation:
 Var[W] = 1/n_out
+
 ```
 
 **Xavier compromise:**
 
 ```math
 \text{Var}[W] = \frac{2}{n_{in} + n_{out}}
+
 ```
 
 **Xavier Distributions:**
+
 ```
 Uniform: W ~ U[-√(6/(n_in + n_out)), √(6/(n_in + n_out))]
 Normal:  W ~ N(0, 2/(n_in + n_out))
+
 ```
 
 **Proof for uniform bounds:**
+
 ```
 For U[-a, a]: Var = (2a)²/12 = a²/3
 
 Setting a²/3 = 2/(n_in + n_out):
 a = √(6/(n_in + n_out)) ✓
+
 ```
 
 ---
@@ -97,6 +109,7 @@ a = √(6/(n_in + n_out)) ✓
 For ReLU: \(a = \max(0, y)\)
 
 **Effect on variance:**
+
 ```
 E[a] = E[max(0, y)]
 
@@ -110,6 +123,7 @@ E[a²] = ∫₀^∞ y² · (1/√(2πσ²)) exp(-y²/2σ²) dy
 Var[a] = E[a²] - E[a]²
        = σ²/2 - σ²/(2π)
        ≈ σ²/2  (approximately, since π > 2)
+
 ```
 
 **Key insight:** ReLU cuts variance roughly in half!
@@ -117,24 +131,28 @@ Var[a] = E[a²] - E[a]²
 ### Derivation
 
 **For ReLU, forward pass:**
+
 ```
 Var[a⁽ˡ⁾] ≈ (1/2) · n_in · Var[W] · Var[a⁽ˡ⁻¹⁾]
 
 To preserve variance:
 (1/2) · n_in · Var[W] = 1
 Var[W] = 2/n_in
+
 ```
 
 **He Initialization:**
 
 ```math
 W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)
+
 ```
 
 Or for uniform:
 
 ```math
 W \sim U\left[-\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}}\right]
+
 ```
 
 ---
@@ -158,19 +176,23 @@ For LeakyReLU with slope \(\alpha\):
 
 ```math
 \text{LeakyReLU}(x) = \begin{cases} x & x > 0 \\ \alpha x & x \leq 0 \end{cases}
+
 ```
 
 **Variance factor:**
+
 ```
 E[a²] = (1/2)·E[y²|y>0] + (1/2)·α²·E[y²|y<0]
       = (1/2)·σ² + (1/2)·α²·σ²
       = σ²(1 + α²)/2
+
 ```
 
 **Adjusted initialization:**
 
 ```math
 \text{Var}[W] = \frac{2}{(1 + \alpha^2) \cdot n_{in}}
+
 ```
 
 ---
@@ -182,12 +204,14 @@ E[a²] = (1/2)·E[y²|y>0] + (1/2)·α²·E[y²|y<0]
 **Key property:** Orthogonal matrices preserve norms.
 
 For \(Q^TQ = I\):
+
 ```
 ||Qx||² = xᵀQᵀQx = xᵀx = ||x||²
 
 This means:
 - Forward pass: Activations don't explode/vanish
 - Backward pass: Gradients don't explode/vanish
+
 ```
 
 ### Gram-Schmidt Orthogonalization
@@ -208,6 +232,7 @@ def orthogonal_init(shape):
     q *= np.sign(d)
     
     return q
+
 ```
 
 ---
@@ -315,6 +340,7 @@ random_vars = test_initialization(lambda s: np.random.randn(*s) * 0.01)
 
 for i in range(11):
     print(f"{i:<8} {xavier_vars[i]:<12.4f} {he_vars[i]:<12.4f} {random_vars[i]:<12.6f}")
+
 ```
 
 ### PyTorch Implementation
@@ -482,6 +508,7 @@ x = torch.randn(32, 784)
 y = model(x)
 print(f"Output shape: {y.shape}")
 print(f"Output mean: {y.mean():.4f}, std: {y.std():.4f}")
+
 ```
 
 ---

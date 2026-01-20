@@ -42,6 +42,7 @@ Efficient fine-tuning via low-rank decomposition
 ## 🌍 Why These Matter
 
 ### Flash Attention
+
 ```
 Problem: Standard attention O(n²) memory
          GPT-3: 2048 tokens max
@@ -50,9 +51,11 @@ Solution: Block-sparse computation in SRAM
          Modern LLMs: 100K+ tokens
 
 Impact: Long documents, code, conversations
+
 ```
 
 ### LoRA
+
 ```
 Problem: Fine-tuning 70B model = 280GB memory
          Storing 1000 adapters = 280TB
@@ -61,6 +64,7 @@ Solution: Low-rank updates = 200MB each
          1000 adapters = 200GB
 
 Impact: Personalized AI, multi-task models
+
 ```
 
 ---
@@ -84,6 +88,7 @@ Impact: Personalized AI, multi-task models
 |  Train large models on long docs    |
 |  Adapt efficiently to tasks         |
 +-------------------------------------+
+
 ```
 
 ---
@@ -101,6 +106,7 @@ Impact: Personalized AI, multi-task models
 ## 💻 Quick Start
 
 ### Flash Attention
+
 ```python
 import torch.nn.functional as F
 
@@ -109,9 +115,11 @@ output = F.scaled_dot_product_attention(
     query, key, value,
     is_causal=True
 )
+
 ```
 
 ### LoRA
+
 ```python
 from peft import LoraConfig, get_peft_model
 
@@ -121,6 +129,7 @@ config = LoraConfig(
     target_modules=["q_proj", "v_proj"]
 )
 model = get_peft_model(base_model, config)
+
 ```
 
 ---

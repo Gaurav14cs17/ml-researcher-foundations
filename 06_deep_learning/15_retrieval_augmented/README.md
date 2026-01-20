@@ -35,6 +35,7 @@ Key components:
 • Embedding model (sentence transformers)
 • Vector database (FAISS, Pinecone)
 • LLM (GPT, Llama)
+
 ```
 
 ---
@@ -60,6 +61,7 @@ qa_chain = RetrievalQA.from_chain_type(
 
 # Query
 answer = qa_chain.run("What is machine learning?")
+
 ```
 
 ---

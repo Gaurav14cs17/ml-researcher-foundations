@@ -33,12 +33,14 @@ Random vectors are essential for multivariate ML: each data point is a random ve
 
 ```math
 \mathbf{X} = [X_1, X_2, \ldots, X_n]^\top
+
 ```
 
 Each $X\_i$ is a random variable. The vector is a measurable function:
 
 ```math
 \mathbf{X}: \Omega \to \mathbb{R}^n
+
 ```
 
 ---
@@ -49,12 +51,14 @@ Each $X\_i$ is a random variable. The vector is a measurable function:
 
 ```math
 F_{\mathbf{X}}(x_1, \ldots, x_n) = P(X_1 \leq x_1, \ldots, X_n \leq x_n)
+
 ```
 
 ### Joint PMF (Discrete)
 
 ```math
 p_{\mathbf{X}}(x_1, \ldots, x_n) = P(X_1 = x_1, \ldots, X_n = x_n)
+
 ```
 
 ### Joint PDF (Continuous)
@@ -62,6 +66,7 @@ p_{\mathbf{X}}(x_1, \ldots, x_n) = P(X_1 = x_1, \ldots, X_n = x_n)
 ```math
 f_{\mathbf{X}}(x_1, \ldots, x_n) \geq 0
 \int_{-\infty}^{\infty} \cdots \int_{-\infty}^{\infty} f_{\mathbf{X}}(x_1, \ldots, x_n) \, dx_1 \cdots dx_n = 1
+
 ```
 
 ---
@@ -76,12 +81,14 @@ The marginal distribution of $X\_i$ is obtained by "integrating out" other varia
 
 ```math
 P(X_i = x) = \sum_{x_{-i}} P(X_1 = x_1, \ldots, X_n = x_n)
+
 ```
 
 **Continuous:**
 
 ```math
 f_{X_i}(x) = \int \cdots \int f_{\mathbf{X}}(x_1, \ldots, x_n) \, dx_{-i}
+
 ```
 
 where $x\_{-i}$ denotes all variables except $x\_i$.
@@ -90,12 +97,14 @@ where $x\_{-i}$ denotes all variables except $x\_i$.
 
 ```math
 f_{X_1}(x) = \int_{-\infty}^{\infty} f_{X_1, X_2}(x, y) \, dy
+
 ```
 
 For bivariate Gaussian $\mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$:
 
 ```math
 X_1 \sim \mathcal{N}(\mu_1, \Sigma_{11})
+
 ```
 
 ---
@@ -106,18 +115,21 @@ X_1 \sim \mathcal{N}(\mu_1, \Sigma_{11})
 
 ```math
 p(X_1 = x_1 | X_2 = x_2) = \frac{p(X_1 = x_1, X_2 = x_2)}{p(X_2 = x_2)}
+
 ```
 
 **Continuous:**
 
 ```math
 f(x|y) = \frac{f(x, y)}{f(y)}
+
 ```
 
 ### Chain Rule
 
 ```math
 p(x_1, x_2, \ldots, x_n) = p(x_1) \cdot p(x_2|x_1) \cdot p(x_3|x_1, x_2) \cdots p(x_n|x_1, \ldots, x_{n-1})
+
 ```
 
 ---
@@ -130,12 +142,14 @@ Random variables $X$ and $Y$ are **independent** if:
 
 ```math
 p(x, y) = p(x) \cdot p(y)
+
 ```
 
 **Equivalent:**
 
 ```math
 P(X \in A, Y \in B) = P(X \in A) \cdot P(Y \in B) \quad \forall A, B
+
 ```
 
 ### Conditional Independence
@@ -144,6 +158,7 @@ $X \perp Y | Z$ means:
 
 ```math
 p(x, y | z) = p(x|z) \cdot p(y|z)
+
 ```
 
 **Important:** 
@@ -158,6 +173,7 @@ p(x, y | z) = p(x|z) \cdot p(y|z)
 
 ```math
 \boldsymbol{\mu} = E[\mathbf{X}] = [E[X_1], \ldots, E[X_n]]^\top
+
 ```
 
 ### Covariance Matrix
@@ -165,6 +181,7 @@ p(x, y | z) = p(x|z) \cdot p(y|z)
 ```math
 \boldsymbol{\Sigma} = E[(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^\top]
 \Sigma_{ij} = \text{Cov}(X_i, X_j)
+
 ```
 
 ### Properties
@@ -184,6 +201,7 @@ If $\mathbf{Y} = \mathbf{A}\mathbf{X} + \mathbf{b}$:
 ```math
 E[\mathbf{Y}] = \mathbf{A}E[\mathbf{X}] + \mathbf{b}
 \text{Cov}(\mathbf{Y}) = \mathbf{A} \text{Cov}(\mathbf{X}) \mathbf{A}^\top
+
 ```
 
 ### Proof
@@ -193,6 +211,7 @@ E[\mathbf{Y}] = E[\mathbf{A}\mathbf{X} + \mathbf{b}] = \mathbf{A}E[\mathbf{X}] +
 \text{Cov}(\mathbf{Y}) = E[(\mathbf{Y} - E[\mathbf{Y}])(\mathbf{Y} - E[\mathbf{Y}])^\top]
 = E[\mathbf{A}(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^\top \mathbf{A}^\top]
 = \mathbf{A} E[(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^\top] \mathbf{A}^\top = \mathbf{A} \boldsymbol{\Sigma} \mathbf{A}^\top \quad \blacksquare
+
 ```
 
 ---
@@ -203,6 +222,7 @@ E[\mathbf{Y}] = E[\mathbf{A}\mathbf{X} + \mathbf{b}] = \mathbf{A}E[\mathbf{X}] +
 
 ```math
 \mathbf{R}_{ij} = \frac{\text{Cov}(X_i, X_j)}{\sqrt{\text{Var}(X_i) \text{Var}(X_j)}} = \frac{\Sigma_{ij}}{\sqrt{\Sigma_{ii} \Sigma_{jj}}}
+
 ```
 
 ### Properties
@@ -219,12 +239,14 @@ E[\mathbf{Y}] = E[\mathbf{A}\mathbf{X} + \mathbf{b}] = \mathbf{A}E[\mathbf{X}] +
 
 ```math
 \begin{bmatrix} X \\ Y \end{bmatrix} \sim \mathcal{N}\left(\begin{bmatrix} \mu_X \\ \mu_Y \end{bmatrix}, \begin{bmatrix} \sigma_X^2 & \rho\sigma_X\sigma_Y \\ \rho\sigma_X\sigma_Y & \sigma_Y^2 \end{bmatrix}\right)
+
 ```
 
 ### Conditional Distribution
 
 ```math
 X | Y = y \sim \mathcal{N}\left(\mu_X + \rho\frac{\sigma_X}{\sigma_Y}(y - \mu_Y), \sigma_X^2(1 - \rho^2)\right)
+
 ```
 
 **Key insights:**
@@ -300,6 +322,7 @@ Y = samples @ A.T  # Transform
 
 print(f"Original cov:\n{np.cov(samples.T)}")
 print(f"Transformed cov (should be AΣAᵀ):\n{np.cov(Y.T)}")
+
 ```
 
 ---

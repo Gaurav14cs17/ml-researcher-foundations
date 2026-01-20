@@ -35,6 +35,7 @@ Where:
 • b = bias
 • σ = activation function
 • y = output
+
 ```
 
 ---
@@ -61,6 +62,7 @@ Input x
 +---------+
 | Output  | --> ŷ = σ(Wₗhₗ₋₁ + bₗ)
 +---------+
+
 ```
 
 ---
@@ -87,6 +89,7 @@ Neural Networks --> Backpropagation
                --> CNN, RNN, Transformer
                --> All deep learning architectures
                --> Transfer learning / Fine-tuning
+
 ```
 
 ### Concepts That Build On This

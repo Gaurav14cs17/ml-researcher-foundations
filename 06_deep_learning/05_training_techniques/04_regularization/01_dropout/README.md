@@ -29,6 +29,7 @@ For a layer with activations \(h \in \mathbb{R}^d\):
 
 ```math
 m_i \sim \text{Bernoulli}(1-p) \quad \text{for } i = 1, \ldots, d
+
 ```
 
 where \(p\) is the dropout probability (typically 0.5 for hidden layers, 0.2 for input).
@@ -37,14 +38,17 @@ where \(p\) is the dropout probability (typically 0.5 for hidden layers, 0.2 for
 
 ```math
 \tilde{h} = \frac{1}{1-p} \cdot (h \odot m)
+
 ```
 
 The scaling factor \(\frac{1}{1-p}\) ensures expected value is preserved:
+
 ```
 E[h̃ᵢ] = E[(1/(1-p)) · hᵢ · mᵢ]
        = (1/(1-p)) · hᵢ · E[mᵢ]
        = (1/(1-p)) · hᵢ · (1-p)
        = hᵢ ✓
+
 ```
 
 ### Inference Phase
@@ -53,6 +57,7 @@ At inference, use all neurons without dropout:
 
 ```math
 \tilde{h} = h
+
 ```
 
 This is equivalent to computing the expected output over all possible masks.
@@ -71,9 +76,11 @@ Number of subnetworks = 2^1000 ≈ 10^301
 
 Each training batch uses a different subnetwork.
 At test time, we approximate the ensemble average.
+
 ```
 
 **Ensemble average approximation:**
+
 ```
 True ensemble: y = (1/2ⁿ) Σ_{m} f_m(x)
               where f_m is network with mask m
@@ -82,6 +89,7 @@ Dropout approx: y ≈ f(x) with all weights scaled by (1-p)
               (or equivalently, scale activations during training)
 
 This is called "weight scaling inference rule"
+
 ```
 
 ### 2. Bayesian Interpretation
@@ -92,12 +100,14 @@ Dropout approximates Bayesian inference over network weights:
 
 ```math
 q(W) = \prod_{ij} q(w_{ij}) = \prod_{ij} [(1-p)\delta(w_{ij} - \hat{w}_{ij}) + p\delta(w_{ij})]
+
 ```
 
 **Predictive distribution:**
 
 ```math
 p(y|x, D) \approx \int p(y|x, W) q(W) dW \approx \frac{1}{T} \sum_{t=1}^{T} f(x; W_t)
+
 ```
 
 where \(W_t\) are sampled using dropout masks.
@@ -105,6 +115,7 @@ where \(W_t\) are sampled using dropout masks.
 ### 3. Noise Injection Perspective
 
 Dropout adds multiplicative noise to activations:
+
 ```
 h̃ = h · ε  where ε ~ (1/(1-p)) · Bernoulli(1-p)
 
@@ -115,6 +126,7 @@ This noise acts as regularization, similar to:
 - Data augmentation
 - L2 regularization (for linear models)
 - Adds stochasticity to gradients
+
 ```
 
 ---
@@ -130,15 +142,18 @@ For a simple linear layer \(y = Wx\) with dropout:
 ```math
 \tilde{x} = \frac{1}{1-p} (x \odot m)
 y = W\tilde{x}
+
 ```
 
 **Backward:**
+
 ```
 ∂L/∂W = ∂L/∂y · x̃ᵀ
 
 ∂L/∂x = Wᵀ · ∂L/∂y · (m/(1-p))
 
 Key: Gradients only flow through non-dropped units!
+
 ```
 
 ### Equivalence to L2 Regularization
@@ -147,9 +162,11 @@ For linear regression with dropout, the expected loss:
 
 ```math
 \mathbb{E}[\|y - W\tilde{x}\|^2] = \|y - Wx\|^2 + \frac{p}{1-p}\|W\|_F^2 \cdot \mathbb{E}[\|x\|^2]
+
 ```
 
 **Proof:**
+
 ```
 E[||y - Wx̃||²] = E[||y - W·(1/(1-p))·(x⊙m)||²]
 
@@ -161,6 +178,7 @@ Var[x̃] = x²·Var[m/(1-p)] = x²·p/(1-p)
 E[||Wx̃||²] = ||Wx||² + ||W||²·Σᵢxᵢ²·p/(1-p)
 
 This shows dropout ≈ L2 regularization with λ ∝ p/(1-p)
+
 ```
 
 ---
@@ -170,6 +188,7 @@ This shows dropout ≈ L2 regularization with λ ∝ p/(1-p)
 ### 1. Inverted Dropout (Standard)
 
 Scale during training, no scaling at inference:
+
 ```python
 # Training
 mask = (torch.rand(h.shape) > p).float()
@@ -177,11 +196,13 @@ h_dropped = h * mask / (1 - p)
 
 # Inference  
 h_out = h  # No change
+
 ```
 
 ### 2. Standard Dropout (Original)
 
 No scaling during training, scale at inference:
+
 ```python
 # Training
 mask = (torch.rand(h.shape) > p).float()
@@ -189,6 +210,7 @@ h_dropped = h * mask
 
 # Inference
 h_out = h * (1 - p)  # Scale down
+
 ```
 
 ### 3. DropConnect
@@ -197,15 +219,18 @@ Drop individual weights instead of activations:
 
 ```math
 \tilde{W} = W \odot M \quad \text{where } M_{ij} \sim \text{Bernoulli}(1-p)
+
 ```
 
 ### 4. Spatial Dropout (Dropout2D)
 
 For CNNs, drop entire feature maps:
+
 ```python
 # Shape: (batch, channels, height, width)
 mask = (torch.rand(batch, channels, 1, 1) > p).float()
 h_dropped = h * mask / (1 - p)
+
 ```
 
 ### 5. DropPath (Stochastic Depth)
@@ -214,11 +239,13 @@ For residual networks, drop entire residual branches:
 
 ```math
 y = x + \text{drop}(f(x))
+
 ```
 
 ### 6. Alpha Dropout
 
 For SELU activations, maintains self-normalizing property:
+
 ```python
 alpha = 1.6732632423543772848170429916717
 scale = 1.0507009873554804934193349852946
@@ -227,6 +254,7 @@ alpha_p = -alpha * scale
 # Affine transformation to maintain mean/variance
 a = (1 - p) ** (-0.5)
 b = -a * alpha_p * p
+
 ```
 
 ---
@@ -348,6 +376,7 @@ def test_dropout_statistics():
     print(f"Output std: {outputs.mean(axis=0).std():.4f}")
 
 test_dropout_statistics()
+
 ```
 
 ### PyTorch Implementation
@@ -524,6 +553,7 @@ mc_model = MCDropoutModel(model)
 mean, uncertainty = mc_model.predict_with_uncertainty(x, n_samples=30)
 print(f"Mean prediction shape: {mean.shape}")
 print(f"Uncertainty shape: {uncertainty.shape}")
+
 ```
 
 ---

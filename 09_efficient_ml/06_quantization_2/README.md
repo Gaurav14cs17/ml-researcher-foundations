@@ -65,6 +65,7 @@ def fake_quantize(x, scale, zero_point, bits=8):
     x_deq = (x_q - zero_point) * scale
     
     return x_deq  # Gradients flow through as if no quantization
+
 ```
 
 ---
@@ -76,6 +77,7 @@ Rounding is not differentiable. STE approximates gradients:
 ```
 Forward:  y = round(x)
 Backward: ∂L/∂x = ∂L/∂y  (pretend round = identity)
+
 ```
 
 ---
@@ -87,6 +89,7 @@ LLMs have **activation outliers** that break standard quantization:
 ```
 Normal activations: [-1, 0.5, 0.8, 1.2, -0.3]
 LLM activations:    [-1, 0.5, 50.0, 1.2, -0.3]  # Outlier!
+
 ```
 
 ### Solutions
@@ -113,6 +116,7 @@ X @ W
 
 # s is chosen to equalize difficulty
 s = sqrt(max(|X|) / max(|W|))
+
 ```
 
 ---
@@ -127,6 +131,7 @@ For each column j:
     2. Compute quantization error
     3. Distribute error to columns j+1, j+2, ... 
        (using Hessian information)
+
 ```
 
 **Result:** GPT-3 175B → 4-bit with minimal accuracy loss!
@@ -141,12 +146,14 @@ For each column j:
 
 ```math
 \frac{d \text{round}(x)}{dx} = 0 \text{ (a.e.)}
+
 ```
 
 **Solution:** STE approximates the gradient as identity:
 
 ```math
 \frac{\partial \mathcal{L}}{\partial x} \approx \frac{\partial \mathcal{L}}{\partial \text{round}(x)}
+
 ```
 
 **Formal justification:**
@@ -155,6 +162,7 @@ Define the quantization function with STE:
 
 ```math
 y = x + \text{sg}(\text{round}(x) - x)
+
 ```
 
 where \( \text{sg} \) is stop-gradient operator.
@@ -172,6 +180,7 @@ QAT minimizes:
 
 ```math
 \mathcal{L}_{QAT} = \mathcal{L}_{task}(Q(W), X, Y) + \lambda \mathcal{L}_{reg}
+
 ```
 
 where \( Q(W) \) denotes quantized weights.
@@ -180,6 +189,7 @@ The network learns to produce weights that are quantization-friendly:
 
 ```math
 W^* = \arg\min_W \mathcal{L}_{task}(Q(W), X, Y)
+
 ```
 
 ---
@@ -190,18 +200,21 @@ W^* = \arg\min_W \mathcal{L}_{task}(Q(W), X, Y)
 
 ```math
 Y = XW
+
 ```
 
 **Smoothed computation:**
 
 ```math
 Y = (X \text{diag}(s)^{-1}) \cdot (\text{diag}(s) W) = \hat{X} \hat{W}
+
 ```
 
 **Optimal smoothing factor:**
 
 ```math
 s_j = \frac{\max_i |X_{ij}|^\alpha}{\max_k |W_{jk}|^{1-\alpha}}
+
 ```
 
 where \( \alpha \in [0, 1] \) controls the migration strength.
@@ -210,6 +223,7 @@ where \( \alpha \in [0, 1] \) controls the migration strength.
 
 ```math
 \hat{X}\hat{W} = X \cdot \text{diag}(s)^{-1} \cdot \text{diag}(s) \cdot W = X \cdot I \cdot W = XW
+
 ```
 
 **Effect on quantization difficulty:**
@@ -232,12 +246,14 @@ Both are now within similar ranges → balanced quantization.
 
 ```math
 \arg\min_{\hat{W}} \|WX - \hat{W}X\|_F^2
+
 ```
 
 **Hessian approximation:**
 
 ```math
 H = 2X X^T
+
 ```
 
 **Per-column quantization with error compensation:**
@@ -249,6 +265,7 @@ For column \( j \):
 
 ```math
 w_{j+1:} \leftarrow w_{j+1:} - \delta_j \cdot \frac{H^{-1}_{j+1:,j}}{H^{-1}_{jj}}
+
 ```
 
 **Derivation of update rule:**
@@ -257,18 +274,21 @@ The optimal update minimizes:
 
 ```math
 \min_{\delta_{j+1:}} \|(\delta_j e_j + \delta_{j+1:}^T) X\|_F^2
+
 ```
 
 Taking the gradient and setting to zero:
 
 ```math
 \delta_{j+1:} = -\delta_j \cdot (X_{j+1:} X_{j+1:}^T)^{-1} X_{j+1:} X_j^T
+
 ```
 
 Using block matrix inversion:
 
 ```math
 \delta_{j+1:} = -\delta_j \cdot \frac{H^{-1}_{j+1:,j}}{H^{-1}_{jj}}
+
 ```
 
 ---
@@ -281,12 +301,14 @@ Using block matrix inversion:
 
 ```math
 \text{Importance}(w_j) = \mathbb{E}[|X_j|] \cdot |w_j|
+
 ```
 
 **Salient weight protection:** Scale important weights before quantization:
 
 ```math
 \hat{W}_j = s_j \cdot W_j, \quad \hat{X}_j = X_j / s_j
+
 ```
 
 For important channels, use larger \( s_j \) → more quantization levels for important weights.
@@ -295,6 +317,7 @@ For important channels, use larger \( s_j \) → more quantization levels for im
 
 ```math
 s_j^* = \arg\min_{s_j} \|Q(s_j W_j) - s_j W_j\|_2
+
 ```
 
 ---
@@ -306,6 +329,7 @@ s_j^* = \arg\min_{s_j} \|Q(s_j W_j) - s_j W_j\|_2
 ```math
 \min_{b_1, ..., b_L} \mathcal{L}(Q_{b_1}(W_1), ..., Q_{b_L}(W_L))
 \text{s.t.} \sum_l \text{Size}(Q_{b_l}(W_l)) \leq B
+
 ```
 
 **Sensitivity-based allocation:**
@@ -314,12 +338,14 @@ Layer sensitivity:
 
 ```math
 S_l = \frac{\partial \mathcal{L}}{\partial b_l} \approx \mathcal{L}(b_l = 4) - \mathcal{L}(b_l = 8)
+
 ```
 
 Allocate more bits to sensitive layers:
 
 ```math
 b_l = 8 \text{ if } S_l > \tau \text{ else } 4
+
 ```
 
 ---
@@ -330,6 +356,7 @@ b_l = 8 \text{ if } S_l > \tau \text{ else } 4
 
 ```math
 Y = X \cdot Q_4(W_0) + X \cdot BA
+
 ```
 
 where:
@@ -356,6 +383,7 @@ For network \( f = f_L \circ ... \circ f_1 \):
 
 ```math
 \|\hat{f}(x) - f(x)\| \leq \sum_{l=1}^L \|\nabla f_{l+1:L}\| \cdot \|\epsilon_l\|
+
 ```
 
 where \( \epsilon_l \) is the quantization error at layer \( l \).
@@ -369,11 +397,13 @@ where \( \epsilon_l \) is the quantization error at layer \( l \).
 The Hessian \( H = XX^T \) requires \( O(d^2 \cdot n) \) to compute and \( O(d^2) \) to store.
 
 **Efficient computation:**
+
 ```python
 H = torch.zeros(d, d)
 for batch in calibration_data:
     H += batch.T @ batch  # Running sum
 H /= n_samples
+
 ```
 
 **Efficient inversion:**
@@ -387,6 +417,7 @@ Use Cholesky decomposition: \( H = LL^T \), then solve triangular systems.
 
 ```math
 Y = X_{outlier} W_{outlier}^{FP16} + X_{normal} W_{normal}^{INT8}
+
 ```
 
 Outlier detection: dimension \( j \) is outlier if \( \max_i |X_{ij}| > 6 \)
@@ -485,6 +516,7 @@ def smooth_quant(model, calibration_data, alpha=0.5):
             module.weight.data *= s.unsqueeze(0)
     
     return model
+
 ```
 
 ### GPTQ-style Quantization
@@ -553,6 +585,7 @@ def awq_quantize(W, X, bits=4):
     W_q = (W_q * weight_scale) / scale.unsqueeze(0)
     
     return W_q
+
 ```
 
 ---

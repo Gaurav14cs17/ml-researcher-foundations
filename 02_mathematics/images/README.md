@@ -40,6 +40,7 @@ Add SVG diagrams for:
 concept-name.svg
 algorithm-step.svg
 comparison-chart.svg
+
 ```
 
 ---

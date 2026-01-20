@@ -29,18 +29,21 @@
 
 ```math
 \mathcal{M} = \{(i,j) : |w_{ij}| \leq \tau\}
+
 ```
 
 **Pruning mask:**
 
 ```math
 m_{ij} = \mathbf{1}[|w_{ij}| > \tau]
+
 ```
 
 **Pruned weights:**
 
 ```math
 W_{pruned} = W \odot M
+
 ```
 
 where $\odot$ is element-wise multiplication.
@@ -51,6 +54,7 @@ where $\odot$ is element-wise multiplication.
 
 ```math
 \tau = \text{Percentile}(|W|, 100 \cdot s)
+
 ```
 
 **Example:** For 90% sparsity, $\tau$ is the 90th percentile of $|W|$.
@@ -65,6 +69,7 @@ where $\odot$ is element-wise multiplication.
 
 ```math
 \tau_l = \text{Percentile}(|W_l|, 100 \cdot s)
+
 ```
 
 **Pros:** Equal sparsity per layer
@@ -76,6 +81,7 @@ where $\odot$ is element-wise multiplication.
 
 ```math
 \tau = \text{Percentile}(\{|w| : w \in \bigcup_l W_l\}, 100 \cdot s)
+
 ```
 
 **Pros:** Automatically allocates sparsity based on importance
@@ -95,12 +101,14 @@ where $\odot$ is element-wise multiplication.
 
 ```math
 \mathcal{L}(w^* + \delta w) = \mathcal{L}(w^*) + \underbrace{\nabla\mathcal{L}^T \delta w}_{= 0 \text{ at optimum}} + \frac{1}{2}\delta w^T H \delta w + O(\|\delta w\|^3)
+
 ```
 
 **Key insight:** At optimum, $\nabla\mathcal{L} = 0$, so:
 
 ```math
 \Delta\mathcal{L} \approx \frac{1}{2}\delta w^T H \delta w = \frac{1}{2}\sum_{i,j} H_{ij} \delta w_i \delta w_j
+
 ```
 
 #### 3.2 Diagonal Approximation
@@ -109,18 +117,21 @@ where $\odot$ is element-wise multiplication.
 
 ```math
 \Delta\mathcal{L} \approx \frac{1}{2}\sum_i H_{ii} \delta w_i^2
+
 ```
 
 **When removing weight $w\_i$ (setting $\delta w\_i = -w\_i$):**
 
 ```math
 \Delta\mathcal{L}_i \approx \frac{1}{2}H_{ii} w_i^2
+
 ```
 
 **OBD Saliency:**
 
 ```math
 s_i^{OBD} = \frac{1}{2}H_{ii} w_i^2 = \frac{1}{2}\frac{\partial^2\mathcal{L}}{\partial w_i^2} w_i^2
+
 ```
 
 #### 3.3 Relationship to Magnitude Pruning
@@ -129,6 +140,7 @@ s_i^{OBD} = \frac{1}{2}H_{ii} w_i^2 = \frac{1}{2}\frac{\partial^2\mathcal{L}}{\p
 
 ```math
 s_i^{OBD} \propto w_i^2
+
 ```
 
 Then OBD reduces to magnitude pruning!
@@ -150,12 +162,14 @@ Then OBD reduces to magnitude pruning!
 
 ```math
 \delta w_{-q} = -\frac{w_q}{[H^{-1}]_{qq}} H^{-1}_{:,q}
+
 ```
 
 **OBS Saliency:**
 
 ```math
 s_q^{OBS} = \frac{w_q^2}{2[H^{-1}]_{qq}}
+
 ```
 
 #### 4.2 Derivation
@@ -164,6 +178,7 @@ s_q^{OBS} = \frac{w_q^2}{2[H^{-1}]_{qq}}
 
 ```math
 \min_{\delta w_{-q}} \frac{1}{2}(\delta w_q, \delta w_{-q})^T H (\delta w_q, \delta w_{-q})
+
 ```
 
 subject to $\delta w\_q = -w\_q$ (remove the weight).
@@ -172,6 +187,7 @@ subject to $\delta w\_q = -w\_q$ (remove the weight).
 
 ```math
 L = \frac{1}{2}\delta w^T H \delta w + \lambda(e_q^T \delta w + w_q)
+
 ```
 
 **KKT conditions:**
@@ -179,6 +195,7 @@ L = \frac{1}{2}\delta w^T H \delta w + \lambda(e_q^T \delta w + w_q)
 ```math
 H \delta w + \lambda e_q = 0
 e_q^T \delta w = -w_q
+
 ```
 
 **Solution:**
@@ -187,12 +204,14 @@ e_q^T \delta w = -w_q
 \delta w = -\lambda H^{-1} e_q
 \lambda = \frac{w_q}{[H^{-1}]_{qq}}
 \delta w = -\frac{w_q}{[H^{-1}]_{qq}} H^{-1}_{:,q}
+
 ```
 
 **Loss increase:**
 
 ```math
 \Delta\mathcal{L}_q = \frac{1}{2}\delta w^T H \delta w = \frac{w_q^2}{2[H^{-1}]_{qq}}
+
 ```
 
 ---
@@ -206,6 +225,7 @@ e_q^T \delta w = -w_q
 2. Prune p% of smallest magnitude weights
 3. Reset remaining weights to initial values: θ_0' = mask ⊙ θ_0
 4. Repeat from step 1 until target sparsity
+
 ```
 
 #### 5.2 Theoretical Motivation
@@ -235,6 +255,7 @@ e_q^T \delta w = -w_q
 
 ```math
 s_t = s_f + (s_0 - s_f)\left(1 - \frac{t - t_0}{n\Delta t}\right)^3
+
 ```
 
 where:
@@ -256,6 +277,7 @@ Each pruning step removes small loss increase:
 
 ```math
 \Delta\mathcal{L}_{total} = \sum_i \Delta\mathcal{L}_i
+
 ```
 
 Small steps allow gradient descent to reduce each $\Delta\mathcal{L}\_i$.
@@ -437,6 +459,7 @@ class GradualPruner:
         self.pruner.sparsity = target
         actual = self.pruner.prune_global()
         print(f"Step {current_step}: target sparsity {target:.2%}, actual {actual:.2%}")
+
 ```
 
 ---

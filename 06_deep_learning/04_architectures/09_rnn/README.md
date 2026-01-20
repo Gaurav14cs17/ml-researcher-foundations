@@ -27,6 +27,7 @@ LSTM:
   cₜ = fₜ ⊙ cₜ₋₁ + iₜ ⊙ c̃ₜ      (cell state)
   oₜ = σ(Wo[hₜ₋₁, xₜ] + bo)     (output gate)
   hₜ = oₜ ⊙ tanh(cₜ)            (hidden state)
+
 ```
 
 ---
@@ -46,6 +47,7 @@ gru = nn.GRU(input_size=128, hidden_size=256,
 
 # Bidirectional
 bilstm = nn.LSTM(128, 256, bidirectional=True)
+
 ```
 
 ---

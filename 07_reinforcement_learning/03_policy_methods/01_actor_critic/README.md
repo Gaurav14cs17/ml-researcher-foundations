@@ -40,6 +40,7 @@ Actor-Critic algorithms maintain two parameterized functions:
 ```
 Actor:  π_θ(a|s)  - Policy network (parameterized by θ)
 Critic: V_ω(s)    - Value network (parameterized by ω)
+
 ```
 
 ### Policy Gradient with Baseline
@@ -47,6 +48,7 @@ Critic: V_ω(s)    - Value network (parameterized by ω)
 The key insight is that we can subtract any baseline \( b(s) \) from the return without changing the expected gradient:
 
 **Theorem (Baseline Invariance):**
+
 ```
 ∇_θ J(θ) = E_π[∇_θ log π_θ(a|s) · (Q^π(s,a) - b(s))]
 
@@ -55,6 +57,7 @@ E[∇_θ log π_θ(a|s) · b(s)] = Σ_a π_θ(a|s) · ∇_θ log π_θ(a|s) · b
                             = Σ_a ∇_θ π_θ(a|s) · b(s)
                             = b(s) · ∇_θ Σ_a π_θ(a|s)
                             = b(s) · ∇_θ 1 = 0
+
 ```
 
 The optimal baseline that minimizes variance is \( b^*(s) = V^π(s) \).
@@ -70,6 +73,7 @@ Properties:
 • E_a[A^π(s,a)] = 0  (zero mean)
 • A^π(s,a) > 0 means action a is better than average
 • A^π(s,a) < 0 means action a is worse than average
+
 ```
 
 ### TD Error as Advantage Estimate
@@ -85,6 +89,7 @@ Proof:
 E[δ_t | s_t, a_t] = E[r_t + γV(s_{t+1}) | s_t, a_t] - V(s_t)
                   = Q^π(s_t, a_t) - V^π(s_t)
                   = A^π(s_t, a_t)
+
 ```
 
 ---
@@ -98,6 +103,7 @@ E[δ_t | s_t, a_t] = E[r_t + γV(s_{t+1}) | s_t, a_t] - V(s_t)
          ≈ E_π[∇_θ log π_θ(a_t|s_t) · δ_t]
 
 θ ← θ + α_θ · ∇_θ log π_θ(a_t|s_t) · δ_t
+
 ```
 
 ### Critic Update (TD Learning)
@@ -108,6 +114,7 @@ L_critic(ω) = E[(r_t + γV_ω(s_{t+1}) - V_ω(s_t))²]
 
 ω ← ω - α_ω · ∇_ω L_critic(ω)
   = ω + α_ω · δ_t · ∇_ω V_ω(s_t)
+
 ```
 
 ---
@@ -138,6 +145,7 @@ For each iteration:
     L_total = L_actor + c_1 · L_critic + c_2 · L_entropy
     
     θ, ω ← θ, ω - α · ∇L_total
+
 ```
 
 ### N-Step Returns
@@ -149,6 +157,7 @@ Bias-Variance Tradeoff:
 • n=1 (TD): Low variance, high bias
 • n=∞ (MC): High variance, low bias
 • Typical n: 5-20 steps
+
 ```
 
 ---
@@ -168,6 +177,7 @@ Worker i:
 2. Collect trajectory in local environment
 3. Compute gradients on local network
 4. Apply gradients to global network (asynchronous!)
+
 ```
 
 ### Gradient Computation
@@ -177,6 +187,7 @@ Worker i:
 ∇_ω = Σ_t (G_t - V_ω(s_t)) · ∇_ω V_ω(s_t)
 
 Apply to global: θ_global ← θ_global + α · ∇_θ
+
 ```
 
 ---
@@ -196,6 +207,7 @@ Expanding:
 Special Cases:
 λ = 0: Â_t = δ_t (TD(0), high bias, low variance)
 λ = 1: Â_t = G_t - V(s_t) (Monte Carlo, low bias, high variance)
+
 ```
 
 ### Practical Computation
@@ -221,6 +233,7 @@ def compute_gae(rewards, values, dones, gamma=0.99, lam=0.95):
         advantages[t] = gae
     
     return advantages
+
 ```
 
 ---
@@ -245,6 +258,7 @@ TD Actor-Critic:
     
     Even lower because δ_t = r_t + γV(s') - V(s) has very small variance
     (only one random step vs entire trajectory)
+
 ```
 
 ---
@@ -375,6 +389,7 @@ class A2C:
             'critic_loss': critic_loss.item(),
             'entropy': entropy.mean().item()
         }
+
 ```
 
 ### Training Loop
@@ -422,6 +437,7 @@ def train_a2c(env, agent, n_episodes=1000, n_steps=5):
         
         if episode % 100 == 0:
             print(f"Episode {episode}, Reward: {episode_reward:.2f}")
+
 ```
 
 ---

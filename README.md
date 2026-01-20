@@ -239,6 +239,7 @@ Learning Path:
                                                                      |
                                                                      ▼
 9. Effic-ML ⬅️ 8. Deployment ⬅️ 7. Compression ⬅️ 6. RL ⬅️ 5. Deep Learning ⬅️ ML Theory
+
 ```
 
 ---
@@ -566,6 +567,7 @@ Learning Path:
 - [ ] Efficient LLMs & Diffusion
 
 ### 🏆 Production Ready!
+
 ```
 
 ---

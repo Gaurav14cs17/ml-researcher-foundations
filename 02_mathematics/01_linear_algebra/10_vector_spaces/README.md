@@ -67,6 +67,7 @@
 |   dim=0   dim=1   dim=2   dim=3                                             |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -116,6 +117,7 @@ Step 3: 0·v + (-(0·v)) = 0·v + 0·v + (-(0·v))    (add inverse)
 Step 4: 0 = 0·v + 0              (inverse cancels)
 
 Step 5: 0 = 0·v                  (Axiom 3)  ∎
+
 ```
 
 ---
@@ -137,11 +139,13 @@ Or equivalently (single condition):
 
 ```math
 \alpha\mathbf{u} + \beta\mathbf{v} \in W \text{ for all } \mathbf{u}, \mathbf{v} \in W, \alpha, \beta \in \mathbb{F}
+
 ```
 
 ### 💡 Examples
 
 **Subspace**: Lines and planes through origin in $\mathbb{R}^3$
+
 ```
 W = {(x, y, z) : x + y + z = 0}  (plane through origin)
 
@@ -151,9 +155,11 @@ Check:
    (a+d)+(b+e)+(c+f) = (a+b+c)+(d+e+f) = 0+0 = 0  ✓
 3. α(a,b,c) = (αa,αb,αc)
    αa+αb+αc = α(a+b+c) = α·0 = 0  ✓
+
 ```
 
 **NOT a Subspace**: Lines not through origin
+
 ```
 W = {(x, y) : x + y = 1}
 
@@ -161,6 +167,7 @@ Check zero vector:
 (0,0): 0 + 0 = 0 ≠ 1  ✗
 
 Not a subspace! (doesn't contain origin)
+
 ```
 
 ---
@@ -173,6 +180,7 @@ Vectors $\mathbf{v}\_1, \ldots, \mathbf{v}\_k$ are **linearly independent** if:
 
 ```math
 \alpha_1\mathbf{v}_1 + \alpha_2\mathbf{v}_2 + \cdots + \alpha_k\mathbf{v}_k = \mathbf{0} \implies \alpha_1 = \alpha_2 = \cdots = \alpha_k = 0
+
 ```
 
 Otherwise, they are **linearly dependent**.
@@ -191,11 +199,13 @@ Linearly Independent:
 Examples in ℝ³:
   {e₁, e₂, e₃} independent → span ℝ³
   {e₁, e₂, e₁+e₂} dependent → e₁+e₂ is a combo of others → span is a plane
+
 ```
 
 ### 💡 Examples
 
 **Example 1**: Checking Independence (Matrix Method)
+
 ```
 Are v₁ = [1,2,3], v₂ = [4,5,6], v₃ = [7,8,9] independent?
 
@@ -214,9 +224,11 @@ det = 0 → DEPENDENT
 
 Dependency: v₃ = -v₁ + 2v₂
 Check: -[1,2,3] + 2[4,5,6] = [-1+8, -2+10, -3+12] = [7,8,9] ✓
+
 ```
 
 **Example 2**: Polynomials
+
 ```
 Are 1, x, x² linearly independent in P₂?
 
@@ -228,6 +240,7 @@ For this to equal 0 for all x:
   Coefficient of x²: α₃ = 0
 
 Only trivial solution → INDEPENDENT
+
 ```
 
 ---
@@ -240,6 +253,7 @@ The **span** of vectors $\mathbf{v}\_1, \ldots, \mathbf{v}\_k$ is all linear com
 
 ```math
 \text{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\} = \{\alpha_1\mathbf{v}_1 + \cdots + \alpha_k\mathbf{v}_k : \alpha_i \in \mathbb{F}\}
+
 ```
 
 ### 📌 Basis
@@ -262,11 +276,13 @@ Subtract: 0 = (α₁-β₁)v₁ + ... + (αₙ-βₙ)vₙ
 Since {v₁,...,vₙ} is linearly independent:
   α₁-β₁ = ... = αₙ-βₙ = 0
   αᵢ = βᵢ for all i  ∎
+
 ```
 
 ### 💡 Examples
 
 **Standard Basis of $\mathbb{R}^n$**:
+
 ```
 e₁ = [1,0,...,0]ᵀ
 e₂ = [0,1,...,0]ᵀ
@@ -274,9 +290,11 @@ e₂ = [0,1,...,0]ᵀ
 eₙ = [0,0,...,1]ᵀ
 
 Any v = [v₁, v₂, ..., vₙ]ᵀ = v₁e₁ + v₂e₂ + ... + vₙeₙ
+
 ```
 
 **Non-Standard Basis**:
+
 ```
 {[1,1]ᵀ, [1,-1]ᵀ} is also a basis for ℝ²
 
@@ -287,6 +305,7 @@ To express [3,1]ᵀ:
   
   Solving: α = 2, β = 1
   [3,1]ᵀ = 2[1,1]ᵀ + 1[1,-1]ᵀ ✓
+
 ```
 
 ---
@@ -299,6 +318,7 @@ All bases of a finite-dimensional vector space have the same number of elements.
 
 ```math
 \dim(V) = |\text{any basis of } V|
+
 ```
 
 ### 🔍 Proof Sketch
@@ -315,6 +335,7 @@ Proof of dimension theorem:
   B' spans V, B is independent → m ≤ n (by lemma)
   
   Therefore m = n.  ∎
+
 ```
 
 ### 📐 Key Results
@@ -357,6 +378,7 @@ Row Space ⊥ Null Space          (both in ℝⁿ)
   |    ↓    |   =0      |    ↓    |
   |    0    |           |    0    |
   +---------+           +---------+
+
 ```
 
 ### 💡 Example
@@ -380,6 +402,7 @@ Null Space: Solve Ax = 0
   Null space = span{[1, -2, 1]ᵀ} (dimension 1 = 3-2)
 
 Left Null Space: dimension 0 (since m - r = 2 - 2 = 0)
+
 ```
 
 ---
@@ -453,6 +476,7 @@ A = np.array([[1, 2, 3], [4, 5, 6]])
 subspaces = verify_orthogonality(A)
 print(f"Rank: {subspaces['rank']}")
 print(f"Nullity: {subspaces['nullity']}")
+
 ```
 
 ---
@@ -486,6 +510,7 @@ def word_analogy(embeddings, word_a, word_b, word_c):
     return max(similarities, key=similarities.get)
 
 # "king" - "man" + "woman" ≈ "queen"
+
 ```
 
 ### 🤖 Application 2: Null Space for Solutions
@@ -512,6 +537,7 @@ def find_all_solutions(A, b):
         'null_basis': null_basis,
         'num_free_params': null_basis.shape[1]
     }
+
 ```
 
 ---

@@ -27,28 +27,34 @@
 ## 📐 Key Techniques
 
 ### Gradient Clipping
+
 ```
 Clip by value: g = clip(g, -threshold, threshold)
 Clip by norm: g = g × min(1, threshold/||g||)
 
 Prevents exploding gradients in RNNs and Transformers
+
 ```
 
 ### Normalization
+
 ```
 Batch Norm: Normalize across batch dimension
 Layer Norm: Normalize across feature dimension
 Group Norm: Normalize across groups of channels
 
 Stabilizes training, allows higher learning rates
+
 ```
 
 ### Dropout
+
 ```
 During training: Randomly zero p% of activations
 During inference: Scale by (1-p) or no scaling
 
 Acts as ensemble regularization
+
 ```
 
 ---

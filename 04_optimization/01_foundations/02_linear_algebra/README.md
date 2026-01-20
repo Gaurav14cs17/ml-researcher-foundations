@@ -32,6 +32,7 @@ Properties:
 • Points in direction of steepest ASCENT
 • Magnitude = rate of change in that direction
 • Perpendicular to level sets of f
+
 ```
 
 ### Directional Derivative
@@ -45,6 +46,7 @@ Key insight:
 • Maximum when d = ∇f(x)  (steepest ascent)
 • Minimum when d = -∇f(x) (steepest descent)
 • Zero when d ⊥ ∇f(x)     (level set direction)
+
 ```
 
 ---
@@ -67,6 +69,7 @@ Properties:
 • Symmetric (if f is twice continuously differentiable)
 • Size: n × n for f: ℝⁿ → ℝ
 • Captures curvature information
+
 ```
 
 ### Second-Order Taylor Expansion
@@ -78,6 +81,7 @@ This approximation is crucial for:
 • Newton's method (uses full Hessian)
 • Quasi-Newton methods (approximates Hessian)
 • Trust region methods (constrained quadratic)
+
 ```
 
 ---
@@ -93,6 +97,7 @@ Positive definite (PD):      xᵀAx > 0  for all x ≠ 0
 Positive semi-definite (PSD): xᵀAx ≥ 0  for all x
 Negative definite:           xᵀAx < 0  for all x ≠ 0
 Indefinite:                  xᵀAx can be positive or negative
+
 ```
 
 ### Importance for Optimization
@@ -103,6 +108,7 @@ At a stationary point x* where ∇f(x*) = 0:
 • H(x*) ≻ 0 (positive definite)  ⟹ x* is a LOCAL MINIMUM
 • H(x*) ≺ 0 (negative definite)  ⟹ x* is a LOCAL MAXIMUM
 • H(x*) indefinite              ⟹ x* is a SADDLE POINT
+
 ```
 
 ### How to Check Positive Definiteness
@@ -121,6 +127,7 @@ Method 3: Leading Principal Minors (Sylvester's criterion)
   det([a₁₁ a₁₂; a₂₁ a₂₂]) > 0
   det([a₁₁ a₁₂ a₁₃; a₂₁ a₂₂ a₂₃; a₃₁ a₃₂ a₃₃]) > 0
   ...
+
 ```
 
 ---
@@ -136,6 +143,7 @@ Av = λv
 
 • λ is an eigenvalue
 • v is the corresponding eigenvector
+
 ```
 
 ### Properties for Symmetric Matrices
@@ -149,6 +157,7 @@ For symmetric A = Aᵀ:
    where:
    Q = [v₁, v₂, ..., vₙ]  (orthonormal eigenvectors)
    Λ = diag(λ₁, λ₂, ..., λₙ)  (eigenvalues)
+
 ```
 
 ### Role in Optimization
@@ -164,6 +173,7 @@ For quadratic f(x) = (1/2)xᵀAx - bᵀx:
   
   κ ≈ 1:  Well-conditioned, fast convergence
   κ >> 1: Ill-conditioned, slow convergence
+
 ```
 
 ---
@@ -179,6 +189,7 @@ For a matrix A, the condition number is:
 
 For symmetric positive definite A:
 κ(A) = λ_max / λ_min
+
 ```
 
 ### Interpretation
@@ -198,6 +209,7 @@ GD convergence rate for quadratic:
   κ = 2:    factor = 1/3    (fast)
   κ = 100:  factor = 0.98   (slow)
   κ = 10000: factor = 0.9998 (very slow!)
+
 ```
 
 ### Improving Conditioning: Preconditioning
@@ -212,6 +224,7 @@ Common preconditioners:
 • Diagonal: M = diag(A)
 • Jacobi: M = diag(A)
 • Incomplete Cholesky: M = L̃L̃ᵀ
+
 ```
 
 ---
@@ -229,6 +242,7 @@ Spectral norm (operator norm):
 
 Nuclear norm (trace norm):
 ||A||_* = Σᵢ σᵢ(A)  (sum of singular values)
+
 ```
 
 ### Applications in ML
@@ -237,6 +251,7 @@ Nuclear norm (trace norm):
 • ||W||₂: Lipschitz constant of linear layer
 • ||W||_F: Weight magnitude (L2 regularization)
 • ||W||_*: Low-rank regularization
+
 ```
 
 ---
@@ -254,6 +269,7 @@ where:
 • U: m × m orthogonal (left singular vectors)
 • Σ: m × n diagonal (singular values σ₁ ≥ σ₂ ≥ ... ≥ 0)
 • V: n × n orthogonal (right singular vectors)
+
 ```
 
 ### Key Properties
@@ -263,6 +279,7 @@ where:
 • ||A||₂ = σ_max
 • ||A||_F = √(Σᵢ σᵢ²)
 • A⁺ = VΣ⁺Uᵀ (pseudoinverse)
+
 ```
 
 ### Applications
@@ -276,6 +293,7 @@ where:
 3. Least squares: x = A⁺b when A is rank-deficient
 
 4. Conditioning: κ(A) = σ_max/σ_min
+
 ```
 
 ---
@@ -300,6 +318,7 @@ H = compute_hessian(f, x)
 print(f"Hessian:\n{H}")
 # [[2., 1.],
 #  [1., 6.]]
+
 ```
 
 ### Check Positive Definiteness
@@ -325,6 +344,7 @@ H = np.array([[2, 1], [1, 6]])
 print(f"Eigenvalues: {np.linalg.eigvalsh(H)}")
 print(f"Is PD: {is_positive_definite(H)}")
 print(f"Condition number: {np.linalg.cond(H)}")
+
 ```
 
 ### Condition Number and Convergence
@@ -359,6 +379,7 @@ analyze_conditioning(A_good)
 print("\nIll-conditioned problem:")
 A_bad = np.array([[100, 0], [0, 1]])
 analyze_conditioning(A_bad)
+
 ```
 
 ---
@@ -381,6 +402,7 @@ Applications:
 • Matrix powers: Aᵏ = QΛᵏQᵀ
 • Matrix functions: f(A) = Qf(Λ)Qᵀ
 • Analysis of quadratics: xᵀAx = Σᵢ λᵢ(qᵢᵀx)²
+
 ```
 
 ### Courant-Fischer Theorem (Min-Max)
@@ -393,6 +415,7 @@ Applications:
 • Understanding eigenvalue sensitivity
 • Bounds on condition number
 • Analysis of Rayleigh quotient
+
 ```
 
 ### Weyl's Inequality
@@ -405,6 +428,7 @@ For symmetric A, B:
 Useful for:
 • Perturbation analysis
 • Understanding Hessian changes during optimization
+
 ```
 
 ---

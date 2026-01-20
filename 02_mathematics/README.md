@@ -28,6 +28,7 @@
 |              Eigen/SVD/PCA         Rule/Hessian       Convergence           |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ## 🎯 What You'll Learn
@@ -73,6 +74,7 @@ GD, SGD, Adam, Convergence
 
 ```
 Vectors --→ Matrices --→ Multiplication --→ Eigen --→ SVD --→ PCA
+
 ```
 
 <details>
@@ -107,6 +109,7 @@ Vectors --→ Matrices --→ Multiplication --→ Eigen --→ SVD --→ PCA
 
 ```
 Limits --→ Derivatives --→ Partial --→ Gradient --→ Chain Rule --→ Jacobian --→ Hessian
+
 ```
 
 <details>
@@ -141,6 +144,7 @@ Limits --→ Derivatives --→ Partial --→ Gradient --→ Chain Rule --→ Jac
 
 ```
 Convex --→ GD --→ SGD --→ Momentum --→ Adam --→ Convergence
+
 ```
 
 <details>
@@ -174,6 +178,7 @@ Convex --→ GD --→ SGD --→ Momentum --→ Adam --→ Convergence
 
 ```
 L1 (Manhattan) --→ L2 (Euclidean) --→ Cosine --→ Mahalanobis
+
 ```
 
 <a href="./04_distance_metrics/README.md"><img src="https://img.shields.io/badge/📖_Dive_In-4285F4?style=for-the-badge" alt="Learn"/></a>
@@ -200,6 +205,7 @@ L1 (Manhattan) --→ L2 (Euclidean) --→ Cosine --→ Mahalanobis
 |   🎯 Optimization -------+-→ Training +                                      |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -211,29 +217,35 @@ L1 (Manhattan) --→ L2 (Euclidean) --→ Cosine --→ Mahalanobis
 <td>
 
 ### 📐 Linear Algebra
+
 ```
 Matrix:    (AB)ᵀ = BᵀAᵀ
 Eigen:     A = QΛQᵀ
 SVD:       A = UΣVᵀ
+
 ```
 
 </td>
 <td>
 
 ### 📈 Calculus
+
 ```
 Gradient:  ∇f = [∂f/∂xᵢ]ᵀ
 Chain:     ∂z/∂x = ∂z/∂y · ∂y/∂x
 Jacobian:  J = [∂fᵢ/∂xⱼ]
+
 ```
 
 </td>
 <td>
 
 ### 🎯 Optimization
+
 ```
 GD:   θ ← θ - η∇L(θ)
 Adam: θ ← θ - η·m̂/(√v̂+ε)
+
 ```
 
 </td>
@@ -273,6 +285,7 @@ Adam: θ ← θ - η·m̂/(√v̂+ε)
 |   +-- 06_second_order/
 |   +-- 07_stochastic/
 +-- 04_distance_metrics/        # 1 topic
+
 ```
 
 ---
@@ -282,6 +295,7 @@ Adam: θ ← θ - η·m̂/(√v̂+ε)
 ```
 ✅ Foundations --→ 📊 Mathematics --→ 📈 Prob/Stats --→ 🎯 ML Theory --→ 🚀 Deep Learning
      (You are here)
+
 ```
 
 <p align="center">

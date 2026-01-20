@@ -36,6 +36,7 @@ I(X; Y) = H(X) - H(X|Y) = H(Y) - H(Y|X)
 = H(X) + H(Y) - H(X, Y)
 = \mathbb{E}_{p(x,y)}\left[\log\frac{p(x,y)}{p(x)p(y)}\right]
 = D_{KL}(p(x,y) \| p(x)p(y))
+
 ```
 
 ### Properties
@@ -55,6 +56,7 @@ I(X; Y) = H(X) - H(X|Y) = H(Y) - H(Y|X)
 
 ```math
 I(X; Y) = D_{KL}(p(x,y) \| p(x)p(y)) \geq 0
+
 ```
 
 by Gibbs' inequality (KL divergence is non-negative). $\quad \blacksquare$
@@ -79,6 +81,7 @@ iff $X$ and $Y$ are independent. $\quad \blacksquare$
 I(X; Y) = H(X) - H(X|Y)
 = H(Y) - H(Y|X)
 = H(X) + H(Y) - H(X,Y)
+
 ```
 
 ### Venn Diagram Interpretation
@@ -92,6 +95,7 @@ I(X; Y) = H(X) - H(X|Y)
    +---------+   +---------+
          +----+----+
            H(X,Y)
+
 ```
 
 ---
@@ -103,12 +107,14 @@ I(X; Y) = H(X) - H(X|Y)
 ```math
 I(X; Y | Z) = H(X|Z) - H(X|Y, Z)
 = \mathbb{E}_{p(z)}[I(X; Y | Z = z)]
+
 ```
 
 ### Chain Rule for Mutual Information
 
 ```math
 I(X_1, X_2, \ldots, X_n; Y) = \sum_{i=1}^{n} I(X_i; Y | X_1, \ldots, X_{i-1})
+
 ```
 
 ---
@@ -121,6 +127,7 @@ For a Markov chain $X \to Y \to Z$:
 
 ```math
 I(X; Z) \leq I(X; Y)
+
 ```
 
 **Interpretation:** Processing cannot increase information.
@@ -130,6 +137,7 @@ I(X; Z) \leq I(X; Y)
 ```math
 I(X; Y, Z) = I(X; Z) + I(X; Y | Z)
 = I(X; Y) + I(X; Z | Y)
+
 ```
 
 For Markov chain $X \to Y \to Z$: $I(X; Z | Y) = 0$
@@ -138,12 +146,14 @@ Therefore:
 
 ```math
 I(X; Z) + I(X; Y | Z) = I(X; Y)
+
 ```
 
 Since $I(X; Y | Z) \geq 0$:
 
 ```math
 I(X; Z) \leq I(X; Y) \quad \blacksquare
+
 ```
 
 ---
@@ -156,6 +166,7 @@ For jointly Gaussian $(X, Y)$ with correlation $\rho$:
 
 ```math
 I(X; Y) = -\frac{1}{2}\log(1 - \rho^2)
+
 ```
 
 ### Proof
@@ -166,12 +177,14 @@ For bivariate Gaussian:
 H(X, Y) = \frac{1}{2}\log((2\pi e)^2 |\boldsymbol{\Sigma}|) = \frac{1}{2}\log((2\pi e)^2 \sigma_X^2 \sigma_Y^2 (1 - \rho^2))
 H(X) = \frac{1}{2}\log(2\pi e \sigma_X^2)
 H(Y) = \frac{1}{2}\log(2\pi e \sigma_Y^2)
+
 ```
 
 Therefore:
 
 ```math
 I(X; Y) = H(X) + H(Y) - H(X, Y) = -\frac{1}{2}\log(1 - \rho^2) \quad \blacksquare
+
 ```
 
 ---
@@ -184,6 +197,7 @@ I(X; Y) = H(X) + H(Y) - H(X, Y) = -\frac{1}{2}\log(1 - \rho^2) \quad \blacksquar
 
 ```math
 \mathcal{L}_{NCE} = -\mathbb{E}\left[\log\frac{f(x, y^+)}{f(x, y^+) + \sum_{j=1}^{N-1} f(x, y_j^-)}\right]
+
 ```
 
 where $y^+$ is the positive sample and $y\_j^-$ are negative samples.
@@ -192,6 +206,7 @@ where $y^+$ is the positive sample and $y\_j^-$ are negative samples.
 
 ```math
 I(X; Y) \geq \log(N) - \mathcal{L}_{NCE}
+
 ```
 
 **Implication:** Minimizing InfoNCE maximizes a lower bound on MI.
@@ -206,12 +221,14 @@ For discrete variables:
 
 ```math
 \hat{I}(X; Y) = \sum_{x, y} \hat{p}(x, y) \log\frac{\hat{p}(x, y)}{\hat{p}(x)\hat{p}(y)}
+
 ```
 
 ### 2. MINE (Mutual Information Neural Estimation)
 
 ```math
 I(X; Y) = \sup_T \mathbb{E}_{p(x,y)}[T] - \log\mathbb{E}_{p(x)p(y)}[e^T]
+
 ```
 
 where $T$ is a neural network.
@@ -222,6 +239,7 @@ where $T$ is a neural network.
 
 ```math
 I(X; Y) \geq \mathbb{E}_{p(x,y)}[\log q(y|x)] + H(Y)
+
 ```
 
 ---
@@ -327,6 +345,7 @@ theoretical_mi = gaussian_mutual_info(rho)
 estimated_mi = train_mine(X, Y)
 print(f"Theoretical MI: {theoretical_mi:.4f}")
 print(f"Estimated MI (MINE): {estimated_mi:.4f}")
+
 ```
 
 ---

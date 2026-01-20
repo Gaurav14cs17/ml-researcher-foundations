@@ -40,6 +40,7 @@ G_t = R_{t+1} + γR_{t+2} + γ²R_{t+3} + ...
     = Σ_{k=0}^∞ γ^k R_{t+k+1}
 
 Where γ ∈ [0, 1] is the discount factor.
+
 ```
 
 ### Recursive Definition
@@ -48,6 +49,7 @@ Where γ ∈ [0, 1] is the discount factor.
 G_t = R_{t+1} + γG_{t+1}
 
 This recursive structure is the basis for TD learning!
+
 ```
 
 ---
@@ -64,6 +66,7 @@ If |R_t| ≤ R_max for all t, then:
 |G_t| ≤ Σ_{k=0}^∞ γ^k R_max = R_max / (1-γ)
 
 This is finite only if γ < 1!
+
 ```
 
 ### 2. Economic Interpretation
@@ -76,6 +79,7 @@ Reasons:
 • Opportunity cost of waiting
 • Preference for immediate gratification
 • Risk of episode termination
+
 ```
 
 ### 3. Computational Properties
@@ -86,6 +90,7 @@ Discounting makes value functions well-defined:
 V(s) = E[Σ_{k=0}^∞ γ^k R_{t+k}]
 
 Without discounting (γ=1), this sum may diverge for non-episodic tasks.
+
 ```
 
 ---
@@ -106,6 +111,7 @@ Derivation:
 Weight at step k: γ^k
 Total weight: Σ_{k=0}^∞ γ^k = 1/(1-γ)
 Half of weight is in first 1/(1-γ) steps
+
 ```
 
 ### Present Value Analysis
@@ -120,6 +126,7 @@ Examples (γ = 0.9):
 • k=5:  γ^5 = 0.59  (59% value)
 • k=10: γ^10 = 0.35 (35% value)
 • k=20: γ^20 = 0.12 (12% value)
+
 ```
 
 ---
@@ -133,6 +140,7 @@ V^π(s) = E_π[R_{t+1} + γV^π(S_{t+1}) | S_t = s]
        = Σ_a π(a|s) [R(s,a) + γ Σ_{s'} P(s'|s,a) V^π(s')]
 
 The γ determines how much future values contribute.
+
 ```
 
 ### Bellman Optimality Equation
@@ -142,6 +150,7 @@ V*(s) = max_a [R(s,a) + γ Σ_{s'} P(s'|s,a) V*(s')]
 
 Smaller γ → Optimization focuses on immediate rewards
 Larger γ → Optimization considers long-term consequences
+
 ```
 
 ---
@@ -155,6 +164,7 @@ V(s) ← V(s) + α[R + γV(s') - V(s)]
 
 The TD target is: R + γV(s')
                   +-- Future value is discounted
+
 ```
 
 ### TD Error
@@ -163,6 +173,7 @@ The TD target is: R + γV(s')
 δ_t = R_{t+1} + γV(S_{t+1}) - V(S_t)
 
 This is the "surprise" - difference between expected and actual.
+
 ```
 
 ### n-Step Returns
@@ -171,6 +182,7 @@ This is the "surprise" - difference between expected and actual.
 G_t:t+n = R_{t+1} + γR_{t+2} + ... + γ^{n-1}R_{t+n} + γ^n V(S_{t+n})
 
 Each future reward is discounted by its distance from present.
+
 ```
 
 ---
@@ -201,6 +213,7 @@ Increase γ if:
 • Agent is too myopic
 • Important rewards are delayed
 • Long-term planning is needed
+
 ```
 
 ---
@@ -215,6 +228,7 @@ G_t = Σ_{k=0}^{T-t-1} γ^k R_{t+k+1}
 
 Gradient estimate:
 ∇J(θ) ≈ Σ_t ∇log π_θ(a_t|s_t) · G_t
+
 ```
 
 ### Generalized Advantage Estimation (GAE)
@@ -228,6 +242,7 @@ Where δ_t = r_t + γV(s_{t+1}) - V(s_t)
 
 • γ: Standard discount for future rewards
 • λ: Controls bias-variance tradeoff in advantage
+
 ```
 
 ---
@@ -333,6 +348,7 @@ class DiscountedMDP:
             advantages[t] = gae
         
         return advantages
+
 ```
 
 ---

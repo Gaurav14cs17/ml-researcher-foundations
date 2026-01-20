@@ -82,6 +82,7 @@
 |               +----------------------------------+                          |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -94,6 +95,7 @@
 
 ```math
 A = U\Sigma V^T
+
 ```
 
 where:
@@ -111,6 +113,7 @@ where:
 | Matrix  |       |         |     |    ⋱    |     |         |
 |         |       |         |     |      σᵣ |     |         |
 +---------+       +---------+     +---------+     +---------+
+
 ```
 
 ### 🔍 Complete Proof of SVD Existence
@@ -118,12 +121,15 @@ where:
 **Step 1**: Consider $A^TA \in \mathbb{R}^{n \times n}$
 
 $A^TA$ is symmetric positive semi-definite:
+
 ```
 • Symmetric: (AᵀA)ᵀ = AᵀA  ✓
 • PSD: xᵀ(AᵀA)x = (Ax)ᵀ(Ax) = ‖Ax‖² ≥ 0  ✓
+
 ```
 
 **Step 2**: Apply Spectral Theorem to $A^TA$
+
 ```
 Since AᵀA is symmetric:
   AᵀA = VΛVᵀ
@@ -133,9 +139,11 @@ where:
   Λ diagonal with λᵢ ≥ 0 (eigenvalues)
 
 Define singular values: σᵢ = √λᵢ
+
 ```
 
 **Step 3**: Construct $U$
+
 ```
 For each non-zero σᵢ, define:
   uᵢ = (1/σᵢ)Avᵢ
@@ -148,9 +156,11 @@ Verify orthonormality:
         = δᵢⱼ  ✓
 
 Complete {uᵢ} to orthonormal basis of ℝᵐ using Gram-Schmidt.
+
 ```
 
 **Step 4**: Verify $A = U\Sigma V^T$
+
 ```
 For each vⱼ:
   Avⱼ = σⱼuⱼ  (by construction of uⱼ)
@@ -159,6 +169,7 @@ In matrix form:
   AV = UΣ
   AVVᵀ = UΣVᵀ  (multiply right by Vᵀ)
   A = UΣVᵀ     (since VVᵀ = I)  ∎
+
 ```
 
 ### 📐 Key Properties
@@ -177,11 +188,13 @@ In matrix form:
 
 ```math
 A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T
+
 ```
 
 **Error**: $\|A - A\_k\|\_F^2 = \sum\_{i=k+1}^{r} \sigma\_i^2$
 
 **Proof Sketch**:
+
 ```
 Step 1: Any rank-k matrix B has null space of dimension n-k
 
@@ -193,11 +206,13 @@ Step 3: By dimension counting, these spaces intersect
 Step 4: Then ‖A-B‖²_F ≥ ‖(A-B)z‖² = ‖Az‖² ≥ σ²ₖ₊₁
 
 Step 5: Aₖ achieves this lower bound  ∎
+
 ```
 
 ### 💡 Examples
 
 **Example 1**: 2×2 Matrix SVD
+
 ```
 A = [3  0]
     [0  2]
@@ -208,9 +223,11 @@ Already diagonal! So:
   
 A = [1 0] [3 0] [1 0]
     [0 1] [0 2] [0 1]
+
 ```
 
 **Example 2**: Rank-1 Matrix
+
 ```
 A = [2  4]     (rank 1: row 2 = 2 × row 1)
     [1  2]
@@ -222,9 +239,11 @@ SVD: A = uσvᵀ where
 
 Verify: A = 5 × [2/√5] × [1/√5, 2/√5]
              [1/√5]
+
 ```
 
 **Example 3**: Low-Rank Approximation
+
 ```
 A = [1  0  0]
     [0  3  0]
@@ -238,6 +257,7 @@ A₂ = [1  0  0]    (just zero out smallest singular value)
      [0  0  0]
 
 Error: ‖A-A₂‖_F = σ₃ = 0.1 (only 10% of smallest component lost)
+
 ```
 
 ### 🤖 ML Application: LoRA (Low-Rank Adaptation)
@@ -275,6 +295,7 @@ class LoRALinear(nn.Module):
 # Parameter savings:
 # Original: 768 × 768 = 589,824 params
 # LoRA (r=4): 768×4 + 4×768 = 6,144 params (96× reduction!)
+
 ```
 
 ---
@@ -287,12 +308,14 @@ For a **square matrix** $A \in \mathbb{R}^{n \times n}$:
 
 ```math
 A\mathbf{v} = \lambda\mathbf{v}
+
 ```
 
 If $A$ has $n$ linearly independent eigenvectors:
 
 ```math
 A = Q\Lambda Q^{-1}
+
 ```
 
 For **symmetric** $A$: $A = Q\Lambda Q^T$ (orthogonal $Q$)
@@ -300,6 +323,7 @@ For **symmetric** $A$: $A = Q\Lambda Q^T$ (orthogonal $Q$)
 ### 🔍 Proof: Symmetric Matrices Have Real Eigenvalues and Orthogonal Eigenvectors
 
 **Part 1: Eigenvalues are Real**
+
 ```
 Step 1: Let λ be eigenvalue with eigenvector v (possibly complex)
         Av = λv
@@ -315,9 +339,11 @@ Step 4: Right-multiply Step 2 by v
 
 Step 5: Equate: λ‖v‖² = λ̄‖v‖²
         Since ‖v‖² > 0: λ = λ̄  ⟹ λ is real  ∎
+
 ```
 
 **Part 2: Eigenvectors of Distinct Eigenvalues are Orthogonal**
+
 ```
 Step 1: Let Av₁ = λ₁v₁ and Av₂ = λ₂v₂ with λ₁ ≠ λ₂
 
@@ -329,6 +355,7 @@ Step 3: Equate: λ₂(v₁ᵀv₂) = λ₁(v₁ᵀv₂)
         (λ₂ - λ₁)(v₁ᵀv₂) = 0
 
 Step 4: Since λ₁ ≠ λ₂: v₁ᵀv₂ = 0  (orthogonal)  ∎
+
 ```
 
 ### 📐 Key Properties
@@ -344,6 +371,7 @@ Step 4: Since λ₁ ≠ λ₂: v₁ᵀv₂ = 0  (orthogonal)  ∎
 ### 💡 Examples
 
 **Example 1**: Finding Eigenvalues (2×2)
+
 ```
 A = [4  1]
     [2  3]
@@ -365,9 +393,11 @@ For λ₁ = 5: (A-5I)v = 0
 For λ₂ = 2: (A-2I)v = 0
   [2  1][v₁]   [0]
   [2  1][v₂] = [0]  ⟹ v₂ = [1, -2]ᵀ
+
 ```
 
 **Example 2**: Symmetric Matrix (Orthogonal Eigenvectors)
+
 ```
 A = [2  1]
     [1  2]
@@ -379,9 +409,11 @@ Eigenvectors (normalized):
   v₂ = [1/√2, -1/√2]ᵀ
 
 Check orthogonality: v₁·v₂ = 1/2 - 1/2 = 0 ✓
+
 ```
 
 **Example 3**: Matrix Power via Eigendecomposition
+
 ```
 Compute A¹⁰⁰ where A = [2  1]
                        [1  2]
@@ -395,6 +427,7 @@ Using A = QΛQᵀ:
          [0      1]
 
 Much faster than 100 matrix multiplications!
+
 ```
 
 ### ⚠️ When Eigendecomposition Fails
@@ -413,6 +446,7 @@ For such matrices, use:
 • Jordan Normal Form: A = PJP⁻¹
 • Schur Decomposition: A = QTQ* (always exists)
 • SVD (always exists for any matrix)
+
 ```
 
 ---
@@ -425,6 +459,7 @@ For any matrix $A \in \mathbb{R}^{m \times n}$ with $m \geq n$:
 
 ```math
 A = QR
+
 ```
 
 where:
@@ -451,9 +486,11 @@ For j = 1, 2, ..., n:
     qⱼ = ũⱼ / rⱼⱼ
 
 Result: A = QR where Q = [q₁|...|qₙ] and R has rᵢⱼ entries
+
 ```
 
 **Verification**:
+
 ```
 We need to show: aⱼ = Σᵢ₌₁ʲ rᵢⱼqᵢ  (j-th column of QR)
 
@@ -465,6 +502,7 @@ Therefore:
   aⱼ = ũⱼ + Σᵢ₌₁ʲ⁻¹ rᵢⱼqᵢ
      = rⱼⱼqⱼ + Σᵢ₌₁ʲ⁻¹ rᵢⱼqᵢ
      = Σᵢ₌₁ʲ rᵢⱼqᵢ  ✓
+
 ```
 
 ### 📐 Modified Gram-Schmidt (Numerically Stable)
@@ -483,11 +521,13 @@ For j = 1 to n:
 Numerical advantage:
 • Classical GS error: O(κ²(A)ε) where ε = machine precision
 • Modified GS error:  O(κ(A)ε)
+
 ```
 
 ### 💡 Examples
 
 **Example 1**: 2×2 QR Decomposition
+
 ```
 A = [1  1]
     [1  0]
@@ -507,11 +547,13 @@ Step 2: Second column
 Result:
 Q = [1/√2   1/√2]    R = [√2    1/√2]
     [1/√2  -1/√2]        [0     1/√2]
+
 ```
 
 ### 🤖 ML Applications
 
 **1. Least Squares (More Stable than Normal Equations)**
+
 ```
 Problem: min ‖Ax - b‖²
 
@@ -522,9 +564,11 @@ QR approach:
   Ax = b  ⟹  QRx = b  ⟹  Rx = Qᵀb
   
   Solve triangular system Rx = Qᵀb (stable back-substitution)
+
 ```
 
 **2. QR Algorithm for Eigenvalues**
+
 ```
 A₀ = A
 For k = 1, 2, ...:
@@ -532,6 +576,7 @@ For k = 1, 2, ...:
     Aₖ = RₖQₖ       (Reverse multiply)
 
 As k → ∞: Aₖ → upper triangular (eigenvalues on diagonal)
+
 ```
 
 ---
@@ -544,6 +589,7 @@ For a **symmetric positive definite** matrix $A$:
 
 ```math
 A = LL^T
+
 ```
 
 where $L$ is lower triangular with positive diagonal entries.
@@ -582,6 +628,7 @@ Need to show: C - bbᵀ/a is positive definite
     yᵀAy = (bᵀx)²/a - 2(bᵀx)²/a + xᵀCx = xᵀCx - (bᵀx)²/a > 0
     
   So C - bbᵀ/a is PD, apply induction to get L₂.  ∎
+
 ```
 
 ### 📐 Algorithm
@@ -604,6 +651,7 @@ def cholesky(A):
             L[i, j] = (A[i, j] - np.sum(L[i, :j] * L[j, :j])) / L[j, j]
     
     return L
+
 ```
 
 ### 💡 Example
@@ -624,11 +672,13 @@ L = [2  0]
 
 Verify: LLᵀ = [2  0][2  1] = [4  2] = A ✓
               [1  2][0  2]   [2  5]
+
 ```
 
 ### 🤖 ML Applications
 
 **Gaussian Processes**: Computing $\mathcal{N}(\mu, K)$
+
 ```python
 # Sampling from multivariate Gaussian
 L = np.linalg.cholesky(K)  # K = covariance matrix
@@ -638,6 +688,7 @@ sample = mu + L @ z         # Transform to N(μ, K)
 # Computing log-likelihood efficiently
 # log|K| = 2 × sum of log(diagonal of L)
 log_det = 2 * np.sum(np.log(np.diag(L)))
+
 ```
 
 ---
@@ -650,6 +701,7 @@ For a square matrix $A$ (with partial pivoting):
 
 ```math
 PA = LU
+
 ```
 
 where:
@@ -669,6 +721,7 @@ For k = 1 to n-1:
     For i = k+1 to n:
         Lᵢₖ = Aᵢₖ / Aₖₖ           # Store multiplier
         Aᵢ,ₖ₊₁:ₙ -= Lᵢₖ × Aₖ,ₖ₊₁:ₙ  # Eliminate
+
 ```
 
 ### 💡 Application: Solving $Ax = b$
@@ -682,6 +735,7 @@ Given PA = LU:
 
 Total: O(n³/3) for factorization + O(n²) per solve
        (Factorize once, solve many times!)
+
 ```
 
 ---
@@ -706,6 +760,7 @@ Is matrix square?
          +- Yes → Is matrix positive definite?
                   +- No → Use Eigen or SVD
                   +- Yes → Use Cholesky (fastest!)
+
 ```
 
 ---
@@ -795,6 +850,7 @@ def demonstrate_all_decompositions():
 
 # Run demo
 demonstrate_all_decompositions()
+
 ```
 
 ### PyTorch GPU Implementation
@@ -822,6 +878,7 @@ def low_rank_approximation_torch(A, k):
     A_k = U[:, :k] @ torch.diag(S[:k]) @ Vh[:k, :]
     
     return A_k.cpu().numpy()
+
 ```
 
 ---
@@ -829,6 +886,7 @@ def low_rank_approximation_torch(A, k):
 ## ⚠️ Common Mistakes
 
 ### ❌ Mistake 1: Using Eigendecomposition on Non-Square Matrix
+
 ```python
 # WRONG
 A = np.random.randn(5, 3)
@@ -836,18 +894,22 @@ eigenvalues, eigenvectors = np.linalg.eig(A)  # ERROR!
 
 # CORRECT: Use SVD for rectangular matrices
 U, S, Vt = np.linalg.svd(A)
+
 ```
 
 ### ❌ Mistake 2: Assuming All Matrices are Diagonalizable
+
 ```python
 # This matrix is defective (not diagonalizable)
 A = np.array([[1, 1], [0, 1]])
 
 # Use Schur decomposition instead
 T, Q = linalg.schur(A)
+
 ```
 
 ### ❌ Mistake 3: Using Cholesky on Non-PD Matrix
+
 ```python
 # WRONG: Matrix must be positive definite
 A = np.array([[1, 2], [2, 1]])  # Eigenvalues: 3, -1 (not PD!)
@@ -857,9 +919,11 @@ L = np.linalg.cholesky(A)  # LinAlgError!
 eigenvalues = np.linalg.eigvalsh(A)
 if np.all(eigenvalues > 0):
     L = np.linalg.cholesky(A)
+
 ```
 
 ### ❌ Mistake 4: Ignoring Numerical Stability
+
 ```python
 # FRAGILE: Normal equations
 x = np.linalg.inv(A.T @ A) @ A.T @ b
@@ -867,6 +931,7 @@ x = np.linalg.inv(A.T @ A) @ A.T @ b
 # STABLE: Use QR
 Q, R = np.linalg.qr(A)
 x = np.linalg.solve(R, Q.T @ b)
+
 ```
 
 ---

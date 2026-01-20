@@ -46,6 +46,7 @@ CV Score = (1/k) Σᵢ Score(foldᵢ)
 CV Std = √((1/k) Σᵢ (Scoreᵢ - CV Score)²)
 
 Common choices: k = 5 or k = 10
+
 ```
 
 ### Information Criteria
@@ -59,6 +60,7 @@ BIC (Bayesian Information Criterion):
 BIC = k·ln(n) - 2ln(L̂)
 
 Lower is better. BIC penalizes complexity more.
+
 ```
 
 ### Bias-Variance in Model Selection
@@ -70,6 +72,7 @@ Simple model: High bias, low variance
 Complex model: Low bias, high variance
 
 Goal: Find the sweet spot (optimal complexity)
+
 ```
 
 ---
@@ -145,6 +148,7 @@ train_sizes, train_scores, val_scores = learning_curve(
     train_sizes=np.linspace(0.1, 1.0, 10)
 )
 print(f"Learning curve computed with {len(train_sizes)} points")
+
 ```
 
 ---
@@ -179,6 +183,7 @@ print(f"Learning curve computed with {len(train_sizes)} points")
 ✅ Use nested CV for hyperparameter tuning
 ✅ Report mean ± std of CV scores
 ✅ Keep test set completely hidden until final evaluation
+
 ```
 
 ---

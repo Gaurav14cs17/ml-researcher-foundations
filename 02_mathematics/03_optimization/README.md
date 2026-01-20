@@ -16,15 +16,18 @@
 ## 📐 Mathematical Foundations
 
 ### Optimality Conditions
+
 ```
 First-order necessary condition:
 ∇f(x*) = 0
 
 Second-order sufficient condition:
 ∇²f(x*) ≻ 0 (positive definite)
+
 ```
 
 ### Convexity
+
 ```
 Function f is convex iff:
 f(λx + (1-λ)y) ≤ λf(x) + (1-λ)f(y)  ∀λ ∈ [0,1]
@@ -34,18 +37,22 @@ Equivalently:
 
 Strong convexity (μ > 0):
 f(y) ≥ f(x) + ∇f(x)ᵀ(y-x) + (μ/2)||y-x||²
+
 ```
 
 ### Lipschitz Smoothness
+
 ```
 f has L-Lipschitz gradient if:
 ||∇f(x) - ∇f(y)|| ≤ L||x - y||
 
 Equivalently:
 f(y) ≤ f(x) + ∇f(x)ᵀ(y-x) + (L/2)||y-x||²
+
 ```
 
 ### Convergence Rates
+
 ```
 GD with step size α = 1/L:
 f(xₖ) - f(x*) ≤ L||x₀ - x*||² / (2k)   [O(1/k)]
@@ -55,6 +62,7 @@ Strongly convex (κ = L/μ):
 
 Nesterov acceleration:
 f(xₖ) - f(x*) ≤ O(L||x₀ - x*||² / k²)  [O(1/k²)]
+
 ```
 
 ---
@@ -84,6 +92,7 @@ In ML:
 • f(x) = Loss function (cross-entropy, MSE, ...)
 • x = Model parameters (millions/billions of them!)
 • Constraints often implicit (weight decay = soft constraint)
+
 ```
 
 ---
@@ -109,6 +118,7 @@ In ML:
                          |
                          v
               Deep Learning Training
+
 ```
 
 ---
@@ -133,6 +143,7 @@ Steps k | O(1/k²) | O((1-1/κ)^k) | O(1/k) | O(1/√k)
    1000 | 1e-06   |     0.00     |  0.001 |   0.03
 
 (Lower is better)
+
 ```
 
 ---
@@ -162,6 +173,7 @@ def adam_step(param, grad, m, v, t, lr=0.001, beta1=0.9, beta2=0.999, eps=1e-8):
     v_hat = v / (1 - beta2**t)
     param = param - lr * m_hat / (np.sqrt(v_hat) + eps)
     return param, m, v
+
 ```
 
 ---

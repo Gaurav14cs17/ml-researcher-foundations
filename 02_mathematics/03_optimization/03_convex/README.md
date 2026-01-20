@@ -66,6 +66,7 @@
 |   +===================================================================+     |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -78,6 +79,7 @@ A set $C$ is **convex** if for all $\mathbf{x}, \mathbf{y} \in C$ and $\lambda \
 
 ```math
 \lambda \mathbf{x} + (1 - \lambda) \mathbf{y} \in C
+
 ```
 
 *The line segment between any two points in $C$ lies entirely within $C$.*
@@ -112,6 +114,7 @@ A function $f: \mathbb{R}^n \to \mathbb{R}$ is **convex** if its domain is conve
 
 ```math
 f(\lambda \mathbf{x} + (1 - \lambda) \mathbf{y}) \leq \lambda f(\mathbf{x}) + (1 - \lambda) f(\mathbf{y})
+
 ```
 
 *The function lies below (or on) the chord between any two points.*
@@ -131,6 +134,7 @@ Chord: λf(x) + (1-λ)f(y)
 Function: f(λx + (1-λ)y)
 
 Convex: function ≤ chord everywhere
+
 ```
 
 ### 📊 Common Convex Functions
@@ -156,6 +160,7 @@ For differentiable $f$, convexity is equivalent to:
 
 ```math
 f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f(\mathbf{x})^T (\mathbf{y} - \mathbf{x}) \quad \forall \mathbf{x}, \mathbf{y}
+
 ```
 
 *The function lies above all its tangent planes.*
@@ -166,6 +171,7 @@ For twice-differentiable $f$, convexity is equivalent to:
 
 ```math
 \nabla^2 f(\mathbf{x}) \succeq 0 \quad \forall \mathbf{x}
+
 ```
 
 *The Hessian is positive semidefinite everywhere.*
@@ -188,6 +194,7 @@ Step 3: Combine:
 Step 4: Divide by t² and let t → 0:
         ½vᵀHv ≥ 0 for all v
         Therefore H ⪰ 0  ∎
+
 ```
 
 ### 💡 Example: Checking Convexity
@@ -208,6 +215,7 @@ Check positive semidefinite:
 
 Both eigenvalues positive → H ≻ 0 (positive definite)
 → f is strictly convex ✓
+
 ```
 
 ---
@@ -234,6 +242,7 @@ Softmax loss = log(Σⱼ exp(zⱼ)) - z_y
 This is convex in z! (sum of convex functions)
 
 That's why logistic regression is a convex problem.
+
 ```
 
 ---
@@ -246,6 +255,7 @@ $f$ is **$\mu$-strongly convex** if:
 
 ```math
 f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f(\mathbf{x})^T(\mathbf{y} - \mathbf{x}) + \frac{\mu}{2}\|\mathbf{y} - \mathbf{x}\|^2
+
 ```
 
 Equivalently: $\nabla^2 f \succeq \mu I$ (Hessian has minimum eigenvalue $\geq \mu$)
@@ -267,6 +277,7 @@ Proof: ∇²f = 2 ≥ 2 = μ ✓
 
 f(x) = |x| is convex but NOT strongly convex
 (Hessian is 0 at x=0)
+
 ```
 
 ---
@@ -281,6 +292,7 @@ f(x) = |x| is convex but NOT strongly convex
 \text{s.t.} \quad & g_i(\mathbf{x}) \leq 0, \quad i = 1, \ldots, m \\
 & A\mathbf{x} = \mathbf{b}
 \end{align}
+
 ```
 
 where $f$ and all $g\_i$ are convex.
@@ -304,6 +316,7 @@ f(λx' + (1-λ)x*) ≤ λf(x') + (1-λ)f(x*)
 
 So points arbitrarily close to x* (small 1-λ) have lower function value.
 This contradicts x* being a local minimum!  ∎
+
 ```
 
 ### 📊 ML Examples
@@ -449,6 +462,7 @@ x0 = np.zeros(10)
 x_opt, history = gradient_descent_convex(f, grad_f, x0, lr=lr)
 
 print(f"Optimal x found with residual: {f(x_opt):.6f}")
+
 ```
 
 ---

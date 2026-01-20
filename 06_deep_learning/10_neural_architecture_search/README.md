@@ -31,9 +31,11 @@
    • Reinforcement learning
    • Differentiable (DARTS)
 3. Performance Estimation: Evaluate candidate architectures
+
 ```
 
 ### DARTS (Differentiable)
+
 ```
 Mixed operation: ō(x) = Σᵢ αᵢ oᵢ(x)
 
@@ -42,6 +44,7 @@ where αᵢ = exp(aᵢ)/Σⱼexp(aⱼ) (softmax)
 Jointly optimize:
 • Architecture weights α
 • Network weights w
+
 ```
 
 ---
@@ -62,6 +65,7 @@ class MixedOp(nn.Module):
     def forward(self, x):
         weights = F.softmax(self.alphas, dim=0)
         return sum(w * op(x) for w, op in zip(weights, self.ops))
+
 ```
 
 ---

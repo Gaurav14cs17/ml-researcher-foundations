@@ -48,6 +48,7 @@ For all:
 
 Using m ≥ p(1/ε, 1/δ, n, size(c)) samples:
 P[error(h) ≤ ε] ≥ 1 - δ
+
 ```
 
 ### VC Dimension
@@ -64,6 +65,7 @@ Examples:
 • Linear classifiers in ℝᵈ: VC = d + 1
 • Decision stumps: VC = 1
 • k-NN (k=1): VC = ∞
+
 ```
 
 ### Generalization Bound
@@ -78,6 +80,7 @@ Where:
 • R̂(h) = empirical risk (training error)
 • d = VC dimension
 • n = sample size
+
 ```
 
 ---
@@ -152,6 +155,7 @@ delta = 0.05  # 95% confidence
 
 m = sample_complexity(vc, eps, delta)
 print(f"Need at least {m} samples for VC={vc}, ε={eps}, δ={delta}")
+
 ```
 
 ---

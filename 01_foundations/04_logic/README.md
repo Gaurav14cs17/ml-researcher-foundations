@@ -94,6 +94,7 @@ By the end of this article, you will be able to:
 |                   one true"                     ≡ ¬P ∨ Q                   |
 |                                                                             |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ### Quantifiers
@@ -119,6 +120,7 @@ By the end of this article, you will be able to:
 |   "For each x, exists y"  vs  "One y works for all x"                      |
 |                                                                             |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -178,6 +180,7 @@ Only when P is TRUE and Q is FALSE.
 
 Key insight: P → Q is TRUE when P is FALSE!
 (If it's not raining, the implication is "vacuously true")
+
 ```
 
 #### Example 2: ML Theorem as Logic (Intermediate)
@@ -193,6 +196,7 @@ P → Q (the theorem)
 Contrapositive (logically equivalent):
 ¬Q → ¬P
 "If some local minimum is not global, then f is not convex"
+
 ```
 
 ### 💻 Code Implementation
@@ -229,6 +233,7 @@ for P, Q in product([True, False], repeat=2):
     lhs = IMPLIES(P, Q)
     rhs = (not P) or Q
     print(f"P={P}, Q={Q}: P→Q = {lhs}, ¬P∨Q = {rhs}, Equal: {lhs == rhs}")
+
 ```
 
 ---
@@ -277,6 +282,7 @@ Negation: ¬[∀M: (VC(M) < n) → Generalizes(M)]
         = ∃M: (VC(M) < n) ∧ ¬Generalizes(M)
 
 "There exists a model with VC < n that doesn't generalize"
+
 ```
 
 ---
@@ -329,6 +335,7 @@ Translation:
  For any continuous function f,
  There exists a neural network NN,
  Such that NN approximates f within ε"
+
 ```
 
 #### Example 2: Quantifier Order Matters! (Critical)
@@ -346,6 +353,7 @@ Example: "There is someone who is everyone's mother"
 
 These are NOT equivalent!
 Statement 2 implies Statement 1, but not vice versa.
+
 ```
 
 #### Example 3: Limit Definition (Advanced)
@@ -360,6 +368,7 @@ Reading:
  there exists δ (how close x must be to a),
  such that if x is within δ of a (but not equal),
  then f(x) is within ε of L"
+
 ```
 
 ### 💻 Code Implementation
@@ -412,6 +421,7 @@ def demonstrate_quantifier_order():
 
 demonstrate_quantifiers()
 demonstrate_quantifier_order()
+
 ```
 
 ---
@@ -517,6 +527,7 @@ print(f"Small LR ({p}) + theorem → Converges: {q}")
 not_q = True
 not_p = modus_tollens(p_implies_q, not_q)
 print(f"Didn't converge ({not_q}) + theorem → LR not small: {not_p}")
+
 ```
 
 ---
@@ -537,6 +548,7 @@ w = [1, 1]                 w = [1, 1]                 w = [-1]
 b = -1.5                   b = -0.5                   b = 0.5
 
 σ(z) = 1 if z ≥ 0 else 0  (step function)
+
 ```
 
 ### 📐 Proof: AND Gate Works
@@ -572,6 +584,7 @@ Layer 2: Compute AND of Layer 1 outputs
 
 XOR = (x₁ ∨ x₂) ∧ ¬(x₁ ∧ x₂)
     = OR(x₁, x₂) ∧ NAND(x₁, x₂)
+
 ```
 
 ### 📐 Proof: XOR Requires 2 Layers
@@ -634,6 +647,7 @@ for x1, x2 in [(0, 0), (0, 1), (1, 0), (1, 1)]:
 # Verify cannot learn with single layer
 print("\nAttempting single-layer XOR (will fail):")
 # No w1, w2, b can satisfy all 4 conditions simultaneously
+
 ```
 
 ---
@@ -648,6 +662,7 @@ When you see a theorem in an ML paper:
 Theorem: Let f: ℝⁿ → ℝ be L-Lipschitz and convex. 
 Then gradient descent with step size α ≤ 1/L satisfies:
     f(x_T) - f(x*) ≤ O(1/T)
+
 ```
 
 **Parse it as:**
@@ -663,6 +678,7 @@ Assumptions (Antecedents):
 
 Conclusion (Consequent):
 - f(x_T) - f(x*) ≤ O(1/T)
+
 ```
 
 ### Common Logical Patterns in ML
@@ -706,6 +722,7 @@ Conclusion (Consequent):
 
 ✅ VALID (Modus Ponens):
    P → Q, P ⊢ Q
+
 ```
 
 ### Mistake 2: Denying the Antecedent
@@ -720,6 +737,7 @@ Conclusion (Consequent):
 
 ✅ VALID (Modus Tollens):
    P → Q, ¬Q ⊢ ¬P
+
 ```
 
 ### Mistake 3: Quantifier Order
@@ -731,6 +749,7 @@ Conclusion (Consequent):
 ✅ RIGHT:
    ∀x ∃y: "For each x, there's a (possibly different) y"
    ∃y ∀x: "One y works for ALL x" (much stronger)
+
 ```
 
 ### Mistake 4: Misreading Implication
@@ -741,6 +760,7 @@ Conclusion (Consequent):
 ✅ RIGHT: P → Q means "if P is true, Q is true"
    - Can be true even when P is false (vacuously)
    - Doesn't imply causation, just logical relation
+
 ```
 
 ---
@@ -975,6 +995,7 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("DEMONSTRATIONS COMPLETE")
     print("=" * 60)
+
 ```
 
 ---

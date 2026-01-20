@@ -31,6 +31,7 @@
 |   No guarantees              Polynomial algorithms      |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -54,6 +55,7 @@ Examples:
 ✓ Balls: {x : ||x - c|| ≤ r}
 ✓ Polyhedra: {x : Ax ≤ b}
 ✗ Non-convex: donut shape, star shape
+
 ```
 
 ### Convex Function
@@ -76,6 +78,7 @@ Interpretation:
              ╱ graph
             ╱
        f(x)●
+
 ```
 
 ### Strict Convexity
@@ -88,6 +91,7 @@ f(θx + (1-θ)y) < θf(x) + (1-θ)f(y)
 for all x ≠ y and θ ∈ (0,1)
 
 Implication: Unique global minimum (if exists)
+
 ```
 
 ### Strong Convexity
@@ -104,6 +108,7 @@ Properties:
 • Unique minimum exists
 • Gradient descent converges linearly
 • Condition number κ = L/μ bounds convergence
+
 ```
 
 ---
@@ -122,6 +127,7 @@ Interpretation:
 
 Consequence:
 ∇f(x*) = 0  ⟹  x* is GLOBAL minimum
+
 ```
 
 ### Second-Order Condition
@@ -137,6 +143,7 @@ How to check:
 • All eigenvalues of Hessian ≥ 0
 • Principal minors ≥ 0
 • Cholesky decomposition exists
+
 ```
 
 ---
@@ -166,6 +173,7 @@ How to check:
 
 7. Negative entropy: f(x) = Σᵢ xᵢ log xᵢ
    Convex on x > 0
+
 ```
 
 ### Common Concave Functions
@@ -179,6 +187,7 @@ How to check:
 
 3. Geometric mean: f(x) = (Πᵢ xᵢ)^(1/n)
    Concave on x > 0
+
 ```
 
 ---
@@ -207,6 +216,7 @@ How to check:
 5. Partial minimization:
    g(x) = inf_{y∈C} f(x, y)
    convex if f convex in (x,y) and C convex
+
 ```
 
 ---
@@ -223,6 +233,7 @@ subject to  fᵢ(x) ≤ 0       i = 1,...,m  (inequalities)
 Convex program if:
 • f₀, f₁, ..., fₘ are convex
 • h₁, ..., hₚ are affine
+
 ```
 
 ### Key Property
@@ -237,6 +248,7 @@ By convexity: f(θy + (1-θ)x*) ≤ θf(y) + (1-θ)f(x*) < f(x*)
 for all θ ∈ (0,1].
 But θy + (1-θ)x* can be arbitrarily close to x*.
 Contradiction with x* being local min! ∎
+
 ```
 
 ---
@@ -250,6 +262,7 @@ L(x, λ, ν) = f₀(x) + Σᵢ λᵢfᵢ(x) + Σⱼ νⱼhⱼ(x)
 
 where λᵢ ≥ 0 (for inequalities)
       νⱼ ∈ ℝ (for equalities)
+
 ```
 
 ### Dual Function
@@ -260,6 +273,7 @@ g(λ, ν) = inf_x L(x, λ, ν)
 Properties:
 • g is always concave (even if primal not convex)
 • g(λ, ν) ≤ p* for any λ ≥ 0, ν  (weak duality)
+
 ```
 
 ### Dual Problem
@@ -270,6 +284,7 @@ subject to  λ ≥ 0
 
 • Always a convex problem!
 • Optimal value d* ≤ p*
+
 ```
 
 ### Strong Duality
@@ -284,6 +299,7 @@ Applications:
 • Dual provides lower bound
 • Complementary slackness for KKT
 • Economic interpretation (shadow prices)
+
 ```
 
 ---
@@ -307,6 +323,7 @@ x*, λ*, ν* optimal iff:
 
 4. Complementary slackness:
    λᵢ*fᵢ(x*) = 0  for all i
+
 ```
 
 ### Using KKT to Solve Problems
@@ -317,6 +334,7 @@ Strategy:
 2. Consider cases (which constraints active?)
 3. Solve resulting system of equations
 4. Verify solution satisfies all conditions
+
 ```
 
 ---
@@ -335,6 +353,7 @@ Convergence (L-smooth):
 
 Convergence (μ-strongly convex):
   f(x_k) - f* ≤ (1 - μ/L)^k (f(x_0) - f*)
+
 ```
 
 ### Projected Gradient Descent
@@ -346,6 +365,7 @@ x_{k+1} = Π_C(x_k - α∇f(x_k))
 
 where Π_C is projection onto C:
 Π_C(y) = argmin_{x∈C} ||x - y||²
+
 ```
 
 ### Proximal Gradient
@@ -356,6 +376,7 @@ For f(x) = g(x) + h(x) where g smooth, h non-smooth:
 x_{k+1} = prox_{αh}(x_k - α∇g(x_k))
 
 where prox_{h}(y) = argmin_x {h(x) + (1/2)||x-y||²}
+
 ```
 
 ### Interior Point Methods
@@ -368,6 +389,7 @@ minimize f₀(x) - (1/t)Σᵢ log(-fᵢ(x))
 
 As t → ∞, solution → original optimal
 Complexity: O(√m log(1/ε)) Newton steps
+
 ```
 
 ---
@@ -395,6 +417,7 @@ problem.solve()
 
 print(f"Optimal value: {problem.value}")
 print(f"Optimal x: {x.value}")
+
 ```
 
 ### Check Convexity
@@ -417,6 +440,7 @@ def check_hessian_psd(hessian_fn, x, eps=1e-6):
 # Example
 P = np.array([[2, 1], [1, 3]])
 print(f"Quadratic is convex: {is_convex_quadratic(P)}")
+
 ```
 
 ### Gradient Descent for Convex Function
@@ -460,6 +484,7 @@ x_opt = gradient_descent_convex(f, grad_f, x0)
 x_closed = np.linalg.lstsq(A, b, rcond=None)[0]
 print(f"GD solution: {x_opt}")
 print(f"Closed form: {x_closed}")
+
 ```
 
 ---

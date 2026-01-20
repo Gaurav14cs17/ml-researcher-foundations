@@ -53,6 +53,7 @@ Diffusion models generate images by **denoising**:
 ```
 Training: Image → Add noise step by step → Pure noise
 Inference: Pure noise → Remove noise step by step → Image
+
 ```
 
 **Problem:** Requires many steps (50-1000) = Slow!
@@ -67,12 +68,14 @@ Add Gaussian noise gradually:
 
 ```math
 q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t} x_{t-1}, \beta_t I)
+
 ```
 
 **Closed form for any \( t \):**
 
 ```math
 q(x_t | x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0, (1-\bar{\alpha}_t) I)
+
 ```
 
 where \( \bar{\alpha}_t = \prod_{s=1}^{t}(1-\beta_s) \).
@@ -81,6 +84,7 @@ where \( \bar{\alpha}_t = \prod_{s=1}^{t}(1-\beta_s) \).
 
 ```math
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1-\bar{\alpha}_t} \epsilon, \quad \epsilon \sim \mathcal{N}(0, I)
+
 ```
 
 ---
@@ -91,18 +95,21 @@ x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1-\bar{\alpha}_t} \epsilon, \quad \epsil
 
 ```math
 p_\theta(x_{t-1}|x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \sigma_t^2 I)
+
 ```
 
 **Training objective:**
 
 ```math
 \mathcal{L} = \mathbb{E}_{t, x_0, \epsilon}\left[\|\epsilon - \epsilon_\theta(x_t, t)\|^2\right]
+
 ```
 
 **Sampling (stochastic):**
 
 ```math
 x_{t-1} = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon_\theta(x_t, t)\right) + \sigma_t z
+
 ```
 
 where \( z \sim \mathcal{N}(0, I) \).
@@ -117,12 +124,14 @@ where \( z \sim \mathcal{N}(0, I) \).
 
 ```math
 x_{t-1} = \sqrt{\bar{\alpha}_{t-1}} \hat{x}_0 + \sqrt{1-\bar{\alpha}_{t-1}} \cdot \epsilon_\theta(x_t, t)
+
 ```
 
 where:
 
 ```math
 \hat{x}_0 = \frac{x_t - \sqrt{1-\bar{\alpha}_t} \epsilon_\theta(x_t, t)}{\sqrt{\bar{\alpha}_t}}
+
 ```
 
 **Advantage:** Can skip steps! Works with 50 steps instead of 1000.
@@ -135,6 +144,7 @@ where:
 
 ```math
 \frac{dx}{dt} = f(x, t) = -\frac{\beta(t)}{2}\left(x + \frac{\epsilon_\theta(x,t)}{\sqrt{1-\bar{\alpha}_t}}\right)
+
 ```
 
 **Euler method (first-order):** 100 steps needed.
@@ -143,6 +153,7 @@ where:
 
 ```math
 x_{t-1} = e^{-h} x_t + (e^{-h} - 1) \epsilon_\theta(x_t, t) + \frac{e^{-h} - 1 + h}{h}(\epsilon_\theta(x_t, t) - \epsilon_\theta(x_{t-1}^{est}, t-1))
+
 ```
 
 **20 steps sufficient!**
@@ -155,18 +166,21 @@ x_{t-1} = e^{-h} x_t + (e^{-h} - 1) \epsilon_\theta(x_t, t) + \frac{e^{-h} - 1 +
 
 ```math
 z = \mathcal{E}(x), \quad x = \mathcal{D}(z)
+
 ```
 
 **Compression ratio:**
 
 ```math
 \frac{|x|}{|z|} = \frac{512 \times 512 \times 3}{64 \times 64 \times 4} = 48\times
+
 ```
 
 **FLOPs reduction:**
 
 ```math
 \frac{\text{FLOPs}_{pixel}}{\text{FLOPs}_{latent}} \approx 8^2 = 64\times
+
 ```
 
 (Factor of 8 in each spatial dimension)
@@ -182,6 +196,7 @@ z = \mathcal{E}(x), \quad x = \mathcal{D}(z)
 
 ```math
 \mathcal{L} = \mathbb{E}\left[\|x_{t-2}^{teacher} - \epsilon_\theta^{student}(x_t, t)\|^2\right]
+
 ```
 
 Student predicts 2-step result in 1 step.
@@ -198,12 +213,14 @@ Student predicts 2-step result in 1 step.
 
 ```math
 f(x_t, t) = f(x_{t'}, t') \quad \forall t, t' \text{ on same trajectory}
+
 ```
 
 **Training:** Enforce consistency between adjacent points:
 
 ```math
 \mathcal{L} = \mathbb{E}\left[\|f_\theta(x_{t+1}, t+1) - f_{\theta^-}(x_t, t)\|^2\right]
+
 ```
 
 where \( \theta^- \) is EMA of \( \theta \).
@@ -218,6 +235,7 @@ where \( \theta^- \) is EMA of \( \theta \).
 
 ```math
 f_\theta(z_t, t, c) = z_0
+
 ```
 
 **Classifier-free guidance in one step:**
@@ -226,6 +244,7 @@ Standard CFG:
 
 ```math
 \hat{\epsilon} = \epsilon_\theta(z, c) + w(\epsilon_\theta(z, c) - \epsilon_\theta(z, \emptyset))
+
 ```
 
 LCM learns to produce guided output directly.

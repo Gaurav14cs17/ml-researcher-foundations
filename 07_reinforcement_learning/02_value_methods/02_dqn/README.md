@@ -44,6 +44,7 @@ DQN (neural network):
     
     Loss = E[(r + γ max_a' Q(s', a'; θ⁻) - Q(s, a; θ))²]
                                     +- Target network
+
 ```
 
 ### Why Instability?
@@ -62,6 +63,7 @@ Problems with naive Q-learning + neural nets:
 Solutions:
 1. Experience Replay → Break correlation
 2. Target Network → Stabilize targets
+
 ```
 
 ---
@@ -91,6 +93,7 @@ Benefits:
 - Breaks temporal correlation
 - Each experience used many times (data efficiency)
 - More stable gradients
+
 ```
 
 ### Target Network
@@ -106,6 +109,7 @@ Why stable:
     θ⁻ doesn't change during mini-batch
     Targets are stable for C steps
     No "chasing moving target"
+
 ```
 
 ---
@@ -133,6 +137,7 @@ For each episode:
             L = (1/B) Σⱼ (yⱼ - Q(sⱼ, aⱼ; θ))²
         
         Every C steps: θ⁻ ← θ  (or soft update)
+
 ```
 
 ---
@@ -263,6 +268,7 @@ class DQNAgent:
         self.epsilon = max(self.epsilon_end, self.epsilon * self.epsilon_decay)
         
         return loss.item()
+
 ```
 
 ### Double DQN
@@ -290,6 +296,7 @@ def double_dqn_update(q_network, target_network, batch, gamma):
         target_q = rewards + gamma * next_q * (1 - dones)
     
     return F.smooth_l1_loss(q_values, target_q)
+
 ```
 
 ### Dueling DQN
@@ -336,6 +343,7 @@ class DuelingDQN(nn.Module):
         # Q = V + (A - mean(A))
         q = value + advantage - advantage.mean(dim=-1, keepdim=True)
         return q
+
 ```
 
 ---

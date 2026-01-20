@@ -30,6 +30,7 @@ Second-order methods use curvature information to take smarter steps. While expe
 ## 📐 Mathematical Definitions
 
 ### Newton's Method
+
 ```
 θₜ₊₁ = θₜ - H⁻¹∇f(θₜ)
 
@@ -39,9 +40,11 @@ Convergence: Quadratic near optimum
              ||θₜ₊₁ - θ*|| ≤ c||θₜ - θ*||²
 
 Cost: O(n³) for matrix inverse (expensive!)
+
 ```
 
 ### Hessian Properties
+
 ```
 H = ∇²f(θ) = [∂²f/∂θᵢ∂θⱼ]
 
@@ -50,9 +53,11 @@ At minimum θ*:
 • Eigenvalues = curvatures along eigenvectors
 • Large eigenvalue = steep direction
 • Small eigenvalue = flat direction
+
 ```
 
 ### Quasi-Newton Methods
+
 ```
 Instead of computing H⁻¹, approximate it:
 B_{t+1} ≈ H⁻¹
@@ -64,16 +69,20 @@ Where:
 • sₜ = θₜ₊₁ - θₜ
 • yₜ = ∇f(θₜ₊₁) - ∇f(θₜ)
 • ρₜ = 1/(yₜᵀsₜ)
+
 ```
 
 ### L-BFGS (Limited Memory BFGS)
+
 ```
 Store only last m (s, y) pairs
 Memory: O(mn) instead of O(n²)
 Used for large-scale optimization
+
 ```
 
 ### Natural Gradient
+
 ```
 θₜ₊₁ = θₜ - η F⁻¹∇L(θₜ)
 
@@ -82,6 +91,7 @@ F = E[∇log p(x|θ) ∇log p(x|θ)ᵀ]
 
 Natural gradient accounts for parameter space geometry
 TRPO/PPO use approximations of natural gradient
+
 ```
 
 ---
@@ -117,6 +127,7 @@ H = hessian(loss_fn, torch.randn(3))
 
 # Approximate second-order: Adam adapts per-parameter learning rate
 # v_t ≈ diagonal of Hessian estimate
+
 ```
 
 ---

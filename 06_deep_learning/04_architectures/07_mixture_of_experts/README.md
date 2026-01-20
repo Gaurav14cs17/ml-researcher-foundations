@@ -25,6 +25,7 @@ Mixture of Experts (MoE) is a neural network architecture that uses conditional 
 
 ```math
 y = \sum_{i=1}^{N} G(x)_i \cdot E_i(x)
+
 ```
 
 where:
@@ -38,12 +39,14 @@ where:
 
 ```math
 G(x) = \text{softmax}(W_g x)
+
 ```
 
 **Top-k sparse routing:**
 
 ```math
 G(x) = \text{softmax}(\text{TopK}(W_g x, k))
+
 ```
 
 Only the top-k experts are activated, rest have zero weight.
@@ -58,9 +61,11 @@ For each token, select top-k experts:
 
 ```math
 G(x) = \text{Normalize}(\text{TopK}(\text{softmax}(W_g x), k))
+
 ```
 
 **Computational savings:**
+
 ```
 Dense FFN: O(d × d_ff)
 MoE (k experts of N total): O(k × d × d_ff / N)
@@ -68,6 +73,7 @@ MoE (k experts of N total): O(k × d × d_ff / N)
 Example: 8 experts, top-2 routing
 Compute: 2/8 = 25% of dense FFN
 Parameters: 8× of dense FFN
+
 ```
 
 ### Load Balancing
@@ -78,6 +84,7 @@ Parameters: 8× of dense FFN
 
 ```math
 L_{aux} = \alpha \cdot N \cdot \sum_{i=1}^{N} f_i \cdot P_i
+
 ```
 
 where:
@@ -86,6 +93,7 @@ where:
 - \(\alpha\): balancing coefficient (typically 0.01)
 
 **Derivation:**
+
 ```
 We want uniform load: f_i = 1/N for all i
 
@@ -93,6 +101,7 @@ The loss penalizes when high-probability experts (large P_i)
 also receive many tokens (large f_i).
 
 At optimum: P_i = f_i = 1/N → L_aux = α·N·(1/N)·(1/N)·N = α
+
 ```
 
 ---
@@ -105,17 +114,20 @@ Each expert has limited capacity:
 
 ```math
 \text{capacity} = \frac{k \cdot \text{tokens}}{N} \cdot \text{capacity\_factor}
+
 ```
 
 Tokens exceeding capacity are dropped or routed to alternate experts.
 
 **Capacity factor analysis:**
+
 ```
 capacity_factor = 1.0: No slack, some drops
 capacity_factor = 1.25: 25% extra capacity, fewer drops
 capacity_factor = 2.0: Double capacity, almost no drops
 
 Trade-off: Higher capacity → more compute but less dropping
+
 ```
 
 ### Token Dropping
@@ -133,6 +145,7 @@ for expert_id in range(num_experts):
     if expert_counts[expert_id] > capacity:
         # Keep only first 'capacity' tokens
         drop_mask[expert_id] = True
+
 ```
 
 ---
@@ -145,6 +158,7 @@ Use only 1 expert per token:
 
 ```math
 G(x) = \text{onehot}(\arg\max_i (W_g x)_i)
+
 ```
 
 **Benefits:**
@@ -158,6 +172,7 @@ Experts choose tokens instead of tokens choosing experts:
 
 ```math
 P = \text{softmax}((W_g X)^T)
+
 ```
 
 Each expert selects top-k tokens from the batch.
@@ -173,6 +188,7 @@ Differentiable routing without hard assignment:
 
 ```math
 y = \sum_i \text{softmax}(W_g x)_i \cdot E_i(x)
+
 ```
 
 All experts contribute, weighted by routing scores.
@@ -480,6 +496,7 @@ print(f"Aux loss: {aux_loss.item():.4f}")
 # Count parameters
 total_params = sum(p.numel() for p in model.parameters())
 print(f"Total parameters: {total_params / 1e6:.2f}M")
+
 ```
 
 ---

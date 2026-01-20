@@ -40,6 +40,7 @@ Discrete:
                  
 Continuous:
     D_KL(P || Q) = ∫ p(x) log(p(x) / q(x)) dx
+
 ```
 
 ### Key Properties
@@ -49,6 +50,7 @@ Continuous:
 2. Zero iff equal: D_KL(P || Q) = 0 ⟺ P = Q
 3. Non-symmetric: D_KL(P || Q) ≠ D_KL(Q || P) generally
 4. Not a metric: Doesn't satisfy triangle inequality
+
 ```
 
 ### Interpretation
@@ -59,6 +61,7 @@ D_KL(P || Q) = Extra bits needed to encode samples from P
                
 If Q is a good approximation of P → low KL
 If Q is poor approximation → high KL
+
 ```
 
 ---
@@ -89,6 +92,7 @@ Reverse KL (D_KL(Q||P)):
     
     P: ⋀  ⋀     Q: ⋀
        One mode only
+
 ```
 
 ---
@@ -102,6 +106,7 @@ ELBO = E_q[log p(x|z)] - D_KL(q(z|x) || p(z))
                           +---- Regularization ----+
 
 Push q(z|x) towards prior p(z) = N(0, I)
+
 ```
 
 ### 2. Variational Inference
@@ -111,6 +116,7 @@ Approximate posterior p(θ|D) with q(θ):
 
 q* = argmin_q D_KL(q(θ) || p(θ|D))
    = argmax_q ELBO(q)
+
 ```
 
 ### 3. Knowledge Distillation
@@ -121,6 +127,7 @@ Student learns from teacher:
 L_distill = D_KL(p_teacher || p_student)
 
 Soft targets transfer "dark knowledge"
+
 ```
 
 ### 4. Policy Optimization (RL)
@@ -130,6 +137,7 @@ TRPO/PPO constraint:
     D_KL(π_old || π_new) ≤ δ
     
 Ensure policy doesn't change too much
+
 ```
 
 ---
@@ -160,6 +168,7 @@ kl_pq = kl_divergence_discrete(p, q)
 kl_qp = kl_divergence_discrete(q, p)
 print(f"KL(P||Q) = {kl_pq:.4f}")
 print(f"KL(Q||P) = {kl_qp:.4f}")  # Different! (asymmetric)
+
 ```
 
 ### KL for Gaussians (Closed Form)
@@ -190,6 +199,7 @@ def kl_gaussian(mu1, logvar1, mu2=None, logvar2=None):
 mu = torch.randn(32, 64)  # Batch of 32, latent dim 64
 logvar = torch.randn(32, 64)
 kl_loss = kl_gaussian(mu, logvar)  # KL to standard normal
+
 ```
 
 ### PyTorch KL Divergence
@@ -208,6 +218,7 @@ kl = F.kl_div(log_q, log_p.exp(), reduction='batchmean')
 p = torch.distributions.Categorical(logits=logits_p)
 q = torch.distributions.Categorical(logits=logits_q)
 kl = torch.distributions.kl_divergence(p, q)
+
 ```
 
 ### Knowledge Distillation
@@ -226,6 +237,7 @@ def distillation_loss(student_logits, teacher_logits, temperature=2.0):
     
     # Scale by T² (standard practice)
     return kl * (temperature ** 2)
+
 ```
 
 ---
@@ -267,6 +279,7 @@ Equality iff Q(x)/P(x) is constant for all x where P(x) > 0
 ⟹ Q(x) = c·P(x) for all x
 Since both are distributions: c = 1
 ⟹ P = Q
+
 ```
 
 **Method 2: Direct calculation**
@@ -279,6 +292,7 @@ D_KL(P||Q) = -Σₓ P(x) log r(x)
            = -log(Σₓ Q(x))
            = -log(1)
            = 0  ∎
+
 ```
 
 ---
@@ -288,8 +302,10 @@ D_KL(P||Q) = -Σₓ P(x) log r(x)
 **Problem:** Compute D_KL(N(μ₁, Σ₁) || N(μ₂, Σ₂))
 
 **Theorem:**
+
 ```
 D_KL(N(μ₁,Σ₁) || N(μ₂,Σ₂)) = 1/2 [tr(Σ₂⁻¹Σ₁) + (μ₂-μ₁)ᵀΣ₂⁻¹(μ₂-μ₁) - d + log(det(Σ₂)/det(Σ₁))]
+
 ```
 
 **Proof:**
@@ -331,6 +347,7 @@ Step 5: Compute D_KL
 D_KL = 𝔼[log p₁(x)] - 𝔼[log p₂(x)]
      = -1/2[d + log|Σ₁|] + 1/2[tr(Σ₂⁻¹Σ₁) + (μ₁-μ₂)ᵀΣ₂⁻¹(μ₁-μ₂) + log|Σ₂|]
      = 1/2[tr(Σ₂⁻¹Σ₁) + (μ₂-μ₁)ᵀΣ₂⁻¹(μ₂-μ₁) - d + log(|Σ₂|/|Σ₁|)]  ∎
+
 ```
 
 **Special case: D_KL(N(μ, Σ) || N(0, I))**
@@ -343,6 +360,7 @@ D_KL = 1/2[tr(Σ) + μᵀμ - d - log|Σ|]
 
 If Σ = diag(σ₁², ..., σₐ²):
 D_KL = 1/2 Σᵢ[σᵢ² + μᵢ² - 1 - log(σᵢ²)]
+
 ```
 
 This is the KL term in VAE loss!
@@ -364,6 +382,7 @@ In coding theory:
 - Using code for Q: uses -log Q(x) bits
 - Extra bits needed: log(P(x)/Q(x))
 - Expected extra bits: D_KL(P||Q)
+
 ```
 
 **KL as information gain:**
@@ -374,6 +393,7 @@ D_KL(P||Q) = H(P, Q) - H(P)
 H(P):      Entropy of P (inherent uncertainty)
 H(P, Q):   Cross-entropy (coding cost using Q)
 D_KL:      Extra cost of using wrong distribution Q
+
 ```
 
 ---
@@ -381,6 +401,7 @@ D_KL:      Extra cost of using wrong distribution Q
 ### 4. Forward vs Reverse KL: Mathematical Analysis
 
 **Forward KL: D_KL(P||Q)**
+
 ```
 = Σₓ P(x) log(P(x)/Q(x))
 
@@ -389,9 +410,11 @@ Behavior when P(x) > 0 but Q(x) ≈ 0:
   Heavily penalized!
   → Q must cover all of P (zero-forcing)
   → Q spreads to cover all modes
+
 ```
 
 **Reverse KL: D_KL(Q||P)**
+
 ```
 = Σₓ Q(x) log(Q(x)/P(x))
 
@@ -400,6 +423,7 @@ Behavior when Q(x) > 0 but P(x) ≈ 0:
   Heavily penalized!
   → Q avoids regions where P is small (zero-avoiding)
   → Q concentrates on one mode
+
 ```
 
 **Example: Bimodal P**
@@ -415,6 +439,7 @@ Minimizing D_KL(P||Q):
 Minimizing D_KL(Q||P):
   Q* ≈ N(-2, 1) or N(2, 1)
   Picks one mode, ignores the other
+
 ```
 
 **Code to visualize:**
@@ -460,6 +485,7 @@ print(f"  μ = {result_forward.x[0]:.2f}, σ = {np.exp(result_forward.x[1]):.2f}
 
 print("\nReverse KL (Q||P): Q concentrates on one mode")
 print(f"  μ = {result_reverse.x[0]:.2f}, σ = {np.exp(result_reverse.x[1]):.2f}")
+
 ```
 
 ---
@@ -494,9 +520,11 @@ log p(x) - ELBO = D_KL(q(z|x) || p(z|x)) ≥ 0
 So: log p(x) = ELBO + D_KL(q(z|x) || p(z|x))
 
 Maximizing ELBO ⟺ Minimizing D_KL(q(z|x) || p(z|x))
+
 ```
 
 **VAE objective:**
+
 ```
 L = 𝔼_q[log p(x|z)] - D_KL(q(z|x) || p(z))
     +----------+       +--------------+
@@ -505,6 +533,7 @@ L = 𝔼_q[log p(x|z)] - D_KL(q(z|x) || p(z))
 
 If q(z|x) = N(μ(x), Σ(x)) and p(z) = N(0, I):
 D_KL = 1/2 Σᵢ[μᵢ² + σᵢ² - 1 - log σᵢ²]
+
 ```
 
 ---

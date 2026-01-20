@@ -27,12 +27,14 @@
 
 ```math
 P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+
 ```
 
 **In Machine Learning notation:**
 
 ```math
 P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}
+
 ```
 
 | Term | Name | Description |
@@ -46,6 +48,7 @@ P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}
 
 ```math
 \text{Posterior} \propto \text{Likelihood} \times \text{Prior}
+
 ```
 
 ---
@@ -57,6 +60,7 @@ P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}
 ```math
 P(A|B) = \frac{P(A \cap B)}{P(B)}
 P(B|A) = \frac{P(A \cap B)}{P(A)}
+
 ```
 
 ### Step 2: Express Joint Probability Two Ways
@@ -65,6 +69,7 @@ From the above equations:
 
 ```math
 P(A \cap B) = P(A|B) \cdot P(B) = P(B|A) \cdot P(A)
+
 ```
 
 ### Step 3: Rearrange to Get Bayes' Theorem
@@ -72,6 +77,7 @@ P(A \cap B) = P(A|B) \cdot P(B) = P(B|A) \cdot P(A)
 ```math
 P(A|B) \cdot P(B) = P(B|A) \cdot P(A)
 P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} \quad \blacksquare
+
 ```
 
 ---
@@ -84,12 +90,14 @@ The evidence $P(D)$ is computed using the **Law of Total Probability**:
 
 ```math
 P(D) = \sum_{\theta} P(D|\theta) P(\theta)
+
 ```
 
 **Continuous:**
 
 ```math
 P(D) = \int P(D|\theta) P(\theta) \, d\theta
+
 ```
 
 This integral is often **intractable** → need approximations:
@@ -107,18 +115,21 @@ After observing $D\_1$:
 
 ```math
 P(\theta|D_1) \propto P(D_1|\theta) P(\theta)
+
 ```
 
 After observing $D\_2$:
 
 ```math
 P(\theta|D_1, D_2) \propto P(D_2|\theta) P(\theta|D_1)
+
 ```
 
 **For i.i.d. data:**
 
 ```math
 P(\theta|D_1, \ldots, D_n) \propto P(\theta) \prod_{i=1}^{n} P(D_i|\theta)
+
 ```
 
 ---
@@ -141,6 +152,7 @@ P(\theta|D_1, \ldots, D_n) \propto P(\theta) \prod_{i=1}^{n} P(D_i|\theta)
 
 ```math
 \theta_{MLE} = \arg\max_\theta P(D|\theta)
+
 ```
 
 Ignores prior → can overfit with limited data.
@@ -149,6 +161,7 @@ Ignores prior → can overfit with limited data.
 
 ```math
 \theta_{MAP} = \arg\max_\theta P(\theta|D) = \arg\max_\theta P(D|\theta) P(\theta)
+
 ```
 
 **Equivalence to Regularization:**
@@ -157,12 +170,14 @@ Ignores prior → can overfit with limited data.
 
 ```math
 \log P(\theta|D) = \log P(D|\theta) + \log P(\theta)
+
 ```
 
 If $P(\theta) = \mathcal{N}(0, \sigma^2)$:
 
 ```math
 \log P(\theta) = -\frac{\theta^2}{2\sigma^2} + \text{const} = -\lambda\|\theta\|^2
+
 ```
 
 ---
@@ -230,6 +245,7 @@ map_estimate = (alpha_post - 1) / (alpha_post + beta_post - 2)  # Mode of Beta
 
 print(f"MLE: {mle:.3f}")
 print(f"MAP: {map_estimate:.3f}")
+
 ```
 
 ---

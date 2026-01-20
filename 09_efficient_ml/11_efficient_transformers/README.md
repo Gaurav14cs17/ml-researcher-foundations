@@ -67,6 +67,7 @@ Standard attention is O(N²) in sequence length:
 
 ```math
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V
+
 ```
 
 **Complexity analysis:**
@@ -96,6 +97,7 @@ For each query block Qi (size B_r × d):
         Sij = Qi @ Kj.T / sqrt(d)      # In SRAM
         Pij = softmax(Sij)              # In SRAM
         Oi += Pij @ Vj                  # Accumulate
+
 ```
 
 **Memory:** \( O(N) \) instead of \( O(N^2) \)
@@ -117,16 +119,19 @@ where \( M \) is SRAM size.
 
 ```math
 p_i = \frac{\exp(x_i - \max_j x_j)}{\sum_k \exp(x_k - \max_j x_j)}
+
 ```
 
 **Online algorithm (for tiled computation):**
 
 Maintain running \( m \) (max) and \( \ell \) (sum of exp):
+
 ```
 For each new block:
     m_new = max(m_old, max(block))
     ℓ_new = exp(m_old - m_new) * ℓ_old + sum(exp(block - m_new))
     Output_new = exp(m_old - m_new) * Output_old + exp(block - m_new) @ V_block
+
 ```
 
 **Proof of correctness:** By induction on blocks.
@@ -139,12 +144,14 @@ For each new block:
 
 ```math
 \text{Attention}(Q, K, V) = \text{softmax}(QK^T) V
+
 ```
 
 **Linear attention approximation:**
 
 ```math
 \text{Attention}(Q, K, V) \approx \phi(Q) \cdot (\phi(K)^T V)
+
 ```
 
 where \( \phi \) is a feature map.
@@ -159,6 +166,7 @@ where \( \phi \) is a feature map.
 
 ```math
 \phi(x) = \frac{\exp(-\|x\|^2/2)}{\sqrt{m}} [\sin(\omega_1^T x), \cos(\omega_1^T x), ..., \sin(\omega_m^T x), \cos(\omega_m^T x)]
+
 ```
 
 Random features approximate softmax kernel.
@@ -172,6 +180,7 @@ For each new token, recompute all K, V:
 
 ```math
 K = [K_{1}, ..., K_{N}], \quad V = [V_{1}, ..., V_{N}]
+
 ```
 
 **With KV cache:**
@@ -179,12 +188,14 @@ K = [K_{1}, ..., K_{N}], \quad V = [V_{1}, ..., V_{N}]
 ```math
 K_{N+1} = \text{concat}(K_{cached}, k_{new})
 V_{N+1} = \text{concat}(V_{cached}, v_{new})
+
 ```
 
 **Memory requirement:**
 
 ```math
 M_{KV} = 2 \times L \times N \times d \times b
+
 ```
 
 where:
@@ -197,6 +208,7 @@ where:
 
 ```math
 M_{KV} = 2 \times 32 \times 2048 \times 128 \times 2 = 32\text{MB per head}
+
 ```
 
 With 32 heads: \( 32 \times 32 = 1\text{GB} \) per request!
@@ -209,12 +221,14 @@ With 32 heads: \( 32 \times 32 = 1\text{GB} \) per request!
 
 ```math
 K_h, V_h \text{ for } h = 1, ..., H
+
 ```
 
 **MQA:** Share K, V across all heads.
 
 ```math
 K, V \text{ (single set for all heads)}
+
 ```
 
 **Memory reduction:** \( H \times \) for KV cache.
@@ -231,6 +245,7 @@ For \( H \) query heads and \( G \) KV groups:
 
 ```math
 K_g, V_g \text{ for } g = 1, ..., G
+
 ```
 
 Each query head \( h \) uses \( K_{\lfloor hG/H \rfloor}, V_{\lfloor hG/H \rfloor} \).
@@ -250,6 +265,7 @@ A_{ij} = \begin{cases}
 \text{softmax}(Q_i K_j^T / \sqrt{d}) & \text{if } |i - j| \leq w \\
 0 & \text{otherwise}
 \end{cases}
+
 ```
 
 **Complexity:** \( O(Nw) \) instead of \( O(N^2) \).
@@ -271,6 +287,7 @@ A_{ij} = \begin{cases}
 
 ```math
 A = A_{local} + A_{global}
+
 ```
 
 Global tokens (e.g., [CLS]) attend to all positions.
@@ -285,24 +302,28 @@ Global tokens (e.g., [CLS]) attend to all positions.
 
 ```math
 \text{IO}_{std} = O(Nd + N^2) = O(N^2) \text{ for } N > d
+
 ```
 
 **FlashAttention I/O:**
 
 ```math
 \text{IO}_{flash} = O\left(\frac{N^2 d^2}{M}\right)
+
 ```
 
 **Speedup ratio:**
 
 ```math
 \text{Speedup} = \frac{N^2}{N^2 d^2 / M} = \frac{M}{d^2}
+
 ```
 
 For A100 (M = 20MB SRAM), d = 128:
 
 ```math
 \text{Speedup} \approx \frac{20 \times 10^6}{128^2} \approx 1200\times \text{ I/O reduction}
+
 ```
 
 Actual speedup: 2-4× (compute still has overhead).
@@ -323,6 +344,7 @@ Actual speedup: 2-4× (compute still has overhead).
 
 ```math
 N_{cache} \cdot Ld = N_{no-cache}^2 \cdot d
+
 ```
 
 For large \( N \), cache always wins.
@@ -472,6 +494,7 @@ def sliding_window_attention(Q, K, V, window_size=256):
     attn = F.softmax(scores, dim=-1)
     
     return torch.matmul(attn, V)
+
 ```
 
 ---

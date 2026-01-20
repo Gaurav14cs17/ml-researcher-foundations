@@ -21,6 +21,7 @@
 
 ```
 🚀 Start → 🔢 Quantization → ✂️ Pruning → 🎓 Distillation → 🔧 LoRA/PEFT → 🧩 MoE → 🏭 Production
+
 ```
 
 ## 🎯 What You'll Learn
@@ -80,6 +81,7 @@ The **compression ratio (CR)** quantifies the reduction in model size:
 
 ```math
 CR = \frac{\text{Original Size}}{\text{Compressed Size}} = \frac{|M|}{|M_c|}
+
 ```
 
 **Example Calculation:**
@@ -93,6 +95,7 @@ CR = \frac{\text{Original Size}}{\text{Compressed Size}} = \frac{|M|}{|M_c|}
 
 ```math
 \min_{M_c} \text{Size}(M_c) \quad \text{subject to} \quad |\text{Acc}(M_c) - \text{Acc}(M)| \leq \epsilon
+
 ```
 
 **Theorem (Pareto Frontier):** For a given compression technique, there exists a Pareto frontier where no compression can simultaneously improve both model size and accuracy. Any point on this frontier represents an optimal trade-off.
@@ -101,6 +104,7 @@ CR = \frac{\text{Original Size}}{\text{Compressed Size}} = \frac{|M|}{|M_c|}
 
 ```math
 R(D) = \min_{p(\hat{W}|W)} I(W; \hat{W}) \quad \text{s.t.} \quad \mathbb{E}[d(W, \hat{W})] \leq D
+
 ```
 
 Where:
@@ -114,6 +118,7 @@ Where:
 
 ```math
 \text{Memory} = O(P \times b)
+
 ```
 
 Where $P$ = parameters, $b$ = bytes per parameter
@@ -122,6 +127,7 @@ Where $P$ = parameters, $b$ = bytes per parameter
 
 ```math
 \text{FLOPs} = O(\text{ops} \times \text{precision-factor})
+
 ```
 
 | Format | Size | Compute Speed | Memory Bandwidth |
@@ -137,6 +143,7 @@ Where $P$ = parameters, $b$ = bytes per parameter
 
 ```math
 H(W) \leq R \leq H(W) + 1
+
 ```
 
 The minimum average bits per weight is bounded by the entropy $H(W)$ of the weight distribution.
@@ -145,6 +152,7 @@ The minimum average bits per weight is bounded by the entropy $H(W)$ of the weig
 
 ```math
 H(W) = \frac{1}{2}\log_2(2\pi e \sigma^2) \approx 4-5 \text{ bits}
+
 ```
 
 This explains why INT4 quantization often works well!
@@ -159,6 +167,7 @@ This explains why INT4 quantization often works well!
 
 ```math
 x_q = \text{round}\left(\frac{x - z}{s}\right), \quad \hat{x} = s \cdot x_q + z
+
 ```
 
 > ⭐ **4x memory reduction with <1% accuracy loss**
@@ -173,6 +182,7 @@ x_q = \text{round}\left(\frac{x - z}{s}\right), \quad \hat{x} = s \cdot x_q + z
 
 ```math
 W' = W_0 + \Delta W = W_0 + BA
+
 ```
 
 **Parameter Reduction:** For $d=4096$, $r=16$: $\frac{4096}{32} = 128\times$ fewer parameters!
@@ -189,6 +199,7 @@ W' = W_0 + \Delta W = W_0 + BA
 
 ```math
 \mathcal{L} = \alpha \cdot \mathcal{L}_{CE}(y, p_s) + (1-\alpha) \cdot T^2 \cdot D_{KL}(p_t^T \| p_s^T)
+
 ```
 
 **Example:** BERT → DistilBERT (40% smaller, 97% accuracy)
@@ -205,6 +216,7 @@ W' = W_0 + \Delta W = W_0 + BA
 
 ```math
 \text{Saliency}(w) = \frac{\partial^2 \mathcal{L}}{\partial w^2} \cdot w^2
+
 ```
 
 <a href="./03_pruning/README.md"><img src="https://img.shields.io/badge/📖_Dive_In-607D8B?style=for-the-badge" alt="Learn"/></a>
@@ -217,6 +229,7 @@ W' = W_0 + \Delta W = W_0 + BA
 
 ```math
 y = \sum_{i=1}^{N} g_i(x) \cdot E_i(x)
+
 ```
 
 For Mixtral 8×7B: 46B total params, ~12B active per token
@@ -247,20 +260,24 @@ For Mixtral 8×7B: 46B total params, ~12B active per token
 <td>
 
 ### 🔢 Quantization
+
 ```
 Quantize: q = round((x - z)/s)
 Dequantize: x̂ = s·q + z
 Error: MSE ≈ s²/12
+
 ```
 
 </td>
 <td>
 
 ### 🔧 LoRA
+
 ```
 W' = W₀ + BA  (r << n,m)
 Params: r(d+k) vs d×k
 Reduction: ~100x
+
 ```
 
 </td>
@@ -269,20 +286,24 @@ Reduction: ~100x
 <td>
 
 ### 🎓 Distillation
+
 ```
 L = α·L_CE + (1-α)·T²·KL
 Soft targets preserve
 class relationships
+
 ```
 
 </td>
 <td>
 
 ### ✂️ Pruning
+
 ```
 Keep: |w| > threshold
 Saliency: w²·∂²L/∂w²
 Structured > Unstructured
+
 ```
 
 </td>
@@ -295,6 +316,7 @@ Structured > Unstructured
 
 ```
 🧬 Deep Learning → 🗜️ Compression → ⚡ Efficient ML → 🏭 Production
+
 ```
 
 <p align="center">

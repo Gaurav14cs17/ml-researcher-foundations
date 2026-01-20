@@ -28,6 +28,7 @@ flowchart LR
     C --> D[🎯 Kernel Methods]
     D --> E[⚖️ Risk Minimization]
     E --> F[🏆 Advanced Topics]
+
 ```
 
 ---
@@ -61,6 +62,7 @@ flowchart LR
 
 ```math
 \hat{h} = \arg\min_{h \in \mathcal{H}} \frac{1}{n}\sum_{i=1}^n \ell(h(x_i), y_i)
+
 ```
 
 ### Generalization Bound (VC Theory)
@@ -69,6 +71,7 @@ With probability ≥ 1 - δ:
 
 ```math
 R(h) \leq \hat{R}(h) + \sqrt{\frac{d(\log(2n/d) + 1) + \log(4/\delta)}{n}}
+
 ```
 
 where d is the VC dimension.
@@ -77,6 +80,7 @@ where d is the VC dimension.
 
 ```math
 \mathbb{E}[(y - \hat{f}(x))^2] = \text{Bias}^2 + \text{Variance} + \sigma^2
+
 ```
 
 ### PAC Learning
@@ -85,6 +89,7 @@ A concept class is PAC-learnable if with m ≥ poly(1/ε, 1/δ) samples:
 
 ```math
 \Pr[R(h) \leq \varepsilon] \geq 1 - \delta
+
 ```
 
 ---
@@ -99,6 +104,7 @@ flowchart TD
     E --> F[❌ Overfit]
     G[🎯 Sweet Spot] --> H[Balanced]
     H --> I[✅ Generalize]
+
 ```
 
 ---

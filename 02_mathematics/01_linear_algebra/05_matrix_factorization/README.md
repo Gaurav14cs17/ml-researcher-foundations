@@ -61,6 +61,7 @@
 |   User i's preference for item j = dot product of their latent vectors      |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -73,6 +74,7 @@ Given matrix $R \in \mathbb{R}^{m \times n}$, find factors:
 
 ```math
 R \approx UV^T
+
 ```
 
 where $U \in \mathbb{R}^{m \times k}$ and $V \in \mathbb{R}^{n \times k}$ with $k \ll \min(m, n)$.
@@ -83,6 +85,7 @@ SVD gives the optimal low-rank approximation:
 
 ```math
 A = U\Sigma V^T \approx U_k \Sigma_k V_k^T
+
 ```
 
 But SVD requires:
@@ -99,6 +102,7 @@ Matrix factorization methods relax these.
 
 ```math
 \min_{U, V} \|R - UV^T\|_F^2 + \lambda(\|U\|_F^2 + \|V\|_F^2)
+
 ```
 
 - Frobenius norm: $\|A\|\_F = \sqrt{\sum\_{ij} A\_{ij}^2}$
@@ -119,6 +123,7 @@ Repeat until convergence:
     For each item j:
         vⱼ = (UᵀU + λI)⁻¹ Uᵀ rⱼ
         where rⱼ = ratings of item j
+
 ```
 
 **Why ALS?**
@@ -134,6 +139,7 @@ Repeat until convergence:
 
 ```math
 \min_{U \geq 0, V \geq 0} \|R - UV^T\|_F^2
+
 ```
 
 subject to $U\_{ij} \geq 0$ and $V\_{ij} \geq 0$.
@@ -152,6 +158,7 @@ Example: Face recognition
 
 With negative values (like SVD), parts could "cancel out"
 → Less interpretable
+
 ```
 
 ### 📐 Multiplicative Update Rules
@@ -170,6 +177,7 @@ These updates:
 1. Keep values non-negative (positive × positive)
 2. Decrease the objective function
 3. Converge to a local minimum
+
 ```
 
 ### 🔍 Proof: Updates Decrease Objective
@@ -188,6 +196,7 @@ Using auxiliary function technique (Lee & Seung, 2001):
 3. D(U^new) ≤ G(U^new, U^old) ≤ G(U^old, U^old) = D(U^old)
 
 Therefore objective decreases (or stays same) at each step.  ∎
+
 ```
 
 ---
@@ -204,6 +213,7 @@ Therefore objective decreases (or stays same) at each step.  ∎
 
 ```math
 \hat{r}_{ij} = b + b_i + b_j + \mathbf{u}_i^T \mathbf{v}_j
+
 ```
 
 where:
@@ -219,6 +229,7 @@ Minimize over observed ratings $\Omega$:
 
 ```math
 \min \sum_{(i,j) \in \Omega} (r_{ij} - \hat{r}_{ij})^2 + \lambda(\|U\|_F^2 + \|V\|_F^2 + \sum_i b_i^2 + \sum_j b_j^2)
+
 ```
 
 ### 💡 Example: Netflix
@@ -235,6 +246,7 @@ Latent factors might capture:
 
 User vectors encode preferences along these dimensions
 Movie vectors encode characteristics along same dimensions
+
 ```
 
 ---
@@ -335,6 +347,7 @@ mf.fit(R)
 # Predict missing ratings
 predictions = mf.predict()
 print(f"Predicted ratings range: [{predictions.min():.2f}, {predictions.max():.2f}]")
+
 ```
 
 ---

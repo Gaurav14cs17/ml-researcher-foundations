@@ -26,6 +26,7 @@
 ```
 minimize   f(x)
 subject to g(x) = 0
+
 ```
 
 ### Lagrangian Function
@@ -36,6 +37,7 @@ L(x, λ) = f(x) + λᵀg(x)
 Where:
   x: decision variables
   λ: Lagrange multipliers (one per constraint)
+
 ```
 
 ### Necessary Conditions
@@ -45,6 +47,7 @@ At optimum x*, λ*:
 ```
 1. Stationarity:  ∇ₓL = ∇f(x*) + λᵀ∇g(x*) = 0
 2. Feasibility:   g(x*) = 0
+
 ```
 
 ---
@@ -60,9 +63,11 @@ If ∇f not parallel to ∇g, we could move along
 the constraint surface to decrease f.
 
 Therefore: ∇f(x*) = -λ∇g(x*)
+
 ```
 
 **Visual:**
+
 ```
         ∇f ↗
            ╱
@@ -71,6 +76,7 @@ Therefore: ∇f(x*) = -λ∇g(x*)
         ∇g ↘
         
 At optimum: both gradients perpendicular to surface
+
 ```
 
 ---
@@ -78,12 +84,15 @@ At optimum: both gradients perpendicular to surface
 ## 💡 Simple Example
 
 **Problem:**
+
 ```
 Minimize: f(x, y) = x² + y²
 Subject to: g(x, y) = x + y - 1 = 0
+
 ```
 
 **Solution:**
+
 ```python
 # Lagrangian: L = x² + y² + λ(x + y - 1)
 
@@ -98,6 +107,7 @@ Subject to: g(x, y) = x + y - 1 = 0
 # Solution: (x*, y*) = (0.5, 0.5)
 # Optimal value: f* = 0.5
 # Multiplier: λ* = -1
+
 ```
 
 ---
@@ -127,6 +137,7 @@ result = minimize(
 print(f"Optimal point: {result.x}")           # [0.5, 0.5]
 print(f"Optimal value: {result.fun}")         # 0.5
 print(f"Multiplier: {result.get('lagrange')}")  # -1.0
+
 ```
 
 ---
@@ -152,6 +163,7 @@ L(x, λ) = f(x) + Σᵢλᵢgᵢ(x)
 Conditions:
 ∇ₓL = ∇f + Σᵢλᵢ∇gᵢ = 0
 gᵢ(x) = 0, ∀i
+
 ```
 
 **Interpretation:** ∇f is in the span of {∇g₁, ..., ∇gₘ}
@@ -167,13 +179,16 @@ For x* to be a local minimum:
 ```
 ∇²ₓₓL(x*, λ*) is positive definite on the tangent space
 T = {v : ∇g(x*)ᵀv = 0}
+
 ```
 
 ### Regularity Condition
 
 **LICQ (Linear Independence Constraint Qualification):**
+
 ```
 {∇g₁(x*), ..., ∇gₘ(x*)} are linearly independent
+
 ```
 
 Ensures uniqueness of λ*.
@@ -188,6 +203,7 @@ Ensures uniqueness of λ*.
 
 ```
 ∇f(x*) + λ*∇g(x*) = 0
+
 ```
 
 **Proof:**
@@ -224,9 +240,11 @@ Therefore: ∇f(x*) ∈ T⊥ = span(∇g(x*))
 Step 5: Conclusion
 ∇f(x*) = -λ*∇g(x*) for some λ* ∈ ℝ
 ⟹ ∇f(x*) + λ*∇g(x*) = 0  ∎
+
 ```
 
 **Geometric Interpretation:**
+
 ```
 At optimum, ∇f and ∇g are parallel:
 
@@ -238,6 +256,7 @@ At optimum, ∇f and ∇g are parallel:
 
 If not parallel, we could move along constraint
 to decrease f → not optimal!
+
 ```
 
 ---
@@ -273,6 +292,7 @@ Step 4: Positive definiteness
 If ∇²L ≻ 0 on T:
 f(x* + d) > f(x*) for all d ∈ T, d ≠ 0
 ⟹ x* is strict local minimum  ∎
+
 ```
 
 ---
@@ -280,27 +300,34 @@ f(x* + d) > f(x*) for all d ∈ T, d ≠ 0
 ### 3. Multiple Constraints: General Case
 
 **Problem:**
+
 ```
 minimize   f(x)
 subject to g₁(x) = 0
            g₂(x) = 0
            ...
            gₘ(x) = 0
+
 ```
 
 **Lagrangian:**
+
 ```
 L(x, λ) = f(x) + Σᵢ λᵢgᵢ(x)
         = f(x) + λᵀg(x)
+
 ```
 
 **First-Order Necessary Conditions (KKT for equality):**
+
 ```
 ∇ₓL = ∇f(x*) + Σᵢ λᵢ*∇gᵢ(x*) = 0    (Stationarity)
 gᵢ(x*) = 0, ∀i                      (Feasibility)
+
 ```
 
 **Geometric interpretation:**
+
 ```
 ∇f(x*) ∈ span{∇g₁(x*), ..., ∇gₘ(x*)}
 
@@ -311,6 +338,7 @@ Tangent space: T = {d : ∇gᵢ(x*)ᵀd = 0, ∀i}
 Normal space: N = span{∇g₁, ..., ∇gₘ}
 
 At optimum: ∇f ∈ N
+
 ```
 
 ---
@@ -318,9 +346,11 @@ At optimum: ∇f ∈ N
 ### 4. Worked Example: Constrained Least Squares
 
 **Problem:**
+
 ```
 minimize   f(x) = (1/2)||Ax - b||²
 subject to Cx = d
+
 ```
 
 **Solution:**
@@ -347,9 +377,11 @@ This is the KKT system!
 Step 4: Solution (if invertible)
 [x*]   [AᵀA  Cᵀ]⁻¹ [Aᵀb]
 [λ*] = [C    0 ]   [d  ]
+
 ```
 
 **Implementation:**
+
 ```python
 import numpy as np
 
@@ -388,6 +420,7 @@ x_opt, lambda_opt = constrained_least_squares(A, b, C, d)
 print(f"Optimal x: {x_opt}")
 print(f"Constraint satisfied: {np.allclose(C @ x_opt, d)}")
 print(f"Objective: {0.5 * np.linalg.norm(A @ x_opt - b)**2:.6f}")
+
 ```
 
 ---
@@ -395,31 +428,39 @@ print(f"Objective: {0.5 * np.linalg.norm(A @ x_opt - b)**2:.6f}")
 ### 5. Connection to SVM (Support Vector Machines)
 
 **Primal Problem (Hard-margin SVM):**
+
 ```
 minimize   (1/2)||w||²
 subject to yᵢ(wᵀxᵢ + b) ≥ 1,  ∀i
+
 ```
 
 **Lagrangian:**
+
 ```
 L(w, b, α) = (1/2)||w||² - Σᵢ αᵢ[yᵢ(wᵀxᵢ + b) - 1]
 
 Where αᵢ ≥ 0 are Lagrange multipliers
+
 ```
 
 **KKT Conditions:**
+
 ```
 ∂L/∂w = w - Σᵢ αᵢyᵢxᵢ = 0  ⟹  w = Σᵢ αᵢyᵢxᵢ
 ∂L/∂b = -Σᵢ αᵢyᵢ = 0      ⟹  Σᵢ αᵢyᵢ = 0
 
 Complementary slackness:
   αᵢ[yᵢ(wᵀxᵢ + b) - 1] = 0,  ∀i
+
 ```
 
 **Dual Problem (substituting w = Σᵢ αᵢyᵢxᵢ):**
+
 ```
 maximize   Σᵢ αᵢ - (1/2)ΣᵢΣⱼ αᵢαⱼyᵢyⱼxᵢᵀxⱼ
 subject to αᵢ ≥ 0, Σᵢ αᵢyᵢ = 0
+
 ```
 
 **Support vectors:** Points where αᵢ > 0 (constraint is active)
@@ -437,14 +478,17 @@ If constraint changes to g(x) = ε (small ε):
 f(x*(ε)) ≈ f(x*(0)) - λ*ε
 
 λ* tells you how much f would improve if constraint relaxed!
+
 ```
 
 **Example:**
+
 ```
 Maximize profit f(x) subject to budget g(x) = 0
 
 λ* > 0: Increasing budget by $1 increases profit by $λ*
 λ* = 0: Constraint not binding (slack in budget)
+
 ```
 
 ---
@@ -460,6 +504,7 @@ Maximize profit f(x) subject to budget g(x) = 0
 | **CCA** | max uᵀXYᵀv | uᵀu = vᵀv = 1 | Canonical correlation |
 
 **PCA Derivation:**
+
 ```
 Problem: max_w wᵀΣw  s.t. ||w|| = 1
 
@@ -471,6 +516,7 @@ Lagrangian: L = wᵀΣw - λ(wᵀw - 1)
 This is eigenvalue equation!
 w* = eigenvector of Σ
 λ* = eigenvalue (variance captured)
+
 ```
 
 ---
@@ -537,6 +583,7 @@ def augmented_lagrangian_step(W, lambda_mat, rho):
     lambda_mat = lambda_mat + rho * constraint.detach()
     
     return lambda_mat
+
 ```
 
 ---
@@ -556,6 +603,7 @@ Using Lagrange multipliers:
 h_norm = (h - μ) / σ
 
 where μ, σ are the multipliers (learned scale/shift applied after)
+
 ```
 
 **Attention with constraints:**
@@ -568,6 +616,7 @@ subject to Σᵢ αᵢ = 1, αᵢ ≥ 0
 Lagrangian: L = Σᵢ αᵢ · scoreᵢ - λ(Σᵢ αᵢ - 1)
 
 Solution: αᵢ* = exp(scoreᵢ) / Σⱼ exp(scoreⱼ) = softmax(scores)ᵢ
+
 ```
 
 ---

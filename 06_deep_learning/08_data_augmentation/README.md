@@ -29,6 +29,7 @@ Expand training set $\mathcal{D}$ with transformed samples:
 
 ```math
 \mathcal{D}_{aug} = \{(T(x), y) : (x, y) \in \mathcal{D}, T \sim \mathcal{T}\}
+
 ```
 
 Where $\mathcal{T}$ is a distribution over transformations.
@@ -39,12 +40,14 @@ Data augmentation is equivalent to adding a prior:
 
 ```math
 p_{aug}(x|y) = \int p(x|T)p(T|y) dT
+
 ```
 
 Or regularizing the loss:
 
 ```math
 \mathcal{L}_{aug} = \mathbb{E}_{T \sim \mathcal{T}}[\mathcal{L}(f(T(x)), y)]
+
 ```
 
 ---
@@ -57,6 +60,7 @@ Or regularizing the loss:
 
 ```math
 x_{crop} = x[i:i+h, j:j+w]
+
 ```
 
 Where $(i,j)$ is random position, $(h,w)$ is crop size.
@@ -65,12 +69,14 @@ Where $(i,j)$ is random position, $(h,w)$ is crop size.
 
 ```math
 x_{flip}[i,j] = x[i, W-1-j]
+
 ```
 
 **Rotation:**
 
 ```math
 \begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}
+
 ```
 
 ### Color Transformations
@@ -79,18 +85,21 @@ x_{flip}[i,j] = x[i, W-1-j]
 
 ```math
 x_{bright} = x + \delta, \quad \delta \sim U(-\beta, \beta)
+
 ```
 
 **Contrast:**
 
 ```math
 x_{contrast} = \alpha(x - \mu) + \mu, \quad \alpha \sim U(1-\gamma, 1+\gamma)
+
 ```
 
 **Saturation (HSV):**
 
 ```math
 S' = S \cdot \alpha, \quad \alpha \sim U(1-\delta, 1+\delta)
+
 ```
 
 ---
@@ -104,6 +113,7 @@ For samples $(x\_i, y\_i)$ and $(x\_j, y\_j)$:
 ```math
 \tilde{x} = \lambda x_i + (1-\lambda) x_j
 \tilde{y} = \lambda y_i + (1-\lambda) y_j
+
 ```
 
 Where $\lambda \sim \text{Beta}(\alpha, \alpha)$ (typically $\alpha=0.2$).
@@ -119,6 +129,7 @@ Mixup encourages:
 
 ```math
 \mathcal{L}_{mixup} = \lambda \mathcal{L}(f(\tilde{x}), y_i) + (1-\lambda) \mathcal{L}(f(\tilde{x}), y_j)
+
 ```
 
 ---
@@ -132,11 +143,14 @@ Mixup encourages:
 
 ```math
 r_w = W\sqrt{1-\lambda}, \quad r_h = H\sqrt{1-\lambda}
+
 ```math
 3. Combine:
+
 ```
 
 \tilde{x} = M \odot x_i + (1-M) \odot x_j
+
 ```
 
 Where $M$ is binary mask (1 inside $B$, 0 outside).
@@ -145,6 +159,7 @@ Where $M$ is binary mask (1 inside $B$, 0 outside).
 
 ```math
 \tilde{y} = \lambda y_i + (1-\lambda) y_j
+
 ```
 
 Where $\lambda = 1 - \frac{r\_w \cdot r\_h}{W \cdot H}$ (fraction of image from $x\_i$).
@@ -165,6 +180,7 @@ Use reinforcement learning to find optimal policy:
 
 ```math
 \pi^* = \arg\max_\pi \mathbb{E}_{T \sim \pi}[\text{Accuracy}(\mathcal{D}_{val})]
+
 ```
 
 ### RandAugment (Simplified)
@@ -176,6 +192,7 @@ No search required:
 
 ```math
 T = T_N \circ T_{N-1} \circ ... \circ T_1
+
 ```
 
 ---
@@ -188,12 +205,14 @@ Replace random words with synonyms:
 
 ```math
 x = [w_1, ..., w_i, ..., w_n] \rightarrow [w_1, ..., \text{syn}(w_i), ..., w_n]
+
 ```
 
 ### Back-Translation
 
 ```math
 x \xrightarrow{\text{translate}} x_{foreign} \xrightarrow{\text{translate back}} \tilde{x}
+
 ```
 
 ### EDA (Easy Data Augmentation)
@@ -367,6 +386,7 @@ def eda_augment(sentence, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1):
     words = [w for w in words if random.random() > p_rd]
     
     return ' '.join(words)
+
 ```
 
 ---

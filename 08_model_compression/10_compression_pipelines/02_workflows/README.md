@@ -25,12 +25,14 @@
 
 ```math
 CR_{total} = \prod_{i=1}^{n} CR_i
+
 ```
 
 **Example: Prune (50%) + Quantize (INT8):**
 
 ```math
 CR = \frac{1}{0.5} \times \frac{32}{8} = 2 \times 4 = 8\times
+
 ```
 
 ### 2. Distillation + Quantization
@@ -39,12 +41,14 @@ CR = \frac{1}{0.5} \times \frac{32}{8} = 2 \times 4 = 8\times
 
 ```math
 \text{Final Size} = \frac{S_{student}}{S_{teacher}} \times \frac{b_{quant}}{b_{original}}
+
 ```
 
 **Example: BERT → DistilBERT + INT8:**
 
 ```math
 \text{Reduction} = \frac{66M}{340M} \times \frac{8}{32} = 0.19 \times 0.25 = 0.049 \approx 20\times
+
 ```
 
 ### 3. QLoRA Memory Formula
@@ -54,12 +58,14 @@ CR = \frac{1}{0.5} \times \frac{32}{8} = 2 \times 4 = 8\times
 ```math
 M_{train} = M_{base(4bit)} + M_{LoRA(FP16)} + M_{optimizer(8bit)} + M_{grad(FP16)}
 M_{train} = 0.5P + 4rd \cdot 2 + 2 \cdot |\theta_{LoRA}| \cdot 1 + 4rd \cdot 2
+
 ```
 
 **For 7B model, r=16:**
 
 ```math
 M_{train} \approx 3.5\text{GB} + 8\text{MB} + 4\text{MB} + 8\text{MB} \approx 3.5\text{GB}
+
 ```
 
 ### 4. Accuracy-Latency Pareto Analysis
@@ -68,6 +74,7 @@ M_{train} \approx 3.5\text{GB} + 8\text{MB} + 4\text{MB} + 8\text{MB} \approx 3.
 
 ```math
 \min \text{Latency} \quad \text{s.t.} \quad \text{Accuracy} \geq A_{threshold}
+
 ```
 
 **Pareto Optimal:** A pipeline is Pareto optimal if no other pipeline achieves:
@@ -100,6 +107,7 @@ Original Model (100%)
        |
        v
 Compressed Model (12.5% size, 4-8× speedup)
+
 ```
 
 **Best for:** Vision models, edge deployment
@@ -125,6 +133,7 @@ Student Model (Small)
        |
        v
 Production Model (10-100× smaller!)
+
 ```
 
 **Best for:** Creating new efficient architectures
@@ -156,6 +165,7 @@ Pretrained LLM (FP16)
        |
        v
 Fine-tuned 4-bit Model
+
 ```
 
 **Best for:** All LLM fine-tuning
@@ -345,6 +355,7 @@ def deep_compression_pipeline(model, train_loader, n_clusters=16, sparsity=0.9):
     # In practice, weights stored as centroid indices
     
     return model
+
 ```
 
 ---

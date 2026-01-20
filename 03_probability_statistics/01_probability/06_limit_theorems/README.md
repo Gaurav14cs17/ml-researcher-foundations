@@ -35,6 +35,7 @@ Limit theorems explain why statistics and machine learning work. They guarantee 
 
 ```math
 \bar{X}_n = \frac{1}{n}\sum_{i=1}^{n} X_i \xrightarrow{p} \mu \quad \text{as } n \to \infty
+
 ```
 
 **Meaning:** The sample mean converges in probability to the true mean.
@@ -45,6 +46,7 @@ Limit theorems explain why statistics and machine learning work. They guarantee 
 
 ```math
 P\left(\lim_{n \to \infty} \bar{X}_n = \mu\right) = 1
+
 ```
 
 **Meaning:** Almost sure convergence - stronger than convergence in probability.
@@ -53,6 +55,7 @@ P\left(\lim_{n \to \infty} \bar{X}_n = \mu\right) = 1
 
 ```math
 P(|\bar{X}_n - \mu| > \epsilon) \leq \frac{\text{Var}(\bar{X}_n)}{\epsilon^2} = \frac{\sigma^2}{n\epsilon^2} \to 0
+
 ```
 
 as $n \to \infty$. $\quad \blacksquare$
@@ -67,12 +70,14 @@ as $n \to \infty$. $\quad \blacksquare$
 
 ```math
 \frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma} \xrightarrow{d} \mathcal{N}(0, 1) \quad \text{as } n \to \infty
+
 ```
 
 **Equivalently:**
 
 ```math
 \bar{X}_n \approx \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right)
+
 ```
 
 **Key Insight:** The sum of ANY i.i.d. random variables → Gaussian!
@@ -83,6 +88,7 @@ as $n \to \infty$. $\quad \blacksquare$
 
 ```math
 Z_i = \frac{X_i - \mu}{\sigma}
+
 ```
 
 So $E[Z\_i] = 0$ and $\text{Var}(Z\_i) = 1$.
@@ -91,12 +97,14 @@ So $E[Z\_i] = 0$ and $\text{Var}(Z\_i) = 1$.
 
 ```math
 S_n = \frac{1}{\sqrt{n}}\sum_{i=1}^{n} Z_i = \frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma}
+
 ```
 
 **Step 3:** Compute characteristic function
 
 ```math
 \phi_{S_n}(t) = E[e^{itS_n}] = \left[\phi_Z\left(\frac{t}{\sqrt{n}}\right)\right]^n
+
 ```
 
 **Step 4:** Taylor expansion of $\phi\_Z$
@@ -104,18 +112,21 @@ S_n = \frac{1}{\sqrt{n}}\sum_{i=1}^{n} Z_i = \frac{\sqrt{n}(\bar{X}_n - \mu)}{\s
 ```math
 \phi_Z(s) = 1 + is \cdot E[Z] - \frac{s^2}{2}E[Z^2] + O(s^3)
 = 1 - \frac{s^2}{2} + O(s^3)
+
 ```
 
 **Step 5:** Substitute $s = t/\sqrt{n}$
 
 ```math
 \phi_Z\left(\frac{t}{\sqrt{n}}\right) = 1 - \frac{t^2}{2n} + O\left(\frac{1}{n^{3/2}}\right)
+
 ```
 
 **Step 6:** Take limit
 
 ```math
 \phi_{S_n}(t) = \left[1 - \frac{t^2}{2n}\right]^n \to e^{-t^2/2}
+
 ```
 
 This is the characteristic function of $\mathcal{N}(0, 1)$! $\quad \blacksquare$
@@ -128,6 +139,7 @@ This is the characteristic function of $\mathcal{N}(0, 1)$! $\quad \blacksquare$
 
 ```math
 \sup_z \left|P\left(\frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma} \leq z\right) - \Phi(z)\right| \leq \frac{C \cdot E[|X - \mu|^3]}{\sigma^3 \sqrt{n}}
+
 ```
 
 where $C \leq 0.4748$ and $\Phi$ is the standard normal CDF.
@@ -144,12 +156,14 @@ For non-negative random variable $X$ and $a > 0$:
 
 ```math
 P(X \geq a) \leq \frac{E[X]}{a}
+
 ```
 
 **Proof:**
 
 ```math
 E[X] = E[X \cdot \mathbf{1}_{X \geq a}] + E[X \cdot \mathbf{1}_{X < a}] \geq a \cdot P(X \geq a) \quad \blacksquare
+
 ```
 
 ### Chebyshev's Inequality
@@ -158,6 +172,7 @@ For any random variable $X$ with finite variance:
 
 ```math
 P(|X - \mu| \geq k\sigma) \leq \frac{1}{k^2}
+
 ```
 
 **Proof:** Apply Markov to $(X - \mu)^2$ with $a = k^2\sigma^2$. $\quad \blacksquare$
@@ -168,12 +183,14 @@ For i.i.d. bounded random variables $X\_i \in [a\_i, b\_i]$:
 
 ```math
 P\left(\bar{X}_n - \mu \geq t\right) \leq \exp\left(-\frac{2n^2 t^2}{\sum_i (b_i - a_i)^2}\right)
+
 ```
 
 For $X\_i \in [a, b]$:
 
 ```math
 P\left(|\bar{X}_n - \mu| \geq t\right) \leq 2\exp\left(-\frac{2nt^2}{(b-a)^2}\right)
+
 ```
 
 **Application:** Guarantees for sample mean estimation.
@@ -185,6 +202,7 @@ For $X = \sum\_{i=1}^n X\_i$ where $X\_i \in \{0, 1\}$ are independent with $E[X
 ```math
 P(X \geq (1+\delta)\mu) \leq e^{-\frac{\delta^2 \mu}{2+\delta}}
 P(X \leq (1-\delta)\mu) \leq e^{-\frac{\delta^2 \mu}{2}}
+
 ```
 
 where $\mu = E[X] = \sum\_i p\_i$.
@@ -199,6 +217,7 @@ Mini-batch gradient is an unbiased estimator of full gradient:
 
 ```math
 \hat{\nabla} f = \frac{1}{m}\sum_{i=1}^{m} \nabla f_i(\theta)
+
 ```
 
 By LLN: $\hat{\nabla} f \xrightarrow{p} \nabla f$ as $m \to \infty$
@@ -211,6 +230,7 @@ Test accuracy converges to true accuracy:
 
 ```math
 \text{Acc}_{\text{test}} \xrightarrow{p} \text{Acc}_{\text{true}}
+
 ```
 
 Hoeffding gives confidence intervals for performance estimates.
@@ -221,6 +241,7 @@ For any function $g$:
 
 ```math
 E[g(X)] = \int g(x) p(x) dx \approx \frac{1}{n}\sum_{i=1}^{n} g(x_i)
+
 ```
 
 Error rate: $O(1/\sqrt{n})$ regardless of dimension!
@@ -315,6 +336,7 @@ epsilon = 0.01
 confidence = 0.95
 n = int(np.log(2 / (1 - confidence)) / (2 * epsilon**2))
 print(f"Need n={n} samples for 95% confidence within ±0.01")
+
 ```
 
 ---

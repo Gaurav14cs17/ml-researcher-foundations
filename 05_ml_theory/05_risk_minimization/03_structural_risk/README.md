@@ -44,6 +44,7 @@ Consider a sequence of nested hypothesis classes:
 
 ```math
 \mathcal{H}_1 \subset \mathcal{H}_2 \subset \mathcal{H}_3 \subset \cdots
+
 ```
 
 with increasing complexity: \(\text{VC}(\mathcal{H}_1) < \text{VC}(\mathcal{H}_2) < \cdots\)
@@ -52,6 +53,7 @@ with increasing complexity: \(\text{VC}(\mathcal{H}_1) < \text{VC}(\mathcal{H}_2
 
 ```math
 \hat{h} = \arg\min_{k} \left[\min_{h \in \mathcal{H}_k} \hat{R}(h) + \Phi(k, n, \delta)\right]
+
 ```
 
 where \(\Phi(k, n, \delta)\) is the complexity penalty depending on VC dimension of \(\mathcal{H}_k\).
@@ -66,6 +68,7 @@ where \(\Phi(k, n, \delta)\) is the complexity penalty depending on VC dimension
 
 ```math
 R(h) \leq \hat{R}(h) + \sqrt{\frac{d(\ln(2n/d) + 1) + \ln(4/\delta)}{n}}
+
 ```
 
 where \(d = \text{VC}(\mathcal{H})\).
@@ -76,6 +79,7 @@ SRM is equivalent to regularized ERM:
 
 ```math
 \hat{h} = \arg\min_{h \in \mathcal{H}} \left[\hat{R}(h) + \lambda \Omega(h)\right]
+
 ```
 
 **Common Regularizers:**
@@ -97,12 +101,14 @@ Regularized ERM is equivalent to Maximum A Posteriori (MAP) estimation:
 
 ```math
 \hat{h}_{\text{MAP}} = \arg\max_h p(h | \mathcal{D}) = \arg\max_h p(\mathcal{D}|h) p(h)
+
 ```
 
 Taking negative log:
 
 ```math
 = \arg\min_h \left[-\log p(\mathcal{D}|h) - \log p(h)\right]
+
 ```
 
 - \(-\log p(\mathcal{D}|h)\): Likelihood → Empirical risk
@@ -122,6 +128,7 @@ Taking negative log:
 
 ```math
 w^{(t)} = \sum_{i=1}^n \alpha_i^{(t)} x_i
+
 ```
 
 where after \(t\) steps, this approximates ridge regression with \(\lambda = 1/(\eta t)\).
@@ -315,6 +322,7 @@ def compare_srm_methods():
 
 if __name__ == "__main__":
     compare_srm_methods()
+
 ```
 
 ---

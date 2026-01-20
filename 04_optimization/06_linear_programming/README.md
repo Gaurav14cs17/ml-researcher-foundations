@@ -39,6 +39,7 @@
 |   • b ∈ ℝᵐ = right-hand side                           |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -74,6 +75,7 @@ maximize    20x₁ + 30x₂           (profit)
 subject to  4x₁ + 3x₂ ≤ 120       (wood)
             2x₁ + 4x₂ ≤ 80        (labor)
             x₁, x₂ ≥ 0
+
 ```
 
 ---
@@ -97,6 +99,7 @@ subject to  4x₁ + 3x₂ ≤ 120       (wood)
 | Exponential | Exponential     | O(n³·⁵)                 |
 | worst-case  | worst-case      | guaranteed              |
 +-------------+-----------------+-------------------------+
+
 ```
 
 ---
@@ -104,6 +107,7 @@ subject to  4x₁ + 3x₂ ≤ 120       (wood)
 ## 💻 Code Examples
 
 ### Python (PuLP)
+
 ```python
 from pulp import *
 
@@ -127,9 +131,11 @@ prob.solve()
 print(f"Chairs: {x1.value()}")
 print(f"Tables: {x2.value()}")
 print(f"Profit: ${value(prob.objective)}")
+
 ```
 
 ### Python (SciPy)
+
 ```python
 from scipy.optimize import linprog
 
@@ -141,9 +147,11 @@ b = [120, 80]
 result = linprog(c, A_ub=A, b_ub=b)
 print(f"Optimal x: {result.x}")
 print(f"Profit: ${-result.fun}")
+
 ```
 
 ### Gurobi (Commercial)
+
 ```python
 import gurobipy as gp
 
@@ -156,6 +164,7 @@ m.addConstr(4*x1 + 3*x2 <= 120, "Wood")
 m.addConstr(2*x1 + 4*x2 <= 80, "Labor")
 
 m.optimize()
+
 ```
 
 ---
@@ -192,6 +201,7 @@ Where:
 • c ∈ ℝⁿ (cost vector)
 • A ∈ ℝᵐˣⁿ (constraint matrix, m < n)
 • b ∈ ℝᵐ (right-hand side, b ≥ 0)
+
 ```
 
 ### Basic Feasible Solutions
@@ -206,6 +216,7 @@ x_B = B⁻¹b,  x_N = 0
 Feasible if: x_B ≥ 0
 
 Number of basic solutions: C(n, m) = n!/(m!(n-m)!)
+
 ```
 
 ### Reduced Costs
@@ -219,6 +230,7 @@ c̄_j = c_j - c_Bᵀ B⁻¹ A_j
 where π = B⁻ᵀ c_B (simplex multipliers / dual variables)
 
 Optimality condition: c̄_j ≥ 0 for all j ∈ N
+
 ```
 
 ### Simplex Tableau
@@ -237,6 +249,7 @@ After row operations:
 • Basic variables have identity columns
 • c̄_B = 0 (reduced costs of basic vars)
 • Last entry = negative of objective value
+
 ```
 
 ---
@@ -264,6 +277,7 @@ After row operations:
    If all d_i ≤ 0: Problem is UNBOUNDED
 
 6. Pivot: Update basis, tableau, and repeat
+
 ```
 
 ### Pivot Operation
@@ -276,6 +290,7 @@ New tableau element:
 
 Pivot element a_rs becomes 1
 Pivot column becomes unit vector e_r
+
 ```
 
 ---
@@ -305,6 +320,7 @@ Since c̄_N ≥ 0 and x_N ≥ 0:
 z = z* + c̄_N^T x_N ≥ z*
 
 Therefore x^B is optimal. ∎
+
 ```
 
 ---
@@ -380,6 +396,7 @@ def two_phase_simplex(c, A, b):
     # Phase 2: Solve original problem
     # (Implementation depends on basis from phase 1)
     pass
+
 ```
 
 ---
@@ -396,6 +413,7 @@ Klee-Minty cube: Exponential example
 • Solved by randomized pivot rules
 
 Per-pivot cost: O(m²) for tableau update
+
 ```
 
 ---
@@ -428,6 +446,7 @@ Relationship:
 • n primal variables ↔ n dual constraints
 • m primal constraints ↔ m dual variables
 • Primal min ↔ Dual max
+
 ```
 
 ### Converting Between Forms
@@ -445,6 +464,7 @@ Standard conversions:
 | xⱼ ≤ 0          | aⱼᵀy ≥ cⱼ       |
 | xⱼ free         | aⱼᵀy = cⱼ       |
 +------------------+------------------+
+
 ```
 
 ---
@@ -477,6 +497,7 @@ bᵀy ≤ yᵀAx = xᵀAᵀy ≤ cᵀx
 Therefore: bᵀy ≤ cᵀx  ∎
 
 Implication: Any dual feasible solution gives a lower bound on primal optimal!
+
 ```
 
 ---
@@ -499,6 +520,7 @@ At optimum, KKT conditions hold:
 3. μᵢgᵢ(x) = 0 (complementarity)
 
 These imply strong duality through Lagrangian saddle point. ∎
+
 ```
 
 ### Complementary Slackness
@@ -515,6 +537,7 @@ Dual slack × Primal variable = 0:
 Interpretation:
 • If constraint is slack, dual variable = 0
 • If dual variable > 0, constraint is tight
+
 ```
 
 ---
@@ -570,6 +593,7 @@ A = np.array([
 b = np.array([8, 7])  # Available hours
 
 x_opt, y_opt = solve_primal_dual(-c, A, b)  # Note: negate c for max
+
 ```
 
 ---
@@ -587,6 +611,7 @@ y*ⱼ = ∂(optimal objective) / ∂bⱼ
 Example:
 If y*₁ = 1.5 for machine-1 hours constraint
 → One additional hour of machine 1 improves profit by $1.50
+
 ```
 
 ---
@@ -615,6 +640,7 @@ Barrier formulation:
 • Barrier: -log(x) → ∞ as x → 0 (keeps iterates interior)
 • μ > 0: barrier parameter
 • As μ → 0, solution approaches LP optimum
+
 ```
 
 ### Central Path
@@ -628,6 +654,7 @@ Properties:
 • x*(μ) strictly in interior (all xᵢ > 0)
 • As μ → 0⁺, x*(μ) → x* (LP solution)
 • Path is smooth curve through interior
+
 ```
 
 ### KKT Conditions for Barrier Problem
@@ -642,6 +669,7 @@ x > 0
 Where X = diag(x), e = (1,1,...,1)ᵀ
 
 Rearranging: Xλ = μe  (complementarity modified)
+
 ```
 
 ### Primal-Dual Interior Point
@@ -660,6 +688,7 @@ Modified KKT system:
 +           + +    +   +        +
 
 Where X = diag(x), S = diag(s)
+
 ```
 
 ---
@@ -686,6 +715,7 @@ Step 3: Count iterations
   k ≥ log(μ₀/ε) / log(1/(1-θ/√n))
     ≈ (√n/θ) log(μ₀/ε)
     = O(√n log(1/ε))  ∎
+
 ```
 
 ### Complexity Analysis
@@ -700,6 +730,7 @@ Total: O(n^3.5 log(1/ε))
 Compare to Simplex:
 • Simplex: O(2ⁿ) worst case, O(m) average
 • Interior: O(√n) iterations (polynomial guaranteed)
+
 ```
 
 ---
@@ -772,6 +803,7 @@ A = np.array([[1, 1, 1, 0],
 b = np.array([4, 5])
 
 # Note: Need to handle equality constraints properly
+
 ```
 
 ---

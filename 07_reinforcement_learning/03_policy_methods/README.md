@@ -39,21 +39,26 @@
 ## 📐 Mathematical Foundations
 
 ### Policy Parameterization
+
 ```
 Discrete: π_θ(a|s) = softmax(fθ(s))_a
 Continuous: π_θ(a|s) = N(μθ(s), σθ(s)²)
+
 ```
 
 ### Policy Gradient Derivation
+
 ```
 J(θ) = E_π [Σₜ γᵗ rₜ]
 
 ∇J(θ) = E_π [Σₜ ∇log π_θ(aₜ|sₜ) G_t]
 
 Where G_t = Σ_{k=t}^T γ^{k-t} r_k (return from t)
+
 ```
 
 ### Advantage Estimation (GAE)
+
 ```
 Aₜ^GAE = Σ_{l=0}^∞ (γλ)^l δₜ₊ₗ
 
@@ -61,13 +66,16 @@ Where δₜ = rₜ + γV(sₜ₊₁) - V(sₜ)
 
 λ = 0: A = δ (high bias, low variance)
 λ = 1: A = G_t - V(s) (low bias, high variance)
+
 ```
 
 ### PPO Clipped Objective
+
 ```
 L^CLIP(θ) = E [min(rₜ(θ)Aₜ, clip(rₜ(θ), 1-ε, 1+ε)Aₜ)]
 
 Where rₜ(θ) = π_θ(aₜ|sₜ) / π_{θ_old}(aₜ|sₜ)
+
 ```
 
 ---
@@ -82,6 +90,7 @@ Where:
 • J(θ) = Expected return
 • π_θ(a|s) = Policy parameterized by θ
 • A(s,a) = Q(s,a) - V(s) = Advantage
+
 ```
 
 ---
@@ -117,6 +126,7 @@ Policy Methods --> RLHF (PPO is standard)
               --> DPO (derived from policy gradient)
               --> Actor-Critic variants
               --> Multi-agent RL
+
 ```
 
 ### Methods Used In
@@ -136,6 +146,7 @@ Pretrain (unsupervised) → SFT (supervised) → RLHF (PPO!)
                                         Policy gradient
                                         optimizes for
                                         human preference
+
 ```
 
 ---

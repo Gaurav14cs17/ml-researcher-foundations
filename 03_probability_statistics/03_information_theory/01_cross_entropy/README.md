@@ -46,6 +46,7 @@ Cross-entropy:           L = -log(p)   → strong gradient when wrong
                                        → approaches 0 when correct
 
 Gradient: ∂L/∂logit = p - y  (elegant!)
+
 ```
 
 ---
@@ -63,6 +64,7 @@ loss = F.binary_cross_entropy_with_logits(logits, labels.float())
 
 # With label smoothing (regularization)
 loss = F.cross_entropy(logits, labels, label_smoothing=0.1)
+
 ```
 
 ---
@@ -88,6 +90,7 @@ Relationship to KL divergence:
   H(P, Q) = H(P) + D_KL(P||Q)
   
 where H(P) is the entropy of P.
+
 ```
 
 **Key Properties:**
@@ -97,6 +100,7 @@ where H(P) is the entropy of P.
 2. Minimum at equality: H(P, Q) ≥ H(P), with equality iff P = Q
 3. Not symmetric: H(P, Q) ≠ H(Q, P) in general
 4. Lower bounded by entropy: H(P, Q) ≥ H(P)
+
 ```
 
 ---
@@ -120,6 +124,7 @@ Properties:
   • L → 0 when prediction correct (p → y)
   • L → ∞ when prediction wrong with high confidence
   • Gradient: ∂L/∂p = (p-y)/(p(1-p))
+
 ```
 
 **Multi-Class Classification (Categorical Cross-Entropy):**
@@ -140,6 +145,7 @@ Properties:
   • Focuses on probability of correct class
   • Heavily penalizes confident wrong predictions
   • Gradient: ∂L/∂pᵢ = -yᵢ/pᵢ
+
 ```
 
 ---
@@ -159,6 +165,7 @@ Properties:
   • pᵢ > 0 (no zero probabilities)
   • Differentiable everywhere
   • max(zᵢ) → p ≈ one-hot (confident prediction)
+
 ```
 
 **Combined Gradient (The Magic!):**
@@ -189,6 +196,7 @@ Interpretation:
     ∇L = [0.1, -0.3, 0.2]
     
     Gradient pushes probability toward true class!
+
 ```
 
 **Proof of ∂L/∂zᵢ = pᵢ - yᵢ:**
@@ -212,6 +220,7 @@ Step 2: Differentiate
            = pᵢ - yᵢ  (since yᵢ=0)
 
 Both cases: ∂L/∂zᵢ = pᵢ - yᵢ ✓  QED
+
 ```
 
 ---
@@ -225,6 +234,7 @@ pᵢ = exp(zᵢ) / Σⱼ exp(zⱼ)
 
 If zᵢ large (e.g., z = [1000, 1001, 999]):
   exp(1000) ≈ 10⁴³⁴ → inf in float32!
+
 ```
 
 **Solution: Subtract Maximum**
@@ -246,6 +256,7 @@ Example:
   z' = z - 1001 = [-1, 0, -2]
   p = [e⁻¹, e⁰, e⁻²] / (e⁻¹ + e⁰ + e⁻²)
     ≈ [0.268, 0.665, 0.099]
+
 ```
 
 **Log-Softmax (Even More Stable):**
@@ -265,6 +276,7 @@ Then cross-entropy:
     = LogSumExp(z) - z_y
 
 PyTorch: F.log_softmax(z) computes this stably
+
 ```
 
 ---
@@ -296,6 +308,7 @@ Problem 2: Wrong assumptions
   
   Cross-entropy assumes Bernoulli: p(y|z) = Bernoulli(σ(z))
   Correct model for binary outcomes.
+
 ```
 
 **Comparison:**
@@ -308,6 +321,7 @@ Saturation:     Yes (at extremes)       No
 Convergence:    Slow                    Fast
 Interpretation: L2 distance             Log-likelihood
 Best for:       Regression              Classification
+
 ```
 
 ---
@@ -334,6 +348,7 @@ For classification:
 
 Therefore:
   Minimizing cross-entropy = Maximum likelihood estimation ✓
+
 ```
 
 **Multi-Class Case:**
@@ -351,6 +366,7 @@ Dataset:
 
 Interpretation:
   Find parameters θ that maximize probability of observing the data
+
 ```
 
 ---
@@ -365,6 +381,7 @@ True label: y = [0, 1, 0]
 
 Loss is low, but model is overconfident!
 May not generalize well.
+
 ```
 
 **Label Smoothing (Szegedy et al., 2016):**
@@ -384,6 +401,7 @@ Example (C=3, α=0.1):
 Effect:
   • True class: 1 → 0.9 + 0.1/3 = 0.933
   • Other classes: 0 → 0.1/3 = 0.033
+
 ```
 
 **Why It Helps:**
@@ -404,6 +422,7 @@ Effect:
 
 4. Calibration
    Model probabilities better match true frequencies
+
 ```
 
 **Implementation:**
@@ -428,6 +447,7 @@ def cross_entropy_with_label_smoothing(logits, labels, alpha=0.1):
 
 # PyTorch built-in (since 1.10):
 loss = F.cross_entropy(logits, labels, label_smoothing=0.1)
+
 ```
 
 ---
@@ -444,6 +464,7 @@ In object detection:
 Standard CE: L = -log(p_t)
   Easy examples (p_t ≈ 1): Still contribute to loss
   Model spends time on easy examples
+
 ```
 
 **Focal Loss (Lin et al., 2017):**
@@ -465,6 +486,7 @@ Example (γ=2):
   p_t = 0.1 (hard):   FL = 0.81 · (-log 0.1) ≈ 1.87
   
   Hard example gets 1870× more weight than easy!
+
 ```
 
 **With Class Balancing:**
@@ -478,6 +500,7 @@ Applications:
   • One-stage object detection (RetinaNet)
   • Semantic segmentation with imbalance
   • Any classification with hard negatives
+
 ```
 
 ---
@@ -502,6 +525,7 @@ Example (z = [1, 2, 3]):
   T=2:   p = [0.16, 0.29, 0.55]  (softer)
   T=10:  p = [0.30, 0.33, 0.37]  (almost uniform)
   T=0.5: p = [0.02, 0.12, 0.86]  (sharper)
+
 ```
 
 **Knowledge Distillation:**
@@ -524,6 +548,7 @@ Why it works:
   • Example: [0.9, 0.05, 0.05] vs [0.9, 0.08, 0.02]
     Both have same hard label, but soft labels differ!
   • Student learns relative confidences, not just top-1
+
 ```
 
 ---
@@ -545,6 +570,7 @@ Therefore:
   Minimizing H(P,Q) = Minimizing D_KL(P||Q)
   
   Cross-entropy and KL divergence are equivalent!
+
 ```
 
 **Cross-Entropy ⟷ Maximum Likelihood:**
@@ -554,6 +580,7 @@ L_CE = -(1/n)Σᵢ log p(yᵢ|xᵢ)
      = -log likelihood / n
 
 Minimizing cross-entropy = Maximum likelihood estimation
+
 ```
 
 **Binary CE ⟷ Logistic Regression:**
@@ -574,6 +601,7 @@ Negative log-likelihood:
          = Σᵢ BCE(yᵢ, pᵢ)
 
 Binary cross-entropy is logistic regression loss!
+
 ```
 
 ---
@@ -588,6 +616,7 @@ Binary cross-entropy is logistic regression loss!
 ✓ Use F.binary_cross_entropy_with_logits (not sigmoid + BCE)
 ✓ Avoid manual softmax + log operations
 ✓ Clip probabilities away from 0/1 if manual: p = clip(p, 1e-7, 1-1e-7)
+
 ```
 
 **Memory Optimization:**
@@ -603,6 +632,7 @@ loss = F.cross_entropy(logits, labels)
 For large batch/vocabulary:
   Use F.cross_entropy with reduction='sum', then divide
   Avoids storing per-example losses
+
 ```
 
 **Multi-GPU Training:**
@@ -614,6 +644,7 @@ When using DataParallel/DistributedDataParallel:
   # Then compute loss
 
   Or use reduction='mean' (default) and PyTorch handles it
+
 ```
 
 ---

@@ -27,6 +27,7 @@
 
 ```math
 W' = W_0 + \Delta W
+
 ```
 
 **LoRA hypothesis:** $\Delta W$ has low intrinsic rank.
@@ -35,6 +36,7 @@ W' = W_0 + \Delta W
 
 ```math
 \Delta W = BA
+
 ```
 
 where:
@@ -47,12 +49,14 @@ where:
 
 ```math
 h = W'x = (W_0 + BA)x = W_0 x + BAx
+
 ```
 
 **With scaling:**
 
 ```math
 h = W_0 x + \frac{\alpha}{r} BAx
+
 ```
 
 where $\alpha$ is a scaling hyperparameter.
@@ -67,42 +71,49 @@ where $\alpha$ is a scaling hyperparameter.
 
 ```math
 |\theta_{full}| = d \times k
+
 ```
 
 **LoRA parameters:**
 
 ```math
 |\theta_{LoRA}| = d \times r + r \times k = r(d + k)
+
 ```
 
 **Reduction factor:**
 
 ```math
 \frac{|\theta_{full}|}{|\theta_{LoRA}|} = \frac{dk}{r(d+k)} = \frac{dk}{rd + rk}
+
 ```
 
 #### 2.2 For Square Matrices (d = k)
 
 ```math
 \text{Reduction} = \frac{d^2}{2rd} = \frac{d}{2r}
+
 ```
 
 **Example:** $d = 4096$, $r = 16$:
 
 ```math
 \text{Reduction} = \frac{4096}{32} = 128\times
+
 ```
 
 #### 2.3 Percentage of Original Parameters
 
 ```math
 \frac{|\theta_{LoRA}|}{|\theta_{full}|} = \frac{r(d+k)}{dk} = \frac{r}{k} + \frac{r}{d}
+
 ```
 
 For $d = k = 4096$, $r = 16$:
 
 ```math
 \frac{16}{4096} + \frac{16}{4096} = 0.78\%
+
 ```
 
 ---
@@ -115,6 +126,7 @@ For $d = k = 4096$, $r = 16$:
 
 ```math
 h = W_0 x + \frac{\alpha}{r} BAx
+
 ```
 
 **Why scale by $\alpha/r$?**
@@ -131,18 +143,21 @@ When increasing rank $r$:
 
 ```math
 \frac{\partial \mathcal{L}}{\partial A} = \frac{\alpha}{r} B^T \frac{\partial \mathcal{L}}{\partial h} x^T
+
 ```
 
 **Gradient w.r.t. B:**
 
 ```math
 \frac{\partial \mathcal{L}}{\partial B} = \frac{\alpha}{r} \frac{\partial \mathcal{L}}{\partial h} (Ax)^T
+
 ```
 
 **Key property:** Setting $\alpha = r$ makes gradients invariant to rank choice:
 
 ```math
 \frac{\alpha}{r} = 1 \Rightarrow \text{gradients don't depend on } r
+
 ```
 
 ---
@@ -159,6 +174,7 @@ When increasing rank $r$:
 
 ```math
 \Delta W = BA = 0
+
 ```
 
 **Why?** Start as the pre-trained model, gradually learn adaptation.
@@ -169,12 +185,14 @@ When increasing rank $r$:
 
 ```math
 \text{Var}(A_{ij}) = \frac{1}{r}
+
 ```
 
 **After multiplication $BA$:**
 
 ```math
 \text{Var}((BA)_{ij}) = r \cdot \text{Var}(B) \cdot \text{Var}(A) \cdot \mathbb{E}[x^2]
+
 ```
 
 With $B = 0$ at init, this is 0 as desired.
@@ -211,6 +229,7 @@ With $B = 0$ at init, this is 0 as desired.
 
 ```math
 W_{merged} = W_0 + \frac{\alpha}{r} BA
+
 ```
 
 **Properties:**
@@ -225,6 +244,7 @@ W_{merged} = W_0 + \frac{\alpha}{r} BA
 ```math
 W_{task1} = W_0 + \Delta W_1
 W_{task2} = W_0 + \Delta W_2
+
 ```
 
 **Switching:** Just swap $\Delta W$ (small!).
@@ -240,12 +260,14 @@ Fine-tuning pre-trained models has low intrinsic dimensionality.
 
 ```math
 d_{intrinsic} \ll d_{total}
+
 ```
 
 **Experiment:** Random projection to $d$ dimensions:
 
 ```math
 \theta' = \theta_0 + P_d \cdot \delta
+
 ```
 
 where $P\_d$ projects to $d$-dimensional subspace.
@@ -271,6 +293,7 @@ where $P\_d$ projects to $d$-dimensional subspace.
 
 ```math
 \|\Delta W^* - BA\|_F \leq \sqrt{\sum_{i=r+1}^{\min(d,k)} \sigma_i^2}
+
 ```
 
 where $\sigma\_i$ are singular values of $\Delta W^*$ in descending order.
@@ -287,12 +310,14 @@ Then:
 
 ```math
 BA = U_r \Sigma_r V_r^T
+
 ```
 
 The Frobenius norm error:
 
 ```math
 \|\Delta W^* - BA\|_F^2 = \|U\Sigma V^T - U_r\Sigma_r V_r^T\|_F^2 = \sum_{i=r+1}^{\min(d,k)} \sigma_i^2
+
 ```
 
 Taking square root gives the bound. ∎
@@ -305,6 +330,7 @@ Taking square root gives the bound. ∎
 
 ```math
 \left\|\frac{\partial \mathcal{L}}{\partial \Delta W}\right\| = \left\|\frac{\partial \mathcal{L}}{\partial (BA)}\right\|
+
 ```
 
 independent of the choice of rank $r$.
@@ -315,18 +341,21 @@ The forward pass with LoRA:
 
 ```math
 h = W_0 x + \frac{\alpha}{r} BAx
+
 ```
 
 With $\alpha = r$:
 
 ```math
 h = W_0 x + BAx
+
 ```
 
 The gradient w.r.t. implicit $\Delta W = BA$:
 
 ```math
 \frac{\partial \mathcal{L}}{\partial \Delta W} = \frac{\partial \mathcal{L}}{\partial h} x^T
+
 ```
 
 This is independent of how we factor $\Delta W$. The LoRA decomposition only affects how gradients propagate to $A$ and $B$ individually, not the total gradient signal. ∎
@@ -343,18 +372,21 @@ This is independent of how we factor $\Delta W$. The LoRA decomposition only aff
 
 ```math
 \frac{\partial \mathcal{L}}{\partial A} = \frac{\alpha}{r} B^T \frac{\partial \mathcal{L}}{\partial h} x^T
+
 ```
 
 At initialization, $B = 0$, so:
 
 ```math
 \frac{\partial \mathcal{L}}{\partial A}\bigg|_{t=0} = 0
+
 ```
 
 After first update, $B$ becomes non-zero with magnitude $O(\eta)$ where $\eta$ is learning rate.
 
 ```math
 \text{Var}\left(\frac{\partial \mathcal{L}}{\partial A_{ij}}\right) = O\left(\frac{\alpha^2}{r^2}\right) \cdot \text{Var}(B) \cdot \text{Var}(\text{grad})
+
 ```
 
 With $\alpha = O(r)$, this is $O(1)$. ∎
@@ -545,6 +577,7 @@ if __name__ == "__main__":
                                 target_modules=['q_proj', 'v_proj'])
     print("\nAfter LoRA:")
     print(count_trainable_parameters(model))
+
 ```
 
 ---

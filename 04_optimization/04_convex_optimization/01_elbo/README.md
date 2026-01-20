@@ -34,6 +34,7 @@ Solution: Maximize a lower bound instead = ELBO
 |   Maximizing ELBO ≈ Maximizing log p(x)            |
 |                                                     |
 +-----------------------------------------------------+
+
 ```
 
 ---
@@ -47,6 +48,7 @@ ELBO = E_q(z|x)[log p(x|z)] - KL(q(z|x) || p(z))
        
        "How well can we         "Stay close to 
         reconstruct x?"          the prior p(z)"
+
 ```
 
 ---
@@ -80,6 +82,7 @@ Step 4: Show the gap is a KL divergence
                   = KL(q(z|x) || p(z|x)) ≥ 0
 
 Therefore: log p(x) = ELBO + KL(q(z|x) || p(z|x)) ✓
+
 ```
 
 ---
@@ -92,6 +95,7 @@ Therefore: log p(x) = ELBO + KL(q(z|x) || p(z|x)) ✓
 2. ELBO = E_q[log p(x|z)] - KL(q(z|x) || p(z))
 
 3. ELBO = log p(x) - KL(q(z|x) || p(z|x))
+
 ```
 
 ---
@@ -122,6 +126,7 @@ For neural networks:
 • Non-convex in weights
 • Use SGD/Adam
 • Local optima issues
+
 ```
 
 ---
@@ -142,6 +147,7 @@ x_T --> x_{T-1} --> ... --> x_1 --> x_0
  |         |               |       |
  v         v               v       v
 Noise   Less Noisy      Cleaner  Clean!
+
 ```
 
 ---
@@ -164,6 +170,7 @@ L_simple = E_{t,x_0,ε}[ ||ε - ε_θ(x_t, t)||² ]
 • t = random timestep
 • ε = noise added at step t  
 • ε_θ = neural network predicting noise
+
 ```
 
 ---
@@ -208,6 +215,7 @@ Step 6: Simplify to noise prediction
   We have x_0 = (x_t - √(1-ᾱ_t) ε) / √ᾱ_t
   
   Substituting: L_{t-1} ∝ ||ε - ε_θ(x_t, t)||²
+
 ```
 
 ---
@@ -226,6 +234,7 @@ Mathematical Chain:
 
 The "score" ε_θ approximates:
 ∇_x log p(x_t) ≈ -ε_θ(x_t,t) / √(1-ᾱ_t)
+
 ```
 
 ---
@@ -302,6 +311,7 @@ def sample(model, noise_schedule, shape, T=1000, device='cuda'):
             x = mean
     
     return x
+
 ```
 
 ---

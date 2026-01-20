@@ -101,6 +101,7 @@ By the end of this article, you will be able to:
 |                                 "How fast does it run?"                     |
 |                                                                             |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ### Necessary vs Sufficient Conditions
@@ -123,6 +124,7 @@ By the end of this article, you will be able to:
 |   f convex → local=global       GD works → f differentiable  det≠0 ↔ inv  |
 |                                                                             |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -152,6 +154,7 @@ ABSTRACTION = Focus on WHAT, not HOW
 |  • "This CNN classifies cats" →  • "Function f: X → Y"        |
 |  • "PyTorch tensor ops"       →  • "Linear transformation"    |
 +-----------------------------------------------------------------+
+
 ```
 
 ### 📐 Complete Proof: Abstraction Preserves Validity
@@ -188,6 +191,7 @@ result = v + w  # [5, 7, 9]
 
 # Abstract: Any vector space satisfies v + w = w + v
 # This property holds for ℝ³, polynomials, functions, etc.
+
 ```
 
 #### Example 2: Neural Networks (Intermediate)
@@ -222,6 +226,7 @@ class Linear(nn.Module):
 
 # Level 3: Categorical
 # A neural network layer is a morphism in the category of smooth manifolds
+
 ```
 
 #### Example 3: Loss Functions (Advanced)
@@ -254,6 +259,7 @@ Level 1: Attention(Q,K,V) = softmax(QK^T/√d)V
 Level 2: Weighted combination of values based on query-key similarity
 Level 3: Function approximation via adaptive basis functions
 Level 4: Morphism in the category of conditional distributions
+
 ```
 
 #### Example 5: Optimization (Complex)
@@ -266,6 +272,7 @@ Level 1: Gradient descent: θ_{t+1} = θ_t - α∇L(θ_t)
 Level 2: First-order optimization method
 Level 3: Fixed-point iteration: θ* = T(θ*)
 Level 4: Contraction mapping in metric space
+
 ```
 
 ### 💻 Code Implementation
@@ -324,6 +331,7 @@ result2 = AbstractionDemo.level2_functional(X, W, b)
 
 print(f"Level 0 == Level 1: {np.allclose(result0, result1)}")
 print(f"Level 1 == Level 2: {np.allclose(result1, result2)}")
+
 ```
 
 ### 🤖 ML Application
@@ -374,6 +382,7 @@ SUFFICIENT (P → Q):           NECESSARY (Q → P):            IFF (P ↔ Q):
 
 "Having P guarantees Q"       "Having Q requires P"         "P equals Q"
 "P is enough for Q"           "Can't have Q without P"      "P exactly when Q"
+
 ```
 
 ### 📐 Complete Proof: Convexity is Sufficient for Local = Global
@@ -447,6 +456,7 @@ def check_convexity_sufficient():
     
     print("\nNon-convex f(x) = x⁴ - x²:")
     print(f"  Has multiple local minima!")
+
 ```
 
 #### Example 2: Matrix Invertibility (Intermediate)
@@ -500,6 +510,7 @@ def check_invertibility_conditions(A):
 # Example
 A = np.array([[2, 1], [1, 2]])
 check_invertibility_conditions(A)
+
 ```
 
 #### Example 3: Neural Network Training (Advanced)
@@ -605,6 +616,7 @@ class NecessarySufficientDemo:
 
 # Demo
 NecessarySufficientDemo.check_convexity_vs_global_min()
+
 ```
 
 ### 🤖 ML Application
@@ -647,6 +659,7 @@ NecessarySufficientDemo.check_convexity_vs_global_min()
 |   → Captures intuition of "close"     → Requires proof!                   |
 |                                                                           |
 +---------------------------------------------------------------------------+
+
 ```
 
 ### 📐 Key Distinction
@@ -779,6 +792,7 @@ f_nonconvex = lambda x: np.sin(x)
 
 print(f"x² is convex: {DefinitionsDemo.definition_convexity(f_convex, -1, 1)}")
 print(f"sin(x) is convex: {DefinitionsDemo.definition_convexity(f_nonconvex, 0, np.pi)}")
+
 ```
 
 ---
@@ -808,6 +822,7 @@ print(f"sin(x) is convex: {DefinitionsDemo.definition_convexity(f_nonconvex, 0, 
 |   → Claim FALSE! ✗                 → Requires proof ✓                    |
 |                                                                           |
 +---------------------------------------------------------------------------+
+
 ```
 
 ### 📐 Complete Theory
@@ -873,6 +888,7 @@ y = np.array([0, 1, 1, 0])
 
 # No linear w, b exists such that sign(Xw + b) = y
 # This single counterexample killed perceptron research for a decade!
+
 ```
 
 **The Adversarial Example (2013):**
@@ -885,6 +901,7 @@ y = np.array([0, 1, 1, 0])
 # Add tiny noise, completely fool classifier
 x_adv = x + epsilon * sign(gradient_wrt_input)
 # Prediction changes from "panda" to "gibbon" with high confidence!
+
 ```
 
 #### Example 4: Constructing Good Counterexamples
@@ -982,6 +999,7 @@ class CounterexampleDemo:
 
 # Demo
 CounterexampleDemo.disprove_gradient_always_decreases_loss()
+
 ```
 
 ---
@@ -1010,6 +1028,7 @@ CounterexampleDemo.disprove_gradient_always_decreases_loss()
      | Need to find at least ONE
      ▼
 ¬∀x: ¬P(x) - "Not all swans are non-black"
+
 ```
 
 ### 📐 Negation Rules (Critical!)
@@ -1061,6 +1080,7 @@ CounterexampleDemo.disprove_gradient_always_decreases_loss()
    
 ✅ RIGHT: "x* is a local min of convex f, so x* is global min"
    Convexity + local min → global min
+
 ```
 
 ### Mistake 2: Assuming Necessity from Sufficiency
@@ -1071,6 +1091,7 @@ CounterexampleDemo.disprove_gradient_always_decreases_loss()
    
 ✅ RIGHT: "Learning rate < 2/L is sufficient for SGD convergence"
    But SGD can converge with other conditions too
+
 ```
 
 ### Mistake 3: Missing "Only If"
@@ -1082,6 +1103,7 @@ This means: Finite VC → Generalization  (Sufficient)
 NOT:        Generalization → Finite VC  (Not claimed!)
 
 To claim both: "if AND ONLY IF"
+
 ```
 
 ### Mistake 4: Wrong Level of Abstraction
@@ -1094,6 +1116,7 @@ To claim both: "if AND ONLY IF"
    → Can't see what's actually happening
    
 ✅ RIGHT: Match abstraction level to task
+
 ```
 
 ### Mistake 5: Thinking Examples Prove Universal Claims
@@ -1105,6 +1128,7 @@ To claim both: "if AND ONLY IF"
    
 ✅ RIGHT: "This network generalizes well on these 3 datasets"
    → Specific, falsifiable claim
+
 ```
 
 ---
@@ -1499,6 +1523,7 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("DEMONSTRATIONS COMPLETE")
     print("=" * 60)
+
 ```
 
 ---
@@ -1529,6 +1554,7 @@ if __name__ == "__main__":
        |
        +--▶ "P ↔ Q" - Characterizations
                  +-- P equals Q
+
 ```
 
 ---

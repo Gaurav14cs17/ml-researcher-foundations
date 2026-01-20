@@ -33,6 +33,7 @@ Strategies:
 1. Feature Extraction: Freeze θ_pretrained, train new head
 2. Fine-tuning: Update all or part of θ_pretrained
 3. Adapter methods: Add small trainable modules
+
 ```
 
 ### Domain Adaptation
@@ -47,6 +48,7 @@ Methods:
 • Domain adversarial training
 • Maximum Mean Discrepancy (MMD)
 • Self-training
+
 ```
 
 ---
@@ -110,6 +112,7 @@ model = AutoModelForSequenceClassification.from_pretrained(
     'bert-base-uncased',
     num_labels=2
 )
+
 ```
 
 ---

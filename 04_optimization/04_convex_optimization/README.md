@@ -39,6 +39,7 @@ A convex optimization problem has:
 |   KEY PROPERTY: Any local minimum = global minimum!    |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -59,6 +60,7 @@ NON-CONVEX (typical DL):           CONVEX:
 • Many local minima              • Only one minimum
 • SGD might get stuck            • Any method finds it
 • Need good initialization       • Initialization irrelevant
+
 ```
 
 ---
@@ -83,6 +85,7 @@ Visually: The chord is ABOVE the function
       ╱------------
      ╱   function
     •  below chord ✓
+
 ```
 
 ### Second-Order Conditions
@@ -97,6 +100,7 @@ Example: f(x) = ½xᵀQx + bᵀx
 ∇f(x) = Qx + b
 ∇²f(x) = Q
 Convex ⟺ Q ≽ 0
+
 ```
 
 ### First-Order Conditions
@@ -108,6 +112,7 @@ f(y) ≥ f(x) + ∇f(x)ᵀ(y - x)
 
 The tangent line/plane is BELOW the function!
 Used in gradient descent convergence proofs.
+
 ```
 
 ---
@@ -125,6 +130,7 @@ Benefits:
 • Unique global minimum
 • Faster convergence: O((1-μ/L)^k) vs O(1/k)
 • More stable optimization
+
 ```
 
 ---
@@ -139,6 +145,7 @@ f is L-smooth if gradient is Lipschitz:
 Equivalently: ∇²f(x) ≼ LI
 
 Used for: Learning rate bounds (α ≤ 1/L)
+
 ```
 
 ---
@@ -155,6 +162,7 @@ For L-smooth μ-strongly convex:
 f(θₜ) - f(θ*) ≤ O((1 - μ/L)^t)
 
 Condition number κ = L/μ determines speed
+
 ```
 
 ---
@@ -205,6 +213,7 @@ print(f"Is f(x,y)=x²+y² convex? {is_convex_quadratic(Q)}")  # True
 # Example: f(x,y) = x² - y²
 Q = np.array([[1, 0], [0, -1]])
 print(f"Is f(x,y)=x²-y² convex? {is_convex_quadratic(Q)}")  # False
+
 ```
 
 ---
@@ -230,6 +239,7 @@ Solution: Maximize a lower bound instead = ELBO
 |   Maximizing ELBO ≈ Maximizing log p(x)            |
 |                                                     |
 +-----------------------------------------------------+
+
 ```
 
 ---
@@ -243,6 +253,7 @@ ELBO = E_q(z|x)[log p(x|z)] - KL(q(z|x) || p(z))
        
        "How well can we         "Stay close to 
         reconstruct x?"          the prior p(z)"
+
 ```
 
 ---
@@ -269,6 +280,7 @@ Step 4: Exact relationship
 
 Since KL ≥ 0, ELBO is always a lower bound.
 Equality when q(z|x) = p(z|x) (true posterior).
+
 ```
 
 ---
@@ -281,6 +293,7 @@ Equality when q(z|x) = p(z|x) (true posterior).
 2. ELBO = E_q[log p(x|z)] - KL(q(z|x) || p(z))
 
 3. ELBO = log p(x) - KL(q(z|x) || p(z|x))
+
 ```
 
 ---
@@ -311,6 +324,7 @@ x_T --> x_{T-1} --> ... --> x_1 --> x_0
  |         |               |       |
  v         v               v       v
 Noise   Less Noisy      Cleaner  Clean!
+
 ```
 
 ### ELBO for Diffusion
@@ -331,6 +345,7 @@ L_simple = E_{t,x_0,ε}[ ||ε - ε_θ(x_t, t)||² ]
 • t = random timestep
 • ε = noise added at step t  
 • ε_θ = neural network predicting noise
+
 ```
 
 ### Connection to ELBO
@@ -349,6 +364,7 @@ Key insight:
 • p_θ(x_{t-1}|x_t) is also Gaussian
 • KL between Gaussians has closed form
 • Reduces to ||ε - ε_θ||² loss!
+
 ```
 
 ---
@@ -378,6 +394,7 @@ def train_step(model, x_0, noise_schedule):
     loss = nn.MSELoss()(epsilon_pred, epsilon)
     
     return loss
+
 ```
 
 ---

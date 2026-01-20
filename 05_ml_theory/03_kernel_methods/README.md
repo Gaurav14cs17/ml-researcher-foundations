@@ -43,6 +43,7 @@ Example - RBF Kernel:
 K(x, y) = exp(-||x-y||²/(2σ²))
 
 This corresponds to infinite-dimensional φ!
+
 ```
 
 ---
@@ -89,6 +90,7 @@ Kernel Methods --> Understanding attention as kernel
               --> Bayesian Optimization
               --> SVM and max-margin theory
               --> RKHS theory in ML papers
+
 ```
 
 ---

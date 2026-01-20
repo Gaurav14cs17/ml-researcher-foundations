@@ -37,6 +37,7 @@ Policy Gradient Theorem:
 Where:
 • J(θ) = E[Σₜ γᵗ rₜ] (expected return)
 • Aπ(s,a) = Qπ(s,a) - Vπ(s) (advantage)
+
 ```
 
 ### TRPO Objective (Precursor)
@@ -47,6 +48,7 @@ maximize L(θ) = E[πθ(a|s)/πθ_old(a|s) · A(s,a)]
 
 Problem: Constraint is expensive to compute
 Solution: PPO approximates the constraint via clipping
+
 ```
 
 ### PPO Clipped Objective
@@ -64,6 +66,7 @@ If Aₜ > 0 (good action): clip ratio at 1+ε (limit improvement)
 If Aₜ < 0 (bad action):  clip ratio at 1-ε (limit damage)
 
 This keeps πθ close to πθ_old without explicit KL constraint!
+
 ```
 
 ### Generalized Advantage Estimation (GAE)
@@ -78,6 +81,7 @@ Where:
 λ = 0: Low variance, high bias (1-step TD)
 λ = 1: High variance, low bias (Monte Carlo)
 λ = 0.95: Common practical choice
+
 ```
 
 ### Full PPO Objective
@@ -91,6 +95,7 @@ Where:
 • c₁ ≈ 0.5, c₂ ≈ 0.01  (coefficients)
 
 Entropy bonus encourages exploration!
+
 ```
 
 ---
@@ -110,6 +115,7 @@ Where:
 
 PPO update with KL penalty:
 L(θ) = E[min(rₜAₜ, clip(rₜ)Aₜ) - β log(πθ/πref)]
+
 ```
 
 ---
@@ -216,6 +222,7 @@ def rlhf_ppo_loss(policy, ref_policy, states, actions, rewards, beta=0.1):
     # ... (compute advantages with modified_rewards)
     
     return policy_loss
+
 ```
 
 ---

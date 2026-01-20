@@ -64,6 +64,7 @@
 |   +===================================================================+     |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -94,6 +95,7 @@ Conversion examples:
   distance = 1 - |similarity|         (for similarity in [-1, 1])
   similarity = 1 / (1 + distance)     (always in (0, 1])
   similarity = exp(-distance)         (always in (0, 1])
+
 ```
 
 ---
@@ -104,12 +106,14 @@ Conversion examples:
 
 ```math
 \|x\|_p = \left( \sum_{i=1}^{n} |x_i|^p \right)^{1/p}
+
 ```
 
 ### 📌 Lp Distance
 
 ```math
 d_p(x, y) = \|x - y\|_p
+
 ```
 
 ### 📊 Special Cases
@@ -137,6 +141,7 @@ L∞ (Chebyshev):
 • Only considers the largest difference
 • Used in minimax optimization
 • Robust to differences in low-variance dimensions
+
 ```
 
 ### 💡 Example
@@ -150,6 +155,7 @@ L1: |1-4| + |2-5| + |3-6| = 3 + 3 + 3 = 9
 L2: √((1-4)² + (2-5)² + (3-6)²) = √(9 + 9 + 9) = √27 ≈ 5.20
 
 L∞: max(|1-4|, |2-5|, |3-6|) = max(3, 3, 3) = 3
+
 ```
 
 ---
@@ -160,12 +166,14 @@ L∞: max(|1-4|, |2-5|, |3-6|) = max(3, 3, 3) = 3
 
 ```math
 \cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\|\mathbf{x}\| \|\mathbf{y}\|} = \frac{\sum_i x_i y_i}{\sqrt{\sum_i x_i^2} \sqrt{\sum_i y_i^2}}
+
 ```
 
 ### 📌 Cosine Distance
 
 ```math
 d_{\cos}(\mathbf{x}, \mathbf{y}) = 1 - \cos(\theta)
+
 ```
 
 ### 📐 Properties
@@ -183,6 +191,7 @@ This makes it perfect for:
   • Text embeddings (document length doesn't matter)
   • User preference vectors
   • Neural network embeddings
+
 ```
 
 ### 🔍 Relationship to Euclidean Distance
@@ -191,6 +200,7 @@ For **normalized vectors** ($\|x\| = \|y\| = 1$):
 
 ```math
 \|x - y\|_2^2 = 2(1 - \cos(\theta)) = 2 \cdot d_{\cos}(x, y)
+
 ```
 
 This is why many embedding methods normalize vectors!
@@ -203,6 +213,7 @@ This is why many embedding methods normalize vectors!
 
 ```math
 d_M(\mathbf{x}, \mathbf{y}) = \sqrt{(\mathbf{x} - \mathbf{y})^T \Sigma^{-1} (\mathbf{x} - \mathbf{y})}
+
 ```
 
 where $\Sigma$ is the covariance matrix of the data.
@@ -223,6 +234,7 @@ Applications:
 • Anomaly detection (how many "standard deviations" away?)
 • Classification with class-specific covariances
 • Gaussian distributions (x ~ N(μ, Σ) → d_M(x, μ) ~ χ distribution)
+
 ```
 
 ### 💡 Example
@@ -240,6 +252,7 @@ With covariance Σ = [[1, 0.8], [0.8, 1]]:
 Mahalanobis: d = √((3,3) · Σ⁻¹ · (3,3)ᵀ) ≈ 2.24
 
 The correlation makes the actual "statistical distance" smaller!
+
 ```
 
 ---
@@ -271,6 +284,7 @@ In ML:
 Used in:
   • VAE: D_KL(q(z|x) || p(z)) as regularization
   • Cross-entropy loss = constant + D_KL(true || predicted)
+
 ```
 
 ---
@@ -411,6 +425,7 @@ def pytorch_distances():
     print(f"Similarity matrix shape: {similarity_matrix.shape}")
 
 pytorch_distances()
+
 ```
 
 ---
@@ -443,6 +458,7 @@ Solutions:
 2. Reduce dimensionality first (PCA, t-SNE)
 3. Learn the metric (Siamese networks, triplet loss)
 4. Use approximate methods (LSH, FAISS)
+
 ```
 
 ---

@@ -67,6 +67,7 @@
 |   Error: ‖A - Aₖ‖²_F = σ²ₖ₊₁ + σ²ₖ₊₂ + ... + σ²ᵣ                          |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -79,6 +80,7 @@ For **any** matrix $A \in \mathbb{R}^{m \times n}$, there exist:
 
 ```math
 A = U\Sigma V^T
+
 ```
 
 where:
@@ -102,6 +104,7 @@ Therefore:
 • Right singular vectors (V) = eigenvectors of AᵀA
 • Left singular vectors (U) = eigenvectors of AAᵀ
 • Singular values = √(eigenvalues of AᵀA) = √(eigenvalues of AAᵀ)
+
 ```
 
 ### 📐 Key Properties
@@ -187,6 +190,7 @@ In matrix form:
                             [         ⋮          ]
   AV = UΣ
   A = UΣVᵀ  (since V is orthogonal, Vᵀ = V⁻¹)  ∎
+
 ```
 
 ---
@@ -199,6 +203,7 @@ The best rank-$k$ approximation to $A$ (in Frobenius or spectral norm) is:
 
 ```math
 A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T
+
 ```
 
 **Error**: $\|A - A\_k\|\_F^2 = \sum\_{i=k+1}^{r} \sigma\_i^2$
@@ -252,6 +257,7 @@ shows:
   ‖A - B‖²_F ≥ Σᵢ₌ₖ₊₁ʳ σᵢ² = ‖A - Aₖ‖²_F
 
 Therefore Aₖ is optimal.  ∎
+
 ```
 
 ---
@@ -261,6 +267,7 @@ Therefore Aₖ is optimal.  ∎
 ### 📐 Algorithms
 
 **Method 1: Via Eigendecomposition**
+
 ```
 1. Form AᵀA (n×n, symmetric)
 2. Compute eigendecomposition: AᵀA = VΛVᵀ
@@ -269,9 +276,11 @@ Therefore Aₖ is optimal.  ∎
 
 Complexity: O(mn² + n³)
 Issue: Forms AᵀA explicitly → numerical issues
+
 ```
 
 **Method 2: Golub-Kahan Bidiagonalization (Standard)**
+
 ```
 1. Reduce A to bidiagonal form B via orthogonal transforms
 2. Apply implicit QR to B to diagonalize
@@ -279,9 +288,11 @@ Issue: Forms AᵀA explicitly → numerical issues
 
 Complexity: O(mn²) for m ≥ n
 More numerically stable than eigendecomposition
+
 ```
 
 **Method 3: Randomized SVD (for Large Matrices)**
+
 ```python
 def randomized_svd(A, k, p=10, q=2):
     """
@@ -316,6 +327,7 @@ def randomized_svd(A, k, p=10, q=2):
     U = Q @ U_B
     
     return U[:, :k], S[:k], Vt[:k, :]
+
 ```
 
 ---
@@ -363,6 +375,7 @@ d, k, r = 768, 768, 4
 full_params = d * k  # 589,824
 lora_params = d * r + r * k  # 6,144
 print(f"Compression: {full_params / lora_params:.0f}×")  # 96×
+
 ```
 
 ### 🤖 Application 2: PCA via SVD
@@ -406,6 +419,7 @@ def pca_via_svd(X, n_components):
 X = np.random.randn(1000, 100)
 X_pca, components, var_ratio = pca_via_svd(X, n_components=10)
 print(f"Variance explained: {var_ratio.sum():.1%}")
+
 ```
 
 ### 🤖 Application 3: Image Compression
@@ -438,6 +452,7 @@ image = np.random.rand(512, 512)  # Simulate grayscale image
 for k in [5, 10, 20, 50, 100]:
     _, ratio, error = compress_image_svd(image, k)
     print(f"k={k:3d}: {ratio:.1f}× compression, {error:.2%} error")
+
 ```
 
 ### 🤖 Application 4: Pseudoinverse
@@ -470,6 +485,7 @@ x = A_pinv @ b
 # Verify: x minimizes ||Ax - b||
 print(f"Residual: {np.linalg.norm(A @ x - b):.6f}")
 print(f"Via lstsq: {np.linalg.norm(A @ np.linalg.lstsq(A, b, rcond=None)[0] - b):.6f}")
+
 ```
 
 ---
@@ -544,6 +560,7 @@ for k in [1, 5, 10, 25]:
     print(f"k={k:2d}: error={error:.4f}, variance={var:.2%}")
 
 print(f"\nRank for 95% variance: {svd.optimal_rank(0.95)}")
+
 ```
 
 ---

@@ -40,6 +40,7 @@
 |   • Portfolio optimization       • Neural arch search   |
 |                                                         |
 +---------------------------------------------------------+
+
 ```
 
 ---
@@ -54,6 +55,7 @@ Population P_t = {x₁, ..., xₙ}
 Selection: P(xᵢ selected) ∝ fitness(xᵢ)
 Crossover: x_child = crossover(x_parent1, x_parent2)
 Mutation: x' = x + ε, ε ~ N(0, σ²)
+
 ```
 
 ### Simulated Annealing
@@ -66,6 +68,7 @@ Temperature schedule:
 T(t) = T₀ × cooling_rate^t
 
 As T → 0, converges to greedy
+
 ```
 
 ### Particle Swarm
@@ -78,6 +81,7 @@ Where:
 • pᵢ = particle's best position
 • g = global best position
 • w = inertia, c₁,c₂ = learning rates
+
 ```
 
 ---
@@ -126,6 +130,7 @@ Gradient-based:               Metaheuristic:
      |   ●   |                  Population evolves
      
    Follow gradient           Best solutions survive
+
 ```
 
 ---
@@ -152,6 +157,7 @@ Gradient-based:               Metaheuristic:
    
    d. Update: xₜ₊₁ = x' if accepted, else xₜ
    e. Cool: T ← cooling(T)
+
 ```
 
 ---
@@ -170,6 +176,7 @@ Interpretation:
 • T low: exp(-Δ/T) ≈ 0, only accept improvements
 • Δ small: more likely to accept worse solutions
 • Δ large: less likely to accept
+
 ```
 
 ---
@@ -192,6 +199,7 @@ Adaptive:
 Adjust based on acceptance rate
 If acceptance too high: cool faster
 If acceptance too low: cool slower
+
 ```
 
 ---
@@ -229,6 +237,7 @@ where c ≥ max depth of local minima
 
 This ensures enough transitions to escape all local minima
 before temperature becomes too low. ∎
+
 ```
 
 ### In Practice
@@ -238,6 +247,7 @@ Practical considerations:
 • Logarithmic too slow
 • Geometric with reheating works well
 • Final temperature should be small (10⁻⁶ to 10⁻³)
+
 ```
 
 ---
@@ -356,6 +366,7 @@ def neighbor(x, step=0.5):
 x0 = np.random.uniform(-5, 5, 10)
 x_best, f_best, _ = simulated_annealing(rastrigin, x0, neighbor)
 print(f"Best found: f(x) = {f_best:.6f}")  # Should be close to 0
+
 ```
 
 ---
@@ -383,6 +394,7 @@ subject to x ∈ X
 
 No single optimal solution!
 Instead: Pareto optimal set
+
 ```
 
 ---
@@ -397,6 +409,7 @@ Solution a dominates b (a ≻ b) if:
 Pareto optimal: Not dominated by any other solution
 
 Pareto front: Set of all Pareto optimal objective vectors
+
 ```
 
 ### Visualization
@@ -414,6 +427,7 @@ Pareto front: Set of all Pareto optimal objective vectors
       0     5     10
 
 The Pareto front represents trade-offs between objectives
+
 ```
 
 ---
@@ -437,6 +451,7 @@ NSGA-II (Non-dominated Sorting Genetic Algorithm II):
 3. Selection:
    - First: prefer lower rank (better Pareto front)
    - Tie-break: prefer higher crowding distance (diversity)
+
 ```
 
 ### Crowding Distance Formula
@@ -450,6 +465,7 @@ where i+1, i-1 are neighbors when sorted by objective j
 
 Intuition: Large crowding distance = isolated solution
 Boundary solutions get infinite distance (always selected)
+
 ```
 
 ---
@@ -554,6 +570,7 @@ def nsga2_select(population: np.ndarray,
             break
     
     return population[selected]
+
 ```
 
 ---
@@ -575,6 +592,7 @@ subject to fᵢ(x) ≤ εᵢ  for i = 2,...,k
 
 • Can find any Pareto solution
 • Need to choose ε values
+
 ```
 
 ---
@@ -590,6 +608,7 @@ Expensive evaluations       → Bayesian Optimization
 Multiple objectives         → NSGA-II, MOEA/D
 Path finding                → Ant Colony
 Swarm behavior              → Particle Swarm
+
 ```
 
 ---
@@ -597,6 +616,7 @@ Swarm behavior              → Particle Swarm
 ## 💻 Quick Examples
 
 ### Genetic Algorithm (DEAP)
+
 ```python
 from deap import base, creator, tools, algorithms
 import random
@@ -621,9 +641,11 @@ toolbox.register("evaluate", fitness)
 
 pop = toolbox.population(n=50)
 result = algorithms.eaSimple(pop, toolbox, cxpb=0.5, mutpb=0.2, ngen=100)
+
 ```
 
 ### Simulated Annealing (scipy)
+
 ```python
 from scipy.optimize import dual_annealing
 
@@ -632,9 +654,11 @@ def f(x):
 
 result = dual_annealing(f, bounds=[(-10,10), (-10,10)])
 print(f"Optimal: {result.x}")  # Close to [1, 2.5]
+
 ```
 
 ### Particle Swarm (PySwarms)
+
 ```python
 import pyswarms as ps
 import numpy as np
@@ -646,6 +670,7 @@ options = {'c1': 0.5, 'c2': 0.3, 'w': 0.9}
 optimizer = ps.single.GlobalBestPSO(n_particles=10, dimensions=2, 
                                      options=options)
 best_cost, best_pos = optimizer.optimize(sphere, iters=100)
+
 ```
 
 ---

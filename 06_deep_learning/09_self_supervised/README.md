@@ -41,6 +41,7 @@ For query $q$, positive key $k^+$, and negative keys $\{k^-\}$:
 
 ```math
 \mathcal{L}_{InfoNCE} = -\log \frac{\exp(\text{sim}(q, k^+)/\tau)}{\exp(\text{sim}(q, k^+)/\tau) + \sum_{k^-} \exp(\text{sim}(q, k^-)/\tau)}
+
 ```
 
 Where:
@@ -51,6 +52,7 @@ Where:
 
 ```math
 \text{softmax}_\tau(z_i) = \frac{\exp(z_i/\tau)}{\sum_j \exp(z_j/\tau)}
+
 ```
 
 - $\tau \rightarrow 0$: Hard selection (argmax)
@@ -63,6 +65,7 @@ For positive pair $(i, j)$:
 
 ```math
 \frac{\partial \mathcal{L}}{\partial z_i} = \frac{1}{\tau}\left(p_{ij} - 1\right) z_j + \frac{1}{\tau}\sum_{k \neq j} p_{ik} z_k
+
 ```
 
 Where $p\_{ij}$ is the softmax probability.
@@ -89,18 +92,21 @@ Projection g(·)       Projection g(·)
    z₁                     z₂
     ↓                      ↓
         Contrastive Loss
+
 ```
 
 ### Loss for Batch of N Pairs
 
 ```math
 \mathcal{L} = \frac{1}{2N}\sum_{i=1}^{N}[\ell(2i-1, 2i) + \ell(2i, 2i-1)]
+
 ```
 
 Where:
 
 ```math
 \ell(i, j) = -\log \frac{\exp(\text{sim}(z_i, z_j)/\tau)}{\sum_{k=1}^{2N} \mathbf{1}_{k \neq i} \exp(\text{sim}(z_i, z_k)/\tau)}
+
 ```
 
 ### Augmentation Importance
@@ -129,6 +135,7 @@ Maintain a queue of $K$ encoded keys from previous batches.
 
 ```math
 \theta_k \leftarrow m \cdot \theta_k + (1-m) \cdot \theta_q
+
 ```
 
 Where $m \approx 0.999$ provides slowly evolving keys.
@@ -137,6 +144,7 @@ Where $m \approx 0.999$ provides slowly evolving keys.
 
 ```math
 \mathcal{L} = -\log \frac{\exp(q \cdot k^+/\tau)}{\exp(q \cdot k^+/\tau) + \sum_{i=0}^{K} \exp(q \cdot k_i/\tau)}
+
 ```
 
 ---
@@ -150,12 +158,14 @@ Where $m \approx 0.999$ provides slowly evolving keys.
 
 ```math
 \xi \leftarrow m \cdot \xi + (1-m) \cdot \theta
+
 ```
 
 ### Loss
 
 ```math
 \mathcal{L} = 2 - 2 \cdot \frac{\langle q_\theta(z_1), z'_2 \rangle}{\|q_\theta(z_1)\| \cdot \|z'_2\|}
+
 ```
 
 Where $q\_\theta$ is a predictor network.
@@ -175,6 +185,7 @@ Where $q\_\theta$ is a predictor network.
 
 ```math
 \mathcal{L}_{MLM} = -\mathbb{E}\left[\sum_{i \in \mathcal{M}} \log p(x_i | x_{\backslash \mathcal{M}})\right]
+
 ```
 
 Where $\mathcal{M}$ is the set of masked positions.
@@ -191,6 +202,7 @@ Where $\mathcal{M}$ is the set of masked positions.
 
 ```math
 \mathcal{L}_{MAE} = \frac{1}{|\mathcal{M}|}\sum_{i \in \mathcal{M}} \|x_i - \hat{x}_i\|^2
+
 ```
 
 **Key design:**
@@ -206,6 +218,7 @@ Where $\mathcal{M}$ is the set of masked positions.
 
 ```math
 \text{sim}(I, T) = \frac{f_I(I)^\top f_T(T)}{\|f_I(I)\| \|f_T(T)\|}
+
 ```
 
 ### Contrastive Loss
@@ -213,6 +226,7 @@ Where $\mathcal{M}$ is the set of masked positions.
 ```math
 \mathcal{L}_{CLIP} = \frac{1}{2}\left(\mathcal{L}_{I \rightarrow T} + \mathcal{L}_{T \rightarrow I}\right)
 \mathcal{L}_{I \rightarrow T} = -\frac{1}{N}\sum_i \log \frac{\exp(\text{sim}(I_i, T_i)/\tau)}{\sum_j \exp(\text{sim}(I_i, T_j)/\tau)}
+
 ```
 
 ### Zero-Shot Classification
@@ -221,6 +235,7 @@ For image $I$ and class names $\{c\_1, ..., c\_K\}$:
 
 ```math
 p(c_k | I) = \frac{\exp(\text{sim}(I, \text{prompt}(c_k))/\tau)}{\sum_j \exp(\text{sim}(I, \text{prompt}(c_j))/\tau)}
+
 ```
 
 Where $\text{prompt}(c) = $ "a photo of a {c}"
@@ -336,6 +351,7 @@ def mae_loss(pred_patches, target_patches, mask):
     loss = loss.mean(dim=-1)  # Mean over patch dimension
     loss = (loss * mask).sum() / mask.sum()  # Mean over masked patches
     return loss
+
 ```
 
 ---

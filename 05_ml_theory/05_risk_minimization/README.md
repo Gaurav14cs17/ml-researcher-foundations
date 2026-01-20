@@ -44,6 +44,7 @@ The **true risk** is the expected loss over the data distribution:
 
 ```math
 R(h) = \mathbb{E}_{(x,y) \sim P}[\ell(h(x), y)] = \int \ell(h(x), y) \, dP(x, y)
+
 ```
 
 **Problem:** We don't know \(P\)!
@@ -54,6 +55,7 @@ The **empirical risk** approximates true risk using training data:
 
 ```math
 \hat{R}(h) = \frac{1}{n}\sum_{i=1}^n \ell(h(x_i), y_i)
+
 ```
 
 **Law of Large Numbers:** As \(n \to \infty\), \(\hat{R}(h) \to R(h)\).
@@ -62,6 +64,7 @@ The **empirical risk** approximates true risk using training data:
 
 ```math
 \text{Gap}(h) = R(h) - \hat{R}(h)
+
 ```
 
 **Goal:** Control this gap to ensure good generalization.
@@ -72,12 +75,14 @@ The **empirical risk** approximates true risk using training data:
 
 ```math
 \hat{h}_{\text{ERM}} = \arg\min_{h \in \mathcal{H}} \hat{R}(h)
+
 ```
 
 **Theorem (Uniform Convergence):** With probability \(\geq 1 - \delta\):
 
 ```math
 \sup_{h \in \mathcal{H}} |R(h) - \hat{R}(h)| \leq \epsilon(n, |\mathcal{H}|, \delta)
+
 ```
 
 where \(\epsilon\) decreases with \(n\) and increases with complexity of \(\mathcal{H}\).
@@ -90,6 +95,7 @@ Add complexity penalty to control overfitting:
 
 ```math
 \hat{h}_{\text{SRM}} = \arg\min_{h \in \mathcal{H}} \left[\hat{R}(h) + \lambda \Omega(h)\right]
+
 ```
 
 | Component | Meaning |
@@ -220,6 +226,7 @@ def analyze_generalization():
 
 if __name__ == "__main__":
     analyze_generalization()
+
 ```
 
 ---

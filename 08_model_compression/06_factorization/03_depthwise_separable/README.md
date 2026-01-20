@@ -31,6 +31,7 @@
 
 ```math
 Y[c_{out}, h, w] = \sum_{c_{in}=1}^{C_{in}} \sum_{i=1}^{K} \sum_{j=1}^{K} W[c_{out}, c_{in}, i, j] \cdot X[c_{in}, h+i, w+j]
+
 ```
 
 #### 1.2 Computational Cost
@@ -49,6 +50,7 @@ Y[c_{out}, h, w] = \sum_{c_{in}=1}^{C_{in}} \sum_{i=1}^{K} \sum_{j=1}^{K} W[c_{o
 
 ```math
 \text{Standard Conv} \approx \text{Depthwise} \circ \text{Pointwise}
+
 ```
 
 #### 2.2 Depthwise Convolution
@@ -57,6 +59,7 @@ Y[c_{out}, h, w] = \sum_{c_{in}=1}^{C_{in}} \sum_{i=1}^{K} \sum_{j=1}^{K} W[c_{o
 
 ```math
 Y_{dw}[c, h, w] = \sum_{i=1}^{K} \sum_{j=1}^{K} W_{dw}[c, i, j] \cdot X[c, h+i, w+j]
+
 ```
 
 **Parameters:** $C\_{in} \times K^2$
@@ -69,6 +72,7 @@ Y_{dw}[c, h, w] = \sum_{i=1}^{K} \sum_{j=1}^{K} W_{dw}[c, i, j] \cdot X[c, h+i, 
 
 ```math
 Y[c_{out}, h, w] = \sum_{c_{in}=1}^{C_{in}} W_{pw}[c_{out}, c_{in}] \cdot Y_{dw}[c_{in}, h, w]
+
 ```
 
 **Parameters:** $C\_{out} \times C\_{in}$
@@ -89,12 +93,14 @@ Y[c_{out}, h, w] = \sum_{c_{in}=1}^{C_{in}} W_{pw}[c_{out}, c_{in}] \cdot Y_{dw}
 
 ```math
 \frac{C_{in} \cdot K^2 + C_{out} \cdot C_{in}}{C_{out} \cdot C_{in} \cdot K^2} = \frac{1}{C_{out}} + \frac{1}{K^2}
+
 ```
 
 **For typical values ($C\_{out} = 256$, $K = 3$):**
 
 ```math
 \frac{1}{256} + \frac{1}{9} \approx 0.11 \approx \frac{1}{9}
+
 ```
 
 **~9× fewer parameters!**
@@ -105,6 +111,7 @@ Same ratio as parameters:
 
 ```math
 \frac{\text{DSConv FLOPs}}{\text{Standard FLOPs}} = \frac{1}{C_{out}} + \frac{1}{K^2}
+
 ```
 
 ---
@@ -117,12 +124,14 @@ Same ratio as parameters:
 
 ```math
 \mathcal{W} \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
+
 ```
 
 **Depthwise separable as rank-1 approximation in first two modes:**
 
 ```math
 \mathcal{W} \approx \sum_{r=1}^{R} a_r \otimes b_r \otimes c_r
+
 ```
 
 where spatial ($c\_r$) and channel ($a\_r, b\_r$) are separated.
@@ -156,12 +165,14 @@ Depthwise Conv
 1×1 Conv (project)
     ↓
 Output (narrow) + Skip
+
 ```
 
 #### 5.2 Expansion Ratio
 
 ```math
 \text{Expanded channels} = t \times C_{in}
+
 ```
 
 where $t \in \{1, 6\}$ is expansion factor.
@@ -338,6 +349,7 @@ if __name__ == "__main__":
         in_ch=256, out_ch=256,
         kernel=3, H=14, W=14
     )
+
 ```
 
 ---

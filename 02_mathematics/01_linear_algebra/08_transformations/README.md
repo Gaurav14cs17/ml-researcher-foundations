@@ -45,6 +45,7 @@ A function $T: V \to W$ between vector spaces is a **linear transformation** (or
 
 ```math
 T(\alpha\mathbf{u} + \beta\mathbf{v}) = \alpha T(\mathbf{u}) + \beta T(\mathbf{v})
+
 ```
 
 for all vectors $\mathbf{u}, \mathbf{v} \in V$ and scalars $\alpha, \beta$.
@@ -59,6 +60,7 @@ T is linear if and only if:
 
 Or equivalently (single condition):
 3. T(αu + βv) = αT(u) + βT(v) (Linearity)
+
 ```
 
 ### 🔍 What Linearity Preserves
@@ -80,6 +82,7 @@ Step 2: Apply linearity
         T(0) = T(0·v) = 0·T(v) = 0
 
 Therefore T(0) = 0 for any linear map.  ∎
+
 ```
 
 ---
@@ -92,6 +95,7 @@ Every linear transformation $T: \mathbb{R}^n \to \mathbb{R}^m$ can be uniquely r
 
 ```math
 T(\mathbf{x}) = A\mathbf{x}
+
 ```
 
 ### 🔍 Proof (Constructive)
@@ -116,6 +120,7 @@ Step 5: Verify T(x) = Ax:
                                 [xₙ]
 
 Step 6: Uniqueness follows because A is determined by T(e₁),...,T(eₙ).  ∎
+
 ```
 
 ### Key Insight
@@ -127,6 +132,7 @@ A = [T(e₁) | T(e₂) | ... | T(eₙ)]
      ↑        ↑            ↑
    where    where        where
    e₁ goes  e₂ goes      eₙ goes
+
 ```
 
 ---
@@ -169,6 +175,7 @@ Verification: R(θ) is orthogonal
             = [cos²θ + sin²θ           0        ]
               [      0         cos²θ + sin²θ    ]
             = I  ✓
+
 ```
 
 ### 🔍 Proof: Projection is Linear
@@ -183,6 +190,7 @@ Verify linearity:
   P_u(αx + βy) = (uuᵀ)(αx + βy)
                = α(uuᵀ)x + β(uuᵀ)y
                = αP_u(x) + βP_u(y)  ✓
+
 ```
 
 ---
@@ -199,6 +207,7 @@ If $A$ represents $T$ in the standard basis and $B$ represents $T$ in basis $\{\
 
 ```math
 B = P^{-1}AP
+
 ```
 
 where $P = [\mathbf{v}\_1 | \cdots | \mathbf{v}\_n]$ (change of basis matrix).
@@ -224,6 +233,7 @@ Step 4: Equate:
         (AP)c = (PB)c for all c
         AP = PB
         B = P⁻¹AP  ∎
+
 ```
 
 ### 💡 Example: Diagonalization
@@ -241,6 +251,7 @@ Interpretation:
   - P⁻¹ converts to eigenbasis
   - Λ scales each coordinate
   - P converts back to standard basis
+
 ```
 
 ---
@@ -255,12 +266,14 @@ For linear transformation $T: V \to W$:
 
 ```math
 \ker(T) = \{\mathbf{v} \in V : T(\mathbf{v}) = \mathbf{0}\}
+
 ```
 
 **Image (Range)**:
 
 ```math
 \text{Im}(T) = \{T(\mathbf{v}) : \mathbf{v} \in V\}
+
 ```
 
 ### 🔍 Proof: Kernel is a Subspace
@@ -282,6 +295,7 @@ To show ker(T) is a subspace, verify three properties:
    So αv ∈ ker(T) ✓
 
 Therefore ker(T) is a subspace.  ∎
+
 ```
 
 ### 🔍 Proof: Image is a Subspace
@@ -298,6 +312,7 @@ Therefore ker(T) is a subspace.  ∎
    αy = αT(x) = T(αx) ∈ Im(T) ✓
 
 Therefore Im(T) is a subspace.  ∎
+
 ```
 
 ---
@@ -310,12 +325,14 @@ For linear transformation $T: V \to W$ where $V$ is finite-dimensional:
 
 ```math
 \dim(\ker(T)) + \dim(\text{Im}(T)) = \dim(V)
+
 ```
 
 Or equivalently, for matrix $A \in \mathbb{R}^{m \times n}$:
 
 ```math
 \text{nullity}(A) + \text{rank}(A) = n
+
 ```
 
 ### 🔍 Proof
@@ -349,6 +366,7 @@ Step 4: Therefore dim(Im(T)) = r
 
 Step 5: Conclude:
         dim(ker(T)) + dim(Im(T)) = k + r = n = dim(V)  ∎
+
 ```
 
 ### 💡 Applications
@@ -429,6 +447,7 @@ kernel = compute_kernel(A)
 image = compute_image(A)
 print(f"Kernel dimension: {kernel.shape[1] if kernel.size > 0 else 0}")
 print(f"Image dimension: {image.shape[1]}")
+
 ```
 
 ### PyTorch: Neural Network as Linear Transformation
@@ -467,6 +486,7 @@ analysis = LinearLayerAnalysis(layer)
 print(f"Rank: {analysis.rank()}")
 print(f"Condition number: {analysis.condition_number():.2f}")
 print(f"Top singular values: {analysis.singular_values()[:5]}")
+
 ```
 
 ---
@@ -490,6 +510,7 @@ class DenseLayer(nn.Module):
     def forward(self, x):
         # Linear transformation + translation
         return x @ self.W.T + self.b
+
 ```
 
 ### 🤖 Application 2: Attention Projections
@@ -513,6 +534,7 @@ class AttentionProjections(nn.Module):
         K = self.W_K(X)  # Project to key space
         V = self.W_V(X)  # Project to value space
         return Q, K, V
+
 ```
 
 ### 🤖 Application 3: Embedding Lookup as Linear Transformation
@@ -550,6 +572,7 @@ one_hot.scatter_(1, indices.unsqueeze(1), 1)
 out2 = one_hot @ embed.weight
 
 print(f"Same result: {torch.allclose(out1, out2)}")  # True
+
 ```
 
 ---

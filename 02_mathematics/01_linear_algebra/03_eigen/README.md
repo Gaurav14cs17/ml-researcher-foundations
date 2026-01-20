@@ -73,6 +73,7 @@
 |   λ ∈ ℂ:  Rotation + scaling (complex eigenvalues)                          |
 |                                                                              |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
@@ -85,6 +86,7 @@ For a square matrix $A \in \mathbb{R}^{n \times n}$:
 
 ```math
 A\mathbf{v} = \lambda\mathbf{v}
+
 ```
 
 where:
@@ -103,6 +105,7 @@ Example:
       [0  3]        [1]         [0  3][1]   [3]    [1]
   
   v is an eigenvector with eigenvalue λ = 3
+
 ```
 
 ### Why "Eigen"?
@@ -128,18 +131,21 @@ Step 3: Non-trivial solution exists iff (A - λI) is singular
         det(A - λI) = 0
 
 This is the CHARACTERISTIC POLYNOMIAL
+
 ```
 
 ### The Characteristic Polynomial
 
 ```math
 p(\lambda) = \det(A - \lambda I)
+
 ```
 
 This is a polynomial of degree $n$ in $\lambda$:
 
 ```math
 p(\lambda) = (-1)^n \lambda^n + (-1)^{n-1}\text{tr}(A)\lambda^{n-1} + \cdots + \det(A)
+
 ```
 
 ### 💡 Example: 2×2 Matrix
@@ -155,6 +161,7 @@ det(A - λI) = det([a-λ   b  ])
 
 Quadratic formula:
 λ = (tr(A) ± √(tr(A)² - 4det(A))) / 2
+
 ```
 
 ---
@@ -197,6 +204,7 @@ Step 6: Since v ≠ 0, we have ‖v‖² > 0, therefore:
         λ = λ̄
         
         This means λ is real!  ∎
+
 ```
 
 **Part 2: Eigenvectors of Distinct Eigenvalues are Orthogonal**
@@ -220,6 +228,7 @@ Step 4: Since λ₁ ≠ λ₂, we must have:
         v₁ᵀv₂ = 0
         
         The eigenvectors are orthogonal!  ∎
+
 ```
 
 **Part 3: Eigendecomposition $A = Q\Lambda Q^T$**
@@ -244,12 +253,14 @@ Step 3: In matrix form:
 
 Step 4: Since Q is orthogonal (QᵀQ = I):
         A = QΛQ⁻¹ = QΛQᵀ  ∎
+
 ```
 
 ### 📐 Corollary: Spectral Decomposition
 
 ```math
 A = \sum_{i=1}^{n} \lambda_i \mathbf{v}_i \mathbf{v}_i^T
+
 ```
 
 Each term $\lambda\_i \mathbf{v}\_i \mathbf{v}\_i^T$ is a rank-1 projection matrix!
@@ -278,6 +289,7 @@ def power_iteration(A, num_iterations=100):
     # Rayleigh quotient gives eigenvalue
     eigenvalue = v @ A @ v
     return eigenvalue, v
+
 ```
 
 ### 🔍 Proof of Convergence
@@ -300,6 +312,7 @@ Step 5: Therefore:
         Aᵏv₀/‖Aᵏv₀‖ → ±v₁  (dominant eigenvector)
         
         Convergence rate: O(|λ₂/λ₁|ᵏ)  ∎
+
 ```
 
 ### Inverse Iteration (Find Smallest Eigenvalue)
@@ -322,6 +335,7 @@ def inverse_iteration(A, shift=0, num_iterations=100):
     
     eigenvalue = v @ A @ v
     return eigenvalue, v
+
 ```
 
 ---
@@ -354,6 +368,7 @@ Expanding the product:
 Comparing coefficients of λⁿ⁻¹:
   (-1)ⁿ⁻¹tr(A) = (-1)ⁿ⁻¹(Σᵢλᵢ)
   tr(A) = Σᵢλᵢ  ∎
+
 ```
 
 ### 📐 Cayley-Hamilton Theorem
@@ -362,13 +377,16 @@ Comparing coefficients of λⁿ⁻¹:
 
 ```math
 p(A) = A^n - \text{tr}(A)A^{n-1} + \cdots + (-1)^n\det(A)I = 0
+
 ```
 
 **Application**: Express $A^{-1}$ as polynomial in $A$:
+
 ```
 For 2×2: A² - tr(A)·A + det(A)·I = 0
          A² = tr(A)·A - det(A)·I
          A⁻¹ = (tr(A)·I - A) / det(A)
+
 ```
 
 ---
@@ -418,6 +436,7 @@ Av₁ = [4  2][2] = [10] = 5[2] = 5v₁ ✓
 
 Av₂ = [4  2][ 1] = [2]  = 2[ 1] = 2v₂ ✓
       [1  3][-1]   [-2]    [-1]
+
 ```
 
 ### Example 2: Symmetric Matrix (Orthogonal Eigenvectors)
@@ -441,6 +460,7 @@ v₁ᵀv₂ = (1)(1) + (1)(-1) = 0 ✓  (as guaranteed by Spectral Theorem)
 Eigendecomposition:
 A = QΛQᵀ = [1/√2   1/√2][4  0][1/√2   1/√2]
            [1/√2  -1/√2][0  2][1/√2  -1/√2]
+
 ```
 
 ### Example 3: Complex Eigenvalues (Rotation Matrix)
@@ -463,6 +483,7 @@ Eigenvalues (using quadratic formula):
 
 Complex eigenvalues! No real eigenvectors exist (for θ ≠ 0, π).
 This makes sense: rotation doesn't preserve any direction.
+
 ```
 
 ### Example 4: Matrix Power via Eigendecomposition
@@ -494,6 +515,7 @@ A¹⁰ = PΛ¹⁰P⁻¹ = [1  1][2¹⁰    0 ][1  -1]
      
      = [1024   59049-1024] = [1024  58025]
        [   0        59049]   [   0  59049]
+
 ```
 
 ---
@@ -629,6 +651,7 @@ if __name__ == "__main__":
     print("=" * 50)
     exp_A = matrix_function(A, np.exp)
     print(f"exp(A) = \n{exp_A}")
+
 ```
 
 ### PyTorch GPU Implementation
@@ -651,6 +674,7 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 A_gpu = torch.randn(1000, 1000, device=device)
 A_gpu = A_gpu @ A_gpu.T  # Make symmetric
 eigenvalues, eigenvectors = torch.linalg.eigh(A_gpu)
+
 ```
 
 ---
@@ -690,6 +714,7 @@ def pca_via_eigen(X, n_components):
     explained_var_ratio = eigenvalues[:n_components] / eigenvalues.sum()
     
     return X_projected, components, explained_var_ratio
+
 ```
 
 ### 🤖 Application 2: PageRank
@@ -720,6 +745,7 @@ def pagerank(adjacency_matrix, damping=0.85, max_iter=100):
         rank = rank / rank.sum()
     
     return rank
+
 ```
 
 ### 🤖 Application 3: RNN Gradient Stability
@@ -748,6 +774,7 @@ def check_rnn_stability(W_hh):
         print("Gradients should be stable.")
     
     return spectral_radius
+
 ```
 
 ### 🤖 Application 4: Spectral Clustering
@@ -779,6 +806,7 @@ def spectral_clustering(adjacency, n_clusters):
     labels = kmeans.fit_predict(embedding)
     
     return labels, embedding
+
 ```
 
 ---
@@ -796,6 +824,7 @@ A = np.random.randn(5, 3)  # Rectangular
 U, singular_values, Vt = np.linalg.svd(A)  # Correct
 
 # For square A: singular values = |eigenvalues| only if A is normal (AAᵀ = AᵀA)
+
 ```
 
 ### ❌ Mistake 2: Expecting Real Eigenvalues for Non-Symmetric Matrices
@@ -805,6 +834,7 @@ U, singular_values, Vt = np.linalg.svd(A)  # Correct
 A = np.array([[0, -1], [1, 0]])  # 90° rotation
 eigenvalues = np.linalg.eigvals(A)
 print(eigenvalues)  # [0+1j, 0-1j] - complex!
+
 ```
 
 ### ❌ Mistake 3: Not Checking for Defective Matrices
@@ -814,6 +844,7 @@ print(eigenvalues)  # [0+1j, 0-1j] - complex!
 A = np.array([[1, 1], [0, 1]])  # Jordan block
 eigenvalues, eigenvectors = np.linalg.eig(A)
 # Only ONE eigenvector exists, but we get two (numerically corrupted)
+
 ```
 
 ---

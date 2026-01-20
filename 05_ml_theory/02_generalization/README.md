@@ -25,6 +25,7 @@
 ## 📐 Mathematical Foundations
 
 ### Bias-Variance Decomposition
+
 ```
 For squared error loss:
 E[(y - f̂(x))²] = Bias²(f̂) + Var(f̂) + σ²
@@ -33,9 +34,11 @@ Where:
 • Bias(f̂) = E[f̂(x)] - f(x)  (systematic error)
 • Var(f̂) = E[(f̂(x) - E[f̂(x)])²]  (variance across training sets)
 • σ² = irreducible noise
+
 ```
 
 ### Generalization Bound (PAC)
+
 ```
 With probability ≥ 1-δ:
 R(h) ≤ R̂(h) + √(d log(2n/d) + log(1/δ)) / n
@@ -45,14 +48,17 @@ Where:
 • R̂(h) = empirical risk (training loss)
 • d = VC dimension
 • n = sample size
+
 ```
 
 ### Rademacher Complexity
+
 ```
 R_n(H) = E_σ[sup_{h∈H} (1/n) Σᵢ σᵢ h(xᵢ)]
 
 Generalization bound:
 R(h) ≤ R̂(h) + 2R_n(H) + √(log(1/δ)/2n)
+
 ```
 
 ---
@@ -93,6 +99,7 @@ The gap between them is the GENERALIZATION GAP
 |            Optimal (min test error)                        |
 |                                                            |
 +------------------------------------------------------------+
+
 ```
 
 ---
@@ -120,6 +127,7 @@ Error  |
            threshold (train error = 0)
 
 Why? Implicit regularization, over-parameterization benefits
+
 ```
 
 ---

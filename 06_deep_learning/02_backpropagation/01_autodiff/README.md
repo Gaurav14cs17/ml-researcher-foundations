@@ -38,6 +38,7 @@ Output: f'(x) = 2x + cos(x)
 Pros: Exact formula
 Cons: Expression swell (derivatives get complex)
       Can't handle control flow (if, loops)
+
 ```
 
 ### 2. Numerical Differentiation
@@ -48,6 +49,7 @@ f'(x) ≈ (f(x + ε) - f(x - ε)) / (2ε)
 Pros: Easy to implement
 Cons: O(n) function evaluations for n parameters
       Numerical instability (ε too large or small)
+
 ```
 
 ### 3. Automatic Differentiation ✓
@@ -59,6 +61,7 @@ Apply chain rule at each step
 Pros: Exact (machine precision)
       Efficient: O(1) cost per parameter
       Handles control flow
+
 ```
 
 ---
@@ -77,6 +80,7 @@ Propagate: input → output
 Cost: O(n) for n inputs, O(1) for each
 
 Good when: #inputs << #outputs (Jacobian row by row)
+
 ```
 
 ### Reverse Mode (Adjoint Mode) ✓ Used in DL
@@ -92,6 +96,7 @@ Cost: O(m) for m outputs, O(1) for each
 
 Good when: #outputs << #inputs (Jacobian column by column)
           Neural networks: 1 scalar loss, millions of params!
+
 ```
 
 ### Comparison
@@ -122,6 +127,7 @@ Backward pass: Propagate gradients
     ∂L/∂z₁ = ∂L/∂z₂ ⊙ relu'(z₁)
     ∂L/∂W = ∂L/∂z₁ · xᵀ
     ∂L/∂x = Wᵀ · ∂L/∂z₁
+
 ```
 
 ---
@@ -193,6 +199,7 @@ z.backward()
 print(f"z = {z.value}")       # 2²×3 + 3³ = 31
 print(f"∂z/∂x = {x.grad}")    # 2xy = 12
 print(f"∂z/∂y = {y.grad}")    # x² + 3y² = 31
+
 ```
 
 ### PyTorch Autograd
@@ -213,6 +220,7 @@ z.backward()
 print(f"z = {z.item()}")
 print(f"∂z/∂x = {x.grad.item()}")  # 2xy = 12
 print(f"∂z/∂y = {y.grad.item()}")  # x² + 3y² = 31
+
 ```
 
 ### Custom Autograd Function
@@ -241,6 +249,7 @@ custom_relu = CustomReLU.apply
 x = torch.randn(10, requires_grad=True)
 y = custom_relu(x)
 y.sum().backward()
+
 ```
 
 ### JAX Functional Autodiff
@@ -269,6 +278,7 @@ print(jacobian(jnp.array([2.0, 3.0])))
 # Hessian
 hessian = jax.hessian(f)
 print(hessian(2.0, 3.0))
+
 ```
 
 ---
@@ -303,6 +313,7 @@ Autodiff (reverse mode)
         +-- Higher-order derivatives
         +-- Jacobian/Hessian computation
         +-- Differentiable programming
+
 ```
 
 ---

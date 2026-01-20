@@ -92,12 +92,14 @@ A **probability measure** $P$ on $(\Omega, \mathcal{F})$ satisfies:
 
 ```math
 P(A) \geq 0 \quad \forall A \in \mathcal{F}
+
 ```
 
 **Axiom 2 (Normalization):**
 
 ```math
 P(\Omega) = 1
+
 ```
 
 **Axiom 3 (Countable Additivity):**
@@ -105,6 +107,7 @@ For disjoint events $A\_1, A\_2, \ldots$:
 
 ```math
 P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)
+
 ```
 
 ### Probability Space
@@ -121,42 +124,49 @@ A **probability space** is the triple $(\Omega, \mathcal{F}, P)$.
 
 ```math
 P(\emptyset) = 0
+
 ```
 
 **Proof:** $\Omega$ and $\emptyset$ are disjoint, $\Omega = \Omega \cup \emptyset$.
 
 ```math
 P(\Omega) = P(\Omega) + P(\emptyset) \Rightarrow P(\emptyset) = 0 \quad \blacksquare
+
 ```
 
 **2. Complement:**
 
 ```math
 P(A^c) = 1 - P(A)
+
 ```
 
 **Proof:** $A$ and $A^c$ are disjoint, $A \cup A^c = \Omega$.
 
 ```math
 1 = P(\Omega) = P(A) + P(A^c) \Rightarrow P(A^c) = 1 - P(A) \quad \blacksquare
+
 ```
 
 **3. Monotonicity:**
 
 ```math
 A \subseteq B \Rightarrow P(A) \leq P(B)
+
 ```
 
 **Proof:** $B = A \cup (B \setminus A)$ where the union is disjoint.
 
 ```math
 P(B) = P(A) + P(B \setminus A) \geq P(A) \quad \blacksquare
+
 ```
 
 **4. Inclusion-Exclusion:**
 
 ```math
 P(A \cup B) = P(A) + P(B) - P(A \cap B)
+
 ```
 
 **Proof:** Write $A \cup B$ as disjoint union and use additivity. $\quad \blacksquare$
@@ -165,6 +175,7 @@ P(A \cup B) = P(A) + P(B) - P(A \cap B)
 
 ```math
 P\left(\bigcup_{i=1}^{n} A_i\right) \leq \sum_{i=1}^{n} P(A_i)
+
 ```
 
 ---
@@ -175,6 +186,7 @@ P\left(\bigcup_{i=1}^{n} A_i\right) \leq \sum_{i=1}^{n} P(A_i)
 
 ```math
 P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad P(B) > 0
+
 ```
 
 ### Properties
@@ -196,12 +208,14 @@ Events $A$ and $B$ are **independent** if:
 
 ```math
 P(A \cap B) = P(A) \cdot P(B)
+
 ```
 
 **Equivalent condition:**
 
 ```math
 P(A|B) = P(A) \quad \text{and} \quad P(B|A) = P(B)
+
 ```
 
 ### Mutual Independence
@@ -210,6 +224,7 @@ Events $A\_1, \ldots, A\_n$ are **mutually independent** if for every subset $S 
 
 ```math
 P\left(\bigcap_{i \in S} A_i\right) = \prod_{i \in S} P(A_i)
+
 ```
 
 **Warning:** Pairwise independence does NOT imply mutual independence!
@@ -224,18 +239,21 @@ If $\{B\_1, B\_2, \ldots, B\_n\}$ is a partition of $\Omega$ (disjoint with $\cu
 
 ```math
 P(A) = \sum_{i=1}^{n} P(A|B_i) P(B_i)
+
 ```
 
 **Proof:**
 
 ```math
 A = A \cap \Omega = A \cap \left(\bigcup_i B_i\right) = \bigcup_i (A \cap B_i)
+
 ```
 
 Since $A \cap B\_i$ are disjoint:
 
 ```math
 P(A) = \sum_i P(A \cap B_i) = \sum_i P(A|B_i) P(B_i) \quad \blacksquare
+
 ```
 
 ---
@@ -248,6 +266,7 @@ A **random variable** is a measurable function $X: \Omega \to \mathbb{R}$.
 
 ```math
 \{ω \in \Omega : X(\omega) \in B\} \in \mathcal{F}
+
 ```
 
 This ensures $P(X \in B)$ is well-defined.
@@ -320,6 +339,7 @@ def conditional_sum_7_given_first_4():
     return np.mean(sums == 7)  # P(sum=7 | die1=4) = 1/6
 
 print(f"P(sum=7 | die1=4) = {conditional_sum_7_given_first_4():.4f}")
+
 ```
 
 ---

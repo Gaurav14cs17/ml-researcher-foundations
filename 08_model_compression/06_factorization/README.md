@@ -21,6 +21,7 @@
 
 ```math
 W = U \Sigma V^T
+
 ```
 
 Where:
@@ -40,6 +41,7 @@ Where:
 
 ```math
 W_k = U_k \Sigma_k V_k^T = \sum_{i=1}^{k} \sigma_i u_i v_i^T
+
 ```
 
 Where $U\_k, V\_k$ contain only the first $k$ columns.
@@ -49,6 +51,7 @@ The truncated SVD gives the optimal rank-$k$ approximation:
 
 ```math
 W_k = \arg\min_{\text{rank}(A) \leq k} \|W - A\|_F
+
 ```
 
 **Proof Sketch:**
@@ -56,6 +59,7 @@ For any rank-$k$ matrix $A$:
 
 ```math
 \|W - A\|_F^2 \geq \sum_{i=k+1}^{r} \sigma_i^2 = \|W - W_k\|_F^2
+
 ```
 
 ### 3. Compression Analysis
@@ -68,18 +72,21 @@ For any rank-$k$ matrix $A$:
 
 ```math
 CR = \frac{mn}{k(m+n)}
+
 ```
 
 **For square matrices ($m = n$):**
 
 ```math
 CR = \frac{n^2}{2kn} = \frac{n}{2k}
+
 ```
 
 **Example:** $n = 4096$, $k = 64$:
 
 ```math
 CR = \frac{4096}{128} = 32\times
+
 ```
 
 ### 4. Error Analysis
@@ -88,18 +95,21 @@ CR = \frac{4096}{128} = 32\times
 
 ```math
 \|W - W_k\|_F = \sqrt{\sum_{i=k+1}^{r} \sigma_i^2}
+
 ```
 
 **Relative Error:**
 
 ```math
 \frac{\|W - W_k\|_F}{\|W\|_F} = \sqrt{\frac{\sum_{i=k+1}^{r} \sigma_i^2}{\sum_{i=1}^{r} \sigma_i^2}}
+
 ```
 
 **Spectral Norm Error:**
 
 ```math
 \|W - W_k\|_2 = \sigma_{k+1}
+
 ```
 
 ### 5. LoRA as Implicit Low-Rank Factorization
@@ -108,6 +118,7 @@ CR = \frac{4096}{128} = 32\times
 
 ```math
 \Delta W = BA
+
 ```
 
 Where:
@@ -119,12 +130,14 @@ The learned $\Delta W$ is implicitly low-rank:
 
 ```math
 \text{rank}(\Delta W) = \text{rank}(BA) \leq r
+
 ```
 
 **During training, LoRA learns:**
 
 ```math
 BA \approx U_r \Sigma_r V_r^T
+
 ```
 
 Where $U\_r \Sigma\_r V\_r^T$ is the optimal rank-$r$ approximation to the true weight update.
@@ -135,6 +148,7 @@ Where $U\_r \Sigma\_r V\_r^T$ is the optimal rank-$r$ approximation to the true 
 
 ```math
 \mathcal{W} \approx \sum_{r=1}^{R} \lambda_r \cdot a_r \otimes b_r \otimes c_r
+
 ```
 
 For a 4D convolution kernel $\mathcal{W} \in \mathbb{R}^{C\_{out} \times C\_{in} \times H \times W}$.
@@ -143,6 +157,7 @@ For a 4D convolution kernel $\mathcal{W} \in \mathbb{R}^{C\_{out} \times C\_{in}
 
 ```math
 \mathcal{W} \approx \mathcal{G} \times_1 U_1 \times_2 U_2 \times_3 U_3 \times_4 U_4
+
 ```
 
 Where $\mathcal{G}$ is a smaller core tensor.
@@ -159,6 +174,7 @@ Where $\mathcal{G}$ is a smaller core tensor.
 ```math
 Y = W * X, \quad W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
 \text{Params: } C_{out} \times C_{in} \times K^2
+
 ```
 
 **Depthwise Separable:**
@@ -167,12 +183,14 @@ Y = W * X, \quad W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
 
 ```math
 \text{Params: } C_{in} \times K^2 + C_{out} \times C_{in}
+
 ```
 
 **Compression Ratio:**
 
 ```math
 CR = \frac{C_{out} \times C_{in} \times K^2}{C_{in} \times K^2 + C_{out} \times C_{in}} = \frac{C_{out} K^2}{K^2 + C_{out}}
+
 ```
 
 For $K=3$, $C\_{out}=256$: $CR \approx 8-9\times$
@@ -204,6 +222,7 @@ For LoRA: ΔW = BA
 |  Only train B, A (frozen W₀)       |
 |  r = 16: ~100× fewer parameters    |
 +-------------------------------------+
+
 ```
 
 ---
@@ -325,6 +344,7 @@ print(f"Original params: {4096*4096:,}")
 compressed = compress_linear_svd(original, rank=64)
 print(f"Compressed params: {64*4096 + 64*4096:,}")
 print(f"Compression ratio: {4096*4096 / (64*4096*2):.1f}×")
+
 ```
 
 ---

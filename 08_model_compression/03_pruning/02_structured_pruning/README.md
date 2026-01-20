@@ -29,12 +29,14 @@
 
 ```math
 W_{pruned}[i,j] = 0 \text{ for some } (i,j)
+
 ```
 
 **Structured (filter pruning):**
 
 ```math
 W_{pruned}[f,:,:,:] = 0 \text{ for entire filter } f
+
 ```
 
 ---
@@ -47,6 +49,7 @@ W_{pruned}[f,:,:,:] = 0 \text{ for entire filter } f
 
 ```math
 W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K} \to W' \in \mathbb{R}^{C'_{out} \times C_{in} \times K \times K}
+
 ```
 
 **Effect:** Reduces output channels, affects next layer's input.
@@ -57,6 +60,7 @@ W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K} \to W' \in \mathbb{R}
 
 ```math
 W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K} \to W' \in \mathbb{R}^{C_{out} \times C'_{in} \times K \times K}
+
 ```
 
 **Must prune:** Corresponding output feature maps in previous layer.
@@ -68,6 +72,7 @@ W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K} \to W' \in \mathbb{R}
 ```math
 \text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, ..., \text{head}_h) W^O
 \to \text{Concat}(\text{head}_1, ..., \text{head}_{h'}) W'^O
+
 ```
 
 #### 2.4 Block/Layer Pruning
@@ -77,6 +82,7 @@ W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K} \to W' \in \mathbb{R}
 ```math
 f(x) = f_L \circ f_{L-1} \circ ... \circ f_1(x)
 \to f'(x) = f_L \circ f_{L-1} \circ ... \circ f_{l+1} \circ f_{l-1} \circ ... \circ f_1(x)
+
 ```
 
 ---
@@ -89,12 +95,14 @@ f(x) = f_L \circ f_{L-1} \circ ... \circ f_1(x)
 
 ```math
 s_f = \|W_f\|_1 = \sum_{c,i,j} |W[f,c,i,j]|
+
 ```
 
 or
 
 ```math
 s_f = \|W_f\|_2 = \sqrt{\sum_{c,i,j} W[f,c,i,j]^2}
+
 ```
 
 **Prune filters with smallest norm.**
@@ -105,12 +113,14 @@ s_f = \|W_f\|_2 = \sqrt{\sum_{c,i,j} W[f,c,i,j]^2}
 
 ```math
 s_f = \left|\sum_{c,i,j} \frac{\partial\mathcal{L}}{\partial W[f,c,i,j]} \cdot W[f,c,i,j]\right|
+
 ```
 
 **Approximation of loss change when removing filter:**
 
 ```math
 \Delta\mathcal{L}_f \approx \nabla_{W_f}\mathcal{L}^T \cdot (-W_f) = -\sum_{c,i,j} g_{f,c,i,j} \cdot w_{f,c,i,j}
+
 ```
 
 Taking absolute value: $s\_f = |...|$
@@ -121,6 +131,7 @@ Taking absolute value: $s\_f = |...|$
 
 ```math
 \text{APoZ}(f) = \frac{1}{N}\sum_{n=1}^{N} \mathbf{1}[a_f^{(n)} = 0]
+
 ```
 
 where $a\_f^{(n)}$ is activation of filter $f$ on sample $n$ (after ReLU).
@@ -133,6 +144,7 @@ where $a\_f^{(n)}$ is activation of filter $f$ on sample $n$ (after ReLU).
 
 ```math
 f^* = \arg\min_f \sum_{f' \neq f} \|W_f - W_{f'}\|_2
+
 ```
 
 **Intuition:** Redundant filters are "in the middle" of others.
@@ -149,6 +161,7 @@ f^* = \arg\min_f \sum_{f' \neq f} \|W_f - W_{f'}\|_2
 
 ```math
 \mathcal{L}_{total} = \mathcal{L}_{task} + \lambda \sum_g \|W_g\|_2
+
 ```
 
 where groups $g$ are filters, channels, etc.
@@ -157,6 +170,7 @@ where groups $g$ are filters, channels, etc.
 
 ```math
 \|W\|_{2,1} = \sum_g \sqrt{\sum_{i \in g} w_i^2}
+
 ```
 
 This encourages entire groups to be zero (group sparsity).
@@ -165,6 +179,7 @@ This encourages entire groups to be zero (group sparsity).
 
 ```math
 \frac{\partial \|W_g\|_2}{\partial w_i} = \frac{w_i}{\|W_g\|_2}
+
 ```
 
 Weights in small groups get larger gradients → pushed to zero.
@@ -175,6 +190,7 @@ Weights in small groups get larger gradients → pushed to zero.
 
 ```math
 \hat{W}_f = m_f \cdot W_f
+
 ```
 
 where $m\_f \in [0,1]$ is learned.
@@ -183,6 +199,7 @@ where $m\_f \in [0,1]$ is learned.
 
 ```math
 \mathcal{L} = \mathcal{L}_{task} + \lambda \sum_f |m_f|
+
 ```
 
 **After training:** Prune structures with $m\_f < \tau$.
@@ -197,6 +214,7 @@ where $m\_f \in [0,1]$ is learned.
 
 ```math
 \Delta\text{Acc}_l(s) = \text{Acc}(W) - \text{Acc}(W \text{ with layer } l \text{ at sparsity } s)
+
 ```
 
 **Result:** Some layers are more sensitive than others.
@@ -209,12 +227,14 @@ where $m\_f \in [0,1]$ is learned.
 
 ```math
 y = \gamma \cdot \hat{x} + \beta
+
 ```
 
 **Add L1 penalty on $\gamma$:**
 
 ```math
 \mathcal{L} = \mathcal{L}_{task} + \lambda \sum_c |\gamma_c|
+
 ```
 
 **Prune channels with small $\gamma\_c$.**
@@ -235,11 +255,13 @@ y = \gamma \cdot \hat{x} + \beta
 #### 6.2 Dependency Graph
 
 **Build graph of layer dependencies:**
+
 ```
 Conv1 → BN1 → ReLU → Conv2 → BN2 → Add → ...
   |                             ↑
   +-----------------------------+
         (skip connection)
+
 ```
 
 **Constraint:** Pruning must respect dependencies.
@@ -250,6 +272,7 @@ Conv1 → BN1 → ReLU → Conv2 → BN2 → Add → ...
 
 ```math
 y = F(x) + x
+
 ```
 
 **If we prune channels in $F$, we must also prune in skip connection.**
@@ -463,6 +486,7 @@ class AttentionHeadPruner:
         heads_to_prune = [name for name, _ in all_importance[:n_prune]]
         
         return heads_to_prune
+
 ```
 
 ---
@@ -482,6 +506,7 @@ class AttentionHeadPruner:
 
 ```math
 \forall i: |\{j \in [4i, 4i+4) : w_j = 0\}| = 2
+
 ```
 
 #### 8.3 Finding Optimal 2:4 Pattern
@@ -490,6 +515,7 @@ class AttentionHeadPruner:
 
 ```math
 \text{mask} = \text{TopK}(|w_{4i:4i+4}|, k=2)
+
 ```
 
 ---

@@ -24,15 +24,18 @@
 ## 📐 Mathematical Foundations
 
 ### Derivatives
+
 ```
 Single variable:
 df/dx = lim_{h→0} (f(x+h) - f(x)) / h
 
 Partial derivative:
 ∂f/∂xᵢ = lim_{h→0} (f(x + heᵢ) - f(x)) / h
+
 ```
 
 ### Gradient Vector
+
 ```
 ∇f(x) = [∂f/∂x₁, ∂f/∂x₂, ..., ∂f/∂xₙ]ᵀ
 
@@ -40,9 +43,11 @@ Properties:
 • Points in direction of steepest ascent
 • |∇f| = rate of steepest increase
 • ∇f ⊥ level sets
+
 ```
 
 ### Jacobian and Hessian
+
 ```
 For f: ℝⁿ → ℝᵐ:
 J = [∂fᵢ/∂xⱼ]  (m × n matrix)
@@ -51,15 +56,18 @@ For f: ℝⁿ → ℝ:
 H = [∂²f/∂xᵢ∂xⱼ]  (n × n matrix)
 
 Positive definite H ⟹ local minimum
+
 ```
 
 ### Chain Rule (Multivariate)
+
 ```
 If y = f(u) and u = g(x):
 ∂y/∂x = (∂y/∂u)(∂u/∂x) = Jacobians multiply!
 
 Backpropagation:
 ∂L/∂W = ∂L/∂y · ∂y/∂z · ∂z/∂W
+
 ```
 
 ---
@@ -69,6 +77,7 @@ Backpropagation:
 ### 1. Multivariable Chain Rule: Complete Derivation
 
 **Single Variable Chain Rule:**
+
 ```
 If y = f(u) and u = g(x), then:
   dy/dx = dy/du · du/dx
@@ -83,6 +92,7 @@ Proof:
   = lim_{h→0} (f(g(x)+Δu) - f(g(x))) / Δu · lim_{h→0} Δu/h
   = f'(g(x)) · g'(x)
   = dy/du · du/dx  ✓
+
 ```
 
 **Vector Chain Rule (Key for Backpropagation):**
@@ -98,6 +108,7 @@ Chain rule:
 Matrix form:
   ∇ₓy = (∂u/∂x)ᵀ ∇ᵤy
       = Jᵤ,ₓᵀ · ∇ᵤy
+
 ```
 
 **Proof of Vector Chain Rule:**
@@ -119,6 +130,7 @@ Step 4: Compare with Taylor expansion
   ∇ₓy = Jᵤ,ₓᵀ · ∇ᵤy  ✓
 
 This is the foundation of backpropagation!
+
 ```
 
 ---
@@ -126,6 +138,7 @@ This is the foundation of backpropagation!
 ### 2. Backpropagation as Repeated Chain Rule
 
 **Neural Network:**
+
 ```
 Input:  x ∈ ℝᵈ⁰
 Layer 1: z⁽¹⁾ = W⁽¹⁾x + b⁽¹⁾ ∈ ℝᵈ¹
@@ -137,6 +150,7 @@ Layer L: z⁽ᴸ⁾ = W⁽ᴸ⁾a⁽ᴸ⁻¹⁾ + b⁽ᴸ⁾
          ŷ = a⁽ᴸ⁾ = σ(z⁽ᴸ⁾)
 
 Loss: L = loss(ŷ, y)
+
 ```
 
 **Goal: Compute ∂L/∂W⁽ˡ⁾ for all layers l**
@@ -155,6 +169,7 @@ Layer l < L (hidden):
 Weight gradient:
   ∂L/∂W⁽ˡ⁾ = ∂L/∂z⁽ˡ⁾ · ∂z⁽ˡ⁾/∂W⁽ˡ⁾
            = ∂L/∂z⁽ˡ⁾ · (a⁽ˡ⁻¹⁾)ᵀ  [outer product]
+
 ```
 
 **Formal Proof for Layer l:**
@@ -177,6 +192,7 @@ Working backwards (chain rule):
 
 Therefore:
   ∂L/∂W⁽ˡ⁾ = ∂L/∂z⁽ˡ⁾ · (a⁽ˡ⁻¹⁾)ᵀ  ✓
+
 ```
 
 ---
@@ -184,6 +200,7 @@ Therefore:
 ### 3. Jacobian Matrix: Theory and Computation
 
 **Definition:**
+
 ```
 For f: ℝⁿ → ℝᵐ, the Jacobian is:
 
@@ -197,6 +214,7 @@ J =  | ∂f₂/∂x₁  ∂f₂/∂x₂  ...    |
      +                           +
 
 Interpretation: How each output changes with each input
+
 ```
 
 **Chain Rule with Jacobians:**
@@ -211,6 +229,7 @@ Jacobian chain rule:
   J_{z,x} = J_{z,y} · J_{y,x}
   
 Dimensions: (p×n) = (p×m) · (m×n)  ✓
+
 ```
 
 **Example: Batch Normalization:**
@@ -236,6 +255,7 @@ Full calculation:
   J = (1/√(σ²+ε)) · [I - (1/n)11ᵀ - (1/n)(x-μ)(x-μ)ᵀ/(σ²+ε)]
 
 where 1 is vector of ones
+
 ```
 
 ---
@@ -243,6 +263,7 @@ where 1 is vector of ones
 ### 4. Hessian Matrix: Second-Order Information
 
 **Definition:**
+
 ```
 For f: ℝⁿ → ℝ, the Hessian is:
 
@@ -256,6 +277,7 @@ H =  | ∂²f/∂x₂∂x₁  ∂²f/∂x₂²     ...      |
 
 If f is C²: ∂²f/∂xᵢ∂xⱼ = ∂²f/∂xⱼ∂xᵢ  [Schwarz's theorem]
 Therefore: H is symmetric
+
 ```
 
 **Taylor Series (Second-Order):**
@@ -272,6 +294,7 @@ Classification:
   H ≻ 0 (positive definite) → local minimum
   H ≺ 0 (negative definite) → local maximum
   H indefinite              → saddle point
+
 ```
 
 **Newton's Method:**
@@ -292,6 +315,7 @@ Convergence: Quadratic near minimum
   ||xₙₑw - x*|| = O(||xₒₗd - x*||²)
 
 Problem: O(n³) to compute H⁻¹
+
 ```
 
 ---
@@ -310,6 +334,7 @@ Theorem: If f differentiable, then:
 Proof:
   f(x + tv) ≈ f(x) + ∇f(x)ᵀ(tv)
   (f(x + tv) - f(x)) / t ≈ ∇f(x)ᵀv  ✓
+
 ```
 
 **Gradient as Direction of Steepest Ascent:**
@@ -328,6 +353,7 @@ Direction: v* = ∇f / ||∇f||  ✓
 
 This is why gradient descent works!
   Move in -∇f direction to minimize
+
 ```
 
 **Gradient Perpendicular to Level Sets:**
@@ -347,6 +373,7 @@ Since γ'(t) is tangent to level set and ∇f · γ' = 0:
 Visualization:
   Level curves of f(x,y) = c
   Gradient field points perpendicular
+
 ```
 
 ---
@@ -364,6 +391,7 @@ Visualization:
 ∂/∂x ||x||² = 2x
 
 ∂/∂x ||Ax - b||² = 2Aᵀ(Ax - b)
+
 ```
 
 **Proof (∂/∂x xᵀAx):**
@@ -379,6 +407,7 @@ Let f(x) = xᵀAx = Σᵢⱼ xᵢAᵢⱼxⱼ
 Therefore: ∇ₓ(xᵀAx) = (A + Aᵀ)x  ✓
 
 If A symmetric: = 2Ax
+
 ```
 
 **Vector-by-Matrix:**
@@ -393,6 +422,7 @@ If A symmetric: = 2Ax
                 = 2AW  [if A symmetric]
 
 ∂/∂W ||WX - Y||²_F = 2(WX - Y)Xᵀ
+
 ```
 
 **Matrix-by-Matrix (Trace Formulation):**
@@ -407,6 +437,7 @@ Example: L = tr(WᵀAW)
   dL = tr((A + Aᵀ)W)ᵀ dW)
   
   Therefore: ∂L/∂W = (A + Aᵀ)W
+
 ```
 
 ---
@@ -429,6 +460,7 @@ For y = f(g(x)):
 
 Complexity: O(n) operations per input variable
 Good for: Few inputs, many outputs (Jacobian rows)
+
 ```
 
 **Reverse Mode (Backpropagation):**
@@ -454,6 +486,7 @@ Good for: Many inputs, few outputs (gradient!)
   
 This is why backprop is efficient for neural networks!
   Millions of parameters, single loss
+
 ```
 
 **Comparison:**
@@ -472,6 +505,7 @@ Reverse Mode:
   Total: m passes
   Computes: One row of Jacobian per pass
   Best: m << n (like neural networks: m=1, n=millions)
+
 ```
 
 **Example: Neural Network**
@@ -483,6 +517,7 @@ Forward mode: Need 1,000,000 passes  ✗
 Reverse mode: Need 1 pass          ✓
 
 This is the power of backpropagation!
+
 ```
 
 ---
@@ -490,6 +525,7 @@ This is the power of backpropagation!
 ### 8. Implicit Function Theorem
 
 **Theorem:**
+
 ```
 Let F(x, y) = 0 define y implicitly as function of x
 
@@ -503,6 +539,7 @@ Then near (x₀, y₀), ∃ function y = g(x) such that:
 
 Derivative:
   dy/dx = -(∂F/∂x) / (∂F/∂y)
+
 ```
 
 **Proof:**
@@ -513,6 +550,7 @@ Differentiate F(x, y(x)) = 0 w.r.t. x:
 
 Solve for dy/dx:
   dy/dx = -(∂F/∂x) / (∂F/∂y)  ✓
+
 ```
 
 **Application: Constrained Optimization**
@@ -526,6 +564,7 @@ At optimum, ∇f parallel to ∇g:
 Implicit function theorem explains why:
   Constraint defines manifold
   Gradient perpendicular to feasible directions
+
 ```
 
 ---
@@ -540,6 +579,7 @@ If f: [a,b] → ℝ is continuous on [a,b] and differentiable on (a,b):
     f'(c) = (f(b) - f(a)) / (b - a)
 
 Geometric: ∃ point where tangent parallel to chord
+
 ```
 
 **Multivariable Version:**
@@ -549,6 +589,7 @@ For f: ℝⁿ → ℝ:
   f(x + h) - f(x) = ∇f(x + th) · h  for some t ∈ [0,1]
 
 Used extensively in convergence proofs!
+
 ```
 
 **Lipschitz Continuity:**
@@ -564,6 +605,7 @@ Implications:
   • Bounded gradient: ||∇f(x)|| ≤ L||x|| + C
   • Predictable behavior
   • Convergence guarantees for optimization
+
 ```
 
 **Application to Neural Networks:**
@@ -583,6 +625,7 @@ Lipschitz constant:
 This explains exploding/vanishing gradients!
   If ||W|| > 1: gradients explode
   If ||W|| < 1: gradients vanish
+
 ```
 
 ---
@@ -614,6 +657,7 @@ The entire deep learning revolution is built on:
 • Chain rule → Backpropagation
 • Gradients → Optimization
 • Taylor → Convergence analysis
+
 ```
 
 ---
@@ -646,6 +690,7 @@ limits-continuity/
                   |
                   v
              taylor/        --> Convergence analysis
+
 ```
 
 ---
@@ -664,6 +709,7 @@ Chain rule:    d/dx f(g(x)) = f'(g(x)) · g'(x)
 Taylor (1st):  f(x + h) ≈ f(x) + ∇f(x)ᵀh
 
 Taylor (2nd):  f(x + h) ≈ f(x) + ∇f(x)ᵀh + ½hᵀH(x)h
+
 ```
 
 ---

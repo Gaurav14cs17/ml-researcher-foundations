@@ -40,6 +40,7 @@ Given a training set \(\mathcal{D} = \{(x_i, y_i)\}_{i=1}^{N}\) where \(x_i \in 
 
 ```math
 \min_{f \in \mathcal{F}} \mathcal{L}(f) = \min_{f \in \mathcal{F}} \frac{1}{N} \sum_{i=1}^{N} \ell(f(x_i), y_i)
+
 ```
 
 **Common Loss Functions:**
@@ -61,6 +62,7 @@ Given a training set \(\mathcal{D} = \{(x_i, y_i)\}_{i=1}^{N}\) where \(x_i \in 
 
 ```math
 \mathcal{L}_{\text{MLM}} = -\mathbb{E}_{x \sim \mathcal{D}} \left[ \sum_{i \in \mathcal{M}} \log P(x_i | x_{\backslash \mathcal{M}}; \theta) \right]
+
 ```
 
 where \(\mathcal{M}\) is the set of masked token positions.
@@ -69,6 +71,7 @@ where \(\mathcal{M}\) is the set of masked token positions.
 
 ```math
 \mathcal{L}_{\text{AR}} = -\sum_{t=1}^{T} \log P(x_t | x_1, x_2, \ldots, x_{t-1}; \theta)
+
 ```
 
 **3. Contrastive Learning (SimCLR):**
@@ -77,6 +80,7 @@ For positive pair \((z_i, z_j)\) from the same image:
 
 ```math
 \mathcal{L}_{i,j} = -\log \frac{\exp(\text{sim}(z_i, z_j)/\tau)}{\sum_{k=1}^{2N} \mathbb{1}_{[k \neq i]} \exp(\text{sim}(z_i, z_k)/\tau)}
+
 ```
 
 where \(\text{sim}(u, v) = \frac{u^\top v}{\|u\| \|v\|}\) is cosine similarity and \(\tau\) is temperature.
@@ -87,6 +91,7 @@ The InfoNCE loss is a lower bound on mutual information:
 
 ```math
 I(X; Y) \geq \log(N) - \mathcal{L}_{\text{NCE}}
+
 ```
 
 Maximizing \(-\mathcal{L}_{\text{NCE}}\) maximizes a lower bound on \(I(X; Y)\), learning representations that capture shared information between views.
@@ -101,12 +106,14 @@ Maximizing \(-\mathcal{L}_{\text{NCE}}\) maximizes a lower bound on \(I(X; Y)\),
 
 ```math
 \min_{\mu_1, \ldots, \mu_K} \sum_{i=1}^{N} \min_{k} \|x_i - \mu_k\|^2
+
 ```
 
 **2. Dimensionality Reduction (PCA):**
 
 ```math
 \max_{W \in \mathbb{R}^{d \times k}} \text{Var}(Wx) \quad \text{s.t.} \quad W^\top W = I
+
 ```
 
 **Solution:** \(W\) = top-k eigenvectors of covariance matrix \(\Sigma = \frac{1}{N}\sum_i (x_i - \bar{x})(x_i - \bar{x})^\top\)
@@ -115,6 +122,7 @@ Maximizing \(-\mathcal{L}_{\text{NCE}}\) maximizes a lower bound on \(I(X; Y)\),
 
 ```math
 \mathcal{L}_{\text{ELBO}} = \mathbb{E}_{q(z|x)}[\log p(x|z)] - D_{\text{KL}}(q(z|x) \| p(z))
+
 ```
 
 ---
@@ -127,18 +135,21 @@ Maximizing \(-\mathcal{L}_{\text{NCE}}\) maximizes a lower bound on \(I(X; Y)\),
 
 ```math
 R(h) = \mathbb{E}_{(x,y) \sim P}[\ell(h(x), y)] = \int \ell(h(x), y) \, dP(x, y)
+
 ```
 
 **Empirical Risk:**
 
 ```math
 \hat{R}(h) = \frac{1}{n} \sum_{i=1}^{n} \ell(h(x_i), y_i)
+
 ```
 
 **ERM Principle:**
 
 ```math
 \hat{h}_{\text{ERM}} = \arg\min_{h \in \mathcal{H}} \hat{R}(h)
+
 ```
 
 ### Theoretical Justification
@@ -148,6 +159,7 @@ For fixed hypothesis \(h\):
 
 ```math
 \hat{R}(h) \xrightarrow{p} R(h) \quad \text{as } n \to \infty
+
 ```
 
 **Theorem (Uniform Convergence):**
@@ -155,6 +167,7 @@ For hypothesis class \(\mathcal{H}\) with finite VC dimension \(d\):
 
 ```math
 \Pr\left[\sup_{h \in \mathcal{H}} |R(h) - \hat{R}(h)| > \epsilon\right] \leq 4 \cdot m_{\mathcal{H}}(2n) \cdot e^{-n\epsilon^2/8}
+
 ```
 
 where \(m_{\mathcal{H}}(n)\) is the growth function.
@@ -165,6 +178,7 @@ where \(m_{\mathcal{H}}(n)\) is the growth function.
 
 ```math
 R(\hat{h}) \leq \hat{R}(\hat{h}) + \sqrt{\frac{2d \log(en/d) + 2\log(2/\delta)}{n}}
+
 ```
 
 **Proof Sketch:**
@@ -176,6 +190,7 @@ R(\hat{h}) \leq \hat{R}(\hat{h}) + \sqrt{\frac{2d \log(en/d) + 2\log(2/\delta)}{
 
 ```math
 R(\hat{h}) = \underbrace{\hat{R}(\hat{h})}_{\text{training error}} + \underbrace{(R(\hat{h}) - \hat{R}(\hat{h}))}_{\text{generalization gap}}
+
 ```
 
 **Solutions:**
@@ -340,6 +355,7 @@ class AutoregressiveLM(nn.Module):
         x = self.transformer(x, x, tgt_mask=causal_mask)
         logits = self.output(x)
         return logits
+
 ```
 
 ---
@@ -378,6 +394,7 @@ class AutoregressiveLM(nn.Module):
 
 3. Alignment (RLHF for safety and helpfulness)
    +-- ChatGPT, Claude, Gemini
+
 ```
 
 ---

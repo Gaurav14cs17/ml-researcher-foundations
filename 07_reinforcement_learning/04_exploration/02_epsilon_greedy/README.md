@@ -44,6 +44,7 @@ Where:
     ε ∈ [0, 1]: Exploration rate
     A: Action space
     Q(s, a): Estimated action-value function
+
 ```
 
 ### Expected Behavior
@@ -57,6 +58,7 @@ P(select random action) = ε × (|A|-1)/|A|
 Example: |A| = 4, ε = 0.1
     P(optimal) = 0.9 + 0.1/4 = 0.925
     P(each non-optimal) = 0.1 × 3/4 × 1/3 = 0.025
+
 ```
 
 ---
@@ -72,6 +74,7 @@ Example: ε_0 = 1.0, ε_min = 0.01, decay_rate = 0.001
     t=0:    ε = 1.0
     t=500:  ε = 0.5
     t=990:  ε = 0.01 (minimum)
+
 ```
 
 ### Exponential Decay
@@ -83,6 +86,7 @@ Example: ε_0 = 1.0, decay = 0.995
     t=0:    ε = 1.0
     t=100:  ε ≈ 0.606
     t=500:  ε ≈ 0.082
+
 ```
 
 ### Inverse Decay
@@ -91,6 +95,7 @@ Example: ε_0 = 1.0, decay = 0.995
 ε_t = 1 / (1 + t × k)
 
 More exploration-heavy at start, slower decay
+
 ```
 
 ---
@@ -113,6 +118,7 @@ Q-learning with ε-greedy converges to Q* if:
 Sufficient condition: Σ_t ε_t = ∞ and Σ_t ε_t² < ∞
 
 Example satisfying GLIE: ε_t = 1/t
+
 ```
 
 ### Regret Analysis
@@ -131,6 +137,7 @@ Comparison:
   - ε-greedy: O(K log T / Δ)
   - UCB: O(K log T / Δ)  (similar, but directed exploration)
   - Thompson: O(K log T / Δ)  (Bayesian optimal)
+
 ```
 
 ### Probability of Optimal Selection
@@ -146,6 +153,7 @@ Convergence: P → 1 as t → ∞
 Time to 99% exploitation (ε ≤ 0.01):
   For ε_t = 1/t: t = 100 steps
   For ε_t = ε₀·0.99^t: t ≈ 459 steps (if ε₀=1)
+
 ```
 
 ---
@@ -179,6 +187,7 @@ Time to 99% exploitation (ε ≤ 0.01):
     
 ε-greedy: Explores both equally (random)
 UCB/Thompson: Explores a₂ more (might be better!)
+
 ```
 
 ---
@@ -205,6 +214,7 @@ def epsilon_greedy(q_values, epsilon):
         return np.random.randint(len(q_values))  # Explore
     else:
         return np.argmax(q_values)  # Exploit
+
 ```
 
 ### With Decay Schedules
@@ -250,6 +260,7 @@ for episode in range(1000):
         # ... take action, train model ...
     
     scheduler.update(decay_param=0.995)
+
 ```
 
 ### With Q-Learning
@@ -293,6 +304,7 @@ def q_learning_with_epsilon_greedy(env, num_episodes,
         rewards_history.append(total_reward)
     
     return Q, rewards_history
+
 ```
 
 ---
@@ -321,6 +333,7 @@ def q_learning_with_epsilon_greedy(env, num_episodes,
     |
     +-- Thompson Sampling (Bayesian)
             Sample Q ~ posterior, act greedily on sample
+
 ```
 
 ---

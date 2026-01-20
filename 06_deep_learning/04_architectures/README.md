@@ -52,6 +52,7 @@ Timeline:
 2021: Vision Transformer (ViT)
 2022: Diffusion Models (Image generation)
 2023: Mixture of Experts (Efficient scaling)
+
 ```
 
 ---

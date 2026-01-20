@@ -17,6 +17,7 @@
 
 ```
 🚀 Start → 📊 MDP → 💰 Value → 🎯 Policy → 🔍 Explore → 🌍 Model-Based → 🔥 RLHF → 🏆 Master
+
 ```
 
 ## 🎯 What You'll Learn
@@ -56,6 +57,7 @@ ChatGPT's secret
 
 ```
 States → Actions → Rewards → Transitions → Policy → Value
+
 ```
 
 **Foundation:** States, Actions, Rewards, Bellman Equations
@@ -70,6 +72,7 @@ States → Actions → Rewards → Transitions → Policy → Value
 
 ```
 DP → Monte Carlo → TD Learning → Q-Learning → DQN
+
 ```
 
 **Core:** TD Learning, Q-Learning, SARSA, Deep Q-Network (Atari!)
@@ -84,6 +87,7 @@ DP → Monte Carlo → TD Learning → Q-Learning → DQN
 
 ```
 Policy Gradient → REINFORCE → Actor-Critic → A3C → PPO → TRPO
+
 ```
 
 > ⭐ **PPO is the default algorithm** - powers robotics and RLHF
@@ -98,6 +102,7 @@ Policy Gradient → REINFORCE → Actor-Critic → A3C → PPO → TRPO
 
 ```
 ε-Greedy → UCB → Thompson Sampling → Curiosity → Intrinsic Motivation
+
 ```
 
 <a href="./04_exploration/README.md"><img src="https://img.shields.io/badge/📖_Learn_More-FF5722?style=for-the-badge" alt="Learn"/></a>
@@ -110,6 +115,7 @@ Policy Gradient → REINFORCE → Actor-Critic → A3C → PPO → TRPO
 
 ```
 Dynamics → Planning → MCTS → World Models → MuZero
+
 ```
 
 **Core:** Planning, Monte Carlo Tree Search (AlphaGo!)
@@ -124,6 +130,7 @@ Dynamics → Planning → MCTS → World Models → MuZero
 
 ```
 Games → Robotics → LLM Alignment → RLHF → DPO → ChatGPT
+
 ```
 
 > 🔥 **RLHF powers ChatGPT** - Aligns AI with human values
@@ -142,6 +149,7 @@ Games → Robotics → LLM Alignment → RLHF → DPO → ChatGPT
 
 ```
 🎮 RL → 🗜️ Compression → ⚡ Efficient ML → 🚀 Production
+
 ```
 
 <p align="center">

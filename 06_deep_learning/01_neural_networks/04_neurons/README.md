@@ -48,6 +48,7 @@ Linear combination:
 
 Output with activation:
     y = σ(z) = σ(wᵀx + b)
+
 ```
 
 ### The Perceptron (Binary Classification)
@@ -60,6 +61,7 @@ y = ⎨
     ⎩ -1  if wᵀx + b ≤ 0
 
 Decision boundary: wᵀx + b = 0 (hyperplane)
+
 ```
 
 ### Perceptron Learning Rule
@@ -72,6 +74,7 @@ For misclassified point (xᵢ, yᵢ):
 Where η is the learning rate
 
 Convergence: Guaranteed if data is linearly separable
+
 ```
 
 ---
@@ -107,6 +110,7 @@ Without activation:
 
 Multiple linear layers = single linear layer!
 Activation breaks this, enabling complex functions.
+
 ```
 
 ---
@@ -147,6 +151,7 @@ neuron = Neuron(n_inputs=3, activation='sigmoid')
 x = np.array([1.0, 2.0, 3.0])
 output = neuron.forward(x)
 print(f"Neuron output: {output}")
+
 ```
 
 ### Perceptron Learning
@@ -177,6 +182,7 @@ def perceptron_train(X, y, max_epochs=100, lr=1.0):
             break
     
     return w, b
+
 ```
 
 ### PyTorch Neuron
@@ -200,6 +206,7 @@ class SingleNeuron(nn.Module):
 neuron = SingleNeuron(n_inputs=10)
 x = torch.randn(32, 10)  # Batch of 32 samples
 output = neuron(x)  # Shape: (32, 1)
+
 ```
 
 ---
@@ -228,6 +235,7 @@ XOR Problem (Cannot solve with one neuron!):
     (0,1) → 1     ○---------● (1,1)
 
 Solution: Multiple layers (MLPs)!
+
 ```
 
 ---
@@ -242,6 +250,7 @@ Neuron (basic unit)
     +-- Activations (non-linearity)
     +-- Backpropagation (learning)
     +-- Universal Approximation (theory)
+
 ```
 
 ---

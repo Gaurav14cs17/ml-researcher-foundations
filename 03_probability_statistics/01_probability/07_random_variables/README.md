@@ -35,6 +35,7 @@ Random variables transform abstract outcomes into numerical values we can work w
 
 ```math
 X: \Omega \to \mathbb{R}
+
 ```
 
 **Example: Coin Flip**
@@ -49,6 +50,7 @@ X: \Omega \to \mathbb{R}
 
 ```math
 p_X(x) = P(X = x)
+
 ```
 
 **Requirements:**
@@ -61,18 +63,21 @@ p_X(x) = P(X = x)
 
 ```math
 P(X = 1) = p, \quad P(X = 0) = 1 - p
+
 ```
 
 **Binomial:**
 
 ```math
 P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}
+
 ```
 
 **Poisson:**
 
 ```math
 P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
+
 ```
 
 ---
@@ -83,12 +88,14 @@ P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
 
 ```math
 f_X(x) \geq 0, \quad \int_{-\infty}^{\infty} f_X(x) \, dx = 1
+
 ```
 
 **Note:** $f(x)$ is NOT a probability! It can be > 1.
 
 ```math
 P(a \leq X \leq b) = \int_a^b f_X(x) \, dx
+
 ```
 
 ### Examples
@@ -97,18 +104,21 @@ P(a \leq X \leq b) = \int_a^b f_X(x) \, dx
 
 ```math
 f(x) = \frac{1}{b-a}, \quad x \in [a, b]
+
 ```
 
 **Exponential:**
 
 ```math
 f(x) = \lambda e^{-\lambda x}, \quad x \geq 0
+
 ```
 
 **Gaussian:**
 
 ```math
 f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+
 ```
 
 ---
@@ -119,6 +129,7 @@ f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\righ
 
 ```math
 F_X(x) = P(X \leq x)
+
 ```
 
 ### Properties
@@ -134,6 +145,7 @@ F_X(x) = P(X \leq x)
 
 ```math
 F(x) = \sum_{x_i \leq x} p(x_i)
+
 ```
 
 **Continuous:**
@@ -141,6 +153,7 @@ F(x) = \sum_{x_i \leq x} p(x_i)
 ```math
 F(x) = \int_{-\infty}^{x} f(t) \, dt
 f(x) = \frac{dF}{dx}
+
 ```
 
 ---
@@ -153,6 +166,7 @@ If $Y = g(X)$ where $g$ is monotonic:
 
 ```math
 f_Y(y) = f_X(g^{-1}(y)) \cdot \left|\frac{d}{dy}g^{-1}(y)\right|
+
 ```
 
 **Proof:**
@@ -161,18 +175,21 @@ For increasing $g$:
 
 ```math
 F_Y(y) = P(Y \leq y) = P(g(X) \leq y) = P(X \leq g^{-1}(y)) = F_X(g^{-1}(y))
+
 ```
 
 Differentiating:
 
 ```math
 f_Y(y) = f_X(g^{-1}(y)) \cdot \frac{d}{dy}g^{-1}(y) \quad \blacksquare
+
 ```
 
 ### Example: $Y = X^2$ for $X \sim \mathcal{N}(0, 1)$
 
 ```math
 f_Y(y) = \frac{1}{2\sqrt{y}} \cdot \frac{1}{\sqrt{2\pi}} e^{-y/2}, \quad y > 0
+
 ```
 
 This is the chi-squared distribution with 1 degree of freedom!
@@ -187,12 +204,14 @@ This is the chi-squared distribution with 1 degree of freedom!
 
 ```math
 E[X] = \sum_x x \cdot P(X = x)
+
 ```
 
 **Continuous:**
 
 ```math
 E[X] = \int_{-\infty}^{\infty} x \cdot f(x) \, dx
+
 ```
 
 ### LOTUS (Law of the Unconscious Statistician)
@@ -200,6 +219,7 @@ E[X] = \int_{-\infty}^{\infty} x \cdot f(x) \, dx
 ```math
 E[g(X)] = \sum_x g(x) \cdot P(X = x)
 E[g(X)] = \int_{-\infty}^{\infty} g(x) \cdot f(x) \, dx
+
 ```
 
 **Key:** No need to find distribution of $g(X)$!
@@ -208,12 +228,14 @@ E[g(X)] = \int_{-\infty}^{\infty} g(x) \cdot f(x) \, dx
 
 ```math
 \text{Var}(X) = E[(X - \mu)^2] = E[X^2] - (E[X])^2
+
 ```
 
 **Proof of alternative form:**
 
 ```math
 \text{Var}(X) = E[X^2 - 2\mu X + \mu^2] = E[X^2] - 2\mu^2 + \mu^2 = E[X^2] - \mu^2 \quad \blacksquare
+
 ```
 
 ---
@@ -224,6 +246,7 @@ E[g(X)] = \int_{-\infty}^{\infty} g(x) \cdot f(x) \, dx
 
 ```math
 M_X(t) = E[e^{tX}]
+
 ```
 
 ### Properties
@@ -238,12 +261,14 @@ For $X \sim \mathcal{N}(\mu, \sigma^2)$:
 
 ```math
 M_X(t) = \exp\left(\mu t + \frac{\sigma^2 t^2}{2}\right)
+
 ```
 
 **Proof:**
 
 ```math
 M_X(t) = E[e^{tX}] = \int \frac{1}{\sqrt{2\pi\sigma^2}} e^{tx} e^{-\frac{(x-\mu)^2}{2\sigma^2}} dx
+
 ```
 
 Complete the square and integrate. $\quad \blacksquare$
@@ -256,6 +281,7 @@ Complete the square and integrate. $\quad \blacksquare$
 
 ```math
 \phi_X(t) = E[e^{itX}]
+
 ```
 
 **Advantages over MGF:**
@@ -266,6 +292,7 @@ Complete the square and integrate. $\quad \blacksquare$
 
 ```math
 \phi_X(t) = \exp\left(i\mu t - \frac{\sigma^2 t^2}{2}\right)
+
 ```
 
 ---
@@ -316,6 +343,7 @@ def estimate_moments(samples, k):
 X = np.random.normal(2, 1, 100000)  # N(2, 1)
 print(f"E[X] ≈ {estimate_moments(X, 1):.3f}")  # Should be 2
 print(f"E[X²] ≈ {estimate_moments(X, 2):.3f}")  # Should be μ² + σ² = 5
+
 ```
 
 ---

@@ -42,6 +42,7 @@
 
 ```math
 \mathcal{L}_{\text{reg}}(\theta) = \mathcal{L}(\theta; \mathcal{D}) + \lambda \Omega(\theta)
+
 ```
 
 where:
@@ -57,18 +58,21 @@ where:
 
 ```math
 \mathcal{L}_{\text{L2}} = \mathcal{L}(\theta) + \lambda \|\theta\|_2^2 = \mathcal{L}(\theta) + \lambda \sum_j \theta_j^2
+
 ```
 
 ### Closed-Form Solution (Linear Regression)
 
 ```math
 \hat{\theta} = (X^\top X + \lambda I)^{-1} X^\top y
+
 ```
 
 **Theorem:** L2 regularization is equivalent to MAP estimation with Gaussian prior:
 
 ```math
 p(\theta) \propto \exp\left(-\frac{\lambda}{2}\|\theta\|^2\right)
+
 ```
 
 **Proof:** 
@@ -76,6 +80,7 @@ p(\theta) \propto \exp\left(-\frac{\lambda}{2}\|\theta\|^2\right)
 ```math
 \log p(\theta | \mathcal{D}) = \log p(\mathcal{D}|\theta) + \log p(\theta) + \text{const}
 = -\mathcal{L}(\theta) - \frac{\lambda}{2}\|\theta\|^2 + \text{const} \quad \blacksquare
+
 ```
 
 ---
@@ -86,6 +91,7 @@ p(\theta) \propto \exp\left(-\frac{\lambda}{2}\|\theta\|^2\right)
 
 ```math
 \mathcal{L}_{\text{L1}} = \mathcal{L}(\theta) + \lambda \|\theta\|_1 = \mathcal{L}(\theta) + \lambda \sum_j |\theta_j|
+
 ```
 
 ### Soft Thresholding
@@ -94,6 +100,7 @@ For \(\mathcal{L} = \frac{1}{2}(y - \theta)^2\):
 
 ```math
 \hat{\theta} = \text{sign}(y) \cdot \max(|y| - \lambda, 0)
+
 ```
 
 **Theorem:** L1 regularization produces sparse solutions.
@@ -106,6 +113,7 @@ L1 corresponds to a Laplace prior:
 
 ```math
 p(\theta) \propto \exp(-\lambda \|\theta\|_1) = \prod_j \frac{\lambda}{2}\exp(-\lambda |\theta_j|)
+
 ```
 
 ---
@@ -114,6 +122,7 @@ p(\theta) \propto \exp(-\lambda \|\theta\|_1) = \prod_j \frac{\lambda}{2}\exp(-\
 
 ```math
 \mathcal{L}_{\text{EN}} = \mathcal{L}(\theta) + \lambda_1 \|\theta\|_1 + \lambda_2 \|\theta\|_2^2
+
 ```
 
 **Advantages:**
@@ -131,6 +140,7 @@ For each training step, randomly drop neurons with probability \(p\):
 
 ```math
 \tilde{h}_i = \frac{m_i}{1-p} \cdot h_i, \quad m_i \sim \text{Bernoulli}(1-p)
+
 ```
 
 ### Inference
@@ -153,6 +163,7 @@ Each dropout mask defines a "thinned" network. Training with dropout is equivale
 ### Implicit Regularization
 
 **Theorem:** For gradient descent on linear regression, early stopping is equivalent to L2 regularization:
+
 ```
 
 \theta^{(t)} \approx \theta_{\lambda}, \quad \text{where } \lambda = \frac{1}{\eta t}
@@ -160,12 +171,14 @@ Each dropout mask defines a "thinned" network. Training with dropout is equivale
 ```math
 **Proof:**
 For gradient descent with step size \(\eta\):
+
 ```
 
 \theta^{(t+1)} = \theta^{(t)} - \eta X^\top(X\theta^{(t)} - y)
 
 ```math
 The solution path is:
+
 ```
 
 \theta^{(t)} = (I - (I - \eta X^\top X)^t)(X^\top X)^{-1}X^\top y
@@ -353,6 +366,7 @@ def train_with_early_stopping(model, train_loader, val_loader,
     # Restore best model
     model.load_state_dict(best_model_state)
     return model
+
 ```
 
 ---

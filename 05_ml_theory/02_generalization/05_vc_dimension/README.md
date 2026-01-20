@@ -50,6 +50,7 @@ In other words, \(\mathcal{H}\) can achieve all \(2^n\) possible binary labeling
 
 ```math
 \text{VC}(\mathcal{H}) = \max\{n : \exists S \text{ with } |S| = n \text{ that } \mathcal{H} \text{ shatters}\}
+
 ```
 
 If \(\mathcal{H}\) can shatter arbitrarily large sets, \(\text{VC}(\mathcal{H}) = \infty\).
@@ -76,6 +77,7 @@ Consider points in general position:
 
 ```math
 x_0 = 0, \quad x_i = e_i \text{ for } i = 1, \ldots, d
+
 ```
 
 where \(e_i\) is the \(i\)-th standard basis vector.
@@ -84,6 +86,7 @@ For any labeling \((y_0, y_1, \ldots, y_d)\), set:
 
 ```math
 w = \sum_{i=1}^d y_i e_i, \quad b = -\frac{1}{2}(1 + y_0)
+
 ```
 
 Then:
@@ -136,6 +139,7 @@ For any \(d+2\) points in \(\mathbb{R}^d\), they are linearly dependent. By Rado
 
 ```math
 m_\mathcal{H}(n) = \max_{x_1, \ldots, x_n} |\{(h(x_1), \ldots, h(x_n)) : h \in \mathcal{H}\}|
+
 ```
 
 This counts the maximum number of distinct classifications on \(n\) points.
@@ -151,6 +155,7 @@ This counts the maximum number of distinct classifications on \(n\) points.
 
 ```math
 m_\mathcal{H}(n) \leq \sum_{i=0}^{d} \binom{n}{i} \leq \left(\frac{en}{d}\right)^d
+
 ```
 
 **Proof Sketch:**
@@ -169,6 +174,7 @@ By induction on \(n + d\). For the base case, if \(d = 0\), then \(m_\mathcal{H}
 
 ```math
 \forall h \in \mathcal{H}: \quad R(h) \leq \hat{R}(h) + \sqrt{\frac{8d \ln(en/d) + 8\ln(4/\delta)}{n}}
+
 ```
 
 where:
@@ -183,6 +189,7 @@ The key insight is to relate uniform deviations to the growth function using a "
 
 ```math
 \Pr\left[\sup_{h \in \mathcal{H}} |R(h) - \hat{R}(h)| > \epsilon\right] \leq 2\Pr\left[\sup_{h \in \mathcal{H}} |\hat{R}(h) - \hat{R}'(h)| > \epsilon/2\right]
+
 ```
 
 where \(\hat{R}'(h)\) is the empirical risk on an independent "ghost" sample.
@@ -197,12 +204,14 @@ Apply Hoeffding's inequality to each effective hypothesis, then union bound:
 
 ```math
 \Pr\left[\sup_{h \in \mathcal{H}} |R(h) - \hat{R}(h)| > \epsilon\right] \leq 2 m_\mathcal{H}(2n) \cdot e^{-n\epsilon^2/2}
+
 ```
 
 **Step 4: Apply Sauer's Lemma**
 
 ```math
 \leq 2 \left(\frac{2en}{d}\right)^d e^{-n\epsilon^2/2}
+
 ```
 
 Setting this to \(\delta\) and solving for \(\epsilon\) gives the bound.
@@ -213,6 +222,7 @@ Setting this to \(\delta\) and solving for \(\epsilon\) gives the bound.
 
 ```math
 n = O\left(\frac{d + \ln(1/\delta)}{\epsilon^2}\right)
+
 ```
 
 **Key insights:**
@@ -344,6 +354,7 @@ vc = estimate_vc_dimension(
 )
 print(f"Estimated VC dimension: {vc}")
 print(f"Theoretical: d+1 = 3")
+
 ```
 
 ### Visualizing Shattering
@@ -417,6 +428,7 @@ visualize_shattering_2d(points_3, "3 Points (Can Shatter - VC Dim ≥ 3)")
 # 4 points cannot all be shattered (XOR configuration)
 points_4 = np.array([[0, 0], [1, 0], [0, 1], [1, 1]])
 visualize_shattering_2d(points_4, "4 Points (Cannot Shatter XOR - VC Dim < 4)")
+
 ```
 
 ### Generalization Bound Computation
@@ -486,6 +498,7 @@ for d in [3, 10, 100, 1000]:
     # Sample complexity for ε = 0.05
     n_required = required_samples(d, epsilon=0.05)
     print(f"  Samples needed for ε=0.05: {n_required}")
+
 ```
 
 ---
@@ -517,6 +530,7 @@ Classical VC theory predicts:
 
 ```math
 \hat{\mathcal{R}}_S(\mathcal{H}) = \mathbb{E}_\sigma\left[\sup_{h \in \mathcal{H}} \frac{1}{n}\sum_{i=1}^n \sigma_i h(x_i)\right]
+
 ```
 
 where \(\sigma_i \in \{-1, +1\}\) are uniform random signs.

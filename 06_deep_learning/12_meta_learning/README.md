@@ -42,6 +42,7 @@ A meta-learning problem consists of:
 
 ```math
 \min_\theta \mathbb{E}_{\mathcal{T} \sim p(\mathcal{T})} \left[ \mathcal{L}(\mathcal{A}(\theta, D^{train}), D^{test}) \right]
+
 ```
 
 where \(\mathcal{A}\) is the adaptation algorithm.
@@ -60,17 +61,20 @@ Learn an initialization \(\theta\) that can be quickly adapted to any task with 
 
 ```math
 \theta \leftarrow \theta - \alpha \nabla_\theta \sum_{\mathcal{T}_i} \mathcal{L}_{\mathcal{T}_i}(f_{\theta'_i})
+
 ```
 
 **Inner loop (task-specific adaptation):**
 
 ```math
 \theta'_i = \theta - \beta \nabla_\theta \mathcal{L}_{\mathcal{T}_i}(f_\theta)
+
 ```
 
 ### Complete Derivation
 
 **One inner step MAML:**
+
 ```
 Given: Initial parameters θ, task Tᵢ with support set Sᵢ
 
@@ -87,6 +91,7 @@ where:
 ∂θ'ᵢ/∂θ = I - β ∂²L_Sᵢ/∂θ²  (Hessian term)
 
 This is why MAML needs second-order derivatives!
+
 ```
 
 ### First-Order MAML (FOMAML)
@@ -95,6 +100,7 @@ Approximate by ignoring second-order terms:
 
 ```math
 \nabla_\theta \mathcal{L}(f_{\theta'}) \approx \nabla_{\theta'} \mathcal{L}(f_{\theta'})
+
 ```
 
 ```
@@ -103,6 +109,7 @@ Justification:
 
 This works surprisingly well in practice!
 Much faster: O(n) vs O(n²) per step
+
 ```
 
 ---
@@ -119,6 +126,7 @@ Classify by computing distance to class "prototypes" (mean embeddings).
 
 ```math
 c_k = \frac{1}{|S_k|} \sum_{(x_i, y_i) \in S_k} f_\theta(x_i)
+
 ```
 
 where \(S_k\) is the support set for class \(k\).
@@ -127,11 +135,13 @@ where \(S_k\) is the support set for class \(k\).
 
 ```math
 p(y = k | x) = \frac{\exp(-d(f_\theta(x), c_k))}{\sum_{k'} \exp(-d(f_\theta(x), c_{k'}))}
+
 ```
 
 ### Mathematical Justification
 
 **Bregman divergence connection:**
+
 ```
 For Euclidean distance and regular Bregman divergence,
 the prototype (cluster mean) is optimal.
@@ -144,6 +154,7 @@ Taking derivative and setting to 0:
 c = (1/n) Σᵢ xᵢ  ✓
 
 The mean minimizes sum of squared distances.
+
 ```
 
 **Why it works for few-shot:**
@@ -159,12 +170,14 @@ The mean minimizes sum of squared distances.
 
 ```math
 p(y|x, S) = \sum_{(x_i, y_i) \in S} a(x, x_i) \cdot y_i
+
 ```
 
 where attention weights:
 
 ```math
 a(x, x_i) = \frac{\exp(c(f(x), g(x_i)))}{\sum_j \exp(c(f(x), g(x_j)))}
+
 ```
 
 **Key differences from Prototypical:**
@@ -185,6 +198,7 @@ for each iteration:
     for k steps:
         θ̃ = θ̃ - α∇L_Tᵢ(θ̃)  # SGD on task
     θ = θ + ε(θ̃ - θ)  # Move toward adapted params
+
 ```
 
 ### Mathematical Interpretation
@@ -201,6 +215,7 @@ where g₁ = ∇L, H₁ = ∇²L
 
 The second term (Hessian) provides curvature info
 similar to MAML's second-order gradient.
+
 ```
 
 ---
@@ -326,6 +341,7 @@ for _ in range(4):  # 4 tasks per meta-batch
 
 loss = maml.meta_train_step(tasks)
 print(f"Meta-training loss: {loss:.4f}")
+
 ```
 
 ### Prototypical Networks Implementation
@@ -490,6 +506,7 @@ query_x = torch.randn(75, 1, 28, 28)    # 15 queries per class
 
 log_probs = proto_net(support_x, support_y, query_x, n_way=5)
 print(f"Log probabilities shape: {log_probs.shape}")  # (75, 5)
+
 ```
 
 ### Reptile Implementation
@@ -572,6 +589,7 @@ reptile = Reptile(model, inner_lr=0.01, outer_lr=0.1, inner_steps=10)
 tasks = [(torch.randn(10, 784), torch.randint(0, 5, (10,))) for _ in range(4)]
 reptile.meta_train_step(tasks)
 print("Reptile step completed")
+
 ```
 
 ---

@@ -26,6 +26,7 @@ Quantization levels optimized for zero-mean, unit-variance normal distribution:
 
 ```math
 q_i = \Phi^{-1}\left(\frac{2i + 1}{32}\right), \quad i \in \{0, 1, ..., 15\}
+
 ```
 
 Where $\Phi^{-1}$ is inverse normal CDF.
@@ -37,6 +38,7 @@ Quantize the quantization constants themselves:
 
 ```math
 \text{FP32 scale} \to \text{FP8 scale}
+
 ```
 
 Additional 0.5 bits/param savings.
@@ -47,6 +49,7 @@ Additional 0.5 bits/param savings.
 
 ```math
 \arg\min_{\hat{W}} \|WX - \hat{W}X\|_2^2
+
 ```
 
 **Optimal Brain Quantization (OBQ):**
@@ -54,6 +57,7 @@ Additional 0.5 bits/param savings.
 ```math
 \hat{w}_q = \text{round}(w_q / s) \cdot s
 \delta_{-q} = -\frac{w_q - \hat{w}_q}{[H^{-1}]_{qq}} H^{-1}_{:,q}
+
 ```
 
 Where $H = XX^T$ (Hessian).
@@ -66,6 +70,7 @@ Where $H = XX^T$ (Hessian).
 
 ```math
 s_j = \mathbb{E}[|X_j|]
+
 ```
 
 **Per-channel Scaling:**
@@ -73,6 +78,7 @@ s_j = \mathbb{E}[|X_j|]
 ```math
 \hat{W}[:,j] = W[:,j] \cdot s_j^\alpha
 \hat{X}[j] = X[j] / s_j^\alpha
+
 ```
 
 With $\alpha \in [0, 1]$ balancing weight and activation quantization.
@@ -83,6 +89,7 @@ With $\alpha \in [0, 1]$ balancing weight and activation quantization.
 
 ```math
 \text{Conv} \to \text{BN} \to \text{ReLU} \Rightarrow \text{ConvBNReLU}
+
 ```
 
 **Kernel Auto-tuning:**
@@ -92,6 +99,7 @@ Select best CUDA kernel for each layer based on shape.
 
 ```math
 s = \frac{\max(|x|)}{127} \quad \text{(per-tensor)}
+
 ```
 
 ---
@@ -140,6 +148,7 @@ lora_config = LoraConfig(
     target_modules=["q_proj", "v_proj"],
 )
 model = get_peft_model(model, lora_config)
+
 ```
 
 ### LLM Inference (GPTQ/AWQ)
@@ -164,6 +173,7 @@ model.quantize(
     tokenizer,
     quant_config={"w_bit": 4, "q_group_size": 128}
 )
+
 ```
 
 ### CPU Inference (llama.cpp)
@@ -178,6 +188,7 @@ model.quantize(
        -n 256 \
        -t 8 \
        --ctx-size 4096
+
 ```
 
 ### High-Throughput GPU (vLLM)
@@ -197,6 +208,7 @@ outputs = llm.generate(
     prompts=["Hello", "How are you"],
     sampling_params=SamplingParams(max_tokens=100)
 )
+
 ```
 
 ### Production (TensorRT-LLM)
@@ -212,6 +224,7 @@ model = LLaMAForCausalLM.from_hugging_face(
 )
 
 # Deploy with Triton Inference Server
+
 ```
 
 ---
@@ -249,6 +262,7 @@ pip install vllm
 # llama.cpp (build from source)
 git clone https://github.com/ggerganov/llama.cpp
 cd llama.cpp && make -j
+
 ```
 
 ---

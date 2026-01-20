@@ -44,6 +44,7 @@ Many algorithms require computing inner products in feature space:
 
 ```math
 \langle \phi(x), \phi(y) \rangle_{\mathcal{H}}
+
 ```
 
 If \(\phi: \mathcal{X} \to \mathcal{H}\) maps to a high-dimensional space \(\mathcal{H}\), direct computation is expensive or impossible.
@@ -54,6 +55,7 @@ If \(\phi: \mathcal{X} \to \mathcal{H}\) maps to a high-dimensional space \(\mat
 
 ```math
 k(x, y) = \langle \phi(x), \phi(y) \rangle_{\mathcal{H}}
+
 ```
 
 for some feature map \(\phi\) and inner product space \(\mathcal{H}\).
@@ -70,6 +72,7 @@ for some feature map \(\phi\) and inner product space \(\mathcal{H}\).
 
 ```math
 K_{ij} = k(x_i, x_j)
+
 ```
 
 is positive semi-definite: \(\forall \alpha \in \mathbb{R}^n: \alpha^\top K \alpha \geq 0\).
@@ -82,6 +85,7 @@ is positive semi-definite: \(\forall \alpha \in \mathbb{R}^n: \alpha^\top K \alp
 
 ```math
 k(x, y) = \langle \phi(x), \phi(y) \rangle_{\mathcal{H}}
+
 ```
 
 ### Proof Sketch (Finite Case)
@@ -101,6 +105,7 @@ Given PSD kernel \(k\) and points \(\{x_1, \ldots, x_n\}\):
 
 ```math
 k(x, y) = x^\top y
+
 ```
 
 **Feature map:** \(\phi(x) = x\) (identity)
@@ -111,6 +116,7 @@ k(x, y) = x^\top y
 
 ```math
 k(x, y) = (x^\top y + c)^d
+
 ```
 
 **Feature map:** Contains all monomials up to degree \(d\)
@@ -122,24 +128,28 @@ For \(x = [x_1, x_2]^\top\):
 ```math
 k(x, y) = (x_1 y_1 + x_2 y_2 + 1)^2
 = x_1^2 y_1^2 + 2x_1 x_2 y_1 y_2 + x_2^2 y_2^2 + 2x_1 y_1 + 2x_2 y_2 + 1
+
 ```
 
 Implicit feature map:
 
 ```math
 \phi(x) = [x_1^2, \sqrt{2}x_1 x_2, x_2^2, \sqrt{2}x_1, \sqrt{2}x_2, 1]^\top
+
 ```
 
 **Verification:**
 
 ```math
 \phi(x)^\top \phi(y) = x_1^2 y_1^2 + 2x_1 x_2 y_1 y_2 + x_2^2 y_2^2 + 2x_1 y_1 + 2x_2 y_2 + 1 = k(x, y) \checkmark
+
 ```
 
 ### Gaussian (RBF) Kernel
 
 ```math
 k(x, y) = \exp\left(-\gamma \|x - y\|^2\right) = \exp\left(-\frac{\|x - y\|^2}{2\sigma^2}\right)
+
 ```
 
 **Feature map dimension:** Infinite!
@@ -151,6 +161,7 @@ Using Taylor expansion of exponential:
 ```math
 e^{-\gamma\|x-y\|^2} = e^{-\gamma\|x\|^2} e^{-\gamma\|y\|^2} e^{2\gamma x^\top y}
 = e^{-\gamma\|x\|^2} e^{-\gamma\|y\|^2} \sum_{n=0}^{\infty} \frac{(2\gamma x^\top y)^n}{n!}
+
 ```
 
 Each term in the series corresponds to polynomial features of increasing degree.
@@ -159,6 +170,7 @@ Each term in the series corresponds to polynomial features of increasing degree.
 
 ```math
 k(x, y) = \exp(-\gamma \|x - y\|_1)
+
 ```
 
 **Properties:** More robust to outliers than RBF, infinite-dimensional feature space.
@@ -197,6 +209,7 @@ For Gram matrix \(K\) with \(K_{ij} = k(x_i, x_j)\):
 
 ```math
 \min_{f \in \mathcal{H}_k} \left[\sum_{i=1}^n L(y_i, f(x_i)) + \lambda \|f\|_{\mathcal{H}_k}^2\right]
+
 ```
 
 where \(\mathcal{H}_k\) is the RKHS induced by kernel \(k\).
@@ -205,6 +218,7 @@ where \(\mathcal{H}_k\) is the RKHS induced by kernel \(k\).
 
 ```math
 f^*(x) = \sum_{i=1}^n \alpha_i k(x, x_i)
+
 ```
 
 ### Proof Sketch
@@ -461,6 +475,7 @@ if __name__ == "__main__":
     print(f"Linear kernel accuracy: {acc_linear:.2%}")
     print(f"RBF kernel accuracy: {acc_rbf:.2%}")
     print(f"Number of support vectors: {len(svm_rbf.support_idx)}")
+
 ```
 
 ---

@@ -52,6 +52,7 @@
 |                       [Output]                               |
 |                                                              |
 +-------------------------------------------------------------+
+
 ```
 
 ---
@@ -66,6 +67,7 @@
 
 ```math
 Q = XW^Q, \quad K = XW^K, \quad V = XW^V
+
 ```
 
 Where:
@@ -83,6 +85,7 @@ Where:
 ```math
 S = QK^\top \in \mathbb{R}^{n \times n}
 S_{ij} = \sum_{k=1}^{d_k} Q_{ik} \cdot K_{jk} = \langle q_i, k_j \rangle
+
 ```
 
 **Interpretation:** $S\_{ij}$ measures similarity between query at position $i$ and key at position $j$.
@@ -91,6 +94,7 @@ S_{ij} = \sum_{k=1}^{d_k} Q_{ik} \cdot K_{jk} = \langle q_i, k_j \rangle
 
 ```math
 \text{ScaledScores} = \frac{QK^\top}{\sqrt{d_k}}
+
 ```
 
 **Why scale by $\sqrt{d\_k}$?**
@@ -99,9 +103,11 @@ S_{ij} = \sum_{k=1}^{d_k} Q_{ik} \cdot K_{jk} = \langle q_i, k_j \rangle
 
 ```math
 \text{Var}(q \cdot k) = d_k
+
 ```
 
 **Proof:**
+
 ```
 Let q = (q₁, ..., q_d) and k = (k₁, ..., k_d) with qᵢ, kᵢ ~ N(0,1)
 
@@ -112,6 +118,7 @@ q·k = Σᵢ qᵢkᵢ
 Var(q·k) = Σᵢ Var(qᵢkᵢ) = d_k
 
 Scaling by √d_k normalizes variance to 1.
+
 ```
 
 **Without scaling:** Large $d\_k$ → large dot products → softmax saturates → near-binary attention.
@@ -121,6 +128,7 @@ Scaling by √d_k normalizes variance to 1.
 ```math
 A = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right) \in \mathbb{R}^{n \times n}
 A_{ij} = \frac{\exp(S_{ij}/\sqrt{d_k})}{\sum_{l=1}^n \exp(S_{il}/\sqrt{d_k})}
+
 ```
 
 **Properties:**
@@ -133,6 +141,7 @@ A_{ij} = \frac{\exp(S_{ij}/\sqrt{d_k})}{\sum_{l=1}^n \exp(S_{il}/\sqrt{d_k})}
 ```math
 \text{Output} = AV \in \mathbb{R}^{n \times d_v}
 \text{Output}_i = \sum_{j=1}^n A_{ij} \cdot V_j
+
 ```
 
 **Interpretation:** Each output is a weighted average of all values.
@@ -141,6 +150,7 @@ A_{ij} = \frac{\exp(S_{ij}/\sqrt{d_k})}{\sum_{l=1}^n \exp(S_{il}/\sqrt{d_k})}
 
 ```math
 \boxed{\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right) V}
+
 ```
 
 ---
@@ -154,6 +164,7 @@ A_{ij} = \frac{\exp(S_{ij}/\sqrt{d_k})}{\sum_{l=1}^n \exp(S_{il}/\sqrt{d_k})}
 ```math
 \text{MultiHead}(X) = \text{Concat}(\text{head}_1, ..., \text{head}_H) W^O
 \text{head}_h = \text{Attention}(XW_h^Q, XW_h^K, XW_h^V)
+
 ```
 
 Where:
@@ -165,6 +176,7 @@ Where:
 
 ```math
 \text{Params} = 3 \cdot H \cdot d \cdot \frac{d}{H} + d^2 = 3d^2 + d^2 = 4d^2
+
 ```
 
 **Interpretation:** Different heads learn different relationship types:
@@ -181,6 +193,7 @@ Where:
 
 ```math
 \text{Attention}(\pi(X)) = \pi(\text{Attention}(X))
+
 ```
 
 Where $\pi$ is any permutation. This means "dog bites man" = "man bites dog" without positions!
@@ -190,6 +203,7 @@ Where $\pi$ is any permutation. This means "dog bites man" = "man bites dog" wit
 ```math
 PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d}}\right)
 PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d}}\right)
+
 ```
 
 **Why This Formula?**
@@ -203,6 +217,7 @@ Each position $pos$ has a unique vector $PE(pos) \in \mathbb{R}^d$.
 **Theorem:** $PE(pos + k)$ is a linear function of $PE(pos)$.
 
 **Proof:**
+
 ```
 Using sin(α + β) = sin(α)cos(β) + cos(α)sin(β)
       cos(α + β) = cos(α)cos(β) - sin(α)sin(β)
@@ -212,6 +227,7 @@ PE(pos+k, 2i) = sin(ω_i(pos+k))
               = PE(pos,2i)·cos(ω_i·k) + PE(pos,2i+1)·sin(ω_i·k)
 
 This is a linear combination with coefficients depending only on k!
+
 ```
 
 **Implication:** Model can learn to attend to relative positions.
@@ -238,6 +254,7 @@ This is a linear combination with coefficients depending only on k!
 -\infty & \text{if } j > i
 \end{cases}
 A = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}} + \text{mask}\right)
+
 ```
 
 **Effect:** $\exp(-\infty) = 0$, so future tokens get zero attention weight.
@@ -270,6 +287,7 @@ A = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}} + \text{mask}\right)
 
 ```math
 A = \text{softmax}(S), \quad O = AV
+
 ```
 
 **Backward (Gradient of softmax):**
@@ -278,12 +296,14 @@ For softmax row $a = \text{softmax}(s)$:
 
 ```math
 \frac{\partial a_i}{\partial s_j} = a_i(\delta_{ij} - a_j)
+
 ```
 
 **Jacobian:**
 
 ```math
 \frac{\partial a}{\partial s} = \text{diag}(a) - aa^\top
+
 ```
 
 **Gradient of attention output:**
@@ -294,6 +314,7 @@ For softmax row $a = \text{softmax}(s)$:
 \frac{\partial L}{\partial S} = A \odot \left(\frac{\partial L}{\partial A} - \mathbf{1}\left(A \odot \frac{\partial L}{\partial A}\right)^\top\right)
 \frac{\partial L}{\partial Q} = \frac{1}{\sqrt{d_k}} \frac{\partial L}{\partial S} K
 \frac{\partial L}{\partial K} = \frac{1}{\sqrt{d_k}} \left(\frac{\partial L}{\partial S}\right)^\top Q
+
 ```
 
 ---
@@ -305,12 +326,14 @@ For softmax row $a = \text{softmax}(s)$:
 **Key Insight:** Recompute attention during backward pass instead of storing.
 
 **Algorithm (Tiled):**
+
 ```
 for each block of Q:
     for each block of K, V:
         compute local attention in SRAM
         accumulate with online softmax
 never materialize full n×n matrix
+
 ```
 
 **Result:** $O(n)$ memory instead of $O(n^2)$.
@@ -517,6 +540,7 @@ x = torch.randint(0, 50000, (2, 128))  # (batch=2, seq_len=128)
 logits = model(x)
 print(f"Output shape: {logits.shape}")  # (2, 128, 50000)
 print(f"Parameters: {sum(p.numel() for p in model.parameters()):,}")
+
 ```
 
 ---

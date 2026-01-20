@@ -32,12 +32,14 @@
 
 ```math
 H(X) = -\sum_{x} p(x) \log_2 p(x) \quad \text{(bits)}
+
 ```
 
 **Continuous (Differential Entropy):**
 
 ```math
 h(X) = -\int f(x) \log f(x) \, dx
+
 ```
 
 ### Properties
@@ -66,12 +68,14 @@ h(X) = -\int f(x) \log f(x) \, dx
 
 ```math
 H(p, q) = -\sum_{x} p(x) \log q(x) = H(p) + D_{KL}(p \| q)
+
 ```
 
 ### Key Relationship
 
 ```math
 H(p, q) = \underbrace{H(p)}_{\text{min possible}} + \underbrace{D_{KL}(p \| q)}_{\geq 0 \text{ (extra bits)}}
+
 ```
 
 ### Classification Loss
@@ -80,18 +84,21 @@ For true label $y$ (one-hot) and predicted distribution $\hat{p}$:
 
 ```math
 \mathcal{L}_{CE} = -\sum_{k} y_k \log \hat{p}_k = -\log \hat{p}_{y_{true}}
+
 ```
 
 **With softmax:**
 
 ```math
 \hat{p}_k = \frac{e^{z_k}}{\sum_j e^{z_j}}
+
 ```
 
 **Gradient (remarkably simple):**
 
 ```math
 \frac{\partial \mathcal{L}}{\partial z_k} = \hat{p}_k - y_k
+
 ```
 
 ---
@@ -102,6 +109,7 @@ For true label $y$ (one-hot) and predicted distribution $\hat{p}$:
 
 ```math
 D_{KL}(P \| Q) = \sum_x p(x) \log\frac{p(x)}{q(x)} = E_p\left[\log\frac{p(x)}{q(x)}\right]
+
 ```
 
 ### Properties
@@ -117,12 +125,14 @@ D_{KL}(P \| Q) = \sum_x p(x) \log\frac{p(x)}{q(x)} = E_p\left[\log\frac{p(x)}{q(
 
 ```math
 D_{KL}(P \| Q) = E_p\left[\log\frac{p}{q}\right] = -E_p\left[\log\frac{q}{p}\right]
+
 ```
 
 Using Jensen's inequality ($\log$ is concave):
 
 ```math
 -E_p\left[\log\frac{q}{p}\right] \geq -\log E_p\left[\frac{q}{p}\right] = -\log\sum_x p(x)\frac{q(x)}{p(x)} = -\log 1 = 0 \quad \blacksquare
+
 ```
 
 ### Forward vs Reverse KL
@@ -138,12 +148,14 @@ Using Jensen's inequality ($\log$ is concave):
 
 ```math
 D_{KL}(\mathcal{N}_1 \| \mathcal{N}_2) = \frac{1}{2}\left[\log\frac{\sigma_2^2}{\sigma_1^2} + \frac{\sigma_1^2 + (\mu_1 - \mu_2)^2}{\sigma_2^2} - 1\right]
+
 ```
 
 **VAE Loss (KL to standard normal):**
 
 ```math
 D_{KL}(\mathcal{N}(\mu, \sigma^2) \| \mathcal{N}(0, 1)) = \frac{1}{2}\left(\mu^2 + \sigma^2 - 1 - \log\sigma^2\right)
+
 ```
 
 ---
@@ -154,12 +166,14 @@ D_{KL}(\mathcal{N}(\mu, \sigma^2) \| \mathcal{N}(0, 1)) = \frac{1}{2}\left(\mu^2
 
 ```math
 I(X; Y) = H(X) - H(X|Y) = H(Y) - H(Y|X)
+
 ```
 
 **As KL Divergence:**
 
 ```math
 I(X; Y) = D_{KL}(p(x, y) \| p(x)p(y))
+
 ```
 
 ### Properties
@@ -175,6 +189,7 @@ I(X; Y) = D_{KL}(p(x, y) \| p(x)p(y))
 
 ```math
 \mathcal{L}_{InfoNCE} = -E\left[\log\frac{e^{f(x_i, y_i)/\tau}}{\sum_{j=1}^{N} e^{f(x_i, y_j)/\tau}}\right]
+
 ```
 
 **Lower bounds mutual information:** $I(X; Y) \geq \log N - \mathcal{L}\_{InfoNCE}$
@@ -242,6 +257,7 @@ def info_nce_loss(z1, z2, temperature=0.5):
     sim.masked_fill_(mask, float('-inf'))
     
     return F.cross_entropy(sim, labels)
+
 ```
 
 ---
@@ -277,6 +293,7 @@ Compare to MSE for classification:
 • MSE: (1 - p)² when correct → saturates
 • CE:  -log(p) when correct → never saturates
 • CE penalizes confident wrong predictions more!
+
 ```
 
 ---

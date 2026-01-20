@@ -42,12 +42,14 @@ For averaged predictions \(\bar{f}(x) = \frac{1}{B}\sum_{b=1}^B f_b(x)\):
 
 ```math
 \text{Var}(\bar{f}) = \frac{1}{B^2}\sum_{b=1}^B \text{Var}(f_b) + \frac{1}{B^2}\sum_{b \neq b'} \text{Cov}(f_b, f_{b'})
+
 ```
 
 If models are independent with equal variance \(\sigma^2\):
 
 ```math
 \text{Var}(\bar{f}) = \frac{\sigma^2}{B}
+
 ```
 
 **Key insight:** Averaging reduces variance by factor of \(B\)!
@@ -70,12 +72,14 @@ If models are independent with equal variance \(\sigma^2\):
 
 ```math
 \text{Var}(\bar{f}) = \rho\sigma^2 + \frac{1-\rho}{B}\sigma^2
+
 ```
 
 **Proof:**
 
 ```math
 \text{Var}\left(\frac{1}{B}\sum_b f_b\right) = \frac{1}{B^2}\left[B\sigma^2 + B(B-1)\rho\sigma^2\right] = \rho\sigma^2 + \frac{(1-\rho)\sigma^2}{B}
+
 ```
 
 As \(B \to \infty\): \(\text{Var}(\bar{f}) \to \rho\sigma^2\). \(\blacksquare\)
@@ -103,18 +107,21 @@ Adds feature randomization to reduce \(\rho\):
 
 ```math
 \epsilon_t = \sum_{i=1}^n w_i^{(t)} \mathbb{1}[h_t(x_i) \neq y_i]
+
 ```
 
 3. Compute learner weight:
 
 ```math
 \alpha_t = \frac{1}{2}\ln\left(\frac{1-\epsilon_t}{\epsilon_t}\right)
+
 ```
 
 4. Update sample weights:
 
 ```math
 w_i^{(t+1)} = \frac{w_i^{(t)} \exp(-\alpha_t y_i h_t(x_i))}{Z_t}
+
 ```
 
 **Output:** \(H(x) = \text{sign}\left(\sum_{t=1}^T \alpha_t h_t(x)\right)\)
@@ -125,6 +132,7 @@ w_i^{(t+1)} = \frac{w_i^{(t)} \exp(-\alpha_t y_i h_t(x_i))}{Z_t}
 
 ```math
 \frac{1}{n}\sum_{i=1}^n \mathbb{1}[H(x_i) \neq y_i] \leq \prod_{t=1}^T 2\sqrt{\epsilon_t(1-\epsilon_t)}
+
 ```
 
 **Proof:** Using \(\exp(-y_i H(x_i)) \geq \mathbb{1}[H(x_i) \neq y_i]\) and telescoping. \(\blacksquare\)
@@ -139,12 +147,14 @@ Build model additively:
 
 ```math
 F_m(x) = F_{m-1}(x) + \gamma_m h_m(x)
+
 ```
 
 where \(h_m\) fits the negative gradient (pseudo-residuals):
 
 ```math
 r_{im} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]_{F=F_{m-1}}
+
 ```
 
 ### For Different Losses
@@ -159,12 +169,14 @@ r_{im} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]_{F=F_{m-1
 
 ```math
 \mathcal{L}^{(t)} = \sum_{i=1}^n \left[\ell(y_i, \hat{y}_i^{(t-1)} + f_t(x_i))\right] + \Omega(f_t)
+
 ```
 
 Second-order Taylor approximation:
 
 ```math
 \approx \sum_i [g_i f_t(x_i) + \frac{1}{2}h_i f_t^2(x_i)] + \Omega(f_t)
+
 ```
 
 where \(g_i = \partial_{\hat{y}} \ell\) and \(h_i = \partial^2_{\hat{y}} \ell\).
@@ -315,6 +327,7 @@ class RandomForest:
         for tree in self.trees:
             importances += tree.feature_importances_
         return importances / self.n_estimators
+
 ```
 
 ---

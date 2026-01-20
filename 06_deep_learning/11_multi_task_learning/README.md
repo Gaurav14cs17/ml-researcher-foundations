@@ -35,6 +35,7 @@ Solutions:
 • Uncertainty weighting
 • Gradient normalization
 • Task-specific heads
+
 ```
 
 ---
@@ -59,6 +60,7 @@ class MultiTaskModel(nn.Module):
     def forward(self, x):
         shared = self.shared(x)
         return [head(shared) for head in self.heads]
+
 ```
 
 ---

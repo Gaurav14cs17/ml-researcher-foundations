@@ -28,6 +28,7 @@
 ```math
 \text{MHA}(Q, K, V) = \text{Concat}(\text{head}_1, ..., \text{head}_h)W^O
 \text{head}_i = \text{Attention}(QW_Q^i, KW_K^i, VW_V^i)
+
 ```
 
 **Parameters per layer:**
@@ -48,6 +49,7 @@
 
 ```math
 \text{head}_i = \text{Attention}(QW_Q^i, KW_K, VW_V)
+
 ```
 
 - Each head has unique $W\_Q^i$
@@ -75,6 +77,7 @@
 
 ```math
 \text{head}_i = \text{Attention}(QW_Q^i, KW_K^{g(i)}, VW_V^{g(i)})
+
 ```
 
 where $g(i) = \lfloor i \cdot g / h \rfloor$.
@@ -98,18 +101,21 @@ where $g(i) = \lfloor i \cdot g / h \rfloor$.
 
 ```math
 \text{Cache size} = B \times L \times N_L \times N_{kv} \times d_k
+
 ```
 
 **MHA cache (LLaMA-7B, seq=2048):**
 
 ```math
 1 \times 2048 \times 32 \times 32 \times 128 = 268M \text{ floats} = 1GB
+
 ```
 
 **MQA cache (1 KV head per layer):**
 
 ```math
 1 \times 2048 \times 32 \times 1 \times 128 = 8.4M \text{ floats} = 32MB
+
 ```
 
 **32× reduction in KV cache!**
@@ -120,6 +126,7 @@ where $g(i) = \lfloor i \cdot g / h \rfloor$.
 
 ```math
 \text{Throughput} \propto \frac{\text{Compute}}{\text{Memory Access}}
+
 ```
 
 Smaller KV cache → Less memory access → Higher throughput.
@@ -330,6 +337,7 @@ if __name__ == "__main__":
         n_layers=32, n_heads=32, n_kv_heads=8,
         d_model=4096, seq_len=4096, batch_size=1
     )
+
 ```
 
 ---

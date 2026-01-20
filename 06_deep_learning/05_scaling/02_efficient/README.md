@@ -30,15 +30,18 @@ Modern deep learning requires efficient training techniques to handle large mode
 ## 📐 Mathematical Foundations
 
 ### Gradient Checkpointing
+
 ```
 Standard: Store all activations O(L × d)
 Checkpointing: Store O(√L) activations
 • Recompute during backward
 • Memory: O(√L × d) vs O(L × d)
 • Time: ~1.3x slower
+
 ```
 
 ### Gradient Accumulation
+
 ```
 Effective batch size: B_eff = B × K
 Where K = accumulation steps
@@ -46,9 +49,11 @@ Where K = accumulation steps
 Update: θ ← θ - η (1/K) Σₖ ∇L(Bₖ)
 
 Mathematically equivalent to larger batch!
+
 ```
 
 ### Flash Attention Memory
+
 ```
 Standard attention: O(N²) memory
 Flash Attention: O(N) memory
@@ -56,9 +61,11 @@ Flash Attention: O(N) memory
 Key idea: Tiling + online softmax
 QKᵀV computed in blocks
 Never materialize full N×N matrix
+
 ```
 
 ### LoRA Efficiency
+
 ```
 Standard fine-tuning: ΔW ∈ ℝᵈˣᵈ → d² params
 LoRA: ΔW = BA where B ∈ ℝᵈˣʳ, A ∈ ℝʳˣᵈ
@@ -66,6 +73,7 @@ LoRA: ΔW = BA where B ∈ ℝᵈˣʳ, A ∈ ℝʳˣᵈ
 Params: 2dr << d² when r << d
 Typical: r = 8-64, d = 4096
 Savings: 99.5%+ parameter reduction
+
 ```
 
 ---
@@ -95,6 +103,7 @@ for i, batch in enumerate(dataloader):
     if (i + 1) % accumulation_steps == 0:
         optimizer.step()
         optimizer.zero_grad()
+
 ```
 
 ---

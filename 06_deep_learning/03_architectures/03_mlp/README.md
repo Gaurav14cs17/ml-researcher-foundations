@@ -30,6 +30,7 @@ The Multi-Layer Perceptron is the simplest form of neural network. Despite being
 ## 📐 Mathematical Foundations
 
 ### Forward Pass
+
 ```
 Layer l:
 hₗ = σ(Wₗhₗ₋₁ + bₗ)
@@ -40,9 +41,11 @@ f(x) = WₗσWₗ₋₁σ...σW₁x + biases
 h₁ = σ(W₁x + b₁)
 h₂ = σ(W₂h₁ + b₂)
 y = W₃h₂ + b₃
+
 ```
 
 ### Backward Pass (Gradient)
+
 ```
 δₗ = ∂L/∂hₗ
 
@@ -50,9 +53,11 @@ y = W₃h₂ + b₃
 
 ∂L/∂Wₗ = δₗ hₗ₋₁ᵀ
 ∂L/∂bₗ = δₗ
+
 ```
 
 ### Universal Approximation
+
 ```
 Theorem (Hornik, 1989):
 MLP with one hidden layer can approximate any
@@ -60,6 +65,7 @@ continuous function on compact subsets of ℝⁿ
 to arbitrary precision, given enough neurons.
 
 f(x) ≈ Σᵢ₌₁ᴺ αᵢ σ(wᵢᵀx + bᵢ)
+
 ```
 
 ---
@@ -91,6 +97,7 @@ class MLP(nn.Module):
         x = self.act(self.fc1(x))
         x = self.act(self.fc2(x))
         return self.fc3(x)
+
 ```
 
 ---
