@@ -163,7 +163,7 @@ Behavior:
 ### 6. Linear Warmup + Linear Decay (BERT/GPT)
 
 ```
-        η_max --------╮
+        η_max --------.
                       |
                       ╲
                        ╲

@@ -269,9 +269,9 @@ TD Learning
     |
     +-- TD(0) ----------> SARSA (on-policy control)
     |                    
-    |                    ╭--> Q-Learning (off-policy)
+    |                    .--> Q-Learning (off-policy)
     +-- Q-values --------+
-    |                    ╰--> DQN (neural network)
+    |                    '--> DQN (neural network)
     |
     +-- TD(λ) ----------> Multi-step returns
                          +-- n-step TD
