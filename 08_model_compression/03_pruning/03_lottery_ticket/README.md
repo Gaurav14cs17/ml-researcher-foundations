@@ -27,19 +27,19 @@
 
 **Formal Statement:**
 
-Let $f(x; \theta)$ be a neural network with parameters $\theta\_0$ at initialization.
+Let $f(x; \theta)$ be a neural network with parameters $\theta_0$ at initialization.
 
 **Claim:** There exists a mask $m \in \{0,1\}^{|\theta|}$ such that:
 
-1. $\|m\|\_0 \ll |\theta|$ (high sparsity, e.g., 90%+)
+1. $\|m\|_0 \ll |\theta|$ (high sparsity, e.g., 90%+)
 
-2. $f(x; m \odot \theta\_0)$ trained for $T$ iterations achieves:
+2. $f(x; m \odot \theta_0)$ trained for $T$ iterations achieves:
 
 ```math
 \text{Acc}(f_{m \odot \theta_T}) \geq \text{Acc}(f_{\theta_T}) - \epsilon
 
 ```math
-The sparse subnetwork $(m, \theta\_0)$ is called a **winning ticket**.
+The sparse subnetwork $(m, \theta_0)$ is called a **winning ticket**.
 
 ---
 
@@ -67,9 +67,9 @@ Output: Winning ticket (m, θ₀)
 
 #### 2.2 Key Insight: Reset to Initialization
 
-**Why reset to $\theta\_0$?**
+**Why reset to $\theta_0$?**
 
-The winning ticket isn't just the mask $m$ - it's the combination $(m, \theta\_0)$.
+The winning ticket isn't just the mask $m$ - it's the combination $(m, \theta_0)$.
 
 Different random initializations give different tickets!
 
@@ -77,7 +77,7 @@ Different random initializations give different tickets!
 
 - Take mask $m$ from one initialization
 
-- Apply to different random initialization $\theta\_0'$
+- Apply to different random initialization $\theta_0'$
 
 - Result: Much worse accuracy!
 
@@ -102,7 +102,7 @@ Sparse networks have lower capacity → better generalization.
 
 **Linear Mode Connectivity (Frankle et al., 2020):**
 
-Two networks $\theta\_1, \theta\_2$ are linearly mode connected if:
+Two networks $\theta_1, \theta_2$ are linearly mode connected if:
 
 ```
 \mathcal{L}(\alpha\theta_1 + (1-\alpha)\theta_2) \leq \max(\mathcal{L}(\theta_1), \mathcal{L}(\theta_2)) \quad \forall \alpha \in [0,1]
@@ -128,7 +128,7 @@ f(x; \theta) \approx f(x; \theta_0) + \nabla_\theta f(x; \theta_0)^T (\theta - \
 f_m(x; \theta) \approx f(x; \theta_0) + (m \odot \nabla_\theta f(x; \theta_0))^T (\theta - \theta_0)
 
 ```math
-**Key:** The masked gradient $m \odot \nabla\_\theta f$ must still span the function space.
+**Key:** The masked gradient $m \odot \nabla_\theta f$ must still span the function space.
 
 ---
 
@@ -136,13 +136,13 @@ f_m(x; \theta) \approx f(x; \theta_0) + (m \odot \nabla_\theta f(x; \theta_0))^T
 
 #### 4.1 The Problem with Deep Networks
 
-**Observation:** IMP with reset to $\theta\_0$ fails for very deep networks (ResNets, Transformers).
+**Observation:** IMP with reset to $\theta_0$ fails for very deep networks (ResNets, Transformers).
 
 **Hypothesis:** The first few iterations of training are crucial for "unlocking" the ticket.
 
 #### 4.2 Late Resetting Solution
 
-**Reset to $\theta\_k$ instead of $\theta\_0$:**
+**Reset to $\theta_k$ instead of $\theta_0$:**
 
 ```
 
@@ -187,7 +187,7 @@ The early gradient updates "prepare" the network.
 
 **Theorem (Malach et al., 2020):**
 
-For any target network $f\_T$ with weights $\theta\_T$, a sufficiently overparameterized random network $f$ contains a subnetwork that approximates $f\_T$.
+For any target network $f_T$ with weights $\theta_T$, a sufficiently overparameterized random network $f$ contains a subnetwork that approximates $f_T$.
 
 Specifically, if $f$ has width $w$, then with high probability, a subnetwork can $\epsilon$-approximate any network of width $w/\log(w)$.
 
@@ -221,7 +221,7 @@ This proves IMP is finding something special, not just any sparse mask.
 
 #### 6.1 Theorem: Existence of Winning Tickets (Malach et al., 2020)
 
-**Theorem:** For any target network $f\_T: \mathbb{R}^d \to \mathbb{R}$ with $n$ hidden neurons and weights bounded by $B$, there exists a subnetwork of a random network with $O(n^2 \log(n/\delta))$ neurons that $\epsilon$-approximates $f\_T$ with probability $\geq 1-\delta$.
+**Theorem:** For any target network $f_T: \mathbb{R}^d \to \mathbb{R}$ with $n$ hidden neurons and weights bounded by $B$, there exists a subnetwork of a random network with $O(n^2 \log(n/\delta))$ neurons that $\epsilon$-approximates $f_T$ with probability $\geq 1-\delta$.
 
 **Proof Sketch:**
 
@@ -249,9 +249,9 @@ For ReLU networks with polynomial target, $d$ is effectively small due to low-ra
 
 #### 6.2 Theorem: Gradient Flow Preservation
 
-**Theorem:** A winning ticket $(m, \theta\_0)$ preserves the essential gradient directions of the dense network.
+**Theorem:** A winning ticket $(m, \theta_0)$ preserves the essential gradient directions of the dense network.
 
-**Formal statement:** Let $g\_{dense} = \nabla\_\theta \mathcal{L}|\_{\theta\_0}$ and $g\_{sparse} = m \odot g\_{dense}$. If:
+**Formal statement:** Let $g_{dense} = \nabla_\theta \mathcal{L}|_{\theta_0}$ and $g_{sparse} = m \odot g_{dense}$. If:
 
 ```
 
@@ -264,9 +264,9 @@ then the sparse network achieves similar convergence rate.
 
 Gradient descent update:
 
-- Dense: $\theta\_1 = \theta\_0 - \eta g\_{dense}$
+- Dense: $\theta_1 = \theta_0 - \eta g_{dense}$
 
-- Sparse: $\theta\_1^{(s)} = \theta\_0 - \eta g\_{sparse}$
+- Sparse: $\theta_1^{(s)} = \theta_0 - \eta g_{sparse}$
 
 The loss decrease:
 
@@ -313,7 +313,7 @@ The $\log(n/k)$ factor comes from the combinatorial choice of sparse pattern. �
 
 #### 6.4 Lemma: IMP Convergence
 
-**Lemma:** IMP with pruning rate $p$ per iteration converges to sparsity $s$ in $\lceil \log\_{1-p}(1-s) \rceil$ iterations.
+**Lemma:** IMP with pruning rate $p$ per iteration converges to sparsity $s$ in $\lceil \log_{1-p}(1-s) \rceil$ iterations.
 
 **Proof:**
 
@@ -624,7 +624,7 @@ def compare_lottery_vs_random(model_fn, train_fn, sparsity=0.9, num_trials=5):
 | Finding | Implication |
 |---------|-------------|
 | Winning tickets exist | Sparse networks can match dense |
-| Initialization matters | $(m, \theta\_0)$ is the ticket |
+| Initialization matters | $(m, \theta_0)$ is the ticket |
 | Late resetting needed | Deep networks need warm-up |
 | Tickets transfer | Universal compression possible |
 | Random pruning fails | IMP finds structure, not just sparsity |

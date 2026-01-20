@@ -93,7 +93,7 @@ L(N_c, D) = \frac{A}{N_c^\alpha} + \frac{B}{D^\beta} + E
 
 ```
 
-Where $N\_c$ = effective compressed parameters.
+Where $N_c$ = effective compressed parameters.
 
 **Compression Penalty:**
 

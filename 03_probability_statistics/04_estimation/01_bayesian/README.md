@@ -86,14 +86,14 @@ P(\theta) = \frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha, \beta)}
 
 ```
 
-**Likelihood:** $D = \{x\_1, \ldots, x\_n\}$ where $x\_i \sim \text{Bernoulli}(\theta)$
+**Likelihood:** $D = \{x_1, \ldots, x_n\}$ where $x_i \sim \text{Bernoulli}(\theta)$
 
 ```math
 P(D|\theta) = \theta^k (1-\theta)^{n-k}
 
 ```
 
-where $k = \sum\_{i=1}^n x\_i$ (number of successes).
+where $k = \sum_{i=1}^n x_i$ (number of successes).
 
 **Posterior:**
 
@@ -120,16 +120,16 @@ P(\theta|D) \propto P(D|\theta) \cdot P(\theta)
 |------------|-------|-----------|
 | Bernoulli($\theta$) | Beta($\alpha, \beta$) | Beta($\alpha+k, \beta+n-k$) |
 | Binomial($n, \theta$) | Beta($\alpha, \beta$) | Beta($\alpha+k, \beta+n-k$) |
-| Poisson($\lambda$) | Gamma($\alpha, \beta$) | Gamma($\alpha+\sum x\_i, \beta+n$) |
-| Gaussian($\mu$, known $\sigma^2$) | Gaussian($\mu\_0, \sigma\_0^2$) | Gaussian($\mu\_n, \sigma\_n^2$) |
+| Poisson($\lambda$) | Gamma($\alpha, \beta$) | Gamma($\alpha+\sum x_i, \beta+n$) |
+| Gaussian($\mu$, known $\sigma^2$) | Gaussian($\mu_0, \sigma_0^2$) | Gaussian($\mu_n, \sigma_n^2$) |
 | Gaussian(known $\mu$, $\sigma^2$) | Inverse-Gamma($\alpha, \beta$) | Inverse-Gamma($\alpha', \beta'$) |
 | Multinomial | Dirichlet | Dirichlet |
 
 ### Gaussian-Gaussian Conjugacy (Proof)
 
-**Prior:** $\mu \sim \mathcal{N}(\mu\_0, \sigma\_0^2)$
+**Prior:** $\mu \sim \mathcal{N}(\mu_0, \sigma_0^2)$
 
-**Likelihood:** $x\_1, \ldots, x\_n \sim \mathcal{N}(\mu, \sigma^2)$ (known $\sigma^2$)
+**Likelihood:** $x_1, \ldots, x_n \sim \mathcal{N}(\mu, \sigma^2)$ (known $\sigma^2$)
 
 **Posterior:**
 
@@ -194,7 +194,7 @@ This is the **ELBO** (Evidence Lower Bound).
 
 ```
 
-Since $D\_{KL} \geq 0$, ELBO ≤ log P(D). Maximizing ELBO:
+Since $D_{KL} \geq 0$, ELBO ≤ log P(D). Maximizing ELBO:
 
 1. Maximizes lower bound on evidence
 
@@ -219,7 +219,7 @@ The smallest interval containing 95% posterior probability:
 
 ```
 
-where $k$ is chosen so $\int\_{\text{HPD}} P(\theta|D) d\theta = 0.95$.
+where $k$ is chosen so $\int_{\text{HPD}} P(\theta|D) d\theta = 0.95$.
 
 ---
 

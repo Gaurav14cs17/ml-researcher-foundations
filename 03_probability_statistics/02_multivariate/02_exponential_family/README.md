@@ -139,7 +139,7 @@ p(x|\mu, \sigma^2) \propto \exp\left(\frac{\mu}{\sigma^2} x - \frac{1}{2\sigma^2
 |-----------|-------|
 | $\boldsymbol{\eta}$ | $[\mu/\sigma^2, -1/(2\sigma^2)]^\top$ |
 | $\mathbf{T}(x)$ | $[x, x^2]^\top$ |
-| $A(\boldsymbol{\eta})$ | $-\eta\_1^2/(4\eta\_2) - \frac{1}{2}\log(-2\eta\_2)$ |
+| $A(\boldsymbol{\eta})$ | $-\eta_1^2/(4\eta_2) - \frac{1}{2}\log(-2\eta_2)$ |
 
 ### Poisson
 
@@ -164,9 +164,9 @@ P(x|\boldsymbol{\pi}) = \prod_{k=1}^K \pi_k^{x_k}
 
 | Component | Value |
 |-----------|-------|
-| $\boldsymbol{\eta}$ | $[\log\pi\_1, \ldots, \log\pi\_{K-1}]^\top$ |
-| $\mathbf{T}(x)$ | $[x\_1, \ldots, x\_{K-1}]^\top$ |
-| $A(\boldsymbol{\eta})$ | $\log\sum\_k e^{\eta\_k}$ |
+| $\boldsymbol{\eta}$ | $[\log\pi_1, \ldots, \log\pi_{K-1}]^\top$ |
+| $\mathbf{T}(x)$ | $[x_1, \ldots, x_{K-1}]^\top$ |
+| $A(\boldsymbol{\eta})$ | $\log\sum_k e^{\eta_k}$ |
 
 ---
 

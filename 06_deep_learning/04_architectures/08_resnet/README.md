@@ -47,14 +47,14 @@ Where $F(x)$ is the residual function (typically 2-3 conv layers).
 
 ### Without Skip Connections
 
-For $L$ layers: $h\_L = f\_L(f\_{L-1}(...f\_1(x)))$
+For $L$ layers: $h_L = f_L(f_{L-1}(...f_1(x)))$
 
 ```math
 \frac{\partial \mathcal{L}}{\partial h_1} = \frac{\partial \mathcal{L}}{\partial h_L} \prod_{l=2}^{L} \frac{\partial h_l}{\partial h_{l-1}}
 
 ```
 
-If $\left|\frac{\partial h\_l}{\partial h\_{l-1}}\right| < 1$: vanishing gradients.
+If $\left|\frac{\partial h_l}{\partial h_{l-1}}\right| < 1$: vanishing gradients.
 
 ### With Skip Connections
 
@@ -145,7 +145,7 @@ y = F(x) + W_s x
 
 ```
 
-Where $W\_s$ is a 1×1 convolution matching dimensions.
+Where $W_s$ is a 1×1 convolution matching dimensions.
 
 ---
 

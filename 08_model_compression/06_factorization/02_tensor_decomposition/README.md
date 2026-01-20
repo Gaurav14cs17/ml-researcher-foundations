@@ -25,7 +25,7 @@
 
 #### 1.1 Definition
 
-**Tensor $\mathcal{T} \in \mathbb{R}^{I\_1 \times I\_2 \times ... \times I\_N}$:**
+**Tensor $\mathcal{T} \in \mathbb{R}^{I_1 \times I_2 \times ... \times I_N}$:**
 
 ```math
 \mathcal{T} \approx \sum_{r=1}^{R} \lambda_r \cdot a_r^{(1)} \otimes a_r^{(2)} \otimes ... \otimes a_r^{(N)}
@@ -36,9 +36,9 @@ where:
 
 - $\otimes$ = outer product
 
-- $a\_r^{(n)} \in \mathbb{R}^{I\_n}$ = factor vectors
+- $a_r^{(n)} \in \mathbb{R}^{I_n}$ = factor vectors
 
-- $\lambda\_r$ = scalar weights
+- $\lambda_r$ = scalar weights
 
 - $R$ = rank
 
@@ -51,9 +51,9 @@ where:
 
 #### 1.3 Parameter Reduction
 
-**Original:** $\prod\_{n=1}^N I\_n$
+**Original:** $\prod_{n=1}^N I_n$
 
-**CP:** $R \cdot \sum\_{n=1}^N I\_n$
+**CP:** $R \cdot \sum_{n=1}^N I_n$
 
 **Example (3D tensor $100 \times 100 \times 100$, R=10):**
 - Original: 1,000,000
@@ -73,11 +73,11 @@ where:
 
 where:
 
-- $\mathcal{G} \in \mathbb{R}^{R\_1 \times R\_2 \times ... \times R\_N}$ = core tensor
+- $\mathcal{G} \in \mathbb{R}^{R_1 \times R_2 \times ... \times R_N}$ = core tensor
 
-- $A^{(n)} \in \mathbb{R}^{I\_n \times R\_n}$ = factor matrices
+- $A^{(n)} \in \mathbb{R}^{I_n \times R_n}$ = factor matrices
 
-- $\times\_n$ = n-mode product
+- $\times_n$ = n-mode product
 
 #### 2.2 N-Mode Product
 
@@ -88,11 +88,11 @@ where:
 
 #### 2.3 Parameter Count
 
-**Core:** $\prod\_{n=1}^N R\_n$
+**Core:** $\prod_{n=1}^N R_n$
 
-**Factors:** $\sum\_{n=1}^N I\_n \cdot R\_n$
+**Factors:** $\sum_{n=1}^N I_n \cdot R_n$
 
-**Total:** $\prod\_{n=1}^N R\_n + \sum\_{n=1}^N I\_n \cdot R\_n$
+**Total:** $\prod_{n=1}^N R_n + \sum_{n=1}^N I_n \cdot R_n$
 
 ---
 
@@ -107,15 +107,15 @@ where:
 
 where:
 
-- $G\_k[i\_k] \in \mathbb{R}^{r\_{k-1} \times r\_k}$ = matrix slice
+- $G_k[i_k] \in \mathbb{R}^{r_{k-1} \times r_k}$ = matrix slice
 
-- $r\_0 = r\_N = 1$ (boundary conditions)
+- $r_0 = r_N = 1$ (boundary conditions)
 
-- $r\_1, ..., r\_{N-1}$ = TT-ranks
+- $r_1, ..., r_{N-1}$ = TT-ranks
 
 #### 3.2 Core Tensors
 
-Each core $G\_k \in \mathbb{R}^{r\_{k-1} \times I\_k \times r\_k}$ is a 3D tensor.
+Each core $G_k \in \mathbb{R}^{r_{k-1} \times I_k \times r_k}$ is a 3D tensor.
 
 #### 3.3 Parameter Count
 
@@ -139,7 +139,7 @@ vs. original $O(I^N)$ - exponential reduction!
 
 #### 4.1 Convolution Weight Tensor
 
-**4D Conv weight:** $W \in \mathbb{R}^{C\_{out} \times C\_{in} \times H \times W}$
+**4D Conv weight:** $W \in \mathbb{R}^{C_{out} \times C_{in} \times H \times W}$
 
 **Tucker decomposition:**
 
@@ -150,19 +150,19 @@ W \approx G \times_1 A_{out} \times_2 A_{in} \times_3 A_H \times_4 A_W
 
 **Implementation as 4 convolutions:**
 
-1. 1×1 conv: $C\_{in} \to R\_2$
+1. 1×1 conv: $C_{in} \to R_2$
 
-2. $R\_3 \times R\_4$ conv: $R\_2 \to R\_1$
+2. $R_3 \times R_4$ conv: $R_2 \to R_1$
 
-3. 1×1 conv: $R\_1 \to C\_{out}$
+3. 1×1 conv: $R_1 \to C_{out}$
 
 #### 4.2 Embedding Matrix
 
 **Large embedding:** $E \in \mathbb{R}^{V \times d}$
 
-**Reshape to tensor:** $\mathcal{E} \in \mathbb{R}^{V\_1 \times V\_2 \times ... \times d}$
+**Reshape to tensor:** $\mathcal{E} \in \mathbb{R}^{V_1 \times V_2 \times ... \times d}$
 
-where $V = V\_1 \cdot V\_2 \cdot ...$
+where $V = V_1 \cdot V_2 \cdot ...$
 
 **Apply TT decomposition for massive compression!**
 
@@ -401,9 +401,9 @@ def estimate_tt_ranks(tensor: torch.Tensor, energy_threshold: float = 0.95) -> l
 
 | Method | Parameters | Computation | Flexibility |
 |--------|------------|-------------|-------------|
-| **CP** | $R \sum I\_n$ | $O(R \prod I\_n)$ | Low |
-| **Tucker** | $\prod R\_n + \sum I\_n R\_n$ | $O(\prod R\_n)$ | High |
-| **TT** | $\sum r^2 I\_n$ | $O(r^2 \sum I\_n)$ | Medium |
+| **CP** | $R \sum I_n$ | $O(R \prod I_n)$ | Low |
+| **Tucker** | $\prod R_n + \sum I_n R_n$ | $O(\prod R_n)$ | High |
+| **TT** | $\sum r^2 I_n$ | $O(r^2 \sum I_n)$ | Medium |
 
 ---
 

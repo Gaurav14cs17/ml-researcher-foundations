@@ -33,7 +33,7 @@ Prepend learnable "virtual tokens" to keys and values.
 
 where:
 
-- $P\_K, P\_V \in \mathbb{R}^{l \times d}$ are learnable prefix matrices
+- $P_K, P_V \in \mathbb{R}^{l \times d}$ are learnable prefix matrices
 
 - $l$ = prefix length
 
@@ -118,7 +118,7 @@ vs. 345M for full model → **1.4%**
 
 #### 4.1 The Optimization Problem
 
-**Direct optimization of $P\_K, P\_V$ is unstable:**
+**Direct optimization of $P_K, P_V$ is unstable:**
 - High-dimensional
 
 - Lies in unusual parameter space
@@ -135,7 +135,7 @@ P_V = \text{MLP}(E_V)
 
 where:
 
-- $E\_K, E\_V \in \mathbb{R}^{l \times d'}$ with $d' < d$
+- $E_K, E_V \in \mathbb{R}^{l \times d'}$ with $d' < d$
 
 - MLP: $\mathbb{R}^{d'} \to \mathbb{R}^d$
 
@@ -149,7 +149,7 @@ where:
 
 #### 4.3 After Training
 
-**Discard MLP, keep only $P\_K, P\_V$:**
+**Discard MLP, keep only $P_K, P_V$:**
 - Compute final prefix values
 
 - Use directly for inference

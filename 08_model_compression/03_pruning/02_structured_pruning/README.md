@@ -123,7 +123,7 @@ s_f = \left|\sum_{c,i,j} \frac{\partial\mathcal{L}}{\partial W[f,c,i,j]} \cdot W
 
 ```
 
-Taking absolute value: $s\_f = |...|$
+Taking absolute value: $s_f = |...|$
 
 #### 3.3 Activation-Based (APoZ)
 
@@ -134,7 +134,7 @@ Taking absolute value: $s\_f = |...|$
 
 ```
 
-where $a\_f^{(n)}$ is activation of filter $f$ on sample $n$ (after ReLU).
+where $a_f^{(n)}$ is activation of filter $f$ on sample $n$ (after ReLU).
 
 **High APoZ → Filter rarely activates → Can prune.**
 
@@ -166,7 +166,7 @@ f^* = \arg\min_f \sum_{f' \neq f} \|W_f - W_{f'}\|_2
 
 where groups $g$ are filters, channels, etc.
 
-**Why $L\_{2,1}$ norm?**
+**Why $L_{2,1}$ norm?**
 
 ```math
 \|W\|_{2,1} = \sum_g \sqrt{\sum_{i \in g} w_i^2}
@@ -193,7 +193,7 @@ Weights in small groups get larger gradients → pushed to zero.
 
 ```
 
-where $m\_f \in [0,1]$ is learned.
+where $m_f \in [0,1]$ is learned.
 
 **During training:**
 
@@ -202,7 +202,7 @@ where $m\_f \in [0,1]$ is learned.
 
 ```
 
-**After training:** Prune structures with $m\_f < \tau$.
+**After training:** Prune structures with $m_f < \tau$.
 
 ---
 
@@ -237,7 +237,7 @@ y = \gamma \cdot \hat{x} + \beta
 
 ```
 
-**Prune channels with small $\gamma\_c$.**
+**Prune channels with small $\gamma_c$.**
 
 **Advantage:** No extra parameters, uses existing BN.
 

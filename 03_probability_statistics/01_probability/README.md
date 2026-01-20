@@ -109,7 +109,7 @@ E[X] = \begin{cases} \sum_x x \cdot P(X=x) & \text{discrete} \\ \int x \cdot f(x
 **Properties:**
 - Linearity: $E[aX + bY] = aE[X] + bE[Y]$ (always!)
 
-- LOTUS: $E[g(X)] = \sum\_x g(x) P(X=x)$
+- LOTUS: $E[g(X)] = \sum_x g(x) P(X=x)$
 
 ### Variance
 

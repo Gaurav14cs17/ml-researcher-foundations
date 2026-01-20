@@ -32,7 +32,7 @@ W' = Q_{NF4}(W_0) + \frac{\alpha}{r} BA
 
 where:
 
-- $Q\_{NF4}(W\_0)$ = 4-bit NormalFloat quantized weights
+- $Q_{NF4}(W_0)$ = 4-bit NormalFloat quantized weights
 
 - $BA$ = LoRA adaptation in FP16/BF16
 
@@ -107,7 +107,7 @@ s_q = \text{round}(s / s_s)
 
 ```
 
-where $s\_s$ is a "scale of scales" (per 256 blocks).
+where $s_s$ is a "scale of scales" (per 256 blocks).
 
 **Memory:**
 
@@ -194,7 +194,7 @@ h = Q_{NF4}(W_0) \cdot x + \frac{\alpha}{r} BA \cdot x
 
 **During forward pass:**
 
-1. Dequantize block of weights to FP16: $W\_{fp16} = s \cdot W\_q$
+1. Dequantize block of weights to FP16: $W_{fp16} = s \cdot W_q$
 
 2. Compute matmul in FP16
 3. Add LoRA contribution

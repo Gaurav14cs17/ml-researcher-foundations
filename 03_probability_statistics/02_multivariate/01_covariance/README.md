@@ -124,7 +124,7 @@ If X, Y independent: $E[XY] = E[X]E[Y]$
 
 **Proof (Cauchy-Schwarz):**
 
-Define $\tilde{X} = X - \mu\_X$ and $\tilde{Y} = Y - \mu\_Y$.
+Define $\tilde{X} = X - \mu_X$ and $\tilde{Y} = Y - \mu_Y$.
 
 By Cauchy-Schwarz inequality:
 
@@ -158,7 +158,7 @@ By Cauchy-Schwarz inequality:
 
 ### Definition
 
-For a random vector $\mathbf{X} = [X\_1, X\_2, \ldots, X\_n]^\top$:
+For a random vector $\mathbf{X} = [X_1, X_2, \ldots, X_n]^\top$:
 
 ```math
 \boldsymbol{\Sigma} = \text{Cov}(\mathbf{X}) = E[(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^\top]
@@ -199,7 +199,7 @@ For a random vector $\mathbf{X} = [X\_1, X\_2, \ldots, X\_n]^\top$:
 
 **1. Symmetric:** $\boldsymbol{\Sigma} = \boldsymbol{\Sigma}^\top$
 
-**Proof:** $\Sigma\_{ij} = \text{Cov}(X\_i, X\_j) = \text{Cov}(X\_j, X\_i) = \Sigma\_{ji} \quad \blacksquare$
+**Proof:** $\Sigma_{ij} = \text{Cov}(X_i, X_j) = \text{Cov}(X_j, X_i) = \Sigma_{ji} \quad \blacksquare$
 
 **2. Positive Semi-definite:** $\boldsymbol{\Sigma} \succeq 0$, i.e., $\mathbf{v}^\top \boldsymbol{\Sigma} \mathbf{v} \geq 0$ for all $\mathbf{v}$
 
@@ -236,7 +236,7 @@ where:
 
 ### Biased Estimator
 
-Given n samples $\mathbf{X}\_1, \ldots, \mathbf{X}\_n$:
+Given n samples $\mathbf{X}_1, \ldots, \mathbf{X}_n$:
 
 ```math
 \hat{\boldsymbol{\Sigma}} = \frac{1}{n} \sum_{i=1}^{n} (\mathbf{X}_i - \bar{\mathbf{X}})(\mathbf{X}_i - \bar{\mathbf{X}})^\top
@@ -361,15 +361,15 @@ d_M(\mathbf{x}, \boldsymbol{\mu}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \
 
 **Principal Component Analysis:**
 
-1. Center data: $\tilde{\mathbf{X}}\_i = \mathbf{X}\_i - \bar{\mathbf{X}}$
+1. Center data: $\tilde{\mathbf{X}}_i = \mathbf{X}_i - \bar{\mathbf{X}}$
 
-2. Compute sample covariance: $\hat{\boldsymbol{\Sigma}} = \frac{1}{n-1}\sum\_i \tilde{\mathbf{X}}\_i \tilde{\mathbf{X}}\_i^\top$
+2. Compute sample covariance: $\hat{\boldsymbol{\Sigma}} = \frac{1}{n-1}\sum_i \tilde{\mathbf{X}}_i \tilde{\mathbf{X}}_i^\top$
 
 3. Eigendecomposition: $\hat{\boldsymbol{\Sigma}} = \mathbf{U}\boldsymbol{\Lambda}\mathbf{U}^\top$
 
 4. Principal components: columns of $\mathbf{U}$ (eigenvectors)
 
-5. Explained variance: eigenvalues $\lambda\_i$
+5. Explained variance: eigenvalues $\lambda_i$
 
 **Projection onto k principal components:**
 
@@ -378,7 +378,7 @@ d_M(\mathbf{x}, \boldsymbol{\mu}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \
 
 ```
 
-where $\mathbf{U}\_k$ contains the top k eigenvectors.
+where $\mathbf{U}_k$ contains the top k eigenvectors.
 
 ---
 

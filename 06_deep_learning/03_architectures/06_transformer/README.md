@@ -73,11 +73,11 @@ Q = XW^Q, \quad K = XW^K, \quad V = XW^V
 
 Where:
 
-- $W^Q \in \mathbb{R}^{d \times d\_k}$ (query projection)
+- $W^Q \in \mathbb{R}^{d \times d_k}$ (query projection)
 
-- $W^K \in \mathbb{R}^{d \times d\_k}$ (key projection)
+- $W^K \in \mathbb{R}^{d \times d_k}$ (key projection)
 
-- $W^V \in \mathbb{R}^{d \times d\_v}$ (value projection)
+- $W^V \in \mathbb{R}^{d \times d_v}$ (value projection)
 
 **Interpretation:**
 - $Q$: "What am I looking for?"
@@ -94,7 +94,7 @@ S_{ij} = \sum_{k=1}^{d_k} Q_{ik} \cdot K_{jk} = \langle q_i, k_j \rangle
 
 ```
 
-**Interpretation:** $S\_{ij}$ measures similarity between query at position $i$ and key at position $j$.
+**Interpretation:** $S_{ij}$ measures similarity between query at position $i$ and key at position $j$.
 
 #### Step 3: Scaling
 
@@ -103,7 +103,7 @@ S_{ij} = \sum_{k=1}^{d_k} Q_{ik} \cdot K_{jk} = \langle q_i, k_j \rangle
 
 ```
 
-**Why scale by $\sqrt{d\_k}$?**
+**Why scale by $\sqrt{d_k}$?**
 
 **Theorem:** If $q, k \sim \mathcal{N}(0, 1)$ are independent, then:
 
@@ -127,7 +127,7 @@ Scaling by √d_k normalizes variance to 1.
 
 ```
 
-**Without scaling:** Large $d\_k$ → large dot products → softmax saturates → near-binary attention.
+**Without scaling:** Large $d_k$ → large dot products → softmax saturates → near-binary attention.
 
 #### Step 4: Softmax Normalization
 
@@ -138,9 +138,9 @@ A_{ij} = \frac{\exp(S_{ij}/\sqrt{d_k})}{\sum_{l=1}^n \exp(S_{il}/\sqrt{d_k})}
 ```
 
 **Properties:**
-- $\sum\_j A\_{ij} = 1$ (rows sum to 1)
+- $\sum_j A_{ij} = 1$ (rows sum to 1)
 
-- $A\_{ij} \geq 0$ (non-negative)
+- $A_{ij} \geq 0$ (non-negative)
 
 - Interpretation: probability that token $i$ attends to token $j$
 
@@ -177,11 +177,11 @@ A_{ij} = \frac{\exp(S_{ij}/\sqrt{d_k})}{\sum_{l=1}^n \exp(S_{il}/\sqrt{d_k})}
 
 Where:
 
-- $W\_h^Q, W\_h^K \in \mathbb{R}^{d \times d\_k}$ with $d\_k = d/H$
+- $W_h^Q, W_h^K \in \mathbb{R}^{d \times d_k}$ with $d_k = d/H$
 
-- $W\_h^V \in \mathbb{R}^{d \times d\_v}$ with $d\_v = d/H$
+- $W_h^V \in \mathbb{R}^{d \times d_v}$ with $d_v = d/H$
 
-- $W^O \in \mathbb{R}^{Hd\_v \times d}$ (output projection)
+- $W^O \in \mathbb{R}^{Hd_v \times d}$ (output projection)
 
 **Parameter Count:**
 
@@ -253,7 +253,7 @@ This is a linear combination with coefficients depending only on k!
 |--------|---------|---------|
 | **Learned** | $PE = \text{Embedding}(pos)$ | BERT, GPT-2 |
 | **RoPE** | Rotate Q, K by position | LLaMA, Mistral |
-| **ALiBi** | $A\_{ij} \leftarrow A\_{ij} - m \cdot |i-j|$ | BLOOM, MPT |
+| **ALiBi** | $A_{ij} \leftarrow A_{ij} - m \cdot |i-j|$ | BLOOM, MPT |
 
 ---
 

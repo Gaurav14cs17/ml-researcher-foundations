@@ -157,7 +157,7 @@ A = [T(e₁) | T(e₂) | ... | T(eₙ)]
 | Transformation | Matrix | Effect |
 |----------------|--------|--------|
 | **Identity** | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ | No change |
-| **Scaling** | $\begin{bmatrix} s\_x & 0 \\ 0 & s\_y \end{bmatrix}$ | Scale by $(s\_x, s\_y)$ |
+| **Scaling** | $\begin{bmatrix} s_x & 0 \\ 0 & s_y \end{bmatrix}$ | Scale by $(s_x, s_y)$ |
 | **Rotation** | $\begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}$ | Rotate by $\theta$ |
 | **Reflection (x-axis)** | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ | Flip vertically |
 | **Reflection (y-axis)** | $\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$ | Flip horizontally |
@@ -216,14 +216,14 @@ The same linear transformation has different matrix representations in different
 
 ### 📐 Theorem: Similarity Transformation
 
-If $A$ represents $T$ in the standard basis and $B$ represents $T$ in basis $\{\mathbf{v}\_1, \ldots, \mathbf{v}\_n\}$, then:
+If $A$ represents $T$ in the standard basis and $B$ represents $T$ in basis $\{\mathbf{v}_1, \ldots, \mathbf{v}_n\}$, then:
 
 ```math
 B = P^{-1}AP
 
 ```
 
-where $P = [\mathbf{v}\_1 | \cdots | \mathbf{v}\_n]$ (change of basis matrix).
+where $P = [\mathbf{v}_1 | \cdots | \mathbf{v}_n]$ (change of basis matrix).
 
 ### 🔍 Proof
 

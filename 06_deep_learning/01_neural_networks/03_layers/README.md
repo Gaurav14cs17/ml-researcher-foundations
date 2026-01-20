@@ -68,7 +68,7 @@ Given $\frac{\partial \mathcal{L}}{\partial y}$:
 
 ### Forward Pass
 
-For input $X \in \mathbb{R}^{H \times W \times C\_{in}}$ and kernel $K \in \mathbb{R}^{k \times k \times C\_{in} \times C\_{out}}$:
+For input $X \in \mathbb{R}^{H \times W \times C_{in}}$ and kernel $K \in \mathbb{R}^{k \times k \times C_{in} \times C_{out}}$:
 
 ```math
 Y[i, j, c_{out}] = \sum_{m=0}^{k-1} \sum_{n=0}^{k-1} \sum_{c_{in}=0}^{C_{in}-1} X[i+m, j+n, c_{in}] \cdot K[m, n, c_{in}, c_{out}] + b[c_{out}]
@@ -95,7 +95,7 @@ Where $p$ = padding, $s$ = stride, $k$ = kernel size.
 ### Backward Pass
 
 ```math
-\frac{\partial \mathcal{L}}{\partial X} = \text{full\_conv}\left(\frac{\partial \mathcal{L}}{\partial Y}, \text{flip}(K)\right)
+\frac{\partial \mathcal{L}}{\partial X} = \text{full_conv}\left(\frac{\partial \mathcal{L}}{\partial Y}, \text{flip}(K)\right)
 \frac{\partial \mathcal{L}}{\partial K} = \text{conv}\left(X, \frac{\partial \mathcal{L}}{\partial Y}\right)
 
 ```
@@ -113,11 +113,11 @@ Where $p$ = padding, $s$ = stride, $k$ = kernel size.
 
 Where:
 
-- $Q = XW\_Q$ (queries)
+- $Q = XW_Q$ (queries)
 
-- $K = XW\_K$ (keys)
+- $K = XW_K$ (keys)
 
-- $V = XW\_V$ (values)
+- $V = XW_V$ (values)
 
 ### Complexity
 
@@ -132,7 +132,7 @@ Where:
 
 ```
 
-(for $W\_Q$, $W\_K$, $W\_V$, and $W\_O$)
+(for $W_Q$, $W_K$, $W_V$, and $W_O$)
 
 ---
 
@@ -269,7 +269,7 @@ Or in matrix form:
 | Layer | Purpose | Parameters | Complexity |
 |-------|---------|------------|------------|
 | **Linear** | Transform | $m(n+1)$ | $O(mn)$ |
-| **Conv2D** | Local patterns | $C\_{out}(C\_{in}k^2+1)$ | $O(HWk^2C\_{in}C\_{out})$ |
+| **Conv2D** | Local patterns | $C_{out}(C_{in}k^2+1)$ | $O(HWk^2C_{in}C_{out})$ |
 | **Attention** | Global relations | $4d^2$ | $O(n^2d)$ |
 | **LayerNorm** | Normalize | $2d$ | $O(d)$ |
 | **Dropout** | Regularize | $0$ | $O(n)$ |

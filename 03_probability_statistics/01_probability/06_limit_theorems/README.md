@@ -31,7 +31,7 @@ Limit theorems explain why statistics and machine learning work. They guarantee 
 
 ### Weak Law of Large Numbers
 
-**Theorem:** For i.i.d. random variables $X\_1, X\_2, \ldots, X\_n$ with $E[X\_i] = \mu$ and finite variance:
+**Theorem:** For i.i.d. random variables $X_1, X_2, \ldots, X_n$ with $E[X_i] = \mu$ and finite variance:
 
 ```math
 \bar{X}_n = \frac{1}{n}\sum_{i=1}^{n} X_i \xrightarrow{p} \mu \quad \text{as } n \to \infty
@@ -66,7 +66,7 @@ as $n \to \infty$. $\quad \blacksquare$
 
 ### Statement
 
-**Theorem:** For i.i.d. random variables $X\_1, \ldots, X\_n$ with $E[X\_i] = \mu$ and $\text{Var}(X\_i) = \sigma^2 < \infty$:
+**Theorem:** For i.i.d. random variables $X_1, \ldots, X_n$ with $E[X_i] = \mu$ and $\text{Var}(X_i) = \sigma^2 < \infty$:
 
 ```math
 \frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma} \xrightarrow{d} \mathcal{N}(0, 1) \quad \text{as } n \to \infty
@@ -91,7 +91,7 @@ Z_i = \frac{X_i - \mu}{\sigma}
 
 ```
 
-So $E[Z\_i] = 0$ and $\text{Var}(Z\_i) = 1$.
+So $E[Z_i] = 0$ and $\text{Var}(Z_i) = 1$.
 
 **Step 2:** Define standardized sum
 
@@ -107,7 +107,7 @@ S_n = \frac{1}{\sqrt{n}}\sum_{i=1}^{n} Z_i = \frac{\sqrt{n}(\bar{X}_n - \mu)}{\s
 
 ```
 
-**Step 4:** Taylor expansion of $\phi\_Z$
+**Step 4:** Taylor expansion of $\phi_Z$
 
 ```math
 \phi_Z(s) = 1 + is \cdot E[Z] - \frac{s^2}{2}E[Z^2] + O(s^3)
@@ -179,14 +179,14 @@ P(|X - \mu| \geq k\sigma) \leq \frac{1}{k^2}
 
 ### Hoeffding's Inequality
 
-For i.i.d. bounded random variables $X\_i \in [a\_i, b\_i]$:
+For i.i.d. bounded random variables $X_i \in [a_i, b_i]$:
 
 ```math
 P\left(\bar{X}_n - \mu \geq t\right) \leq \exp\left(-\frac{2n^2 t^2}{\sum_i (b_i - a_i)^2}\right)
 
 ```
 
-For $X\_i \in [a, b]$:
+For $X_i \in [a, b]$:
 
 ```math
 P\left(|\bar{X}_n - \mu| \geq t\right) \leq 2\exp\left(-\frac{2nt^2}{(b-a)^2}\right)
@@ -197,7 +197,7 @@ P\left(|\bar{X}_n - \mu| \geq t\right) \leq 2\exp\left(-\frac{2nt^2}{(b-a)^2}\ri
 
 ### Chernoff Bound
 
-For $X = \sum\_{i=1}^n X\_i$ where $X\_i \in \{0, 1\}$ are independent with $E[X\_i] = p\_i$:
+For $X = \sum_{i=1}^n X_i$ where $X_i \in \{0, 1\}$ are independent with $E[X_i] = p_i$:
 
 ```math
 P(X \geq (1+\delta)\mu) \leq e^{-\frac{\delta^2 \mu}{2+\delta}}
@@ -205,7 +205,7 @@ P(X \leq (1-\delta)\mu) \leq e^{-\frac{\delta^2 \mu}{2}}
 
 ```
 
-where $\mu = E[X] = \sum\_i p\_i$.
+where $\mu = E[X] = \sum_i p_i$.
 
 ---
 
@@ -348,10 +348,10 @@ print(f"Need n={n} samples for 95% confidence within ±0.01")
 
 | Theorem | Statement | Use in ML |
 |---------|-----------|-----------|
-| **Weak LLN** | $\bar{X}\_n \xrightarrow{p} \mu$ | Sample mean → true mean |
-| **Strong LLN** | $\bar{X}\_n \xrightarrow{a.s.} \mu$ | Almost sure convergence |
-| **CLT** | $\sqrt{n}(\bar{X}\_n - \mu)/\sigma \xrightarrow{d} \mathcal{N}(0,1)$ | Why Gaussians everywhere |
-| **Hoeffding** | $P(\|\bar{X}\_n - \mu\| \geq t) \leq 2e^{-2nt^2}$ | Sample complexity bounds |
+| **Weak LLN** | $\bar{X}_n \xrightarrow{p} \mu$ | Sample mean → true mean |
+| **Strong LLN** | $\bar{X}_n \xrightarrow{a.s.} \mu$ | Almost sure convergence |
+| **CLT** | $\sqrt{n}(\bar{X}_n - \mu)/\sigma \xrightarrow{d} \mathcal{N}(0,1)$ | Why Gaussians everywhere |
+| **Hoeffding** | $P(\|\bar{X}_n - \mu\| \geq t) \leq 2e^{-2nt^2}$ | Sample complexity bounds |
 | **Chebyshev** | $P(\|X - \mu\| \geq k\sigma) \leq 1/k^2$ | Basic concentration |
 
 ---

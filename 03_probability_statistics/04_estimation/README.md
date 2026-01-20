@@ -114,7 +114,7 @@ X_1, \ldots, X_n \sim \text{Bernoulli}(p)
 
 ```
 
-where $k = \sum\_{i=1}^{n} x\_i$.
+where $k = \sum_{i=1}^{n} x_i$.
 
 **MLE:**
 
@@ -264,7 +264,7 @@ I(\theta) = -E\left[\frac{\partial^2 \log P(X|\theta)}{\partial \theta^2}\right]
 
 - Higher $I(\theta)$ → more information about $\theta$
 
-- $\text{Var}(\hat{\theta}\_{MLE}) \approx \frac{1}{I(\theta)}$ (asymptotically)
+- $\text{Var}(\hat{\theta}_{MLE}) \approx \frac{1}{I(\theta)}$ (asymptotically)
 
 **Cramér-Rao Lower Bound:**
 

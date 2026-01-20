@@ -56,9 +56,9 @@ p_X(x) = P(X = x)
 
 **Requirements:**
 
-1. $p\_X(x) \geq 0$ for all $x$
+1. $p_X(x) \geq 0$ for all $x$
 
-2. $\sum\_x p\_X(x) = 1$
+2. $\sum_x p_X(x) = 1$
 
 ### Examples
 
@@ -257,11 +257,11 @@ M_X(t) = E[e^{tX}]
 
 ### Properties
 
-1. $M\_X(0) = 1$
+1. $M_X(0) = 1$
 
-2. $\frac{d^n M\_X}{dt^n}\bigg|\_{t=0} = E[X^n]$
+2. $\frac{d^n M_X}{dt^n}\bigg|_{t=0} = E[X^n]$
 
-3. If $M\_X(t) = M\_Y(t)$ for all $t$, then $X \stackrel{d}{=} Y$
+3. If $M_X(t) = M_Y(t)$ for all $t$, then $X \stackrel{d}{=} Y$
 
 ### Example: Gaussian MGF
 

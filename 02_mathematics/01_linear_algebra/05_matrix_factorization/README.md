@@ -115,7 +115,7 @@ Matrix factorization methods relax these.
 
 ```
 
-- Frobenius norm: $\|A\|\_F = \sqrt{\sum\_{ij} A\_{ij}^2}$
+- Frobenius norm: $\|A\|_F = \sqrt{\sum_{ij} A_{ij}^2}$
 
 - Regularization $\lambda$ prevents overfitting
 
@@ -155,7 +155,7 @@ Repeat until convergence:
 
 ```
 
-subject to $U\_{ij} \geq 0$ and $V\_{ij} \geq 0$.
+subject to $U_{ij} \geq 0$ and $V_{ij} \geq 0$.
 
 ### 🔍 Why Non-Negativity?
 
@@ -225,7 +225,7 @@ Therefore objective decreases (or stays same) at each step.  ∎
 
 - Items: $n$ items
 
-- Ratings: $R\_{ij}$ = rating user $i$ gave item $j$ (only some known)
+- Ratings: $R_{ij}$ = rating user $i$ gave item $j$ (only some known)
 
 ### 📐 Matrix Factorization Model
 
@@ -238,13 +238,13 @@ where:
 
 - $b$: global bias
 
-- $b\_i$: user bias
+- $b_i$: user bias
 
-- $b\_j$: item bias
+- $b_j$: item bias
 
-- $\mathbf{u}\_i$: user latent factors
+- $\mathbf{u}_i$: user latent factors
 
-- $\mathbf{v}\_j$: item latent factors
+- $\mathbf{v}_j$: item latent factors
 
 ### 🔍 Optimization
 

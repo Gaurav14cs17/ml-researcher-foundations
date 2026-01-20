@@ -36,7 +36,7 @@
 
 ```
 
-Where $\mathcal{L}\_{cos}$ is cosine embedding loss for hidden states.
+Where $\mathcal{L}_{cos}$ is cosine embedding loss for hidden states.
 
 **Results:**
 - Size: 40% smaller (110M → 66M)
@@ -96,7 +96,7 @@ Same quality, 5× fewer active params!
 
 ```
 
-For $D\_K=3$, $N=256$: $\frac{1}{1/256 + 1/9} \approx 8.2\times$
+For $D_K=3$, $N=256$: $\frac{1}{1/256 + 1/9} \approx 8.2\times$
 
 **MobileNetV3 vs ResNet-50:**
 

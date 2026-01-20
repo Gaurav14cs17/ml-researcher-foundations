@@ -77,21 +77,21 @@ p(\mathbf{x}) = (2\pi)^{-d/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2
 
 **Proof:**
 
-The marginal is obtained by integrating out $\mathbf{x}\_2$:
+The marginal is obtained by integrating out $\mathbf{x}_2$:
 
 ```math
 p(\mathbf{x}_1) = \int p(\mathbf{x}_1, \mathbf{x}_2) \, d\mathbf{x}_2
 
 ```
 
-Using the partitioned form of the Gaussian and completing the square in $\mathbf{x}\_2$, the integral over $\mathbf{x}\_2$ yields a normalizing constant, leaving:
+Using the partitioned form of the Gaussian and completing the square in $\mathbf{x}_2$, the integral over $\mathbf{x}_2$ yields a normalizing constant, leaving:
 
 ```math
 p(\mathbf{x}_1) = (2\pi)^{-d_1/2} |\boldsymbol{\Sigma}_{11}|^{-1/2} \exp\left(-\frac{1}{2}(\mathbf{x}_1-\boldsymbol{\mu}_1)^\top\boldsymbol{\Sigma}_{11}^{-1}(\mathbf{x}_1-\boldsymbol{\mu}_1)\right)
 
 ```
 
-This is $\mathcal{N}(\boldsymbol{\mu}\_1, \boldsymbol{\Sigma}\_{11})$. $\blacksquare$
+This is $\mathcal{N}(\boldsymbol{\mu}_1, \boldsymbol{\Sigma}_{11})$. $\blacksquare$
 
 ---
 
@@ -157,9 +157,9 @@ Q = (\mathbf{x}_1 - \boldsymbol{\mu}_1)^\top \boldsymbol{\Lambda}_{11} (\mathbf{
 
 ```
 
-**Step 4: Complete the square in $\mathbf{x}\_1$**
+**Step 4: Complete the square in $\mathbf{x}_1$**
 
-Fixing $\mathbf{x}\_2 = \mathbf{a}$ and completing the square:
+Fixing $\mathbf{x}_2 = \mathbf{a}$ and completing the square:
 
 ```math
 Q = (\mathbf{x}_1 - \boldsymbol{\mu}_{1|2})^\top \boldsymbol{\Lambda}_{11} (\mathbf{x}_1 - \boldsymbol{\mu}_{1|2}) + \text{terms not involving } \mathbf{x}_1
@@ -173,7 +173,7 @@ where:
 
 ```
 
-**Step 5: Use the identity $\boldsymbol{\Lambda}\_{12} = -\boldsymbol{\Sigma}\_{1|2}^{-1}\boldsymbol{\Sigma}\_{12}\boldsymbol{\Sigma}\_{22}^{-1}$**
+**Step 5: Use the identity $\boldsymbol{\Lambda}_{12} = -\boldsymbol{\Sigma}_{1|2}^{-1}\boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}$**
 
 ```math
 \boldsymbol{\mu}_{1|2} = \boldsymbol{\mu}_1 + \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}(\mathbf{a} - \boldsymbol{\mu}_2) \quad \blacksquare
@@ -186,7 +186,7 @@ where:
 
 2. **Conditional covariance is independent of the observed value** - It only depends on which variables are observed, not their values
 
-3. **Schur complement** appears naturally: $\boldsymbol{\Sigma}\_{1|2} = \boldsymbol{\Sigma}\_{11} - \boldsymbol{\Sigma}\_{12}\boldsymbol{\Sigma}\_{22}^{-1}\boldsymbol{\Sigma}\_{21}$
+3. **Schur complement** appears naturally: $\boldsymbol{\Sigma}_{1|2} = \boldsymbol{\Sigma}_{11} - \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}\boldsymbol{\Sigma}_{21}$
 
 ---
 
@@ -227,7 +227,7 @@ This is the CF of $\mathcal{N}(\mathbf{A}\boldsymbol{\mu}+\mathbf{b}, \mathbf{A}
 
 ## 📐 Sum of Independent Gaussians
 
-**Theorem:** If $\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}\_x, \boldsymbol{\Sigma}\_x)$ and $\mathbf{Y} \sim \mathcal{N}(\boldsymbol{\mu}\_y, \boldsymbol{\Sigma}\_y)$ are independent:
+**Theorem:** If $\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}_x, \boldsymbol{\Sigma}_x)$ and $\mathbf{Y} \sim \mathcal{N}(\boldsymbol{\mu}_y, \boldsymbol{\Sigma}_y)$ are independent:
 
 ```math
 \mathbf{X} + \mathbf{Y} \sim \mathcal{N}(\boldsymbol{\mu}_x + \boldsymbol{\mu}_y, \boldsymbol{\Sigma}_x + \boldsymbol{\Sigma}_y)
@@ -291,7 +291,7 @@ For $q = \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ and $p = \mathcal{N
 
 ```
 
-For diagonal $\boldsymbol{\Sigma} = \text{diag}(\sigma\_1^2, \ldots, \sigma\_d^2)$:
+For diagonal $\boldsymbol{\Sigma} = \text{diag}(\sigma_1^2, \ldots, \sigma_d^2)$:
 
 ```math
 = \frac{1}{2}\sum_{i=1}^{d}\left(\mu_i^2 + \sigma_i^2 - 1 - \log\sigma_i^2\right) \quad \blacksquare
@@ -322,7 +322,7 @@ E[\mathbf{X}] = \boldsymbol{\mu} + \mathbf{L}E[\mathbf{Z}] = \boldsymbol{\mu}
 
 ### Box-Muller Transform (Univariate)
 
-Generate $X \sim \mathcal{N}(0,1)$ from uniform $U\_1, U\_2 \sim \text{Unif}(0,1)$:
+Generate $X \sim \mathcal{N}(0,1)$ from uniform $U_1, U_2 \sim \text{Unif}(0,1)$:
 
 ```math
 X = \sqrt{-2\ln U_1} \cos(2\pi U_2)
@@ -343,14 +343,14 @@ f \sim \mathcal{GP}(m, k)
 
 ```
 
-For any set of points $\{x\_1, \ldots, x\_n\}$:
+For any set of points $\{x_1, \ldots, x_n\}$:
 
 ```math
 [f(x_1), \ldots, f(x_n)]^\top \sim \mathcal{N}(\mathbf{m}, \mathbf{K})
 
 ```
 
-where $m\_i = m(x\_i)$ and $K\_{ij} = k(x\_i, x\_j)$.
+where $m_i = m(x_i)$ and $K_{ij} = k(x_i, x_j)$.
 
 **GP Regression uses the conditional Gaussian formula!**
 

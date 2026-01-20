@@ -127,7 +127,7 @@ F_{aggregated} = \sum_l \alpha_l \cdot r_l(F^l)
 
 ```
 
-Learn $\alpha\_l$ to weight contributions.
+Learn $\alpha_l$ to weight contributions.
 
 ---
 
@@ -142,7 +142,7 @@ p_{teacher} = \sum_i g_i \cdot p_i
 
 ```
 
-where $g = \text{softmax}(W\_g \cdot h)$ is a learned gate.
+where $g = \text{softmax}(W_g \cdot h)$ is a learned gate.
 
 #### 4.2 Collaborative Learning
 
@@ -153,7 +153,7 @@ where $g = \text{softmax}(W\_g \cdot h)$ is a learned gate.
 
 ```
 
-where $p\_{ensemble} = \frac{1}{N}\sum\_j p\_j$ (or weighted).
+where $p_{ensemble} = \frac{1}{N}\sum_j p_j$ (or weighted).
 
 ---
 

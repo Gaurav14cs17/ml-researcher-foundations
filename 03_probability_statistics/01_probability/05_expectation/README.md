@@ -230,11 +230,11 @@ If X and Y are **independent**:
 
 ```
 
-- $\gamma\_1 = 0$: Symmetric distribution
+- $\gamma_1 = 0$: Symmetric distribution
 
-- $\gamma\_1 > 0$: Right tail longer (positive skew)
+- $\gamma_1 > 0$: Right tail longer (positive skew)
 
-- $\gamma\_1 < 0$: Left tail longer (negative skew)
+- $\gamma_1 < 0$: Left tail longer (negative skew)
 
 **Kurtosis (Tail Weight):**
 
@@ -243,13 +243,13 @@ If X and Y are **independent**:
 
 ```
 
-**Excess Kurtosis:** $\gamma\_2 - 3$ (Gaussian has excess kurtosis = 0)
+**Excess Kurtosis:** $\gamma_2 - 3$ (Gaussian has excess kurtosis = 0)
 
-- $\gamma\_2 - 3 = 0$: Normal-like tails
+- $\gamma_2 - 3 = 0$: Normal-like tails
 
-- $\gamma\_2 - 3 > 0$: Heavier tails than normal
+- $\gamma_2 - 3 > 0$: Heavier tails than normal
 
-- $\gamma\_2 - 3 < 0$: Lighter tails than normal
+- $\gamma_2 - 3 < 0$: Lighter tails than normal
 
 ---
 

@@ -72,9 +72,9 @@ For positive pair $(i, j)$:
 
 ```
 
-Where $p\_{ij}$ is the softmax probability.
+Where $p_{ij}$ is the softmax probability.
 
-**Interpretation:** Push $z\_i$ toward $z\_j$, away from negatives.
+**Interpretation:** Push $z_i$ toward $z_j$, away from negatives.
 
 ---
 
@@ -176,7 +176,7 @@ Where $m \approx 0.999$ provides slowly evolving keys.
 
 ```
 
-Where $q\_\theta$ is a predictor network.
+Where $q_\theta$ is a predictor network.
 
 **Why doesn't it collapse?**
 - Asymmetry between online and target
@@ -246,7 +246,7 @@ Where $\mathcal{M}$ is the set of masked positions.
 
 ### Zero-Shot Classification
 
-For image $I$ and class names $\{c\_1, ..., c\_K\}$:
+For image $I$ and class names $\{c_1, ..., c_K\}$:
 
 ```math
 p(c_k | I) = \frac{\exp(\text{sim}(I, \text{prompt}(c_k))/\tau)}{\sum_j \exp(\text{sim}(I, \text{prompt}(c_j))/\tau)}

@@ -34,11 +34,11 @@
 
 where:
 
-- $w\_i$ = original weight value
+- $w_i$ = original weight value
 
-- $c\_j$ = cluster centroid (shared value)
+- $c_j$ = cluster centroid (shared value)
 
-- $a\_i \in \{1, ..., K\}$ = cluster assignment for weight $i$
+- $a_i \in \{1, ..., K\}$ = cluster assignment for weight $i$
 
 #### 1.2 Lloyd's Algorithm
 
@@ -140,7 +140,7 @@ H = -\sum_{j=1}^K p_j \log_2(p_j)
 
 ```
 
-where $p\_j = \frac{|S\_j|}{n}$.
+where $p_j = \frac{|S_j|}{n}$.
 
 **Huffman codes achieve:**
 

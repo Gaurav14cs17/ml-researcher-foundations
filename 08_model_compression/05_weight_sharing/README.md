@@ -30,19 +30,19 @@
 
 Where:
 
-- $w\_i$ = original weight value
+- $w_i$ = original weight value
 
-- $c\_j$ = cluster centroid ($j \in \{1,...,K\}$)
+- $c_j$ = cluster centroid ($j \in \{1,...,K\}$)
 
-- $a\_i$ = cluster assignment for weight $i$
+- $a_i$ = cluster assignment for weight $i$
 
 - $K$ = number of clusters
 
 **Lloyd's Algorithm:**
 
-1. **Assignment:** $a\_i = \arg\min\_j \|w\_i - c\_j\|^2$
+1. **Assignment:** $a_i = \arg\min_j \|w_i - c_j\|^2$
 
-2. **Update:** $c\_j = \frac{1}{|S\_j|}\sum\_{i \in S\_j} w\_i$ where $S\_j = \{i : a\_i = j\}$
+2. **Update:** $c_j = \frac{1}{|S_j|}\sum_{i \in S_j} w_i$ where $S_j = \{i : a_i = j\}$
 
 3. Repeat until convergence
 
@@ -63,7 +63,7 @@ Where:
 ```
 
 - $K \times 32$: Store $K$ centroids in FP32
-- $n \times \lceil\log\_2(K)\rceil$: Store indices
+- $n \times \lceil\log_2(K)\rceil$: Store indices
 
 **Compression Ratio:**
 
@@ -95,7 +95,7 @@ H = -\sum_{j=1}^{K} p_j \log_2(p_j)
 
 ```
 
-Where $p\_j = \frac{|S\_j|}{n}$ is the fraction of weights in cluster $j$.
+Where $p_j = \frac{|S_j|}{n}$ is the fraction of weights in cluster $j$.
 
 **Huffman Coding Guarantee:**
 
@@ -177,9 +177,9 @@ E = E_1 \times E_2
 
 Where:
 
-- $E\_1 \in \mathbb{R}^{V \times E}$ (vocabulary to low-dim)
+- $E_1 \in \mathbb{R}^{V \times E}$ (vocabulary to low-dim)
 
-- $E\_2 \in \mathbb{R}^{E \times H}$ (low-dim to hidden)
+- $E_2 \in \mathbb{R}^{E \times H}$ (low-dim to hidden)
 
 **Parameter Reduction:**
 
@@ -197,7 +197,7 @@ For $V=30000$, $H=1024$, $E=128$:
 
 ### 7. Multi-Query Attention (MQA)
 
-**Standard Multi-Head Attention:** Each head has unique $W\_Q^i, W\_K^i, W\_V^i$.
+**Standard Multi-Head Attention:** Each head has unique $W_Q^i, W_K^i, W_V^i$.
 
 **Multi-Query Attention (MQA):**
 Single K,V projection shared across all heads:

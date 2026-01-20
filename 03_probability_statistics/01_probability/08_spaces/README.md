@@ -78,7 +78,7 @@ A **σ-algebra** $\mathcal{F}$ on $\Omega$ is a collection of subsets satisfying
 
 2. $A \in \mathcal{F} \Rightarrow A^c \in \mathcal{F}$ (closed under complements)
 
-3. $A\_1, A\_2, \ldots \in \mathcal{F} \Rightarrow \bigcup\_{i=1}^{\infty} A\_i \in \mathcal{F}$ (closed under countable unions)
+3. $A_1, A_2, \ldots \in \mathcal{F} \Rightarrow \bigcup_{i=1}^{\infty} A_i \in \mathcal{F}$ (closed under countable unions)
 
 ### Why σ-Algebras?
 
@@ -113,7 +113,7 @@ P(\Omega) = 1
 ```
 
 **Axiom 3 (Countable Additivity):**
-For disjoint events $A\_1, A\_2, \ldots$:
+For disjoint events $A_1, A_2, \ldots$:
 
 ```math
 P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)
@@ -233,7 +233,7 @@ P(A|B) = P(A) \quad \text{and} \quad P(B|A) = P(B)
 
 ### Mutual Independence
 
-Events $A\_1, \ldots, A\_n$ are **mutually independent** if for every subset $S \subseteq \{1, \ldots, n\}$:
+Events $A_1, \ldots, A_n$ are **mutually independent** if for every subset $S \subseteq \{1, \ldots, n\}$:
 
 ```math
 P\left(\bigcap_{i \in S} A_i\right) = \prod_{i \in S} P(A_i)
@@ -248,7 +248,7 @@ P\left(\bigcap_{i \in S} A_i\right) = \prod_{i \in S} P(A_i)
 
 ### Theorem
 
-If $\{B\_1, B\_2, \ldots, B\_n\}$ is a partition of $\Omega$ (disjoint with $\cup\_i B\_i = \Omega$):
+If $\{B_1, B_2, \ldots, B_n\}$ is a partition of $\Omega$ (disjoint with $\cup_i B_i = \Omega$):
 
 ```math
 P(A) = \sum_{i=1}^{n} P(A|B_i) P(B_i)
@@ -262,7 +262,7 @@ A = A \cap \Omega = A \cap \left(\bigcup_i B_i\right) = \bigcup_i (A \cap B_i)
 
 ```
 
-Since $A \cap B\_i$ are disjoint:
+Since $A \cap B_i$ are disjoint:
 
 ```math
 P(A) = \sum_i P(A \cap B_i) = \sum_i P(A|B_i) P(B_i) \quad \blacksquare

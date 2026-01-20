@@ -174,7 +174,7 @@ J = \begin{bmatrix} \nabla f_1^T \\ \nabla f_2^T \\ \vdots \\ \nabla f_m^T \end{
 
 ```
 
-**Key**: Row $i$ = gradient of $f\_i$, Column $j$ = sensitivity to $x\_j$
+**Key**: Row $i$ = gradient of $f_i$, Column $j$ = sensitivity to $x_j$
 
 ### 📐 Linear Approximation
 
@@ -240,7 +240,7 @@ For square Jacobian ($m = n$):
 
 **Applications**:
 
-- Normalizing flows: $p(x) = p(f^{-1}(x)) \cdot |\det(J\_{f^{-1}})|$
+- Normalizing flows: $p(x) = p(f^{-1}(x)) \cdot |\det(J_{f^{-1}})|$
 
 - Change of variables in integration
 
@@ -375,12 +375,12 @@ This means gradient descent will be slow!
 
 | Expression | Gradient / Derivative |
 |------------|----------------------|
-| $f = \mathbf{a}^T\mathbf{x}$ | $\nabla\_x f = \mathbf{a}$ |
-| $f = \mathbf{x}^T\mathbf{x}$ | $\nabla\_x f = 2\mathbf{x}$ |
-| $f = \mathbf{x}^T A \mathbf{x}$ | $\nabla\_x f = (A + A^T)\mathbf{x}$, $= 2A\mathbf{x}$ if symmetric |
-| $f = \|A\mathbf{x} - \mathbf{b}\|^2$ | $\nabla\_x f = 2A^T(A\mathbf{x} - \mathbf{b})$ |
-| $f = \text{tr}(AB)$ | $\nabla\_A f = B^T$ |
-| $f = \log \det(A)$ | $\nabla\_A f = A^{-T}$ |
+| $f = \mathbf{a}^T\mathbf{x}$ | $\nabla_x f = \mathbf{a}$ |
+| $f = \mathbf{x}^T\mathbf{x}$ | $\nabla_x f = 2\mathbf{x}$ |
+| $f = \mathbf{x}^T A \mathbf{x}$ | $\nabla_x f = (A + A^T)\mathbf{x}$, $= 2A\mathbf{x}$ if symmetric |
+| $f = \|A\mathbf{x} - \mathbf{b}\|^2$ | $\nabla_x f = 2A^T(A\mathbf{x} - \mathbf{b})$ |
+| $f = \text{tr}(AB)$ | $\nabla_A f = B^T$ |
+| $f = \log \det(A)$ | $\nabla_A f = A^{-T}$ |
 
 ### 🔍 Derivation: Gradient of $\|\mathbf{Ax} - \mathbf{b}\|^2$
 

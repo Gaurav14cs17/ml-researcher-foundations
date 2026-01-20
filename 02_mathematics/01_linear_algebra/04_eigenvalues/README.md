@@ -83,7 +83,7 @@
 
 ### 📐 Spectral Radius
 
-**Definition**: $\rho(A) = \max\_i |\lambda\_i|$ (largest eigenvalue magnitude)
+**Definition**: $\rho(A) = \max_i |\lambda_i|$ (largest eigenvalue magnitude)
 
 **Key Properties**:
 
@@ -154,7 +154,7 @@ D_i = \{z \in \mathbb{C} : |z - A_{ii}| \leq R_i\}
 
 ```
 
-where $R\_i = \sum\_{j \neq i} |A\_{ij}|$ (sum of off-diagonal elements in row $i$).
+where $R_i = \sum_{j \neq i} |A_{ij}|$ (sum of off-diagonal elements in row $i$).
 
 ### 🔍 Proof
 

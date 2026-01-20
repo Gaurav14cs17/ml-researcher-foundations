@@ -445,8 +445,8 @@ def visualize_svm(X, y, svm, title="SVM Decision Boundary"):
                    s=200, facecolors='none', edgecolors='green', linewidths=2,
                    label='Support Vectors')
     
-    ax.set_xlabel('$x\_1$')
-    ax.set_ylabel('$x\_2$')
+    ax.set_xlabel('$x_1$')
+    ax.set_ylabel('$x_2$')
     ax.set_title(title)
     ax.legend()
     

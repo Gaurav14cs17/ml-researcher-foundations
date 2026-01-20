@@ -18,7 +18,7 @@
 
 - 🔗 **Single Variable**: $(f \circ g)'(x) = f'(g(x)) \cdot g'(x)$
 
-- 📊 **Multivariate**: $\frac{\partial L}{\partial x} = \sum\_i \frac{\partial L}{\partial y\_i} \cdot \frac{\partial y\_i}{\partial x}$ (sum over all paths)
+- 📊 **Multivariate**: $\frac{\partial L}{\partial x} = \sum_i \frac{\partial L}{\partial y_i} \cdot \frac{\partial y_i}{\partial x}$ (sum over all paths)
 
 - 🔄 **Backprop**: Reverse-mode autodiff = efficient chain rule application
 
@@ -139,7 +139,7 @@ If $z = f(u, v)$ where $u = u(x, y)$ and $v = v(x, y)$:
 
 ### 📐 General Form
 
-For $L = L(y\_1, y\_2, \ldots, y\_m)$ where each $y\_i = y\_i(x\_1, \ldots, x\_n)$:
+For $L = L(y_1, y_2, \ldots, y_m)$ where each $y_i = y_i(x_1, \ldots, x_n)$:
 
 ```math
 \frac{\partial L}{\partial x_j} = \sum_{i=1}^{m} \frac{\partial L}{\partial y_i} \cdot \frac{\partial y_i}{\partial x_j}

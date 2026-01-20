@@ -18,7 +18,7 @@
 
 - 📐 **Exists for any matrix**: $A = U\Sigma V^T$ (no restrictions!)
 
-- 🎯 **Eckart-Young**: $A\_k$ is the BEST rank-$k$ approximation
+- 🎯 **Eckart-Young**: $A_k$ is the BEST rank-$k$ approximation
 
 - 🔧 **LoRA**: Low-rank fine-tuning uses SVD insight
 
@@ -97,7 +97,7 @@ where:
 
 - $U \in \mathbb{R}^{m \times m}$: orthogonal ($U^TU = UU^T = I$)
 
-- $\Sigma \in \mathbb{R}^{m \times n}$: diagonal with $\sigma\_1 \geq \sigma\_2 \geq \cdots \geq \sigma\_r > 0$
+- $\Sigma \in \mathbb{R}^{m \times n}$: diagonal with $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0$
 
 - $V \in \mathbb{R}^{n \times n}$: orthogonal ($V^TV = VV^T = I$)
 
@@ -125,11 +125,11 @@ Therefore:
 
 | Property | Formula | Significance |
 |----------|---------|--------------|
-| Rank | $\text{rank}(A) = \#\{\sigma\_i > 0\}$ | Count non-zero singular values |
-| Frobenius norm | $\|A\|\_F = \sqrt{\sum\_i \sigma\_i^2}$ | Total "energy" |
-| Spectral norm | $\|A\|\_2 = \sigma\_1$ | Maximum stretching |
-| Nuclear norm | $\|A\|\_* = \sum\_i \sigma\_i$ | Low-rank regularization |
-| Condition | $\kappa(A) = \sigma\_1/\sigma\_r$ | Numerical stability |
+| Rank | $\text{rank}(A) = \#\{\sigma_i > 0\}$ | Count non-zero singular values |
+| Frobenius norm | $\|A\|_F = \sqrt{\sum_i \sigma_i^2}$ | Total "energy" |
+| Spectral norm | $\|A\|_2 = \sigma_1$ | Maximum stretching |
+| Nuclear norm | $\|A\|_* = \sum_i \sigma_i$ | Low-rank regularization |
+| Condition | $\kappa(A) = \sigma_1/\sigma_r$ | Numerical stability |
 | Pseudoinverse | $A^+ = V\Sigma^+U^T$ | Generalized inverse |
 
 ---
@@ -220,7 +220,7 @@ A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T
 
 ```
 
-**Error**: $\|A - A\_k\|\_F^2 = \sum\_{i=k+1}^{r} \sigma\_i^2$
+**Error**: $\|A - A_k\|_F^2 = \sum_{i=k+1}^{r} \sigma_i^2$
 
 ### 🔍 Proof
 

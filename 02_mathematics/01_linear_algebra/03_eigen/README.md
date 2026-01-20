@@ -20,7 +20,7 @@
 
 - 🔍 **Finding them**: Solve $\det(A - \lambda I) = 0$ (characteristic polynomial)
 
-- 📊 **Key facts**: $\sum \lambda\_i = \text{tr}(A)$, $\prod \lambda\_i = \det(A)$
+- 📊 **Key facts**: $\sum \lambda_i = \text{tr}(A)$, $\prod \lambda_i = \det(A)$
 
 - 🤖 **ML Uses**: PCA, PageRank, stability analysis, spectral clustering
 
@@ -281,7 +281,7 @@ A = \sum_{i=1}^{n} \lambda_i \mathbf{v}_i \mathbf{v}_i^T
 
 ```
 
-Each term $\lambda\_i \mathbf{v}\_i \mathbf{v}\_i^T$ is a rank-1 projection matrix!
+Each term $\lambda_i \mathbf{v}_i \mathbf{v}_i^T$ is a rank-1 projection matrix!
 
 ---
 
@@ -364,11 +364,11 @@ def inverse_iteration(A, shift=0, num_iterations=100):
 
 | Property | Formula | Proof |
 |----------|---------|-------|
-| Sum of eigenvalues | $\sum\_i \lambda\_i = \text{tr}(A)$ | Coefficient of $\lambda^{n-1}$ in char. poly |
-| Product of eigenvalues | $\prod\_i \lambda\_i = \det(A)$ | $p(0) = \det(A)$ and $p(\lambda) = \prod\_i(\lambda\_i - \lambda)$ |
-| Eigenvalues of $A^k$ | $\lambda\_i^k$ | $Av = \lambda v \Rightarrow A^k v = \lambda^k v$ |
-| Eigenvalues of $A^{-1}$ | $1/\lambda\_i$ | $Av = \lambda v \Rightarrow v = \lambda A^{-1}v$ |
-| Eigenvalues of $A + cI$ | $\lambda\_i + c$ | $(A+cI)v = Av + cv = (\lambda + c)v$ |
+| Sum of eigenvalues | $\sum_i \lambda_i = \text{tr}(A)$ | Coefficient of $\lambda^{n-1}$ in char. poly |
+| Product of eigenvalues | $\prod_i \lambda_i = \det(A)$ | $p(0) = \det(A)$ and $p(\lambda) = \prod_i(\lambda_i - \lambda)$ |
+| Eigenvalues of $A^k$ | $\lambda_i^k$ | $Av = \lambda v \Rightarrow A^k v = \lambda^k v$ |
+| Eigenvalues of $A^{-1}$ | $1/\lambda_i$ | $Av = \lambda v \Rightarrow v = \lambda A^{-1}v$ |
+| Eigenvalues of $A + cI$ | $\lambda_i + c$ | $(A+cI)v = Av + cv = (\lambda + c)v$ |
 
 ### 🔍 Proof: tr(A) = Sum of Eigenvalues
 

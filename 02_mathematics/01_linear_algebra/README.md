@@ -128,10 +128,10 @@ A **vector** is an ordered list of numbers representing a point or direction in 
 
 | Operation | Notation | Formula | Geometric Meaning |
 |-----------|----------|---------|-------------------|
-| Addition | $\mathbf{x} + \mathbf{y}$ | $[x\_1+y\_1, x\_2+y\_2, \ldots]^T$ | Parallelogram rule |
-| Scalar Mult | $\alpha\mathbf{x}$ | $[\alpha x\_1, \alpha x\_2, \ldots]^T$ | Stretch/shrink |
-| Dot Product | $\mathbf{x} \cdot \mathbf{y}$ | $\sum\_i x\_i y\_i$ | Projection |
-| Outer Product | $\mathbf{x}\mathbf{y}^T$ | $[x\_i y\_j]$ matrix | Rank-1 matrix |
+| Addition | $\mathbf{x} + \mathbf{y}$ | $[x_1+y_1, x_2+y_2, \ldots]^T$ | Parallelogram rule |
+| Scalar Mult | $\alpha\mathbf{x}$ | $[\alpha x_1, \alpha x_2, \ldots]^T$ | Stretch/shrink |
+| Dot Product | $\mathbf{x} \cdot \mathbf{y}$ | $\sum_i x_i y_i$ | Projection |
+| Outer Product | $\mathbf{x}\mathbf{y}^T$ | $[x_i y_j]$ matrix | Rank-1 matrix |
 
 ### 🔍 Dot Product: Complete Derivation
 
@@ -291,7 +291,7 @@ A **matrix** $A \in \mathbb{R}^{m \times n}$ is a rectangular array with $m$ row
 
 ### 📐 Matrix Multiplication
 
-**Definition**: $(AB)\_{ij} = \sum\_{k=1}^{n} A\_{ik}B\_{kj}$
+**Definition**: $(AB)_{ij} = \sum_{k=1}^{n} A_{ik}B_{kj}$
 
 **Dimensions**: $(m \times n) \cdot (n \times p) = (m \times p)$
 
@@ -356,9 +356,9 @@ AB ≠ BA  ∎
 
 | Property | Formula | Proof Sketch |
 |----------|---------|--------------|
-| $(AB)^T = B^T A^T$ | Reverse order | $(AB)^T\_{ij} = (AB)\_{ji} = \sum\_k A\_{jk}B\_{ki} = \sum\_k B^T\_{ik}A^T\_{kj}$ |
+| $(AB)^T = B^T A^T$ | Reverse order | $(AB)^T_{ij} = (AB)_{ji} = \sum_k A_{jk}B_{ki} = \sum_k B^T_{ik}A^T_{kj}$ |
 | $(AB)^{-1} = B^{-1}A^{-1}$ | Reverse order | $(AB)(B^{-1}A^{-1}) = A(BB^{-1})A^{-1} = I$ |
-| $\text{tr}(AB) = \text{tr}(BA)$ | Cyclic | $\sum\_i(AB)\_{ii} = \sum\_i\sum\_j A\_{ij}B\_{ji}$ (same terms) |
+| $\text{tr}(AB) = \text{tr}(BA)$ | Cyclic | $\sum_i(AB)_{ii} = \sum_i\sum_j A_{ij}B_{ji}$ (same terms) |
 
 ### 💻 Code Implementation
 
@@ -439,15 +439,15 @@ For any norm $\|\cdot\|$:
 
 | Norm | Formula | Unit Ball Shape | ML Use |
 |------|---------|-----------------|--------|
-| $L^0$ (pseudo) | $\sum\_i \mathbf{1}\_{x\_i \neq 0}$ | Sparse | Sparsity (not convex!) |
-| $L^1$ (Manhattan) | $\sum\_i |x\_i|$ | Diamond | Lasso, sparse regularization |
-| $L^2$ (Euclidean) | $\sqrt{\sum\_i x\_i^2}$ | Circle | Ridge, weight decay |
-| $L^\infty$ (Max) | $\max\_i |x\_i|$ | Square | Adversarial robustness |
-| $L^p$ (General) | $(\sum\_i |x\_i|^p)^{1/p}$ | Superellipse | General regularization |
+| $L^0$ (pseudo) | $\sum_i \mathbf{1}_{x_i \neq 0}$ | Sparse | Sparsity (not convex!) |
+| $L^1$ (Manhattan) | $\sum_i |x_i|$ | Diamond | Lasso, sparse regularization |
+| $L^2$ (Euclidean) | $\sqrt{\sum_i x_i^2}$ | Circle | Ridge, weight decay |
+| $L^\infty$ (Max) | $\max_i |x_i|$ | Square | Adversarial robustness |
+| $L^p$ (General) | $(\sum_i |x_i|^p)^{1/p}$ | Superellipse | General regularization |
 
 ### 🔍 Proof: Triangle Inequality for L² Norm
 
-**Theorem (Cauchy-Schwarz)**: $|\mathbf{x} \cdot \mathbf{y}| \leq \|\mathbf{x}\|\_2 \|\mathbf{y}\|\_2$
+**Theorem (Cauchy-Schwarz)**: $|\mathbf{x} \cdot \mathbf{y}| \leq \|\mathbf{x}\|_2 \|\mathbf{y}\|_2$
 
 **Proof**:
 
@@ -542,13 +542,13 @@ print(f"Linf norm: {np.linalg.norm(x, np.inf)}")  # 4
 
 | Norm | Formula | Computation | ML Use |
 |------|---------|-------------|--------|
-| Frobenius | $\|A\|\_F = \sqrt{\sum\_{ij} A\_{ij}^2}$ | $\sqrt{\text{tr}(A^TA)}$ | Weight decay |
-| Spectral | $\|A\|\_2 = \sigma\_{\max}(A)$ | Largest singular value | Lipschitz constant |
-| Nuclear | $\|A\|\_* = \sum\_i \sigma\_i$ | Sum of singular values | Low-rank regularization |
+| Frobenius | $\|A\|_F = \sqrt{\sum_{ij} A_{ij}^2}$ | $\sqrt{\text{tr}(A^TA)}$ | Weight decay |
+| Spectral | $\|A\|_2 = \sigma_{\max}(A)$ | Largest singular value | Lipschitz constant |
+| Nuclear | $\|A\|_* = \sum_i \sigma_i$ | Sum of singular values | Low-rank regularization |
 
 ### 🔍 Frobenius Norm: Connection to SVD
 
-**Theorem**: $\|A\|\_F^2 = \sum\_i \sigma\_i^2$ (sum of squared singular values)
+**Theorem**: $\|A\|_F^2 = \sum_i \sigma_i^2$ (sum of squared singular values)
 
 **Proof**:
 
@@ -566,7 +566,7 @@ Step 3: Apply cyclic property of trace
 
 ### 🔍 Submultiplicativity
 
-**Theorem**: $\|AB\|\_F \leq \|A\|\_F \|B\|\_F$
+**Theorem**: $\|AB\|_F \leq \|A\|_F \|B\|_F$
 
 **Proof**:
 
@@ -749,10 +749,10 @@ Note: v₁ · v₂ = 0 (orthogonal!)
 
 | Property | Formula | Significance |
 |----------|---------|--------------|
-| Sum | $\sum\_i \lambda\_i = \text{tr}(A)$ | Quick check |
-| Product | $\prod\_i \lambda\_i = \det(A)$ | Invertibility: $\det \neq 0$ |
+| Sum | $\sum_i \lambda_i = \text{tr}(A)$ | Quick check |
+| Product | $\prod_i \lambda_i = \det(A)$ | Invertibility: $\det \neq 0$ |
 | Powers | $A^n = Q\Lambda^n Q^{-1}$ | Fast matrix powers |
-| Inverse | $A^{-1} = Q\Lambda^{-1}Q^{-1}$ | If all $\lambda\_i \neq 0$ |
+| Inverse | $A^{-1} = Q\Lambda^{-1}Q^{-1}$ | If all $\lambda_i \neq 0$ |
 
 ### 💻 Code Implementation
 
@@ -949,7 +949,7 @@ where:
 
 - $U \in \mathbb{R}^{m \times m}$: orthogonal (left singular vectors)
 
-- $\Sigma \in \mathbb{R}^{m \times n}$: diagonal with $\sigma\_1 \geq \sigma\_2 \geq \cdots \geq 0$
+- $\Sigma \in \mathbb{R}^{m \times n}$: diagonal with $\sigma_1 \geq \sigma_2 \geq \cdots \geq 0$
 
 - $V \in \mathbb{R}^{n \times n}$: orthogonal (right singular vectors)
 
@@ -1020,10 +1020,10 @@ In matrix form:
 
 | Property | Formula | Significance |
 |----------|---------|--------------|
-| Rank | $\text{rank}(A) = \#\{\sigma\_i > 0\}$ | Count non-zero singular values |
-| Frobenius norm | $\|A\|\_F^2 = \sum\_i \sigma\_i^2$ | Sum of squared singular values |
-| Spectral norm | $\|A\|\_2 = \sigma\_1$ | Largest singular value |
-| Condition number | $\kappa(A) = \sigma\_1/\sigma\_r$ | Numerical stability |
+| Rank | $\text{rank}(A) = \#\{\sigma_i > 0\}$ | Count non-zero singular values |
+| Frobenius norm | $\|A\|_F^2 = \sum_i \sigma_i^2$ | Sum of squared singular values |
+| Spectral norm | $\|A\|_2 = \sigma_1$ | Largest singular value |
+| Condition number | $\kappa(A) = \sigma_1/\sigma_r$ | Numerical stability |
 | Pseudoinverse | $A^+ = V\Sigma^+U^T$ | Generalized inverse |
 
 ### 💻 Code Implementation
@@ -1260,7 +1260,7 @@ A symmetric matrix $A \in \mathbb{R}^{n \times n}$ is:
 
 1. $A \succ 0$ (positive definite)
 
-2. All eigenvalues $\lambda\_i > 0$
+2. All eigenvalues $\lambda_i > 0$
 
 3. All leading principal minors $> 0$ (Sylvester's criterion)
 
@@ -1502,13 +1502,13 @@ def solve_least_squares_qr(A, b):
 
 | Concept | Formula | When to Use |
 |---------|---------|-------------|
-| **Dot Product** | $\mathbf{x} \cdot \mathbf{y} = \sum\_i x\_i y\_i = \|\mathbf{x}\|\|\mathbf{y}\|\cos\theta$ | Similarity, projection |
-| **Matrix Multiply** | $(AB)\_{ij} = \sum\_k A\_{ik}B\_{kj}$ | Neural network layers |
-| **Frobenius Norm** | $\|A\|\_F = \sqrt{\sum\_{ij}A\_{ij}^2} = \sqrt{\sum\_i \sigma\_i^2}$ | Weight regularization |
+| **Dot Product** | $\mathbf{x} \cdot \mathbf{y} = \sum_i x_i y_i = \|\mathbf{x}\|\|\mathbf{y}\|\cos\theta$ | Similarity, projection |
+| **Matrix Multiply** | $(AB)_{ij} = \sum_k A_{ik}B_{kj}$ | Neural network layers |
+| **Frobenius Norm** | $\|A\|_F = \sqrt{\sum_{ij}A_{ij}^2} = \sqrt{\sum_i \sigma_i^2}$ | Weight regularization |
 | **Eigenvalue** | $A\mathbf{v} = \lambda\mathbf{v}$ | PCA, stability |
 | **Spectral Decomp** | $A = Q\Lambda Q^T$ (symmetric) | Quadratic forms |
 | **SVD** | $A = U\Sigma V^T$ | Low-rank approx, compression |
-| **Low-Rank Approx** | $A\_k = \sum\_{i=1}^k \sigma\_i \mathbf{u}\_i\mathbf{v}\_i^T$ | LoRA, denoising |
+| **Low-Rank Approx** | $A_k = \sum_{i=1}^k \sigma_i \mathbf{u}_i\mathbf{v}_i^T$ | LoRA, denoising |
 | **Positive Definite** | $\mathbf{x}^TA\mathbf{x} > 0$ for $\mathbf{x} \neq 0$ | Covariance, Hessian |
 | **Cholesky** | $A = LL^T$ | Fast PD solve |
 | **QR** | $A = QR$ | Least squares |

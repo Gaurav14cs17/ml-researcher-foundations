@@ -51,7 +51,7 @@ p_i^T = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)}
 
 **Taylor Expansion for large $T$:**
 
-Let $z\_i$ be logits and $\bar{z} = \frac{1}{n}\sum\_i z\_i$
+Let $z_i$ be logits and $\bar{z} = \frac{1}{n}\sum_i z_i$
 
 ```math
 \exp(z_i/T) \approx 1 + z_i/T + O(1/T^2)
@@ -75,7 +75,7 @@ p_i^T = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)} \approx \frac{1 + z_i/T}{n + \sum
 
 ### 3. Gradient Analysis
 
-**Gradient w.r.t. student logits $z\_s$:**
+**Gradient w.r.t. student logits $z_s$:**
 
 ```math
 \frac{\partial \mathcal{L}_{soft}}{\partial z_s^{(i)}} = \frac{1}{T}\left(p_i^{s,T} - p_i^{t,T}\right)
@@ -117,7 +117,7 @@ H(p^t_T) > H(y) \text{ (soft labels have higher entropy)}
 
 ```
 
-**Dark Knowledge:** Information in $p^t\_T$ beyond $y$:
+**Dark Knowledge:** Information in $p^t_T$ beyond $y$:
 
 ```math
 \text{Dark Knowledge} = I(X; p^t_T) - I(X; y)
@@ -135,7 +135,7 @@ H(p^t_T) > H(y) \text{ (soft labels have higher entropy)}
 
 Where:
 
-- $F\_s^l, F\_t^l$: Features at layer $l$ (student, teacher)
+- $F_s^l, F_t^l$: Features at layer $l$ (student, teacher)
 
 - $r(\cdot)$: Regressor to match dimensions
 
@@ -146,7 +146,7 @@ Where:
 
 ```
 
-Where attention maps: $Q^l = \sum\_c |F^l\_c|^2$ (sum over channels)
+Where attention maps: $Q^l = \sum_c |F^l_c|^2$ (sum over channels)
 
 ### 6. Relation-Based Distillation
 
@@ -159,7 +159,7 @@ Where attention maps: $Q^l = \sum\_c |F^l\_c|^2$ (sum over channels)
 
 ```
 
-Where $\psi\_D(x\_i, x\_j) = \frac{1}{\mu}\|x\_i - x\_j\|\_2$ (normalized distance)
+Where $\psi_D(x_i, x_j) = \frac{1}{\mu}\|x_i - x_j\|_2$ (normalized distance)
 
 *Angle-wise:*
 
@@ -168,7 +168,7 @@ Where $\psi\_D(x\_i, x\_j) = \frac{1}{\mu}\|x\_i - x\_j\|\_2$ (normalized distan
 
 ```
 
-Where $\psi\_A$ computes angle between vectors.
+Where $\psi_A$ computes angle between vectors.
 
 ### 7. Contrastive Distillation
 

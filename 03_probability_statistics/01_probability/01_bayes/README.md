@@ -102,7 +102,7 @@ P(D|\theta) = \theta^k (1-\theta)^{n-k}
 
 ```
 
-where $k = \sum\_{i=1}^n x\_i$ is the number of successes.
+where $k = \sum_{i=1}^n x_i$ is the number of successes.
 
 **Posterior:**
 
@@ -124,11 +124,11 @@ p(\theta|D) \propto \theta^k (1-\theta)^{n-k} \cdot \theta^{\alpha-1}(1-\theta)^
 
 ### Gaussian-Gaussian Conjugacy
 
-**Prior:** $\mu \sim \mathcal{N}(\mu\_0, \sigma\_0^2)$
+**Prior:** $\mu \sim \mathcal{N}(\mu_0, \sigma_0^2)$
 
 **Likelihood:** $X|\mu \sim \mathcal{N}(\mu, \sigma^2)$ (known variance)
 
-**Posterior:** $\mu|D \sim \mathcal{N}(\mu\_n, \sigma\_n^2)$
+**Posterior:** $\mu|D \sim \mathcal{N}(\mu_n, \sigma_n^2)$
 
 where:
 
@@ -152,7 +152,7 @@ Expanding and completing the square in $\mu$:
 
 ```
 
-This is the kernel of $\mathcal{N}(\mu\_n, \sigma\_n^2)$. $\quad \blacksquare$
+This is the kernel of $\mathcal{N}(\mu_n, \sigma_n^2)$. $\quad \blacksquare$
 
 ---
 
@@ -174,7 +174,7 @@ p(x^*|D) = \mathcal{N}(\mu_n, \sigma^2 + \sigma_n^2)
 
 ```
 
-The predictive variance includes both observation noise ($\sigma^2$) and parameter uncertainty ($\sigma\_n^2$).
+The predictive variance includes both observation noise ($\sigma^2$) and parameter uncertainty ($\sigma_n^2$).
 
 ---
 
@@ -192,7 +192,7 @@ P(D|M) = \int P(D|\theta, M) P(\theta|M) \, d\theta
 
 ```
 
-The ratio $\frac{P(D|M\_1)}{P(D|M\_2)}$ is called the **Bayes Factor**.
+The ratio $\frac{P(D|M_1)}{P(D|M_2)}$ is called the **Bayes Factor**.
 
 ---
 
@@ -201,8 +201,8 @@ The ratio $\frac{P(D|M\_1)}{P(D|M\_2)}$ is called the **Bayes Factor**.
 | Likelihood | Conjugate Prior | Posterior |
 |------------|-----------------|-----------|
 | Bernoulli($\theta$) | Beta($\alpha, \beta$) | Beta($\alpha + k, \beta + n - k$) |
-| Poisson($\lambda$) | Gamma($\alpha, \beta$) | Gamma($\alpha + \sum x\_i, \beta + n$) |
-| Normal($\mu$, known $\sigma^2$) | Normal($\mu\_0, \sigma\_0^2$) | Normal($\mu\_n, \sigma\_n^2$) |
+| Poisson($\lambda$) | Gamma($\alpha, \beta$) | Gamma($\alpha + \sum x_i, \beta + n$) |
+| Normal($\mu$, known $\sigma^2$) | Normal($\mu_0, \sigma_0^2$) | Normal($\mu_n, \sigma_n^2$) |
 | Multinomial($\boldsymbol{\theta}$) | Dirichlet($\boldsymbol{\alpha}$) | Dirichlet($\boldsymbol{\alpha} + \text{counts}$) |
 
 ---
@@ -244,7 +244,7 @@ p(\theta|D) \approx \mathcal{N}(\theta_{MAP}, H^{-1})
 
 ```
 
-where $H$ is the Hessian of the negative log-posterior at $\theta\_{MAP}$.
+where $H$ is the Hessian of the negative log-posterior at $\theta_{MAP}$.
 
 ---
 

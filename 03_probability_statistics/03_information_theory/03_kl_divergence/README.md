@@ -86,7 +86,7 @@ Forward KL (D_KL(P||Q)):
     Q spreads to cover both modes (moment matching)
     May place mass between modes
     
-    P: ⋀  ⋀     Q: ___/‾‾‾\___
+    P: ⋀  ⋀     Q: ___/‾‾‾___
        Mode matching
        
 Reverse KL (D_KL(Q||P)):

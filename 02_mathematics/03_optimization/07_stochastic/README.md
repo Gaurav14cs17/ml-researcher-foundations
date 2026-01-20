@@ -103,7 +103,7 @@
 
 ```
 
-where $i\_t$ is randomly sampled.
+where $i_t$ is randomly sampled.
 
 **Mini-Batch SGD**:
 
@@ -116,7 +116,7 @@ where $i\_t$ is randomly sampled.
 
 | Property | Formula/Value | Significance |
 |----------|---------------|--------------|
-| Unbiased | $\mathbb{E}[\nabla \ell\_i] = \nabla L$ | Correct on average |
+| Unbiased | $\mathbb{E}[\nabla \ell_i] = \nabla L$ | Correct on average |
 | Variance | $\text{Var} \propto 1/|B|$ | Larger batch = less noise |
 | Per-step cost | $O(|B| \cdot d)$ | Linear in batch size |
 
@@ -247,8 +247,8 @@ v_t &= \beta_2 v_{t-1} + (1 - \beta_2) (\nabla L(\theta_t))^2 \quad &\text{(Seco
 | Parameter | Default | Meaning |
 |-----------|---------|---------|
 | $\eta$ (lr) | 0.001 | Learning rate |
-| $\beta\_1$ | 0.9 | First moment decay (momentum) |
-| $\beta\_2$ | 0.999 | Second moment decay (RMSprop-like) |
+| $\beta_1$ | 0.9 | First moment decay (momentum) |
+| $\beta_2$ | 0.999 | Second moment decay (RMSprop-like) |
 | $\epsilon$ | 1e-8 | Numerical stability |
 
 ### 🔍 Why Bias Correction?
@@ -370,11 +370,11 @@ For convergence guarantees, need:
 
 Examples:
 
-- $\eta\_t = \eta\_0 / \sqrt{t}$ ✓
+- $\eta_t = \eta_0 / \sqrt{t}$ ✓
 
-- $\eta\_t = \eta\_0 / t$ ✓
+- $\eta_t = \eta_0 / t$ ✓
 
-- $\eta\_t = \eta\_0$ (constant) ✗ (doesn't converge exactly)
+- $\eta_t = \eta_0$ (constant) ✗ (doesn't converge exactly)
 
 ---
 
@@ -384,9 +384,9 @@ Examples:
 
 | Schedule | Formula | When to Use |
 |----------|---------|-------------|
-| Constant | $\eta\_t = \eta\_0$ | Quick experiments |
-| Step decay | $\eta\_t = \eta\_0 \cdot \gamma^{\lfloor t/s \rfloor}$ | CNNs (ResNet) |
-| Cosine | $\eta\_t = \eta\_{\min} + \frac{1}{2}(\eta\_0 - \eta\_{\min})(1 + \cos(\frac{t\pi}{T}))$ | Transformers |
+| Constant | $\eta_t = \eta_0$ | Quick experiments |
+| Step decay | $\eta_t = \eta_0 \cdot \gamma^{\lfloor t/s \rfloor}$ | CNNs (ResNet) |
+| Cosine | $\eta_t = \eta_{\min} + \frac{1}{2}(\eta_0 - \eta_{\min})(1 + \cos(\frac{t\pi}{T}))$ | Transformers |
 | Warmup + decay | Linear warmup then cosine | Large models |
 | One-cycle | Increase then decrease | Fast training |
 
@@ -581,7 +581,7 @@ opt_adamw = optim.AdamW(model.parameters(), lr=1e-4, weight_decay=0.01)
 | **ViT** | AdamW | 1e-3 to 1e-4 | High weight decay |
 | **Fine-tuning** | AdamW | 1e-5 to 5e-5 | Lower than pre-training |
 | **Quick prototype** | Adam | 1e-3 | Fast convergence |
-| **GAN** | Adam | 1e-4 to 2e-4 | $\beta\_1 = 0.5$ often used |
+| **GAN** | Adam | 1e-4 to 2e-4 | $\beta_1 = 0.5$ often used |
 
 ### 📐 General Guidelines
 

@@ -106,7 +106,7 @@ P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} \quad \blacksquare
 
 ### Law of Total Probability
 
-For a partition $\{A\_i\}$ of the sample space:
+For a partition $\{A_i\}$ of the sample space:
 
 ```math
 P(B) = \sum_i P(B|A_i) \cdot P(A_i)
@@ -211,7 +211,7 @@ p(y) = \int_{-\infty}^{\infty} p(y|x)p(x)dx \quad \blacksquare
 
 ### Proof: Chain Rule for Probability
 
-**Theorem:** For events $A\_1, A\_2, \ldots, A\_n$:
+**Theorem:** For events $A_1, A_2, \ldots, A_n$:
 
 ```math
 P(A_1 \cap A_2 \cap \cdots \cap A_n) = P(A_1) \prod_{k=2}^{n} P(A_k | A_1 \cap \cdots \cap A_{k-1})
@@ -228,7 +228,7 @@ P(A_1 \cap A_2) = P(A_2|A_1)P(A_1) \quad \checkmark
 ```
 
 *Inductive step:*
-Assume true for n-1. Define $B = A\_1 \cap \cdots \cap A\_{n-1}$.
+Assume true for n-1. Define $B = A_1 \cap \cdots \cap A_{n-1}$.
 
 ```math
 P(A_1 \cap \cdots \cap A_n) = P(B \cap A_n) = P(A_n|B) \cdot P(B)

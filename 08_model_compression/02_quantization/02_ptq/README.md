@@ -76,14 +76,14 @@ W_q[c,:] = \text{round}\left(\frac{W[c,:]}{s_c}\right), \quad s_c = \frac{\max(|
 ```
 
 **Proof:**
-Per-channel optimizes each $s\_c$ independently:
+Per-channel optimizes each $s_c$ independently:
 
 ```math
 s_c^* = \arg\min_{s_c} \sum_j (w_{cj} - s_c \cdot \text{round}(w_{cj}/s_c))^2
 
 ```
 
-The per-tensor solution is a constraint of this: $s\_c = s \, \forall c$.
+The per-tensor solution is a constraint of this: $s_c = s \, \forall c$.
 Removing constraints cannot increase the minimum.
 
 ---
@@ -145,13 +145,13 @@ where $n$ is the inner dimension.
 
 **Optimization:** Pre-compute bias terms:
 
-- $z\_w X\_q \mathbf{1}^T = z\_w \cdot \text{rowsum}(X\_q)$
+- $z_w X_q \mathbf{1}^T = z_w \cdot \text{rowsum}(X_q)$
 
-- $z\_x \mathbf{1} W\_q^T = z\_x \cdot \text{colsum}(W\_q)$
+- $z_x \mathbf{1} W_q^T = z_x \cdot \text{colsum}(W_q)$
 
 #### 4.2 Symmetric Simplification
 
-With symmetric quantization ($z\_x = z\_w = 0$):
+With symmetric quantization ($z_x = z_w = 0$):
 
 ```math
 Y = s_x s_w \cdot X_q W_q^T
@@ -232,9 +232,9 @@ At optimum, $\nabla \mathcal{L} \approx 0$, so:
 
 #### 6.2 Optimal Weight Update (OBQ)
 
-**When quantizing weight $w\_q$:**
+**When quantizing weight $w_q$:**
 
-The quantization introduces error $\delta\_q = \hat{w}\_q - w\_q$.
+The quantization introduces error $\delta_q = \hat{w}_q - w_q$.
 
 **Optimal correction to remaining weights:**
 
@@ -251,7 +251,7 @@ We minimize:
 
 ```
 
-Taking derivative w.r.t. $\delta\_{-q}$ and setting to zero:
+Taking derivative w.r.t. $\delta_{-q}$ and setting to zero:
 
 ```math
 H_{-q,-q} \delta_{-q} + H_{-q,q} \delta_q = 0

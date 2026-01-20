@@ -131,9 +131,9 @@ d_p(x, y) = \|x - y\|_p
 
 | p | Name | Formula | Unit Ball Shape |
 |---|------|---------|-----------------|
-| 1 | Manhattan/Taxicab | $\sum\_i |x\_i - y\_i|$ | Diamond |
-| 2 | Euclidean | $\sqrt{\sum\_i (x\_i - y\_i)^2}$ | Circle/Sphere |
-| $\infty$ | Chebyshev/Max | $\max\_i |x\_i - y\_i|$ | Square/Hypercube |
+| 1 | Manhattan/Taxicab | $\sum_i |x_i - y_i|$ | Diamond |
+| 2 | Euclidean | $\sqrt{\sum_i (x_i - y_i)^2}$ | Circle/Sphere |
+| $\infty$ | Chebyshev/Max | $\max_i |x_i - y_i|$ | Square/Hypercube |
 
 ### 🔍 Properties
 
@@ -274,10 +274,10 @@ The correlation makes the actual "statistical distance" smaller!
 
 | Distance | Formula | Use Case |
 |----------|---------|----------|
-| **KL Divergence** | $D\_{KL}(P \| Q) = \sum\_i p\_i \log \frac{p\_i}{q\_i}$ | Compression, VAEs |
-| **JS Divergence** | $\frac{1}{2}D\_{KL}(P \| M) + \frac{1}{2}D\_{KL}(Q \| M)$ | Symmetric, GANs |
-| **Wasserstein** | $\inf\_\gamma \mathbb{E}\_{(x,y)\sim\gamma}[\|x-y\|]$ | Optimal transport |
-| **Total Variation** | $\frac{1}{2}\sum\_i |p\_i - q\_i|$ | Statistical testing |
+| **KL Divergence** | $D_{KL}(P \| Q) = \sum_i p_i \log \frac{p_i}{q_i}$ | Compression, VAEs |
+| **JS Divergence** | $\frac{1}{2}D_{KL}(P \| M) + \frac{1}{2}D_{KL}(Q \| M)$ | Symmetric, GANs |
+| **Wasserstein** | $\inf_\gamma \mathbb{E}_{(x,y)\sim\gamma}[\|x-y\|]$ | Optimal transport |
+| **Total Variation** | $\frac{1}{2}\sum_i |p_i - q_i|$ | Statistical testing |
 
 ### 📐 KL Divergence
 

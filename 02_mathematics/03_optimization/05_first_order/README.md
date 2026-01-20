@@ -62,9 +62,9 @@
 |      ╱                 ╲             |                                       |
 |     ╱   x₀--→x₁         ╲            |\                                      |
 |    ╱       ╲              ╲          | \                                     |
-|   ╱         ╲--→x₂         ╲         |  \___                                 |
-|  ╱              ╲           ╲        |      \_____                           |
-| ╱                ╲--→x*      ╲       |____________\_________                 |
+|   ╱         ╲--→x₂         ╲         |  ___                                 |
+|  ╱              ╲           ╲        |      _____                           |
+| ╱                ╲--→x*      ╲       |_____________________                 |
 |                   (minimum)          +---------------------- Iterations      |
 |                                                                              |
 |   GRADIENT DESCENT:                 MOMENTUM:                                |
@@ -98,7 +98,7 @@ where:
 
 - $\eta$ = learning rate (step size)
 
-- $\nabla f(\theta\_k)$ = gradient at current point
+- $\nabla f(\theta_k)$ = gradient at current point
 
 ### 🔍 Why It Works: Steepest Descent
 
@@ -143,7 +143,7 @@ For convergence analysis, we typically assume:
 |------------|------|------------------------------|
 | Convex, L-smooth | $O(1/k)$ | $O(1/\epsilon)$ steps |
 | μ-strongly convex, L-smooth | $O((1-\mu/L)^k)$ | $O(\kappa \log(1/\epsilon))$ steps |
-| Non-convex, L-smooth | $\min\_k \|\nabla f\|^2 = O(1/k)$ | $O(1/\epsilon^2)$ steps |
+| Non-convex, L-smooth | $\min_k \|\nabla f\|^2 = O(1/k)$ | $O(1/\epsilon^2)$ steps |
 
 where $\kappa = L/\mu$ is the **condition number**.
 
@@ -380,7 +380,7 @@ where the proximal operator is:
 
 ```
 f(θ) = ½‖Xθ - y‖² + λ‖θ‖₁
-      \_____g_____/   \_h_/
+      _____g_____/   _h_/
 
 Proximal operator for L1 (soft thresholding):
 prox_{ηλ‖·‖₁}(x) = sign(x) · max(|x| - ηλ, 0)

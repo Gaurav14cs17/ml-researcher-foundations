@@ -31,7 +31,7 @@ Mixture of Experts is a technique to scale model parameters efficiently by activ
 
 ### 1. Basic MoE Formulation
 
-Given input $x \in \mathbb{R}^d$ and $N$ experts $\{E\_1, E\_2, ..., E\_N\}$:
+Given input $x \in \mathbb{R}^d$ and $N$ experts $\{E_1, E_2, ..., E_N\}$:
 
 ```math
 y = \sum_{i=1}^{N} G(x)_i \cdot E_i(x)
@@ -42,9 +42,9 @@ Where:
 
 - $G(x) \in \mathbb{R}^N$ is the gating function output (routing weights)
 
-- $E\_i(x)$ is the output of expert $i$
+- $E_i(x)$ is the output of expert $i$
 
-- Each expert is typically an FFN: $E\_i(x) = W\_2^{(i)} \cdot \text{ReLU}(W\_1^{(i)} x)$
+- Each expert is typically an FFN: $E_i(x) = W_2^{(i)} \cdot \text{ReLU}(W_1^{(i)} x)$
 
 ### 2. Gating Function (Router)
 
@@ -55,7 +55,7 @@ G(x) = \text{softmax}(W_g \cdot x)
 
 ```
 
-Where $W\_g \in \mathbb{R}^{N \times d}$ is the learnable gating weight matrix.
+Where $W_g \in \mathbb{R}^{N \times d}$ is the learnable gating weight matrix.
 
 **Top-K Sparse Gating:**
 
@@ -67,7 +67,7 @@ G(x)_i = \begin{cases}
 
 ```
 
-Where $h = W\_g \cdot x$ and TopK selects indices with highest values.
+Where $h = W_g \cdot x$ and TopK selects indices with highest values.
 
 ### 3. Computational Complexity Analysis
 
@@ -128,10 +128,10 @@ Output: y ∈ ℝ^d
 
 | Type | Method | Formula | Used In |
 |------|--------|---------|---------|
-| **Top-1** | Single best expert | $y = E\_{\arg\max(h)}(x)$ | Switch Transformer |
-| **Top-2** | Two best experts | $y = \sum\_{i \in \text{Top2}} G\_i \cdot E\_i(x)$ | GShard, Mixtral |
+| **Top-1** | Single best expert | $y = E_{\arg\max(h)}(x)$ | Switch Transformer |
+| **Top-2** | Two best experts | $y = \sum_{i \in \text{Top2}} G_i \cdot E_i(x)$ | GShard, Mixtral |
 | **Expert Choice** | Experts choose tokens | Capacity-based selection | Expert Choice (2022) |
-| **Soft MoE** | Weighted average of all | $y = \sum\_i G\_i \cdot E\_i(x)$ | Soft MoE (2023) |
+| **Soft MoE** | Weighted average of all | $y = \sum_i G_i \cdot E_i(x)$ | Soft MoE (2023) |
 
 ### Noisy Top-K Gating
 
@@ -142,7 +142,7 @@ h_i = (W_g \cdot x)_i + \epsilon_i \cdot \text{softplus}((W_{\text{noise}} \cdot
 
 ```
 
-Where $\epsilon\_i \sim \mathcal{N}(0, 1)$ is random noise during training.
+Where $\epsilon_i \sim \mathcal{N}(0, 1)$ is random noise during training.
 
 ---
 
@@ -172,9 +172,9 @@ L_{\text{load}} = N \cdot \sum_{i=1}^{N} f_i \cdot P_i
 
 Where:
 
-- $f\_i = \frac{1}{|B|} \sum\_{x \in B} \mathbf{1}[i \in \text{TopK}(G(x))]$ (fraction of tokens to expert $i$)
+- $f_i = \frac{1}{|B|} \sum_{x \in B} \mathbf{1}[i \in \text{TopK}(G(x))]$ (fraction of tokens to expert $i$)
 
-- $P\_i = \frac{1}{|B|} \sum\_{x \in B} G(x)\_i$ (average routing probability)
+- $P_i = \frac{1}{|B|} \sum_{x \in B} G(x)_i$ (average routing probability)
 
 **Combined Loss:**
 
@@ -217,7 +217,7 @@ For a token routed to expert $i$:
 
 ```
 
-**Issue:** Experts with low $G(x)\_i$ receive small gradients.
+**Issue:** Experts with low $G(x)_i$ receive small gradients.
 
 **Solution:** Auxiliary losses ensure all experts receive sufficient gradients.
 

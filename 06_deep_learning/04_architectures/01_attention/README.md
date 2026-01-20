@@ -24,19 +24,19 @@
 
 Where:
 
-- $Q \in \mathbb{R}^{n \times d\_k}$ (queries)
+- $Q \in \mathbb{R}^{n \times d_k}$ (queries)
 
-- $K \in \mathbb{R}^{m \times d\_k}$ (keys)
+- $K \in \mathbb{R}^{m \times d_k}$ (keys)
 
-- $V \in \mathbb{R}^{m \times d\_v}$ (values)
+- $V \in \mathbb{R}^{m \times d_v}$ (values)
 
-- Output: $\mathbb{R}^{n \times d\_v}$
+- Output: $\mathbb{R}^{n \times d_v}$
 
-### Why Scale by $\sqrt{d\_k}$?
+### Why Scale by $\sqrt{d_k}$?
 
 **Variance Analysis:**
 
-If $q\_i, k\_j \sim \mathcal{N}(0, 1)$ independently:
+If $q_i, k_j \sim \mathcal{N}(0, 1)$ independently:
 
 ```math
 \text{Var}(q^\top k) = \text{Var}\left(\sum_{i=1}^{d_k} q_i k_i\right) = d_k
@@ -45,7 +45,7 @@ If $q\_i, k\_j \sim \mathcal{N}(0, 1)$ independently:
 
 Large variance → softmax becomes very peaked → vanishing gradients.
 
-Scaling by $\sqrt{d\_k}$: $\text{Var}\left(\frac{q^\top k}{\sqrt{d\_k}}\right) = 1$
+Scaling by $\sqrt{d_k}$: $\text{Var}\left(\frac{q^\top k}{\sqrt{d_k}}\right) = 1$
 
 ---
 
@@ -58,12 +58,12 @@ Scaling by $\sqrt{d\_k}$: $\text{Var}\left(\frac{q^\top k}{\sqrt{d\_k}}\right) =
 
 ```
 
-Where $\alpha\_{ij} = \text{softmax}\left(\frac{q\_i^\top k\_j}{\sqrt{d\_k}}\right)\_j$
+Where $\alpha_{ij} = \text{softmax}\left(\frac{q_i^\top k_j}{\sqrt{d_k}}\right)_j$
 
 **Properties:**
-- $\sum\_j \alpha\_{ij} = 1$ (weights sum to 1)
+- $\sum_j \alpha_{ij} = 1$ (weights sum to 1)
 
-- $\alpha\_{ij} \geq 0$ (non-negative weights)
+- $\alpha_{ij} \geq 0$ (non-negative weights)
 
 - Differentiable weighted average
 
@@ -87,7 +87,7 @@ High score = high relevance = more weight in output.
 
 ```
 
-**Complexity:** $O(n \cdot m \cdot d\_k)$
+**Complexity:** $O(n \cdot m \cdot d_k)$
 
 ### 2. Additive/Bahdanau Attention
 
@@ -96,7 +96,7 @@ High score = high relevance = more weight in output.
 
 ```
 
-Where $W\_q, W\_k, v$ are learnable parameters.
+Where $W_q, W_k, v$ are learnable parameters.
 
 **Advantages:** More flexible for different-sized $q, k$.
 
@@ -116,7 +116,7 @@ Where $W$ is learnable.
 
 ```
 
-Where $r\_{i-j}$ is a learnable relative position embedding.
+Where $r_{i-j}$ is a learnable relative position embedding.
 
 ---
 
@@ -136,13 +136,13 @@ Where each head:
 
 ### Projections
 
-- $W\_i^Q \in \mathbb{R}^{d\_{model} \times d\_k}$
+- $W_i^Q \in \mathbb{R}^{d_{model} \times d_k}$
 
-- $W\_i^K \in \mathbb{R}^{d\_{model} \times d\_k}$
+- $W_i^K \in \mathbb{R}^{d_{model} \times d_k}$
 
-- $W\_i^V \in \mathbb{R}^{d\_{model} \times d\_v}$
+- $W_i^V \in \mathbb{R}^{d_{model} \times d_v}$
 
-- $W^O \in \mathbb{R}^{hd\_v \times d\_{model}}$
+- $W^O \in \mathbb{R}^{hd_v \times d_{model}}$
 
 ### Parameters
 
@@ -151,7 +151,7 @@ Where each head:
 
 ```
 
-With $d\_k = d\_v = d\_{model}/h$:
+With $d_k = d_v = d_{model}/h$:
 
 ```math
 = 4 \cdot d_{model}^2
@@ -207,7 +207,7 @@ Q = XW^Q, \quad K = YW^K, \quad V = YW^V
 
 ```
 
-Where $M\_{ij} = \begin{cases} 0 & i \geq j \\ -\infty & i < j \end{cases}$
+Where $M_{ij} = \begin{cases} 0 & i \geq j \\ -\infty & i < j \end{cases}$
 
 **Effect:** Position $i$ can only attend to positions $\leq i$.
 
@@ -237,7 +237,7 @@ Given $\frac{\partial \mathcal{L}}{\partial O}$:
 
 ```
 
-For softmax with scores $S = QK^\top / \sqrt{d\_k}$:
+For softmax with scores $S = QK^\top / \sqrt{d_k}$:
 
 ```math
 \frac{\partial \mathcal{L}}{\partial S_{ij}} = A_{ij}\left(\frac{\partial \mathcal{L}}{\partial A_{ij}} - \sum_k A_{ik}\frac{\partial \mathcal{L}}{\partial A_{ik}}\right)

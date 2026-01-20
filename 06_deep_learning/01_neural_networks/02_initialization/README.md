@@ -39,15 +39,15 @@ Weight initialization determines the starting point of optimization. Bad initial
 
 **Forward Pass Analysis:**
 
-Consider a linear layer: $y = Wx$ where $W \in \mathbb{R}^{n\_{out} \times n\_{in}}$
+Consider a linear layer: $y = Wx$ where $W \in \mathbb{R}^{n_{out} \times n_{in}}$
 
 Assuming:
 
-- $w\_{ij} \sim \mathcal{N}(0, \sigma\_w^2)$ independent
+- $w_{ij} \sim \mathcal{N}(0, \sigma_w^2)$ independent
 
-- $x\_i \sim \mathcal{N}(0, \sigma\_x^2)$ independent
+- $x_i \sim \mathcal{N}(0, \sigma_x^2)$ independent
 
-- $w\_{ij}$ and $x\_i$ are independent
+- $w_{ij}$ and $x_i$ are independent
 
 Then:
 
@@ -82,9 +82,9 @@ To maintain $\text{Var}(y) = \text{Var}(x)$:
 
 **Derivation:**
 
-Forward: $\text{Var}(y) = n\_{in} \cdot \sigma\_w^2 \cdot \text{Var}(x)$
+Forward: $\text{Var}(y) = n_{in} \cdot \sigma_w^2 \cdot \text{Var}(x)$
 
-Backward: $\text{Var}(\delta\_x) = n\_{out} \cdot \sigma\_w^2 \cdot \text{Var}(\delta\_y)$
+Backward: $\text{Var}(\delta_x) = n_{out} \cdot \sigma_w^2 \cdot \text{Var}(\delta_y)$
 
 To satisfy both:
 
@@ -190,8 +190,8 @@ Leaky ReLU: $f(x) = \max(\alpha x, x)$ where $\alpha \in (0, 1)$
 
 | Method | Formula | Best For |
 |--------|---------|----------|
-| **Xavier/Glorot** | $\mathcal{N}(0, 2/(n\_{in} + n\_{out}))$ | tanh, sigmoid, GELU |
-| **Kaiming/He** | $\mathcal{N}(0, 2/n\_{in})$ | ReLU, LeakyReLU |
+| **Xavier/Glorot** | $\mathcal{N}(0, 2/(n_{in} + n_{out}))$ | tanh, sigmoid, GELU |
+| **Kaiming/He** | $\mathcal{N}(0, 2/n_{in})$ | ReLU, LeakyReLU |
 | **Orthogonal** | QR decomposition | RNNs, preserves gradient norms |
 | **Small Constant** | $\mathcal{N}(0, 0.02)$ | LLMs (GPT-style) |
 | **Zero** | $W = 0$ | Biases, certain skip connections |
@@ -207,7 +207,7 @@ h_t = Wh_{t-1} + Ux_t
 
 ```
 
-After $T$ steps: $h\_T = W^T h\_0 + ...$
+After $T$ steps: $h_T = W^T h_0 + ...$
 
 If $\|W\| > 1$: exploding gradients  
 If $\|W\| < 1$: vanishing gradients

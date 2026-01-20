@@ -104,7 +104,7 @@ Arithmetic Intensity = FLOPs / Bytes loaded < 1
 Each new token requires recomputing all K, V:
 
 ```math
-\text{FLOPs}_{no\_cache} = O(N^2 \times d \times L)
+\text{FLOPs}_{no_cache} = O(N^2 \times d \times L)
 
 ```
 

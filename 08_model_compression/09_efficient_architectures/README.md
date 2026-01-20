@@ -28,7 +28,7 @@ Y = W * X, \quad W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
 
 ```
 
-**Computation:** $O(K^2 \cdot C\_{in} \cdot C\_{out} \cdot H \cdot W)$
+**Computation:** $O(K^2 \cdot C_{in} \cdot C_{out} \cdot H \cdot W)$
 
 **Depthwise Separable (MobileNet):**
 
@@ -46,7 +46,7 @@ Y = W^{pw} \cdot H, \quad W^{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 
 
 ```
 
-**Computation:** $O(K^2 \cdot C\_{in} \cdot H \cdot W + C\_{in} \cdot C\_{out} \cdot H \cdot W)$
+**Computation:** $O(K^2 \cdot C_{in} \cdot H \cdot W + C_{in} \cdot C_{out} \cdot H \cdot W)$
 
 **Reduction Ratio:**
 
@@ -55,7 +55,7 @@ Y = W^{pw} \cdot H, \quad W^{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 
 
 ```
 
-For $K=3$, $C\_{out}=256$: Reduction ≈ $8-9\times$
+For $K=3$, $C_{out}=256$: Reduction ≈ $8-9\times$
 
 ### 2. Inverted Residual Block (MobileNetV2)
 

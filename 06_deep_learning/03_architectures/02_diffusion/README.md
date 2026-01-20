@@ -32,11 +32,11 @@ q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t} x_{t-1}, \beta_t I)
 
 ```
 
-Where $\beta\_t$ is the noise schedule (variance at step $t$).
+Where $\beta_t$ is the noise schedule (variance at step $t$).
 
 **Closed-form for any timestep:**
 
-Define $\alpha\_t = 1 - \beta\_t$ and $\bar{\alpha}\_t = \prod\_{s=1}^{t} \alpha\_s$
+Define $\alpha_t = 1 - \beta_t$ and $\bar{\alpha}_t = \prod_{s=1}^{t} \alpha_s$
 
 ```math
 q(x_t | x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0, (1-\bar{\alpha}_t) I)
@@ -59,7 +59,7 @@ p_\theta(x_{t-1} | x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta
 
 ```
 
-**Posterior (tractable when conditioned on $x\_0$):**
+**Posterior (tractable when conditioned on $x_0$):**
 
 ```math
 q(x_{t-1} | x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t, x_0), \tilde{\beta}_t I)
@@ -96,14 +96,14 @@ L_{simple} = \mathbb{E}_{t, x_0, \epsilon}\left[\|\epsilon - \epsilon_\theta(x_t
 
 **Proof of equivalence:**
 
-From $x\_t = \sqrt{\bar{\alpha}\_t} x\_0 + \sqrt{1-\bar{\alpha}\_t} \epsilon$:
+From $x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1-\bar{\alpha}_t} \epsilon$:
 
 ```math
 x_0 = \frac{x_t - \sqrt{1-\bar{\alpha}_t} \epsilon}{\sqrt{\bar{\alpha}_t}}
 
 ```
 
-Substituting into $\tilde{\mu}\_t$:
+Substituting into $\tilde{\mu}_t$:
 
 ```math
 \tilde{\mu}_t = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon\right)
@@ -142,14 +142,14 @@ def train_step(model, x0):
 
 ### DDPM Sampling
 
-Starting from $x\_T \sim \mathcal{N}(0, I)$:
+Starting from $x_T \sim \mathcal{N}(0, I)$:
 
 ```math
 x_{t-1} = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{1-\alpha_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon_\theta(x_t, t)\right) + \sigma_t z
 
 ```
 
-Where $z \sim \mathcal{N}(0, I)$ and $\sigma\_t = \sqrt{\beta\_t}$ or $\sigma\_t = \sqrt{\tilde{\beta}\_t}$.
+Where $z \sim \mathcal{N}(0, I)$ and $\sigma_t = \sqrt{\beta_t}$ or $\sigma_t = \sqrt{\tilde{\beta}_t}$.
 
 ### DDIM Sampling (Deterministic)
 
@@ -166,9 +166,9 @@ x_{t-1} = \sqrt{\bar{\alpha}_{t-1}} \underbrace{\left(\frac{x_t - \sqrt{1-\bar{\
 
 | Schedule | Formula | Properties |
 |----------|---------|------------|
-| **Linear** | $\beta\_t = \beta\_1 + (t-1)\frac{\beta\_T - \beta\_1}{T-1}$ | Simple, original DDPM |
-| **Cosine** | $\bar{\alpha}\_t = \cos^2\left(\frac{t/T + s}{1+s} \cdot \frac{\pi}{2}\right)$ | Smoother, better for images |
-| **Sigmoid** | $\bar{\alpha}\_t = \sigma(-a + 2a \cdot t/T)$ | Flexible endpoints |
+| **Linear** | $\beta_t = \beta_1 + (t-1)\frac{\beta_T - \beta_1}{T-1}$ | Simple, original DDPM |
+| **Cosine** | $\bar{\alpha}_t = \cos^2\left(\frac{t/T + s}{1+s} \cdot \frac{\pi}{2}\right)$ | Smoother, better for images |
+| **Sigmoid** | $\bar{\alpha}_t = \sigma(-a + 2a \cdot t/T)$ | Flexible endpoints |
 
 ### Cosine Schedule Derivation
 

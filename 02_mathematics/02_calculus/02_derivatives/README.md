@@ -16,7 +16,7 @@
 
 > **Derivatives measure instantaneous rate of change.** Every neural network parameter update uses derivatives computed via the chain rule (backpropagation).
 
-- 📐 **Definition**: $f'(x) = \lim\_{h \to 0} \frac{f(x+h) - f(x)}{h}$
+- 📐 **Definition**: $f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$
 
 - 📊 **Interpretation**: Slope of tangent line, sensitivity of output to input
 
@@ -169,7 +169,7 @@ Add and subtract f(x+h)g(x):
 | $\cos(x)$ | $-\sin(x)$ | $\mathbb{R}$ |
 | $\tan(x)$ | $\sec^2(x)$ | $x \neq \frac{\pi}{2} + k\pi$ |
 | $a^x$ | $a^x \ln(a)$ | $\mathbb{R}$ |
-| $\log\_a(x)$ | $\frac{1}{x \ln(a)}$ | $x > 0$ |
+| $\log_a(x)$ | $\frac{1}{x \ln(a)}$ | $x > 0$ |
 
 ### 💡 Examples
 
@@ -209,7 +209,7 @@ f'(x) = (1/(x²+1)) · 2x = 2x/(x²+1)  (chain rule)
 | **Leaky ReLU** | $\max(\alpha x, x)$ | $\begin{cases} 1 & x > 0 \\ \alpha & x < 0 \end{cases}$ | $\alpha \approx 0.01$ |
 | **Sigmoid** | $\sigma(x) = \frac{1}{1+e^{-x}}$ | $\sigma(x)(1 - \sigma(x))$ | Max at $x=0$: 0.25 |
 | **Tanh** | $\tanh(x)$ | $1 - \tanh^2(x)$ | Centered at 0 |
-| **Softmax** | $\frac{e^{x\_i}}{\sum\_j e^{x\_j}}$ | $p\_i(\delta\_{ij} - p\_j)$ | Jacobian matrix |
+| **Softmax** | $\frac{e^{x_i}}{\sum_j e^{x_j}}$ | $p_i(\delta_{ij} - p_j)$ | Jacobian matrix |
 | **GELU** | $x \cdot \Phi(x)$ | $\Phi(x) + x\phi(x)$ | Used in Transformers |
 
 ### 🔍 Proof: Sigmoid Derivative
@@ -258,7 +258,7 @@ This is why ReLU works better:
 
 ### 📌 Definition
 
-For $f(x\_1, x\_2, \ldots, x\_n)$:
+For $f(x_1, x_2, \ldots, x_n)$:
 
 ```math
 \frac{\partial f}{\partial x_i} = \lim_{h \to 0} \frac{f(x_1, \ldots, x_i + h, \ldots, x_n) - f(x_1, \ldots, x_n)}{h}

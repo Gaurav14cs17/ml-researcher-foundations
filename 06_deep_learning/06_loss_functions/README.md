@@ -27,7 +27,7 @@
 
 Most loss functions arise from Maximum Likelihood Estimation (MLE).
 
-Given data $\{(x\_i, y\_i)\}\_{i=1}^n$ and model $p\_\theta(y|x)$:
+Given data $\{(x_i, y_i)\}_{i=1}^n$ and model $p_\theta(y|x)$:
 
 ```math
 \theta^* = \arg\max_\theta \prod_{i=1}^n p_\theta(y_i|x_i)
@@ -49,7 +49,7 @@ Taking negative log:
 
 ### Binary Cross-Entropy (BCE)
 
-**Model:** $p(y=1|x) = \sigma(f\_\theta(x))$ where $\sigma(z) = \frac{1}{1+e^{-z}}$
+**Model:** $p(y=1|x) = \sigma(f_\theta(x))$ where $\sigma(z) = \frac{1}{1+e^{-z}}$
 
 **Loss:**
 
@@ -77,7 +77,7 @@ Taking negative log:
 
 ### Multi-class Cross-Entropy
 
-**Model:** $p(y=c|x) = \text{softmax}(f\_\theta(x))\_c = \frac{e^{z\_c}}{\sum\_j e^{z\_j}}$
+**Model:** $p(y=c|x) = \text{softmax}(f_\theta(x))_c = \frac{e^{z_c}}{\sum_j e^{z_j}}$
 
 **Loss:**
 
@@ -86,14 +86,14 @@ Taking negative log:
 
 ```
 
-For one-hot labels (only true class $c^*$ has $y\_{c^*}=1$):
+For one-hot labels (only true class $c^*$ has $y_{c^*}=1$):
 
 ```math
 \mathcal{L}_{CE} = -\frac{1}{n}\sum_{i=1}^n \log(p_{i,c^*_i})
 
 ```
 
-**Gradient (w.r.t. logit $z\_c$):**
+**Gradient (w.r.t. logit $z_c$):**
 
 ```math
 \frac{\partial \mathcal{L}}{\partial z_c} = p_c - y_c = \text{softmax}(z)_c - y_c
@@ -109,16 +109,16 @@ For one-hot labels (only true class $c^*$ has $y\_{c^*}=1$):
 
 Where:
 
-- $p\_t = p$ if $y=1$, else $1-p$
+- $p_t = p$ if $y=1$, else $1-p$
 
-- $\alpha\_t$ = class weight
+- $\alpha_t$ = class weight
 
 - $\gamma$ = focusing parameter (typically 2)
 
 **Intuition:** Down-weights easy examples, focuses on hard ones.
 
 When $\gamma=0$: Standard cross-entropy
-When $\gamma>0$: Easy examples ($p\_t \approx 1$) contribute less
+When $\gamma>0$: Easy examples ($p_t \approx 1$) contribute less
 
 ### Label Smoothing
 
@@ -243,7 +243,7 @@ Where:
 
 Where:
 
-- $(z\_i, z\_j)$ = positive pair
+- $(z_i, z_j)$ = positive pair
 
 - $\tau$ = temperature
 

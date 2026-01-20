@@ -141,7 +141,7 @@ If $x$ is uniformly distributed within each quantization interval, then $r \sim 
 
 ```
 
-**For full-range quantization** with $\Delta = \frac{2\alpha}{2^b}$ and $\sigma\_x^2 \approx \alpha^2/3$:
+**For full-range quantization** with $\Delta = \frac{2\alpha}{2^b}$ and $\sigma_x^2 \approx \alpha^2/3$:
 
 ```math
 \text{SQNR}_{dB} \approx 6.02b + 4.77 \text{ dB}
@@ -236,7 +236,7 @@ I(X; \hat{X}) = \frac{1}{2}\log_2(2\pi e(\sigma^2 + D)) - \frac{1}{2}\log_2(2\pi
 
 ```
 
-For small $D$: $R(D) \approx \frac{1}{2}\log\_2(\sigma^2/D)$
+For small $D$: $R(D) \approx \frac{1}{2}\log_2(\sigma^2/D)$
 
 **Implication for Quantization:**
 With $b$ bits, minimum achievable distortion is:
@@ -254,7 +254,7 @@ This shows 4-bit quantization achieves $D \approx \sigma^2/65536$, often suffici
 
 #### 4.1 Problem Formulation
 
-**Goal:** Find quantization levels $\{q\_i\}$ and decision boundaries $\{d\_i\}$ that minimize MSE:
+**Goal:** Find quantization levels $\{q_i\}$ and decision boundaries $\{d_i\}$ that minimize MSE:
 
 ```math
 \min_{\{q_i\}, \{d_i\}} \int_{-\infty}^{\infty} (x - Q(x))^2 p(x) dx
@@ -280,14 +280,14 @@ d_i = \frac{q_i + q_{i+1}}{2}
 ```
 
 **Proof of Centroid Condition:**
-Taking derivative of MSE w.r.t. $q\_i$:
+Taking derivative of MSE w.r.t. $q_i$:
 
 ```math
 \frac{\partial}{\partial q_i} \int_{d_{i-1}}^{d_i} (x - q_i)^2 p(x) dx = -2\int_{d_{i-1}}^{d_i} (x - q_i) p(x) dx = 0
 
 ```
 
-Solving: $q\_i = \frac{\int\_{d\_{i-1}}^{d\_i} x \cdot p(x) dx}{\int\_{d\_{i-1}}^{d\_i} p(x) dx}$
+Solving: $q_i = \frac{\int_{d_{i-1}}^{d_i} x \cdot p(x) dx}{\int_{d_{i-1}}^{d_i} p(x) dx}$
 
 #### 4.3 Lloyd-Max Algorithm
 
@@ -337,9 +337,9 @@ where $\phi$ is the PDF and $\Phi$ is the CDF.
 | Method | Formula | Pros | Cons |
 |--------|---------|------|------|
 | **Min-Max** | $\alpha = \max(\|x\|)$ | Simple | Outlier sensitive |
-| **Percentile** | $\alpha = P\_{99.9}(\|x\|)$ | Robust | May clip |
-| **MSE** | $\alpha = \arg\min\_\alpha \mathbb{E}[(x-Q(x))^2]$ | Optimal | Expensive |
-| **Entropy** | $\alpha = \arg\min\_\alpha D\_{KL}(P \| Q)$ | Distribution-aware | Complex |
+| **Percentile** | $\alpha = P_{99.9}(\|x\|)$ | Robust | May clip |
+| **MSE** | $\alpha = \arg\min_\alpha \mathbb{E}[(x-Q(x))^2]$ | Optimal | Expensive |
+| **Entropy** | $\alpha = \arg\min_\alpha D_{KL}(P \| Q)$ | Distribution-aware | Complex |
 
 ---
 

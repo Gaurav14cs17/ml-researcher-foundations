@@ -34,9 +34,9 @@
 
 where:
 
-- $W\_{down} \in \mathbb{R}^{d \times r}$ (down-projection)
+- $W_{down} \in \mathbb{R}^{d \times r}$ (down-projection)
 
-- $W\_{up} \in \mathbb{R}^{r \times d}$ (up-projection)
+- $W_{up} \in \mathbb{R}^{r \times d}$ (up-projection)
 
 - $f$ = nonlinearity (GELU, ReLU)
 
@@ -161,7 +161,7 @@ h' = h + \sum_i \alpha_i \text{Adapter}_i(h)
 
 ```
 
-where $\alpha = \text{softmax}(W\_\alpha h)$ are learned attention weights.
+where $\alpha = \text{softmax}(W_\alpha h)$ are learned attention weights.
 
 #### 4.2 Parallel Adapters (He et al.)
 
@@ -183,9 +183,9 @@ W_{down} = A_1 \otimes A_2
 
 ```
 
-where $A\_1 \in \mathbb{R}^{d\_1 \times r\_1}$, $A\_2 \in \mathbb{R}^{d\_2 \times r\_2}$, and $d = d\_1 d\_2$.
+where $A_1 \in \mathbb{R}^{d_1 \times r_1}$, $A_2 \in \mathbb{R}^{d_2 \times r_2}$, and $d = d_1 d_2$.
 
-**Compression:** From $O(dr)$ to $O((d\_1 + d\_2)(r\_1 + r\_2))$.
+**Compression:** From $O(dr)$ to $O((d_1 + d_2)(r_1 + r_2))$.
 
 ---
 

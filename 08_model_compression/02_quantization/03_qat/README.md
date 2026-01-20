@@ -177,7 +177,7 @@ s = f_\theta(W) \quad \text{or} \quad s = \text{learnable parameter}
 
 ```
 
-The normalization $\frac{1}{\sqrt{n \cdot Q\_P}}$ balances gradient magnitudes.
+The normalization $\frac{1}{\sqrt{n \cdot Q_P}}$ balances gradient magnitudes.
 
 ---
 
@@ -214,7 +214,7 @@ Q_\tau(x) = s \cdot \text{softround}_\tau(x/s)
 
 ```
 
-where $\text{softround}\_\tau \to \text{round}$ as $\tau \to 0$.
+where $\text{softround}_\tau \to \text{round}$ as $\tau \to 0$.
 
 ---
 

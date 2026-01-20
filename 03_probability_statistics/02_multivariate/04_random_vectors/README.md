@@ -36,7 +36,7 @@ Random vectors are essential for multivariate ML: each data point is a random ve
 
 ```
 
-Each $X\_i$ is a random variable. The vector is a measurable function:
+Each $X_i$ is a random variable. The vector is a measurable function:
 
 ```math
 \mathbf{X}: \Omega \to \mathbb{R}^n
@@ -75,7 +75,7 @@ f_{\mathbf{X}}(x_1, \ldots, x_n) \geq 0
 
 ### Definition
 
-The marginal distribution of $X\_i$ is obtained by "integrating out" other variables.
+The marginal distribution of $X_i$ is obtained by "integrating out" other variables.
 
 **Discrete:**
 
@@ -91,7 +91,7 @@ f_{X_i}(x) = \int \cdots \int f_{\mathbf{X}}(x_1, \ldots, x_n) \, dx_{-i}
 
 ```
 
-where $x\_{-i}$ denotes all variables except $x\_i$.
+where $x_{-i}$ denotes all variables except $x_i$.
 
 ### Example: Bivariate Normal
 
@@ -188,7 +188,7 @@ p(x, y | z) = p(x|z) \cdot p(y|z)
 
 ### Properties
 
-- Diagonal: $\Sigma\_{ii} = \text{Var}(X\_i)$
+- Diagonal: $\Sigma_{ii} = \text{Var}(X_i)$
 
 - Symmetric: $\boldsymbol{\Sigma} = \boldsymbol{\Sigma}^\top$
 

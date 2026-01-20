@@ -26,7 +26,7 @@ W' = W_0 + \Delta W = W_0 + \frac{\alpha}{r}BA
 
 Where:
 
-- $W\_0 \in \mathbb{R}^{d \times k}$: Pretrained weights (frozen)
+- $W_0 \in \mathbb{R}^{d \times k}$: Pretrained weights (frozen)
 
 - $B \in \mathbb{R}^{d \times r}$: Down-projection (trainable)
 
@@ -117,7 +117,7 @@ For 7B model: $3.5\text{GB} + 0.5\text{MB} \approx 3.5\text{GB}$ (vs 14GB FP16)
 
 ```
 
-Where $P\_k, P\_v \in \mathbb{R}^{l \times d}$ are learnable prefix matrices.
+Where $P_k, P_v \in \mathbb{R}^{l \times d}$ are learnable prefix matrices.
 
 **Parameter Count:**
 
@@ -149,9 +149,9 @@ h' = h + f(h W_{down}) W_{up}
 
 Where:
 
-- $W\_{down} \in \mathbb{R}^{d \times r}$
+- $W_{down} \in \mathbb{R}^{d \times r}$
 
-- $W\_{up} \in \mathbb{R}^{r \times d}$
+- $W_{up} \in \mathbb{R}^{r \times d}$
 
 - $f$ = nonlinearity (GELU)
 
@@ -178,11 +178,11 @@ h' = l \odot h
 Where $l \in \mathbb{R}^d$ is a learned rescaling vector.
 
 **Applied to:**
-- Keys: $K' = l\_K \odot K$
+- Keys: $K' = l_K \odot K$
 
-- Values: $V' = l\_V \odot V$
+- Values: $V' = l_V \odot V$
 
-- FFN: $h' = l\_{ff} \odot f(hW\_1)$
+- FFN: $h' = l_{ff} \odot f(hW_1)$
 
 **Parameters:** Only $3d$ per layer (extremely efficient!)
 
@@ -190,16 +190,16 @@ Where $l \in \mathbb{R}^d$ is a learned rescaling vector.
 
 **Intrinsic Dimensionality (Aghajanyan et al., 2021):**
 
-Fine-tuning has low intrinsic dimension $d\_{int}$:
+Fine-tuning has low intrinsic dimension $d_{int}$:
 
 ```math
 \text{Acc}(\theta_0 + P_{d_{int}} \delta) \approx \text{Acc}(\theta_T)
 
 ```
 
-Where $P\_{d\_{int}}$ projects to random $d\_{int}$-dimensional subspace.
+Where $P_{d_{int}}$ projects to random $d_{int}$-dimensional subspace.
 
-For RoBERTa: $d\_{int} \approx 896$ while $|\theta| = 355M$
+For RoBERTa: $d_{int} \approx 896$ while $|\theta| = 355M$
 
 **This explains why low-rank works!**
 

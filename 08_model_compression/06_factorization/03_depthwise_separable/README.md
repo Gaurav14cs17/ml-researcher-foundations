@@ -25,9 +25,9 @@
 
 #### 1.1 Operation
 
-**Input:** $X \in \mathbb{R}^{C\_{in} \times H \times W}$
-**Kernel:** $W \in \mathbb{R}^{C\_{out} \times C\_{in} \times K \times K}$
-**Output:** $Y \in \mathbb{R}^{C\_{out} \times H' \times W'}$
+**Input:** $X \in \mathbb{R}^{C_{in} \times H \times W}$
+**Kernel:** $W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}$
+**Output:** $Y \in \mathbb{R}^{C_{out} \times H' \times W'}$
 
 ```math
 Y[c_{out}, h, w] = \sum_{c_{in}=1}^{C_{in}} \sum_{i=1}^{K} \sum_{j=1}^{K} W[c_{out}, c_{in}, i, j] \cdot X[c_{in}, h+i, w+j]
@@ -36,9 +36,9 @@ Y[c_{out}, h, w] = \sum_{c_{in}=1}^{C_{in}} \sum_{i=1}^{K} \sum_{j=1}^{K} W[c_{o
 
 #### 1.2 Computational Cost
 
-**Parameters:** $C\_{out} \times C\_{in} \times K^2$
+**Parameters:** $C_{out} \times C_{in} \times K^2$
 
-**FLOPs:** $C\_{out} \times C\_{in} \times K^2 \times H' \times W'$
+**FLOPs:** $C_{out} \times C_{in} \times K^2 \times H' \times W'$
 
 ---
 
@@ -62,9 +62,9 @@ Y_{dw}[c, h, w] = \sum_{i=1}^{K} \sum_{j=1}^{K} W_{dw}[c, i, j] \cdot X[c, h+i, 
 
 ```
 
-**Parameters:** $C\_{in} \times K^2$
+**Parameters:** $C_{in} \times K^2$
 
-**FLOPs:** $C\_{in} \times K^2 \times H' \times W'$
+**FLOPs:** $C_{in} \times K^2 \times H' \times W'$
 
 #### 2.3 Pointwise Convolution
 
@@ -75,9 +75,9 @@ Y[c_{out}, h, w] = \sum_{c_{in}=1}^{C_{in}} W_{pw}[c_{out}, c_{in}] \cdot Y_{dw}
 
 ```
 
-**Parameters:** $C\_{out} \times C\_{in}$
+**Parameters:** $C_{out} \times C_{in}$
 
-**FLOPs:** $C\_{out} \times C\_{in} \times H' \times W'$
+**FLOPs:** $C_{out} \times C_{in} \times H' \times W'$
 
 ---
 
@@ -85,9 +85,9 @@ Y[c_{out}, h, w] = \sum_{c_{in}=1}^{C_{in}} W_{pw}[c_{out}, c_{in}] \cdot Y_{dw}
 
 #### 3.1 Parameter Reduction
 
-**Standard:** $C\_{out} \cdot C\_{in} \cdot K^2$
+**Standard:** $C_{out} \cdot C_{in} \cdot K^2$
 
-**Depthwise Separable:** $C\_{in} \cdot K^2 + C\_{out} \cdot C\_{in}$
+**Depthwise Separable:** $C_{in} \cdot K^2 + C_{out} \cdot C_{in}$
 
 **Ratio:**
 
@@ -96,7 +96,7 @@ Y[c_{out}, h, w] = \sum_{c_{in}=1}^{C_{in}} W_{pw}[c_{out}, c_{in}] \cdot Y_{dw}
 
 ```
 
-**For typical values ($C\_{out} = 256$, $K = 3$):**
+**For typical values ($C_{out} = 256$, $K = 3$):**
 
 ```math
 \frac{1}{256} + \frac{1}{9} \approx 0.11 \approx \frac{1}{9}
@@ -134,7 +134,7 @@ Same ratio as parameters:
 
 ```
 
-where spatial ($c\_r$) and channel ($a\_r, b\_r$) are separated.
+where spatial ($c_r$) and channel ($a_r, b_r$) are separated.
 
 #### 4.2 When This Works
 
@@ -181,11 +181,11 @@ where $t \in \{1, 6\}$ is expansion factor.
 
 **Total operations:**
 
-1. Expand: $C\_{in} \times t \cdot C\_{in} = t \cdot C\_{in}^2$
+1. Expand: $C_{in} \times t \cdot C_{in} = t \cdot C_{in}^2$
 
-2. Depthwise: $t \cdot C\_{in} \times K^2$
+2. Depthwise: $t \cdot C_{in} \times K^2$
 
-3. Project: $t \cdot C\_{in} \times C\_{out}$
+3. Project: $t \cdot C_{in} \times C_{out}$
 
 ---
 

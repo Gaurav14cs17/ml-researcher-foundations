@@ -74,7 +74,7 @@ p(y_i|h) \propto \exp(e_i^T h)
 
 ```
 
-where $e\_i$ is the embedding of word $i$.
+where $e_i$ is the embedding of word $i$.
 
 **Interpretation:** 
 

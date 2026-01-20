@@ -28,9 +28,9 @@ Where:
 
 - $N$ = number of experts
 
-- $g\_i(x)$ = gating weight for expert $i$ (routing)
+- $g_i(x)$ = gating weight for expert $i$ (routing)
 
-- $E\_i(x)$ = output of expert $i$
+- $E_i(x)$ = output of expert $i$
 
 **Gating Function:**
 
@@ -107,11 +107,11 @@ For Mixtral (N=8, K=2): $4\times$ fewer FLOPs in FFN layers!
 
 Where:
 
-- $f\_i = \frac{\text{tokens routed to expert } i}{\text{total tokens}}$ (actual fraction)
+- $f_i = \frac{\text{tokens routed to expert } i}{\text{total tokens}}$ (actual fraction)
 
-- $P\_i = \frac{1}{T}\sum\_{t=1}^{T} g\_i(x\_t)$ (average routing probability)
+- $P_i = \frac{1}{T}\sum_{t=1}^{T} g_i(x_t)$ (average routing probability)
 
-**Intuition:** Minimizing $\sum f\_i P\_i$ encourages uniform distribution.
+**Intuition:** Minimizing $\sum f_i P_i$ encourages uniform distribution.
 
 **Proof of Effectiveness:**
 
@@ -120,7 +120,7 @@ Where:
 
 ```
 
-Equality holds when $f\_i = 1/N$ (perfectly balanced).
+Equality holds when $f_i = 1/N$ (perfectly balanced).
 
 ### 5. Expert Capacity
 
@@ -174,7 +174,7 @@ Each expert selects its top-$K$ tokens to process.
 
 #### 8.1 Theorem: Load Balancing Loss Minimization
 
-**Theorem:** The auxiliary loss $\mathcal{L}\_{aux} = N \sum\_{i=1}^N f\_i P\_i$ is minimized when $f\_i = P\_i = 1/N$ for all $i$.
+**Theorem:** The auxiliary loss $\mathcal{L}_{aux} = N \sum_{i=1}^N f_i P_i$ is minimized when $f_i = P_i = 1/N$ for all $i$.
 
 **Proof:**
 
@@ -185,7 +185,7 @@ By Cauchy-Schwarz inequality:
 
 ```
 
-Since $\sum\_i f\_i = 1$ and $\sum\_i P\_i = 1$ (probability constraints):
+Since $\sum_i f_i = 1$ and $\sum_i P_i = 1$ (probability constraints):
 
 Using AM-GM on each term:
 
@@ -194,7 +194,7 @@ f_i P_i \geq 0 \text{ with equality when } f_i = P_i
 
 ```
 
-The minimum of $\sum\_i f\_i P\_i$ subject to $\sum\_i f\_i = 1$ and $\sum\_i P\_i = 1$ occurs when:
+The minimum of $\sum_i f_i P_i$ subject to $\sum_i f_i = 1$ and $\sum_i P_i = 1$ occurs when:
 
 ```math
 f_i = P_i = \frac{1}{N} \quad \forall i
@@ -208,7 +208,7 @@ At minimum:
 
 ```
 
-**Corollary:** $\mathcal{L}\_{aux} \geq 1$ with equality iff perfect balance. ∎
+**Corollary:** $\mathcal{L}_{aux} \geq 1$ with equality iff perfect balance. ∎
 
 #### 8.2 Theorem: Optimal Number of Experts
 
@@ -233,9 +233,9 @@ Thus $c(p) = p$ (linear in parameters).
 
 Compute: $C = K \cdot (P/N)$, so $N = KP/C$.
 
-But larger $N$ means more routing overhead: $C\_{router} = N \cdot d$.
+But larger $N$ means more routing overhead: $C_{router} = N \cdot d$.
 
-Total compute: $C\_{total} = K \cdot (P/N) + N \cdot d$
+Total compute: $C_{total} = K \cdot (P/N) + N \cdot d$
 
 Minimizing w.r.t. $N$:
 
@@ -264,9 +264,9 @@ Higher $H(g)$ correlates with lower generalization gap.
 
 2. Equivalent to implicit L0 regularization on expert usage
 
-3. By PAC-Bayes bounds, effective parameter count $\approx N\_{active} \cdot p$
+3. By PAC-Bayes bounds, effective parameter count $\approx N_{active} \cdot p$
 
-4. With high entropy, $N\_{active} \approx N$, utilizing full capacity
+4. With high entropy, $N_{active} \approx N$, utilizing full capacity
 
 **Formal bound:**
 
@@ -288,7 +288,7 @@ where $m$ = training samples. ∎
 
 **Proof:**
 
-Forward: $y = \sum\_{i \in \text{TopK}} g\_i(x) E\_i(x)$
+Forward: $y = \sum_{i \in \text{TopK}} g_i(x) E_i(x)$
 
 By chain rule:
 
@@ -314,7 +314,7 @@ Combining:
 
 **Proof:**
 
-1. Each expert $E\_i$ with width $w \to \infty$ is a universal approximator (by Cybenko's theorem)
+1. Each expert $E_i$ with width $w \to \infty$ is a universal approximator (by Cybenko's theorem)
 
 2. The gating network partitions input space
 

@@ -120,7 +120,7 @@ where $\odot$ is element-wise multiplication.
 
 ```
 
-**When removing weight $w\_i$ (setting $\delta w\_i = -w\_i$):**
+**When removing weight $w_i$ (setting $\delta w_i = -w_i$):**
 
 ```math
 \Delta\mathcal{L}_i \approx \frac{1}{2}H_{ii} w_i^2
@@ -136,7 +136,7 @@ s_i^{OBD} = \frac{1}{2}H_{ii} w_i^2 = \frac{1}{2}\frac{\partial^2\mathcal{L}}{\p
 
 #### 3.3 Relationship to Magnitude Pruning
 
-**If $H\_{ii} \approx \text{constant}$ across weights:**
+**If $H_{ii} \approx \text{constant}$ across weights:**
 
 ```math
 s_i^{OBD} \propto w_i^2
@@ -160,7 +160,7 @@ Then OBD reduces to magnitude pruning!
 
 **Don't assume diagonal Hessian.**
 
-**When removing weight $w\_q$, optimal adjustment to other weights:**
+**When removing weight $w_q$, optimal adjustment to other weights:**
 
 ```math
 \delta w_{-q} = -\frac{w_q}{[H^{-1}]_{qq}} H^{-1}_{:,q}
@@ -176,14 +176,14 @@ s_q^{OBS} = \frac{w_q^2}{2[H^{-1}]_{qq}}
 
 #### 4.2 Derivation
 
-**Objective:** Minimize loss increase when pruning $w\_q$:
+**Objective:** Minimize loss increase when pruning $w_q$:
 
 ```math
 \min_{\delta w_{-q}} \frac{1}{2}(\delta w_q, \delta w_{-q})^T H (\delta w_q, \delta w_{-q})
 
 ```
 
-subject to $\delta w\_q = -w\_q$ (remove the weight).
+subject to $\delta w_q = -w_q$ (remove the weight).
 
 **Lagrangian:**
 
@@ -246,9 +246,9 @@ e_q^T \delta w = -w_q
 
 #### 5.3 Late Resetting Variant
 
-**Problem:** Resetting to $\theta\_0$ doesn't work for very deep networks.
+**Problem:** Resetting to $\theta_0$ doesn't work for very deep networks.
 
-**Solution:** Reset to $\theta\_k$ (weights at iteration $k$, early in training).
+**Solution:** Reset to $\theta_k$ (weights at iteration $k$, early in training).
 
 **Why this works:** Early training dynamics are crucial; some learning needs to happen before the ticket is identifiable.
 
@@ -267,13 +267,13 @@ s_t = s_f + (s_0 - s_f)\left(1 - \frac{t - t_0}{n\Delta t}\right)^3
 
 where:
 
-- $s\_t$ = sparsity at step $t$
+- $s_t$ = sparsity at step $t$
 
-- $s\_0$ = initial sparsity (usually 0)
+- $s_0$ = initial sparsity (usually 0)
 
-- $s\_f$ = final target sparsity
+- $s_f$ = final target sparsity
 
-- $t\_0$ = pruning start step
+- $t_0$ = pruning start step
 
 - $n\Delta t$ = total pruning duration
 
@@ -295,7 +295,7 @@ Each pruning step removes small loss increase:
 
 ```
 
-Small steps allow gradient descent to reduce each $\Delta\mathcal{L}\_i$.
+Small steps allow gradient descent to reduce each $\Delta\mathcal{L}_i$.
 
 ---
 

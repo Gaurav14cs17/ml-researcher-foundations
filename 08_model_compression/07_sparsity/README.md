@@ -139,13 +139,13 @@ y = \sum_{i \in \text{TopK}} g_i(x) \cdot E_i(x)
 
 Where:
 
-- $f\_i = \frac{1}{T}\sum\_t \mathbf{1}[\text{token } t \to \text{expert } i]$ (fraction of tokens)
+- $f_i = \frac{1}{T}\sum_t \mathbf{1}[\text{token } t \to \text{expert } i]$ (fraction of tokens)
 
-- $P\_i = \frac{1}{T}\sum\_t p\_i(x\_t)$ (average routing probability)
+- $P_i = \frac{1}{T}\sum_t p_i(x_t)$ (average routing probability)
 
 - $\alpha$ = balancing coefficient
 
-**Goal:** Make $f\_i \approx 1/N$ (uniform distribution).
+**Goal:** Make $f_i \approx 1/N$ (uniform distribution).
 
 ### 6. Sparse Attention
 
@@ -185,11 +185,11 @@ A = A_{local} + A_{global} + A_{random}
 ### 7. Lottery Ticket and Sparse Training
 
 **Lottery Ticket Hypothesis (Formal):**
-Let $f(x; \theta\_0)$ be initialized network. $\exists$ mask $m$ s.t.:
+Let $f(x; \theta_0)$ be initialized network. $\exists$ mask $m$ s.t.:
 
-1. $\|m\|\_0 \ll |\theta\_0|$ (sparse)
+1. $\|m\|_0 \ll |\theta_0|$ (sparse)
 
-2. $f(x; m \odot \theta\_0)$ achieves comparable accuracy to $f(x; \theta\_T)$
+2. $f(x; m \odot \theta_0)$ achieves comparable accuracy to $f(x; \theta_T)$
 
 **Sparse Training Methods:**
 

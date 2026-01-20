@@ -226,7 +226,7 @@ where:
 #### COO (Coordinate) Storage
 
 ```math
-\text{Memory}_{COO} = \text{nnz} \times (2 \times \text{idx\_size} + \text{val\_size})
+\text{Memory}_{COO} = \text{nnz} \times (2 \times \text{idx_size} + \text{val_size})
 
 ```
 
@@ -240,7 +240,7 @@ For nnz non-zeros with INT32 indices and FP32 values:
 #### CSR (Compressed Sparse Row) Storage
 
 ```math
-\text{Memory}_{CSR} = \text{nnz} \times (\text{idx\_size} + \text{val\_size}) + (n_{rows}+1) \times \text{ptr\_size}
+\text{Memory}_{CSR} = \text{nnz} \times (\text{idx_size} + \text{val_size}) + (n_{rows}+1) \times \text{ptr_size}
 
 ```
 
@@ -258,7 +258,7 @@ For matrix \( A \in \mathbb{R}^{m \times n} \):
 Dense is better when:
 
 ```math
-m \times n \times \text{val\_size} < \text{nnz} \times (\text{idx\_size} + \text{val\_size})
+m \times n \times \text{val_size} < \text{nnz} \times (\text{idx_size} + \text{val_size})
 
 ```
 

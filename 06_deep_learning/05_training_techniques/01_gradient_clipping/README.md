@@ -24,7 +24,7 @@ For RNNs/deep networks, gradients can grow exponentially:
 
 ```
 
-If $\left\|\frac{\partial h\_t}{\partial h\_{t-1}}\right\| > 1$, gradient grows as $O(c^T)$.
+If $\left\|\frac{\partial h_t}{\partial h_{t-1}}\right\| > 1$, gradient grows as $O(c^T)$.
 
 **Symptoms:**
 - Loss becomes NaN

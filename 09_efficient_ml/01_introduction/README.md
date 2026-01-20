@@ -202,7 +202,7 @@ where:
 For transformer inference, the compute-to-memory ratio:
 
 ```math
-\text{Arithmetic Intensity} = \frac{\text{FLOPs}}{\text{Bytes}} = \frac{2 \times \text{batch} \times \text{seq} \times d^2}{d^2 \times \text{bytes\_per\_param}}
+\text{Arithmetic Intensity} = \frac{\text{FLOPs}}{\text{Bytes}} = \frac{2 \times \text{batch} \times \text{seq} \times d^2}{d^2 \times \text{bytes_per_param}}
 
 ```
 
@@ -212,8 +212,8 @@ For transformer inference, the compute-to-memory ratio:
 
 ```math
 E_{\text{total}} = E_{\text{compute}} + E_{\text{memory}}
-E_{\text{compute}} = \text{FLOPs} \times E_{\text{per\_FLOP}}
-E_{\text{memory}} = \text{Data\_moved} \times E_{\text{per\_byte}}
+E_{\text{compute}} = \text{FLOPs} \times E_{\text{per_FLOP}}
+E_{\text{memory}} = \text{Data_moved} \times E_{\text{per_byte}}
 
 ```
 

@@ -25,7 +25,7 @@
 
 ### The Likelihood Function
 
-Given data $D = \{x\_1, x\_2, \ldots, x\_n\}$ and model $P(x|\theta)$:
+Given data $D = \{x_1, x_2, \ldots, x_n\}$ and model $P(x|\theta)$:
 
 ```math
 L(\theta) = P(D|\theta) = \prod_{i=1}^{n} P(x_i|\theta)
@@ -63,7 +63,7 @@ L(\theta) = P(D|\theta) = \prod_{i=1}^{n} P(x_i|\theta)
 
 ### Example 1: Gaussian Distribution
 
-**Setup:** $x\_1, \ldots, x\_n \sim \mathcal{N}(\mu, \sigma^2)$
+**Setup:** $x_1, \ldots, x_n \sim \mathcal{N}(\mu, \sigma^2)$
 
 **Log-likelihood:**
 
@@ -72,7 +72,7 @@ L(\theta) = P(D|\theta) = \prod_{i=1}^{n} P(x_i|\theta)
 
 ```
 
-**Finding $\mu\_{MLE}$:**
+**Finding $\mu_{MLE}$:**
 
 ```math
 \frac{\partial \ell}{\partial \mu} = \frac{1}{\sigma^2}\sum_{i=1}^n (x_i - \mu) = 0
@@ -81,7 +81,7 @@ L(\theta) = P(D|\theta) = \prod_{i=1}^{n} P(x_i|\theta)
 
 ```
 
-**Finding $\sigma^2\_{MLE}$:**
+**Finding $\sigma^2_{MLE}$:**
 
 ```math
 \frac{\partial \ell}{\partial \sigma^2} = -\frac{n}{2\sigma^2} + \frac{1}{2(\sigma^2)^2}\sum_{i=1}^n (x_i - \mu)^2 = 0
@@ -95,9 +95,9 @@ L(\theta) = P(D|\theta) = \prod_{i=1}^{n} P(x_i|\theta)
 
 ### Example 2: Bernoulli Distribution
 
-**Setup:** $x\_1, \ldots, x\_n \sim \text{Bernoulli}(p)$, where $x\_i \in \{0, 1\}$
+**Setup:** $x_1, \ldots, x_n \sim \text{Bernoulli}(p)$, where $x_i \in \{0, 1\}$
 
-Let $k = \sum\_{i=1}^n x\_i$ (number of successes)
+Let $k = \sum_{i=1}^n x_i$ (number of successes)
 
 **Likelihood:**
 
@@ -113,7 +113,7 @@ L(p) = \prod_{i=1}^n p^{x_i}(1-p)^{1-x_i} = p^k(1-p)^{n-k}
 
 ```
 
-**Finding $p\_{MLE}$:**
+**Finding $p_{MLE}$:**
 
 ```math
 \frac{d\ell}{dp} = \frac{k}{p} - \frac{n-k}{1-p} = 0
@@ -127,7 +127,7 @@ k = np
 
 ### Example 3: Linear Regression = MLE
 
-**Model:** $y\_i = \mathbf{w}^T\mathbf{x}\_i + \epsilon\_i$, where $\epsilon\_i \sim \mathcal{N}(0, \sigma^2)$
+**Model:** $y_i = \mathbf{w}^T\mathbf{x}_i + \epsilon_i$, where $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$
 
 **Likelihood:**
 

@@ -97,7 +97,7 @@ p_i^T = \frac{e^{z_i/T}}{\sum_j e^{z_j/T}}
 
 ```
 
-Let $u\_i = z\_i/T$. Using $e^{u\_i} = 1 + u\_i + u\_i^2/2 + O(u\_i^3)$:
+Let $u_i = z_i/T$. Using $e^{u_i} = 1 + u_i + u_i^2/2 + O(u_i^3)$:
 
 ```math
 p_i^T = \frac{1 + u_i + O(u_i^2)}{\sum_j (1 + u_j + O(u_j^2))} = \frac{1 + z_i/T}{n + \sum_j z_j/T} + O(1/T^2)
@@ -112,7 +112,7 @@ p_i^T = \frac{1 + u_i + O(u_i^2)}{\sum_j (1 + u_j + O(u_j^2))} = \frac{1 + z_i/T
 
 #### 3.1 Gradient of Soft Loss
 
-**Gradient w.r.t. student logits $z\_s$:**
+**Gradient w.r.t. student logits $z_s$:**
 
 ```math
 \frac{\partial \mathcal{L}_{soft}}{\partial z_s^{(i)}} = \frac{1}{T}\left(p_s^{T,(i)} - p_t^{T,(i)}\right)
@@ -126,7 +126,7 @@ p_i^T = \frac{1 + u_i + O(u_i^2)}{\sum_j (1 + u_j + O(u_j^2))} = \frac{1 + z_i/T
 
 ```
 
-Only second term depends on $z\_s$:
+Only second term depends on $z_s$:
 
 ```math
 \frac{\partial \mathcal{L}_{soft}}{\partial z_s^{(i)}} = -\sum_j p_t^{T,(j)} \frac{\partial \log p_s^{T,(j)}}{\partial z_s^{(i)}}
@@ -180,7 +180,7 @@ where $I$ is mutual information.
 
 **Hard labels:** $H(y) = 0$ (one-hot has zero entropy)
 
-**Soft labels:** $H(p\_t^T) > 0$
+**Soft labels:** $H(p_t^T) > 0$
 
 Higher entropy = more information transferred per sample.
 
@@ -190,7 +190,7 @@ Higher entropy = more information transferred per sample.
 
 #### 5.1 Theorem: Optimality of KL Divergence
 
-**Theorem:** Among all distillation losses $\mathcal{L}(p\_s, p\_t)$, KL divergence minimizes variance of gradient estimates.
+**Theorem:** Among all distillation losses $\mathcal{L}(p_s, p_t)$, KL divergence minimizes variance of gradient estimates.
 
 **Proof Sketch:**
 
@@ -219,9 +219,9 @@ The gradient variance is minimized when using the true data distribution (teache
 
 ```
 
-We showed $\frac{\partial \mathcal{L}\_{soft}}{\partial z\_s^{(i)}} = \frac{1}{T}(p\_s^{T,(i)} - p\_t^{T,(i)})$.
+We showed $\frac{\partial \mathcal{L}_{soft}}{\partial z_s^{(i)}} = \frac{1}{T}(p_s^{T,(i)} - p_t^{T,(i)})$.
 
-Since $|p\_s^{T,(i)} - p\_t^{T,(i)}| \leq 2$ and the chain rule preserves the $1/T$ scaling:
+Since $|p_s^{T,(i)} - p_t^{T,(i)}| \leq 2$ and the chain rule preserves the $1/T$ scaling:
 
 ```math
 \left\|\frac{\partial \mathcal{L}_{soft}}{\partial \theta_s}\right\| = O(1/T) \cdot \left\|\frac{\partial z_s}{\partial \theta_s}\right\| = O(1/T)
@@ -279,7 +279,7 @@ with equality only if student capacity $\geq$ teacher capacity.
 
 **Proof:**
 
-By the data processing inequality, for the chain $X \to Y\_t \to Y\_s$:
+By the data processing inequality, for the chain $X \to Y_t \to Y_s$:
 
 ```math
 I(X; Y_s) \leq I(X; Y_t)

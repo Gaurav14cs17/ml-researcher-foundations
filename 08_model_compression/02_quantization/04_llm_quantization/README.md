@@ -44,7 +44,7 @@
 
 ```
 
-where $X \in \mathbb{R}^{d\_{in} \times n}$ is calibration data.
+where $X \in \mathbb{R}^{d_{in} \times n}$ is calibration data.
 
 #### 2.2 Optimal Brain Quantization (OBQ)
 
@@ -57,9 +57,9 @@ H = 2X X^T
 
 ```
 
-**When quantizing weight $w\_q$ to $\hat{w}\_q$:**
+**When quantizing weight $w_q$ to $\hat{w}_q$:**
 
-The quantization error is $\delta\_q = \hat{w}\_q - w\_q$.
+The quantization error is $\delta_q = \hat{w}_q - w_q$.
 
 **Optimal update to remaining weights:**
 
@@ -83,16 +83,16 @@ The second-order approximation gives:
 
 ```
 
-Taking derivative w.r.t. $\delta\_{-q}$:
+Taking derivative w.r.t. $\delta_{-q}$:
 
 ```math
 \frac{\partial \Delta}{\partial \delta_{-q}} = 2\delta_q H_{-q,q} + 2H_{-q,-q}\delta_{-q} = 0
 
 ```
 
-Solving: $\delta\_{-q} = -H\_{-q,-q}^{-1} H\_{-q,q} \delta\_q$
+Solving: $\delta_{-q} = -H_{-q,-q}^{-1} H_{-q,q} \delta_q$
 
-Using Schur complement: $\delta\_{-q} = -\frac{\delta\_q}{[H^{-1}]\_{qq}} H^{-1}\_{:,q}$
+Using Schur complement: $\delta_{-q} = -\frac{\delta_q}{[H^{-1}]_{qq}} H^{-1}_{:,q}$
 
 #### 2.3 GPTQ Speedups
 
@@ -159,7 +159,7 @@ Y = XW = (X \cdot \text{diag}(s)^{-1}) \cdot (\text{diag}(s) \cdot W) = \hat{X} 
 ```
 
 **Effect:**
-- Important channels (large $s\_j$): weights scaled up → less relative quantization error
+- Important channels (large $s_j$): weights scaled up → less relative quantization error
 
 - Unimportant channels: weights scaled down → more error but less impact
 

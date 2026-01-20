@@ -73,7 +73,7 @@ P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0,1,\ldots,n
 
 #### Proof: Mean of Binomial
 
-Let $X = \sum\_{i=1}^{n} X\_i$ where $X\_i \sim \text{Bernoulli}(p)$ are independent.
+Let $X = \sum_{i=1}^{n} X_i$ where $X_i \sim \text{Bernoulli}(p)$ are independent.
 
 ```math
 E[X] = E\left[\sum_{i=1}^{n} X_i\right] = \sum_{i=1}^{n} E[X_i] = \sum_{i=1}^{n} p = np \quad \blacksquare
@@ -217,11 +217,11 @@ p(x) = \exp\left(-1 + \lambda_0 + \lambda_1 x + \lambda_2(x-\mu)^2\right)
 ```
 
 **Imposing constraints:**
-- From fixed mean: $\lambda\_1 = 0$
+- From fixed mean: $\lambda_1 = 0$
 
-- From fixed variance: $\lambda\_2 = -\frac{1}{2\sigma^2}$
+- From fixed variance: $\lambda_2 = -\frac{1}{2\sigma^2}$
 
-- From normalization: $\lambda\_0 = 1 - \frac{1}{2}\log(2\pi\sigma^2)$
+- From normalization: $\lambda_0 = 1 - \frac{1}{2}\log(2\pi\sigma^2)$
 
 ```math
 p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
@@ -241,9 +241,9 @@ H(X) = \frac{1}{2}\log(2\pi e\sigma^2) \text{ nats}
 
 #### Central Limit Theorem
 
-**Theorem:** Let $X\_1, X\_2, \ldots, X\_n$ be i.i.d. random variables with $E[X\_i] = \mu$ and $\text{Var}(X\_i) = \sigma^2 < \infty$.
+**Theorem:** Let $X_1, X_2, \ldots, X_n$ be i.i.d. random variables with $E[X_i] = \mu$ and $\text{Var}(X_i) = \sigma^2 < \infty$.
 
-Define sample mean: $\bar{X}\_n = \frac{1}{n}\sum\_{i=1}^{n} X\_i$
+Define sample mean: $\bar{X}_n = \frac{1}{n}\sum_{i=1}^{n} X_i$
 
 Then as $n \to \infty$:
 
@@ -252,13 +252,13 @@ Then as $n \to \infty$:
 
 ```
 
-Or equivalently: $\bar{X}\_n \xrightarrow{d} \mathcal{N}(\mu, \sigma^2/n)$
+Or equivalently: $\bar{X}_n \xrightarrow{d} \mathcal{N}(\mu, \sigma^2/n)$
 
 **Proof Sketch (via Characteristic Functions):**
 
-1. Standardize: $Z\_i = \frac{X\_i - \mu}{\sigma}$, so $E[Z\_i]=0$, $\text{Var}(Z\_i)=1$
+1. Standardize: $Z_i = \frac{X_i - \mu}{\sigma}$, so $E[Z_i]=0$, $\text{Var}(Z_i)=1$
 
-2. Define $S\_n = \frac{\sum\_{i=1}^{n} Z\_i}{\sqrt{n}}$
+2. Define $S_n = \frac{\sum_{i=1}^{n} Z_i}{\sqrt{n}}$
 
 3. Characteristic function:
 
@@ -287,7 +287,7 @@ This is the characteristic function of $\mathcal{N}(0,1)$! $\blacksquare$
 
 #### Gaussian-Gaussian Conjugacy
 
-**Theorem:** If likelihood is $X|\mu \sim \mathcal{N}(\mu, \sigma^2)$ (σ² known) and prior is $\mu \sim \mathcal{N}(\mu\_0, \sigma\_0^2)$, then the posterior is Gaussian:
+**Theorem:** If likelihood is $X|\mu \sim \mathcal{N}(\mu, \sigma^2)$ (σ² known) and prior is $\mu \sim \mathcal{N}(\mu_0, \sigma_0^2)$, then the posterior is Gaussian:
 
 ```math
 \mu|X \sim \mathcal{N}(\mu_n, \sigma_n^2)
@@ -317,7 +317,7 @@ Expanding and completing the square in μ:
 
 ```
 
-This is the kernel of $\mathcal{N}(\mu\_n, \sigma\_n^2)$. $\blacksquare$
+This is the kernel of $\mathcal{N}(\mu_n, \sigma_n^2)$. $\blacksquare$
 
 ---
 

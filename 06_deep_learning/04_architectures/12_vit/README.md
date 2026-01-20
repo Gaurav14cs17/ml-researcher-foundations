@@ -57,9 +57,9 @@ z_0 = [x_{class}; z_0^{(1)}; z_0^{(2)}; ...; z_0^{(N)}] + E_{pos}
 
 Where:
 
-- $x\_{class} \in \mathbb{R}^D$ is learnable
+- $x_{class} \in \mathbb{R}^D$ is learnable
 
-- $E\_{pos} \in \mathbb{R}^{(N+1) \times D}$ is positional embedding
+- $E_{pos} \in \mathbb{R}^{(N+1) \times D}$ is positional embedding
 
 ### 3. Transformer Encoder
 

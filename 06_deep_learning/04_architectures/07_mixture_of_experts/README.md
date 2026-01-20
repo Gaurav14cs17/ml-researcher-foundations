@@ -119,7 +119,7 @@ At optimum: P_i = f_i = 1/N → L_aux = α·N·(1/N)·(1/N)·N = α
 Each expert has limited capacity:
 
 ```math
-\text{capacity} = \frac{k \cdot \text{tokens}}{N} \cdot \text{capacity\_factor}
+\text{capacity} = \frac{k \cdot \text{tokens}}{N} \cdot \text{capacity_factor}
 
 ```
 

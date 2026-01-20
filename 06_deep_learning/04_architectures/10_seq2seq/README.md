@@ -46,7 +46,7 @@ h_t = \text{RNN}(x_t, h_{t-1})
 
 ```
 
-Final hidden state: $c = h\_n$ (context vector)
+Final hidden state: $c = h_n$ (context vector)
 
 For bidirectional:
 
@@ -113,9 +113,9 @@ s_t = \text{RNN}(y_{t-1}, s_{t-1}, c_t)
 
 | Type | Formula |
 |------|---------|
-| **Dot** | $e\_{t,s} = s\_t^T h\_s$ |
-| **General** | $e\_{t,s} = s\_t^T W\_a h\_s$ |
-| **Concat** | $e\_{t,s} = v^T \tanh(W\_a[s\_t; h\_s])$ |
+| **Dot** | $e_{t,s} = s_t^T h_s$ |
+| **General** | $e_{t,s} = s_t^T W_a h_s$ |
+| **Concat** | $e_{t,s} = v^T \tanh(W_a[s_t; h_s])$ |
 
 ---
 
@@ -123,7 +123,7 @@ s_t = \text{RNN}(y_{t-1}, s_{t-1}, c_t)
 
 ### Teacher Forcing
 
-During training, use ground truth $y\_{t-1}$ as input:
+During training, use ground truth $y_{t-1}$ as input:
 
 ```math
 s_t = \text{RNN}(y_{t-1}^{*}, s_{t-1}, c_t)

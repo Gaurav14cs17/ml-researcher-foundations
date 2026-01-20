@@ -150,7 +150,7 @@ M_{optimizer} = 2 \times |\theta_{LoRA}| \times 1 \text{ byte}
 ```math
 Where:
 
-- $A\_0$ = original accuracy
+- $A_0$ = original accuracy
 
 - $\alpha, \beta$ = method-dependent constants
 

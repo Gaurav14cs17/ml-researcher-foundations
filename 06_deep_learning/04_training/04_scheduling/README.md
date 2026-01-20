@@ -36,7 +36,7 @@ Learning rate scheduling adjusts the learning rate during training. Starting hig
 
 ```
 
-Where $\eta\_t$ is the learning rate at step $t$.
+Where $\eta_t$ is the learning rate at step $t$.
 
 ### Why Schedule the Learning Rate?
 
@@ -76,7 +76,7 @@ For strongly convex functions, SGD converges with rate:
 
 Where $\gamma \in (0, 1)$ is the decay factor and $s$ is the step size.
 
-**Example:** $\eta\_0 = 0.1$, $\gamma = 0.1$, $s = 30$ epochs
+**Example:** $\eta_0 = 0.1$, $\gamma = 0.1$, $s = 30$ epochs
 
 - Epochs 0-29: $\eta = 0.1$
 
@@ -115,7 +115,7 @@ Where $p$ controls decay speed (typically $p = 1$ for linear, $p = 2$ for quadra
 ```
 
 **Properties:**
-- Smooth decay from $\eta\_{max}$ to $\eta\_{min}$
+- Smooth decay from $\eta_{max}$ to $\eta_{min}$
 
 - Slower decay at start and end
 
@@ -128,7 +128,7 @@ Where $p$ controls decay speed (typically $p = 1$ for linear, $p = 2$ for quadra
 
 ```
 
-Where $T\_{cur}$ is steps since last restart and $T\_i$ is the $i$-th restart period.
+Where $T_{cur}$ is steps since last restart and $T_i$ is the $i$-th restart period.
 
 ---
 
@@ -171,11 +171,11 @@ Bias correction helps, but initial steps are still noisy.
 
 ```math
 **Typical values for LLMs:**
-- $T\_w = 2000$ steps (warmup)
+- $T_w = 2000$ steps (warmup)
 
-- $\eta\_{max} = 3 \times 10^{-4}$
+- $\eta_{max} = 3 \times 10^{-4}$
 
-- $\eta\_{min} = 3 \times 10^{-5}$ (10% of max)
+- $\eta_{min} = 3 \times 10^{-5}$ (10% of max)
 
 ---
 
@@ -183,11 +183,11 @@ Bias correction helps, but initial steps are still noisy.
 
 **Three phases:**
 
-1. **Warmup:** LR increases from $\eta\_{low}$ to $\eta\_{max}$
+1. **Warmup:** LR increases from $\eta_{low}$ to $\eta_{max}$
 
-2. **Annealing:** LR decreases from $\eta\_{max}$ to $\eta\_{low}$
+2. **Annealing:** LR decreases from $\eta_{max}$ to $\eta_{low}$
 
-3. **Fine-tune:** LR drops further to $\eta\_{low}/10$
+3. **Fine-tune:** LR drops further to $\eta_{low}/10$
 
 ```
 
@@ -207,9 +207,9 @@ Bias correction helps, but initial steps are still noisy.
 
 | Schedule | Formula | Best For |
 |----------|---------|----------|
-| **Constant** | $\eta\_0$ | Quick experiments |
-| **Step Decay** | $\eta\_0 \gamma^{\lfloor t/s \rfloor}$ | CNNs (ResNet) |
-| **Exponential** | $\eta\_0 e^{-\lambda t}$ | Simple tasks |
+| **Constant** | $\eta_0$ | Quick experiments |
+| **Step Decay** | $\eta_0 \gamma^{\lfloor t/s \rfloor}$ | CNNs (ResNet) |
+| **Exponential** | $\eta_0 e^{-\lambda t}$ | Simple tasks |
 | **Cosine** | $\frac{1}{2}(1 + \cos(\pi t/T))$ | General, Transformers |
 | **Warmup+Cosine** | Linear → Cosine | LLMs 🔥 |
 | **OneCycle** | Warmup → Peak → Decay | Fast training |

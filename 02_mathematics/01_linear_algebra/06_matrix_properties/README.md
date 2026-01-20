@@ -150,7 +150,7 @@ The determinant is the unique function $\det: \mathbb{R}^{n \times n} \to \mathb
 | Transpose | $\det(A^T) = \det(A)$ |
 | Inverse | $\det(A^{-1}) = 1/\det(A)$ |
 | Scaling | $\det(cA) = c^n \det(A)$ |
-| Eigenvalues | $\det(A) = \prod\_i \lambda\_i$ |
+| Eigenvalues | $\det(A) = \prod_i \lambda_i$ |
 
 ### 🔍 Geometric Interpretation
 
@@ -215,8 +215,8 @@ Verify: det(A) = 2×2 - 1×1 = 4 - 1 = 3 ✓
 | Linearity | $\text{tr}(A+B) = \text{tr}(A) + \text{tr}(B)$ | Sum of sums |
 | Cyclic | $\text{tr}(ABC) = \text{tr}(CAB) = \text{tr}(BCA)$ | Index manipulation |
 | Transpose | $\text{tr}(A) = \text{tr}(A^T)$ | Diagonal unchanged |
-| Eigenvalues | $\text{tr}(A) = \sum\_i \lambda\_i$ | Characteristic poly |
-| Frobenius | $\|A\|\_F^2 = \text{tr}(A^TA)$ | By definition |
+| Eigenvalues | $\text{tr}(A) = \sum_i \lambda_i$ | Characteristic poly |
+| Frobenius | $\|A\|_F^2 = \text{tr}(A^TA)$ | By definition |
 
 ### 🔍 Proof: Cyclic Property
 
@@ -328,7 +328,7 @@ A symmetric matrix $A$ is:
 | Condition | Test |
 |-----------|------|
 | Definition | $\mathbf{x}^TA\mathbf{x} > 0$ for all $\mathbf{x} \neq 0$ |
-| Eigenvalues | All $\lambda\_i > 0$ |
+| Eigenvalues | All $\lambda_i > 0$ |
 | Cholesky | $A = LL^T$ exists (with positive diagonal $L$) |
 | Sylvester | All leading principal minors $> 0$ |
 | Factorization | $A = B^TB$ for some full-rank $B$ |

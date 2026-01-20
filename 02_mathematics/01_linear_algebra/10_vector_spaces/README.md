@@ -115,7 +115,7 @@ For all $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$ and $\alpha, \beta \in \mathb
 |-------|----------|----------|-------------|
 | $\mathbb{R}^n$ | n-tuples of reals | Component-wise | Component-wise |
 | $\mathbb{R}^{m \times n}$ | m×n matrices | Matrix addition | Scalar × matrix |
-| $\mathcal{P}\_n$ | Polynomials degree ≤n | Add coefficients | Scale coefficients |
+| $\mathcal{P}_n$ | Polynomials degree ≤n | Add coefficients | Scale coefficients |
 | $C[a,b]$ | Continuous functions | $(f+g)(x) = f(x)+g(x)$ | $(\alpha f)(x) = \alpha f(x)$ |
 
 ### 🔍 Proof: $\mathbf{0} \cdot \mathbf{v} = \mathbf{0}$ (zero scalar gives zero vector)
@@ -195,7 +195,7 @@ Not a subspace! (doesn't contain origin)
 
 ### 📌 Definition
 
-Vectors $\mathbf{v}\_1, \ldots, \mathbf{v}\_k$ are **linearly independent** if:
+Vectors $\mathbf{v}_1, \ldots, \mathbf{v}_k$ are **linearly independent** if:
 
 ```math
 \alpha_1\mathbf{v}_1 + \alpha_2\mathbf{v}_2 + \cdots + \alpha_k\mathbf{v}_k = \mathbf{0} \implies \alpha_1 = \alpha_2 = \cdots = \alpha_k = 0
@@ -268,7 +268,7 @@ Only trivial solution → INDEPENDENT
 
 ### 📌 Span
 
-The **span** of vectors $\mathbf{v}\_1, \ldots, \mathbf{v}\_k$ is all linear combinations:
+The **span** of vectors $\mathbf{v}_1, \ldots, \mathbf{v}_k$ is all linear combinations:
 
 ```math
 \text{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\} = \{\alpha_1\mathbf{v}_1 + \cdots + \alpha_k\mathbf{v}_k : \alpha_i \in \mathbb{F}\}

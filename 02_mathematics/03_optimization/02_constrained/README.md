@@ -101,9 +101,9 @@
 
 where:
 
-- $\mu\_i \geq 0$: multipliers for inequality constraints
+- $\mu_i \geq 0$: multipliers for inequality constraints
 
-- $\lambda\_j$: multipliers for equality constraints (can be any sign)
+- $\lambda_j$: multipliers for equality constraints (can be any sign)
 
 ---
 
@@ -247,9 +247,9 @@ They are **sufficient** for global optimality when:
 
 - $f$ is convex
 
-- $g\_i$ are convex
+- $g_i$ are convex
 
-- $h\_j$ are affine
+- $h_j$ are affine
 
 ### 💡 Example: KKT Step by Step
 

@@ -53,7 +53,7 @@
 
 ```
 
-At a minimum, $g\_i = \frac{\partial\mathcal{L}}{\partial w\_i} \approx 0$, so:
+At a minimum, $g_i = \frac{\partial\mathcal{L}}{\partial w_i} \approx 0$, so:
 
 ```math
 \Delta\mathcal{L} \approx \frac{1}{2}\sum_i h_{ii} w_i^2
@@ -73,7 +73,7 @@ Prune weights with lowest saliency.
 
 **Full Hessian Analysis:**
 
-When pruning weight $w\_q$, optimal adjustment to other weights:
+When pruning weight $w_q$, optimal adjustment to other weights:
 
 ```math
 \delta w = -\frac{w_q}{[H^{-1}]_{qq}}H^{-1}e_q
@@ -99,8 +99,8 @@ s_i = -w_i \cdot \frac{\partial\mathcal{L}}{\partial w_i}
 
 ```
 
-If $s\_i > 0$: weight is moving away from zero (important)
-If $s\_i < 0$: weight is moving toward zero (can prune)
+If $s_i > 0$: weight is moving away from zero (important)
+If $s_i < 0$: weight is moving toward zero (can prune)
 
 ### 5. Lottery Ticket Hypothesis - Formal Statement
 
@@ -108,9 +108,9 @@ If $s\_i < 0$: weight is moving toward zero (can prune)
 
 Let $f(x; \theta)$ be a dense neural network. There exists a sparse mask $m \in \{0,1\}^{|\theta|}$ such that:
 
-1. $\|m\|\_0 \ll |\theta|$ (high sparsity)
+1. $\|m\|_0 \ll |\theta|$ (high sparsity)
 
-2. $f(x; m \odot \theta\_0)$ trained for $T$ iterations achieves accuracy $\geq f(x; \theta\_T) - \epsilon$
+2. $f(x; m \odot \theta_0)$ trained for $T$ iterations achieves accuracy $\geq f(x; \theta_T) - \epsilon$
 
 **IMP Algorithm:**
 
@@ -143,7 +143,7 @@ s_c = \left|\sum_i \frac{\partial\mathcal{L}}{\partial a_c^{(i)}} \cdot a_c^{(i)
 
 ```
 
-Where $a\_c$ are activations of channel $c$.
+Where $a_c$ are activations of channel $c$.
 
 **Geometric Median (FPGM):**
 Remove filters closest to geometric median:
@@ -164,11 +164,11 @@ s_t = s_f + (s_i - s_f)\left(1 - \frac{t - t_0}{n\Delta t}\right)^3
 
 Where:
 
-- $s\_t$ = sparsity at step $t$
+- $s_t$ = sparsity at step $t$
 
-- $s\_i, s\_f$ = initial and final sparsity
+- $s_i, s_f$ = initial and final sparsity
 
-- $t\_0$ = pruning start step
+- $t_0$ = pruning start step
 
 - $n\Delta t$ = pruning frequency
 

@@ -116,7 +116,7 @@ where:
 
 - $U \in \mathbb{R}^{m \times m}$: orthogonal matrix (left singular vectors)
 
-- $\Sigma \in \mathbb{R}^{m \times n}$: diagonal with $\sigma\_1 \geq \sigma\_2 \geq \cdots \geq 0$
+- $\Sigma \in \mathbb{R}^{m \times n}$: diagonal with $\sigma_1 \geq \sigma_2 \geq \cdots \geq 0$
 
 - $V \in \mathbb{R}^{n \times n}$: orthogonal matrix (right singular vectors)
 
@@ -194,10 +194,10 @@ In matrix form:
 
 | Property | Formula | Significance |
 |----------|---------|--------------|
-| Rank | $\text{rank}(A) = \#\{\sigma\_i > 0\}$ | Non-zero singular values |
-| Frobenius norm | $\|A\|\_F = \sqrt{\sum\_i \sigma\_i^2}$ | Matrix "size" |
-| Spectral norm | $\|A\|\_2 = \sigma\_1$ | Largest singular value |
-| Condition number | $\kappa(A) = \sigma\_1/\sigma\_r$ | Numerical stability |
+| Rank | $\text{rank}(A) = \#\{\sigma_i > 0\}$ | Non-zero singular values |
+| Frobenius norm | $\|A\|_F = \sqrt{\sum_i \sigma_i^2}$ | Matrix "size" |
+| Spectral norm | $\|A\|_2 = \sigma_1$ | Largest singular value |
+| Condition number | $\kappa(A) = \sigma_1/\sigma_r$ | Numerical stability |
 | Pseudoinverse | $A^+ = V\Sigma^+ U^T$ | Generalized inverse |
 
 ### 🔍 Eckart-Young Theorem (Low-Rank Approximation)
@@ -209,7 +209,7 @@ A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T
 
 ```
 
-**Error**: $\|A - A\_k\|\_F^2 = \sum\_{i=k+1}^{r} \sigma\_i^2$
+**Error**: $\|A - A_k\|_F^2 = \sum_{i=k+1}^{r} \sigma_i^2$
 
 **Proof Sketch**:
 
@@ -380,11 +380,11 @@ Step 4: Since λ₁ ≠ λ₂: v₁ᵀv₂ = 0  (orthogonal)  ∎
 
 | Property | Formula | Application |
 |----------|---------|-------------|
-| Sum of eigenvalues | $\sum\_i \lambda\_i = \text{tr}(A)$ | Quick verification |
-| Product | $\prod\_i \lambda\_i = \det(A)$ | Invertibility check |
+| Sum of eigenvalues | $\sum_i \lambda_i = \text{tr}(A)$ | Quick verification |
+| Product | $\prod_i \lambda_i = \det(A)$ | Invertibility check |
 | Powers | $A^n = Q\Lambda^n Q^{-1}$ | Fast matrix powers |
 | Functions | $f(A) = Qf(\Lambda)Q^{-1}$ | Matrix exponential |
-| Inverse | $A^{-1} = Q\Lambda^{-1}Q^{-1}$ | If all $\lambda\_i \neq 0$ |
+| Inverse | $A^{-1} = Q\Lambda^{-1}Q^{-1}$ | If all $\lambda_i \neq 0$ |
 
 ### 💡 Examples
 

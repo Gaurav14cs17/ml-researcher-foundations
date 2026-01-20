@@ -96,9 +96,9 @@ For $b$-bit quantization over range $[-1, 1]$:
 
 **Lloyd-Max Conditions:**
 
-1. Decision boundaries: $d\_i = \frac{c\_i + c\_{i+1}}{2}$
+1. Decision boundaries: $d_i = \frac{c_i + c_{i+1}}{2}$
 
-2. Centroids: $c\_i = \frac{\int\_{d\_{i-1}}^{d\_i} x \cdot p(x) dx}{\int\_{d\_{i-1}}^{d\_i} p(x) dx}$
+2. Centroids: $c_i = \frac{\int_{d_{i-1}}^{d_i} x \cdot p(x) dx}{\int_{d_{i-1}}^{d_i} p(x) dx}$
 
 **For Gaussian distribution:** Non-uniform quantization achieves lower MSE.
 
@@ -108,7 +108,7 @@ For $b$-bit quantization over range $[-1, 1]$:
 
 1. Run calibration data through network
 
-2. Collect activation statistics ($x\_{min}$, $x\_{max}$, or histogram)
+2. Collect activation statistics ($x_{min}$, $x_{max}$, or histogram)
 
 3. Compute optimal scale and zero-point
 
@@ -150,7 +150,7 @@ During backward pass: $\frac{\partial \mathcal{L}}{\partial x} = \frac{\partial 
 
 ```
 
-Where $W\_Q$ are fake-quantized weights.
+Where $W_Q$ are fake-quantized weights.
 
 ### 6. Per-Channel vs Per-Tensor Quantization
 
@@ -179,7 +179,7 @@ Each output channel has its own scale.
 
 ```
 
-Per-channel is always equal or better because each $s\_c$ can be optimized independently.
+Per-channel is always equal or better because each $s_c$ can be optimized independently.
 
 ### 7. Matrix Multiplication in Low Precision
 
@@ -200,7 +200,7 @@ Y = s_x s_w \left[(X_q - z_x)(W_q - z_w)\right]
 
 ```
 
-**Optimization:** Pre-compute $z\_w \sum X\_q$ terms.
+**Optimization:** Pre-compute $z_w \sum X_q$ terms.
 
 ---
 

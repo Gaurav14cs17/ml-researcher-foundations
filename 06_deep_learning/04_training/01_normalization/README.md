@@ -53,7 +53,7 @@ Where:
 ### Algorithm
 
 **Training:**
-Given mini-batch $B = \{x\_1, ..., x\_m\}$:
+Given mini-batch $B = \{x_1, ..., x_m\}$:
 
 ```math
 \mu_B = \frac{1}{m} \sum_{i=1}^{m} x_i
@@ -105,7 +105,7 @@ Normalize over $(B, H, W)$ for each channel $c$:
 
 ```
 
-**Key insight:** Gradient of $\hat{x}$ w.r.t. $x$ is complex because $\mu$ and $\sigma$ depend on all $x\_i$:
+**Key insight:** Gradient of $\hat{x}$ w.r.t. $x$ is complex because $\mu$ and $\sigma$ depend on all $x_i$:
 
 ```math
 \frac{\partial L}{\partial x_i} = \frac{1}{m\sigma}\left[m\frac{\partial L}{\partial \hat{x}_i} - \sum_j \frac{\partial L}{\partial \hat{x}_j} - \hat{x}_i \sum_j \frac{\partial L}{\partial \hat{x}_j} \hat{x}_j\right]
@@ -441,7 +441,7 @@ x^{(l)} \sim p_t(x^{(l)})
 
 ```
 
-where $p\_t$ depends on all previous layer parameters at step $t$.
+where $p_t$ depends on all previous layer parameters at step $t$.
 
 **With Normalization:**
 

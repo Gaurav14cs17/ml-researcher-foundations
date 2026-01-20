@@ -32,15 +32,15 @@
 ```
 
 **Parameters per layer:**
-- Query: $h \times d \times d\_k$
+- Query: $h \times d \times d_k$
 
-- Key: $h \times d \times d\_k$
+- Key: $h \times d \times d_k$
 
-- Value: $h \times d \times d\_v$
+- Value: $h \times d \times d_v$
 
-- Output: $h \times d\_v \times d$
+- Output: $h \times d_v \times d$
 
-**Total:** $4 \times h \times d \times d\_k = 4d^2$ (assuming $d\_k = d/h$)
+**Total:** $4 \times h \times d \times d_k = 4d^2$ (assuming $d_k = d/h$)
 
 ---
 
@@ -55,15 +55,15 @@
 
 ```
 
-- Each head has unique $W\_Q^i$
+- Each head has unique $W_Q^i$
 
-- All heads share single $W\_K, W\_V$
+- All heads share single $W_K, W_V$
 
 #### 2.2 Parameter Reduction
 
-**MHA K,V parameters:** $2 \times h \times d \times d\_k = 2d^2$
+**MHA K,V parameters:** $2 \times h \times d \times d_k = 2d^2$
 
-**MQA K,V parameters:** $2 \times d \times d\_k = 2d^2/h$
+**MQA K,V parameters:** $2 \times d \times d_k = 2d^2/h$
 
 **Reduction:** $h \times$ for K,V!
 
@@ -93,9 +93,9 @@ where $g(i) = \lfloor i \cdot g / h \rfloor$.
 
 |--------|------------|----------------|
 | MHA | $h$ | $2d^2$ |
-| GQA-4 | 4 | $4 \cdot 2d\_k d$ |
-| GQA-2 | 2 | $2 \cdot 2d\_k d$ |
-| MQA | 1 | $2d\_k d$ |
+| GQA-4 | 4 | $4 \cdot 2d_k d$ |
+| GQA-2 | 2 | $2 \cdot 2d_k d$ |
+| MQA | 1 | $2d_k d$ |
 
 ---
 

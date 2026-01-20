@@ -17,7 +17,7 @@
 
 ### Goal of Generative Models
 
-Learn to sample from data distribution $p\_{data}(x)$:
+Learn to sample from data distribution $p_{data}(x)$:
 
 ```math
 x_{new} \sim p_\theta(x) \approx p_{data}(x)
@@ -26,11 +26,11 @@ x_{new} \sim p_\theta(x) \approx p_{data}(x)
 
 ### Taxonomy
 
-1. **Explicit Density:** Model $p\_\theta(x)$ directly (VAE, Flow)
+1. **Explicit Density:** Model $p_\theta(x)$ directly (VAE, Flow)
 
 2. **Implicit Density:** Learn to sample without explicit density (GAN)
 
-3. **Score-Based:** Learn $\nabla\_x \log p(x)$ (Diffusion, Score Matching)
+3. **Score-Based:** Learn $\nabla_x \log p(x)$ (Diffusion, Score Matching)
 
 ---
 
@@ -71,7 +71,7 @@ For Gaussian decoder:
 
 ### Reparameterization Trick
 
-**Problem:** Can't backprop through sampling $z \sim q\_\phi(z|x)$.
+**Problem:** Can't backprop through sampling $z \sim q_\phi(z|x)$.
 
 **Solution:** 
 
@@ -108,7 +108,7 @@ D^*(x) = \frac{p_{data}(x)}{p_{data}(x) + p_g(x)}
 
 ### Global Optimum
 
-At optimum, $p\_g = p\_{data}$ and:
+At optimum, $p_g = p_{data}$ and:
 
 ```math
 V(D^*, G^*) = -\log 4
@@ -205,7 +205,7 @@ z_K = f_K \circ f_{K-1} \circ ... \circ f_1(z_0), \quad z_0 \sim \mathcal{N}(0, 
 
 ### Requirements
 
-- Each $f\_k$ must be invertible
+- Each $f_k$ must be invertible
 
 - Jacobian determinant must be tractable
 

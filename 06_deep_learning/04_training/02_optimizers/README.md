@@ -36,7 +36,7 @@ Where:
 
 - $\alpha$: learning rate
 
-- $B\_t$: mini-batch at step $t$
+- $B_t$: mini-batch at step $t$
 
 - $\nabla L$: gradient of loss
 
@@ -98,18 +98,18 @@ Momentum achieves the **optimal rate** for gradient descent!
 
 ### Mathematical Proof: Why Momentum Helps in Ravines
 
-Consider loss: $L(\theta) = \frac{1}{2}(a\theta\_1^2 + b\theta\_2^2)$ with $a \gg b$ (ill-conditioned).
+Consider loss: $L(\theta) = \frac{1}{2}(a\theta_1^2 + b\theta_2^2)$ with $a \gg b$ (ill-conditioned).
 
 **SGD:** 
 
-- Oscillates in $\theta\_1$ direction (high curvature)
+- Oscillates in $\theta_1$ direction (high curvature)
 
-- Slow progress in $\theta\_2$ direction (low curvature)
+- Slow progress in $\theta_2$ direction (low curvature)
 
 **Momentum:**
-- Velocity in $\theta\_1$ cancels (oscillating gradients)
+- Velocity in $\theta_1$ cancels (oscillating gradients)
 
-- Velocity in $\theta\_2$ accumulates (consistent gradients)
+- Velocity in $\theta_2$ accumulates (consistent gradients)
 
 - Result: faster convergence along ravine
 
@@ -167,11 +167,11 @@ v_t = \beta_2 v_{t-1} + (1-\beta_2) (\nabla L)^2 \quad \text{(second moment = RM
 
 ```
 
-**Default hyperparameters:** $\beta\_1=0.9$, $\beta\_2=0.999$, $\epsilon=10^{-8}$, $\alpha=10^{-3}$
+**Default hyperparameters:** $\beta_1=0.9$, $\beta_2=0.999$, $\epsilon=10^{-8}$, $\alpha=10^{-3}$
 
 ### Why Bias Correction?
 
-**Problem:** At $t=0$: $m\_0=0$, $v\_0=0$. Early estimates biased toward zero.
+**Problem:** At $t=0$: $m_0=0$, $v_0=0$. Early estimates biased toward zero.
 
 **Proof:**
 
@@ -182,7 +182,7 @@ m_t = (1-\beta_1) \sum_{i=1}^{t} \beta_1^{t-i} g_i
 
 ```
 
-Taking expectation (assuming $g\_i$ has mean $\bar{g}$):
+Taking expectation (assuming $g_i$ has mean $\bar{g}$):
 
 ```math
 \mathbb{E}[m_t] = (1-\beta_1) \sum_{i=1}^{t} \beta_1^{t-i} \bar{g} = (1-\beta_1^t) \bar{g}
@@ -209,7 +209,7 @@ Standard L2 regularization in Adam:
 
 ```
 
-**Issue:** Weight decay gets scaled by $1/\sqrt{\hat{v}\_t}$ → inconsistent regularization!
+**Issue:** Weight decay gets scaled by $1/\sqrt{\hat{v}_t}$ → inconsistent regularization!
 
 **AdamW Solution:**
 
@@ -249,9 +249,9 @@ For large batch training (batch size 32K+):
 | **SGD** | $O(n)$ | CNNs, generalization | lr |
 | **Momentum** | $O(2n)$ | Faster convergence | lr, $\beta$ |
 | **RMSprop** | $O(2n)$ | RNNs, non-stationary | lr, $\beta$, $\epsilon$ |
-| **Adam** | $O(3n)$ | Default choice | lr, $\beta\_1$, $\beta\_2$, $\epsilon$ |
-| **AdamW** | $O(3n)$ | Transformers | lr, $\beta\_1$, $\beta\_2$, $\epsilon$, $\lambda$ |
-| **LAMB** | $O(3n)$ | Large batch | lr, $\beta\_1$, $\beta\_2$, $\epsilon$, $\lambda$ |
+| **Adam** | $O(3n)$ | Default choice | lr, $\beta_1$, $\beta_2$, $\epsilon$ |
+| **AdamW** | $O(3n)$ | Transformers | lr, $\beta_1$, $\beta_2$, $\epsilon$, $\lambda$ |
+| **LAMB** | $O(3n)$ | Large batch | lr, $\beta_1$, $\beta_2$, $\epsilon$, $\lambda$ |
 
 ---
 

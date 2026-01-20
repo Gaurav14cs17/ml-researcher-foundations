@@ -35,26 +35,26 @@ Transfer intermediate representations, not just outputs.
 
 where:
 
-- $F\_s^l$ = student features at layer $l$
+- $F_s^l$ = student features at layer $l$
 
-- $F\_t^{l'}$ = teacher features at layer $l'$ (hint layer)
+- $F_t^{l'}$ = teacher features at layer $l'$ (hint layer)
 
 - $r(\cdot)$ = regressor to match dimensions
 
 #### 1.2 Regressor Design
 
 **When dimensions differ:**
-- Student: $F\_s^l \in \mathbb{R}^{B \times C\_s \times H \times W}$
+- Student: $F_s^l \in \mathbb{R}^{B \times C_s \times H \times W}$
 
-- Teacher: $F\_t^{l'} \in \mathbb{R}^{B \times C\_t \times H' \times W'}$
+- Teacher: $F_t^{l'} \in \mathbb{R}^{B \times C_t \times H' \times W'}$
 
 **Regressor options:**
 
-1. 1×1 convolution: $r(F\_s) = \text{Conv}\_{1\times1}(F\_s)$
+1. 1×1 convolution: $r(F_s) = \text{Conv}_{1\times1}(F_s)$
 
-2. Linear projection: $r(F\_s) = F\_s W\_r$
+2. Linear projection: $r(F_s) = F_s W_r$
 
-3. MLP: $r(F\_s) = \text{MLP}(F\_s)$
+3. MLP: $r(F_s) = \text{MLP}(F_s)$
 
 #### 1.3 Training Procedure
 
@@ -88,7 +88,7 @@ A = \sum_{c=1}^{C} |F_c|^p
 
 ```
 
-where $F\_c$ is the feature map of channel $c$ and $p \in \{1, 2\}$.
+where $F_c$ is the feature map of channel $c$ and $p \in \{1, 2\}$.
 
 **Intuition:** Where the network "looks" in the input.
 
@@ -193,7 +193,7 @@ G = \sum_{s=1}^{h \times w} F_1(s) \otimes F_2(s)
 
 ```
 
-where $\otimes$ is outer product, $F\_1, F\_2$ are features from consecutive layers.
+where $\otimes$ is outer product, $F_1, F_2$ are features from consecutive layers.
 
 #### 5.2 FSP Matrix
 

@@ -68,7 +68,7 @@ by Gibbs' inequality (KL divergence is non-negative). $\quad \blacksquare$
 
 **Proof:**
 
-$I(X; Y) = 0$ iff $D\_{KL}(p(x,y) \| p(x)p(y)) = 0$
+$I(X; Y) = 0$ iff $D_{KL}(p(x,y) \| p(x)p(y)) = 0$
 
 iff $p(x,y) = p(x)p(y)$ for all $x, y$
 
@@ -203,7 +203,7 @@ I(X; Y) = H(X) + H(Y) - H(X, Y) = -\frac{1}{2}\log(1 - \rho^2) \quad \blacksquar
 
 ```
 
-where $y^+$ is the positive sample and $y\_j^-$ are negative samples.
+where $y^+$ is the positive sample and $y_j^-$ are negative samples.
 
 ### Lower Bound on Mutual Information
 
@@ -357,7 +357,7 @@ print(f"Estimated MI (MINE): {estimated_mi:.4f}")
 
 | Application | How MI is Used |
 |-------------|----------------|
-| **Feature Selection** | Select features with high $I(X\_i; Y)$ |
+| **Feature Selection** | Select features with high $I(X_i; Y)$ |
 | **Contrastive Learning** | InfoNCE maximizes MI lower bound |
 | **InfoGAN** | Maximize MI between latent code and output |
 | **Information Bottleneck** | Trade-off: $I(X; Z)$ vs $I(Z; Y)$ |

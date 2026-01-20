@@ -41,7 +41,7 @@ W' = W_0 + \Delta W
 
 where:
 
-- $W\_0 \in \mathbb{R}^{d \times k}$ (frozen pre-trained weights)
+- $W_0 \in \mathbb{R}^{d \times k}$ (frozen pre-trained weights)
 
 - $B \in \mathbb{R}^{d \times r}$ (trainable)
 
@@ -212,10 +212,10 @@ With $B = 0$ at init, this is 0 as desired.
 #### 5.1 Transformer Components
 
 **Attention:**
-- $W\_Q, W\_K, W\_V, W\_O$ - Query, Key, Value, Output projections
+- $W_Q, W_K, W_V, W_O$ - Query, Key, Value, Output projections
 
 **FFN:**
-- $W\_{up}, W\_{down}$ - Up and down projections (can also use $W\_{gate}$ for gated FFN)
+- $W_{up}, W_{down}$ - Up and down projections (can also use $W_{gate}$ for gated FFN)
 
 #### 5.2 Empirical Findings
 
@@ -280,11 +280,11 @@ d_{intrinsic} \ll d_{total}
 
 ```
 
-where $P\_d$ projects to $d$-dimensional subspace.
+where $P_d$ projects to $d$-dimensional subspace.
 
 **Finding:** Can achieve 90% of full fine-tuning with $d \ll |\theta|$.
 
-**For RoBERTa:** $d\_{intrinsic} \approx 896$ vs $|\theta| = 355M$
+**For RoBERTa:** $d_{intrinsic} \approx 896$ vs $|\theta| = 355M$
 
 #### 7.2 Why Low-Rank Works
 
@@ -308,7 +308,7 @@ where $P\_d$ projects to $d$-dimensional subspace.
 
 ```
 
-where $\sigma\_i$ are singular values of $\Delta W^*$ in descending order.
+where $\sigma_i$ are singular values of $\Delta W^*$ in descending order.
 
 **Proof:**
 
@@ -316,7 +316,7 @@ By the Eckart-Young-Mirsky theorem, the best rank-$r$ approximation is the trunc
 
 Let $\Delta W^* = U\Sigma V^T$ be the SVD.
 
-The optimal $B = U\_r \Sigma\_r^{1/2}$ and $A = \Sigma\_r^{1/2} V\_r^T$ where subscript $r$ denotes first $r$ components.
+The optimal $B = U_r \Sigma_r^{1/2}$ and $A = \Sigma_r^{1/2} V_r^T$ where subscript $r$ denotes first $r$ components.
 
 Then:
 
@@ -378,7 +378,7 @@ This is independent of how we factor $\Delta W$. The LoRA decomposition only aff
 
 1. $\Delta W = 0$ at initialization
 
-2. $\text{Var}(\frac{\partial \mathcal{L}}{\partial A\_{ij}}) = O(1)$ (bounded variance)
+2. $\text{Var}(\frac{\partial \mathcal{L}}{\partial A_{ij}}) = O(1)$ (bounded variance)
 
 3. Training starts from pre-trained model behavior
 

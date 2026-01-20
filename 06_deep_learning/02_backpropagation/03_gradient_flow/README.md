@@ -39,7 +39,7 @@ For an $L$-layer network with loss $\mathcal{L}$:
 
 ```
 
-Where $z\_l = W\_l h\_{l-1} + b\_l$ and $h\_l = \sigma(z\_l)$.
+Where $z_l = W_l h_{l-1} + b_l$ and $h_l = \sigma(z_l)$.
 
 ### Product of Jacobians
 
@@ -50,7 +50,7 @@ Where $z\_l = W\_l h\_{l-1} + b\_l$ and $h\_l = \sigma(z\_l)$.
 
 **Spectral Analysis:**
 
-Let $\sigma\_{\max}(M)$ denote the largest singular value of matrix $M$.
+Let $\sigma_{\max}(M)$ denote the largest singular value of matrix $M$.
 
 ```math
 \left\|\prod_{l=2}^{L} J_l\right\| \leq \prod_{l=2}^{L} \sigma_{\max}(J_l)
@@ -63,7 +63,7 @@ Let $\sigma\_{\max}(M)$ denote the largest singular value of matrix $M$.
 
 ### The Problem
 
-**Theorem:** If $\sigma\_{\max}(J\_l) < 1$ for most layers:
+**Theorem:** If $\sigma_{\max}(J_l) < 1$ for most layers:
 
 ```math
 \left\|\frac{\partial \mathcal{L}}{\partial W_1}\right\| \leq \left\|\frac{\partial \mathcal{L}}{\partial h_L}\right\| \cdot \prod_{l=2}^{L} \sigma_{\max}(J_l) \rightarrow 0 \text{ as } L \rightarrow \infty
@@ -79,7 +79,7 @@ Let $\sigma\_{\max}(M)$ denote the largest singular value of matrix $M$.
 
 ```
 
-**Proof:** $\max\_{x} \sigma(x)(1-\sigma(x)) = \frac{1}{4}$ at $x=0$.
+**Proof:** $\max_{x} \sigma(x)(1-\sigma(x)) = \frac{1}{4}$ at $x=0$.
 
 For $L$ layers:
 
@@ -88,13 +88,13 @@ For $L$ layers:
 
 ```
 
-Even if $\|W\_l\| = 2$, gradients vanish as $\left(\frac{1}{2}\right)^{L-1}$!
+Even if $\|W_l\| = 2$, gradients vanish as $\left(\frac{1}{2}\right)^{L-1}$!
 
 **Tanh:** $\sigma'(x) = 1 - \tanh^2(x) \leq 1$
 
 Still saturates at large $|x|$, causing vanishing gradients.
 
-**ReLU:** $\sigma'(x) = \mathbf{1}\_{x>0} \in \{0, 1\}$
+**ReLU:** $\sigma'(x) = \mathbf{1}_{x>0} \in \{0, 1\}$
 
 - No saturation for $x > 0$
 
@@ -108,7 +108,7 @@ Still saturates at large $|x|$, causing vanishing gradients.
 
 ### The Problem
 
-**Theorem:** If $\sigma\_{\max}(J\_l) > 1$ for most layers:
+**Theorem:** If $\sigma_{\max}(J_l) > 1$ for most layers:
 
 ```math
 \left\|\frac{\partial \mathcal{L}}{\partial W_1}\right\| \geq c \cdot \prod_{l=2}^{L} \sigma_{\min}(J_l) \rightarrow \infty \text{ as } L \rightarrow \infty
@@ -125,7 +125,7 @@ Still saturates at large $|x|$, causing vanishing gradients.
 
 ### Mathematical Example
 
-Consider $h\_l = W h\_{l-1}$ with $W = \begin{pmatrix} 1.5 & 0 \\ 0 & 1.5 \end{pmatrix}$
+Consider $h_l = W h_{l-1}$ with $W = \begin{pmatrix} 1.5 & 0 \\ 0 & 1.5 \end{pmatrix}$
 
 After $L$ layers:
 
@@ -220,7 +220,7 @@ W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)
 
 ```
 
-**Goal:** Keep $\text{Var}(h\_l) \approx \text{Var}(h\_{l-1})$ across layers.
+**Goal:** Keep $\text{Var}(h_l) \approx \text{Var}(h_{l-1})$ across layers.
 
 ### 5. Better Activations
 
@@ -325,7 +325,7 @@ C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t
 
 ```
 
-If $f\_t \approx 1$:
+If $f_t \approx 1$:
 
 ```math
 \frac{\partial C_T}{\partial C_1} = \prod_{t=2}^{T} f_t \approx 1

@@ -75,7 +75,7 @@ Since $P(D)$ doesn't depend on $\theta$:
 
 ### L2 Regularization = Gaussian Prior
 
-**Prior:** $\theta \sim \mathcal{N}(0, \sigma\_p^2 I)$
+**Prior:** $\theta \sim \mathcal{N}(0, \sigma_p^2 I)$
 
 ```math
 P(\theta) = \frac{1}{(2\pi\sigma_p^2)^{d/2}} \exp\left(-\frac{\|\theta\|^2}{2\sigma_p^2}\right)
@@ -91,7 +91,7 @@ P(\theta) = \frac{1}{(2\pi\sigma_p^2)^{d/2}} \exp\left(-\frac{\|\theta\|^2}{2\si
 
 ```
 
-**where $\lambda = \frac{1}{2\sigma\_p^2}$**
+**where $\lambda = \frac{1}{2\sigma_p^2}$**
 
 **This is exactly Ridge Regression / Weight Decay!** $\quad \blacksquare$
 
@@ -151,9 +151,9 @@ At $\theta = 0^-$: gradient = $-\lambda < 0$ (pushes toward 0)
 |-------|-------------|----------|--------|
 | **Gaussian** | $\mathcal{N}(0, \sigma^2)$ | $-\frac{\theta^2}{2\sigma^2}$ | Shrinks to 0, smooth |
 | **Laplace** | $\text{Lap}(0, b)$ | $-\frac{\|\theta\|}{b}$ | Sparse solutions |
-| **Student-t** | $t\_\nu(0, \sigma)$ | Heavy-tailed | Robust to outliers |
+| **Student-t** | $t_\nu(0, \sigma)$ | Heavy-tailed | Robust to outliers |
 | **Horseshoe** | Half-Cauchy × N | Strong sparsity | Bayesian Lasso++ |
-| **Spike-and-Slab** | $\pi \delta\_0 + (1-\pi)N$ | Exact sparsity | Variable selection |
+| **Spike-and-Slab** | $\pi \delta_0 + (1-\pi)N$ | Exact sparsity | Variable selection |
 
 ### Visualization
 
@@ -211,11 +211,11 @@ X^TX\theta + \lambda\theta = X^Ty
 
 The Ridge solution is the **posterior mean** for:
 
-- Prior: $\theta \sim \mathcal{N}(0, \sigma\_p^2 I)$
+- Prior: $\theta \sim \mathcal{N}(0, \sigma_p^2 I)$
 
 - Likelihood: $y|X,\theta \sim \mathcal{N}(X\theta, \sigma^2 I)$
 
-where $\lambda = \sigma^2/\sigma\_p^2$.
+where $\lambda = \sigma^2/\sigma_p^2$.
 
 ---
 

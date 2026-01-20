@@ -24,7 +24,7 @@ G = (V, E, X)
 
 Where:
 
-- $V = \{v\_1, ..., v\_n\}$: nodes
+- $V = \{v_1, ..., v_n\}$: nodes
 
 - $E \subseteq V \times V$: edges
 
@@ -78,11 +78,11 @@ H^{(l+1)} = \sigma\left(\tilde{D}^{-\frac{1}{2}} \tilde{A} \tilde{D}^{-\frac{1}{
 
 Where:
 
-- $\tilde{A} = A + I\_n$ (add self-loops)
+- $\tilde{A} = A + I_n$ (add self-loops)
 
-- $\tilde{D}\_{ii} = \sum\_j \tilde{A}\_{ij}$ (degree matrix)
+- $\tilde{D}_{ii} = \sum_j \tilde{A}_{ij}$ (degree matrix)
 
-- $W^{(l)} \in \mathbb{R}^{d\_l \times d\_{l+1}}$
+- $W^{(l)} \in \mathbb{R}^{d_l \times d_{l+1}}$
 
 ### Per-Node Form
 
@@ -91,7 +91,7 @@ h_v^{(l+1)} = \sigma\left(\sum_{u \in \mathcal{N}(v) \cup \{v\}} \frac{1}{\sqrt{
 
 ```
 
-The $\frac{1}{\sqrt{\tilde{d}\_u \tilde{d}\_v}}$ term normalizes by degrees.
+The $\frac{1}{\sqrt{\tilde{d}_u \tilde{d}_v}}$ term normalizes by degrees.
 
 ---
 
@@ -149,8 +149,8 @@ h_v^{(l)} = \sigma\left(W^{(l)} \cdot [h_v^{(l-1)} \| h_{\mathcal{N}(v)}^{(l)}]\
 
 | Aggregator | Formula |
 |------------|---------|
-| **Mean** | $\frac{1}{|\mathcal{N}(v)|}\sum\_{u \in \mathcal{N}(v)} h\_u$ |
-| **Max** | $\max\_{u \in \mathcal{N}(v)}(\text{ReLU}(Wh\_u))$ |
+| **Mean** | $\frac{1}{|\mathcal{N}(v)|}\sum_{u \in \mathcal{N}(v)} h_u$ |
+| **Max** | $\max_{u \in \mathcal{N}(v)}(\text{ReLU}(Wh_u))$ |
 | **LSTM** | LSTM over randomly ordered neighbors |
 
 ---
@@ -197,7 +197,7 @@ Where $\pi$ is related to node degrees.
 
 ### Solutions
 
-1. **Residual connections:** $h\_v^{(l+1)} = h\_v^{(l)} + \text{GNN}(h\_v^{(l)})$
+1. **Residual connections:** $h_v^{(l+1)} = h_v^{(l)} + \text{GNN}(h_v^{(l)})$
 
 2. **JK-Net:** Concatenate features from all layers
 

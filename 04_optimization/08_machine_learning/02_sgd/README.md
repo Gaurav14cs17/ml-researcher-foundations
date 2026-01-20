@@ -170,7 +170,7 @@ Why noise helps:
 
 1. Escapes local minima
    -----•-----     With noise:    -----•→→→-----
-        ╲_╱   -------------->          \_→•_/
+        ╲_╱   -------------->          _→•_/
    Stuck here!                    Escapes!
 
 2. Finds flatter minima (better generalization)

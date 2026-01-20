@@ -110,10 +110,10 @@ A set $C$ is **convex** if for all $\mathbf{x}, \mathbf{y} \in C$ and $\lambda \
 
 | Operation | Result |
 |-----------|--------|
-| Intersection | $C\_1 \cap C\_2$ is convex |
+| Intersection | $C_1 \cap C_2$ is convex |
 | Affine image | $f(C) = \{Ax + b: x \in C\}$ is convex |
 | Affine preimage | $f^{-1}(C) = \{x: Ax + b \in C\}$ is convex |
-| Sum | $C\_1 + C\_2 = \{x + y: x \in C\_1, y \in C\_2\}$ is convex |
+| Sum | $C_1 + C_2 = \{x + y: x \in C_1, y \in C_2\}$ is convex |
 
 ---
 
@@ -155,11 +155,11 @@ Convex: function ≤ chord everywhere
 | Linear | $a^Tx + b$ | $\mathbb{R}^n$ |
 | Affine | $Ax + b$ | $\mathbb{R}^n$ |
 | Quadratic (PSD) | $x^TAx + b^Tx + c$ | $\mathbb{R}^n$ (if $A \succeq 0$) |
-| Norms | $\|x\|\_p$ | $\mathbb{R}^n$ |
-| Max | $\max(x\_1, \ldots, x\_n)$ | $\mathbb{R}^n$ |
-| Log-sum-exp | $\log(\sum\_i e^{x\_i})$ | $\mathbb{R}^n$ |
-| Negative entropy | $\sum\_i x\_i \log x\_i$ | $\mathbb{R}^n\_{++}$ |
-| Log determinant | $-\log \det(X)$ | $\mathbb{S}^n\_{++}$ |
+| Norms | $\|x\|_p$ | $\mathbb{R}^n$ |
+| Max | $\max(x_1, \ldots, x_n)$ | $\mathbb{R}^n$ |
+| Log-sum-exp | $\log(\sum_i e^{x_i})$ | $\mathbb{R}^n$ |
+| Negative entropy | $\sum_i x_i \log x_i$ | $\mathbb{R}^n_{++}$ |
+| Log determinant | $-\log \det(X)$ | $\mathbb{S}^n_{++}$ |
 
 ---
 
@@ -237,10 +237,10 @@ Both eigenvalues positive → H ≻ 0 (positive definite)
 
 | Operation | Condition | Result |
 |-----------|-----------|--------|
-| Non-negative sum | $\alpha\_i \geq 0$ | $\sum\_i \alpha\_i f\_i$ is convex |
+| Non-negative sum | $\alpha_i \geq 0$ | $\sum_i \alpha_i f_i$ is convex |
 | Composition with affine | $g$ convex | $g(Ax + b)$ is convex |
-| Pointwise max | $f\_i$ convex | $\max\_i f\_i(x)$ is convex |
-| Supremum | $f(x, y)$ convex in $x$ | $\sup\_y f(x, y)$ is convex in $x$ |
+| Pointwise max | $f_i$ convex | $\max_i f_i(x)$ is convex |
+| Supremum | $f(x, y)$ convex in $x$ | $\sup_y f(x, y)$ is convex in $x$ |
 | Perspective | $f$ convex | $tf(x/t)$ is convex for $t > 0$ |
 
 ### 💡 Example: Softmax is Log-Sum-Exp
@@ -306,7 +306,7 @@ f(x) = |x| is convex but NOT strongly convex
 
 ```
 
-where $f$ and all $g\_i$ are convex.
+where $f$ and all $g_i$ are convex.
 
 ### 📐 Key Theorem
 

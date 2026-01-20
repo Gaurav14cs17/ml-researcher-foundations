@@ -96,11 +96,11 @@ A **vector** $\mathbf{x} \in \mathbb{R}^n$ is an ordered list of $n$ real number
 
 | Operation | Notation | Definition | Example |
 |-----------|----------|------------|---------|
-| Addition | $\mathbf{x} + \mathbf{y}$ | $[x\_1+y\_1, \ldots, x\_n+y\_n]^T$ | $[1,2]+[3,4]=[4,6]$ |
-| Scalar mult | $\alpha\mathbf{x}$ | $[\alpha x\_1, \ldots, \alpha x\_n]^T$ | $2[1,2]=[2,4]$ |
-| Dot product | $\mathbf{x} \cdot \mathbf{y}$ | $\sum\_i x\_i y\_i$ | $[1,2]\cdot[3,4]=11$ |
-| Outer product | $\mathbf{x}\mathbf{y}^T$ | $[x\_i y\_j]$ matrix | Rank-1 matrix |
-| Hadamard | $\mathbf{x} \odot \mathbf{y}$ | $[x\_1 y\_1, \ldots, x\_n y\_n]^T$ | Element-wise |
+| Addition | $\mathbf{x} + \mathbf{y}$ | $[x_1+y_1, \ldots, x_n+y_n]^T$ | $[1,2]+[3,4]=[4,6]$ |
+| Scalar mult | $\alpha\mathbf{x}$ | $[\alpha x_1, \ldots, \alpha x_n]^T$ | $2[1,2]=[2,4]$ |
+| Dot product | $\mathbf{x} \cdot \mathbf{y}$ | $\sum_i x_i y_i$ | $[1,2]\cdot[3,4]=11$ |
+| Outer product | $\mathbf{x}\mathbf{y}^T$ | $[x_i y_j]$ matrix | Rank-1 matrix |
+| Hadamard | $\mathbf{x} \odot \mathbf{y}$ | $[x_1 y_1, \ldots, x_n y_n]^T$ | Element-wise |
 
 ---
 
@@ -221,11 +221,11 @@ A **norm** $\|\cdot\|$ is a function satisfying:
 
 | Norm | Formula | Unit Ball | ML Application |
 |------|---------|-----------|----------------|
-| $L^0$ (pseudo) | $\sum\_i \mathbf{1}\_{x\_i \neq 0}$ | Coordinate axes | Sparsity (non-convex!) |
-| $L^1$ (Manhattan) | $\sum\_i |x\_i|$ | Diamond | LASSO, sparsity |
-| $L^2$ (Euclidean) | $\sqrt{\sum\_i x\_i^2}$ | Circle | Weight decay, distance |
-| $L^\infty$ (Max) | $\max\_i |x\_i|$ | Square | Adversarial robustness |
-| $L^p$ | $(\sum\_i |x\_i|^p)^{1/p}$ | Superellipse | Generalized |
+| $L^0$ (pseudo) | $\sum_i \mathbf{1}_{x_i \neq 0}$ | Coordinate axes | Sparsity (non-convex!) |
+| $L^1$ (Manhattan) | $\sum_i |x_i|$ | Diamond | LASSO, sparsity |
+| $L^2$ (Euclidean) | $\sqrt{\sum_i x_i^2}$ | Circle | Weight decay, distance |
+| $L^\infty$ (Max) | $\max_i |x_i|$ | Square | Adversarial robustness |
+| $L^p$ | $(\sum_i |x_i|^p)^{1/p}$ | Superellipse | Generalized |
 
 ### 🔍 Proof: Triangle Inequality for L² Norm
 
@@ -328,7 +328,7 @@ AB = Σₖ A:,ₖ ⊗ Bₖ,:
 | Associativity | $(AB)C = A(BC)$ | Expand and verify |
 | Distributivity | $A(B+C) = AB + AC$ | Linearity |
 | **NOT** Commutative | $AB \neq BA$ | Counterexample below |
-| Transpose | $(AB)^T = B^T A^T$ | $(AB)^T\_{ij} = (AB)\_{ji} = \sum\_k A\_{jk}B\_{ki}$ |
+| Transpose | $(AB)^T = B^T A^T$ | $(AB)^T_{ij} = (AB)_{ji} = \sum_k A_{jk}B_{ki}$ |
 | Inverse | $(AB)^{-1} = B^{-1}A^{-1}$ | $(AB)(B^{-1}A^{-1}) = I$ |
 
 ### 🔍 Proof: Matrix Multiplication is NOT Commutative
@@ -358,10 +358,10 @@ Geometric intuition:
 
 | Norm | Formula | Computation | ML Use |
 |------|---------|-------------|--------|
-| Frobenius | $\|A\|\_F = \sqrt{\sum\_{ij} A\_{ij}^2}$ | $= \sqrt{\text{tr}(A^TA)} = \sqrt{\sum\_i \sigma\_i^2}$ | Weight decay |
-| Spectral | $\|A\|\_2 = \sigma\_{\max}(A)$ | Largest singular value | Lipschitz |
-| Nuclear | $\|A\|\_* = \sum\_i \sigma\_i$ | Sum of singular values | Low-rank |
-| Max | $\|A\|\_{\max} = \max\_{ij} |A\_{ij}|$ | Largest entry | — |
+| Frobenius | $\|A\|_F = \sqrt{\sum_{ij} A_{ij}^2}$ | $= \sqrt{\text{tr}(A^TA)} = \sqrt{\sum_i \sigma_i^2}$ | Weight decay |
+| Spectral | $\|A\|_2 = \sigma_{\max}(A)$ | Largest singular value | Lipschitz |
+| Nuclear | $\|A\|_* = \sum_i \sigma_i$ | Sum of singular values | Low-rank |
+| Max | $\|A\|_{\max} = \max_{ij} |A_{ij}|$ | Largest entry | — |
 
 ### 🔍 Proof: Frobenius Norm = SVD Connection
 
@@ -387,7 +387,7 @@ Step 3: Apply cyclic property of trace
 
 ### 🔍 Submultiplicativity
 
-**Theorem**: $\|AB\|\_F \leq \|A\|\_F \|B\|\_F$
+**Theorem**: $\|AB\|_F \leq \|A\|_F \|B\|_F$
 
 ```
 Proof:
@@ -410,7 +410,7 @@ Proof:
 |------|------------|------------|
 | **Symmetric** | $A = A^T$ | Real eigenvalues, orthogonal eigenvectors |
 | **Orthogonal** | $Q^TQ = I$ | Preserves lengths and angles |
-| **Diagonal** | $D\_{ij} = 0$ for $i \neq j$ | $D^n$ = diag of powers |
+| **Diagonal** | $D_{ij} = 0$ for $i \neq j$ | $D^n$ = diag of powers |
 | **Positive Definite** | $\mathbf{x}^TA\mathbf{x} > 0$ | All eigenvalues > 0 |
 | **Sparse** | Most entries = 0 | Efficient storage |
 
@@ -455,7 +455,7 @@ Examples: Rotation matrices, reflection matrices, permutation matrices
 | Linearity | $\text{tr}(A+B) = \text{tr}(A) + \text{tr}(B)$ | Sum of sums |
 | Cyclic | $\text{tr}(ABC) = \text{tr}(BCA) = \text{tr}(CAB)$ | Index manipulation |
 | Transpose | $\text{tr}(A) = \text{tr}(A^T)$ | Diagonal unchanged |
-| Eigenvalues | $\text{tr}(A) = \sum\_i \lambda\_i$ | Coefficients of char. poly |
+| Eigenvalues | $\text{tr}(A) = \sum_i \lambda_i$ | Coefficients of char. poly |
 
 ### 🔍 Proof: Cyclic Property
 
@@ -487,7 +487,7 @@ tr(ABC) = tr((AB)C) = tr(C(AB)) = tr(CAB)  ∎
 | Multiplicative | $\det(AB) = \det(A)\det(B)$ |
 | Transpose | $\det(A^T) = \det(A)$ |
 | Inverse | $\det(A^{-1}) = 1/\det(A)$ |
-| Eigenvalues | $\det(A) = \prod\_i \lambda\_i$ |
+| Eigenvalues | $\det(A) = \prod_i \lambda_i$ |
 
 ### 🔍 Geometric Interpretation
 

@@ -41,13 +41,13 @@ In practice for images (cross-correlation, which deep learning calls "convolutio
 
 Where:
 
-- $(k\_h, k\_w)$ = kernel height and width
+- $(k_h, k_w)$ = kernel height and width
 
 - $b$ = bias term
 
 ### 2. Output Dimensions Formula
 
-For input of size $(H\_{in}, W\_{in})$ with kernel size $k$, padding $p$, stride $s$, and dilation $d$:
+For input of size $(H_{in}, W_{in})$ with kernel size $k$, padding $p$, stride $s$, and dilation $d$:
 
 ```math
 H_{out} = \left\lfloor \frac{H_{in} + 2p - d(k - 1) - 1}{s} + 1 \right\rfloor
@@ -68,19 +68,19 @@ Number of valid positions with stride s: floor((remaining)/s) + 1
 
 | Configuration | Formula | Result |
 |--------------|---------|--------|
-| Same padding, stride=1 | $p = \frac{k-1}{2}$ | $H\_{out} = H\_{in}$ |
-| Valid padding, stride=1 | $p = 0$ | $H\_{out} = H\_{in} - k + 1$ |
-| Stride=2, no padding | $p = 0, s = 2$ | $H\_{out} \approx \frac{H\_{in}}{2}$ |
+| Same padding, stride=1 | $p = \frac{k-1}{2}$ | $H_{out} = H_{in}$ |
+| Valid padding, stride=1 | $p = 0$ | $H_{out} = H_{in} - k + 1$ |
+| Stride=2, no padding | $p = 0, s = 2$ | $H_{out} \approx \frac{H_{in}}{2}$ |
 
 ### 3. Parameter Count Analysis
 
 For a convolutional layer with:
 
-- $C\_{in}$ input channels
+- $C_{in}$ input channels
 
-- $C\_{out}$ output channels (number of filters)
+- $C_{out}$ output channels (number of filters)
 
-- Kernel size $(k\_h \times k\_w)$
+- Kernel size $(k_h \times k_w)$
 
 ```math
 \text{Parameters} = C_{out} \times (C_{in} \times k_h \times k_w + 1)
@@ -109,17 +109,17 @@ RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i
 
 Where:
 
-- $RF\_l$ = receptive field at layer $l$
+- $RF_l$ = receptive field at layer $l$
 
-- $k\_l$ = kernel size at layer $l$
+- $k_l$ = kernel size at layer $l$
 
-- $s\_i$ = stride at layer $i$
+- $s_i$ = stride at layer $i$
 
 **Proof by Induction:**
 
-Base case: $RF\_1 = k\_1$ (first layer sees kernel-sized region)
+Base case: $RF_1 = k_1$ (first layer sees kernel-sized region)
 
-Inductive step: Each position at layer $l$ corresponds to $s\_{l-1}$ positions at layer $l-1$. Adding $(k\_l - 1)$ kernel elements, we get:
+Inductive step: Each position at layer $l$ corresponds to $s_{l-1}$ positions at layer $l-1$. Adding $(k_l - 1)$ kernel elements, we get:
 
 ```math
 RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i
@@ -133,8 +133,8 @@ RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i
 | Operation | Purpose | Mathematical Form |
 |-----------|---------|-------------------|
 | **Convolution** | Local feature extraction | $y = x * w + b$ |
-| **Max Pooling** | Downsampling, translation invariance | $y\_{ij} = \max\_{m,n \in \mathcal{R}\_{ij}} x\_{mn}$ |
-| **Average Pooling** | Downsampling, smoother features | $y\_{ij} = \frac{1}{|\mathcal{R}\_{ij}|}\sum\_{m,n \in \mathcal{R}\_{ij}} x\_{mn}$ |
+| **Max Pooling** | Downsampling, translation invariance | $y_{ij} = \max_{m,n \in \mathcal{R}_{ij}} x_{mn}$ |
+| **Average Pooling** | Downsampling, smoother features | $y_{ij} = \frac{1}{|\mathcal{R}_{ij}|}\sum_{m,n \in \mathcal{R}_{ij}} x_{mn}$ |
 | **Stride** | Skip positions, reduce resolution | Increases step size in sliding window |
 | **Padding** | Preserve spatial size | Add zeros around input border |
 
@@ -213,7 +213,7 @@ y = x * w + b
 
 ```
 
-Where $*\_{full}$ denotes full convolution (with padding = k-1).
+Where $*_{full}$ denotes full convolution (with padding = k-1).
 
 **Proof Sketch:**
 

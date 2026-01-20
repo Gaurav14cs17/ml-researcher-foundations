@@ -76,14 +76,14 @@ M_{inf} = M_{weights} + M_{act}
 **Training:**
 
 ```math
-M_{train} = M_{weights} + M_{grad} + M_{opt} + M_{act} + M_{act\_backward}
+M_{train} = M_{weights} + M_{grad} + M_{opt} + M_{act} + M_{act_backward}
 
 ```
 
 **Ratio:**
 
 ```math
-\frac{M_{train}}{M_{inf}} = 1 + 1 + 2 + \frac{M_{act\_backward}}{M_{act}} \approx 10-20\times
+\frac{M_{train}}{M_{inf}} = 1 + 1 + 2 + \frac{M_{act_backward}}{M_{act}} \approx 10-20\times
 
 ```
 
@@ -254,7 +254,7 @@ M_{act}^{bias} = B \times L \times d_{out}
 **Training energy:**
 
 ```math
-E_{train} = P \times t = P \times \frac{B \times \text{epochs} \times \text{FLOPs\_per\_sample}}{\text{FLOPS}}
+E_{train} = P \times t = P \times \frac{B \times \text{epochs} \times \text{FLOPs_per_sample}}{\text{FLOPS}}
 
 ```
 

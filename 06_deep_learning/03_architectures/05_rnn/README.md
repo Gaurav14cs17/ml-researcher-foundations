@@ -41,17 +41,17 @@ y_t = W_{hy} h_t + b_y
 
 Where:
 
-- $x\_t \in \mathbb{R}^d$ = input at time $t$
+- $x_t \in \mathbb{R}^d$ = input at time $t$
 
-- $h\_t \in \mathbb{R}^n$ = hidden state at time $t$
+- $h_t \in \mathbb{R}^n$ = hidden state at time $t$
 
-- $y\_t \in \mathbb{R}^k$ = output at time $t$
+- $y_t \in \mathbb{R}^k$ = output at time $t$
 
-- $W\_{xh} \in \mathbb{R}^{n \times d}$ = input-to-hidden weights
+- $W_{xh} \in \mathbb{R}^{n \times d}$ = input-to-hidden weights
 
-- $W\_{hh} \in \mathbb{R}^{n \times n}$ = hidden-to-hidden weights
+- $W_{hh} \in \mathbb{R}^{n \times n}$ = hidden-to-hidden weights
 
-- $W\_{hy} \in \mathbb{R}^{k \times n}$ = hidden-to-output weights
+- $W_{hy} \in \mathbb{R}^{k \times n}$ = hidden-to-output weights
 
 ### 2. Backpropagation Through Time (BPTT)
 
@@ -62,7 +62,7 @@ L = \sum_{t=1}^{T} L_t(y_t, \hat{y}_t)
 
 ```
 
-**Gradient w.r.t. $W\_{hh}$:**
+**Gradient w.r.t. $W_{hh}$:**
 
 ```math
 \frac{\partial L}{\partial W_{hh}} = \sum_{t=1}^{T} \sum_{k=1}^{t} \frac{\partial L_t}{\partial h_t} \cdot \frac{\partial h_t}{\partial h_k} \cdot \frac{\partial h_k}{\partial W_{hh}}
@@ -85,7 +85,7 @@ L = \sum_{t=1}^{T} L_t(y_t, \hat{y}_t)
 
 ```
 
-Where $\gamma = \max\_i |\tanh'(z\_i)| \leq 1$ and $\sigma\_{\max}$ is the largest singular value.
+Where $\gamma = \max_i |\tanh'(z_i)| \leq 1$ and $\sigma_{\max}$ is the largest singular value.
 
 **Proof:**
 
@@ -251,9 +251,9 @@ Where $\tau$ is the threshold (typically 1.0 or 5.0).
 
 ### Orthogonal Initialization
 
-**Goal:** Keep $\|W\_{hh}\|\_2 = 1$ to prevent vanishing/exploding at initialization.
+**Goal:** Keep $\|W_{hh}\|_2 = 1$ to prevent vanishing/exploding at initialization.
 
-**Method:** Initialize $W\_{hh}$ as orthogonal matrix:
+**Method:** Initialize $W_{hh}$ as orthogonal matrix:
 
 ```math
 W_{hh}^\top W_{hh} = I \implies \sigma_{\max}(W_{hh}) = 1
@@ -269,7 +269,7 @@ W_{hh}^\top W_{hh} = I \implies \sigma_{\max}(W_{hh}) = 1
 
 ```
 
-If $\|W\_{hh}\| < 1$ (contractive mapping).
+If $\|W_{hh}\| < 1$ (contractive mapping).
 
 **Implication:** RNN "forgets" early inputs → need LSTM/GRU for long-range dependencies.
 

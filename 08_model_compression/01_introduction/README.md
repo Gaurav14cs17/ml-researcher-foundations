@@ -26,7 +26,7 @@ CR = \frac{|M_{original}|}{|M_{compressed}|} = \frac{\sum_{l} |W_l| \cdot b_{ori
 
 Where:
 
-- $|W\_l|$ = number of weights in layer $l$
+- $|W_l|$ = number of weights in layer $l$
 
 - $b$ = bits per weight
 
@@ -57,11 +57,11 @@ Where:
 - $\epsilon$ = acceptable accuracy degradation
 
 **Theorem (Pareto Optimality):**
-The set of optimal compressions forms a Pareto frontier. A model $M\_c^*$ is Pareto optimal if there exists no $M\_c$ such that:
+The set of optimal compressions forms a Pareto frontier. A model $M_c^*$ is Pareto optimal if there exists no $M_c$ such that:
 
-1. $\text{Size}(M\_c) \leq \text{Size}(M\_c^*)$ AND
+1. $\text{Size}(M_c) \leq \text{Size}(M_c^*)$ AND
 
-2. $\mathcal{L}(M\_c) \leq \mathcal{L}(M\_c^*)$
+2. $\mathcal{L}(M_c) \leq \mathcal{L}(M_c^*)$
 with at least one strict inequality.
 
 ### 3. Information-Theoretic Bounds
@@ -128,10 +128,10 @@ For LLMs: Usually memory-bound → compression helps!
 
 | Method | Mathematical Principle | Compression Factor |
 |--------|----------------------|-------------------|
-| Quantization | $W \in \mathbb{R} \to W\_q \in \{0,1,...,2^b-1\}$ | $32/b$ |
+| Quantization | $W \in \mathbb{R} \to W_q \in \{0,1,...,2^b-1\}$ | $32/b$ |
 | Pruning | $W \to W \odot M$ where $M \in \{0,1\}$ | $1/\text{sparsity}$ |
 | Low-Rank | $W \approx UV^T$ where $U,V \in \mathbb{R}^{n \times r}$ | $\frac{mn}{r(m+n)}$ |
-| Distillation | $f\_{student} \approx f\_{teacher}$ | Architecture-dependent |
+| Distillation | $f_{student} \approx f_{teacher}$ | Architecture-dependent |
 
 ---
 

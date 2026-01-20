@@ -39,7 +39,7 @@ s = \frac{\|\mathbf{w}\|_0}{\text{total params}} = \frac{\#\text{zeros}}{\#\text
 
 Components:
 
-- `values`: Non-zero values $[v\_1, v\_2, ..., v\_{nnz}]$
+- `values`: Non-zero values $[v_1, v_2, ..., v_{nnz}]$
 
 - `col_indices`: Column index for each value
 
@@ -90,17 +90,17 @@ W_{2:4} = W \odot M_{2:4}
 
 ```
 
-Where $M\_{2:4}$ satisfies the 2:4 constraint and minimizes $\|W - W\_{2:4}\|\_F$.
+Where $M_{2:4}$ satisfies the 2:4 constraint and minimizes $\|W - W_{2:4}\|_F$.
 
 ### 4. Lottery Ticket Hypothesis (Formal)
 
 **Theorem (Frankle & Carlin, 2019):**
 
-Let $f(x; \theta\_0)$ be a randomly-initialized neural network. There exists a mask $m \in \{0,1\}^{|\theta|}$ such that:
+Let $f(x; \theta_0)$ be a randomly-initialized neural network. There exists a mask $m \in \{0,1\}^{|\theta|}$ such that:
 
-1. **Sparsity:** $\|m\|\_0 \ll |\theta|$
+1. **Sparsity:** $\|m\|_0 \ll |\theta|$
 
-2. **Trainability:** $f(x; m \odot \theta\_0)$ trained for $T$ iterations achieves test accuracy $\geq f(x; \theta\_T) - \epsilon$
+2. **Trainability:** $f(x; m \odot \theta_0)$ trained for $T$ iterations achieves test accuracy $\geq f(x; \theta_T) - \epsilon$
 
 **Iterative Magnitude Pruning (IMP):**
 
@@ -114,7 +114,7 @@ return m, θ₀
 
 ```
 
-**Late Rewinding:** Reset to $\theta\_k$ instead of $\theta\_0$ (more stable for large models).
+**Late Rewinding:** Reset to $\theta_k$ instead of $\theta_0$ (more stable for large models).
 
 ### 5. Sparse Training Methods
 

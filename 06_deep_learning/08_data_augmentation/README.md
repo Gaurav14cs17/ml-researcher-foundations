@@ -108,7 +108,7 @@ S' = S \cdot \alpha, \quad \alpha \sim U(1-\delta, 1+\delta)
 
 ### Algorithm
 
-For samples $(x\_i, y\_i)$ and $(x\_j, y\_j)$:
+For samples $(x_i, y_i)$ and $(x_j, y_j)$:
 
 ```math
 \tilde{x} = \lambda x_i + (1-\lambda) x_j
@@ -143,7 +143,7 @@ Mixup encourages:
 
 1. Sample $\lambda \sim \text{Beta}(\alpha, \alpha)$
 
-2. Sample bounding box $B = (r\_x, r\_y, r\_w, r\_h)$ where:
+2. Sample bounding box $B = (r_x, r_y, r_w, r_h)$ where:
 
 ```math
 r_w = W\sqrt{1-\lambda}, \quad r_h = H\sqrt{1-\lambda}
@@ -167,7 +167,7 @@ Where $M$ is binary mask (1 inside $B$, 0 outside).
 
 ```
 
-Where $\lambda = 1 - \frac{r\_w \cdot r\_h}{W \cdot H}$ (fraction of image from $x\_i$).
+Where $\lambda = 1 - \frac{r_w \cdot r_h}{W \cdot H}$ (fraction of image from $x_i$).
 
 ---
 

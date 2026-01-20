@@ -371,14 +371,14 @@ At 90% sparsity: CR = 10×
 **With sparse storage (CSR format):**
 
 ```math
-\text{Memory} = \text{nnz} \times (\text{value\_size} + \text{index\_size})
+\text{Memory} = \text{nnz} \times (\text{value_size} + \text{index_size})
 
 ```
 
 Actual compression:
 
 ```math
-\text{CR}_{actual} = \frac{n \times \text{value\_size}}{\text{nnz} \times (\text{value\_size} + \text{index\_size})}
+\text{CR}_{actual} = \frac{n \times \text{value_size}}{\text{nnz} \times (\text{value_size} + \text{index_size})}
 
 ```
 

@@ -48,7 +48,7 @@ Where $Q, K, V \in \mathbb{R}^{n \times d}$
 
 ```
 
-Where $E\_K, E\_V \in \mathbb{R}^{k \times n}$ project to $k \ll n$ dimensions.
+Where $E_K, E_V \in \mathbb{R}^{k \times n}$ project to $k \ll n$ dimensions.
 
 **New Attention:**
 

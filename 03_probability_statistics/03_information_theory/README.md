@@ -56,8 +56,8 @@ h(X) = -\int f(x) \log f(x) \, dx
 | Distribution | Entropy |
 |--------------|---------|
 | Fair coin | $H = 1$ bit |
-| Biased coin ($p$) | $H = -p\log\_2 p - (1-p)\log\_2(1-p)$ |
-| Uniform on $n$ | $H = \log\_2 n$ |
+| Biased coin ($p$) | $H = -p\log_2 p - (1-p)\log_2(1-p)$ |
+| Uniform on $n$ | $H = \log_2 n$ |
 | Gaussian $\mathcal{N}(\mu, \sigma^2)$ | $h = \frac{1}{2}\log(2\pi e \sigma^2)$ |
 
 ---
@@ -116,10 +116,10 @@ D_{KL}(P \| Q) = \sum_x p(x) \log\frac{p(x)}{q(x)} = E_p\left[\log\frac{p(x)}{q(
 
 | Property | Statement |
 |----------|-----------|
-| Non-negative | $D\_{KL}(P \| Q) \geq 0$ (Gibbs' inequality) |
-| Zero | $D\_{KL} = 0 \iff P = Q$ |
-| Asymmetric | $D\_{KL}(P \| Q) \neq D\_{KL}(Q \| P)$ |
-| Additive | $D\_{KL}(P\_1 P\_2 \| Q\_1 Q\_2) = D\_{KL}(P\_1 \| Q\_1) + D\_{KL}(P\_2 \| Q\_2)$ |
+| Non-negative | $D_{KL}(P \| Q) \geq 0$ (Gibbs' inequality) |
+| Zero | $D_{KL} = 0 \iff P = Q$ |
+| Asymmetric | $D_{KL}(P \| Q) \neq D_{KL}(Q \| P)$ |
+| Additive | $D_{KL}(P_1 P_2 \| Q_1 Q_2) = D_{KL}(P_1 \| Q_1) + D_{KL}(P_2 \| Q_2)$ |
 
 ### Gibbs' Inequality Proof
 
@@ -139,8 +139,8 @@ Using Jensen's inequality ($\log$ is concave):
 
 | Direction | Formula | Behavior | Use Case |
 |-----------|---------|----------|----------|
-| Forward | $D\_{KL}(P \| Q)$ | Zero-avoiding (q covers p) | Variational Inference |
-| Reverse | $D\_{KL}(Q \| P)$ | Zero-forcing (q focuses) | Mode-seeking |
+| Forward | $D_{KL}(P \| Q)$ | Zero-avoiding (q covers p) | Variational Inference |
+| Reverse | $D_{KL}(Q \| P)$ | Zero-forcing (q focuses) | Mode-seeking |
 
 ---
 
@@ -192,7 +192,7 @@ I(X; Y) = D_{KL}(p(x, y) \| p(x)p(y))
 
 ```
 
-**Lower bounds mutual information:** $I(X; Y) \geq \log N - \mathcal{L}\_{InfoNCE}$
+**Lower bounds mutual information:** $I(X; Y) \geq \log N - \mathcal{L}_{InfoNCE}$
 
 ---
 
@@ -267,7 +267,7 @@ def info_nce_loss(z1, z2, temperature=0.5):
 | Concept | Application | Example |
 |---------|-------------|---------|
 | Cross-entropy | Classification loss | `nn.CrossEntropyLoss` |
-| KL divergence | VAE regularization | $D\_{KL}(q(z\|x) \| p(z))$ |
+| KL divergence | VAE regularization | $D_{KL}(q(z\|x) \| p(z))$ |
 | KL divergence | Knowledge distillation | Soft target matching |
 | Mutual information | Contrastive learning | InfoNCE (SimCLR, CLIP) |
 | Entropy | Exploration in RL | Max-entropy RL (SAC) |

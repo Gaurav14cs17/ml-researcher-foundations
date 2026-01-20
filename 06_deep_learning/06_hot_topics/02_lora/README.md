@@ -167,7 +167,7 @@ The best rank-$r$ approximation of $\Delta W$ is:
 
 ```
 
-LoRA learns $B$ and $A$ such that $BA \approx \Delta W\_r$.
+LoRA learns $B$ and $A$ such that $BA \approx \Delta W_r$.
 
 ### Why Low-Rank Works
 
@@ -422,7 +422,7 @@ W + \Delta W = m \cdot \frac{W + BA}{\|W + BA\|}
 
 - Different learning rates for A and B matrices
 
-- Typically: $\text{lr}\_B = \lambda \cdot \text{lr}\_A$ with $\lambda \approx 16$
+- Typically: $\text{lr}_B = \lambda \cdot \text{lr}_A$ with $\lambda \approx 16$
 
 - Faster convergence
 

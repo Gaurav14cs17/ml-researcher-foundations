@@ -29,8 +29,8 @@ W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
 
 ```
 
-**Parameters:** $C\_{out} \times C\_{in} \times K^2$
-**FLOPs:** $2 \times C\_{out} \times C\_{in} \times K^2 \times H\_{out} \times W\_{out}$
+**Parameters:** $C_{out} \times C_{in} \times K^2$
+**FLOPs:** $2 \times C_{out} \times C_{in} \times K^2 \times H_{out} \times W_{out}$
 
 **Depthwise Separable Decomposition:**
 
@@ -50,7 +50,7 @@ W^{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 \times 1}
 
 ```
 
-**Total Parameters:** $C\_{in} \times K^2 + C\_{out} \times C\_{in}$
+**Total Parameters:** $C_{in} \times K^2 + C_{out} \times C_{in}$
 
 **Reduction Factor:**
 
@@ -59,7 +59,7 @@ W^{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 \times 1}
 
 ```
 
-For $K=3$, $C\_{out}=256$: $\frac{256 \times 9}{9 + 256} = 8.7\times$
+For $K=3$, $C_{out}=256$: $\frac{256 \times 9}{9 + 256} = 8.7\times$
 
 ### 2. Inverted Residual (MobileNetV2)
 
@@ -149,9 +149,9 @@ s = F_{ex}(z) = \sigma(W_2 \cdot \delta(W_1 \cdot z))
 
 Where:
 
-- $W\_1 \in \mathbb{R}^{C/r \times C}$ (reduction)
+- $W_1 \in \mathbb{R}^{C/r \times C}$ (reduction)
 
-- $W\_2 \in \mathbb{R}^{C \times C/r}$ (expansion)
+- $W_2 \in \mathbb{R}^{C \times C/r}$ (expansion)
 
 - $r$ = reduction ratio (typically 16)
 

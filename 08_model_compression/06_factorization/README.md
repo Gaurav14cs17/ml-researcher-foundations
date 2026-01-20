@@ -32,7 +32,7 @@ Where:
 
 - $V \in \mathbb{R}^{n \times n}$: Right singular vectors (orthogonal)
 
-- $\sigma\_1 \geq \sigma\_2 \geq ... \geq \sigma\_r > 0$: Singular values (non-negative, ordered)
+- $\sigma_1 \geq \sigma_2 \geq ... \geq \sigma_r > 0$: Singular values (non-negative, ordered)
 
 **Properties:**
 - $U^T U = I$ (orthonormality)
@@ -50,7 +50,7 @@ W_k = U_k \Sigma_k V_k^T = \sum_{i=1}^{k} \sigma_i u_i v_i^T
 
 ```
 
-Where $U\_k, V\_k$ contain only the first $k$ columns.
+Where $U_k, V_k$ contain only the first $k$ columns.
 
 **Eckart-Young-Mirsky Theorem:**
 The truncated SVD gives the optimal rank-$k$ approximation:
@@ -148,7 +148,7 @@ BA \approx U_r \Sigma_r V_r^T
 
 ```
 
-Where $U\_r \Sigma\_r V\_r^T$ is the optimal rank-$r$ approximation to the true weight update.
+Where $U_r \Sigma_r V_r^T$ is the optimal rank-$r$ approximation to the true weight update.
 
 ### 6. Tensor Decomposition (CP and Tucker)
 
@@ -159,7 +159,7 @@ Where $U\_r \Sigma\_r V\_r^T$ is the optimal rank-$r$ approximation to the true 
 
 ```
 
-For a 4D convolution kernel $\mathcal{W} \in \mathbb{R}^{C\_{out} \times C\_{in} \times H \times W}$.
+For a 4D convolution kernel $\mathcal{W} \in \mathbb{R}^{C_{out} \times C_{in} \times H \times W}$.
 
 **Tucker Decomposition:**
 
@@ -171,11 +171,11 @@ For a 4D convolution kernel $\mathcal{W} \in \mathbb{R}^{C\_{out} \times C\_{in}
 Where $\mathcal{G}$ is a smaller core tensor.
 
 **Compression for Convolutions:**
-- Original: $C\_{out} \times C\_{in} \times k \times k$
+- Original: $C_{out} \times C_{in} \times k \times k$
 
-- CP: $R \times (C\_{out} + C\_{in} + k + k)$
+- CP: $R \times (C_{out} + C_{in} + k + k)$
 
-- Tucker: $(R\_1 \times R\_2 \times R\_3 \times R\_4) + R\_1 C\_{out} + R\_2 C\_{in} + ...$
+- Tucker: $(R_1 \times R_2 \times R_3 \times R_4) + R_1 C_{out} + R_2 C_{in} + ...$
 
 ### 7. Depthwise Separable Convolution (Factorized Conv)
 
@@ -189,9 +189,9 @@ Y = W * X, \quad W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
 
 **Depthwise Separable:**
 
-1. **Depthwise:** $H = W\_{dw} * X$ where $W\_{dw} \in \mathbb{R}^{C\_{in} \times 1 \times K \times K}$
+1. **Depthwise:** $H = W_{dw} * X$ where $W_{dw} \in \mathbb{R}^{C_{in} \times 1 \times K \times K}$
 
-2. **Pointwise:** $Y = W\_{pw} \cdot H$ where $W\_{pw} \in \mathbb{R}^{C\_{out} \times C\_{in} \times 1 \times 1}$
+2. **Pointwise:** $Y = W_{pw} \cdot H$ where $W_{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 \times 1}$
 
 ```math
 \text{Params: } C_{in} \times K^2 + C_{out} \times C_{in}
@@ -205,7 +205,7 @@ CR = \frac{C_{out} \times C_{in} \times K^2}{C_{in} \times K^2 + C_{out} \times 
 
 ```
 
-For $K=3$, $C\_{out}=256$: $CR \approx 8-9\times$
+For $K=3$, $C_{out}=256$: $CR \approx 8-9\times$
 
 ---
 

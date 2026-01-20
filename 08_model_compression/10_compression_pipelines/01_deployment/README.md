@@ -69,9 +69,9 @@ Where:
 
 - $L$ = sequence length
 
-- $T\_{prefill}$ = prompt processing time
+- $T_{prefill}$ = prompt processing time
 
-- $T\_{decode}$ = per-token generation time
+- $T_{decode}$ = per-token generation time
 
 ### 3. Memory Requirements
 
@@ -95,13 +95,13 @@ Where:
 
 - $H$ = heads (or KV heads for GQA)
 
-- $d\_k$ = head dimension
+- $d_k$ = head dimension
 
 - $B$ = batch size
 
 - $S$ = sequence length
 
-- $b\_{kv}$ = bytes per element
+- $b_{kv}$ = bytes per element
 
 **Example (LLaMA-7B, seq=4096, batch=1):**
 

@@ -114,14 +114,14 @@ This integral is often **intractable** → need approximations:
 
 **Key Property:** Posterior becomes prior for next observation.
 
-After observing $D\_1$:
+After observing $D_1$:
 
 ```math
 P(\theta|D_1) \propto P(D_1|\theta) P(\theta)
 
 ```
 
-After observing $D\_2$:
+After observing $D_2$:
 
 ```math
 P(\theta|D_1, D_2) \propto P(D_2|\theta) P(\theta|D_1)

@@ -49,7 +49,7 @@ W = U_n \Sigma_n V^T
 
 ```
 
-where $U\_n \in \mathbb{R}^{m \times n}$, $\Sigma\_n \in \mathbb{R}^{n \times n}$.
+where $U_n \in \mathbb{R}^{m \times n}$, $\Sigma_n \in \mathbb{R}^{n \times n}$.
 
 ---
 
@@ -66,11 +66,11 @@ W_k = U_k \Sigma_k V_k^T
 
 where:
 
-- $U\_k \in \mathbb{R}^{m \times k}$ (first $k$ columns)
+- $U_k \in \mathbb{R}^{m \times k}$ (first $k$ columns)
 
-- $\Sigma\_k \in \mathbb{R}^{k \times k}$
+- $\Sigma_k \in \mathbb{R}^{k \times k}$
 
-- $V\_k \in \mathbb{R}^{n \times k}$
+- $V_k \in \mathbb{R}^{n \times k}$
 
 #### 2.2 Eckart-Young-Mirsky Theorem
 
@@ -88,7 +88,7 @@ W_k = \arg\min_{\text{rank}(A) \leq k} \|W - A\|_F
 
 ```
 
-where $r = \text{rank}(W)$ and $\sigma\_i$ are singular values.
+where $r = \text{rank}(W)$ and $\sigma_i$ are singular values.
 
 ---
 
@@ -98,7 +98,7 @@ where $r = \text{rank}(W)$ and $\sigma\_i$ are singular values.
 
 **Original:** $mn$ parameters
 
-**Factorized:** $W\_k = U\_k (\Sigma\_k V\_k^T) = AB$
+**Factorized:** $W_k = U_k (\Sigma_k V_k^T) = AB$
 
 where $A \in \mathbb{R}^{m \times k}$, $B \in \mathbb{R}^{k \times n}$.
 
