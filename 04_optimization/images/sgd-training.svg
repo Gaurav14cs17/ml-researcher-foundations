@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1125.0 787.5">
+  <ns0:defs>
+    <ns0:linearGradient id="sgdBg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#2d2d2d"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1125.0" height="787.5" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="250" y="25" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">SGD: Stochastic Gradient Descent</ns0:text>
+  <ns0:rect x="30" y="50" width="200" height="90" rx="8" fill="#c62828" opacity="0.2" stroke="#dc3545" stroke-width="2"/>
+  <ns0:text x="130" y="75" fill="#c62828" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">Full Batch GD</ns0:text>
+  <ns0:text x="130" y="95" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">∇L = (1/N) Σ ∇Lᵢ</ns0:text>
+  <ns0:text x="130" y="115" fill="#444444" font-family="Arial, sans-serif" font-size="9" text-anchor="middle">Use ALL data per step</ns0:text>
+  <ns0:text x="130" y="140.0" fill="#444444" font-family="Arial, sans-serif" font-size="9" text-anchor="middle">Slow but smooth</ns0:text>
+  <ns0:rect x="270" y="50" width="200" height="90" rx="8" fill="#2ecc71" opacity="0.2" stroke="#2ecc71" stroke-width="2"/>
+  <ns0:text x="370" y="165.0" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">Mini-batch SGD</ns0:text>
+  <ns0:text x="370" y="190.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">∇L ≈ (1/B) Σ ∇Lᵢ</ns0:text>
+  <ns0:text x="370" y="215.0" fill="#444444" font-family="Arial, sans-serif" font-size="9" text-anchor="middle">Use B samples per step</ns0:text>
+  <ns0:text x="370" y="240.0" fill="#444444" font-family="Arial, sans-serif" font-size="9" text-anchor="middle">Fast but noisy</ns0:text>
+  <ns0:text x="250" y="265.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">Training Process</ns0:text>
+  <ns0:rect x="30" y="190" width="40" height="30" rx="3" fill="#1565c0"/>
+  <ns0:rect x="75" y="190" width="40" height="30" rx="3" fill="#1565c0"/>
+  <ns0:rect x="120" y="190" width="40" height="30" rx="3" fill="#1565c0"/>
+  <ns0:text x="90" y="290.0" fill="#444444" font-family="Arial, sans-serif" font-size="9" text-anchor="middle">Data batches</ns0:text>
+  <ns0:path d="M 170 205 L 200 205" stroke="#ffffff" stroke-width="2"/>
+  <ns0:rect x="210" y="185" width="80" height="40" rx="5" fill="#6a1b9a"/>
+  <ns0:text x="250" y="315.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">Model θ</ns0:text>
+  <ns0:path d="M 300 205 L 330 205" stroke="#ffffff" stroke-width="2"/>
+  <ns0:rect x="340" y="185" width="60" height="40" rx="5" fill="#c62828"/>
+  <ns0:text x="370" y="340.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">Loss</ns0:text>
+  <ns0:path d="M 340 230 L 290 230 L 290 235 L 250 235" stroke="#2ecc71" stroke-width="2" fill="none"/>
+  <ns0:polygon points="250,235 265,230 265,240" fill="#2ecc71"/>
+  <ns0:text x="320" y="365.0" fill="#2ecc71" font-family="Arial, sans-serif" font-size="9" text-anchor="middle">∇L (backprop)</ns0:text>
+  <ns0:rect x="100" y="280" width="300" height="50" rx="8" fill="#1a237e"/>
+  <ns0:text x="250" y="390.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">θ = θ - α · ∇L(θ; batch)</ns0:text>
+  <ns0:text x="250" y="415.0" fill="#444444" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">Repeat for all batches, all epochs</ns0:text>
+</ns0:svg>

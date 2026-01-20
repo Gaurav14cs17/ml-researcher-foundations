@@ -1,0 +1,154 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2475.0 1912.5">
+  <ns0:text x="550" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Dimensionality Reduction: PCA vs t-SNE
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="500" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      1. Why Reduce Dimensions?
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="270.0" fill="#f8f9fa" stroke="#007bff" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:g>
+        <ns0:circle cx="8" cy="-3" r="8" fill="#1565c0"/>
+        <ns0:text x="8" y="80.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">1</ns0:text>
+        <ns0:text x="25" y="105.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#1565c0">Visualization:</ns0:tspan>
+          High-D data (d&gt;3) → 2D/3D for human understanding
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 25)">
+        <ns0:circle cx="8" cy="-3" r="8" fill="#1565c0"/>
+        <ns0:text x="8" y="130.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">2</ns0:text>
+        <ns0:text x="25" y="155.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#1565c0">Curse of Dimensionality:</ns0:tspan>
+          Reduce d to avoid sparse data, improve ML performance
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 50)">
+        <ns0:circle cx="8" cy="-3" r="8" fill="#1565c0"/>
+        <ns0:text x="8" y="180.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">3</ns0:text>
+        <ns0:text x="25" y="205.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#1565c0">Computational Efficiency:</ns0:tspan>
+          Fewer features → Faster training, less memory
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 240)">
+    <ns0:text x="450" y="230.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      2. PCA (Principal Component Analysis)
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="900" height="260" fill="#1a237e" stroke="#28a745" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="255.0" font-size="14" font-weight="bold" fill="#145a32">
+        Linear method: Find directions of maximum variance
+      </ns0:text>
+      <ns0:g transform="translate(0, 25)">
+        <ns0:text x="0" y="280.0" font-size="13" font-weight="bold" fill="#145a32">
+          Algorithm:
+        </ns0:text>
+        <ns0:g transform="translate(0, 15)">
+          <ns0:rect x="0" y="0" width="840" height="30" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+          <ns0:text x="10" y="305.0" font-size="12" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#145a32">1.</ns0:tspan>
+             Center data: X̃ = X - mean(X)
+          </ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(0, 38)">
+          <ns0:rect x="0" y="0" width="840" height="30" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+          <ns0:text x="10" y="330.0" font-size="12" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#145a32">2.</ns0:tspan>
+             Compute covariance matrix: Σ = (1/n) X̃ᵀX̃
+          </ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(0, 76)">
+          <ns0:rect x="0" y="0" width="840" height="30" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+          <ns0:text x="10" y="355.0" font-size="12" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#145a32">3.</ns0:tspan>
+             Compute eigenvectors/eigenvalues of Σ (or use SVD on X̃)
+          </ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(0, 114)">
+          <ns0:rect x="0" y="0" width="840" height="30" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+          <ns0:text x="10" y="380.0" font-size="12" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#145a32">4.</ns0:tspan>
+             Select top k eigenvectors (principal components) → Project: Y = X̃W_k
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:g transform="translate(0, 185)">
+        <ns0:text x="0" y="405.0" font-size="13" fill="#2e7d32">✓ Fast, deterministic</ns0:text>
+        <ns0:text x="200" y="430.0" font-size="13" fill="#2e7d32">✓ Preserves global structure</ns0:text>
+        <ns0:text x="450" y="455.0" font-size="13" fill="#c62828">✗ Only linear relationships</ns0:text>
+        <ns0:text x="0" y="480.0" font-size="12" fill="#1a237e">
+          Variance explained: λ_k / Σᵢλᵢ  (e.g., &quot;First 2 PCs capture 85% variance&quot;)
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 540)">
+    <ns0:text x="450" y="505.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+      3. t-SNE (t-Distributed Stochastic Neighbor Embedding)
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="900" height="260" fill="#1a237e" stroke="#6f42c1" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="530.0" font-size="14" font-weight="bold" fill="#6c3483">
+        Non-linear method: Preserve local neighborhood structure
+      </ns0:text>
+      <ns0:g transform="translate(0, 25)">
+        <ns0:text x="0" y="555.0" font-size="13" font-weight="bold" fill="#6a1b9a">
+          Key Ideas:
+        </ns0:text>
+        <ns0:g transform="translate(0, 15)">
+          <ns0:rect x="0" y="0" width="840" height="40" fill="#1a237e" stroke="#6f42c1" stroke-width="1" rx="3"/>
+          <ns0:g transform="translate(10, 12)">
+            <ns0:text x="0" y="580.0" font-size="12" fill="#1a237e">
+              <ns0:tspan font-weight="bold" fill="#6a1b9a">1.</ns0:tspan>
+               Model high-D similarities using Gaussian: p_ij ∝ exp(-||xᵢ-xⱼ||²/2σ²)
+            </ns0:text>
+            <ns0:text x="0" y="605.0" font-size="12" fill="#1a237e">
+              <ns0:tspan font-weight="bold" fill="#6a1b9a">2.</ns0:tspan>
+               Model low-D similarities using Student-t (heavy tails): q_ij ∝ (1+||yᵢ-yⱼ||²)⁻¹
+            </ns0:text>
+          </ns0:g>
+        </ns0:g>
+        <ns0:g transform="translate(0, 63)">
+          <ns0:rect x="0" y="0" width="840" height="30" fill="#1a237e" stroke="#6f42c1" stroke-width="1" rx="3"/>
+          <ns0:text x="10" y="630.0" font-size="12" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#6a1b9a">3.</ns0:tspan>
+             Minimize KL divergence: KL(P||Q) = Σᵢⱼ p_ij log(p_ij/q_ij) via gradient descent
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:g transform="translate(0, 125)">
+        <ns0:text x="0" y="655.0" font-size="13" font-weight="bold" fill="#6a1b9a">
+          Hyperparameters:
+        </ns0:text>
+        <ns0:text x="0" y="680.0" font-size="12" fill="#1a237e">
+          • 
+          <ns0:tspan font-weight="bold" fill="#6a1b9a">Perplexity:</ns0:tspan>
+          Effective number of neighbors (5-50, typical: 30)
+        </ns0:text>
+        <ns0:text x="0" y="705.0" font-size="12" fill="#1a237e">
+          • 
+          <ns0:tspan font-weight="bold" fill="#6a1b9a">Learning rate:</ns0:tspan>
+          Step size for gradient descent (10-1000)
+        </ns0:text>
+        <ns0:text x="0" y="730.0" font-size="12" fill="#1a237e">
+          • 
+          <ns0:tspan font-weight="bold" fill="#6a1b9a">Iterations:</ns0:tspan>
+          Typically 1000-5000
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 195)">
+        <ns0:text x="0" y="755.0" font-size="13" fill="#2e7d32">✓ Reveals clusters beautifully</ns0:text>
+        <ns0:text x="250" y="780.0" font-size="13" fill="#c62828">✗ Slow (O(n²))</ns0:text>
+        <ns0:text x="450" y="805.0" font-size="13" fill="#c62828">✗ Stochastic (different runs differ)</ns0:text>
+        <ns0:text x="0" y="830.0" font-size="12" fill="#c62828" font-weight="bold">
+          ⚠ Distances in t-SNE plot are meaningless! Only clusters matter.
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>

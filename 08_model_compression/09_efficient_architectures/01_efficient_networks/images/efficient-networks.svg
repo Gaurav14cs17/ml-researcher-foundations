@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="effNetBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="30" text-anchor="middle" fill="#e67e22" font-family="Arial, sans-serif" font-size="20" font-weight="bold">🏗️ Efficient Network Architectures</ns0:text>
+  <ns0:g transform="translate(50, 60)">
+    <ns0:rect width="230" height="140" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="115" y="55.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="12" font-weight="bold">📱 MobileNet (v1-v3)</ns0:text>
+    <ns0:text x="15" y="80.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Key Innovation:</ns0:text>
+    <ns0:text x="15" y="105.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Depthwise Separable Conv</ns0:text>
+    <ns0:g transform="translate(20, 75)">
+      <ns0:rect width="30" height="30" rx="2" fill="#2e7d32"/>
+      <ns0:text x="15" y="130.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="7">DW</ns0:text>
+    </ns0:g>
+    <ns0:text x="60" y="155.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">+</ns0:text>
+    <ns0:g transform="translate(75, 75)">
+      <ns0:rect width="30" height="30" rx="2" fill="#e65100"/>
+      <ns0:text x="15" y="180.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="7">1×1</ns0:text>
+    </ns0:g>
+    <ns0:text x="115" y="205.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">8-9× fewer FLOPs</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(300, 60)">
+    <ns0:rect width="230" height="140" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="115" y="230.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12" font-weight="bold">⚖️ EfficientNet</ns0:text>
+    <ns0:text x="15" y="255.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Key Innovation:</ns0:text>
+    <ns0:text x="15" y="280.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Compound Scaling</ns0:text>
+    <ns0:text x="15" y="305.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Scale together:</ns0:text>
+    <ns0:text x="15" y="330.0" fill="#1565c0" font-family="Arial, sans-serif" font-size="8">• Depth (layers)</ns0:text>
+    <ns0:text x="100" y="355.0" fill="#e65100" font-family="Arial, sans-serif" font-size="8">• Width (channels)</ns0:text>
+    <ns0:text x="15" y="380.0" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="8">• Resolution (input)</ns0:text>
+    <ns0:text x="115" y="405.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9">Best accuracy/FLOP ratio!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(550, 60)">
+    <ns0:rect width="200" height="140" rx="10" fill="#1a237e" stroke="#6f42c1" stroke-width="2"/>
+    <ns0:text x="100" y="430.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="12" font-weight="bold">🔤 ALBERT</ns0:text>
+    <ns0:text x="15" y="455.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Key Innovations:</ns0:text>
+    <ns0:text x="15" y="480.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">1. Factorized embedding</ns0:text>
+    <ns0:text x="15" y="505.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">2. Cross-layer sharing</ns0:text>
+    <ns0:text x="15" y="530.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">BERT: 110M params</ns0:text>
+    <ns0:text x="15" y="555.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="8">ALBERT: 12M (9× less!)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(100, 220)">
+    <ns0:rect width="600" height="160" rx="12" fill="#1a237e" stroke="#e67e22" stroke-width="2"/>
+    <ns0:text x="300" y="580.0" text-anchor="middle" fill="#fb923c" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🔍 Depthwise Separable Convolution</ns0:text>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="90" y="605.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Standard Conv</ns0:text>
+      <ns0:rect x="0" y="10" width="50" height="50" fill="#1565c0"/>
+      <ns0:rect x="5" y="15" width="50" height="50" fill="#1565c0" opacity="0.7"/>
+      <ns0:rect x="10" y="20" width="50" height="50" fill="#1565c0" opacity="0.5"/>
+      <ns0:text x="30" y="630.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">K×K×C_in×C_out</ns0:text>
+      <ns0:text x="30" y="655.0" fill="#c62828" font-family="Arial, sans-serif" font-size="8">3×3×64×128 = 73K</ns0:text>
+    </ns0:g>
+    <ns0:text x="200" y="680.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="20">vs</ns0:text>
+    <ns0:g transform="translate(240, 50)">
+      <ns0:text x="150" y="705.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Depthwise Separable</ns0:text>
+      <ns0:rect x="0" y="20" width="30" height="30" fill="#2e7d32"/>
+      <ns0:rect x="35" y="20" width="30" height="30" fill="#2e7d32"/>
+      <ns0:rect x="70" y="20" width="30" height="30" fill="#2e7d32"/>
+      <ns0:text x="50" y="730.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="7">Depthwise</ns0:text>
+      <ns0:text x="50" y="755.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="7">K×K×C_in</ns0:text>
+      <ns0:text x="115" y="780.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="12">+</ns0:text>
+      <ns0:rect x="135" y="20" width="60" height="30" fill="#e65100"/>
+      <ns0:text x="165" y="805.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="7">Pointwise</ns0:text>
+      <ns0:text x="165" y="830.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="7">1×1×C_in×C_out</ns0:text>
+      <ns0:text x="210" y="855.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="12">=</ns0:text>
+      <ns0:rect x="230" y="20" width="80" height="30" fill="#2e7d32"/>
+      <ns0:text x="270" y="880.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="7">576 + 8K = 8.7K</ns0:text>
+      <ns0:text x="270" y="905.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="8" font-weight="bold">8.4× fewer!</ns0:text>
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>

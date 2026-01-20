@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f39c12"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="550" fill="url(#bgGrad)" rx="12"/>
+  
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Knowledge Distillation</text>
+  
+  <!-- Main Formula -->
+  <rect x="150" y="60" width="600" height="70" rx="10" fill="#2c3e50" stroke="#9b59b6" stroke-width="2"/>
+  <text x="450" y="100" text-anchor="middle" fill="#2ecc71" font-family="monospace" font-size="18" font-weight="bold">L = α × L_hard + (1-α) × T² × L_soft</text>
+  
+  <!-- Teacher-Student Diagram -->
+  <rect x="30" y="150" width="250" height="180" rx="10" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="155" y="180" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Teacher (Large)</text>
+  <rect x="70" y="200" width="170" height="80" rx="8" fill="#7f1d1d"/>
+  <text x="155" y="230" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="14">BERT-Large</text>
+  <text x="155" y="255" text-anchor="middle" fill="#fca5a5" font-family="Arial, sans-serif" font-size="12">340M params</text>
+  <text x="155" y="310" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">Soft labels p_t^T</text>
+  
+  <!-- Arrow -->
+  <path d="M290 240 L380 240" stroke="#f39c12" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="335" y="225" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="12">Knowledge</text>
+  
+  <!-- Student -->
+  <rect x="390" y="150" width="250" height="180" rx="10" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="515" y="180" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Student (Small)</text>
+  <rect x="430" y="200" width="170" height="80" rx="8" fill="#14532d"/>
+  <text x="515" y="230" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="14">DistilBERT</text>
+  <text x="515" y="255" text-anchor="middle" fill="#86efac" font-family="Arial, sans-serif" font-size="12">66M params</text>
+  <text x="515" y="310" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">Learns from p_t^T</text>
+  
+  <!-- Temperature -->
+  <rect x="660" y="150" width="210" height="180" rx="10" fill="#2c3e50" stroke="#3498db" stroke-width="2"/>
+  <text x="765" y="180" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Temperature T</text>
+  
+  <text x="680" y="215" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="12">Softmax with T:</text>
+  <text x="680" y="245" fill="#3498db" font-family="monospace" font-size="12">p_i^T = exp(z_i/T)</text>
+  <text x="680" y="265" fill="#3498db" font-family="monospace" font-size="12">    / Σ exp(z_j/T)</text>
+  
+  <text x="680" y="300" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">T→0: hard labels</text>
+  <text x="680" y="320" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">T→∞: uniform</text>
+  
+  <!-- Hard Loss -->
+  <rect x="30" y="350" width="270" height="90" rx="10" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="165" y="380" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Hard Loss (Ground Truth)</text>
+  <text x="50" y="415" fill="#e74c3c" font-family="monospace" font-size="13">L_hard = -Σ y_i log(p_s^i)</text>
+  
+  <!-- Soft Loss -->
+  <rect x="315" y="350" width="270" height="90" rx="10" fill="#2c3e50" stroke="#9b59b6" stroke-width="2"/>
+  <text x="450" y="380" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Soft Loss (Teacher)</text>
+  <text x="335" y="415" fill="#9b59b6" font-family="monospace" font-size="13">L_soft = KL(p_t^T || p_s^T)</text>
+  
+  <!-- Results -->
+  <rect x="600" y="350" width="270" height="90" rx="10" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="735" y="380" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Results</text>
+  <text x="620" y="410" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="12">40% smaller, 60% faster</text>
+  <text x="620" y="430" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" font-weight="bold">97% accuracy retained!</text>
+  
+  <!-- Dark Knowledge -->
+  <rect x="30" y="460" width="840" height="70" rx="10" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="450" y="490" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Dark Knowledge</text>
+  <text x="450" y="515" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">Soft labels encode class relationships: "dog" is similar to "cat" but different from "car"</text>
+</svg>

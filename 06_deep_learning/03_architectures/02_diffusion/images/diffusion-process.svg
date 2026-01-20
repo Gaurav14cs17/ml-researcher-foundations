@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <!-- Background -->
+  <rect width="800" height="400" fill="#f8f9fa" rx="8"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" fill="#212529" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Diffusion Models</text>
+  
+  <!-- Forward Process -->
+  <text x="400" y="70" text-anchor="middle" fill="#dc3545" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Forward Process: Add Noise →</text>
+  
+  <!-- Images (simplified as boxes) -->
+  <g transform="translate(50, 100)">
+    <!-- Clean image -->
+    <rect x="0" y="0" width="100" height="100" rx="8" fill="#007bff" stroke="#007bff" stroke-width="2"/>
+    <text x="50" y="55" text-anchor="middle" fill="#212529" font-family="Arial, sans-serif" font-size="14" font-weight="bold">x₀</text>
+    <text x="50" y="120" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="10">Clean</text>
+    
+    <!-- Noisy 1 -->
+    <rect x="150" y="0" width="100" height="100" rx="8" fill="#6366f1" stroke="#818cf8" stroke-width="2"/>
+    <text x="200" y="55" text-anchor="middle" fill="#212529" font-family="Arial, sans-serif" font-size="14" font-weight="bold">x_t</text>
+    <text x="200" y="120" text-anchor="middle" fill="#212529" font-family="Arial, sans-serif" font-size="10">Noisy</text>
+    
+    <!-- More noisy -->
+    <rect x="300" y="0" width="100" height="100" rx="8" fill="#8b5cf6" stroke="#a78bfa" stroke-width="2"/>
+    <circle cx="320" cy="30" r="3" fill="#c4b5fd"/>
+    <circle cx="350" cy="50" r="4" fill="#c4b5fd"/>
+    <circle cx="330" cy="70" r="3" fill="#c4b5fd"/>
+    <circle cx="370" cy="40" r="3" fill="#c4b5fd"/>
+    <circle cx="380" cy="80" r="4" fill="#c4b5fd"/>
+    <text x="350" y="120" text-anchor="middle" fill="#212529" font-family="Arial, sans-serif" font-size="10">More noise</text>
+    
+    <!-- Pure noise -->
+    <rect x="450" y="0" width="100" height="100" rx="8" fill="#212529" stroke="#dee2e6" stroke-width="2"/>
+    <circle cx="470" cy="30" r="3" fill="#212529"/>
+    <circle cx="500" cy="50" r="4" fill="#212529"/>
+    <circle cx="480" cy="70" r="3" fill="#212529"/>
+    <circle cx="520" cy="40" r="3" fill="#212529"/>
+    <circle cx="530" cy="80" r="4" fill="#212529"/>
+    <circle cx="490" cy="20" r="2" fill="#212529"/>
+    <circle cx="510" cy="90" r="3" fill="#212529"/>
+    <text x="500" y="55" text-anchor="middle" fill="#212529" font-family="Arial, sans-serif" font-size="14" font-weight="bold">x_T</text>
+    <text x="500" y="120" text-anchor="middle" fill="#dc3545" font-family="Arial, sans-serif" font-size="10">Pure noise</text>
+    
+    <!-- Arrows -->
+    <path d="M105 50 L145 50" stroke="#dee2e6" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M255 50 L295 50" stroke="#dee2e6" stroke-width="2"/>
+    <path d="M405 50 L445 50" stroke="#dee2e6" stroke-width="2"/>
+  </g>
+  
+  <!-- Reverse Process -->
+  <text x="400" y="260" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="14" font-weight="bold">← Reverse Process: Denoise (Learned)</text>
+  
+  <!-- Neural network -->
+  <rect x="300" y="280" width="200" height="50" rx="10" fill="#212529" stroke="#28a745" stroke-width="2"/>
+  <text x="400" y="310" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Neural Network ε_θ</text>
+  <text x="400" y="350" text-anchor="middle" fill="#212529" font-family="Arial, sans-serif" font-size="11">Predicts noise to remove at each step</text>
+  
+  <!-- Key equation -->
+  <rect x="550" y="280" width="220" height="80" rx="10" fill="#212529" stroke="#fd7e14" stroke-width="2"/>
+  <text x="660" y="305" text-anchor="middle" fill="#fd7e14" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Training Loss</text>
+  <text x="660" y="330" text-anchor="middle" fill="#212529" font-family="Arial, sans-serif" font-size="11">L = ||ε - ε_θ(x_t, t)||²</text>
+  <text x="660" y="350" text-anchor="middle" fill="#212529" font-family="Arial, sans-serif" font-size="9">Predict the added noise</text>
+  
+  <!-- Reverse arrows -->
+  <path d="M545 160 L455 160" stroke="#28a745" stroke-width="2" stroke-dasharray="8,4"/>
+  <path d="M395 160 L305 160" stroke="#28a745" stroke-width="2" stroke-dasharray="8,4"/>
+  <path d="M245 160 L155 160" stroke="#28a745" stroke-width="2" stroke-dasharray="8,4"/>
+</svg>
+
+

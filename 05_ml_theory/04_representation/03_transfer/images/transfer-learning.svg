@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 855.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgTL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#2c3e50"/>
+      <ns0:stop offset="100%" style="stop-color:#ecf0f1"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="855.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#2c3e50" font-size="22" font-weight="bold">Transfer Learning</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="700" height="60" rx="10" fill="#d5f5e320" stroke="#10b981"/>
+    <ns0:text x="350" y="60.0" text-anchor="middle" fill="#27ae60" font-size="13" font-weight="bold">Knowledge from one task → helps another task</ns0:text>
+    <ns0:text x="350" y="85.0" text-anchor="middle" fill="#2c3e50" font-size="11">Pre-train on large data → Fine-tune on target task</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 150)">
+    <ns0:rect x="0" y="20" width="150" height="80" rx="10" fill="#3498db"/>
+    <ns0:text x="75" y="110.0" text-anchor="middle" fill="#2c3e50" font-size="11" font-weight="bold">Source Task</ns0:text>
+    <ns0:text x="75" y="135.0" text-anchor="middle" fill="#2980b9" font-size="9">ImageNet (1M images)</ns0:text>
+    <ns0:text x="75" y="160.0" text-anchor="middle" fill="#2980b9" font-size="9">or GPT pre-training</ns0:text>
+    <ns0:text x="175" y="185.0" fill="#f39c12" font-size="18">→</ns0:text>
+    <ns0:rect x="200" y="20" width="150" height="80" rx="10" fill="#8b5cf6"/>
+    <ns0:text x="275" y="210.0" text-anchor="middle" fill="#2c3e50" font-size="11" font-weight="bold">Pre-trained Model</ns0:text>
+    <ns0:text x="275" y="235.0" text-anchor="middle" fill="#e9d5ff" font-size="9">Learned features</ns0:text>
+    <ns0:text x="275" y="260.0" text-anchor="middle" fill="#e9d5ff" font-size="9">&amp; representations</ns0:text>
+    <ns0:text x="375" y="285.0" fill="#f39c12" font-size="18">→</ns0:text>
+    <ns0:rect x="400" y="20" width="150" height="80" rx="10" fill="#10b981"/>
+    <ns0:text x="475" y="310.0" text-anchor="middle" fill="#2c3e50" font-size="11" font-weight="bold">Target Task</ns0:text>
+    <ns0:text x="475" y="335.0" text-anchor="middle" fill="#d1fae5" font-size="9">Your small dataset</ns0:text>
+    <ns0:text x="475" y="360.0" text-anchor="middle" fill="#d1fae5" font-size="9">(100s of examples)</ns0:text>
+    <ns0:text x="575" y="385.0" fill="#f39c12" font-size="18">→</ns0:text>
+    <ns0:rect x="600" y="20" width="100" height="80" rx="10" fill="#f39c12"/>
+    <ns0:text x="650" y="410.0" text-anchor="middle" fill="#2c3e50" font-size="11" font-weight="bold">Great</ns0:text>
+    <ns0:text x="650" y="435.0" text-anchor="middle" fill="#fef3c7" font-size="10">Results!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 270)">
+    <ns0:rect width="220" height="80" rx="10" fill="#d1ecf120" stroke="#3498db"/>
+    <ns0:text x="110" y="460.0" text-anchor="middle" fill="#3498db" font-size="11" font-weight="bold">Feature Extraction</ns0:text>
+    <ns0:text x="110" y="485.0" text-anchor="middle" fill="#2980b9" font-size="9">Freeze pre-trained layers</ns0:text>
+    <ns0:text x="110" y="510.0" text-anchor="middle" fill="#2980b9" font-size="9">Train only new head</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(290, 270)">
+    <ns0:rect width="220" height="80" rx="10" fill="#fff3cd20" stroke="#f39c12"/>
+    <ns0:text x="110" y="535.0" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="bold">Fine-tuning</ns0:text>
+    <ns0:text x="110" y="560.0" text-anchor="middle" fill="#d68910" font-size="9">Unfreeze some/all layers</ns0:text>
+    <ns0:text x="110" y="585.0" text-anchor="middle" fill="#d68910" font-size="9">Train with low LR</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(530, 270)">
+    <ns0:rect width="220" height="80" rx="10" fill="#d5f5e320" stroke="#10b981"/>
+    <ns0:text x="110" y="610.0" text-anchor="middle" fill="#27ae60" font-size="11" font-weight="bold">Adapter / LoRA</ns0:text>
+    <ns0:text x="110" y="635.0" text-anchor="middle" fill="#1e8449" font-size="9">Add small trainable layers</ns0:text>
+    <ns0:text x="110" y="660.0" text-anchor="middle" fill="#1e8449" font-size="9">Efficient fine-tuning</ns0:text>
+  </ns0:g>
+</ns0:svg>

@@ -1,0 +1,159 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2475.0 2025.0">
+  <ns0:text x="550" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Attention Mechanisms: From Basics to Modern Variants
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="500" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      1. Core Attention Concept
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="315.0" fill="#f8f9fa" stroke="#007bff" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="80.0" font-size="14" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#1565c0">Key Idea:</ns0:tspan>
+        Dynamically focus on relevant parts of input when producing output
+      </ns0:text>
+      <ns0:rect x="0" y="20" width="940" height="50" fill="#1a237e" stroke="#007bff" stroke-width="1" rx="3"/>
+      <ns0:text x="470" y="105.0" font-size="16" font-family="Arial, sans-serif" text-anchor="middle" fill="#1a5276">
+        output = Σᵢ attention_weight(i) × input(i)
+      </ns0:text>
+      <ns0:text x="0" y="130.0" font-size="13" fill="#1a237e">
+        <ns0:tspan x="0" dy="0">Attention weights sum to 1, learned to focus on important</ns0:tspan>
+        <ns0:tspan x="0" dy="1.2em">information → &quot;Soft&quot; selection vs hard indexing</ns0:tspan>
+      </ns0:text>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 260)">
+    <ns0:text x="500" y="155.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      2. Types of Attention
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="280" fill="#1a237e" stroke="#28a745" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="180.0" font-size="14" font-weight="bold" fill="#145a32">
+        A. Self-Attention (Intra-Attention)
+      </ns0:text>
+      <ns0:rect x="0" y="15" width="940" height="60" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+      <ns0:g transform="translate(15, 30)">
+        <ns0:text x="0" y="205.0" font-size="13" fill="#1a237e">
+          • Attend to different positions within the 
+          <ns0:tspan font-weight="bold">same sequence</ns0:tspan>
+        </ns0:text>
+        <ns0:text x="0" y="230.0" font-size="13" fill="#1a237e">
+          • Used in: Transformers, BERT, GPT
+        </ns0:text>
+        <ns0:text x="0" y="255.0" font-size="12" fill="#1a237e">
+          Example: &quot;The animal didn't cross the street because 
+          <ns0:tspan font-weight="bold">it</ns0:tspan>
+           was too tired&quot; → attend to &quot;animal&quot;
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+    <ns0:g transform="translate(30, 140)">
+      <ns0:text x="0" y="280.0" font-size="14" font-weight="bold" fill="#145a32">
+        B. Cross-Attention (Encoder-Decoder Attention)
+      </ns0:text>
+      <ns0:rect x="0" y="15" width="940" height="60" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+      <ns0:g transform="translate(15, 30)">
+        <ns0:text x="0" y="305.0" font-size="13" fill="#1a237e">
+          • Attend from 
+          <ns0:tspan font-weight="bold">decoder</ns0:tspan>
+           to 
+          <ns0:tspan font-weight="bold">encoder</ns0:tspan>
+           outputs
+        </ns0:text>
+        <ns0:text x="0" y="330.0" font-size="13" fill="#1a237e">
+          • Used in: Machine translation, image captioning
+        </ns0:text>
+        <ns0:text x="0" y="355.0" font-size="12" fill="#1a237e">
+          <ns0:tspan x="0" dy="0">Example: When generating &quot;chat&quot; in French translation,</ns0:tspan>
+          <ns0:tspan x="0" dy="1.2em">attend to &quot;cat&quot; in English input</ns0:tspan>
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+    <ns0:g transform="translate(30, 230)">
+      <ns0:text x="0" y="380.0" font-size="14" font-weight="bold" fill="#145a32">
+        C. Global vs Local Attention
+      </ns0:text>
+      <ns0:g transform="translate(0, 20)">
+        <ns0:text x="0" y="405.0" font-size="13" fill="#1a237e">
+          • 
+          <ns0:tspan font-weight="bold" fill="#2e7d32">Global:</ns0:tspan>
+           Attend to all positions (expensive, O(n²))
+        </ns0:text>
+        <ns0:text x="500" y="430.0" font-size="13" fill="#1a237e">
+          • 
+          <ns0:tspan font-weight="bold" fill="#e65100">Local:</ns0:tspan>
+           Attend to nearby window (efficient, O(n×w))
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 580)">
+    <ns0:text x="500" y="455.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+      3. How Attention is Computed
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="260" fill="#1a237e" stroke="#6f42c1" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:g>
+        <ns0:circle cx="8" cy="-3" r="8" fill="#6a1b9a"/>
+        <ns0:text x="8" y="480.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">1</ns0:text>
+        <ns0:text x="25" y="505.0" font-size="13" font-weight="bold" fill="#6a1b9a">
+          Compute Similarity Scores:
+        </ns0:text>
+        <ns0:rect x="25" y="10" width="900" height="35" fill="#1a237e" stroke="#6f42c1" stroke-width="1" rx="3"/>
+        <ns0:text x="475" y="530.0" font-size="13" font-family="Arial, sans-serif" text-anchor="middle" fill="#4a148c">
+          score(query, key_i) = query^T · key_i   (dot product, most common)
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 60)">
+        <ns0:circle cx="8" cy="-3" r="8" fill="#6a1b9a"/>
+        <ns0:text x="8" y="555.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">2</ns0:text>
+        <ns0:text x="25" y="580.0" font-size="13" font-weight="bold" fill="#6a1b9a">
+          Normalize with Softmax:
+        </ns0:text>
+        <ns0:rect x="25" y="10" width="900" height="35" fill="#1a237e" stroke="#6f42c1" stroke-width="1" rx="3"/>
+        <ns0:text x="475" y="605.0" font-size="13" font-family="Arial, sans-serif" text-anchor="middle" fill="#4a148c">
+          α_i = exp(score_i) / Σⱼ exp(score_j)   (weights sum to 1)
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 120)">
+        <ns0:circle cx="8" cy="-3" r="8" fill="#6a1b9a"/>
+        <ns0:text x="8" y="630.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">3</ns0:text>
+        <ns0:text x="25" y="655.0" font-size="13" font-weight="bold" fill="#6a1b9a">
+          Compute Weighted Sum:
+        </ns0:text>
+        <ns0:rect x="25" y="10" width="900" height="35" fill="#1a237e" stroke="#6f42c1" stroke-width="1" rx="3"/>
+        <ns0:text x="475" y="680.0" font-size="13" font-family="Arial, sans-serif" text-anchor="middle" fill="#4a148c">
+          context = Σᵢ α_i × value_i   (output representation)
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 180)">
+        <ns0:text x="0" y="705.0" font-size="13" font-weight="bold" fill="#6a1b9a">
+          Alternative Scoring Functions:
+        </ns0:text>
+        <ns0:g transform="translate(0, 15)">
+          <ns0:text x="0" y="730.0" font-size="12" fill="#1a237e">
+            • 
+            <ns0:tspan font-family="Arial, sans-serif">Additive:</ns0:tspan>
+             v^T tanh(W₁q + W₂k)
+          </ns0:text>
+          <ns0:text x="300" y="755.0" font-size="12" fill="#1a237e">
+            • 
+            <ns0:tspan font-family="Arial, sans-serif">Multiplicative:</ns0:tspan>
+             q^T W k
+          </ns0:text>
+          <ns0:text x="600" y="780.0" font-size="12" fill="#1a237e">
+            • 
+            <ns0:tspan font-family="Arial, sans-serif">Scaled dot-product:</ns0:tspan>
+             (q^T k)/√d
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:rect x="50" y="870" width="2250.0" height="20" fill="#1a237e" stroke="#fd7e14" stroke-width="2" rx="8"/>
+  <ns0:text x="550" y="885" font-size="12" text-anchor="middle" fill="#d35400">
+    <ns0:tspan font-weight="bold">🚀 Modern Variants:</ns0:tspan>
+    Flash Attention (O(n) memory) • Sparse Attention • Linear Attention • Multi-Query Attention • Grouped-Query Attention (Llama 2)
+  </ns0:text>
+</ns0:svg>

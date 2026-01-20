@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 945.0">
+  <ns0:defs>
+    <ns0:linearGradient id="distBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="945.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Knowledge Distillation</ns0:text>
+  <ns0:g transform="translate(80, 70)">
+    <ns0:rect width="180" height="180" rx="12" fill="#1a237e" stroke="#dc3545" stroke-width="3"/>
+    <ns0:text x="90" y="60.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Teacher</ns0:text>
+    <ns0:text x="90" y="85.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="10">BERT-Large</ns0:text>
+    <ns0:rect x="30" y="70" width="120" height="15" rx="3" fill="#c62828" opacity="0.8"/>
+    <ns0:rect x="30" y="90" width="120" height="15" rx="3" fill="#c62828" opacity="0.7"/>
+    <ns0:rect x="30" y="110" width="120" height="15" rx="3" fill="#c62828" opacity="0.6"/>
+    <ns0:rect x="30" y="130" width="120" height="15" rx="3" fill="#c62828" opacity="0.5"/>
+    <ns0:rect x="30" y="150" width="120" height="15" rx="3" fill="#c62828" opacity="0.4"/>
+    <ns0:text x="90" y="178" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">340M params, 24 layers</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(280, 130)">
+    <ns0:text x="110" y="203.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Soft Labels</ns0:text>
+    <ns0:text x="110" y="228.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">with temperature T</ns0:text>
+    <ns0:path d="M0 35 L220 35" stroke="#28a745" stroke-width="3" fill="none"/>
+    <ns0:polygon points="220,35 210,30 210,40" fill="#2e7d32"/>
+    <ns0:text x="110" y="253.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">[0.7, 0.15, 0.1, 0.05]</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(520, 90)">
+    <ns0:rect width="180" height="140" rx="12" fill="#1a237e" stroke="#28a745" stroke-width="3"/>
+    <ns0:text x="90" y="278.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Student</ns0:text>
+    <ns0:text x="90" y="303.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">DistilBERT</ns0:text>
+    <ns0:rect x="30" y="65" width="120" height="15" rx="3" fill="#2e7d32" opacity="0.8"/>
+    <ns0:rect x="30" y="85" width="120" height="15" rx="3" fill="#2e7d32" opacity="0.6"/>
+    <ns0:rect x="30" y="105" width="120" height="15" rx="3" fill="#2e7d32" opacity="0.4"/>
+    <ns0:text x="90" y="328.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">66M params, 6 layers</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(130, 290)">
+    <ns0:rect width="540" height="100" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="270" y="353.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Results</ns0:text>
+    <ns0:text x="90" y="378.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="11">Teacher: 100%</ns0:text>
+    <ns0:text x="270" y="403.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11">Student: 97%</ns0:text>
+    <ns0:text x="450" y="428.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="11">5x smaller!</ns0:text>
+    <ns0:text x="270" y="453.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Same quality, fraction of the size</ns0:text>
+  </ns0:g>
+</ns0:svg>

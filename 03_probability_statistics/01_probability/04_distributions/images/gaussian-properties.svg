@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2025.0 1800.0">
+  <ns0:text x="450" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Gaussian Distribution: Complete Properties
+  </ns0:text>
+  <ns0:g transform="translate(100, 80)">
+    <ns0:text x="350" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#3498db">
+      p(x) = (1/√(2πσ²)) · exp(-(x-μ)²/(2σ²))
+    </ns0:text>
+    <ns0:line x1="0" y1="200" x2="700" y2="200" stroke="#34495e" stroke-width="4.5"/>
+    <ns0:line x1="350" y1="0" x2="350" y2="220" stroke="#34495e" stroke-width="1" stroke-dasharray="5,5" opacity="0.5"/>
+    <ns0:path d="M 50,200 Q 200,180 270,120 Q 310,50 350,20 Q 390,50 430,120 Q 500,180 650,200" fill="#3498db" fill-opacity="0.2" stroke="#3498db" stroke-width="3"/>
+    <ns0:circle cx="350" cy="20" r="5" fill="#e74c3c"/>
+    <ns0:text x="350" y="80.0" font-size="13" text-anchor="middle" fill="#e74c3c" font-weight="bold">μ</ns0:text>
+    <ns0:line x1="350" y1="25" x2="350" y2="200" stroke="#e74c3c" stroke-width="4.5" stroke-dasharray="3,3"/>
+    <ns0:line x1="270" y1="120" x2="270" y2="200" stroke="#27ae60" stroke-width="4.5" stroke-dasharray="3,3"/>
+    <ns0:line x1="430" y1="120" x2="430" y2="200" stroke="#27ae60" stroke-width="4.5" stroke-dasharray="3,3"/>
+    <ns0:text x="270" y="215" font-size="11" text-anchor="middle" fill="#27ae60">μ-σ</ns0:text>
+    <ns0:text x="430" y="240.0" font-size="11" text-anchor="middle" fill="#27ae60">μ+σ</ns0:text>
+    <ns0:line x1="190" y1="180" x2="190" y2="200" stroke="#f39c12" stroke-width="4.5" stroke-dasharray="3,3"/>
+    <ns0:line x1="510" y1="180" x2="510" y2="200" stroke="#f39c12" stroke-width="4.5" stroke-dasharray="3,3"/>
+    <ns0:text x="190" y="265.0" font-size="11" text-anchor="middle" fill="#f39c12">μ-2σ</ns0:text>
+    <ns0:text x="510" y="290.0" font-size="11" text-anchor="middle" fill="#f39c12">μ+2σ</ns0:text>
+    <ns0:line x1="110" y1="195" x2="110" y2="200" stroke="#9b59b6" stroke-width="4.5" stroke-dasharray="3,3"/>
+    <ns0:line x1="590" y1="195" x2="590" y2="200" stroke="#9b59b6" stroke-width="4.5" stroke-dasharray="3,3"/>
+    <ns0:text x="110" y="315.0" font-size="11" text-anchor="middle" fill="#9b59b6">μ-3σ</ns0:text>
+    <ns0:text x="590" y="340.0" font-size="11" text-anchor="middle" fill="#9b59b6">μ+3σ</ns0:text>
+    <ns0:text x="350" y="365.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#27ae60">
+      68.3% within ±1σ
+    </ns0:text>
+    <ns0:text x="350" y="390.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#f39c12">
+      95.4% within ±2σ
+    </ns0:text>
+    <ns0:text x="350" y="415.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#9b59b6">
+      99.7% within ±3σ
+    </ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 420)">
+    <ns0:rect x="0" y="0" width="390" height="225.0" fill="#e8f5e9" stroke="#4caf50" stroke-width="4.5" rx="5"/>
+    <ns0:text x="195" y="440.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      🔸 Maximum Entropy
+    </ns0:text>
+    <ns0:text x="10" y="465.0" font-size="12" fill="#2c3e50">
+      Among all distributions with mean μ and
+    </ns0:text>
+    <ns0:text x="10" y="490.0" font-size="12" fill="#2c3e50">
+      variance σ², Gaussian has maximum entropy:
+    </ns0:text>
+    <ns0:text x="195" y="515.0" font-size="13" font-family="monospace" text-anchor="middle" fill="#1b5e20">
+      H(X) = ½ log(2πeσ²)
+    </ns0:text>
+    <ns0:rect x="410" y="0" width="390" height="225.0" fill="#e3f2fd" stroke="#2196f3" stroke-width="4.5" rx="5"/>
+    <ns0:text x="605" y="540.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      🔸 Central Limit Theorem
+    </ns0:text>
+    <ns0:text x="420" y="565.0" font-size="12" fill="#2c3e50">
+      Sum of n i.i.d. random variables converges
+    </ns0:text>
+    <ns0:text x="420" y="590.0" font-size="12" fill="#2c3e50">
+      to Gaussian as n → ∞:
+    </ns0:text>
+    <ns0:text x="605" y="615.0" font-size="13" font-family="monospace" text-anchor="middle" fill="#0d47a1">
+      (X₁+...+Xₙ)/√n →_d N(0,σ²)
+    </ns0:text>
+    <ns0:rect x="0" y="120" width="390" height="225.0" fill="#fff3e0" stroke="#ff9800" stroke-width="4.5" rx="5"/>
+    <ns0:text x="195" y="640.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#e65100">
+      🔸 Conjugate Prior
+    </ns0:text>
+    <ns0:text x="10" y="665.0" font-size="12" fill="#2c3e50">
+      If prior p(μ) = N(μ₀, σ₀²) and
+    </ns0:text>
+    <ns0:text x="10" y="690.0" font-size="12" fill="#2c3e50">
+      likelihood p(x|μ) = N(μ, σ²), then
+    </ns0:text>
+    <ns0:text x="195" y="715.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#e65100">
+      Posterior p(μ|x) is also Gaussian!
+    </ns0:text>
+    <ns0:rect x="410" y="120" width="390" height="225.0" fill="#f3e5f5" stroke="#9c27b0" stroke-width="4.5" rx="5"/>
+    <ns0:text x="605" y="740.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+      🔸 Linear Transformation
+    </ns0:text>
+    <ns0:text x="420" y="765.0" font-size="12" fill="#2c3e50">
+      If X ~ N(μ, Σ), then:
+    </ns0:text>
+    <ns0:text x="605" y="790.0" font-size="13" font-family="monospace" text-anchor="middle" fill="#4a148c">
+      Y = AX + b ~ N(Aμ+b, AΣAᵀ)
+    </ns0:text>
+    <ns0:text x="605" y="815.0" font-size="11" fill="#7f8c8d" text-anchor="middle">
+      Stays Gaussian under linear transform!
+    </ns0:text>
+    <ns0:rect x="0" y="240" width="800" height="90" fill="#fce4ec" stroke="#e91e63" stroke-width="4.5" rx="5"/>
+    <ns0:text x="400" y="840.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#880e4f">
+      🔸 Marginal and Conditional Gaussians
+    </ns0:text>
+    <ns0:text x="10" y="865.0" font-size="12" fill="#2c3e50">
+      If joint [X, Y]ᵀ ~ N(μ, Σ) is Gaussian, then:
+    </ns0:text>
+    <ns0:g transform="translate(10, 300)">
+      <ns0:text x="0" y="890.0" font-size="12" fill="#c2185b">• Marginal:</ns0:text>
+      <ns0:text x="100" y="915.0" font-size="12" font-family="monospace" fill="#2c3e50">
+        X ~ N(μₓ, Σₓₓ)
+      </ns0:text>
+      <ns0:text x="350" y="940.0" font-size="12" fill="#c2185b">• Conditional:</ns0:text>
+      <ns0:text x="470" y="965.0" font-size="12" font-family="monospace" fill="#2c3e50">
+        X|Y ~ N(μₓ + Σₓᵧ Σᵧᵧ⁻¹(Y-μᵧ), Σₓₓ - Σₓᵧ Σᵧᵧ⁻¹ Σᵧₓ)
+      </ns0:text>
+    </ns0:g>
+  </ns0:g>
+  <ns0:rect x="50" y="680" width="800" height="90" fill="#e0f2f1" stroke="#009688" stroke-width="4.5" rx="8"/>
+  <ns0:text x="450" y="990.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#004d40">
+    KL Divergence for Gaussians (Closed Form!)
+  </ns0:text>
+  <ns0:text x="450" y="1015.0" font-size="13" font-family="monospace" text-anchor="middle" fill="#00695c">
+    D_KL(N(μ₁,Σ₁) || N(μ₂,Σ₂)) = ½[tr(Σ₂⁻¹Σ₁) + (μ₂-μ₁)ᵀΣ₂⁻¹(μ₂-μ₁) - d + log(|Σ₂|/|Σ₁|)]
+  </ns0:text>
+  <ns0:text x="450" y="1040.0" font-size="12" text-anchor="middle" fill="#7f8c8d">
+    Special case (to standard normal): D_KL(N(μ,σ²) || N(0,1)) = ½[μ² + σ² - 1 - log(σ²)] ← VAE loss!
+  </ns0:text>
+</ns0:svg>

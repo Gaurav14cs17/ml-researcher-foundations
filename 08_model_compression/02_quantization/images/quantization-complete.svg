@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef9c3"/>
+      <stop offset="100%" style="stop-color:#fef3c7"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  
+  <rect width="1800" height="1200" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#78350f" font-family="Arial, sans-serif" font-size="52" font-weight="bold">Neural Network Quantization</text>
+  <text x="900" y="120" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="26">Reducing precision to compress models and accelerate inference</text>
+  
+  <!-- FP32 vs INT8 Comparison -->
+  <g transform="translate(100, 180)" filter="url(#shadow)">
+    <rect width="1600" height="420" rx="18" fill="#ffffff" stroke="#f59e0b" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="36" font-weight="bold">📊 Precision Comparison</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#fde68a" stroke-width="2"/>
+    
+    <!-- FP32 -->
+    <g transform="translate(150, 120)">
+      <rect width="600" height="250" fill="#fee2e2" rx="14"/>
+      <text x="300" y="40" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="30" font-weight="bold">FP32 (Float32)</text>
+      <line x1="30" y1="60" x2="570" y2="60" stroke="#fecaca" stroke-width="2"/>
+      
+      <text x="300" y="100" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="22" font-weight="bold">32 bits per weight</text>
+      <rect x="50" y="115" width="500" height="40" fill="#fecaca" rx="8"/>
+      <text x="300" y="142" text-anchor="middle" fill="#991b1b" font-family="Consolas, monospace" font-size="18">1 sign | 8 exp | 23 mantissa</text>
+      
+      <text x="300" y="185" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">✗ High memory: 4 bytes/weight</text>
+      <text x="300" y="215" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">✗ Slower inference</text>
+      <text x="300" y="245" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="19">✓ High precision</text>
+    </g>
+    
+    <!-- INT8 -->
+    <g transform="translate(850, 120)">
+      <rect width="600" height="250" fill="#dcfce7" rx="14"/>
+      <text x="300" y="40" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="30" font-weight="bold">INT8 (Integer8)</text>
+      <line x1="30" y1="60" x2="570" y2="60" stroke="#86efac" stroke-width="2"/>
+      
+      <text x="300" y="100" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="22" font-weight="bold">8 bits per weight</text>
+      <rect x="50" y="115" width="500" height="40" fill="#86efac" rx="8"/>
+      <text x="300" y="142" text-anchor="middle" fill="#065f46" font-family="Consolas, monospace" font-size="18">Range: -128 to 127</text>
+      
+      <text x="300" y="185" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="19">✓ 4× less memory: 1 byte/weight</text>
+      <text x="300" y="215" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="19">✓ 2-4× faster inference</text>
+      <text x="300" y="245" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="19">≈ Minimal accuracy loss (&lt;1%)</text>
+    </g>
+  </g>
+  
+  <!-- Quantization Process -->
+  <g transform="translate(100, 650)" filter="url(#shadow)">
+    <rect width="1600" height="480" rx="18" fill="#ffffff" stroke="#3b82f6" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="36" font-weight="bold">⚙️ Quantization Process</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#bfdbfe" stroke-width="2"/>
+    
+    <g transform="translate(80, 110)">
+      <!-- Step 1: Calibration -->
+      <rect width="470" height="140" fill="#eff6ff" rx="12"/>
+      <text x="235" y="35" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="24" font-weight="bold">1. Calibration</text>
+      <text x="235" y="70" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="18">Find min/max values</text>
+      <text x="235" y="95" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="17">from representative data</text>
+      <rect x="40" y="105" width="390" height="30" fill="#dbeafe" rx="6"/>
+      <text x="235" y="127" text-anchor="middle" fill="#1e40af" font-family="Consolas, monospace" font-size="16">α = min(W), β = max(W)</text>
+      
+      <!-- Step 2: Scale/Zero-point -->
+      <g transform="translate(520, 0)">
+        <rect width="470" height="140" fill="#fef3c7" rx="12"/>
+        <text x="235" y="35" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="24" font-weight="bold">2. Compute Scale</text>
+        <text x="235" y="70" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="18">Calculate mapping parameters</text>
+        <rect x="40" y="85" width="390" height="50" fill="#fde68a" rx="6"/>
+        <text x="235" y="108" text-anchor="middle" fill="#92400e" font-family="Consolas, monospace" font-size="16">scale = (β - α) / 255</text>
+        <text x="235" y="128" text-anchor="middle" fill="#92400e" font-family="Consolas, monospace" font-size="16">zero_point = -α / scale</text>
+      </g>
+      
+      <!-- Step 3: Quantize -->
+      <g transform="translate(1040, 0)">
+        <rect width="470" height="140" fill="#f0fdf4" rx="12"/>
+        <text x="235" y="35" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="24" font-weight="bold">3. Quantize</text>
+        <text x="235" y="70" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="18">Map to integer range</text>
+        <rect x="40" y="85" width="390" height="50" fill="#d1fae5" rx="6"/>
+        <text x="235" y="108" text-anchor="middle" fill="#065f46" font-family="Consolas, monospace" font-size="16">W_q = round(W/scale</text>
+        <text x="235" y="128" text-anchor="middle" fill="#065f46" font-family="Consolas, monospace" font-size="16">      + zero_point)</text>
+      </g>
+      
+      <!-- Step 4: Dequantize -->
+      <g transform="translate(260, 170)">
+        <rect width="720" height="140" fill="#faf5ff" rx="12"/>
+        <text x="360" y="35" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="24" font-weight="bold">4. Dequantize (for inference)</text>
+        <text x="360" y="70" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="18">Convert back to floating point</text>
+        <rect x="100" y="85" width="520" height="45" fill="#f3e8ff" rx="6"/>
+        <text x="360" y="115" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="18">W_dequant = scale × (W_q - zero_point)</text>
+      </g>
+      
+      <!-- Visual representation -->
+      <g transform="translate(1040, 170)">
+        <rect width="470" height="140" fill="#ecfeff" rx="12"/>
+        <text x="235" y="35" text-anchor="middle" fill="#0891b2" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Result</text>
+        <text x="235" y="70" text-anchor="middle" fill="#0e7490" font-family="Arial, sans-serif" font-size="18">INT8 weights stored</text>
+        <text x="235" y="100" text-anchor="middle" fill="#155e75" font-family="Arial, sans-serif" font-size="17">Scale/zero-point for</text>
+        <text x="235" y="125" text-anchor="middle" fill="#155e75" font-family="Arial, sans-serif" font-size="17">runtime dequantization</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Key Benefits -->
+  <rect x="100" y="1150" width="1600" height="60" fill="#f59e0b" rx="14" filter="url(#shadow)"/>
+  <text x="900" y="1187" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="bold">💡 Quantization: 4× smaller models, 2-4× faster inference, &lt;1% accuracy loss</text>
+</svg>

@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgLT" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Linear Transformations</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:text x="100" y="60.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Original</ns0:text>
+    <ns0:line x1="20" y1="130" x2="180" y2="130" stroke="#e0e0e0" stroke-width="1"/>
+    <ns0:line x1="100" y1="50" x2="100" y2="180" stroke="#e0e0e0" stroke-width="1"/>
+    <ns0:line x1="100" y1="130" x2="160" y2="130" stroke="#10b981" stroke-width="3"/>
+    <ns0:polygon points="155,125 165,130 155,135" fill="#10b981"/>
+    <ns0:text x="170" y="125" fill="#2e7d32" font-size="10">e₁</ns0:text>
+    <ns0:line x1="100" y1="130" x2="100" y2="70" stroke="#007bff" stroke-width="3"/>
+    <ns0:polygon points="95,75 100,65 105,75" fill="#1565c0"/>
+    <ns0:text x="110" y="150.0" fill="#1565c0" font-size="10">e₂</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(250, 100)">
+    <ns0:line x1="0" y1="50" x2="60" y2="50" stroke="#fd7e14" stroke-width="3"/>
+    <ns0:polygon points="55,43 70,50 55,57" fill="#e65100"/>
+    <ns0:text x="35" y="175.0" text-anchor="middle" fill="#e65100" font-size="11">y = Ax</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(340, 70)">
+    <ns0:text x="100" y="200.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Transformed</ns0:text>
+    <ns0:line x1="20" y1="130" x2="180" y2="130" stroke="#e0e0e0" stroke-width="1"/>
+    <ns0:line x1="100" y1="50" x2="130" y2="180" stroke="#e0e0e0" stroke-width="1" opacity="0.5"/>
+    <ns0:line x1="100" y1="130" x2="150" y2="100" stroke="#10b981" stroke-width="3"/>
+    <ns0:polygon points="147,108 155,95 142,103" fill="#10b981"/>
+    <ns0:text x="160" y="225.0" fill="#2e7d32" font-size="10">Ae₁</ns0:text>
+    <ns0:line x1="100" y1="130" x2="130" y2="60" stroke="#007bff" stroke-width="3"/>
+    <ns0:polygon points="125,68 135,55 122,62" fill="#1565c0"/>
+    <ns0:text x="140" y="250.0" fill="#1565c0" font-size="10">Ae₂</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(550, 70)">
+    <ns0:rect width="200" height="140" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="100" y="275.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Linear Properties</ns0:text>
+    <ns0:text x="20" y="300.0" fill="#10b981" font-size="10">T(u + v) = T(u) + T(v)</ns0:text>
+    <ns0:text x="20" y="325.0" fill="#1565c0" font-size="10">T(αv) = αT(v)</ns0:text>
+    <ns0:text x="20" y="350.0" fill="#e65100" font-size="10">T(0) = 0</ns0:text>
+    <ns0:text x="100" y="375.0" text-anchor="middle" fill="#a5b4fc" font-size="9">Preserves lines &amp; origin</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 250)">
+    <ns0:rect width="700" height="120" rx="10" fill="#8b5cf620" stroke="#8b5cf6"/>
+    <ns0:text x="350" y="400.0" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="bold">Neural Network Operations as Linear Transforms</ns0:text>
+    <ns0:text x="100" y="425.0" text-anchor="middle" fill="#c62828" font-size="10" font-weight="bold">Dense Layer</ns0:text>
+    <ns0:text x="100" y="450.0" text-anchor="middle" fill="#c62828" font-size="9">y = Wx + b</ns0:text>
+    <ns0:text x="100" y="475.0" text-anchor="middle" fill="#c62828" font-size="8">(affine transform)</ns0:text>
+    <ns0:text x="260" y="500.0" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">Attention</ns0:text>
+    <ns0:text x="260" y="525.0" text-anchor="middle" fill="#2e7d32" font-size="9">Q, K, V projections</ns0:text>
+    <ns0:text x="260" y="550.0" text-anchor="middle" fill="#2e7d32" font-size="8">W_Q, W_K, W_V</ns0:text>
+    <ns0:text x="420" y="575.0" text-anchor="middle" fill="#1565c0" font-size="10" font-weight="bold">Embedding</ns0:text>
+    <ns0:text x="420" y="600.0" text-anchor="middle" fill="#1565c0" font-size="9">token → vector</ns0:text>
+    <ns0:text x="420" y="625.0" text-anchor="middle" fill="#1565c0" font-size="8">lookup = sparse matmul</ns0:text>
+    <ns0:text x="580" y="650.0" text-anchor="middle" fill="#e65100" font-size="10" font-weight="bold">Conv1x1</ns0:text>
+    <ns0:text x="580" y="675.0" text-anchor="middle" fill="#e65100" font-size="9">Channel mixing</ns0:text>
+    <ns0:text x="580" y="700.0" text-anchor="middle" fill="#e65100" font-size="8">= pointwise linear</ns0:text>
+  </ns0:g>
+</ns0:svg>

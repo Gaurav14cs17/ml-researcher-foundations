@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="elboBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f1a"/>
+      <stop offset="100%" style="stop-color:#2d2d2d"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="#f8f9fa" rx="8"/>
+  <text x="400" y="35" text-anchor="middle" fill="#a78bfa" font-size="22" font-weight="bold">Evidence Lower Bound (ELBO)</text>
+  
+  <!-- Main equation -->
+  <rect x="100" y="60" width="600" height="80" rx="10" fill="#212529" stroke="#a78bfa" stroke-width="2"/>
+  <text x="400" y="95" text-anchor="middle" fill="#e9d5ff" font-size="16">log p(x) ≥ E_q[log p(x,z)] - E_q[log q(z)]</text>
+  <text x="400" y="125" text-anchor="middle" fill="#c4b5fd" font-size="14">log p(x) ≥ ELBO = E_q[log p(x|z)] - KL(q(z)||p(z))</text>
+  
+  <!-- Components -->
+  <rect x="50" y="170" width="220" height="100" rx="8" fill="#134e4a" stroke="#10b981" stroke-width="2"/>
+  <text x="160" y="200" text-anchor="middle" fill="#10b981" font-size="13" font-weight="bold">Reconstruction</text>
+  <text x="160" y="225" text-anchor="middle" fill="#28a745" font-size="11">E_q[log p(x|z)]</text>
+  <text x="160" y="250" text-anchor="middle" fill="#28a745" font-size="10">How well can we decode?</text>
+  
+  <rect x="290" y="170" width="220" height="100" rx="8" fill="#7f1d1d" stroke="#dc3545" stroke-width="2"/>
+  <text x="400" y="200" text-anchor="middle" fill="#dc3545" font-size="13" font-weight="bold">KL Regularizer</text>
+  <text x="400" y="225" text-anchor="middle" fill="#dc3545" font-size="11">-KL(q(z)||p(z))</text>
+  <text x="400" y="250" text-anchor="middle" fill="#dc3545" font-size="10">Keep q close to prior</text>
+  
+  <rect x="530" y="170" width="220" height="100" rx="8" fill="#1e3a5f" stroke="#007bff" stroke-width="2"/>
+  <text x="640" y="200" text-anchor="middle" fill="#007bff" font-size="13" font-weight="bold">Evidence Gap</text>
+  <text x="640" y="225" text-anchor="middle" fill="#007bff" font-size="11">KL(q(z|x)||p(z|x))</text>
+  <text x="640" y="250" text-anchor="middle" fill="#007bff" font-size="10">Tighter ELBO = smaller gap</text>
+  
+  <!-- VAE connection -->
+  <rect x="150" y="295" width="500" height="80" rx="10" fill="#3f3f46" stroke="#fd7e14" stroke-width="2"/>
+  <text x="400" y="320" text-anchor="middle" fill="#fd7e14" font-size="14" font-weight="bold">VAE Loss = -ELBO</text>
+  <text x="400" y="345" text-anchor="middle" fill="#fef3c7" font-size="12">Encoder q(z|x) → latent z → Decoder p(x|z)</text>
+  <text x="400" y="365" text-anchor="middle" fill="#fd7e14" font-size="11">Reparameterization trick enables gradient flow</text>
+</svg>

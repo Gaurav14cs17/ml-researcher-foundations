@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="sparseBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#ec4899" font-size="22" font-weight="bold">Sparsity in Neural Networks</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:text x="75" y="60.0" text-anchor="middle" fill="#9ca3af" font-size="12">Dense Matrix</ns0:text>
+    <ns0:rect x="0" y="15" width="150" height="100" rx="5" fill="#1a237e" stroke="#6b7280"/>
+    <ns0:text x="75" y="85.0" text-anchor="middle" fill="#6b7280" font-size="40">▓▓▓</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(250, 70)">
+    <ns0:text x="75" y="110.0" text-anchor="middle" fill="#9ca3af" font-size="12">Sparse Matrix (90%)</ns0:text>
+    <ns0:rect x="0" y="15" width="150" height="100" rx="5" fill="#1a237e" stroke="#ec4899"/>
+    <ns0:text x="75" y="135.0" text-anchor="middle" fill="#ec4899" font-size="40">░▓░</ns0:text>
+  </ns0:g>
+  <ns0:rect x="450" y="60" width="310" height="130" rx="10" fill="#3d1f5c" stroke="#ec4899" stroke-width="2"/>
+  <ns0:text x="605" y="160.0" text-anchor="middle" fill="#ec4899" font-size="13" font-weight="bold">Sparsity Types</ns0:text>
+  <ns0:text x="605" y="185.0" text-anchor="middle" fill="#fbcfe8" font-size="10">Unstructured: Random zeros</ns0:text>
+  <ns0:text x="605" y="210.0" text-anchor="middle" fill="#fbcfe8" font-size="10">Structured: Zero blocks/channels</ns0:text>
+  <ns0:text x="605" y="235.0" text-anchor="middle" fill="#fbcfe8" font-size="10">N:M: N zeros in every M weights</ns0:text>
+  <ns0:text x="605" y="260.0" text-anchor="middle" fill="#f9a8d4" font-size="9">2:4 sparsity: hardware optimized (Ampere)</ns0:text>
+  <ns0:rect x="50" y="210" width="340" height="160" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+  <ns0:text x="220" y="285.0" text-anchor="middle" fill="#e65100" font-size="13" font-weight="bold">Mixture of Experts (MoE)</ns0:text>
+  <ns0:text x="220" y="310.0" text-anchor="middle" fill="#fef3c7" font-size="11">Dynamic sparsity: only use subset of experts</ns0:text>
+  <ns0:g transform="translate(80, 280)">
+    <ns0:rect x="0" y="0" width="40" height="30" rx="3" fill="#1565c0"/>
+    <ns0:rect x="50" y="0" width="40" height="30" rx="3" fill="#6b7280"/>
+    <ns0:rect x="100" y="0" width="40" height="30" rx="3" fill="#1565c0"/>
+    <ns0:rect x="150" y="0" width="40" height="30" rx="3" fill="#6b7280"/>
+    <ns0:rect x="200" y="0" width="40" height="30" rx="3" fill="#6b7280"/>
+    <ns0:text x="120" y="335.0" text-anchor="middle" fill="#9ca3af" font-size="9">Active experts highlighted</ns0:text>
+  </ns0:g>
+  <ns0:text x="220" y="355" text-anchor="middle" fill="#e65100" font-size="10">Mixtral, Switch Transformer, GPT-4 (rumored)</ns0:text>
+  <ns0:rect x="410" y="210" width="340" height="160" rx="10" fill="#134e4a" stroke="#10b981" stroke-width="2"/>
+  <ns0:text x="580" y="380.0" text-anchor="middle" fill="#10b981" font-size="13" font-weight="bold">Sparse Networks</ns0:text>
+  <ns0:text x="580" y="405.0" text-anchor="middle" fill="#2e7d32" font-size="10">• Lottery Ticket Hypothesis</ns0:text>
+  <ns0:text x="580" y="430.0" text-anchor="middle" fill="#2e7d32" font-size="10">• Dynamic Sparse Training</ns0:text>
+  <ns0:text x="580" y="455.0" text-anchor="middle" fill="#2e7d32" font-size="10">• Sparse pre-training</ns0:text>
+  <ns0:text x="580" y="480.0" text-anchor="middle" fill="#2e7d32" font-size="10">Hardware: NVIDIA sparsity, AMD</ns0:text>
+  <ns0:text x="580" y="505.0" text-anchor="middle" fill="#2e7d32" font-size="9">Libraries: DeepSparse, sparse_torch</ns0:text>
+</ns0:svg>

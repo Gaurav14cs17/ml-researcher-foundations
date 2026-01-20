@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2025.0 1462.5">
+  <ns0:defs>
+    <ns0:marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <ns0:path d="M0,0 L0,6 L9,3 z" fill="#1a237e"/>
+    </ns0:marker>
+  </ns0:defs>
+  <ns0:rect width="2025.0" height="1462.5" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="450" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Big-O Complexity: Growth Rates Comparison
+  </ns0:text>
+  <ns0:line x1="80" y1="550" x2="850" y2="550" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrow)"/>
+  <ns0:line x1="80" y1="550" x2="80" y2="80" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrow)"/>
+  <ns0:text x="860" y="555" font-family="Arial, sans-serif" font-size="14" fill="#1a237e">n (input size)</ns0:text>
+  <ns0:text x="40" y="580.0" font-family="Arial, sans-serif" font-size="14" fill="#1a237e">Time</ns0:text>
+  <ns0:line x1="80" y1="450" x2="850" y2="450" stroke="#444444" stroke-width="1" stroke-dasharray="3,3"/>
+  <ns0:line x1="80" y1="350" x2="850" y2="350" stroke="#444444" stroke-width="1" stroke-dasharray="3,3"/>
+  <ns0:line x1="80" y1="250" x2="850" y2="250" stroke="#444444" stroke-width="1" stroke-dasharray="3,3"/>
+  <ns0:line x1="80" y1="150" x2="850" y2="150" stroke="#444444" stroke-width="1" stroke-dasharray="3,3"/>
+  <ns0:line x1="80" y1="520" x2="800" y2="520" stroke="#28a745" stroke-width="3"/>
+  <ns0:text x="750" y="605.0" font-family="Arial, sans-serif" font-size="13" fill="#2e7d32" font-weight="bold">O(1)</ns0:text>
+  <ns0:path d="M 80 520 Q 200 480, 400 450 T 800 420" fill="none" stroke="#2ecc71" stroke-width="3"/>
+  <ns0:text x="750" y="630.0" font-family="Arial, sans-serif" font-size="13" fill="#2ecc71" font-weight="bold">O(log n)</ns0:text>
+  <ns0:line x1="80" y1="520" x2="800" y2="200" stroke="#007bff" stroke-width="3"/>
+  <ns0:text x="750" y="655.0" font-family="Arial, sans-serif" font-size="13" fill="#1565c0" font-weight="bold">O(n)</ns0:text>
+  <ns0:path d="M 80 520 Q 300 350, 600 150 T 800 100" fill="none" stroke="#6f42c1" stroke-width="3"/>
+  <ns0:text x="730" y="680.0" font-family="Arial, sans-serif" font-size="13" fill="#6a1b9a" font-weight="bold">O(n log n)</ns0:text>
+  <ns0:path d="M 80 520 Q 250 450, 400 300 T 650 100" fill="none" stroke="#fd7e14" stroke-width="3"/>
+  <ns0:text x="580" y="705.0" font-family="Arial, sans-serif" font-size="13" fill="#e65100" font-weight="bold">O(n²)</ns0:text>
+  <ns0:path d="M 80 520 L 250 500 L 350 400 L 420 250 L 450 100" fill="none" stroke="#dc3545" stroke-width="3"/>
+  <ns0:text x="420" y="730.0" font-family="Arial, sans-serif" font-size="13" fill="#c62828" font-weight="bold">O(2ⁿ)</ns0:text>
+  <ns0:path d="M 80 520 L 200 510 L 280 450 L 330 300 L 355 100" fill="none" stroke="#dc3545" stroke-width="3"/>
+  <ns0:text x="310" y="755.0" font-family="Arial, sans-serif" font-size="13" fill="#c62828" font-weight="bold">O(n!)</ns0:text>
+  <ns0:rect x="50" y="580" width="800" height="60" fill="#1a237e" stroke="#444444" stroke-width="2" rx="5"/>
+  <ns0:text x="450" y="780.0" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Complexity Hierarchy (Best to Worst)
+  </ns0:text>
+  <ns0:text x="450" y="805.0" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1a237e">
+    O(1) &lt; O(log n) &lt; O(n) &lt; O(n log n) &lt; O(n²) &lt; O(2ⁿ) &lt; O(n!)
+  </ns0:text>
+  <ns0:rect x="50" y="50" width="350" height="280" fill="#1a237e" stroke="#007bff" stroke-width="2" rx="8"/>
+  <ns0:text x="225" y="830.0" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+    ML Examples
+  </ns0:text>
+  <ns0:text x="70" y="855.0" font-family="Arial, sans-serif" font-size="12" fill="#1a237e">
+    <ns0:tspan x="70" dy="0" fill="#2e7d32" font-weight="bold">O(1):</ns0:tspan>
+    <ns0:tspan x="90" dy="18">Array access, hash lookup</ns0:tspan>
+    <ns0:tspan x="70" dy="30" fill="#2ecc71" font-weight="bold">O(log n):</ns0:tspan>
+    <ns0:tspan x="90" dy="18">Binary search, balanced tree</ns0:tspan>
+    <ns0:tspan x="70" dy="30" fill="#1565c0" font-weight="bold">O(n):</ns0:tspan>
+    <ns0:tspan x="90" dy="18">Linear scan, single loop</ns0:tspan>
+    <ns0:tspan x="70" dy="30" fill="#6a1b9a" font-weight="bold">O(n log n):</ns0:tspan>
+    <ns0:tspan x="90" dy="18">Merge sort, FFT</ns0:tspan>
+    <ns0:tspan x="70" dy="30" fill="#e65100" font-weight="bold">O(n²):</ns0:tspan>
+    <ns0:tspan x="90" dy="18">Standard attention, nested loops</ns0:tspan>
+    <ns0:tspan x="70" dy="30" fill="#c62828" font-weight="bold">O(2ⁿ):</ns0:tspan>
+    <ns0:tspan x="90" dy="18">Subset enumeration, brute force</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="450" y="50" width="400" height="150" fill="#fff8dc" stroke="#fd7e14" stroke-width="3" rx="8"/>
+  <ns0:text x="650" y="880.0" font-family="Arial, sans-serif" font-size="15" font-weight="bold" text-anchor="middle" fill="#e65100">
+    🔥 Transformer Attention
+  </ns0:text>
+  <ns0:text x="470" y="905.0" font-family="Arial, sans-serif" font-size="13" fill="#1a237e">
+    <ns0:tspan x="470" dy="0">Standard Attention: </ns0:tspan>
+    <ns0:tspan fill="#c62828" font-weight="bold">O(n²·d)</ns0:tspan>
+    <ns0:tspan x="480" dy="20">• n = sequence length</ns0:tspan>
+    <ns0:tspan x="480" dy="18">• d = model dimension</ns0:tspan>
+    <ns0:tspan x="470" dy="28">Flash Attention: </ns0:tspan>
+    <ns0:tspan fill="#2e7d32" font-weight="bold">O(n·d)</ns0:tspan>
+    <ns0:tspan x="480" dy="20">• 🚀 Linear in sequence length!</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="450" y="220" width="400" height="100" fill="#1a237e" stroke="#dc3545" stroke-width="2" rx="8"/>
+  <ns0:text x="650" y="930.0" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#c62828">
+    ⚠️ Avoid Exponential Complexity!
+  </ns0:text>
+  <ns0:text x="650" y="955.0" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1a237e">
+    O(2ⁿ) and O(n!) become infeasible fast
+  </ns0:text>
+  <ns0:text x="650" y="980.0" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1a237e">
+    n=20: ~1 million operations
+  </ns0:text>
+  <ns0:text x="650" y="1005.0" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1a237e">
+    n=30: ~1 billion operations
+  </ns0:text>
+</ns0:svg>

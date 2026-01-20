@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="380" fill="url(#bgGrad)" rx="12"/>
+  <text x="400" y="35" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="22" font-weight="bold">LLM Quantization Methods</text>
+  
+  <rect x="40" y="60" width="230" height="140" rx="10" fill="#2c3e50" stroke="#3498db" stroke-width="2"/>
+  <text x="155" y="90" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="14" font-weight="bold">GPTQ</text>
+  <text x="155" y="115" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Layer-wise quantization</text>
+  <text x="155" y="135" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Hessian-based error comp.</text>
+  <text x="155" y="160" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11">✓ Fast (hours)</text>
+  <text x="155" y="185" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11">✓ 3-4 bit accurate</text>
+  
+  <rect x="285" y="60" width="230" height="140" rx="10" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="400" y="90" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="14" font-weight="bold">AWQ</text>
+  <text x="400" y="115" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Activation-aware weights</text>
+  <text x="400" y="135" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Protects salient channels</text>
+  <text x="400" y="160" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11">✓ Better perplexity</text>
+  <text x="400" y="185" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11">✓ No retraining</text>
+  
+  <rect x="530" y="60" width="230" height="140" rx="10" fill="#2c3e50" stroke="#9b59b6" stroke-width="2"/>
+  <text x="645" y="90" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="14" font-weight="bold">bitsandbytes</text>
+  <text x="645" y="115" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">NF4 (NormalFloat4)</text>
+  <text x="645" y="135" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Double quantization</text>
+  <text x="645" y="160" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11">✓ Easy integration</text>
+  <text x="645" y="185" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11">✓ HuggingFace native</text>
+  
+  <rect x="40" y="220" width="720" height="140" rx="10" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="400" y="255" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="16" font-weight="bold">LLM Quantization Results</text>
+  
+  <text x="130" y="290" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="12" font-weight="bold">LLaMA-70B</text>
+  <text x="130" y="315" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">FP16: 140GB</text>
+  <text x="130" y="340" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10">4-bit: 35GB (4×)</text>
+  
+  <text x="330" y="290" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Perplexity</text>
+  <text x="330" y="315" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">FP16: 5.68</text>
+  <text x="330" y="340" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10">4-bit: 5.85 (+3%)</text>
+  
+  <text x="530" y="290" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Speed</text>
+  <text x="530" y="315" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Memory bound → faster</text>
+  <text x="530" y="340" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10">1.5-2× throughput</text>
+  
+  <text x="700" y="290" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Hardware</text>
+  <text x="700" y="315" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">RTX 3090 (24GB)</text>
+  <text x="700" y="340" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10">Can run 70B!</text>
+</svg>
+

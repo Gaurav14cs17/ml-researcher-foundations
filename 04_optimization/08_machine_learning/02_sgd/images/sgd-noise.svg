@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1125.0 720.0">
+  <ns0:defs>
+    <ns0:linearGradient id="sgdNoiseBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#2d2d2d"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1125.0" height="720.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="250" y="25" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">SGD: Noise Helps Escape Local Minima</ns0:text>
+  <ns0:path d="M 30 200 Q 80 150, 120 180 Q 160 210, 200 160 Q 240 110, 280 140 Q 320 170, 360 120 Q 400 70, 450 100" fill="none" stroke="#007bff" stroke-width="3"/>
+  <ns0:circle cx="120" cy="180" r="5" fill="#e65100"/>
+  <ns0:text x="120" y="210" fill="#e65100" font-family="Arial, sans-serif" font-size="9" text-anchor="middle">local</ns0:text>
+  <ns0:circle cx="280" cy="140" r="5" fill="#e65100"/>
+  <ns0:text x="280" y="235.0" fill="#e65100" font-family="Arial, sans-serif" font-size="9" text-anchor="middle">local</ns0:text>
+  <ns0:circle cx="400" cy="70" r="8" fill="#2ecc71" stroke="#ffffff" stroke-width="2"/>
+  <ns0:text x="400" y="260.0" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" font-weight="bold">GLOBAL</ns0:text>
+  <ns0:text x="100" y="285.0" fill="#c62828" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">Full-Batch GD:</ns0:text>
+  <ns0:circle cx="60" cy="270" r="4" fill="#c62828"/>
+  <ns0:path d="M 60 270 L 90 265 L 115 275 L 120 280" fill="none" stroke="#dc3545" stroke-width="2"/>
+  <ns0:circle cx="120" cy="280" r="5" fill="#c62828"/>
+  <ns0:text x="140" y="310.0" fill="#c62828" font-family="Arial, sans-serif" font-size="9">STUCK!</ns0:text>
+  <ns0:text x="350" y="335.0" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">Mini-batch SGD:</ns0:text>
+  <ns0:circle cx="280" cy="270" r="4" fill="#2ecc71"/>
+  <ns0:path d="M 280 270 L 310 260 L 330 280 L 360 255 L 390 270 L 400 265" fill="none" stroke="#2ecc71" stroke-width="2" stroke-dasharray="3,2"/>
+  <ns0:circle cx="400" cy="265" r="5" fill="#2ecc71"/>
+  <ns0:text x="430" y="360.0" fill="#2ecc71" font-family="Arial, sans-serif" font-size="9">Found!</ns0:text>
+  <ns0:rect x="120" y="290" width="260" height="25" rx="5" fill="#1a237e"/>
+  <ns0:text x="250" y="385.0" fill="#444444" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">Noise from mini-batches → exploration → escape local minima</ns0:text>
+</ns0:svg>

@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="kktBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#f472b6" font-size="22" font-weight="bold">KKT Conditions</ns0:text>
+  <ns0:text x="400" y="55" text-anchor="middle" fill="#f9a8d4" font-size="12">Karush-Kuhn-Tucker</ns0:text>
+  <ns0:rect x="50" y="75" width="330" height="70" rx="8" fill="#1e3a5f" stroke="#007bff" stroke-width="2"/>
+  <ns0:text x="215" y="100" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">1. Stationarity</ns0:text>
+  <ns0:text x="215" y="125" text-anchor="middle" fill="#1565c0" font-size="12">∇f(x*) + Σλᵢ∇gᵢ(x*) + Σνⱼ∇hⱼ(x*) = 0</ns0:text>
+  <ns0:rect x="420" y="75" width="330" height="70" rx="8" fill="#134e4a" stroke="#10b981" stroke-width="2"/>
+  <ns0:text x="585" y="150.0" text-anchor="middle" fill="#10b981" font-size="13" font-weight="bold">2. Primal Feasibility</ns0:text>
+  <ns0:text x="585" y="175.0" text-anchor="middle" fill="#2e7d32" font-size="12">gᵢ(x*) ≤ 0, hⱼ(x*) = 0</ns0:text>
+  <ns0:rect x="50" y="165" width="330" height="70" rx="8" fill="#4c1d95" stroke="#a78bfa" stroke-width="2"/>
+  <ns0:text x="215" y="200.0" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="bold">3. Dual Feasibility</ns0:text>
+  <ns0:text x="215" y="225.0" text-anchor="middle" fill="#ddd6fe" font-size="12">λᵢ ≥ 0 for all i</ns0:text>
+  <ns0:rect x="420" y="165" width="330" height="70" rx="8" fill="#7f1d1d" stroke="#dc3545" stroke-width="2"/>
+  <ns0:text x="585" y="250.0" text-anchor="middle" fill="#c62828" font-size="13" font-weight="bold">4. Complementary Slackness</ns0:text>
+  <ns0:text x="585" y="275.0" text-anchor="middle" fill="#c62828" font-size="12">λᵢgᵢ(x*) = 0 for all i</ns0:text>
+  <ns0:rect x="100" y="255" width="600" height="120" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+  <ns0:text x="400" y="300.0" text-anchor="middle" fill="#e65100" font-size="14" font-weight="bold">Intuition</ns0:text>
+  <ns0:text x="400" y="325.0" text-anchor="middle" fill="#fef3c7" font-size="12">At optimum: gradient of objective must be expressible as</ns0:text>
+  <ns0:text x="400" y="350.0" text-anchor="middle" fill="#fef3c7" font-size="12">combination of constraint gradients (can't improve without violating)</ns0:text>
+  <ns0:text x="400" y="375.0" text-anchor="middle" fill="#e65100" font-size="11">Active constraints: gᵢ(x*)=0 with λᵢ&gt;0 | Inactive: gᵢ(x*)&lt;0 with λᵢ=0</ns0:text>
+</ns0:svg>

@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="constBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#2d2d2d"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#ec4899" font-size="22" font-weight="bold">Constrained Optimization</ns0:text>
+  <ns0:rect x="50" y="60" width="280" height="130" rx="10" fill="#3d1f5c" stroke="#ec4899" stroke-width="2"/>
+  <ns0:text x="190" y="90" text-anchor="middle" fill="#ec4899" font-size="14" font-weight="bold">General Form</ns0:text>
+  <ns0:text x="190" y="120" text-anchor="middle" fill="#fbcfe8" font-size="13">min f(x)</ns0:text>
+  <ns0:text x="190" y="145" text-anchor="middle" fill="#fbcfe8" font-size="13">s.t. g(x) ≤ 0</ns0:text>
+  <ns0:text x="190" y="170" text-anchor="middle" fill="#fbcfe8" font-size="13">h(x) = 0</ns0:text>
+  <ns0:rect x="360" y="60" width="390" height="130" rx="10" fill="#164e63" stroke="#17a2b8" stroke-width="2"/>
+  <ns0:text x="555" y="195.0" text-anchor="middle" fill="#00838f" font-size="14" font-weight="bold">Lagrangian</ns0:text>
+  <ns0:text x="555" y="220.0" text-anchor="middle" fill="#cffafe" font-size="13">L(x,λ,ν) = f(x) + λᵀg(x) + νᵀh(x)</ns0:text>
+  <ns0:text x="555" y="245.0" text-anchor="middle" fill="#a5f3fc" font-size="11">λ ≥ 0: inequality multipliers</ns0:text>
+  <ns0:text x="555" y="270.0" text-anchor="middle" fill="#a5f3fc" font-size="11">ν: equality multipliers</ns0:text>
+  <ns0:rect x="50" y="210" width="700" height="160" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+  <ns0:text x="400" y="295.0" text-anchor="middle" fill="#e65100" font-size="16" font-weight="bold">KKT Conditions (necessary for optimality)</ns0:text>
+  <ns0:text x="200" y="320.0" text-anchor="middle" fill="#fef3c7" font-size="12">1. Stationarity: ∇f + λᵀ∇g + νᵀ∇h = 0</ns0:text>
+  <ns0:text x="550" y="345.0" text-anchor="middle" fill="#fef3c7" font-size="12">2. Primal feasibility: g(x) ≤ 0, h(x) = 0</ns0:text>
+  <ns0:text x="200" y="370.0" text-anchor="middle" fill="#fef3c7" font-size="12">3. Dual feasibility: λ ≥ 0</ns0:text>
+  <ns0:text x="550" y="395.0" text-anchor="middle" fill="#fef3c7" font-size="12">4. Complementary slackness: λᵢgᵢ(x) = 0</ns0:text>
+  <ns0:text x="400" y="420.0" text-anchor="middle" fill="#e65100" font-size="11">For convex problems: KKT conditions are necessary AND sufficient</ns0:text>
+</ns0:svg>

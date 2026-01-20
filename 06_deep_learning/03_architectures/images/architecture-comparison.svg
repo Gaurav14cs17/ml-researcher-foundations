@@ -1,0 +1,94 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 1012.5">
+  <ns0:defs>
+    <ns0:linearGradient id="bgGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="1012.5" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold" font-family="Arial, sans-serif">Neural Network Architectures</ns0:text>
+  <ns0:g transform="translate(30, 70)">
+    <ns0:rect width="130" height="180" rx="10" fill="#10b98130" stroke="#10b981" stroke-width="2"/>
+    <ns0:text x="65" y="60.0" text-anchor="middle" fill="#2e7d32" font-size="14" font-weight="bold">MLP</ns0:text>
+    <ns0:circle cx="65" cy="60" r="10" fill="#10b981"/>
+    <ns0:circle cx="40" cy="100" r="8" fill="#2e7d32"/>
+    <ns0:circle cx="90" cy="100" r="8" fill="#2e7d32"/>
+    <ns0:circle cx="30" cy="140" r="6" fill="#2e7d32"/>
+    <ns0:circle cx="65" cy="140" r="6" fill="#2e7d32"/>
+    <ns0:circle cx="100" cy="140" r="6" fill="#2e7d32"/>
+    <ns0:text x="65" y="170" text-anchor="middle" fill="#2e7d32" font-size="10">Tabular data</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(180, 70)">
+    <ns0:rect width="130" height="180" rx="10" fill="#007bff30" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="65" y="195.0" text-anchor="middle" fill="#1565c0" font-size="14" font-weight="bold">CNN</ns0:text>
+    <ns0:rect x="15" y="50" width="40" height="40" fill="#1565c0" rx="4"/>
+    <ns0:rect x="25" y="55" width="40" height="40" fill="#1565c0" rx="4"/>
+    <ns0:rect x="35" y="60" width="40" height="40" fill="#1565c0" rx="4"/>
+    <ns0:rect x="45" y="115" width="30" height="30" fill="#1565c0" rx="3"/>
+    <ns0:rect x="55" y="120" width="30" height="30" fill="#1565c0" rx="3"/>
+    <ns0:text x="65" y="220.0" text-anchor="middle" fill="#1565c0" font-size="10">Images, vision</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(330, 70)">
+    <ns0:rect width="130" height="180" rx="10" fill="#8b5cf630" stroke="#8b5cf6" stroke-width="2"/>
+    <ns0:text x="65" y="245.0" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="bold">RNN/LSTM</ns0:text>
+    <ns0:circle cx="30" cy="80" r="15" fill="#8b5cf6"/>
+    <ns0:circle cx="65" cy="80" r="15" fill="#8b5cf6"/>
+    <ns0:circle cx="100" cy="80" r="15" fill="#8b5cf6"/>
+    <ns0:path d="M 45 80 L 50 80" stroke="#c4b5fd" stroke-width="2"/>
+    <ns0:path d="M 80 80 L 85 80" stroke="#c4b5fd" stroke-width="2"/>
+    <ns0:path d="M 65 65 Q 65 45 85 45 L 100 45" fill="none" stroke="#c4b5fd" stroke-width="2" stroke-dasharray="3,3"/>
+    <ns0:text x="65" y="270.0" text-anchor="middle" fill="#a5b4fc" font-size="10">Sequences</ns0:text>
+    <ns0:text x="65" y="295.0" text-anchor="middle" fill="#a5b4fc" font-size="9">(older approach)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(480, 70)">
+    <ns0:rect width="130" height="180" rx="10" fill="#fd7e1430" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="65" y="320.0" text-anchor="middle" fill="#e65100" font-size="14" font-weight="bold">🔥 Transformer</ns0:text>
+    <ns0:rect x="20" y="50" width="90" height="60" fill="#fd7e1440" rx="5"/>
+    <ns0:text x="65" y="345.0" text-anchor="middle" fill="#e65100" font-size="10">Self-Attention</ns0:text>
+    <ns0:text x="65" y="370.0" text-anchor="middle" fill="#e65100" font-size="8">QKV</ns0:text>
+    <ns0:rect x="30" y="120" width="70" height="30" fill="#fd7e1440" rx="5"/>
+    <ns0:text x="65" y="395.0" text-anchor="middle" fill="#e65100" font-size="9">FFN</ns0:text>
+    <ns0:text x="65" y="420.0" text-anchor="middle" fill="#e65100" font-size="10">Everything!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(630, 70)">
+    <ns0:rect width="130" height="180" rx="10" fill="#dc354530" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="65" y="445.0" text-anchor="middle" fill="#c62828" font-size="14" font-weight="bold">🔥 Diffusion</ns0:text>
+    <ns0:rect x="20" y="50" width="40" height="40" fill="#1a237e" rx="4"/>
+    <ns0:text x="40" y="470.0" text-anchor="middle" fill="#444444" font-size="16">🔲</ns0:text>
+    <ns0:path d="M 65 70 L 80 70" stroke="#dc3545" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <ns0:rect x="85" y="50" width="40" height="40" fill="#c62828" rx="4"/>
+    <ns0:text x="105" y="495.0" text-anchor="middle" fill="#1a237e" font-size="14">🖼</ns0:text>
+    <ns0:text x="65" y="520.0" text-anchor="middle" fill="#c62828" font-size="9">Denoise</ns0:text>
+    <ns0:text x="65" y="545.0" text-anchor="middle" fill="#c62828" font-size="9">iteratively</ns0:text>
+    <ns0:text x="65" y="570.0" text-anchor="middle" fill="#c62828" font-size="10">Image generation</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 280)">
+    <ns0:text x="350" y="595.0" text-anchor="middle" fill="#e65100" font-size="16" font-weight="bold">Evolution Timeline</ns0:text>
+    <ns0:line x1="0" y1="40" x2="700" y2="40" stroke="#e0e0e0" stroke-width="3"/>
+    <ns0:circle cx="50" cy="40" r="8" fill="#10b981"/>
+    <ns0:text x="50" y="620.0" text-anchor="middle" fill="#2e7d32" font-size="10">MLP</ns0:text>
+    <ns0:text x="50" y="645.0" text-anchor="middle" fill="#1a237e" font-size="9">1980s</ns0:text>
+    <ns0:circle cx="150" cy="40" r="8" fill="#1565c0"/>
+    <ns0:text x="150" y="670.0" text-anchor="middle" fill="#1565c0" font-size="10">CNN</ns0:text>
+    <ns0:text x="150" y="695.0" text-anchor="middle" fill="#1a237e" font-size="9">1998</ns0:text>
+    <ns0:circle cx="280" cy="40" r="8" fill="#8b5cf6"/>
+    <ns0:text x="280" y="720.0" text-anchor="middle" fill="#c4b5fd" font-size="10">LSTM</ns0:text>
+    <ns0:text x="280" y="745.0" text-anchor="middle" fill="#1a237e" font-size="9">2014</ns0:text>
+    <ns0:circle cx="450" cy="40" r="12" fill="#e65100"/>
+    <ns0:text x="450" y="770.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Transformer</ns0:text>
+    <ns0:text x="450" y="795.0" text-anchor="middle" fill="#1a237e" font-size="9">2017</ns0:text>
+    <ns0:circle cx="600" cy="40" r="10" fill="#c62828"/>
+    <ns0:text x="600" y="820.0" text-anchor="middle" fill="#c62828" font-size="11">Diffusion</ns0:text>
+    <ns0:text x="600" y="845.0" text-anchor="middle" fill="#1a237e" font-size="9">2020</ns0:text>
+    <ns0:circle cx="700" cy="40" r="8" fill="#00838f"/>
+    <ns0:text x="700" y="870.0" text-anchor="middle" fill="#67e8f9" font-size="10">MoE</ns0:text>
+    <ns0:text x="700" y="895.0" text-anchor="middle" fill="#1a237e" font-size="9">2022</ns0:text>
+  </ns0:g>
+  <ns0:rect x="50" y="385" width="700" height="50" rx="8" fill="#1a237e" stroke="#e0e0e0"/>
+  <ns0:text x="400" y="920.0" text-anchor="middle" fill="#1a237e" font-size="12">
+    <ns0:tspan fill="#e65100" font-weight="bold">2024 State: </ns0:tspan>
+    Transformer dominates NLP, Diffusion for images, ViT challenges CNN
+  </ns0:text>
+  <ns0:text x="400" y="945.0" text-anchor="middle" fill="#1a237e" font-size="11">GPT-4, Claude, LLaMA use Transformers | Stable Diffusion, DALL-E use Diffusion</ns0:text>
+</ns0:svg>

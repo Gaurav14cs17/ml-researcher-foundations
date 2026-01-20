@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="900" height="400" fill="url(#bgGrad)" rx="12"/>
+  
+  <text x="450" y="40" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Compression Tools &amp; Frameworks</text>
+  
+  <!-- Row 1 -->
+  <rect x="50" y="80" width="180" height="100" rx="10" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="140" y="110" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🤗 Transformers</text>
+  <text x="140" y="135" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">GPTQ, AWQ, bitsandbytes</text>
+  <text x="140" y="155" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">LoRA, QLoRA</text>
+  <text x="140" y="170" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="9">Best for LLMs</text>
+  
+  <rect x="250" y="80" width="180" height="100" rx="10" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="340" y="110" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🔥 PyTorch</text>
+  <text x="340" y="135" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">torch.quantization</text>
+  <text x="340" y="155" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">torch.nn.utils.prune</text>
+  <text x="340" y="170" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="9">Native support</text>
+  
+  <rect x="450" y="80" width="180" height="100" rx="10" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="540" y="110" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="14" font-weight="bold">⚡ TensorRT</text>
+  <text x="540" y="135" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">INT8 optimization</text>
+  <text x="540" y="155" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">FP16 fusion</text>
+  <text x="540" y="170" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="9">NVIDIA only</text>
+  
+  <rect x="650" y="80" width="180" height="100" rx="10" fill="#2c3e50" stroke="#9b59b6" stroke-width="2"/>
+  <text x="740" y="110" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🔧 ONNX Runtime</text>
+  <text x="740" y="135" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Cross-platform</text>
+  <text x="740" y="155" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Quantization + Opt</text>
+  <text x="740" y="170" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="9">Best portability</text>
+  
+  <!-- Row 2 -->
+  <rect x="50" y="200" width="180" height="100" rx="10" fill="#2c3e50" stroke="#00d9ff" stroke-width="2"/>
+  <text x="140" y="230" text-anchor="middle" fill="#00d9ff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">📱 TFLite</text>
+  <text x="140" y="255" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Mobile-focused</text>
+  <text x="140" y="275" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Quant + Pruning</text>
+  <text x="140" y="290" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="9">Android/iOS</text>
+  
+  <rect x="250" y="200" width="180" height="100" rx="10" fill="#2c3e50" stroke="#e67e22" stroke-width="2"/>
+  <text x="340" y="230" text-anchor="middle" fill="#e67e22" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🍎 CoreML</text>
+  <text x="340" y="255" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Apple devices</text>
+  <text x="340" y="275" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Neural Engine</text>
+  <text x="340" y="290" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="9">iOS/macOS</text>
+  
+  <rect x="450" y="200" width="180" height="100" rx="10" fill="#2c3e50" stroke="#1abc9c" stroke-width="2"/>
+  <text x="540" y="230" text-anchor="middle" fill="#1abc9c" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🦙 llama.cpp</text>
+  <text x="540" y="255" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">C++ inference</text>
+  <text x="540" y="275" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">GGUF format</text>
+  <text x="540" y="290" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="9">CPU/Metal/CUDA</text>
+  
+  <rect x="650" y="200" width="180" height="100" rx="10" fill="#2c3e50" stroke="#3498db" stroke-width="2"/>
+  <text x="740" y="230" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="14" font-weight="bold">⚙️ vLLM</text>
+  <text x="740" y="255" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Serving focus</text>
+  <text x="740" y="275" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">PagedAttention</text>
+  <text x="740" y="290" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="9">High throughput</text>
+  
+  <!-- Recommendation -->
+  <rect x="50" y="320" width="800" height="60" rx="10" fill="#2c3e50" stroke="#2ecc71" stroke-width="2"/>
+  <text x="450" y="350" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="14" font-weight="bold">💡 Recommendation: Start with HuggingFace + bitsandbytes for LLMs, TensorRT for production</text>
+</svg>
+

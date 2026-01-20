@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ede9fe"/>
+      <stop offset="100%" style="stop-color:#ddd6fe"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#7c3aed"/>
+    </marker>
+  </defs>
+  
+  <rect width="1800" height="1400" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#5b21b6" font-family="Arial, sans-serif" font-size="52" font-weight="bold">Transformer Self-Attention</text>
+  <text x="900" y="120" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="26">Scaled Dot-Product Attention Mechanism</text>
+  
+  <!-- Attention Formula -->
+  <g transform="translate(100, 180)" filter="url(#shadow)">
+    <rect width="1600" height="200" rx="18" fill="#ffffff" stroke="#8b5cf6" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="36" font-weight="bold">📐 Attention Formula</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#e9d5ff" stroke-width="2"/>
+    
+    <g transform="translate(250, 120)">
+      <rect x="0" y="0" width="1100" height="70" fill="#faf5ff" rx="14"/>
+      <text x="550" y="50" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="40" font-weight="bold">Attention(Q, K, V) = softmax(QKᵀ/√dₖ)V</text>
+    </g>
+  </g>
+  
+  <!-- Step-by-Step Process -->
+  <g transform="translate(100, 430)" filter="url(#shadow)">
+    <rect width="1600" height="680" rx="18" fill="#ffffff" stroke="#3b82f6" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="36" font-weight="bold">🔄 Attention Computation Steps</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#bfdbfe" stroke-width="2"/>
+    
+    <g transform="translate(100, 120)">
+      <!-- Step 1: Input Embeddings -->
+      <rect width="1400" height="100" fill="#eff6ff" rx="12"/>
+      <text x="700" y="35" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="26" font-weight="bold">Step 1: Create Q, K, V from Input</text>
+      <text x="700" y="68" text-anchor="middle" fill="#1e40af" font-family="Consolas, monospace" font-size="22">Q = XWQ,  K = XWK,  V = XWV</text>
+      <text x="700" y="94" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="18">Linear projections of input X with learned weight matrices</text>
+      
+      <!-- Step 2: Compute Scores -->
+      <g transform="translate(0, 120)">
+        <rect width="1400" height="100" fill="#fef3c7" rx="12"/>
+        <text x="700" y="35" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="26" font-weight="bold">Step 2: Compute Attention Scores</text>
+        <text x="700" y="68" text-anchor="middle" fill="#d97706" font-family="Consolas, monospace" font-size="22">Scores = QKᵀ</text>
+        <text x="700" y="94" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="18">Dot product measures similarity between queries and keys</text>
+      </g>
+      
+      <!-- Step 3: Scale -->
+      <g transform="translate(0, 240)">
+        <rect width="1400" height="100" fill="#dcfce7" rx="12"/>
+        <text x="700" y="35" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="26" font-weight="bold">Step 3: Scale by √dₖ</text>
+        <text x="700" y="68" text-anchor="middle" fill="#059669" font-family="Consolas, monospace" font-size="22">Scaled Scores = QKᵀ / √dₖ</text>
+        <text x="700" y="94" text-anchor="middle" fill="#15803d" font-family="Arial, sans-serif" font-size="18">Prevents gradients from vanishing (dₖ = dimension of keys)</text>
+      </g>
+      
+      <!-- Step 4: Softmax -->
+      <g transform="translate(0, 360)">
+        <rect width="1400" height="100" fill="#fce7f3" rx="12"/>
+        <text x="700" y="35" text-anchor="middle" fill="#ec4899" font-family="Arial, sans-serif" font-size="26" font-weight="bold">Step 4: Apply Softmax</text>
+        <text x="700" y="68" text-anchor="middle" fill="#db2777" font-family="Consolas, monospace" font-size="22">Attention Weights = softmax(QKᵀ / √dₖ)</text>
+        <text x="700" y="94" text-anchor="middle" fill="#be185d" font-family="Arial, sans-serif" font-size="18">Convert scores to probabilities (sum to 1 across keys)</text>
+      </g>
+      
+      <!-- Step 5: Weighted Sum -->
+      <g transform="translate(0, 480)">
+        <rect width="1400" height="100" fill="#f3e8ff" rx="12"/>
+        <text x="700" y="35" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="26" font-weight="bold">Step 5: Compute Weighted Sum of Values</text>
+        <text x="700" y="68" text-anchor="middle" fill="#7c3aed" font-family="Consolas, monospace" font-size="22">Output = Attention Weights × V</text>
+        <text x="700" y="94" text-anchor="middle" fill="#6b21a8" font-family="Arial, sans-serif" font-size="18">Each output is weighted combination of all value vectors</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Multi-Head Attention -->
+  <g transform="translate(100, 1160)" filter="url(#shadow)">
+    <rect width="750" height="180" rx="18" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="28" font-weight="bold">🔀 Multi-Head Attention</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#d1fae5" stroke-width="2"/>
+    
+    <g transform="translate(50, 105)">
+      <text x="325" y="0" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="20">Run h attention heads in parallel:</text>
+      <text x="325" y="30" text-anchor="middle" fill="#15803d" font-family="Consolas, monospace" font-size="18">headᵢ = Attention(QWᵢQ, KWᵢK, VWᵢV)</text>
+      <text x="325" y="58" text-anchor="middle" fill="#15803d" font-family="Consolas, monospace" font-size="18">MultiHead = Concat(head₁,...,headₕ)WO</text>
+      <text x="325" y="85" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="17" font-weight="bold">⭐ Learn different representation subspaces</text>
+    </g>
+  </g>
+  
+  <!-- Key Properties -->
+  <g transform="translate(950, 1160)" filter="url(#shadow)">
+    <rect width="750" height="180" rx="18" fill="#ffffff" stroke="#ef4444" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="28" font-weight="bold">⚡ Key Properties</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#fecaca" stroke-width="2"/>
+    
+    <g transform="translate(50, 105)">
+      <text x="0" y="0" fill="#dc2626" font-family="Arial, sans-serif" font-size="20" font-weight="bold">✓ Parallelizable:</text>
+      <text x="20" y="25" fill="#b91c1c" font-family="Arial, sans-serif" font-size="18">No sequential dependency</text>
+      
+      <text x="0" y="55" fill="#dc2626" font-family="Arial, sans-serif" font-size="20" font-weight="bold">✓ Long-range dependencies:</text>
+      <text x="20" y="80" fill="#b91c1c" font-family="Arial, sans-serif" font-size="18">Direct connections between all positions</text>
+    </g>
+  </g>
+  
+  <!-- Key Insight -->
+  <rect x="100" y="1360" width="1600" height="60" fill="#8b5cf6" rx="14" filter="url(#shadow)"/>
+  <text x="900" y="1397" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="bold">💡 Self-Attention: Each position attends to all positions • O(n²) complexity but fully parallel</text>
+</svg>

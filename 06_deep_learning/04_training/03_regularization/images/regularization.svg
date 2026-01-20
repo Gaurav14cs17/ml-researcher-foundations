@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bgReg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#2d2d2d"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="800" height="420" fill="#f8f9fa" rx="8"/>
+  
+  <text x="400" y="35" text-anchor="middle" fill="#212529" font-size="22" font-weight="bold">Regularization Techniques</text>
+  
+  <!-- L1/L2 comparison -->
+  <g transform="translate(50, 70)">
+    <rect width="220" height="150" rx="10" fill="#2d2d2d20" stroke="#007bff" stroke-width="2"/>
+    <text x="110" y="25" text-anchor="middle" fill="#007bff" font-size="14" font-weight="bold">L2 (Ridge)</text>
+    
+    <text x="110" y="55" text-anchor="middle" fill="#212529" font-size="11" font-family="Arial, sans-serif">L = L₀ + λΣwᵢ²</text>
+    
+    <!-- Circle constraint -->
+    <circle cx="110" cy="100" r="35" fill="none" stroke="#007bff" stroke-width="2"/>
+    <circle cx="110" cy="100" r="4" fill="#fd7e14"/>
+    
+    <text x="110" y="145" text-anchor="middle" fill="#007bff" font-size="9">Shrinks weights toward zero</text>
+  </g>
+  
+  <g transform="translate(290, 70)">
+    <rect width="220" height="150" rx="10" fill="#2d2d2d20" stroke="#10b981" stroke-width="2"/>
+    <text x="110" y="25" text-anchor="middle" fill="#28a745" font-size="14" font-weight="bold">L1 (Lasso)</text>
+    
+    <text x="110" y="55" text-anchor="middle" fill="#212529" font-size="11" font-family="Arial, sans-serif">L = L₀ + λΣ|wᵢ|</text>
+    
+    <!-- Diamond constraint -->
+    <polygon points="110,65 145,100 110,135 75,100" fill="none" stroke="#10b981" stroke-width="2"/>
+    <circle cx="110" cy="65" r="4" fill="#fd7e14"/>
+    
+    <text x="110" y="145" text-anchor="middle" fill="#28a745" font-size="9">Promotes sparsity (exact zeros)</text>
+  </g>
+  
+  <!-- Dropout -->
+  <g transform="translate(530, 70)">
+    <rect width="220" height="150" rx="10" fill="#2d2d2d20" stroke="#fd7e14" stroke-width="2"/>
+    <text x="110" y="25" text-anchor="middle" fill="#fd7e14" font-size="14" font-weight="bold">Dropout 🔥</text>
+    
+    <!-- Neurons with some zeroed -->
+    <circle cx="50" cy="70" r="12" fill="#10b981"/>
+    <circle cx="90" cy="70" r="12" fill="#212529" opacity="0.3"/>
+    <line x1="82" y1="62" x2="98" y2="78" stroke="#dc3545" stroke-width="2"/>
+    <circle cx="130" cy="70" r="12" fill="#10b981"/>
+    <circle cx="170" cy="70" r="12" fill="#212529" opacity="0.3"/>
+    <line x1="162" y1="62" x2="178" y2="78" stroke="#dc3545" stroke-width="2"/>
+    
+    <text x="110" y="110" text-anchor="middle" fill="#212529" font-size="10">Drop p% of neurons</text>
+    <text x="110" y="125" text-anchor="middle" fill="#fd7e14" font-size="9">Training only</text>
+    <text x="110" y="145" text-anchor="middle" fill="#fd7e14" font-size="9">Scale by 1/(1-p) at test</text>
+  </g>
+  
+  <!-- Other techniques -->
+  <g transform="translate(50, 250)">
+    <rect width="700" height="140" rx="10" fill="#212529" stroke="#dee2e6"/>
+    <text x="350" y="25" text-anchor="middle" fill="#fd7e14" font-size="13" font-weight="bold">More Regularization Techniques</text>
+    
+    <text x="100" y="55" text-anchor="middle" fill="#dc3545" font-size="11" font-weight="bold">Early Stopping</text>
+    <text x="100" y="75" text-anchor="middle" fill="#dc3545" font-size="9">Stop when val loss increases</text>
+    
+    <text x="260" y="55" text-anchor="middle" fill="#8b5cf6" font-size="11" font-weight="bold">Data Augmentation</text>
+    <text x="260" y="75" text-anchor="middle" fill="#c4b5fd" font-size="9">More training variety</text>
+    
+    <text x="420" y="55" text-anchor="middle" fill="#17a2b8" font-size="11" font-weight="bold">Label Smoothing</text>
+    <text x="420" y="75" text-anchor="middle" fill="#a5f3fc" font-size="9">Soft targets (0.9, 0.033...)</text>
+    
+    <text x="580" y="55" text-anchor="middle" fill="#10b981" font-size="11" font-weight="bold">Batch Norm</text>
+    <text x="580" y="75" text-anchor="middle" fill="#28a745" font-size="9">Implicit regularization</text>
+    
+    <text x="180" y="110" text-anchor="middle" fill="#fd7e14" font-size="11" font-weight="bold">Weight Decay</text>
+    <text x="180" y="125" text-anchor="middle" fill="#fd7e14" font-size="9">AdamW decouples from Adam</text>
+    
+    <text x="420" y="110" text-anchor="middle" fill="#007bff" font-size="11" font-weight="bold">Mixup</text>
+    <text x="420" y="125" text-anchor="middle" fill="#007bff" font-size="9">Interpolate training pairs</text>
+    
+    <text x="600" y="110" text-anchor="middle" fill="#dc3545" font-size="11" font-weight="bold">Stochastic Depth</text>
+    <text x="600" y="125" text-anchor="middle" fill="#dc3545" font-size="9">Drop entire layers</text>
+  </g>
+</svg>
+

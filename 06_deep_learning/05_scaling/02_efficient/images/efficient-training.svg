@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgEff" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Efficient Training Techniques</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="340" height="140" rx="10" fill="#2d2d2d20" stroke="#007bff"/>
+    <ns0:text x="170" y="60.0" text-anchor="middle" fill="#1565c0" font-size="12" font-weight="bold">Memory Optimization</ns0:text>
+    <ns0:text x="20" y="85.0" fill="#1565c0" font-size="9">• Gradient checkpointing (recompute)</ns0:text>
+    <ns0:text x="20" y="110.0" fill="#1565c0" font-size="9">• Gradient accumulation</ns0:text>
+    <ns0:text x="20" y="135.0" fill="#1565c0" font-size="9">• CPU offloading</ns0:text>
+    <ns0:text x="20" y="160.0" fill="#1565c0" font-size="9">• Activation compression</ns0:text>
+    <ns0:text x="20" y="185.0" fill="#1565c0" font-size="8">Trade compute for memory</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 70)">
+    <ns0:rect width="340" height="140" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="170" y="210.0" text-anchor="middle" fill="#2e7d32" font-size="12" font-weight="bold">Compute Optimization</ns0:text>
+    <ns0:text x="20" y="235.0" fill="#2e7d32" font-size="9">• Flash Attention (memory-efficient)</ns0:text>
+    <ns0:text x="20" y="260.0" fill="#2e7d32" font-size="9">• Fused kernels</ns0:text>
+    <ns0:text x="20" y="285.0" fill="#2e7d32" font-size="9">• Mixed precision (FP16/BF16)</ns0:text>
+    <ns0:text x="20" y="310.0" fill="#2e7d32" font-size="9">• Kernel compilation (torch.compile)</ns0:text>
+    <ns0:text x="20" y="335.0" fill="#34d399" font-size="8">Maximize GPU utilization</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 230)">
+    <ns0:rect width="340" height="140" rx="10" fill="#2d2d2d20" stroke="#fd7e14"/>
+    <ns0:text x="170" y="360.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Parameter-Efficient Fine-tuning</ns0:text>
+    <ns0:text x="20" y="385.0" fill="#e65100" font-size="9">• LoRA (low-rank adaptation)</ns0:text>
+    <ns0:text x="20" y="410.0" fill="#e65100" font-size="9">• QLoRA (quantized LoRA)</ns0:text>
+    <ns0:text x="20" y="435.0" fill="#e65100" font-size="9">• Adapters</ns0:text>
+    <ns0:text x="20" y="460.0" fill="#e65100" font-size="9">• Prefix tuning</ns0:text>
+    <ns0:text x="20" y="485.0" fill="#e65100" font-size="8">Train &lt;1% of parameters!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 230)">
+    <ns0:rect width="340" height="140" rx="10" fill="#8b5cf620" stroke="#8b5cf6"/>
+    <ns0:text x="170" y="510.0" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="bold">Data Efficiency</ns0:text>
+    <ns0:text x="20" y="535.0" fill="#e9d5ff" font-size="9">• Data loading optimization</ns0:text>
+    <ns0:text x="20" y="560.0" fill="#e9d5ff" font-size="9">• On-the-fly preprocessing</ns0:text>
+    <ns0:text x="20" y="585.0" fill="#e9d5ff" font-size="9">• Curriculum learning</ns0:text>
+    <ns0:text x="20" y="610.0" fill="#e9d5ff" font-size="9">• Data deduplication</ns0:text>
+    <ns0:text x="20" y="635.0" fill="#8b5cf6" font-size="8">Quality &gt; Quantity</ns0:text>
+  </ns0:g>
+</ns0:svg>

@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 945.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgApp" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="945.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">RL Applications</ns0:text>
+  <ns0:g transform="translate(50, 60)">
+    <ns0:rect width="220" height="100" rx="10" fill="#2d2d2d20" stroke="#007bff"/>
+    <ns0:text x="110" y="60.0" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">🎮 Games</ns0:text>
+    <ns0:text x="110" y="85.0" text-anchor="middle" fill="#1565c0" font-size="10">AlphaGo, AlphaZero</ns0:text>
+    <ns0:text x="110" y="110.0" text-anchor="middle" fill="#1565c0" font-size="10">Atari (DQN)</ns0:text>
+    <ns0:text x="110" y="135.0" text-anchor="middle" fill="#1565c0" font-size="10">StarCraft, Dota 2</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(290, 60)">
+    <ns0:rect width="220" height="100" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="110" y="160.0" text-anchor="middle" fill="#2e7d32" font-size="13" font-weight="bold">🤖 Robotics</ns0:text>
+    <ns0:text x="110" y="185.0" text-anchor="middle" fill="#2e7d32" font-size="10">Manipulation</ns0:text>
+    <ns0:text x="110" y="210.0" text-anchor="middle" fill="#2e7d32" font-size="10">Locomotion</ns0:text>
+    <ns0:text x="110" y="235.0" text-anchor="middle" fill="#2e7d32" font-size="10">Sim-to-Real Transfer</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(530, 60)">
+    <ns0:rect width="220" height="100" rx="10" fill="#2d2d2d20" stroke="#fd7e14"/>
+    <ns0:text x="110" y="260.0" text-anchor="middle" fill="#e65100" font-size="13" font-weight="bold">🧠 LLM Alignment</ns0:text>
+    <ns0:text x="110" y="285.0" text-anchor="middle" fill="#e65100" font-size="10">RLHF (ChatGPT)</ns0:text>
+    <ns0:text x="110" y="310.0" text-anchor="middle" fill="#e65100" font-size="10">DPO, Constitutional AI</ns0:text>
+    <ns0:text x="110" y="335.0" text-anchor="middle" fill="#e65100" font-size="10">Reasoning (o1)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 180)">
+    <ns0:rect width="220" height="100" rx="10" fill="#8b5cf620" stroke="#8b5cf6"/>
+    <ns0:text x="110" y="360.0" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="bold">🚗 Autonomous Systems</ns0:text>
+    <ns0:text x="110" y="385.0" text-anchor="middle" fill="#d8b4fe" font-size="10">Self-driving cars</ns0:text>
+    <ns0:text x="110" y="410.0" text-anchor="middle" fill="#d8b4fe" font-size="10">Drone navigation</ns0:text>
+    <ns0:text x="110" y="435.0" text-anchor="middle" fill="#d8b4fe" font-size="10">Traffic control</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(290, 180)">
+    <ns0:rect width="220" height="100" rx="10" fill="#2d2d2d20" stroke="#dc3545"/>
+    <ns0:text x="110" y="460.0" text-anchor="middle" fill="#c62828" font-size="13" font-weight="bold">📱 Recommendation</ns0:text>
+    <ns0:text x="110" y="485.0" text-anchor="middle" fill="#c62828" font-size="10">News/content feed</ns0:text>
+    <ns0:text x="110" y="510.0" text-anchor="middle" fill="#c62828" font-size="10">E-commerce</ns0:text>
+    <ns0:text x="110" y="535.0" text-anchor="middle" fill="#c62828" font-size="10">Ad placement</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(530, 180)">
+    <ns0:rect width="220" height="100" rx="10" fill="#17a2b820" stroke="#17a2b8"/>
+    <ns0:text x="110" y="560.0" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="bold">🔬 Science</ns0:text>
+    <ns0:text x="110" y="585.0" text-anchor="middle" fill="#a5f3fc" font-size="10">Drug discovery</ns0:text>
+    <ns0:text x="110" y="610.0" text-anchor="middle" fill="#a5f3fc" font-size="10">Chip design (Google)</ns0:text>
+    <ns0:text x="110" y="635.0" text-anchor="middle" fill="#a5f3fc" font-size="10">Fusion control</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 310)">
+    <ns0:rect width="700" height="90" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="660.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Common RL Pattern</ns0:text>
+    <ns0:text x="150" y="685.0" text-anchor="middle" fill="#1565c0" font-size="11">State = observation</ns0:text>
+    <ns0:text x="350" y="710.0" text-anchor="middle" fill="#10b981" font-size="11">Action = decision</ns0:text>
+    <ns0:text x="550" y="735.0" text-anchor="middle" fill="#e65100" font-size="11">Reward = objective</ns0:text>
+    <ns0:text x="350" y="760.0" text-anchor="middle" fill="#a5b4fc" font-size="10">Sequential decision making under uncertainty</ns0:text>
+  </ns0:g>
+</ns0:svg>

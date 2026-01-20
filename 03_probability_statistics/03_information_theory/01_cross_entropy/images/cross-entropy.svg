@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgCE" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Cross-Entropy Loss</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="340" height="150" rx="10" fill="#2d2d2d20" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="170" y="60.0" text-anchor="middle" fill="#1565c0" font-size="14" font-weight="bold">Binary Cross-Entropy</ns0:text>
+    <ns0:text x="170" y="85.0" text-anchor="middle" fill="#1a237e" font-size="12" font-family="Arial, sans-serif">BCE = -[y·log(p) + (1-y)·log(1-p)]</ns0:text>
+    <ns0:text x="170" y="110.0" text-anchor="middle" fill="#1565c0" font-size="10">y ∈ {0, 1} (true label)</ns0:text>
+    <ns0:text x="170" y="135.0" text-anchor="middle" fill="#1565c0" font-size="10">p ∈ [0, 1] (predicted probability)</ns0:text>
+    <ns0:text x="170" y="160.0" text-anchor="middle" fill="#e65100" font-size="9">Used: Binary classification (spam/not spam)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 70)">
+    <ns0:rect width="340" height="150" rx="10" fill="#2d2d2d20" stroke="#10b981" stroke-width="2"/>
+    <ns0:text x="170" y="185.0" text-anchor="middle" fill="#2e7d32" font-size="14" font-weight="bold">Categorical Cross-Entropy</ns0:text>
+    <ns0:text x="170" y="210.0" text-anchor="middle" fill="#1a237e" font-size="12" font-family="Arial, sans-serif">CE = -Σᵢ yᵢ·log(pᵢ)</ns0:text>
+    <ns0:text x="170" y="235.0" text-anchor="middle" fill="#2e7d32" font-size="10">y is one-hot: [0,0,1,0,...]</ns0:text>
+    <ns0:text x="170" y="260.0" text-anchor="middle" fill="#2e7d32" font-size="10">p = softmax(logits)</ns0:text>
+    <ns0:text x="170" y="285.0" text-anchor="middle" fill="#e65100" font-size="9">Used: Multi-class (MNIST, ImageNet)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 240)">
+    <ns0:rect width="700" height="140" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="310.0" text-anchor="middle" fill="#e65100" font-size="13" font-weight="bold">Example: 3-Class Classification</ns0:text>
+    <ns0:text x="80" y="335.0" text-anchor="middle" fill="#10b981" font-size="11">True (y)</ns0:text>
+    <ns0:rect x="30" y="65" width="30" height="8" fill="#1a237e"/>
+    <ns0:rect x="70" y="65" width="30" height="60" fill="#10b981"/>
+    <ns0:rect x="110" y="65" width="30" height="8" fill="#1a237e"/>
+    <ns0:text x="45" y="360.0" text-anchor="middle" fill="#a5b4fc" font-size="8">0</ns0:text>
+    <ns0:text x="85" y="385.0" text-anchor="middle" fill="#2e7d32" font-size="8">1</ns0:text>
+    <ns0:text x="125" y="410.0" text-anchor="middle" fill="#a5b4fc" font-size="8">0</ns0:text>
+    <ns0:text x="250" y="435.0" text-anchor="middle" fill="#10b981" font-size="11">Good ŷ</ns0:text>
+    <ns0:rect x="200" y="65" width="30" height="12" fill="#e65100" opacity="0.5"/>
+    <ns0:rect x="240" y="65" width="30" height="54" fill="#10b981"/>
+    <ns0:rect x="280" y="65" width="30" height="8" fill="#e65100" opacity="0.3"/>
+    <ns0:text x="215" y="460.0" text-anchor="middle" fill="#e65100" font-size="8">0.1</ns0:text>
+    <ns0:text x="255" y="485.0" text-anchor="middle" fill="#2e7d32" font-size="8">0.85</ns0:text>
+    <ns0:text x="295" y="510.0" text-anchor="middle" fill="#e65100" font-size="8">0.05</ns0:text>
+    <ns0:text x="250" y="535.0" text-anchor="middle" fill="#2e7d32" font-size="9">CE = 0.16 ✓</ns0:text>
+    <ns0:text x="450" y="560.0" text-anchor="middle" fill="#c62828" font-size="11">Bad ŷ</ns0:text>
+    <ns0:rect x="400" y="65" width="30" height="48" fill="#c62828"/>
+    <ns0:rect x="440" y="65" width="30" height="18" fill="#e65100" opacity="0.5"/>
+    <ns0:rect x="480" y="65" width="30" height="24" fill="#e65100" opacity="0.6"/>
+    <ns0:text x="415" y="585.0" text-anchor="middle" fill="#c62828" font-size="8">0.6</ns0:text>
+    <ns0:text x="455" y="610.0" text-anchor="middle" fill="#e65100" font-size="8">0.15</ns0:text>
+    <ns0:text x="495" y="635.0" text-anchor="middle" fill="#e65100" font-size="8">0.25</ns0:text>
+    <ns0:text x="450" y="660.0" text-anchor="middle" fill="#c62828" font-size="9">CE = 1.90 ✗</ns0:text>
+    <ns0:text x="620" y="685.0" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="bold">Key Insight:</ns0:text>
+    <ns0:text x="620" y="710.0" text-anchor="middle" fill="#1a237e" font-size="9">CE penalizes</ns0:text>
+    <ns0:text x="620" y="735.0" text-anchor="middle" fill="#1a237e" font-size="9">confident wrong</ns0:text>
+    <ns0:text x="620" y="760.0" text-anchor="middle" fill="#1a237e" font-size="9">predictions heavily!</ns0:text>
+  </ns0:g>
+</ns0:svg>

@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="basicBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#2d2d2d"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="40" text-anchor="middle" fill="#00d9ff" font-size="24" font-weight="bold">Basic Optimization Methods</ns0:text>
+  <ns0:rect x="50" y="80" width="340" height="140" rx="10" fill="#1e3a5f" stroke="#007bff" stroke-width="2"/>
+  <ns0:text x="220" y="110" text-anchor="middle" fill="#1565c0" font-size="18" font-weight="bold">Gradient Descent</ns0:text>
+  <ns0:text x="220" y="140" text-anchor="middle" fill="#1565c0" font-size="14">θ ← θ - η∇f(θ)</ns0:text>
+  <ns0:text x="220" y="170" text-anchor="middle" fill="#1565c0" font-size="12">• First-order method</ns0:text>
+  <ns0:text x="220" y="195" text-anchor="middle" fill="#1565c0" font-size="12">• Linear convergence</ns0:text>
+  <ns0:rect x="410" y="80" width="340" height="140" rx="10" fill="#3d1f5c" stroke="#6f42c1" stroke-width="2"/>
+  <ns0:text x="580" y="220.0" text-anchor="middle" fill="#6a1b9a" font-size="18" font-weight="bold">Newton's Method</ns0:text>
+  <ns0:text x="580" y="245.0" text-anchor="middle" fill="#e9d5ff" font-size="14">θ ← θ - H⁻¹∇f(θ)</ns0:text>
+  <ns0:text x="580" y="270.0" text-anchor="middle" fill="#d8b4fe" font-size="12">• Second-order method</ns0:text>
+  <ns0:text x="580" y="295.0" text-anchor="middle" fill="#d8b4fe" font-size="12">• Quadratic convergence</ns0:text>
+  <ns0:rect x="150" y="250" width="500" height="120" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+  <ns0:text x="400" y="320.0" text-anchor="middle" fill="#e65100" font-size="16" font-weight="bold">Comparison</ns0:text>
+  <ns0:text x="250" y="345.0" text-anchor="middle" fill="#fef3c7" font-size="12">GD: O(1) per step</ns0:text>
+  <ns0:text x="550" y="370.0" text-anchor="middle" fill="#fef3c7" font-size="12">Newton: O(n³) per step</ns0:text>
+  <ns0:text x="250" y="395.0" text-anchor="middle" fill="#fef3c7" font-size="12">Many iterations</ns0:text>
+  <ns0:text x="550" y="420.0" text-anchor="middle" fill="#fef3c7" font-size="12">Few iterations</ns0:text>
+</ns0:svg>

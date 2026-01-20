@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fdf4"/>
+      <stop offset="100%" style="stop-color:#ecfdf5"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <rect width="1800" height="1200" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#065f46" font-family="Arial, sans-serif" font-size="50" font-weight="bold">Bellman Equations</text>
+  <text x="900" y="120" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="26">Foundational equations for dynamic programming and reinforcement learning</text>
+  
+  <!-- State Value Function -->
+  <g transform="translate(100, 180)" filter="url(#shadow)">
+    <rect width="750" height="400" rx="18" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="375" y="55" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="36" font-weight="bold">State Value Function V(s)</text>
+    <line x1="40" y1="80" x2="710" y2="80" stroke="#d1fae5" stroke-width="2"/>
+    
+    <!-- Main Equation -->
+    <rect x="40" y="110" width="670" height="80" fill="#f0fdf4" rx="14"/>
+    <text x="375" y="160" text-anchor="middle" fill="#065f46" font-family="Consolas, monospace" font-size="34" font-weight="bold">V(s) = E[R_t + γV(s')]</text>
+    
+    <!-- Expanded Form -->
+    <text x="375" y="230" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Expanded Bellman Expectation Equation:</text>
+    <rect x="40" y="250" width="670" height="85" fill="#dcfce7" rx="14"/>
+    <text x="375" y="285" text-anchor="middle" fill="#065f46" font-family="Consolas, monospace" font-size="28">V(s) = Σ π(a|s) Σ P(s'|s,a)</text>
+    <text x="375" y="320" text-anchor="middle" fill="#065f46" font-family="Consolas, monospace" font-size="28">[R(s,a,s') + γV(s')]</text>
+    
+    <!-- Components -->
+    <g transform="translate(50, 355)">
+      <text x="0" y="0" fill="#059669" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Where:</text>
+      <text x="0" y="28" fill="#0f766e" font-family="Arial, sans-serif" font-size="17">• π(a|s) = Policy (action probability)</text>
+      <text x="350" y="28" fill="#0f766e" font-family="Arial, sans-serif" font-size="17">• γ = Discount factor [0,1]</text>
+    </g>
+  </g>
+  
+  <!-- Action Value Function -->
+  <g transform="translate(950, 180)" filter="url(#shadow)">
+    <rect width="750" height="400" rx="18" fill="#ffffff" stroke="#3b82f6" stroke-width="4"/>
+    <text x="375" y="55" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="36" font-weight="bold">Action Value Function Q(s,a)</text>
+    <line x1="40" y1="80" x2="710" y2="80" stroke="#dbeafe" stroke-width="2"/>
+    
+    <!-- Main Equation -->
+    <rect x="40" y="110" width="670" height="80" fill="#eff6ff" rx="14"/>
+    <text x="375" y="160" text-anchor="middle" fill="#1e40af" font-family="Consolas, monospace" font-size="34" font-weight="bold">Q(s,a) = E[R_t + γQ(s',a')]</text>
+    
+    <!-- Expanded Form -->
+    <text x="375" y="230" text-anchor="middle" fill="#2563eb" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Expanded Bellman Expectation Equation:</text>
+    <rect x="40" y="250" width="670" height="85" fill="#dbeafe" rx="14"/>
+    <text x="375" y="285" text-anchor="middle" fill="#1e40af" font-family="Consolas, monospace" font-size="28">Q(s,a) = Σ P(s'|s,a)</text>
+    <text x="375" y="320" text-anchor="middle" fill="#1e40af" font-family="Consolas, monospace" font-size="28">[R(s,a,s') + γΣ π(a'|s')Q(s',a')]</text>
+    
+    <!-- Components -->
+    <g transform="translate(50, 355)">
+      <text x="0" y="0" fill="#2563eb" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Where:</text>
+      <text x="0" y="28" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="17">• P(s'|s,a) = Transition probability</text>
+      <text x="350" y="28" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="17">• R = Immediate reward</text>
+    </g>
+  </g>
+  
+  <!-- Bellman Optimality Equations -->
+  <g transform="translate(100, 640)" filter="url(#shadow)">
+    <rect width="1600" height="480" rx="18" fill="#ffffff" stroke="#8b5cf6" stroke-width="4"/>
+    <text x="800" y="55" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="40" font-weight="bold">🎯 Bellman Optimality Equations</text>
+    <line x1="40" y1="80" x2="1560" y2="80" stroke="#e9d5ff" stroke-width="3"/>
+    
+    <!-- Optimal State Value -->
+    <g transform="translate(40, 120)">
+      <rect width="750" height="310" rx="14" fill="#faf5ff" stroke="#7c3aed" stroke-width="3"/>
+      <text x="375" y="45" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="30" font-weight="bold">Optimal State Value V*(s)</text>
+      <line x1="30" y1="65" x2="720" y2="65" stroke="#ddd6fe" stroke-width="2"/>
+      
+      <rect x="30" y="85" width="690" height="70" fill="#f3e8ff" rx="12"/>
+      <text x="375" y="130" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="32" font-weight="bold">V*(s) = max Q*(s,a)</text>
+      <text x="375" y="150" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="18">a</text>
+      
+      <text x="375" y="195" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Expanded Form:</text>
+      <rect x="30" y="210" width="690" height="80" fill="#ede9fe" rx="12"/>
+      <text x="375" y="245" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="26">V*(s) = max Σ P(s'|s,a)</text>
+      <text x="375" y="275" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="26">[R(s,a,s') + γV*(s')]</text>
+    </g>
+    
+    <!-- Optimal Action Value -->
+    <g transform="translate(810, 120)">
+      <rect width="750" height="310" rx="14" fill="#fef3f2" stroke="#ef4444" stroke-width="3"/>
+      <text x="375" y="45" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="30" font-weight="bold">Optimal Action Value Q*(s,a)</text>
+      <line x1="30" y1="65" x2="720" y2="65" stroke="#fecaca" stroke-width="2"/>
+      
+      <rect x="30" y="85" width="690" height="70" fill="#fee2e2" rx="12"/>
+      <text x="375" y="130" text-anchor="middle" fill="#991b1b" font-family="Consolas, monospace" font-size="32" font-weight="bold">Q*(s,a) = E[R + γ max Q*(s',a')]</text>
+      <text x="500" y="150" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="18">a'</text>
+      
+      <text x="375" y="195" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Expanded Form:</text>
+      <rect x="30" y="210" width="690" height="80" fill="#fecaca" rx="12"/>
+      <text x="375" y="245" text-anchor="middle" fill="#991b1b" font-family="Consolas, monospace" font-size="26">Q*(s,a) = Σ P(s'|s,a)</text>
+      <text x="375" y="275" text-anchor="middle" fill="#991b1b" font-family="Consolas, monospace" font-size="26">[R(s,a,s') + γ max Q*(s',a')]</text>
+    </g>
+  </g>
+  
+  <!-- Key Insight Box -->
+  <rect x="100" y="1140" width="1600" height="70" fill="#1e40af" rx="16" filter="url(#shadow)"/>
+  <text x="900" y="1175" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="22" font-weight="bold">💡 Key Insight:</text>
+  <text x="900" y="1202" text-anchor="middle" fill="#dbeafe" font-family="Arial, sans-serif" font-size="19">The optimal value function satisfies the Bellman optimality equation, which decomposes the value of a decision into immediate reward + discounted future value</text>
+</svg>

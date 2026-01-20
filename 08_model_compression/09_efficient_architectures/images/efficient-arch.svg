@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 1012.5">
+  <ns0:defs>
+    <ns0:linearGradient id="effBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="1012.5" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="30" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="20" font-weight="bold">🏗️ Efficient Architectures</ns0:text>
+  <ns0:text x="200" y="60" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Standard Convolution</ns0:text>
+  <ns0:text x="600" y="85.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Depthwise Separable (MobileNet)</ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:rect width="300" height="140" rx="10" fill="#1a237e" stroke="#dc3545" stroke-width="2"/>
+    <ns0:rect x="20" y="30" width="50" height="80" rx="4" fill="#1565c0"/>
+    <ns0:text x="45" y="110.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Input</ns0:text>
+    <ns0:text x="45" y="135.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="8">C_in</ns0:text>
+    <ns0:text x="90" y="160.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="14">→</ns0:text>
+    <ns0:g transform="translate(110, 25)">
+      <ns0:rect x="0" y="0" width="70" height="70" rx="4" fill="#c62828"/>
+      <ns0:rect x="10" y="10" width="70" height="70" rx="4" fill="#c62828" opacity="0.7"/>
+      <ns0:rect x="20" y="20" width="70" height="70" rx="4" fill="#c62828" opacity="0.4"/>
+      <ns0:text x="50" y="185.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">K×K×C_in</ns0:text>
+      <ns0:text x="50" y="210.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">×C_out</ns0:text>
+    </ns0:g>
+    <ns0:text x="210" y="235.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="14">→</ns0:text>
+    <ns0:rect x="230" y="30" width="50" height="80" rx="4" fill="#6a1b9a"/>
+    <ns0:text x="255" y="260.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Out</ns0:text>
+    <ns0:text x="255" y="285.0" text-anchor="middle" fill="#e9d5ff" font-family="Arial, sans-serif" font-size="8">C_out</ns0:text>
+    <ns0:text x="150" y="310.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="10">Cost: K² × C_in × C_out</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(450, 80)">
+    <ns0:rect width="300" height="140" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:rect x="10" y="30" width="30" height="60" rx="4" fill="#1565c0"/>
+    <ns0:text x="25" y="335.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">In</ns0:text>
+    <ns0:g transform="translate(50, 30)">
+      <ns0:rect x="0" y="0" width="20" height="20" rx="2" fill="#2e7d32"/>
+      <ns0:rect x="0" y="25" width="20" height="20" rx="2" fill="#2e7d32"/>
+      <ns0:rect x="0" y="50" width="20" height="20" rx="2" fill="#2e7d32"/>
+      <ns0:text x="10" y="360.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="7">DW</ns0:text>
+    </ns0:g>
+    <ns0:text x="90" y="385.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">→</ns0:text>
+    <ns0:g transform="translate(105, 35)">
+      <ns0:rect width="50" height="50" rx="4" fill="#e65100"/>
+      <ns0:text x="25" y="410.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">1×1</ns0:text>
+      <ns0:text x="25" y="435.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="7">PW</ns0:text>
+    </ns0:g>
+    <ns0:text x="170" y="460.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">→</ns0:text>
+    <ns0:rect x="185" y="30" width="30" height="60" rx="4" fill="#6a1b9a"/>
+    <ns0:text x="200" y="485.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Out</ns0:text>
+    <ns0:rect x="225" y="30" width="60" height="60" rx="4" fill="#2e7d32" opacity="0.3"/>
+    <ns0:text x="255" y="510.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="9" font-weight="bold">8-9×</ns0:text>
+    <ns0:text x="255" y="535.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="8">faster!</ns0:text>
+    <ns0:text x="150" y="560.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Cost: K² × C_in + C_in × C_out</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(100, 250)">
+    <ns0:rect width="600" height="180" rx="12" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="300" y="585.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="14" font-weight="bold">📊 Model Comparison (ImageNet)</ns0:text>
+    <ns0:text x="80" y="610.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Model</ns0:text>
+    <ns0:text x="200" y="635.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Params</ns0:text>
+    <ns0:text x="300" y="660.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" font-weight="bold">FLOPs</ns0:text>
+    <ns0:text x="400" y="685.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Top-1 Acc</ns0:text>
+    <ns0:text x="520" y="710.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Mobile?</ns0:text>
+    <ns0:text x="80" y="735.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="10">ResNet-50</ns0:text>
+    <ns0:text x="200" y="760.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">25.6M</ns0:text>
+    <ns0:text x="300" y="785.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">4.1B</ns0:text>
+    <ns0:text x="400" y="810.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">76.1%</ns0:text>
+    <ns0:text x="520" y="835.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="10">❌ Too big</ns0:text>
+    <ns0:text x="80" y="860.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">MobileNetV3</ns0:text>
+    <ns0:text x="200" y="885.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">5.4M</ns0:text>
+    <ns0:text x="300" y="910.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">219M</ns0:text>
+    <ns0:text x="400" y="935.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">75.2%</ns0:text>
+    <ns0:text x="520" y="960.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">✅ Fast</ns0:text>
+    <ns0:text x="80" y="985.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="10">EfficientNet-B0</ns0:text>
+    <ns0:text x="200" y="1010.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="10">5.3M</ns0:text>
+    <ns0:text x="300" y="1035.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="10">390M</ns0:text>
+    <ns0:text x="400" y="1060.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">77.1%</ns0:text>
+    <ns0:text x="520" y="1085.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">✅ Efficient</ns0:text>
+    <ns0:text x="80" y="1110.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="10">ALBERT-base</ns0:text>
+    <ns0:text x="200" y="1135.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="10">12M</ns0:text>
+    <ns0:text x="300" y="1160.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="10">-</ns0:text>
+    <ns0:text x="400" y="1185.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">~BERT</ns0:text>
+    <ns0:text x="520" y="1210.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">✅ 18× smaller</ns0:text>
+    <ns0:text x="300" y="1235.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Same accuracy, fraction of the compute!</ns0:text>
+  </ns0:g>
+</ns0:svg>

@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 945.0">
+  <ns0:defs>
+    <ns0:linearGradient id="introBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="945.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="30" text-anchor="middle" fill="#e67e22" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Why Model Compression?</ns0:text>
+  <ns0:g transform="translate(30, 55)">
+    <ns0:rect width="340" height="150" rx="12" fill="#1a237e" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="170" y="55.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="13" font-weight="bold">The Problem</ns0:text>
+    <ns0:text x="20" y="80.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">GPT-4: ~1.8T params</ns0:text>
+    <ns0:text x="220" y="105.0" fill="#c62828" font-family="Arial, sans-serif" font-size="10">Massive!</ns0:text>
+    <ns0:text x="20" y="130.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">LLaMA-70B: 140 GB</ns0:text>
+    <ns0:text x="220" y="155.0" fill="#c62828" font-family="Arial, sans-serif" font-size="10">4x A100 needed</ns0:text>
+    <ns0:text x="20" y="180.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Inference cost: $$$</ns0:text>
+    <ns0:text x="220" y="205.0" fill="#c62828" font-family="Arial, sans-serif" font-size="10">Expensive!</ns0:text>
+    <ns0:text x="20" y="230.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Mobile/Edge: X</ns0:text>
+    <ns0:text x="220" y="255.0" fill="#c62828" font-family="Arial, sans-serif" font-size="10">Won't fit</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(385, 110)">
+    <ns0:text x="15" y="280.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="18">-&gt;</ns0:text>
+    <ns0:text x="15" y="305.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Compress</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(430, 55)">
+    <ns0:rect width="340" height="150" rx="12" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="170" y="330.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="13" font-weight="bold">The Solution</ns0:text>
+    <ns0:text x="20" y="355.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">INT4: 8x smaller</ns0:text>
+    <ns0:text x="220" y="380.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Fits laptop!</ns0:text>
+    <ns0:text x="20" y="405.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">LoRA: 0.1% params</ns0:text>
+    <ns0:text x="220" y="430.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Cheap train</ns0:text>
+    <ns0:text x="20" y="455.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Distillation: 10x smaller</ns0:text>
+    <ns0:text x="220" y="480.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Same quality</ns0:text>
+    <ns0:text x="20" y="505.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Mobile/Edge: OK</ns0:text>
+    <ns0:text x="220" y="530.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Deployed!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(30, 230)">
+    <ns0:rect width="740" height="160" rx="12" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="370" y="555.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Compression Techniques</ns0:text>
+    <ns0:g transform="translate(25, 50)">
+      <ns0:rect width="130" height="80" rx="6" fill="#2e7d32" opacity="0.2" stroke="#28a745"/>
+      <ns0:text x="65" y="580.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Quantization</ns0:text>
+      <ns0:text x="65" y="605.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">INT8/INT4</ns0:text>
+      <ns0:text x="65" y="630.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">4-8x smaller</ns0:text>
+    </ns0:g>
+    <ns0:g transform="translate(170, 50)">
+      <ns0:rect width="130" height="80" rx="6" fill="#ec4899" opacity="0.2" stroke="#ec4899"/>
+      <ns0:text x="65" y="655.0" text-anchor="middle" fill="#ec4899" font-family="Arial, sans-serif" font-size="10" font-weight="bold">LoRA/PEFT</ns0:text>
+      <ns0:text x="65" y="680.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Low-rank</ns0:text>
+      <ns0:text x="65" y="705.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">100x less params</ns0:text>
+    </ns0:g>
+    <ns0:g transform="translate(315, 50)">
+      <ns0:rect width="130" height="80" rx="6" fill="#1565c0" opacity="0.2" stroke="#007bff"/>
+      <ns0:text x="65" y="730.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Distillation</ns0:text>
+      <ns0:text x="65" y="755.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Teacher-Student</ns0:text>
+      <ns0:text x="65" y="780.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">10x smaller</ns0:text>
+    </ns0:g>
+    <ns0:g transform="translate(460, 50)">
+      <ns0:rect width="130" height="80" rx="6" fill="#e65100" opacity="0.2" stroke="#fd7e14"/>
+      <ns0:text x="65" y="805.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Pruning</ns0:text>
+      <ns0:text x="65" y="830.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Remove weights</ns0:text>
+      <ns0:text x="65" y="855.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">2-10x smaller</ns0:text>
+    </ns0:g>
+    <ns0:g transform="translate(605, 50)">
+      <ns0:rect width="110" height="80" rx="6" fill="#6a1b9a" opacity="0.2" stroke="#6f42c1"/>
+      <ns0:text x="55" y="880.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="10" font-weight="bold">MoE</ns0:text>
+      <ns0:text x="55" y="905.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Sparse</ns0:text>
+      <ns0:text x="55" y="930.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">6x efficient</ns0:text>
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>

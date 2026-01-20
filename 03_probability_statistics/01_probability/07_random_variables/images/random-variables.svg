@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgRV" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Random Variables</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="700" height="70" rx="10" fill="#2d2d2d20" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="350" y="60.0" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">X: Ω → ℝ (Function from outcomes to numbers)</ns0:text>
+    <ns0:text x="350" y="85.0" text-anchor="middle" fill="#1565c0" font-size="10">A random variable assigns a numerical value to each outcome</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 160)">
+    <ns0:rect width="340" height="120" rx="10" fill="#2d2d2d20" stroke="#fd7e14"/>
+    <ns0:text x="170" y="110.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Discrete RV</ns0:text>
+    <ns0:text x="170" y="135.0" text-anchor="middle" fill="#e65100" font-size="10">Countable values</ns0:text>
+    <ns0:text x="170" y="160.0" text-anchor="middle" fill="#1a237e" font-size="10">PMF: p(x) = P(X = x)</ns0:text>
+    <ns0:text x="170" y="185.0" text-anchor="middle" fill="#e65100" font-size="9">Ex: Dice roll, coin flips, counts</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 160)">
+    <ns0:rect width="340" height="120" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="170" y="210.0" text-anchor="middle" fill="#2e7d32" font-size="12" font-weight="bold">Continuous RV</ns0:text>
+    <ns0:text x="170" y="235.0" text-anchor="middle" fill="#2e7d32" font-size="10">Uncountable values</ns0:text>
+    <ns0:text x="170" y="260.0" text-anchor="middle" fill="#1a237e" font-size="10">PDF: P(a≤X≤b) = ∫ f(x)dx</ns0:text>
+    <ns0:text x="170" y="285.0" text-anchor="middle" fill="#2e7d32" font-size="9">Ex: Height, time, temperature</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 300)">
+    <ns0:rect width="700" height="80" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="310.0" text-anchor="middle" fill="#e65100" font-size="11" font-weight="bold">Key Functions</ns0:text>
+    <ns0:text x="140" y="335.0" text-anchor="middle" fill="#1565c0" font-size="10">CDF: F(x) = P(X ≤ x)</ns0:text>
+    <ns0:text x="140" y="360.0" text-anchor="middle" fill="#1565c0" font-size="8">Cumulative distribution</ns0:text>
+    <ns0:text x="400" y="385.0" text-anchor="middle" fill="#10b981" font-size="10">E[X] = Σ x·p(x) or ∫ x·f(x)dx</ns0:text>
+    <ns0:text x="400" y="410.0" text-anchor="middle" fill="#2e7d32" font-size="8">Expected value</ns0:text>
+    <ns0:text x="630" y="435.0" text-anchor="middle" fill="#e65100" font-size="10">Var[X] = E[(X-μ)²]</ns0:text>
+    <ns0:text x="630" y="460.0" text-anchor="middle" fill="#e65100" font-size="8">Variance</ns0:text>
+  </ns0:g>
+</ns0:svg>

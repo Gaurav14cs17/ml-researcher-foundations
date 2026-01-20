@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 1350.0">
+  <ns0:defs>
+    <ns0:marker id="arrowblue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <ns0:path d="M0,0 L0,6 L9,3 z" fill="#1565c0"/>
+    </ns0:marker>
+    <ns0:marker id="arrowpurple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <ns0:path d="M0,0 L0,6 L9,3 z" fill="#6a1b9a"/>
+    </ns0:marker>
+    <ns0:marker id="arrowaxis" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <ns0:path d="M0,0 L0,6 L9,3 z" fill="#1a237e"/>
+    </ns0:marker>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="1350.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Gradient Descent Optimization
+  </ns0:text>
+  <ns0:defs>
+    <ns0:radialGradient id="lossGradient" cx="50%" cy="50%">
+      <ns0:stop offset="0%" style="stop-color:#dc3545;stop-opacity:1"/>
+      <ns0:stop offset="50%" style="stop-color:#fd7e14;stop-opacity:1"/>
+      <ns0:stop offset="100%" style="stop-color:#2ecc71;stop-opacity:1"/>
+    </ns0:radialGradient>
+  </ns0:defs>
+  <ns0:ellipse cx="400" cy="300" rx="280" ry="200" fill="none" stroke="#dc3545" stroke-width="2" opacity="0.3"/>
+  <ns0:ellipse cx="400" cy="300" rx="220" ry="150" fill="none" stroke="#fd7e14" stroke-width="2" opacity="0.4"/>
+  <ns0:ellipse cx="400" cy="300" rx="160" ry="100" fill="none" stroke="#fd7e14" stroke-width="2" opacity="0.5"/>
+  <ns0:ellipse cx="400" cy="300" rx="100" ry="60" fill="none" stroke="#2ecc71" stroke-width="2" opacity="0.6"/>
+  <ns0:ellipse cx="400" cy="300" rx="50" ry="30" fill="none" stroke="#28a745" stroke-width="2" opacity="0.7"/>
+  <ns0:path d="M 120 150 Q 180 180, 240 220 T 320 260 T 380 285 T 400 295" fill="none" stroke="#007bff" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowblue)"/>
+  <ns0:circle cx="120" cy="150" r="6" fill="#c62828"/>
+  <ns0:circle cx="240" cy="220" r="5" fill="#e65100"/>
+  <ns0:circle cx="320" cy="260" r="5" fill="#e65100"/>
+  <ns0:circle cx="380" cy="285" r="5" fill="#2ecc71"/>
+  <ns0:circle cx="400" cy="295" r="7" fill="#2e7d32" stroke="#ffffff" stroke-width="2"/>
+  <ns0:text x="120" y="135" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#c62828" font-weight="bold">
+    Start (high loss)
+  </ns0:text>
+  <ns0:text x="400" y="320" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#2e7d32" font-weight="bold">
+    Optimal θ* (minimum)
+  </ns0:text>
+  <ns0:line x1="240" y1="220" x2="240" y2="170" stroke="#6f42c1" stroke-width="3" marker-end="url(#arrowpurple)"/>
+  <ns0:text x="260" y="345.0" font-family="Arial, sans-serif" font-size="12" fill="#6a1b9a">
+    -∇L(θ)
+  </ns0:text>
+  <ns0:line x1="50" y1="550" x2="750" y2="550" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowaxis)"/>
+  <ns0:line x1="50" y1="550" x2="50" y2="50" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowaxis)"/>
+  <ns0:text x="760" y="555" font-family="Arial, sans-serif" font-size="16" fill="#1a237e">θ₁</ns0:text>
+  <ns0:text x="35" y="580.0" font-family="Arial, sans-serif" font-size="16" fill="#1a237e">θ₂</ns0:text>
+  <ns0:rect x="550" y="80" width="220" height="120" fill="#1a237e" stroke="#444444" stroke-width="2" rx="5"/>
+  <ns0:text x="660" y="605.0" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Update Rule
+  </ns0:text>
+  <ns0:text x="560" y="630.0" font-family="Arial, sans-serif" font-size="13" fill="#1a237e">
+    θₜ₊₁ = θₜ - α∇L(θₜ)
+  </ns0:text>
+  <ns0:line x1="560" y1="150" x2="590" y2="150" stroke="#007bff" stroke-width="3"/>
+  <ns0:text x="600" y="655.0" font-family="Arial, sans-serif" font-size="12" fill="#1a237e">
+    Optimization path
+  </ns0:text>
+  <ns0:circle cx="575" cy="175" r="4" fill="#c62828"/>
+  <ns0:text x="585" y="680.0" font-family="Arial, sans-serif" font-size="12" fill="#1a237e">
+    High loss region
+  </ns0:text>
+</ns0:svg>

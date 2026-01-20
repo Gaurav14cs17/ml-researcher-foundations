@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="550" fill="url(#bgGrad)" rx="12"/>
+  
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" fill="#00d9ff" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Attention Complexity Analysis</text>
+  
+  <!-- Standard Attention -->
+  <rect x="30" y="70" width="410" height="150" rx="10" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="235" y="100" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Standard Self-Attention</text>
+  
+  <text x="50" y="135" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">Formula:</text>
+  <text x="50" y="160" fill="#e74c3c" font-family="monospace" font-size="14">Attn(Q,K,V) = softmax(QKᵀ/√d)V</text>
+  
+  <text x="50" y="195" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="12">Time: O(n²d)    Memory: O(n²)</text>
+  
+  <!-- Flash Attention -->
+  <rect x="460" y="70" width="410" height="150" rx="10" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="665" y="100" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Flash Attention</text>
+  
+  <text x="480" y="135" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="13">Key Innovation:</text>
+  <text x="480" y="160" fill="#27ae60" font-family="Arial, sans-serif" font-size="12">Tiled computation, IO-aware</text>
+  
+  <text x="480" y="195" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Time: O(n²d)    Memory: O(n)</text>
+  
+  <!-- Multi-Head Attention -->
+  <rect x="30" y="240" width="270" height="140" rx="10" fill="#2c3e50" stroke="#3498db" stroke-width="2"/>
+  <text x="165" y="270" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="16" font-weight="bold">MHA</text>
+  <text x="165" y="295" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">Multi-Head Attention</text>
+  
+  <text x="50" y="325" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">h query heads</text>
+  <text x="50" y="345" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">h KV heads</text>
+  <text x="50" y="365" fill="#e74c3c" font-family="Arial, sans-serif" font-size="11">KV Cache: O(h × d × L)</text>
+  
+  <!-- MQA -->
+  <rect x="315" y="240" width="270" height="140" rx="10" fill="#2c3e50" stroke="#9b59b6" stroke-width="2"/>
+  <text x="450" y="270" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="16" font-weight="bold">MQA</text>
+  <text x="450" y="295" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">Multi-Query Attention</text>
+  
+  <text x="335" y="325" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">h query heads</text>
+  <text x="335" y="345" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11" font-weight="bold">1 KV head (shared)</text>
+  <text x="335" y="365" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11">KV Cache: O(d × L)</text>
+  
+  <!-- GQA -->
+  <rect x="600" y="240" width="270" height="140" rx="10" fill="#2c3e50" stroke="#1abc9c" stroke-width="2"/>
+  <text x="735" y="270" text-anchor="middle" fill="#1abc9c" font-family="Arial, sans-serif" font-size="16" font-weight="bold">GQA</text>
+  <text x="735" y="295" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">Grouped Query Attention</text>
+  
+  <text x="620" y="325" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">h query heads</text>
+  <text x="620" y="345" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11" font-weight="bold">g KV heads (g &lt; h)</text>
+  <text x="620" y="365" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11">KV Cache: O(g × d × L)</text>
+  
+  <!-- Linear Attention -->
+  <rect x="30" y="400" width="410" height="130" rx="10" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="235" y="430" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Linear Attention</text>
+  
+  <text x="50" y="465" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="12">Standard: softmax(QKᵀ)V → O(n²)</text>
+  <text x="50" y="495" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Linear: φ(Q)(φ(K)ᵀV) → O(n)</text>
+  <text x="50" y="520" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">Key: Compute (φ(K)ᵀV) first!</text>
+  
+  <!-- Comparison -->
+  <rect x="460" y="400" width="410" height="130" rx="10" fill="#2c3e50" stroke="#00d9ff" stroke-width="2"/>
+  <text x="665" y="430" text-anchor="middle" fill="#00d9ff" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Speedup Summary</text>
+  
+  <text x="480" y="465" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="12">Flash Attention: 2-4× faster, 5-20× less memory</text>
+  <text x="480" y="490" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="12">GQA (LLaMA 2): 8× smaller KV cache</text>
+  <text x="480" y="515" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Combined: 10-100× inference speedup!</text>
+</svg>

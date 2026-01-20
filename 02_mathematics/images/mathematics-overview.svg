@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2700.0 1800.0">
+  <ns0:rect width="2700.0" height="1800.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="600" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Mathematics for Machine Learning - Complete Overview
+  </ns0:text>
+  <ns0:g id="linear-algebra">
+    <ns0:rect x="50" y="100" width="350" height="650" fill="#1a237e" stroke="#007bff" stroke-width="4" rx="10"/>
+    <ns0:text x="225" y="140" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      📊 Linear Algebra
+    </ns0:text>
+    <ns0:text x="70" y="180" font-family="Arial, sans-serif" font-size="14" fill="#1a237e" font-weight="bold">Topics:</ns0:text>
+    <ns0:text x="80" y="210" font-family="Arial, sans-serif" font-size="13" fill="#1a237e">
+      <ns0:tspan x="80" dy="0">• Vectors &amp; Matrices</ns0:tspan>
+      <ns0:tspan x="80" dy="25">• Vector Spaces</ns0:tspan>
+      <ns0:tspan x="80" dy="25">• Linear Transformations</ns0:tspan>
+      <ns0:tspan x="80" dy="25">• Eigenvalues &amp; Eigenvectors</ns0:tspan>
+      <ns0:tspan x="80" dy="25">• SVD Decomposition</ns0:tspan>
+      <ns0:tspan x="80" dy="25">• QR Decomposition</ns0:tspan>
+    </ns0:text>
+    <ns0:rect x="70" y="410" width="310" height="120" fill="#e8f4f8" rx="5"/>
+    <ns0:text x="225" y="435" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      🔥 Why It Matters
+    </ns0:text>
+    <ns0:text x="80" y="460" font-family="Arial, sans-serif" font-size="12" fill="#1a237e">
+      <ns0:tspan x="80" dy="0">• Neural networks = matrix ops</ns0:tspan>
+      <ns0:tspan x="80" dy="20">• PCA = eigenvalue decomposition</ns0:tspan>
+      <ns0:tspan x="80" dy="20">• Recommender systems = SVD</ns0:tspan>
+      <ns0:tspan x="80" dy="20">• All of deep learning!</ns0:tspan>
+    </ns0:text>
+    <ns0:rect x="70" y="550" width="310" height="180" fill="#d5f4e6" rx="5"/>
+    <ns0:text x="225" y="575" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      📈 Key Formulas
+    </ns0:text>
+    <ns0:text x="80" y="600" font-family="Arial, sans-serif" font-size="11" fill="#1a237e">
+      <ns0:tspan x="80" dy="0">• Matrix multiply: C = AB</ns0:tspan>
+      <ns0:tspan x="80" dy="22">• Eigenvalue: Av = λv</ns0:tspan>
+      <ns0:tspan x="80" dy="22">• SVD: A = UΣVᵀ</ns0:tspan>
+      <ns0:tspan x="80" dy="22">• Dot product: a·b = Σaᵢbᵢ</ns0:tspan>
+      <ns0:tspan x="80" dy="22">• L2 norm: ‖x‖₂ = √(Σxᵢ²)</ns0:tspan>
+    </ns0:text>
+  </ns0:g>
+  <ns0:g id="calculus">
+    <ns0:rect x="425" y="100" width="350" height="650" fill="#1a237e" stroke="#dc3545" stroke-width="4" rx="10"/>
+    <ns0:text x="600" y="625.0" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#c62828">
+      📈 Calculus
+    </ns0:text>
+    <ns0:text x="445" y="650.0" font-family="Arial, sans-serif" font-size="14" fill="#1a237e" font-weight="bold">Topics:</ns0:text>
+    <ns0:text x="455" y="675.0" font-family="Arial, sans-serif" font-size="13" fill="#1a237e">
+      <ns0:tspan x="455" dy="0">• Limits &amp; Continuity</ns0:tspan>
+      <ns0:tspan x="455" dy="25">• Partial Derivatives</ns0:tspan>
+      <ns0:tspan x="455" dy="25">• Gradients (∇f)</ns0:tspan>
+      <ns0:tspan x="455" dy="25">• Jacobian Matrix</ns0:tspan>
+      <ns0:tspan x="455" dy="25">• Hessian Matrix</ns0:tspan>
+      <ns0:tspan x="455" dy="25">• Chain Rule</ns0:tspan>
+      <ns0:tspan x="455" dy="25">• Taylor Series</ns0:tspan>
+    </ns0:text>
+    <ns0:rect x="445" y="435" width="310" height="95" fill="#1a237e" rx="5"/>
+    <ns0:text x="600" y="700.0" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#c62828">
+      🔥 Why It Matters
+    </ns0:text>
+    <ns0:text x="455" y="725.0" font-family="Arial, sans-serif" font-size="12" fill="#1a237e">
+      <ns0:tspan x="455" dy="0">• Gradients = how to optimize</ns0:tspan>
+      <ns0:tspan x="455" dy="20">• Chain rule = backpropagation</ns0:tspan>
+      <ns0:tspan x="455" dy="20">• THE foundation of training</ns0:tspan>
+    </ns0:text>
+    <ns0:rect x="445" y="550" width="310" height="180" fill="#fff5e6" rx="5"/>
+    <ns0:text x="600" y="750.0" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#e65100">
+      📈 Key Formulas
+    </ns0:text>
+    <ns0:text x="455" y="775.0" font-family="Arial, sans-serif" font-size="11" fill="#1a237e">
+      <ns0:tspan x="455" dy="0">• Gradient: ∇f = [∂f/∂x₁...∂f/∂xₙ]ᵀ</ns0:tspan>
+      <ns0:tspan x="455" dy="22">• Chain rule: ∂L/∂x = ∂L/∂y·∂y/∂x</ns0:tspan>
+      <ns0:tspan x="455" dy="22">• Jacobian: Jᵢⱼ = ∂fᵢ/∂xⱼ</ns0:tspan>
+      <ns0:tspan x="455" dy="22">• Hessian: Hᵢⱼ = ∂²f/∂xᵢ∂xⱼ</ns0:tspan>
+      <ns0:tspan x="455" dy="22">• Taylor: f(x+h) ≈ f(x)+∇f·h</ns0:tspan>
+    </ns0:text>
+  </ns0:g>
+  <ns0:g id="optimization">
+    <ns0:rect x="800" y="100" width="350" height="650" fill="#1a237e" stroke="#6f42c1" stroke-width="4" rx="10"/>
+    <ns0:text x="975" y="800.0" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+      ⚡ Optimization
+    </ns0:text>
+    <ns0:text x="820" y="825.0" font-family="Arial, sans-serif" font-size="14" fill="#1a237e" font-weight="bold">Topics:</ns0:text>
+    <ns0:text x="830" y="850.0" font-family="Arial, sans-serif" font-size="13" fill="#1a237e">
+      <ns0:tspan x="830" dy="0">• Convex Functions</ns0:tspan>
+      <ns0:tspan x="830" dy="25">• Gradient Descent</ns0:tspan>
+      <ns0:tspan x="830" dy="25">• SGD &amp; Variants</ns0:tspan>
+      <ns0:tspan x="830" dy="25">• Adam Optimizer</ns0:tspan>
+      <ns0:tspan x="830" dy="25">• Newton's Method</ns0:tspan>
+      <ns0:tspan x="830" dy="25">• Lagrange Multipliers</ns0:tspan>
+      <ns0:tspan x="830" dy="25">• KKT Conditions</ns0:tspan>
+    </ns0:text>
+    <ns0:rect x="820" y="435" width="310" height="95" fill="#f4ecf7" rx="5"/>
+    <ns0:text x="975" y="875.0" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+      🔥 Why It Matters
+    </ns0:text>
+    <ns0:text x="830" y="900.0" font-family="Arial, sans-serif" font-size="12" fill="#1a237e">
+      <ns0:tspan x="830" dy="0">• Training = optimization</ns0:tspan>
+      <ns0:tspan x="830" dy="20">• Adam = default optimizer</ns0:tspan>
+      <ns0:tspan x="830" dy="20">• Powers ALL ML training</ns0:tspan>
+    </ns0:text>
+    <ns0:rect x="820" y="550" width="310" height="180" fill="#e8f8f5" rx="5"/>
+    <ns0:text x="975" y="925.0" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      📈 Key Formulas
+    </ns0:text>
+    <ns0:text x="830" y="950.0" font-family="Arial, sans-serif" font-size="11" fill="#1a237e">
+      <ns0:tspan x="830" dy="0">• GD: θₜ₊₁ = θₜ - α∇L(θₜ)</ns0:tspan>
+      <ns0:tspan x="830" dy="22">• Momentum: vₜ = βvₜ₋₁ + ∇L</ns0:tspan>
+      <ns0:tspan x="830" dy="22">• Adam: adaptive learning rate</ns0:tspan>
+      <ns0:tspan x="830" dy="22">• Lagrangian: ℒ = f + λg</ns0:tspan>
+      <ns0:tspan x="830" dy="22">• KKT: ∇ℒ=0, λᵢgᵢ=0</ns0:tspan>
+    </ns0:text>
+  </ns0:g>
+  <ns0:text x="600" y="975.0" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1a237e" font-style="italic">
+    Together these form the complete mathematical foundation for machine learning
+  </ns0:text>
+</ns0:svg>

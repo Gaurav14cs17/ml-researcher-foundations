@@ -1,0 +1,127 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2475.0 2025.0">
+  <ns0:text x="550" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Learning Rate Schedules: Complete Guide
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="500" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      1. Why Schedule Learning Rate?
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="225.0" fill="#f8f9fa" stroke="#007bff" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="80.0" font-size="14" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#1565c0">Problem:</ns0:tspan>
+        Fixed LR → Too large (oscillates), too small (slow convergence)
+      </ns0:text>
+      <ns0:text x="0" y="105.0" font-size="14" fill="#2e7d32" font-weight="bold">
+        <ns0:tspan fill="#145a32">Solution:</ns0:tspan>
+        Start large (fast progress) → Gradually decrease (fine-tune) → Better final performance
+      </ns0:text>
+      <ns0:text x="0" y="130.0" font-size="13" fill="#1a237e">
+        Analogy: Simulated annealing - high temperature → low temperature
+      </ns0:text>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 220)">
+    <ns0:text x="500" y="155.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      2. Popular Learning Rate Schedules
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="600" fill="#1a237e" stroke="#28a745" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(80, 60)">
+      <ns0:line x1="0" y1="250" x2="850" y2="250" stroke="#e0e0e0" stroke-width="2"/>
+      <ns0:line x1="0" y1="0" x2="0" y2="260" stroke="#e0e0e0" stroke-width="2"/>
+      <ns0:text x="425" y="285" font-size="13" text-anchor="middle" fill="#1a237e">Epoch →</ns0:text>
+      <ns0:text x="-30" y="310.0" font-size="13" text-anchor="middle" fill="#1a237e" transform="rotate(-90 -30 125)">
+        Learning Rate
+      </ns0:text>
+      <ns0:line x1="0" y1="50" x2="850" y2="50" stroke="#444444" stroke-width="1" stroke-dasharray="2,2" opacity="0.3"/>
+      <ns0:line x1="0" y1="100" x2="850" y2="100" stroke="#444444" stroke-width="1" stroke-dasharray="2,2" opacity="0.3"/>
+      <ns0:line x1="0" y1="150" x2="850" y2="150" stroke="#444444" stroke-width="1" stroke-dasharray="2,2" opacity="0.3"/>
+      <ns0:line x1="0" y1="200" x2="850" y2="200" stroke="#444444" stroke-width="1" stroke-dasharray="2,2" opacity="0.3"/>
+      <ns0:line x1="0" y1="100" x2="800" y2="100" stroke="#e0e0e0" stroke-width="3" stroke-dasharray="5,5"/>
+      <ns0:text x="810" y="335.0" font-size="11" fill="#1a237e">Constant</ns0:text>
+      <ns0:path d="M 0,50 L 200,50 L 200,100 L 400,100 L 400,150 L 600,150 L 600,200 L 800,200" fill="none" stroke="#007bff" stroke-width="4"/>
+      <ns0:text x="810" y="360.0" font-size="11" fill="#1565c0" font-weight="bold">Step Decay</ns0:text>
+      <ns0:path d="M 0,30 Q 200,40 400,90 Q 600,140 800,200" fill="none" stroke="#28a745" stroke-width="4"/>
+      <ns0:text x="810" y="385.0" font-size="11" fill="#2e7d32" font-weight="bold">Exponential</ns0:text>
+      <ns0:path d="M 0,30 Q 200,80 400,150 Q 600,205 800,230" fill="none" stroke="#6f42c1" stroke-width="4"/>
+      <ns0:text x="810" y="410.0" font-size="11" fill="#6a1b9a" font-weight="bold">Cosine</ns0:text>
+      <ns0:path d="M 0,220 L 100,30 Q 300,40 500,100 Q 700,160 800,210" fill="none" stroke="#fd7e14" stroke-width="4"/>
+      <ns0:text x="810" y="435.0" font-size="11" fill="#e65100" font-weight="bold">Warmup+Decay</ns0:text>
+      <ns0:circle cx="100" cy="30" r="5" fill="#e65100"/>
+      <ns0:text x="110" y="460.0" font-size="9" fill="#e65100">Peak</ns0:text>
+    </ns0:g>
+    <ns0:g transform="translate(30, 340)">
+      <ns0:text x="0" y="485.0" font-size="14" font-weight="bold" fill="#145a32">
+        Formulas:
+      </ns0:text>
+      <ns0:g transform="translate(0, 20)">
+        <ns0:rect x="0" y="0" width="460" height="35" fill="#1a237e" stroke="#007bff" stroke-width="1" rx="3"/>
+        <ns0:text x="10" y="510.0" font-size="12" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#1565c0">Step Decay:</ns0:tspan>
+          <ns0:tspan font-family="Arial, sans-serif" dx="10">lr = lr₀ · γ^⌊epoch/drop_every⌋</ns0:tspan>
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(480, 20)">
+        <ns0:rect x="0" y="0" width="460" height="35" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+        <ns0:text x="10" y="535.0" font-size="12" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#2e7d32">Exponential:</ns0:tspan>
+          <ns0:tspan font-family="Arial, sans-serif" dx="10">lr = lr₀ · e^(-λt)</ns0:tspan>
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 65)">
+        <ns0:rect x="0" y="0" width="460" height="35" fill="#1a237e" stroke="#6f42c1" stroke-width="1" rx="3"/>
+        <ns0:text x="10" y="560.0" font-size="12" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#6a1b9a">Cosine:</ns0:tspan>
+          <ns0:tspan font-family="Arial, sans-serif" dx="10">lr = lr_min + 0.5(lr₀-lr_min)(1+cos(πt/T))</ns0:tspan>
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(480, 65)">
+        <ns0:rect x="0" y="0" width="460" height="35" fill="#fdebd0" stroke="#fd7e14" stroke-width="1" rx="3"/>
+        <ns0:text x="10" y="585.0" font-size="12" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#e65100">Linear Warmup:</ns0:tspan>
+          <ns0:tspan font-family="Arial, sans-serif" dx="10">lr = (t/T_warmup) · lr₀</ns0:tspan>
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 110)">
+        <ns0:rect x="0" y="0" width="940" height="45" fill="#1a237e" stroke="#dc3545" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(10, 15)">
+          <ns0:text x="0" y="610.0" font-size="12" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#c62828">ReduceLROnPlateau:</ns0:tspan>
+            Monitor validation loss → If no improvement for patience epochs → lr ← lr · factor
+          </ns0:text>
+          <ns0:text x="0" y="635.0" font-size="11" fill="#1a237e">
+            (Adaptive, data-driven schedule)
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+    </ns0:g>
+    <ns0:g transform="translate(30, 510)">
+      <ns0:text x="0" y="660.0" font-size="14" font-weight="bold" fill="#145a32">
+        💡 Recommendations:
+      </ns0:text>
+      <ns0:g transform="translate(0, 20)">
+        <ns0:text x="0" y="685.0" font-size="13" fill="#1a237e">
+          • 
+          <ns0:tspan font-weight="bold" fill="#1565c0">Step Decay:</ns0:tspan>
+          Simple, works well. Drop by 10× every 30-50 epochs
+        </ns0:text>
+        <ns0:text x="0" y="710.0" font-size="13" fill="#1a237e">
+          • 
+          <ns0:tspan font-weight="bold" fill="#6a1b9a">Cosine Annealing:</ns0:tspan>
+          Smooth, modern choice for deep learning (used in ResNets)
+        </ns0:text>
+        <ns0:text x="0" y="735.0" font-size="13" fill="#1a237e">
+          • 
+          <ns0:tspan font-weight="bold" fill="#e65100">Warmup:</ns0:tspan>
+          Essential for Transformers! Prevents instability with large models
+        </ns0:text>
+        <ns0:text x="0" y="760.0" font-size="13" fill="#1a237e">
+          • 
+          <ns0:tspan font-weight="bold" fill="#c62828">ReduceLROnPlateau:</ns0:tspan>
+          Good when unsure about schedule, but requires validation monitoring
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>

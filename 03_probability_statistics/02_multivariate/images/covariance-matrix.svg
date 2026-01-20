@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 787.5">
+  <ns0:defs>
+    <ns0:linearGradient id="bgGrad8" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="787.5" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold" font-family="Arial, sans-serif">Covariance Matrix: The Key to Multivariate Stats</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:text x="100" y="60.0" text-anchor="middle" fill="#2e7d32" font-size="14" font-weight="bold">Covariance Matrix Σ</ns0:text>
+    <ns0:path d="M 20 20 L 10 20 L 10 140 L 20 140" stroke="#6366f1" stroke-width="2" fill="none"/>
+    <ns0:path d="M 180 20 L 190 20 L 190 140 L 180 140" stroke="#6366f1" stroke-width="2" fill="none"/>
+    <ns0:rect x="30" y="25" width="45" height="35" fill="#fd7e1440" stroke="#fd7e14" rx="4"/>
+    <ns0:text x="52" y="85.0" text-anchor="middle" fill="#e65100" font-size="11">σ₁²</ns0:text>
+    <ns0:rect x="80" y="25" width="45" height="35" fill="#007bff30" stroke="#007bff" rx="4"/>
+    <ns0:text x="102" y="110.0" text-anchor="middle" fill="#1565c0" font-size="10">σ₁₂</ns0:text>
+    <ns0:rect x="130" y="25" width="45" height="35" fill="#007bff30" stroke="#007bff" rx="4"/>
+    <ns0:text x="152" y="135.0" text-anchor="middle" fill="#1565c0" font-size="10">σ₁₃</ns0:text>
+    <ns0:rect x="30" y="65" width="45" height="35" fill="#007bff30" stroke="#007bff" rx="4"/>
+    <ns0:text x="52" y="160.0" text-anchor="middle" fill="#1565c0" font-size="10">σ₂₁</ns0:text>
+    <ns0:rect x="80" y="65" width="45" height="35" fill="#fd7e1440" stroke="#fd7e14" rx="4"/>
+    <ns0:text x="102" y="185.0" text-anchor="middle" fill="#e65100" font-size="11">σ₂²</ns0:text>
+    <ns0:rect x="130" y="65" width="45" height="35" fill="#007bff30" stroke="#007bff" rx="4"/>
+    <ns0:text x="152" y="210.0" text-anchor="middle" fill="#1565c0" font-size="10">σ₂₃</ns0:text>
+    <ns0:rect x="30" y="105" width="45" height="35" fill="#007bff30" stroke="#007bff" rx="4"/>
+    <ns0:text x="52" y="235.0" text-anchor="middle" fill="#1565c0" font-size="10">σ₃₁</ns0:text>
+    <ns0:rect x="80" y="105" width="45" height="35" fill="#007bff30" stroke="#007bff" rx="4"/>
+    <ns0:text x="102" y="260.0" text-anchor="middle" fill="#1565c0" font-size="10">σ₃₂</ns0:text>
+    <ns0:rect x="130" y="105" width="45" height="35" fill="#fd7e1440" stroke="#fd7e14" rx="4"/>
+    <ns0:text x="152" y="285.0" text-anchor="middle" fill="#e65100" font-size="11">σ₃²</ns0:text>
+    <ns0:rect x="30" y="160" width="15" height="15" fill="#fd7e1440" stroke="#fd7e14"/>
+    <ns0:text x="55" y="310.0" fill="#e65100" font-size="10">Variance (diagonal)</ns0:text>
+    <ns0:rect x="30" y="180" width="15" height="15" fill="#007bff30" stroke="#007bff"/>
+    <ns0:text x="55" y="335.0" fill="#1565c0" font-size="10">Covariance (off-diagonal)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(280, 70)">
+    <ns0:text x="120" y="360.0" text-anchor="middle" fill="#e65100" font-size="14" font-weight="bold">Properties</ns0:text>
+    <ns0:rect x="0" y="20" width="240" height="120" rx="8" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="20" y="385.0" fill="#1a237e" font-size="11">• Symmetric: Σ = Σᵀ</ns0:text>
+    <ns0:text x="20" y="410.0" fill="#1a237e" font-size="11">• Positive semi-definite: xᵀΣx ≥ 0</ns0:text>
+    <ns0:text x="20" y="435.0" fill="#1a237e" font-size="11">• Diagonal = Var(Xᵢ)</ns0:text>
+    <ns0:text x="20" y="460.0" fill="#1a237e" font-size="11">• Off-diagonal = Cov(Xᵢ, Xⱼ)</ns0:text>
+    <ns0:text x="20" y="485.0" fill="#1a237e" font-size="11">• Eigenvalues ≥ 0</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(550, 70)">
+    <ns0:text x="100" y="510.0" text-anchor="middle" fill="#c62828" font-size="14" font-weight="bold">ML Applications</ns0:text>
+    <ns0:rect x="0" y="20" width="200" height="130" rx="8" fill="#2d2d2d20" stroke="#dc3545"/>
+    <ns0:text x="20" y="535.0" fill="#c62828" font-size="11">🔥 PCA: Eigenvectors of Σ</ns0:text>
+    <ns0:text x="20" y="560.0" fill="#c62828" font-size="11">🔥 VAE: Latent Σ</ns0:text>
+    <ns0:text x="20" y="585.0" fill="#c62828" font-size="11">🔥 GP: Kernel = Σ</ns0:text>
+    <ns0:text x="20" y="610.0" fill="#c62828" font-size="11">🔥 Diffusion: Noise schedule</ns0:text>
+    <ns0:text x="20" y="635.0" fill="#c62828" font-size="11">🔥 BatchNorm: Running Σ</ns0:text>
+  </ns0:g>
+  <ns0:rect x="50" y="280" width="700" height="50" rx="8" fill="#1a237e" stroke="#e0e0e0"/>
+  <ns0:text x="400" y="660.0" text-anchor="middle" fill="#1a237e" font-size="14" font-family="Arial, sans-serif">
+    Σ = E[(X - μ)(X - μ)ᵀ]   where Σᵢⱼ = Cov(Xᵢ, Xⱼ) = E[(Xᵢ - μᵢ)(Xⱼ - μⱼ)]
+  </ns0:text>
+</ns0:svg>

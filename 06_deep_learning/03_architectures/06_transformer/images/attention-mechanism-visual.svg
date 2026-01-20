@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L9,3 z" fill="#212529" />
+      </marker>
+  </defs>
+
+  <!--Background -->
+  <rect width="1000" height="750" fill="#f8f9fa" rx="8"/>
+  
+  <!-- Title -->
+  <text x="500" y="30" font-family="Arial, sans-serif" font-size="26" font-weight="bold" text-anchor="middle" fill="#212529">
+    Self-Attention Mechanism
+  </text>
+  <text x="500" y="55" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#212529" font-style="italic">
+    The Core of Transformers: "Attention is All You Need"
+  </text>
+  
+  <!-- Main formula -->
+  <rect x="150" y="75" width="700" height="50" fill="#212529" stroke="#007bff" stroke-width="3" rx="8"/>
+  <text x="500" y="108" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#212529" font-weight="bold">
+    Attention(Q, K, V) = softmax(QKᵀ/√dₖ)V
+  </text>
+  
+  <!-- QKV computation -->
+  <g id="qkv">
+    <text x="150" y="170" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#007bff">
+      Step 1: Compute Q, K, V
+    </text>
+    
+    <!-- Input -->
+    <rect x="100" y="190" width="120" height="60" fill="#6f42c1" stroke="#6f42c1" stroke-width="2" rx="5"/>
+    <text x="160" y="210" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#212529" font-weight="bold">
+      Input X
+    </text>
+    <text x="160" y="230" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#212529">
+      (n × d_model)
+    </text>
+    
+    <!-- Arrows to Q, K, V -->
+    <line x1="160" y1="250" x2="160" y2="290" stroke="#dee2e6" stroke-width="2"/>
+    <line x1="160" y1="290" x2="100" y2="320" stroke="#dee2e6" stroke-width="2"/>
+    <line x1="160" y1="290" x2="160" y2="320" stroke="#dee2e6" stroke-width="2"/>
+    <line x1="160" y1="290" x2="220" y2="320" stroke="#dee2e6" stroke-width="2"/>
+    
+    <!-- Q, K, V matrices -->
+    <rect x="60" y="320" width="80" height="60" fill="#dc3545" stroke="#dc3545" stroke-width="2" rx="5"/>
+    <text x="100" y="343" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#212529" font-weight="bold">
+      Query (Q)
+    </text>
+    <text x="100" y="365" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#212529">
+      = X·Wᵠ
+    </text>
+    
+    <rect x="150" y="320" width="80" height="60" fill="#fd7e14" stroke="#fd7e14" stroke-width="2" rx="5"/>
+    <text x="190" y="343" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#212529" font-weight="bold">
+      Key (K)
+    </text>
+    <text x="190" y="365" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#212529">
+      = X·Wᴷ
+    </text>
+    
+    <rect x="240" y="320" width="80" height="60" fill="#28a745" stroke="#28a745" stroke-width="2" rx="5"/>
+    <text x="280" y="343" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#212529" font-weight="bold">
+      Value (V)
+    </text>
+    <text x="280" y="365" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#212529">
+      = X·Wⱽ
+    </text>
+  </g>
+  
+  <!-- Attention scores -->
+  <g id="scores">
+    <text x="500" y="170" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#007bff">
+      Step 2: Compute Attention Scores
+    </text>
+    
+    <!-- QK^T -->
+    <rect x="420" y="200" width="160" height="50" fill="#212529" stroke="#dc3545" stroke-width="2" rx="5"/>
+    <text x="500" y="230" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#212529" font-weight="bold">
+      QKᵀ/√dₖ
+    </text>
+    
+    <!-- Softmax -->
+    <line x1="500" y1="250" x2="500" y2="280" stroke="#dee2e6" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="520" y="270" font-family="Arial, sans-serif" font-size="12" fill="#007bff">softmax</text>
+    
+    <!-- Attention weights -->
+    <rect x="420" y="290" width="160" height="90" fill="#fff5e6" stroke="#fd7e14" stroke-width="3" rx="5"/>
+    <text x="500" y="315" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#fd7e14" font-weight="bold">
+      Attention Weights
+    </text>
+    <text x="500" y="340" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#212529">
+      (n × n matrix)
+    </text>
+    <text x="500" y="365" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#212529" font-style="italic">
+      Each row sums to 1
+    </text>
+  </g>
+  
+  <!-- Weighted sum -->
+  <g id="weighted-sum">
+    <text x="750" y="170" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#007bff">
+      Step 3: Weighted Sum
+    </text>
+    
+    <!-- Multiply with V -->
+    <rect x="670" y="200" width="160" height="50" fill="#212529" stroke="#28a745" stroke-width="2" rx="5"/>
+    <text x="750" y="230" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#212529" font-weight="bold">
+      Attention × V
+    </text>
+    
+    <!-- Output -->
+    <line x1="750" y1="250" x2="750" y2="280" stroke="#dee2e6" stroke-width="2" marker-end="url(#arrow)"/>
+    
+    <rect x="670" y="290" width="160" height="90" fill="#d5f4e6" stroke="#28a745" stroke-width="3" rx="5"/>
+    <text x="750" y="315" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#28a745" font-weight="bold">
+      Output
+    </text>
+    <text x="750" y="340" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#212529">
+      (n × d_model)
+    </text>
+    <text x="750" y="365" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#212529" font-style="italic">
+      Context-aware features
+    </text>
+  </g>
+  
+  <!-- Visual example -->
+  <rect x="50" y="420" width="900" height="300" fill="#212529" stroke="#007bff" stroke-width="3" rx="10"/>
+  <text x="500" y="455" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#007bff">
+    Example: "The animal didn't cross the street because it was too tired"
+  </text>
+  
+  <!-- Attention visualization -->
+  <g id="attention-viz">
+    <!-- Words -->
+    <text x="100" y="500" font-family="Arial, sans-serif" font-size="12" fill="#212529">The</text>
+    <text x="170" y="500" font-family="Arial, sans-serif" font-size="12" fill="#212529">animal</text>
+    <text x="250" y="500" font-family="Arial, sans-serif" font-size="12" fill="#212529">didn't</text>
+    <text x="320" y="500" font-family="Arial, sans-serif" font-size="12" fill="#212529">cross</text>
+    <text x="390" y="500" font-family="Arial, sans-serif" font-size="12" fill="#212529">the</text>
+    <text x="450" y="500" font-family="Arial, sans-serif" font-size="12" fill="#212529">street</text>
+    <text x="520" y="500" font-family="Arial, sans-serif" font-size="12" fill="#212529">because</text>
+    <text x="610" y="500" font-family="Arial, sans-serif" font-size="12" fill="#dc3545" font-weight="bold">it</text>
+    <text x="660" y="500" font-family="Arial, sans-serif" font-size="12" fill="#212529">was</text>
+    <text x="720" y="500" font-family="Arial, sans-serif" font-size="12" fill="#212529">too</text>
+    <text x="780" y="500" font-family="Arial, sans-serif" font-size="12" fill="#212529">tired</text>
+    
+    <!-- Attention lines from "it" -->
+    <line x1="630" y1="510" x2="190" y2="540" stroke="#dc3545" stroke-width="8" opacity="0.6"/>
+    <text x="200" y="560" font-family="Arial, sans-serif" font-size="11" fill="#dc3545" font-weight="bold">0.7</text>
+    
+    <line x1="630" y1="510" x2="470" y2="540" stroke="#fd7e14" stroke-width="4" opacity="0.4"/>
+    <text x="475" y="560" font-family="Arial, sans-serif" font-size="11" fill="#fd7e14">0.2</text>
+    
+    <line x1="630" y1="510" x2="800" y2="540" stroke="#28a745" stroke-width="2" opacity="0.3"/>
+    <text x="805" y="560" font-family="Arial, sans-serif" font-size="11" fill="#28a745">0.1</text>
+    
+    <text x="500" y="600" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#212529">
+      Attention weights show that "it" refers to "animal" (0.7), not "street" (0.2)
+    </text>
+  </g>
+  
+  <!-- Key properties -->
+  <rect x="70" y="630" width="860" height="75" fill="#212529" rx="5"/>
+  <text x="80" y="655" font-family="Arial, sans-serif" font-size="13" fill="#212529">
+    <tspan x="80" dy="0" font-weight="bold" fill="#007bff">Key Properties:</tspan>
+    <tspan x="90" dy="20">• Each token can attend to all other tokens (self-attention)</tspan>
+    <tspan x="90" dy="18">• Attention weights learned during training via QKV projections</tspan>
+    <tspan x="90" dy="18">• O(n²) complexity in sequence length - this is why Flash Attention matters!</tspan>
+  </text>
+</svg>
+

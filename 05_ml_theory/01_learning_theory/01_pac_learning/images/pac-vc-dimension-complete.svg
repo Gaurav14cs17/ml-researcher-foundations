@@ -1,0 +1,172 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2475.0 2025.0">
+  <ns0:text x="550" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    PAC Learning &amp; VC Dimension: Generalization Theory
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="500" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      1. PAC Learning Framework
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="405.0" fill="#f8f9fa" stroke="#007bff" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="80.0" font-size="14" font-weight="bold" fill="#1565c0">
+        Probably Approximately Correct (PAC) Learning
+      </ns0:text>
+      <ns0:rect x="0" y="20" width="940" height="120" fill="#1a237e" stroke="#007bff" stroke-width="1" rx="3"/>
+      <ns0:g transform="translate(20, 45)">
+        <ns0:text x="0" y="105.0" font-size="13" fill="#1a237e">
+          A concept class C is PAC-learnable if there exists an algorithm A such that:
+        </ns0:text>
+        <ns0:g transform="translate(20, 25)">
+          <ns0:text x="0" y="130.0" font-size="13" font-weight="bold" fill="#1565c0">
+            For any distribution D, any ε &gt; 0, any δ &gt; 0:
+          </ns0:text>
+          <ns0:rect x="0" y="10" width="880" height="63" fill="#1a237e" stroke="#007bff" stroke-width="1" rx="3"/>
+          <ns0:text x="440" y="155.0" font-size="14" font-family="Arial, sans-serif" text-anchor="middle" fill="#1a5276">
+            P[error(h) ≤ ε] ≥ 1 - δ
+          </ns0:text>
+          <ns0:g transform="translate(0, 55)">
+            <ns0:text x="0" y="180.0" font-size="12" fill="#1a237e">
+              • 
+              <ns0:tspan font-weight="bold" fill="#1565c0">ε (epsilon):</ns0:tspan>
+               Error bound (accuracy parameter)
+            </ns0:text>
+            <ns0:text x="350" y="205.0" font-size="12" fill="#1a237e">
+              • 
+              <ns0:tspan font-weight="bold" fill="#1565c0">δ (delta):</ns0:tspan>
+               Confidence (failure probability)
+            </ns0:text>
+            <ns0:text x="700" y="230.0" font-size="12" fill="#1a237e">
+              • 
+              <ns0:tspan font-weight="bold" fill="#1565c0">h:</ns0:tspan>
+               Learned hypothesis
+            </ns0:text>
+          </ns0:g>
+        </ns0:g>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 300)">
+    <ns0:text x="500" y="255.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      2. Sample Complexity Bound
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="140" fill="#1a237e" stroke="#28a745" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="280.0" font-size="13" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#145a32">Question:</ns0:tspan>
+         How many training examples m do we need?
+      </ns0:text>
+      <ns0:rect x="0" y="20" width="940" height="80" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+      <ns0:g transform="translate(20, 40)">
+        <ns0:text x="0" y="305.0" font-size="14" font-weight="bold" fill="#145a32">
+          For finite hypothesis space |H|:
+        </ns0:text>
+        <ns0:text x="450" y="330.0" font-size="16" font-family="Arial, sans-serif" text-anchor="middle" fill="#145a32">
+          m ≥ (1/ε) · (ln|H| + ln(1/δ))
+        </ns0:text>
+        <ns0:text x="0" y="355.0" font-size="12" fill="#1a237e">
+          <ns0:tspan x="0" dy="0">Larger hypothesis space → Need more samples • Better</ns0:tspan>
+          <ns0:tspan x="0" dy="1.2em">accuracy (small ε) → Need more samples</ns0:tspan>
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 480)">
+    <ns0:text x="500" y="380.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+      3. VC Dimension: Measuring Model Complexity
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="340" fill="#1a237e" stroke="#6f42c1" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="405.0" font-size="14" font-weight="bold" fill="#6c3483">
+        <ns0:tspan x="0" dy="0">Definition: Largest set of points that can be shattered</ns0:tspan>
+        <ns0:tspan x="0" dy="1.2em">(perfectly classified in all 2^n ways)</ns0:tspan>
+      </ns0:text>
+      <ns0:g transform="translate(0, 30)">
+        <ns0:text x="250" y="430.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+          Example: Linear Classifier in 2D (VC dim = 3)
+        </ns0:text>
+        <ns0:g transform="translate(0, 30)">
+          <ns0:text x="60" y="455.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">
+            1 Point
+          </ns0:text>
+          <ns0:rect x="0" y="0" width="120" height="80" fill="#1a237e" stroke="#e0e0e0" stroke-width="1" rx="8"/>
+          <ns0:circle cx="60" cy="40" r="6" fill="#1565c0"/>
+          <ns0:text x="60" y="480.0" font-size="10" text-anchor="middle" fill="#2e7d32">✓ Can shatter</ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(140, 30)">
+          <ns0:text x="60" y="505.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">
+            2 Points
+          </ns0:text>
+          <ns0:rect x="0" y="0" width="120" height="80" fill="#1a237e" stroke="#e0e0e0" stroke-width="1" rx="8"/>
+          <ns0:circle cx="30" cy="40" r="6" fill="#1565c0"/>
+          <ns0:circle cx="90" cy="40" r="6" fill="#c62828"/>
+          <ns0:line x1="60" y1="10" x2="60" y2="70" stroke="#ffffff" stroke-width="2"/>
+          <ns0:text x="60" y="530.0" font-size="10" text-anchor="middle" fill="#2e7d32">✓ Can shatter</ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(280, 30)">
+          <ns0:text x="60" y="555.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">
+            3 Points
+          </ns0:text>
+          <ns0:rect x="0" y="0" width="120" height="80" fill="#1a237e" stroke="#e0e0e0" stroke-width="1" rx="8"/>
+          <ns0:circle cx="30" cy="50" r="6" fill="#1565c0"/>
+          <ns0:circle cx="90" cy="50" r="6" fill="#1565c0"/>
+          <ns0:circle cx="60" cy="20" r="6" fill="#c62828"/>
+          <ns0:line x1="10" y1="35" x2="110" y2="35" stroke="#ffffff" stroke-width="2"/>
+          <ns0:text x="60" y="580.0" font-size="10" text-anchor="middle" fill="#2e7d32">✓ Can shatter</ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(420, 30)">
+          <ns0:text x="60" y="605.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a237e">
+            4 Points (XOR)
+          </ns0:text>
+          <ns0:rect x="0" y="0" width="120" height="80" fill="#1a237e" stroke="#e0e0e0" stroke-width="1" rx="8"/>
+          <ns0:circle cx="30" cy="25" r="6" fill="#1565c0"/>
+          <ns0:circle cx="90" cy="25" r="6" fill="#c62828"/>
+          <ns0:circle cx="30" cy="55" r="6" fill="#c62828"/>
+          <ns0:circle cx="90" cy="55" r="6" fill="#1565c0"/>
+          <ns0:text x="60" y="630.0" font-size="14" fill="#c62828">No line!</ns0:text>
+          <ns0:text x="60" y="655.0" font-size="10" text-anchor="middle" fill="#c62828">✗ Cannot shatter</ns0:text>
+        </ns0:g>
+        <ns0:text x="250" y="680.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+          → VC Dimension = 3 (can shatter 3 points, but not all configurations of 4)
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 180)">
+        <ns0:text x="0" y="705.0" font-size="13" font-weight="bold" fill="#6a1b9a">
+          Common VC Dimensions:
+        </ns0:text>
+        <ns0:rect x="0" y="10" width="940" height="90" fill="#1a237e" stroke="#6f42c1" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(20, 35)">
+          <ns0:text x="0" y="730.0" font-size="12" fill="#1a237e">
+            • 
+            <ns0:tspan font-weight="bold" fill="#6a1b9a">Linear classifier in ℝ^d:</ns0:tspan>
+            <ns0:tspan font-family="Arial, sans-serif">VC(H) = d + 1</ns0:tspan>
+            <ns0:tspan fill="#1a237e"> (e.g., 2D plane: 3, 3D space: 4)</ns0:tspan>
+          </ns0:text>
+          <ns0:text x="0" y="755.0" font-size="12" fill="#1a237e">
+            • 
+            <ns0:tspan font-weight="bold" fill="#6a1b9a">Polynomial of degree k:</ns0:tspan>
+            <ns0:tspan font-family="Arial, sans-serif">VC(H) = O(d^k)</ns0:tspan>
+            <ns0:tspan fill="#1a237e"> (grows exponentially with degree)</ns0:tspan>
+          </ns0:text>
+          <ns0:text x="0" y="780.0" font-size="12" fill="#1a237e">
+            • 
+            <ns0:tspan font-weight="bold" fill="#6a1b9a">Neural network with W parameters:</ns0:tspan>
+            <ns0:tspan font-family="Arial, sans-serif">VC(H) = O(W log W)</ns0:tspan>
+            <ns0:tspan fill="#1a237e"> (depth helps!)</ns0:tspan>
+          </ns0:text>
+          <ns0:text x="0" y="805.0" font-size="12" fill="#1a237e">
+            • 
+            <ns0:tspan font-weight="bold" fill="#6a1b9a">Infinite hypothesis space (e.g., all functions):</ns0:tspan>
+            <ns0:tspan font-family="Arial, sans-serif">VC(H) = ∞</ns0:tspan>
+            <ns0:tspan fill="#1a237e"> (cannot be PAC learned)</ns0:tspan>
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:rect x="50" y="860" width="2250.0" height="30" fill="#1a237e" stroke="#fd7e14" stroke-width="2" rx="8"/>
+  <ns0:text x="550" y="882" font-size="13" text-anchor="middle" fill="#d35400">
+    <ns0:tspan font-weight="bold">🎯 Generalization Bound (VC):</ns0:tspan>
+    m ≥ O((VC(H)/ε) · (log(1/ε) + log(1/δ))) → Higher VC dim = Need more data to generalize!
+  </ns0:text>
+</ns0:svg>

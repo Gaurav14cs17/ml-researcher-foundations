@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgSO" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Second-Order Optimization</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="340" height="140" rx="10" fill="#2d2d2d20" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="170" y="60.0" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">Newton's Method</ns0:text>
+    <ns0:text x="170" y="85.0" text-anchor="middle" fill="#1a237e" font-size="11" font-family="Arial, sans-serif">x ← x - H⁻¹∇f(x)</ns0:text>
+    <ns0:text x="170" y="110.0" text-anchor="middle" fill="#1565c0" font-size="9">Uses curvature (Hessian H)</ns0:text>
+    <ns0:text x="170" y="135.0" text-anchor="middle" fill="#10b981" font-size="9">✓ Quadratic convergence near optimum</ns0:text>
+    <ns0:text x="170" y="160.0" text-anchor="middle" fill="#c62828" font-size="9">✗ O(n³) per step, needs H positive definite</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 70)">
+    <ns0:rect width="340" height="140" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="170" y="185.0" text-anchor="middle" fill="#2e7d32" font-size="13" font-weight="bold">Quasi-Newton (BFGS, L-BFGS)</ns0:text>
+    <ns0:text x="170" y="210.0" text-anchor="middle" fill="#1a237e" font-size="11" font-family="Arial, sans-serif">x ← x - Bₖ⁻¹∇f(x)</ns0:text>
+    <ns0:text x="170" y="235.0" text-anchor="middle" fill="#2e7d32" font-size="9">Approximate Hessian from gradients</ns0:text>
+    <ns0:text x="170" y="260.0" text-anchor="middle" fill="#34d399" font-size="9">✓ No explicit Hessian needed</ns0:text>
+    <ns0:text x="170" y="285.0" text-anchor="middle" fill="#34d399" font-size="9">✓ L-BFGS: O(n) memory</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 230)">
+    <ns0:rect width="700" height="80" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="310.0" text-anchor="middle" fill="#e65100" font-size="11" font-weight="bold">First vs Second Order</ns0:text>
+    <ns0:text x="180" y="335.0" text-anchor="middle" fill="#e65100" font-size="10">First order (GD): x ← x - α∇f</ns0:text>
+    <ns0:text x="180" y="360.0" text-anchor="middle" fill="#e65100" font-size="8">Simple, O(n), linear convergence</ns0:text>
+    <ns0:text x="520" y="385.0" text-anchor="middle" fill="#1565c0" font-size="10">Second order: x ← x - H⁻¹∇f</ns0:text>
+    <ns0:text x="520" y="410.0" text-anchor="middle" fill="#1565c0" font-size="8">Faster convergence, expensive per step</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 330)">
+    <ns0:rect width="700" height="50" rx="10" fill="#2d2d2d20" stroke="#fd7e14"/>
+    <ns0:text x="350" y="435.0" text-anchor="middle" fill="#e65100" font-size="10">Deep learning: First-order (Adam) | Small ML: L-BFGS | Optimization research: Newton variants</ns0:text>
+  </ns0:g>
+</ns0:svg>

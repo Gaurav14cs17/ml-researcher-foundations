@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgKernels" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Kernel Functions</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="700" height="70" rx="10" fill="#2d2d2d20" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="350" y="60.0" text-anchor="middle" fill="#1565c0" font-size="14" font-weight="bold">Kernel = Similarity in Feature Space</ns0:text>
+    <ns0:text x="350" y="85.0" text-anchor="middle" fill="#1a237e" font-size="12" font-family="Arial, sans-serif">k(x, x') = ⟨φ(x), φ(x')⟩ = φ(x)ᵀφ(x')</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 160)">
+    <ns0:rect width="220" height="110" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="110" y="110.0" text-anchor="middle" fill="#2e7d32" font-size="12" font-weight="bold">Linear</ns0:text>
+    <ns0:text x="110" y="135.0" text-anchor="middle" fill="#2e7d32" font-size="10">k(x,x') = xᵀx'</ns0:text>
+    <ns0:text x="110" y="160.0" text-anchor="middle" fill="#2e7d32" font-size="9">No feature transformation</ns0:text>
+    <ns0:text x="110" y="185.0" text-anchor="middle" fill="#2e7d32" font-size="8">Linear decision boundary</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(290, 160)">
+    <ns0:rect width="220" height="110" rx="10" fill="#2d2d2d20" stroke="#fd7e14"/>
+    <ns0:text x="110" y="210.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Polynomial</ns0:text>
+    <ns0:text x="110" y="235.0" text-anchor="middle" fill="#e65100" font-size="10">k(x,x') = (xᵀx' + c)^d</ns0:text>
+    <ns0:text x="110" y="260.0" text-anchor="middle" fill="#e65100" font-size="9">All monomials up to degree d</ns0:text>
+    <ns0:text x="110" y="285.0" text-anchor="middle" fill="#e65100" font-size="8">Polynomial boundaries</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(530, 160)">
+    <ns0:rect width="220" height="110" rx="10" fill="#8b5cf620" stroke="#8b5cf6"/>
+    <ns0:text x="110" y="310.0" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="bold">RBF (Gaussian)</ns0:text>
+    <ns0:text x="110" y="335.0" text-anchor="middle" fill="#e9d5ff" font-size="10">k(x,x') = exp(-γ||x-x'||²)</ns0:text>
+    <ns0:text x="110" y="360.0" text-anchor="middle" fill="#e9d5ff" font-size="9">Infinite dimensional φ!</ns0:text>
+    <ns0:text x="110" y="385.0" text-anchor="middle" fill="#e9d5ff" font-size="8">Very flexible boundaries</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 290)">
+    <ns0:rect width="700" height="90" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="410.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Mercer's Theorem</ns0:text>
+    <ns0:text x="350" y="435.0" text-anchor="middle" fill="#1a237e" font-size="10">k is a valid kernel ⟺ k is symmetric positive semi-definite</ns0:text>
+    <ns0:text x="350" y="460.0" text-anchor="middle" fill="#a5b4fc" font-size="9">→ Guaranteed to correspond to some feature space φ (even infinite dimensional!)</ns0:text>
+  </ns0:g>
+</ns0:svg>

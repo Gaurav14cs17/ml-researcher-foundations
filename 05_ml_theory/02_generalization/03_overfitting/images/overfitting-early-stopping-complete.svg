@@ -1,0 +1,190 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2475.0 1912.5">
+  <ns0:text x="550" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Overfitting &amp; Early Stopping: Complete Guide
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="500" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      1. Training vs Validation Loss Over Time
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="675.0" fill="#f8f9fa" stroke="#e0e0e0" stroke-width="2" rx="8"/>
+    <ns0:g transform="translate(80, 50)">
+      <ns0:line x1="0" y1="220" x2="850" y2="220" stroke="#e0e0e0" stroke-width="2"/>
+      <ns0:line x1="0" y1="0" x2="0" y2="230" stroke="#e0e0e0" stroke-width="2"/>
+      <ns0:text x="-40" y="110" font-size="13" text-anchor="middle" fill="#1a237e" transform="rotate(-90 -40 110)">
+        Loss
+      </ns0:text>
+      <ns0:text x="425" y="255" font-size="13" text-anchor="middle" fill="#1a237e">
+        Training Epochs →
+      </ns0:text>
+      <ns0:line x1="0" y1="50" x2="850" y2="50" stroke="#444444" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
+      <ns0:line x1="0" y1="100" x2="850" y2="100" stroke="#444444" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
+      <ns0:line x1="0" y1="150" x2="850" y2="150" stroke="#444444" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
+      <ns0:path d="M 0,10 Q 200,40 400,90 Q 600,120 800,140" fill="none" stroke="#28a745" stroke-width="4"/>
+      <ns0:text x="810" y="280.0" font-size="13" font-weight="bold" fill="#2e7d32">
+        Training Loss
+      </ns0:text>
+      <ns0:path d="M 0,30 Q 150,50 300,80 Q 400,95 500,95 Q 600,100 700,120 Q 750,140 800,170" fill="none" stroke="#dc3545" stroke-width="4"/>
+      <ns0:text x="810" y="305.0" font-size="13" font-weight="bold" fill="#c62828">
+        Validation Loss
+      </ns0:text>
+      <ns0:g>
+        <ns0:rect x="0" y="-30" width="200" height="20" fill="#1565c0" opacity="0.2"/>
+        <ns0:text x="100" y="330.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#1565c0">
+          Underfitting
+        </ns0:text>
+        <ns0:rect x="200" y="-30" width="300" height="20" fill="#2e7d32" opacity="0.2"/>
+        <ns0:text x="350" y="355.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+          Good Fit
+        </ns0:text>
+        <ns0:rect x="500" y="-30" width="350" height="20" fill="#c62828" opacity="0.2"/>
+        <ns0:text x="675" y="380.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#c62828">
+          Overfitting
+        </ns0:text>
+      </ns0:g>
+      <ns0:circle cx="500" cy="95" r="8" fill="#e65100" stroke="#e67e22" stroke-width="3"/>
+      <ns0:line x1="500" y1="0" x2="500" y2="220" stroke="#fd7e14" stroke-width="2" stroke-dasharray="5,5"/>
+      <ns0:text x="500" y="405.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#e65100">
+        ★ Early Stop Here
+      </ns0:text>
+      <ns0:g transform="translate(150, 120)">
+        <ns0:text x="0" y="430.0" font-size="11" fill="#1a237e">
+          Both losses decreasing
+        </ns0:text>
+        <ns0:text x="0" y="455.0" font-size="11" fill="#1a237e">
+          Model learning
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(620, 130)">
+        <ns0:text x="0" y="480.0" font-size="11" fill="#c62828" font-weight="bold">
+          Validation loss increases!
+        </ns0:text>
+        <ns0:text x="0" y="505.0" font-size="11" fill="#1a237e">
+          Memorizing training data
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 420)">
+    <ns0:text x="500" y="530.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#c62828">
+      2. Signs of Overfitting
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="180" fill="#1a237e" stroke="#dc3545" stroke-width="2" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:g>
+        <ns0:circle cx="8" cy="-3" r="8" fill="#c62828"/>
+        <ns0:text x="8" y="555.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">1</ns0:text>
+        <ns0:text x="25" y="580.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#922b21">Large train-val gap:</ns0:tspan>
+          Training accuracy 99%, validation accuracy 70% → Model memorizing!
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 30)">
+        <ns0:circle cx="8" cy="-3" r="8" fill="#c62828"/>
+        <ns0:text x="8" y="605.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">2</ns0:text>
+        <ns0:text x="25" y="630.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#922b21">Validation loss increases:</ns0:tspan>
+          While training loss keeps decreasing → Early warning sign
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 60)">
+        <ns0:circle cx="8" cy="-3" r="8" fill="#c62828"/>
+        <ns0:text x="8" y="655.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">3</ns0:text>
+        <ns0:text x="25" y="680.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#922b21">Model too complex:</ns0:tspan>
+          Many parameters relative to data → Can fit noise perfectly
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 90)">
+        <ns0:circle cx="8" cy="-3" r="8" fill="#c62828"/>
+        <ns0:text x="8" y="705.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">4</ns0:text>
+        <ns0:text x="25" y="730.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#922b21">High sensitivity to data:</ns0:tspan>
+          Slight changes in training data → Large changes in predictions
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 120)">
+        <ns0:circle cx="8" cy="-3" r="8" fill="#c62828"/>
+        <ns0:text x="8" y="755.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a237e">5</ns0:text>
+        <ns0:text x="25" y="780.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#922b21">Perfect training performance:</ns0:tspan>
+          100% training accuracy but poor test → Classic overfitting
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 640)">
+    <ns0:text x="500" y="805.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      3. Solutions to Combat Overfitting
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="180" fill="#1a237e" stroke="#28a745" stroke-width="2" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:g>
+        <ns0:rect x="0" y="0" width="310" height="55" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(10, 18)">
+          <ns0:text x="0" y="830.0" font-size="13" font-weight="bold" fill="#145a32">
+            🛑 Early Stopping
+          </ns0:text>
+          <ns0:text x="0" y="855.0" font-size="11" fill="#1a237e">
+            Stop when validation loss stops improving
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:g transform="translate(330, 0)">
+        <ns0:rect x="0" y="0" width="310" height="55" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(10, 18)">
+          <ns0:text x="0" y="880.0" font-size="13" font-weight="bold" fill="#145a32">
+            📊 More Data
+          </ns0:text>
+          <ns0:text x="0" y="905.0" font-size="11" fill="#1a237e">
+            Best solution: Get more training examples
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:g transform="translate(660, 0)">
+        <ns0:rect x="0" y="0" width="280" height="55" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(10, 18)">
+          <ns0:text x="0" y="930.0" font-size="13" font-weight="bold" fill="#145a32">
+            🔨 Regularization
+          </ns0:text>
+          <ns0:text x="0" y="955.0" font-size="11" fill="#1a237e">
+            L1/L2, Dropout, Weight decay
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:g transform="translate(0, 65)">
+        <ns0:rect x="0" y="0" width="310" height="55" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(10, 18)">
+          <ns0:text x="0" y="980.0" font-size="13" font-weight="bold" fill="#145a32">
+            🎨 Data Augmentation
+          </ns0:text>
+          <ns0:text x="0" y="1005.0" font-size="11" fill="#1a237e">
+            Artificially increase dataset size
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:g transform="translate(330, 65)">
+        <ns0:rect x="0" y="0" width="310" height="55" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(10, 18)">
+          <ns0:text x="0" y="1030.0" font-size="13" font-weight="bold" fill="#145a32">
+            🏗️ Simpler Model
+          </ns0:text>
+          <ns0:text x="0" y="1055.0" font-size="11" fill="#1a237e">
+            Reduce capacity: Fewer layers/parameters
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:g transform="translate(660, 65)">
+        <ns0:rect x="0" y="0" width="280" height="55" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(10, 18)">
+          <ns0:text x="0" y="1080.0" font-size="13" font-weight="bold" fill="#145a32">
+            🎲 Ensemble Methods
+          </ns0:text>
+          <ns0:text x="0" y="1105.0" font-size="11" fill="#1a237e">
+            Average multiple models
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>

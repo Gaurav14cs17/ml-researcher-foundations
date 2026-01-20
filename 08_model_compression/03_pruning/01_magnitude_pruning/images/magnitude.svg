@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="350" fill="url(#bgGrad)" rx="12"/>
+  <text x="400" y="35" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Magnitude Pruning</text>
+  
+  <rect x="40" y="70" width="350" height="120" rx="10" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="215" y="100" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Core Idea</text>
+  <text x="215" y="130" text-anchor="middle" fill="#ecf0f1" font-family="monospace" font-size="12">Prune if |w| &lt; τ</text>
+  <text x="215" y="160" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">Small weights ≈ unimportant</text>
+  <text x="215" y="180" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11">Simple yet effective!</text>
+  
+  <rect x="410" y="70" width="350" height="120" rx="10" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="585" y="100" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Mask Creation</text>
+  <text x="585" y="130" text-anchor="middle" fill="#ecf0f1" font-family="monospace" font-size="12">m = 𝟙[|w| &gt; τ]</text>
+  <text x="585" y="160" text-anchor="middle" fill="#ecf0f1" font-family="monospace" font-size="12">W_pruned = W ⊙ m</text>
+  <text x="585" y="180" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">Binary mask applied</text>
+  
+  <rect x="40" y="210" width="720" height="120" rx="10" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="400" y="245" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Pruning Strategies</text>
+  
+  <text x="150" y="280" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Global</text>
+  <text x="150" y="305" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Single τ for all layers</text>
+  
+  <text x="350" y="280" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Layer-wise</text>
+  <text x="350" y="305" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">% per layer</text>
+  
+  <text x="550" y="280" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Gradual</text>
+  <text x="550" y="305" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">Prune during training</text>
+  
+  <text x="720" y="280" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Result</text>
+  <text x="720" y="305" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10">90%+ sparse possible</text>
+</svg>
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgMI" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Mutual Information</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="700" height="80" rx="10" fill="#8b5cf620" stroke="#8b5cf6" stroke-width="2"/>
+    <ns0:text x="350" y="60.0" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="bold">Information Shared Between X and Y</ns0:text>
+    <ns0:text x="350" y="85.0" text-anchor="middle" fill="#1a237e" font-size="11" font-family="Arial, sans-serif">I(X;Y) = D_KL(P(X,Y) || P(X)P(Y)) = H(X) - H(X|Y)</ns0:text>
+    <ns0:text x="350" y="110.0" text-anchor="middle" fill="#e9d5ff" font-size="9">Reduction in uncertainty about X given Y</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(100, 170)">
+    <ns0:text x="200" y="135.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Information Diagram</ns0:text>
+    <ns0:circle cx="150" cy="90" r="70" fill="#007bff40" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="90" y="160.0" text-anchor="middle" fill="#1565c0" font-size="10">H(X|Y)</ns0:text>
+    <ns0:circle cx="250" cy="90" r="70" fill="#10b98140" stroke="#10b981" stroke-width="2"/>
+    <ns0:text x="310" y="185.0" text-anchor="middle" fill="#2e7d32" font-size="10">H(Y|X)</ns0:text>
+    <ns0:text x="200" y="210.0" text-anchor="middle" fill="#e65100" font-size="10" font-weight="bold">I(X;Y)</ns0:text>
+    <ns0:text x="100" y="235.0" fill="#1565c0" font-size="9">H(X)</ns0:text>
+    <ns0:text x="280" y="260.0" fill="#2e7d32" font-size="9">H(Y)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(450, 170)">
+    <ns0:rect width="300" height="120" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="150" y="285.0" text-anchor="middle" fill="#e65100" font-size="11" font-weight="bold">Properties</ns0:text>
+    <ns0:text x="20" y="310.0" fill="#1a237e" font-size="9">• I(X;Y) ≥ 0</ns0:text>
+    <ns0:text x="20" y="335.0" fill="#1a237e" font-size="9">• I(X;Y) = I(Y;X) (symmetric!)</ns0:text>
+    <ns0:text x="20" y="360.0" fill="#1a237e" font-size="9">• I(X;Y) = 0 iff X, Y independent</ns0:text>
+    <ns0:text x="20" y="385.0" fill="#1a237e" font-size="9">• I(X;X) = H(X)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 310)">
+    <ns0:rect width="700" height="70" rx="10" fill="#2d2d2d20" stroke="#fd7e14"/>
+    <ns0:text x="350" y="410.0" text-anchor="middle" fill="#e65100" font-size="11" font-weight="bold">ML Applications</ns0:text>
+    <ns0:text x="350" y="435.0" text-anchor="middle" fill="#e65100" font-size="10">InfoNCE (contrastive learning) | Feature selection | IB theory | Representation learning</ns0:text>
+    <ns0:text x="350" y="460.0" text-anchor="middle" fill="#e65100" font-size="9">Maximizing I(input; representation) while minimizing irrelevant info</ns0:text>
+  </ns0:g>
+</ns0:svg>

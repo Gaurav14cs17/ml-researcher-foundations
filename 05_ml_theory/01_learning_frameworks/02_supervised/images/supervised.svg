@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgSup" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Supervised Learning</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:text x="350" y="60.0" text-anchor="middle" fill="#e65100" font-size="14" font-weight="bold">Learn from Labeled Data</ns0:text>
+    <ns0:rect x="0" y="30" width="130" height="80" rx="10" fill="#1565c0"/>
+    <ns0:text x="65" y="85.0" text-anchor="middle" fill="#1a237e" font-size="11" font-weight="bold">Training Data</ns0:text>
+    <ns0:text x="65" y="110.0" text-anchor="middle" fill="#1565c0" font-size="9">(x₁,y₁)...(xₙ,yₙ)</ns0:text>
+    <ns0:text x="65" y="135.0" text-anchor="middle" fill="#1565c0" font-size="8">Input-Label pairs</ns0:text>
+    <ns0:rect x="180" y="30" width="130" height="80" rx="10" fill="#10b981"/>
+    <ns0:text x="245" y="160.0" text-anchor="middle" fill="#1a237e" font-size="11" font-weight="bold">Model f_θ</ns0:text>
+    <ns0:text x="245" y="185.0" text-anchor="middle" fill="#d1fae5" font-size="9">Learn: ŷ = f_θ(x)</ns0:text>
+    <ns0:text x="245" y="210.0" text-anchor="middle" fill="#d1fae5" font-size="8">Minimize loss</ns0:text>
+    <ns0:rect x="360" y="30" width="130" height="80" rx="10" fill="#e65100"/>
+    <ns0:text x="425" y="235.0" text-anchor="middle" fill="#1a237e" font-size="11" font-weight="bold">Loss L</ns0:text>
+    <ns0:text x="425" y="260.0" text-anchor="middle" fill="#fef3c7" font-size="9">L(ŷ, y)</ns0:text>
+    <ns0:text x="425" y="285.0" text-anchor="middle" fill="#fef3c7" font-size="8">MSE, CrossEntropy</ns0:text>
+    <ns0:rect x="540" y="30" width="130" height="80" rx="10" fill="#8b5cf6"/>
+    <ns0:text x="605" y="310.0" text-anchor="middle" fill="#1a237e" font-size="11" font-weight="bold">Predict</ns0:text>
+    <ns0:text x="605" y="335.0" text-anchor="middle" fill="#e9d5ff" font-size="9">New x → ŷ</ns0:text>
+    <ns0:text x="605" y="360.0" text-anchor="middle" fill="#e9d5ff" font-size="8">Generalize!</ns0:text>
+    <ns0:line x1="130" y1="70" x2="180" y2="70" stroke="#6366f1" stroke-width="2"/>
+    <ns0:line x1="310" y1="70" x2="360" y2="70" stroke="#6366f1" stroke-width="2"/>
+    <ns0:line x1="490" y1="70" x2="540" y2="70" stroke="#6366f1" stroke-width="2"/>
+  </ns0:g>
+  <ns0:g transform="translate(50, 190)">
+    <ns0:rect width="340" height="100" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="170" y="385.0" text-anchor="middle" fill="#2e7d32" font-size="13" font-weight="bold">Classification</ns0:text>
+    <ns0:text x="170" y="410.0" text-anchor="middle" fill="#2e7d32" font-size="10">y ∈ {0, 1, ..., K}</ns0:text>
+    <ns0:text x="170" y="435.0" text-anchor="middle" fill="#2e7d32" font-size="9">Image → cat/dog</ns0:text>
+    <ns0:text x="170" y="460.0" text-anchor="middle" fill="#2e7d32" font-size="9">Email → spam/not spam</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 190)">
+    <ns0:rect width="340" height="100" rx="10" fill="#2d2d2d20" stroke="#007bff"/>
+    <ns0:text x="170" y="485.0" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">Regression</ns0:text>
+    <ns0:text x="170" y="510.0" text-anchor="middle" fill="#1565c0" font-size="10">y ∈ ℝ</ns0:text>
+    <ns0:text x="170" y="535.0" text-anchor="middle" fill="#1565c0" font-size="9">Features → price</ns0:text>
+    <ns0:text x="170" y="560.0" text-anchor="middle" fill="#1565c0" font-size="9">Time series → forecast</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 310)">
+    <ns0:rect width="700" height="70" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="585.0" text-anchor="middle" fill="#e65100" font-size="11" font-weight="bold">Key Concepts</ns0:text>
+    <ns0:text x="350" y="610.0" text-anchor="middle" fill="#1a237e" font-size="10">Generalization | Overfitting | Train/Val/Test split | Cross-validation | Regularization</ns0:text>
+  </ns0:g>
+</ns0:svg>

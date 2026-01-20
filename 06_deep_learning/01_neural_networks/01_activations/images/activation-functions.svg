@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <!-- Modern dark theme background -->
+  <defs>
+    <linearGradient id="darkBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="1600" height="900" fill="url(#darkBg)"/>
+  
+  <!-- Title -->
+  <text x="800" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="#f1f5f9">
+    Activation Functions
+  </text>
+  <text x="800" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#94a3b8">
+    Non-linear transformations that enable deep learning
+  </text>
+  
+  <!-- ReLU -->
+  <g transform="translate(50, 140)">
+    <rect width="340" height="260" rx="16" fill="#1e293b" stroke="#10b981" stroke-width="4" filter="url(#glow)"/>
+    <text x="170" y="45" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="28" font-weight="bold">ReLU</text>
+    
+    <!-- Graph -->
+    <rect x="40" y="70" width="260" height="130" fill="#0f172a" rx="10"/>
+    <line x1="60" y1="135" x2="280" y2="135" stroke="#334155" stroke-width="2"/>
+    <line x1="170" y1="80" x2="170" y2="190" stroke="#334155" stroke-width="2"/>
+    <path d="M 60 135 L 170 135 L 280 80" stroke="#10b981" stroke-width="5" fill="none"/>
+    
+    <text x="170" y="235" text-anchor="middle" fill="#e2e8f0" font-family="Consolas, monospace" font-size="22">max(0, x)</text>
+  </g>
+  
+  <!-- GELU -->
+  <g transform="translate(430, 140)">
+    <rect width="340" height="260" rx="16" fill="#1e293b" stroke="#f59e0b" stroke-width="4" filter="url(#glow)"/>
+    <text x="170" y="45" text-anchor="middle" fill="#fbbf24" font-family="Arial, sans-serif" font-size="28" font-weight="bold">GELU 🔥</text>
+    
+    <!-- Graph -->
+    <rect x="40" y="70" width="260" height="130" fill="#0f172a" rx="10"/>
+    <line x1="60" y1="135" x2="280" y2="135" stroke="#334155" stroke-width="2"/>
+    <line x1="170" y1="80" x2="170" y2="190" stroke="#334155" stroke-width="2"/>
+    <path d="M 60 145 Q 95 142 125 135 Q 170 120 215 90 Q 245 75 280 70" stroke="#fbbf24" stroke-width="5" fill="none"/>
+    
+    <text x="170" y="235" text-anchor="middle" fill="#e2e8f0" font-family="Consolas, monospace" font-size="22">x·Φ(x)</text>
+  </g>
+  
+  <!-- Sigmoid -->
+  <g transform="translate(810, 140)">
+    <rect width="340" height="260" rx="16" fill="#1e293b" stroke="#3b82f6" stroke-width="4" filter="url(#glow)"/>
+    <text x="170" y="45" text-anchor="middle" fill="#60a5fa" font-family="Arial, sans-serif" font-size="28" font-weight="bold">Sigmoid</text>
+    
+    <!-- Graph -->
+    <rect x="40" y="70" width="260" height="130" fill="#0f172a" rx="10"/>
+    <line x1="60" y1="135" x2="280" y2="135" stroke="#334155" stroke-width="2"/>
+    <line x1="170" y1="80" x2="170" y2="190" stroke="#334155" stroke-width="2"/>
+    <path d="M 60 175 Q 95 165 125 145 Q 170 115 215 95 Q 245 83 280 80" stroke="#60a5fa" stroke-width="5" fill="none"/>
+    
+    <text x="170" y="235" text-anchor="middle" fill="#e2e8f0" font-family="Consolas, monospace" font-size="22">1/(1+e⁻ˣ)</text>
+  </g>
+  
+  <!-- Softmax -->
+  <g transform="translate(1190, 140)">
+    <rect width="340" height="260" rx="16" fill="#1e293b" stroke="#ef4444" stroke-width="4" filter="url(#glow)"/>
+    <text x="170" y="45" text-anchor="middle" fill="#f87171" font-family="Arial, sans-serif" font-size="28" font-weight="bold">Softmax</text>
+    
+    <!-- Bars -->
+    <rect x="70" y="75" width="60" height="110" fill="#f87171" rx="6"/>
+    <rect x="140" y="105" width="60" height="80" fill="#f87171" opacity="0.75" rx="6"/>
+    <rect x="210" y="130" width="60" height="55" fill="#f87171" opacity="0.5" rx="6"/>
+    
+    <text x="100" y="65" text-anchor="middle" fill="#fca5a5" font-family="Arial, sans-serif" font-size="18" font-weight="bold">0.6</text>
+    <text x="170" y="95" text-anchor="middle" fill="#fca5a5" font-family="Arial, sans-serif" font-size="18" font-weight="bold">0.3</text>
+    <text x="240" y="120" text-anchor="middle" fill="#fca5a5" font-family="Arial, sans-serif" font-size="18" font-weight="bold">0.1</text>
+    
+    <text x="170" y="235" text-anchor="middle" fill="#e2e8f0" font-family="Consolas, monospace" font-size="22">eˣⁱ/Σeˣʲ</text>
+  </g>
+  
+  <!-- Comparison table -->
+  <g transform="translate(50, 440)">
+    <rect width="1500" height="410" rx="16" fill="#1e293b" stroke="#334155" stroke-width="3" filter="url(#glow)"/>
+    <text x="750" y="50" text-anchor="middle" fill="#fbbf24" font-family="Arial, sans-serif" font-size="32" font-weight="bold">
+      🎯 When to Use Each Activation
+    </text>
+    
+    <line x1="40" y1="75" x2="1460" y2="75" stroke="#334155" stroke-width="2"/>
+    
+    <!-- Left Column -->
+    <g transform="translate(60, 110)">
+      <!-- ReLU -->
+      <text x="0" y="0" fill="#10b981" font-family="Arial, sans-serif" font-size="22" font-weight="bold">ReLU:</text>
+      <text x="120" y="0" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="18">Hidden layers (default), CNNs, fast computation</text>
+      
+      <!-- GELU -->
+      <text x="0" y="60" fill="#fbbf24" font-family="Arial, sans-serif" font-size="22" font-weight="bold">GELU:</text>
+      <text x="120" y="60" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="18">🔥 Transformers (GPT, BERT, ViT), smooth gradients</text>
+      
+      <!-- Sigmoid -->
+      <text x="0" y="120" fill="#60a5fa" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Sigmoid:</text>
+      <text x="120" y="120" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="18">Binary output, gates (LSTM), outputs in [0,1]</text>
+      
+      <!-- Softmax -->
+      <text x="0" y="180" fill="#f87171" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Softmax:</text>
+      <text x="120" y="180" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="18">Multi-class classification, probabilities sum to 1</text>
+    </g>
+    
+    <!-- Right Column -->
+    <g transform="translate(780, 110)">
+      <!-- SiLU/Swish -->
+      <text x="0" y="0" fill="#a78bfa" font-family="Arial, sans-serif" font-size="22" font-weight="bold">SiLU/Swish:</text>
+      <text x="160" y="0" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="18">Modern CNNs (EfficientNet), x·σ(x)</text>
+      
+      <!-- Tanh -->
+      <text x="0" y="60" fill="#22d3ee" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Tanh:</text>
+      <text x="160" y="60" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="18">RNNs, outputs in [-1,1], zero-centered</text>
+      
+      <!-- Leaky ReLU -->
+      <text x="0" y="120" fill="#fb923c" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Leaky ReLU:</text>
+      <text x="160" y="120" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="18">Fixes dying ReLU, small gradient for x&lt;0</text>
+      
+      <!-- ELU -->
+      <text x="0" y="180" fill="#f472b6" font-family="Arial, sans-serif" font-size="22" font-weight="bold">ELU:</text>
+      <text x="160" y="180" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="18">Smooth, negative saturation, zero mean</text>
+    </g>
+    
+    <!-- Bottom tip -->
+    <rect x="40" y="325" width="1420" height="60" fill="#172554" rx="10"/>
+    <text x="750" y="365" text-anchor="middle" fill="#60a5fa" font-family="Arial, sans-serif" font-size="19" font-weight="bold">
+      💡 Tip: Start with ReLU for most tasks, use GELU for Transformers, Softmax for classification output
+    </text>
+  </g>
+</svg>

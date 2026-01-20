@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 787.5">
+  <ns0:defs>
+    <ns0:linearGradient id="shareBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="787.5" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="30" text-anchor="middle" fill="#ec4899" font-family="Arial, sans-serif" font-size="20" font-weight="bold">🔗 Weight Sharing</ns0:text>
+  <ns0:text x="400" y="55" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12">Multiple weights share the same value</ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="140" y="80.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Before: All Unique</ns0:text>
+    <ns0:g transform="translate(0, 20)">
+      <ns0:rect x="0" y="0" width="40" height="40" rx="4" fill="#1565c0"/>
+      <ns0:text x="20" y="105.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">0.23</ns0:text>
+      <ns0:rect x="50" y="0" width="40" height="40" rx="4" fill="#2e7d32"/>
+      <ns0:text x="70" y="130.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">-0.45</ns0:text>
+      <ns0:rect x="100" y="0" width="40" height="40" rx="4" fill="#e65100"/>
+      <ns0:text x="120" y="155.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">0.67</ns0:text>
+      <ns0:rect x="150" y="0" width="40" height="40" rx="4" fill="#6a1b9a"/>
+      <ns0:text x="170" y="180.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">-0.12</ns0:text>
+      <ns0:rect x="200" y="0" width="40" height="40" rx="4" fill="#ec4899"/>
+      <ns0:text x="220" y="205.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">0.89</ns0:text>
+      <ns0:rect x="250" y="0" width="40" height="40" rx="4" fill="#00838f"/>
+      <ns0:text x="270" y="230.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">-0.34</ns0:text>
+    </ns0:g>
+    <ns0:text x="140" y="255.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">6 unique values = 6 × 32 bits</ns0:text>
+  </ns0:g>
+  <ns0:text x="385" y="280.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="24">→</ns0:text>
+  <ns0:g transform="translate(430, 80)">
+    <ns0:text x="170" y="305.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12" font-weight="bold">After: Clustered (k=3)</ns0:text>
+    <ns0:g transform="translate(0, 20)">
+      <ns0:rect x="0" y="0" width="40" height="40" rx="4" fill="#1565c0"/>
+      <ns0:text x="20" y="330.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">0.25</ns0:text>
+      <ns0:rect x="50" y="0" width="40" height="40" rx="4" fill="#c62828"/>
+      <ns0:text x="70" y="355.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">-0.40</ns0:text>
+      <ns0:rect x="100" y="0" width="40" height="40" rx="4" fill="#2e7d32"/>
+      <ns0:text x="120" y="380.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">0.75</ns0:text>
+      <ns0:rect x="150" y="0" width="40" height="40" rx="4" fill="#1565c0"/>
+      <ns0:text x="170" y="405.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">0.25</ns0:text>
+      <ns0:rect x="200" y="0" width="40" height="40" rx="4" fill="#2e7d32"/>
+      <ns0:text x="220" y="430.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">0.75</ns0:text>
+      <ns0:rect x="250" y="0" width="40" height="40" rx="4" fill="#c62828"/>
+      <ns0:text x="270" y="455.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">-0.40</ns0:text>
+    </ns0:g>
+    <ns0:text x="170" y="480.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">3 centroids + 6 × 2-bit indices!</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(150, 200)">
+    <ns0:rect width="500" height="130" rx="12" fill="#1a237e" stroke="#ec4899" stroke-width="2"/>
+    <ns0:text x="250" y="505.0" text-anchor="middle" fill="#f472b6" font-family="Arial, sans-serif" font-size="14" font-weight="bold">📖 Codebook Compression</ns0:text>
+    <ns0:g transform="translate(30, 45)">
+      <ns0:text x="0" y="530.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Codebook:</ns0:text>
+      <ns0:rect x="70" y="-15" width="30" height="20" rx="2" fill="#1565c0"/>
+      <ns0:text x="85" y="555.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">0</ns0:text>
+      <ns0:text x="110" y="580.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">→ 0.25</ns0:text>
+      <ns0:rect x="150" y="-15" width="30" height="20" rx="2" fill="#c62828"/>
+      <ns0:text x="165" y="605.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">1</ns0:text>
+      <ns0:text x="190" y="630.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">→ -0.40</ns0:text>
+      <ns0:rect x="230" y="-15" width="30" height="20" rx="2" fill="#2e7d32"/>
+      <ns0:text x="245" y="655.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">2</ns0:text>
+      <ns0:text x="270" y="680.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">→ 0.75</ns0:text>
+    </ns0:g>
+    <ns0:g transform="translate(30, 80)">
+      <ns0:text x="0" y="705.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Indices:</ns0:text>
+      <ns0:text x="70" y="730.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">[0, 1, 2, 0, 2, 1]</ns0:text>
+      <ns0:text x="200" y="755.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">← Only 2 bits each!</ns0:text>
+    </ns0:g>
+    <ns0:g transform="translate(30, 110)">
+      <ns0:text x="0" y="780.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Savings:</ns0:text>
+      <ns0:text x="70" y="805.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">192 bits → 3×32 + 6×2 = 108 bits (1.8× smaller)</ns0:text>
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>

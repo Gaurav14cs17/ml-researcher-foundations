@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="paramBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#10b981" font-size="22" font-weight="bold">Parameter Reduction</ns0:text>
+  <ns0:rect x="50" y="70" width="220" height="140" rx="10" fill="#7f1d1d" stroke="#dc3545" stroke-width="2"/>
+  <ns0:text x="160" y="100" text-anchor="middle" fill="#c62828" font-size="14" font-weight="bold">Pruning</ns0:text>
+  <ns0:text x="160" y="125" text-anchor="middle" fill="#c62828" font-size="10">Remove unimportant weights</ns0:text>
+  <ns0:text x="160" y="150" text-anchor="middle" fill="#c62828" font-size="10">• Magnitude pruning</ns0:text>
+  <ns0:text x="160" y="170" text-anchor="middle" fill="#c62828" font-size="10">• Structured vs unstructured</ns0:text>
+  <ns0:text x="160" y="190" text-anchor="middle" fill="#c62828" font-size="10">Up to 90% sparsity possible</ns0:text>
+  <ns0:rect x="290" y="70" width="220" height="140" rx="10" fill="#1e3a5f" stroke="#007bff" stroke-width="2"/>
+  <ns0:text x="400" y="215.0" text-anchor="middle" fill="#1565c0" font-size="14" font-weight="bold">Weight Sharing</ns0:text>
+  <ns0:text x="400" y="240.0" text-anchor="middle" fill="#1565c0" font-size="10">Share weights across layers</ns0:text>
+  <ns0:text x="400" y="265.0" text-anchor="middle" fill="#1565c0" font-size="10">• ALBERT-style sharing</ns0:text>
+  <ns0:text x="400" y="290.0" text-anchor="middle" fill="#1565c0" font-size="10">• Cross-layer parameter tying</ns0:text>
+  <ns0:text x="400" y="315.0" text-anchor="middle" fill="#1565c0" font-size="10">Reduces unique params</ns0:text>
+  <ns0:rect x="530" y="70" width="220" height="140" rx="10" fill="#134e4a" stroke="#10b981" stroke-width="2"/>
+  <ns0:text x="640" y="340.0" text-anchor="middle" fill="#10b981" font-size="14" font-weight="bold">Weight Clustering</ns0:text>
+  <ns0:text x="640" y="365.0" text-anchor="middle" fill="#2e7d32" font-size="10">Group weights into clusters</ns0:text>
+  <ns0:text x="640" y="390.0" text-anchor="middle" fill="#2e7d32" font-size="10">• K-means clustering</ns0:text>
+  <ns0:text x="640" y="415.0" text-anchor="middle" fill="#2e7d32" font-size="10">• Store cluster indices</ns0:text>
+  <ns0:text x="640" y="440.0" text-anchor="middle" fill="#2e7d32" font-size="10">Combines with quantization</ns0:text>
+  <ns0:rect x="100" y="240" width="600" height="130" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+  <ns0:text x="400" y="465.0" text-anchor="middle" fill="#e65100" font-size="14" font-weight="bold">Comparison</ns0:text>
+  <ns0:text x="200" y="490.0" text-anchor="middle" fill="#fef3c7" font-size="11">Pruning: Best for sparsity</ns0:text>
+  <ns0:text x="400" y="515.0" text-anchor="middle" fill="#fef3c7" font-size="11">Sharing: Best for memory</ns0:text>
+  <ns0:text x="600" y="540.0" text-anchor="middle" fill="#fef3c7" font-size="11">Clustering: Best combined</ns0:text>
+  <ns0:text x="400" y="565.0" text-anchor="middle" fill="#e65100" font-size="11">Often used together: Prune → Cluster → Quantize</ns0:text>
+</ns0:svg>

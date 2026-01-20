@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgApps" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">RL Applications</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="220" height="100" rx="10" fill="#2d2d2d20" stroke="#007bff"/>
+    <ns0:text x="110" y="60.0" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">🎮 Games</ns0:text>
+    <ns0:text x="110" y="85.0" text-anchor="middle" fill="#1565c0" font-size="9">Atari, Go, Chess</ns0:text>
+    <ns0:text x="110" y="110.0" text-anchor="middle" fill="#1565c0" font-size="9">StarCraft, Dota 2</ns0:text>
+    <ns0:text x="110" y="135.0" text-anchor="middle" fill="#1565c0" font-size="8">Superhuman performance</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(290, 70)">
+    <ns0:rect width="220" height="100" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="110" y="160.0" text-anchor="middle" fill="#2e7d32" font-size="13" font-weight="bold">🤖 Robotics</ns0:text>
+    <ns0:text x="110" y="185.0" text-anchor="middle" fill="#2e7d32" font-size="9">Manipulation, locomotion</ns0:text>
+    <ns0:text x="110" y="210.0" text-anchor="middle" fill="#2e7d32" font-size="9">Autonomous vehicles</ns0:text>
+    <ns0:text x="110" y="235.0" text-anchor="middle" fill="#34d399" font-size="8">Sim-to-real transfer</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(530, 70)">
+    <ns0:rect width="220" height="100" rx="10" fill="#2d2d2d20" stroke="#fd7e14"/>
+    <ns0:text x="110" y="260.0" text-anchor="middle" fill="#e65100" font-size="13" font-weight="bold">🗣️ LLMs (RLHF)</ns0:text>
+    <ns0:text x="110" y="285.0" text-anchor="middle" fill="#e65100" font-size="9">ChatGPT, Claude</ns0:text>
+    <ns0:text x="110" y="310.0" text-anchor="middle" fill="#e65100" font-size="9">Align with human preferences</ns0:text>
+    <ns0:text x="110" y="335.0" text-anchor="middle" fill="#e65100" font-size="8">Revolutionary impact</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 190)">
+    <ns0:rect width="220" height="100" rx="10" fill="#2d2d2d20" stroke="#dc3545"/>
+    <ns0:text x="110" y="360.0" text-anchor="middle" fill="#c62828" font-size="13" font-weight="bold">💰 Finance</ns0:text>
+    <ns0:text x="110" y="385.0" text-anchor="middle" fill="#c62828" font-size="9">Portfolio optimization</ns0:text>
+    <ns0:text x="110" y="410.0" text-anchor="middle" fill="#c62828" font-size="9">Trading strategies</ns0:text>
+    <ns0:text x="110" y="435.0" text-anchor="middle" fill="#c62828" font-size="8">Risk-aware decisions</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(290, 190)">
+    <ns0:rect width="220" height="100" rx="10" fill="#8b5cf620" stroke="#8b5cf6"/>
+    <ns0:text x="110" y="460.0" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="bold">🏥 Healthcare</ns0:text>
+    <ns0:text x="110" y="485.0" text-anchor="middle" fill="#e9d5ff" font-size="9">Treatment optimization</ns0:text>
+    <ns0:text x="110" y="510.0" text-anchor="middle" fill="#e9d5ff" font-size="9">Drug discovery</ns0:text>
+    <ns0:text x="110" y="535.0" text-anchor="middle" fill="#8b5cf6" font-size="8">Personalized medicine</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(530, 190)">
+    <ns0:rect width="220" height="100" rx="10" fill="#17a2b820" stroke="#17a2b8"/>
+    <ns0:text x="110" y="560.0" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="bold">🔬 Science</ns0:text>
+    <ns0:text x="110" y="585.0" text-anchor="middle" fill="#a5f3fc" font-size="9">Chip design (AlphaChip)</ns0:text>
+    <ns0:text x="110" y="610.0" text-anchor="middle" fill="#a5f3fc" font-size="9">Protein folding, fusion</ns0:text>
+    <ns0:text x="110" y="635.0" text-anchor="middle" fill="#00838f" font-size="8">Scientific discovery</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 310)">
+    <ns0:rect width="700" height="70" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="660.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">RL succeeds when: sequential decisions + clear rewards + lots of trials available</ns0:text>
+    <ns0:text x="350" y="685.0" text-anchor="middle" fill="#a5b4fc" font-size="10">Emerging: RL + Foundation Models (LLMs, Vision) for real-world agents</ns0:text>
+  </ns0:g>
+</ns0:svg>

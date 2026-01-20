@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1575.0 900.0">
+  <ns0:rect width="1575.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="350" y="35" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Eigenvalues &amp; Eigenvectors</ns0:text>
+  <ns0:text x="350" y="60" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="14">Av = λv (A scales v by λ, doesn't change direction)</ns0:text>
+  <ns0:g transform="translate(150, 220)">
+    <ns0:line x1="-100" y1="0" x2="100" y2="0" stroke="#e0e0e0" stroke-width="1"/>
+    <ns0:line x1="0" y1="-100" x2="0" y2="100" stroke="#e0e0e0" stroke-width="1"/>
+    <ns0:line x1="0" y1="0" x2="60" y2="-40" stroke="#007bff" stroke-width="4" marker-end="url(#arrow)"/>
+    <ns0:text x="70" y="85.0" fill="#1565c0" font-family="Arial, sans-serif" font-size="14" font-weight="bold">v</ns0:text>
+    <ns0:text x="0" y="130" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12">Original vector v</ns0:text>
+  </ns0:g>
+  <ns0:text x="300" y="220" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="24" font-weight="bold">A→</ns0:text>
+  <ns0:text x="300" y="245" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Transform</ns0:text>
+  <ns0:g transform="translate(450, 220)">
+    <ns0:line x1="-100" y1="0" x2="100" y2="0" stroke="#e0e0e0" stroke-width="1"/>
+    <ns0:line x1="0" y1="-100" x2="0" y2="100" stroke="#e0e0e0" stroke-width="1"/>
+    <ns0:line x1="0" y1="0" x2="90" y2="-60" stroke="#28a745" stroke-width="4"/>
+    <ns0:text x="100" y="270.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="14" font-weight="bold">λv</ns0:text>
+    <ns0:line x1="0" y1="0" x2="60" y2="-40" stroke="#007bff" stroke-width="2" stroke-dasharray="5,5" opacity="0.5"/>
+    <ns0:text x="0" y="295.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12">Av = λv (scaled by λ)</ns0:text>
+  </ns0:g>
+  <ns0:rect x="100" y="310" width="500" height="70" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+  <ns0:text x="350" y="335" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Key Insight</ns0:text>
+  <ns0:text x="350" y="358" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12">Eigenvectors point in directions that A only scales (never rotates)</ns0:text>
+  <ns0:text x="350" y="383.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">λ &gt; 1: stretch | λ = 1: unchanged | 0 &lt; λ &lt; 1: shrink | λ &lt; 0: flip</ns0:text>
+  <ns0:rect x="550" y="70" width="130" height="80" rx="8" fill="#1a237e" stroke="#6f42c1" stroke-width="2"/>
+  <ns0:text x="615" y="408.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Find eigenvalues</ns0:text>
+  <ns0:text x="615" y="433.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12">det(A - λI) = 0</ns0:text>
+  <ns0:text x="615" y="458.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Characteristic eq.</ns0:text>
+</ns0:svg>

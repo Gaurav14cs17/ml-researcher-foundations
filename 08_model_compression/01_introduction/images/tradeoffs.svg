@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="500" fill="url(#bgGrad)" rx="12"/>
+  
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Compression-Accuracy Trade-offs</text>
+  
+  <!-- Axes -->
+  <line x1="100" y1="400" x2="800" y2="400" stroke="#95a5a6" stroke-width="2"/>
+  <line x1="100" y1="400" x2="100" y2="80" stroke="#95a5a6" stroke-width="2"/>
+  
+  <text x="450" y="450" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="14">Compression Ratio</text>
+  <text x="50" y="240" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="14" transform="rotate(-90 50 240)">Accuracy (%)</text>
+  
+  <!-- Axis labels -->
+  <text x="100" y="420" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">1×</text>
+  <text x="275" y="420" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">4×</text>
+  <text x="450" y="420" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">8×</text>
+  <text x="625" y="420" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">16×</text>
+  <text x="800" y="420" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">32×</text>
+  
+  <text x="80" y="400" text-anchor="end" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">0</text>
+  <text x="80" y="320" text-anchor="end" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">25</text>
+  <text x="80" y="240" text-anchor="end" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">50</text>
+  <text x="80" y="160" text-anchor="end" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">75</text>
+  <text x="80" y="90" text-anchor="end" fill="#95a5a6" font-family="Arial, sans-serif" font-size="11">100</text>
+  
+  <!-- Pareto frontier curve -->
+  <path d="M120 95 Q250 100 350 110 Q450 130 550 170 Q650 230 750 350" 
+        stroke="#e74c3c" stroke-width="3" fill="none" stroke-dasharray="5,5"/>
+  <text x="760" y="340" fill="#e74c3c" font-family="Arial, sans-serif" font-size="11">Pareto Frontier</text>
+  
+  <!-- Technique points -->
+  <!-- Original -->
+  <circle cx="120" cy="95" r="8" fill="#27ae60"/>
+  <text x="130" y="85" fill="#27ae60" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Original</text>
+  
+  <!-- INT8 -->
+  <circle cx="275" cy="98" r="8" fill="#3498db"/>
+  <text x="285" y="88" fill="#3498db" font-family="Arial, sans-serif" font-size="11" font-weight="bold">INT8 (4×)</text>
+  
+  <!-- INT4 -->
+  <circle cx="450" cy="115" r="8" fill="#9b59b6"/>
+  <text x="460" y="105" fill="#9b59b6" font-family="Arial, sans-serif" font-size="11" font-weight="bold">INT4 (8×)</text>
+  
+  <!-- Pruning 50% -->
+  <circle cx="230" cy="100" r="8" fill="#e67e22"/>
+  <text x="190" y="130" fill="#e67e22" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Prune 50%</text>
+  
+  <!-- Distillation -->
+  <circle cx="350" cy="108" r="8" fill="#1abc9c"/>
+  <text x="310" y="140" fill="#1abc9c" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Distillation</text>
+  
+  <!-- Combined -->
+  <circle cx="550" cy="160" r="8" fill="#e74c3c"/>
+  <text x="560" y="150" fill="#e74c3c" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Prune+Quant</text>
+  
+  <!-- Aggressive -->
+  <circle cx="700" cy="280" r="8" fill="#7f8c8d"/>
+  <text x="640" y="300" fill="#7f8c8d" font-family="Arial, sans-serif" font-size="11">Aggressive (32×)</text>
+  
+  <!-- Legend -->
+  <rect x="30" y="450" width="840" height="40" rx="5" fill="#2c3e50"/>
+  <text x="450" y="475" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="12">
+    Best results: Combine techniques (Prune → Fine-tune → Quantize) to stay near Pareto frontier
+  </text>
+</svg>

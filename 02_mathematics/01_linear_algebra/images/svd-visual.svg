@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1687.5 900.0">
+  <ns0:rect width="1687.5" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="375" y="35" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Singular Value Decomposition (SVD)</ns0:text>
+  <ns0:text x="375" y="60" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="14">A = UΣVᵀ</ns0:text>
+  <ns0:rect x="30" y="120" width="100" height="150" rx="5" fill="#1565c0" stroke="#007bff" stroke-width="2"/>
+  <ns0:text x="80" y="200" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="20" font-weight="bold">A</ns0:text>
+  <ns0:text x="80" y="290" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="11">m × n</ns0:text>
+  <ns0:text x="80" y="315.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Original</ns0:text>
+  <ns0:text x="155" y="340.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="24">=</ns0:text>
+  <ns0:rect x="180" y="100" width="100" height="170" rx="5" fill="#2e7d32" stroke="#28a745" stroke-width="2"/>
+  <ns0:text x="230" y="365.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="20" font-weight="bold">U</ns0:text>
+  <ns0:text x="230" y="390.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11">m × m</ns0:text>
+  <ns0:text x="230" y="415.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Left singular</ns0:text>
+  <ns0:text x="230" y="440.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">vectors</ns0:text>
+  <ns0:rect x="305" y="120" width="100" height="150" rx="5" fill="#e65100" stroke="#fd7e14" stroke-width="2"/>
+  <ns0:text x="355" y="465.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Σ</ns0:text>
+  <ns0:circle cx="325" cy="145" r="4" fill="#1a237e"/>
+  <ns0:circle cx="345" cy="165" r="4" fill="#1a237e"/>
+  <ns0:circle cx="365" cy="185" r="4" fill="#1a237e"/>
+  <ns0:circle cx="385" cy="205" r="3" fill="#1a237e"/>
+  <ns0:text x="355" y="490.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="11">m × n</ns0:text>
+  <ns0:text x="355" y="515.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Singular</ns0:text>
+  <ns0:text x="355" y="540.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">values (σᵢ)</ns0:text>
+  <ns0:rect x="430" y="140" width="140" height="100" rx="5" fill="#6a1b9a" stroke="#6f42c1" stroke-width="2"/>
+  <ns0:text x="500" y="565.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Vᵀ</ns0:text>
+  <ns0:text x="500" y="590.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="11">n × n</ns0:text>
+  <ns0:text x="500" y="615.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">Right singular</ns0:text>
+  <ns0:text x="500" y="640.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">vectors</ns0:text>
+  <ns0:rect x="595" y="100" width="140" height="200" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+  <ns0:text x="665" y="665.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Applications</ns0:text>
+  <ns0:text x="610" y="690.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">• PCA</ns0:text>
+  <ns0:text x="610" y="715.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">• LoRA</ns0:text>
+  <ns0:text x="610" y="740.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">• Compression</ns0:text>
+  <ns0:text x="610" y="765.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">• Recommenders</ns0:text>
+  <ns0:text x="610" y="790.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">• Noise reduction</ns0:text>
+  <ns0:text x="610" y="815.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">• Pseudoinverse</ns0:text>
+  <ns0:text x="610" y="840.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">• Latent factors</ns0:text>
+  <ns0:rect x="150" y="350" width="450" height="40" rx="8" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+  <ns0:text x="375" y="865.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="12">💡 Low-rank approximation: A ≈ U_r Σ_r V_r^T (keep top r singular values)</ns0:text>
+</ns0:svg>

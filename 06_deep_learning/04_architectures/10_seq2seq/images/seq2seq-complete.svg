@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecfeff"/>
+      <stop offset="100%" style="stop-color:#cffafe"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#0891b2"/>
+    </marker>
+  </defs>
+  
+  <rect width="1800" height="1200" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#155e75" font-family="Arial, sans-serif" font-size="52" font-weight="bold">Sequence-to-Sequence (Seq2Seq)</text>
+  <text x="900" y="120" text-anchor="middle" fill="#0891b2" font-family="Arial, sans-serif" font-size="26">Encoder-Decoder architecture for variable-length sequence mapping</text>
+  
+  <!-- Architecture Diagram -->
+  <g transform="translate(100, 180)" filter="url(#shadow)">
+    <rect width="1600" height="600" rx="18" fill="#ffffff" stroke="#06b6d4" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#06b6d4" font-family="Arial, sans-serif" font-size="36" font-weight="bold">🏗️ Seq2Seq Architecture</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#a5f3fc" stroke-width="2"/>
+    
+    <!-- Encoder Section -->
+    <g transform="translate(100, 120)">
+      <rect width="600" height="420" fill="#eff6ff" stroke="#3b82f6" stroke-width="3" rx="14"/>
+      <text x="300" y="35" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="28" font-weight="bold">ENCODER</text>
+      <line x1="30" y1="50" x2="570" y2="50" stroke="#bfdbfe" stroke-width="2"/>
+      
+      <!-- Input sequence -->
+      <text x="300" y="85" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Input Sequence</text>
+      <g transform="translate(80, 100)">
+        <rect x="0" y="0" width="100" height="50" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="8"/>
+        <text x="50" y="32" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="18">x₁</text>
+        
+        <rect x="120" y="0" width="100" height="50" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="8"/>
+        <text x="170" y="32" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="18">x₂</text>
+        
+        <rect x="240" y="0" width="100" height="50" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="8"/>
+        <text x="290" y="32" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="18">x₃</text>
+        
+        <rect x="360" y="0" width="100" height="50" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="8"/>
+        <text x="410" y="32" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="18">xₙ</text>
+      </g>
+      
+      <!-- RNN cells -->
+      <g transform="translate(80, 180)">
+        <rect x="0" y="0" width="100" height="80" fill="#bfdbfe" stroke="#3b82f6" stroke-width="3" rx="10"/>
+        <text x="50" y="35" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="16" font-weight="bold">RNN</text>
+        <text x="50" y="55" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="14">h₁</text>
+        
+        <rect x="120" y="0" width="100" height="80" fill="#bfdbfe" stroke="#3b82f6" stroke-width="3" rx="10"/>
+        <text x="170" y="35" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="16" font-weight="bold">RNN</text>
+        <text x="170" y="55" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="14">h₂</text>
+        
+        <rect x="240" y="0" width="100" height="80" fill="#bfdbfe" stroke="#3b82f6" stroke-width="3" rx="10"/>
+        <text x="290" y="35" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="16" font-weight="bold">RNN</text>
+        <text x="290" y="55" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="14">h₃</text>
+        
+        <rect x="360" y="0" width="100" height="80" fill="#bfdbfe" stroke="#3b82f6" stroke-width="3" rx="10"/>
+        <text x="410" y="35" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="16" font-weight="bold">RNN</text>
+        <text x="410" y="55" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="14">hₙ</text>
+        
+        <!-- Arrows between cells -->
+        <line x1="100" y1="40" x2="120" y2="40" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+        <line x1="220" y1="40" x2="240" y2="40" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+        <line x1="340" y1="40" x2="360" y2="40" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+      </g>
+      
+      <!-- Context vector -->
+      <rect x="150" y="310" width="300" height="70" fill="#10b981" stroke="#059669" stroke-width="3" rx="12"/>
+      <text x="300" y="340" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Context Vector (c)</text>
+      <text x="300" y="365" text-anchor="middle" fill="#d1fae5" font-family="Arial, sans-serif" font-size="16">Final encoder state</text>
+    </g>
+    
+    <!-- Decoder Section -->
+    <g transform="translate(900, 120)">
+      <rect width="600" height="420" fill="#fef3c7" stroke="#f59e0b" stroke-width="3" rx="14"/>
+      <text x="300" y="35" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="28" font-weight="bold">DECODER</text>
+      <line x1="30" y1="50" x2="570" y2="50" stroke="#fde68a" stroke-width="2"/>
+      
+      <!-- Context input -->
+      <text x="300" y="85" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="18">Initialize with context c</text>
+      
+      <!-- RNN cells -->
+      <g transform="translate(80, 110)">
+        <rect x="0" y="0" width="100" height="80" fill="#fde68a" stroke="#f59e0b" stroke-width="3" rx="10"/>
+        <text x="50" y="35" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="16" font-weight="bold">RNN</text>
+        <text x="50" y="55" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="14">s₁</text>
+        
+        <rect x="120" y="0" width="100" height="80" fill="#fde68a" stroke="#f59e0b" stroke-width="3" rx="10"/>
+        <text x="170" y="35" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="16" font-weight="bold">RNN</text>
+        <text x="170" y="55" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="14">s₂</text>
+        
+        <rect x="240" y="0" width="100" height="80" fill="#fde68a" stroke="#f59e0b" stroke-width="3" rx="10"/>
+        <text x="290" y="35" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="16" font-weight="bold">RNN</text>
+        <text x="290" y="55" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="14">s₃</text>
+        
+        <rect x="360" y="0" width="100" height="80" fill="#fde68a" stroke="#f59e0b" stroke-width="3" rx="10"/>
+        <text x="410" y="35" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="16" font-weight="bold">RNN</text>
+        <text x="410" y="55" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="14">sₘ</text>
+        
+        <!-- Arrows between cells -->
+        <line x1="100" y1="40" x2="120" y2="40" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+        <line x1="220" y1="40" x2="240" y2="40" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+        <line x1="340" y1="40" x2="360" y2="40" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+      </g>
+      
+      <!-- Output sequence -->
+      <text x="300" y="230" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Output Sequence</text>
+      <g transform="translate(80, 245)">
+        <rect x="0" y="0" width="100" height="50" fill="#fed7aa" stroke="#f59e0b" stroke-width="2" rx="8"/>
+        <text x="50" y="32" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="18">y₁</text>
+        
+        <rect x="120" y="0" width="100" height="50" fill="#fed7aa" stroke="#f59e0b" stroke-width="2" rx="8"/>
+        <text x="170" y="32" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="18">y₂</text>
+        
+        <rect x="240" y="0" width="100" height="50" fill="#fed7aa" stroke="#f59e0b" stroke-width="2" rx="8"/>
+        <text x="290" y="32" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="18">y₃</text>
+        
+        <rect x="360" y="0" width="100" height="50" fill="#fed7aa" stroke="#f59e0b" stroke-width="2" rx="8"/>
+        <text x="410" y="32" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="18">yₘ</text>
+      </g>
+      
+      <text x="300" y="345" text-anchor="middle" fill="#78350f" font-family="Arial, sans-serif" font-size="16">Autoregressive: yᵢ fed as input</text>
+      <text x="300" y="368" text-anchor="middle" fill="#78350f" font-family="Arial, sans-serif" font-size="16">to generate yᵢ₊₁</text>
+    </g>
+    
+    <!-- Arrow from encoder to decoder -->
+    <line x1="700" y1="465" x2="900" y2="465" stroke="#10b981" stroke-width="6" marker-end="url(#arrow)"/>
+    <text x="800" y="455" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Context c</text>
+  </g>
+  
+  <!-- Applications -->
+  <g transform="translate(100, 830)" filter="url(#shadow)">
+    <rect width="750" height="290" rx="18" fill="#ffffff" stroke="#8b5cf6" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="32" font-weight="bold">🎯 Applications</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#e9d5ff" stroke-width="2"/>
+    
+    <g transform="translate(60, 110)">
+      <text x="0" y="0" fill="#7c3aed" font-family="Arial, sans-serif" font-size="22" font-weight="bold">✓ Machine Translation</text>
+      <text x="20" y="30" fill="#6b21a8" font-family="Arial, sans-serif" font-size="18">English → French, Chinese, etc.</text>
+      
+      <text x="0" y="70" fill="#7c3aed" font-family="Arial, sans-serif" font-size="22" font-weight="bold">✓ Text Summarization</text>
+      <text x="20" y="100" fill="#6b21a8" font-family="Arial, sans-serif" font-size="18">Long document → Short summary</text>
+      
+      <text x="0" y="140" fill="#7c3aed" font-family="Arial, sans-serif" font-size="22" font-weight="bold">✓ Dialogue Systems</text>
+      <text x="20" y="170" fill="#6b21a8" font-family="Arial, sans-serif" font-size="18">Question → Answer</text>
+    </g>
+  </g>
+  
+  <!-- Key Features -->
+  <g transform="translate(900, 830)" filter="url(#shadow)">
+    <rect width="800" height="290" rx="18" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="400" y="50" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="32" font-weight="bold">⚡ Key Features</text>
+    <line x1="40" y1="70" x2="760" y2="70" stroke="#d1fae5" stroke-width="2"/>
+    
+    <g transform="translate(60, 110)">
+      <text x="0" y="0" fill="#059669" font-family="Arial, sans-serif" font-size="22" font-weight="bold">✓ Variable-length I/O:</text>
+      <text x="20" y="30" fill="#15803d" font-family="Arial, sans-serif" font-size="18">Input and output can have different lengths</text>
+      
+      <text x="0" y="70" fill="#059669" font-family="Arial, sans-serif" font-size="22" font-weight="bold">✓ Context Vector:</text>
+      <text x="20" y="100" fill="#15803d" font-family="Arial, sans-serif" font-size="18">Compresses entire input into fixed representation</text>
+      
+      <text x="0" y="140" fill="#f59e0b" font-family="Arial, sans-serif" font-size="22" font-weight="bold">⚠ Bottleneck Issue:</text>
+      <text x="20" y="170" fill="#92400e" font-family="Arial, sans-serif" font-size="18">Fixed-size context limits long sequences</text>
+      <text x="20" y="195" text-anchor="start" fill="#10b981" font-family="Arial, sans-serif" font-size="18" font-weight="bold">→ Solved by Attention Mechanism</text>
+    </g>
+  </g>
+  
+  <!-- Key Insight -->
+  <rect x="100" y="1140" width="1600" height="60" fill="#06b6d4" rx="14" filter="url(#shadow)"/>
+  <text x="900" y="1177" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="bold">💡 Seq2Seq: Encoder compresses input → Context vector → Decoder generates output</text>
+</svg>

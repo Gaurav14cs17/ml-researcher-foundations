@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1575.0 900.0">
+  <ns0:rect width="1575.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="350" y="35" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Gradient Descent Visualization</ns0:text>
+  <ns0:g transform="translate(200, 220)">
+    <ns0:ellipse cx="150" cy="0" rx="180" ry="120" fill="none" stroke="#1e3a5f" stroke-width="2"/>
+    <ns0:ellipse cx="150" cy="0" rx="140" ry="90" fill="none" stroke="#1e4d7f" stroke-width="2"/>
+    <ns0:ellipse cx="150" cy="0" rx="100" ry="60" fill="none" stroke="#1e5a9f" stroke-width="2"/>
+    <ns0:ellipse cx="150" cy="0" rx="60" ry="35" fill="none" stroke="#1e6abf" stroke-width="2"/>
+    <ns0:ellipse cx="150" cy="0" rx="25" ry="15" fill="none" stroke="#007bff" stroke-width="2"/>
+    <ns0:circle cx="150" cy="0" r="8" fill="#2e7d32"/>
+    <ns0:text x="150" y="60.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="11">minimum</ns0:text>
+    <ns0:path d="M-80 80 L0 50 L60 25 L100 8 L130 2 L145 0" stroke="#fd7e14" stroke-width="3" fill="none" stroke-dasharray="8,4"/>
+    <ns0:circle cx="-80" cy="80" r="6" fill="#c62828"/>
+    <ns0:circle cx="0" cy="50" r="5" fill="#e65100"/>
+    <ns0:circle cx="60" cy="25" r="5" fill="#e65100"/>
+    <ns0:circle cx="100" cy="8" r="5" fill="#e65100"/>
+    <ns0:circle cx="130" cy="2" r="4" fill="#e65100"/>
+    <ns0:text x="-80" y="100" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="11">start</ns0:text>
+    <ns0:line x1="-80" y1="80" x2="-40" y2="55" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="-30" y="125.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">-∇f</ns0:text>
+  </ns0:g>
+  <ns0:rect x="30" y="80" width="150" height="120" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+  <ns0:text x="105" y="150.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Algorithm</ns0:text>
+  <ns0:text x="45" y="175.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">repeat:</ns0:text>
+  <ns0:text x="55" y="200.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">x = x - α∇f(x)</ns0:text>
+  <ns0:text x="45" y="225.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">α = learning rate</ns0:text>
+  <ns0:text x="45" y="250.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">∇f = gradient</ns0:text>
+  <ns0:rect x="30" y="320" width="640" height="60" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+  <ns0:text x="350" y="345" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Key: Move in direction of steepest descent (-∇f)</ns0:text>
+  <ns0:text x="350" y="368" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Step size α matters: too large → overshoot | too small → slow convergence</ns0:text>
+</ns0:svg>

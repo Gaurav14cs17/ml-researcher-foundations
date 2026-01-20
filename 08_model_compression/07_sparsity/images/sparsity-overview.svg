@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="900" height="400" fill="url(#bgGrad)" rx="12"/>
+  
+  <text x="450" y="40" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Sparsity &amp; Mixture of Experts</text>
+  
+  <!-- MoE -->
+  <rect x="50" y="80" width="400" height="180" rx="10" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="250" y="115" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="16" font-weight="bold">🧩 Mixture of Experts (MoE)</text>
+  
+  <rect x="80" y="135" width="80" height="40" rx="6" fill="#1e3a5f"/>
+  <text x="120" y="160" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="10">Router</text>
+  
+  <text x="185" y="155" fill="#f39c12" font-family="Arial, sans-serif" font-size="14">→</text>
+  
+  <rect x="210" y="125" width="50" height="25" rx="4" fill="#27ae60"/>
+  <text x="235" y="142" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9">E₁</text>
+  
+  <rect x="210" y="155" width="50" height="25" rx="4" fill="#95a5a6"/>
+  <text x="235" y="172" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9">E₂</text>
+  
+  <rect x="270" y="125" width="50" height="25" rx="4" fill="#27ae60"/>
+  <text x="295" y="142" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9">E₃</text>
+  
+  <rect x="270" y="155" width="50" height="25" rx="4" fill="#95a5a6"/>
+  <text x="295" y="172" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9">E₄</text>
+  
+  <rect x="330" y="125" width="50" height="25" rx="4" fill="#95a5a6"/>
+  <text x="355" y="142" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9">E₅</text>
+  
+  <rect x="330" y="155" width="50" height="25" rx="4" fill="#95a5a6"/>
+  <text x="355" y="172" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9">E₆</text>
+  
+  <rect x="390" y="125" width="50" height="25" rx="4" fill="#95a5a6"/>
+  <text x="415" y="142" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9">E₇</text>
+  
+  <rect x="390" y="155" width="50" height="25" rx="4" fill="#95a5a6"/>
+  <text x="415" y="172" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9">E₈</text>
+  
+  <text x="250" y="210" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12">Top-K routing: Only 2/8 experts active!</text>
+  <text x="250" y="235" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">8× capacity, 2× compute</text>
+  
+  <!-- Sparse Networks -->
+  <rect x="470" y="80" width="380" height="180" rx="10" fill="#2c3e50" stroke="#9b59b6" stroke-width="2"/>
+  <text x="660" y="115" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="16" font-weight="bold">🕸️ Sparse Networks</text>
+  
+  <text x="660" y="150" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="12">Structured 2:4 Sparsity</text>
+  
+  <rect x="550" y="165" width="220" height="30" rx="4" fill="#1e3a5f"/>
+  <text x="560" y="185" fill="#27ae60" font-family="monospace" font-size="11">[✓ ✓ ✗ ✗ | ✗ ✓ ✓ ✗]</text>
+  
+  <text x="660" y="215" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="10">2 non-zero per 4 elements</text>
+  <text x="660" y="240" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" font-weight="bold">NVIDIA HW: 2× speedup!</text>
+  
+  <!-- Results -->
+  <rect x="50" y="290" width="800" height="90" rx="10" fill="#2c3e50" stroke="#2ecc71" stroke-width="2"/>
+  <text x="450" y="325" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Key Models Using Sparsity</text>
+  <text x="150" y="355" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="12">Mixtral 8x7B</text>
+  <text x="350" y="355" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="12">Switch-C (1.6T)</text>
+  <text x="550" y="355" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="12">GPT-4 (rumored MoE)</text>
+  <text x="750" y="355" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="12">DeepSeek MoE</text>
+</svg>
+

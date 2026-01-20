@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgCov2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Covariance and Correlation</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="340" height="120" rx="10" fill="#2d2d2d20" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="170" y="60.0" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">Covariance</ns0:text>
+    <ns0:text x="170" y="85.0" text-anchor="middle" fill="#1a237e" font-size="11" font-family="Arial, sans-serif">Cov(X,Y) = E[(X-μₓ)(Y-μᵧ)]</ns0:text>
+    <ns0:text x="170" y="110.0" text-anchor="middle" fill="#1565c0" font-size="10">= E[XY] - E[X]E[Y]</ns0:text>
+    <ns0:text x="170" y="135.0" text-anchor="middle" fill="#1565c0" font-size="9">Measures linear relationship</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(410, 70)">
+    <ns0:rect width="340" height="120" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="170" y="160.0" text-anchor="middle" fill="#2e7d32" font-size="13" font-weight="bold">Correlation</ns0:text>
+    <ns0:text x="170" y="185.0" text-anchor="middle" fill="#1a237e" font-size="11" font-family="Arial, sans-serif">ρ(X,Y) = Cov(X,Y) / (σₓσᵧ)</ns0:text>
+    <ns0:text x="170" y="210.0" text-anchor="middle" fill="#2e7d32" font-size="10">Normalized: ρ ∈ [-1, 1]</ns0:text>
+    <ns0:text x="170" y="235.0" text-anchor="middle" fill="#34d399" font-size="9">Scale-invariant measure</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 210)">
+    <ns0:rect width="700" height="90" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="260.0" text-anchor="middle" fill="#e65100" font-size="11" font-weight="bold">Correlation Values</ns0:text>
+    <ns0:circle cx="100" cy="55" r="5" fill="#10b981"/>
+    <ns0:circle cx="110" cy="50" r="5" fill="#10b981"/>
+    <ns0:circle cx="120" cy="45" r="5" fill="#10b981"/>
+    <ns0:circle cx="130" cy="40" r="5" fill="#10b981"/>
+    <ns0:text x="115" y="285.0" text-anchor="middle" fill="#2e7d32" font-size="8">ρ ≈ 1 (positive)</ns0:text>
+    <ns0:circle cx="300" cy="55" r="5" fill="#e65100"/>
+    <ns0:circle cx="310" cy="35" r="5" fill="#e65100"/>
+    <ns0:circle cx="320" cy="65" r="5" fill="#e65100"/>
+    <ns0:circle cx="330" cy="45" r="5" fill="#e65100"/>
+    <ns0:text x="315" y="310.0" text-anchor="middle" fill="#e65100" font-size="8">ρ ≈ 0 (no linear)</ns0:text>
+    <ns0:circle cx="500" cy="40" r="5" fill="#c62828"/>
+    <ns0:circle cx="510" cy="50" r="5" fill="#c62828"/>
+    <ns0:circle cx="520" cy="55" r="5" fill="#c62828"/>
+    <ns0:circle cx="530" cy="65" r="5" fill="#c62828"/>
+    <ns0:text x="515" y="335.0" text-anchor="middle" fill="#c62828" font-size="8">ρ ≈ -1 (negative)</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 320)">
+    <ns0:rect width="700" height="60" rx="10" fill="#2d2d2d20" stroke="#dc3545"/>
+    <ns0:text x="350" y="360.0" text-anchor="middle" fill="#c62828" font-size="10" font-weight="bold">⚠️ Correlation ≠ Causation | Correlation = 0 doesn't mean independence!</ns0:text>
+    <ns0:text x="350" y="385.0" text-anchor="middle" fill="#c62828" font-size="9">Only measures linear relationships. X and X² can have ρ=0 but are clearly related!</ns0:text>
+  </ns0:g>
+</ns0:svg>

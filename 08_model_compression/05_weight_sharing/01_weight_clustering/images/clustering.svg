@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="350" fill="url(#bgGrad)" rx="12"/>
+  <text x="400" y="35" text-anchor="middle" fill="#1abc9c" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Weight Clustering</text>
+  
+  <rect x="40" y="70" width="350" height="130" rx="10" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="215" y="100" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Before: Many Unique Values</text>
+  <text x="70" y="130" fill="#ecf0f1" font-family="monospace" font-size="10">[0.12, 0.15, 0.11, 0.89, 0.91, ...]</text>
+  <text x="215" y="170" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="10">32 bits per weight</text>
+  <text x="215" y="190" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="10">n × 32 bits total</text>
+  
+  <rect x="410" y="70" width="350" height="130" rx="10" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="585" y="100" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="14" font-weight="bold">After: K Cluster Centers</text>
+  <text x="440" y="130" fill="#ecf0f1" font-family="monospace" font-size="10">Centers: [0.13, 0.90] (K=2)</text>
+  <text x="440" y="155" fill="#ecf0f1" font-family="monospace" font-size="10">Indices: [0, 0, 0, 1, 1, ...]</text>
+  <text x="585" y="185" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10" font-weight="bold">K×32 + n×log₂(K) bits</text>
+  
+  <rect x="40" y="220" width="720" height="110" rx="10" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="400" y="255" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Compression Ratio</text>
+  <text x="180" y="290" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="12">K=4 → 16× compress</text>
+  <text x="400" y="290" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="12">K=16 → 8× compress</text>
+  <text x="620" y="290" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="12">K=256 → 4× compress</text>
+  <text x="400" y="315" text-anchor="middle" fill="#95a5a6" font-family="Arial, sans-serif" font-size="10">+ Huffman coding for more compression (Deep Compression)</text>
+</svg>
+

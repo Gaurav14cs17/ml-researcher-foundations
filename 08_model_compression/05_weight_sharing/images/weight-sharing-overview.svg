@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="900" height="400" fill="url(#bgGrad)" rx="12"/>
+  
+  <text x="450" y="40" text-anchor="middle" fill="#1abc9c" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Weight Sharing Techniques</text>
+  
+  <!-- Clustering -->
+  <rect x="50" y="80" width="260" height="140" rx="10" fill="#2c3e50" stroke="#3498db" stroke-width="2"/>
+  <text x="180" y="110" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🔢 Weight Clustering</text>
+  <text x="180" y="140" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">Group weights into clusters</text>
+  <text x="180" y="165" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">Store only centroids + indices</text>
+  <text x="180" y="195" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" font-weight="bold">4-16 clusters = 2-4× compress</text>
+  
+  <!-- Tying -->
+  <rect x="320" y="80" width="260" height="140" rx="10" fill="#2c3e50" stroke="#9b59b6" stroke-width="2"/>
+  <text x="450" y="110" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🔗 Weight Tying</text>
+  <text x="450" y="140" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">Share embedding/output weights</text>
+  <text x="450" y="165" text-anchor="middle" fill="#2ecc71" font-family="monospace" font-size="11">W_out = W_embed.T</text>
+  <text x="450" y="195" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" font-weight="bold">~30% params saved in LLMs</text>
+  
+  <!-- MQA/GQA -->
+  <rect x="590" y="80" width="260" height="140" rx="10" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="720" y="110" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="14" font-weight="bold">👁️ Attention Sharing</text>
+  <text x="720" y="140" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">MQA: 1 KV head for all Q</text>
+  <text x="720" y="165" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="11">GQA: Groups share KV</text>
+  <text x="720" y="195" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="12" font-weight="bold">8-16× faster decoding</text>
+  
+  <!-- Comparison -->
+  <rect x="50" y="250" width="800" height="130" rx="10" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="450" y="285" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Memory Comparison</text>
+  
+  <rect x="100" y="305" width="200" height="25" rx="4" fill="#e74c3c"/>
+  <text x="200" y="323" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Original: 100% memory</text>
+  
+  <rect x="100" y="340" width="100" height="25" rx="4" fill="#27ae60"/>
+  <text x="150" y="358" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Clustering: 50%</text>
+  
+  <rect x="500" y="305" width="200" height="25" rx="4" fill="#e74c3c"/>
+  <text x="600" y="323" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="11" font-weight="bold">MHA KV Cache: 100%</text>
+  
+  <rect x="500" y="340" width="25" height="25" rx="4" fill="#27ae60"/>
+  <text x="512" y="358" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9" font-weight="bold">MQA</text>
+  <text x="570" y="358" fill="#2ecc71" font-family="Arial, sans-serif" font-size="11">← 8× smaller cache!</text>
+</svg>
+

@@ -1,0 +1,167 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2475.0 2025.0">
+  <ns0:text x="550" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Prompt Engineering: Unlocking LLM Capabilities
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="500" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      1. What is Prompt Engineering?
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="225.0" fill="#f8f9fa" stroke="#007bff" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="80.0" font-size="14" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#1565c0">Definition:</ns0:tspan>
+        Art and science of crafting inputs to get desired LLM outputs
+      </ns0:text>
+      <ns0:g transform="translate(0, 30)">
+        <ns0:text x="0" y="105.0" font-size="13" fill="#1a237e">
+          The prompt is the program! Small changes → Dramatically different results
+        </ns0:text>
+        <ns0:text x="0" y="130.0" font-size="13" fill="#1a237e">
+          From simple instructions to complex reasoning strategies
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 220)">
+    <ns0:text x="500" y="155.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      2. Core Prompting Techniques
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="550" fill="#1a237e" stroke="#28a745" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:g>
+        <ns0:text x="0" y="180.0" font-size="13" font-weight="bold" fill="#145a32">
+          A. Zero-Shot Prompting
+        </ns0:text>
+        <ns0:rect x="0" y="10" width="940" height="60" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(15, 28)">
+          <ns0:text x="0" y="205.0" font-size="11" fill="#1a237e">
+            Give task description only, no examples
+          </ns0:text>
+          <ns0:text x="0" y="230.0" font-size="10" font-family="Arial, sans-serif" fill="#1565c0">
+            &quot;Classify sentiment: 'This movie was terrible.' → &quot;
+          </ns0:text>
+          <ns0:text x="0" y="255.0" font-size="10" fill="#2e7d32" font-weight="bold">
+            Output: &quot;Negative&quot;
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:g transform="translate(0, 85)">
+        <ns0:text x="0" y="280.0" font-size="13" font-weight="bold" fill="#145a32">
+          B. Few-Shot Prompting (In-Context Learning)
+        </ns0:text>
+        <ns0:rect x="0" y="10" width="940" height="90" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(15, 28)">
+          <ns0:text x="0" y="305.0" font-size="11" fill="#1a237e">
+            Provide examples before the actual query
+          </ns0:text>
+          <ns0:text x="0" y="330.0" font-size="10" font-family="Arial, sans-serif" fill="#1565c0">
+            Example 1: &quot;I love this!&quot; → Positive
+          </ns0:text>
+          <ns0:text x="0" y="355.0" font-size="10" font-family="Arial, sans-serif" fill="#1565c0">
+            Example 2: &quot;Waste of time.&quot; → Negative
+          </ns0:text>
+          <ns0:text x="0" y="380.0" font-size="10" font-family="Arial, sans-serif" fill="#1565c0">
+            &quot;This movie was terrible.&quot; → ?
+          </ns0:text>
+          <ns0:text x="0" y="405.0" font-size="10" fill="#2e7d32" font-weight="bold">
+            Output: &quot;Negative&quot; ✓ More accurate!
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:g transform="translate(0, 190)">
+        <ns0:text x="0" y="430.0" font-size="13" font-weight="bold" fill="#145a32">
+          C. Chain-of-Thought (CoT) Prompting
+        </ns0:text>
+        <ns0:rect x="0" y="10" width="940" height="225.0" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(15, 28)">
+          <ns0:text x="0" y="455.0" font-size="11" fill="#1a237e">
+            Show step-by-step reasoning in examples → Model learns to reason
+          </ns0:text>
+          <ns0:text x="0" y="480.0" font-size="10" font-family="Arial, sans-serif" fill="#1565c0">
+            Q: &quot;Roger has 5 balls. He buys 2 cans with 3 balls each. How many balls?&quot;
+          </ns0:text>
+          <ns0:text x="0" y="505.0" font-size="10" font-family="Arial, sans-serif" fill="#6a1b9a">
+            <ns0:tspan x="0" dy="0">A: &quot;Roger started with 5 balls. 2 cans × 3 balls = 6 balls.</ns0:tspan>
+            <ns0:tspan x="0" dy="1.2em">5 + 6 = 11. Answer: 11&quot;</ns0:tspan>
+          </ns0:text>
+          <ns0:text x="0" y="530.0" font-size="10" font-family="Arial, sans-serif" fill="#1565c0">
+            Q: &quot;Jane has 8 apples. She gives 3 to Mark. How many left?&quot;
+          </ns0:text>
+          <ns0:text x="0" y="555.0" font-size="10" fill="#2e7d32" font-weight="bold">
+            → Model generates: &quot;Jane had 8. Gave 3. 8-3=5. Answer: 5&quot; ✓
+          </ns0:text>
+          <ns0:text x="0" y="580.0" font-size="10" fill="#1a237e">
+            Dramatically improves arithmetic, logic, common sense reasoning!
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:g transform="translate(0, 305)">
+        <ns0:text x="0" y="605.0" font-size="13" font-weight="bold" fill="#145a32">
+          D. Self-Consistency
+        </ns0:text>
+        <ns0:rect x="0" y="10" width="940" height="75" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(15, 28)">
+          <ns0:text x="0" y="630.0" font-size="11" fill="#1a237e">
+            Generate multiple reasoning paths → Take majority vote
+          </ns0:text>
+          <ns0:text x="0" y="655.0" font-size="10" fill="#6a1b9a">
+            Sample 5-10 CoT responses with temperature=0.7
+          </ns0:text>
+          <ns0:text x="0" y="680.0" font-size="10" fill="#1a237e">
+            <ns0:tspan x="0" dy="0">Path 1: &quot;...11&quot; | Path 2: &quot;...11&quot; | Path 3: &quot;...12&quot; | Path</ns0:tspan>
+            <ns0:tspan x="0" dy="1.2em">4: &quot;...11&quot; | Path 5: &quot;...11&quot;</ns0:tspan>
+          </ns0:text>
+          <ns0:text x="0" y="705.0" font-size="10" fill="#2e7d32" font-weight="bold">
+            → Final answer: 11 (majority) → More robust than single sample!
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:g transform="translate(0, 395)">
+        <ns0:text x="0" y="730.0" font-size="13" font-weight="bold" fill="#145a32">
+          E. ReAct (Reasoning + Acting)
+        </ns0:text>
+        <ns0:rect x="0" y="10" width="940" height="90" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+        <ns0:g transform="translate(15, 28)">
+          <ns0:text x="0" y="755.0" font-size="11" fill="#1a237e">
+            Interleave reasoning (thoughts) with actions (API calls, tool use)
+          </ns0:text>
+          <ns0:text x="0" y="780.0" font-size="10" font-family="Arial, sans-serif" fill="#6a1b9a">
+            Thought: &quot;I need current weather data&quot;
+          </ns0:text>
+          <ns0:text x="0" y="805.0" font-size="10" font-family="Arial, sans-serif" fill="#e65100">
+            Action: search(&quot;San Francisco weather&quot;)
+          </ns0:text>
+          <ns0:text x="0" y="830.0" font-size="10" font-family="Arial, sans-serif" fill="#1565c0">
+            Observation: &quot;72°F, sunny&quot;
+          </ns0:text>
+          <ns0:text x="0" y="855.0" font-size="10" font-family="Arial, sans-serif" fill="#6a1b9a">
+            Thought: &quot;Perfect! I can now answer&quot;
+          </ns0:text>
+          <ns0:text x="0" y="880.0" font-size="10" fill="#2e7d32" font-weight="bold">
+            → Enables LLMs to use external tools!
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 810)">
+    <ns0:text x="500" y="905.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#e67e22">
+      3. Best Practices
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="70" fill="#1a237e" stroke="#fd7e14" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 45)">
+      <ns0:text x="0" y="930.0" font-size="12" fill="#1a237e">
+        <ns0:tspan x="0" dy="0">• Be specific and clear • Use delimiters (&quot;&quot;&quot;, ###) •</ns0:tspan>
+        <ns0:tspan x="0" dy="1.2em">Specify output format • Give the model &quot;time to think&quot;</ns0:tspan>
+      </ns0:text>
+      <ns0:text x="0" y="955.0" font-size="12" fill="#1a237e">
+        <ns0:tspan x="0" dy="0">• Iterate and experiment • Use system messages for</ns0:tspan>
+        <ns0:tspan x="0" dy="1.2em">role/context • Break complex tasks into subtasks</ns0:tspan>
+      </ns0:text>
+      <ns0:text x="0" y="980.0" font-size="12" fill="#2e7d32" font-weight="bold">
+        💡 Adding &quot;Let's think step by step&quot; can boost reasoning by 30%+!
+      </ns0:text>
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>

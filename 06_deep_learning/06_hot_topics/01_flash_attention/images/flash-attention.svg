@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 900.0 630.0">
+  <ns0:defs>
+    <ns0:linearGradient id="faBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="900.0" height="630.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="200" y="30" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="16" font-weight="bold">⚡ Flash Attention</ns0:text>
+  <ns0:g transform="translate(30, 55)">
+    <ns0:rect width="150" height="90" rx="8" fill="#1a237e" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="75" y="55.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Standard</ns0:text>
+    <ns0:text x="75" y="80.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Memory: O(n²)</ns0:text>
+    <ns0:text x="75" y="105.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Slow HBM access</ns0:text>
+    <ns0:rect x="20" y="68" width="110" height="12" rx="3" fill="#c62828" opacity="0.6"/>
+  </ns0:g>
+  <ns0:text x="200" y="130.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="16">→</ns0:text>
+  <ns0:g transform="translate(220, 55)">
+    <ns0:rect width="150" height="90" rx="8" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:text x="75" y="155.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Flash Attention</ns0:text>
+    <ns0:text x="75" y="180.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Memory: O(n)</ns0:text>
+    <ns0:text x="75" y="205.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Fast SRAM tiling</ns0:text>
+    <ns0:rect x="20" y="68" width="40" height="12" rx="3" fill="#2e7d32"/>
+  </ns0:g>
+  <ns0:g transform="translate(30, 165)">
+    <ns0:rect width="340" height="95" rx="8" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:text x="170" y="230.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Key Benefits</ns0:text>
+    <ns0:text x="20" y="255.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">✓ 2-4x faster training</ns0:text>
+    <ns0:text x="180" y="280.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">✓ 5-20x less memory</ns0:text>
+    <ns0:text x="20" y="305.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">✓ Exact attention (no approx)</ns0:text>
+    <ns0:text x="180" y="330.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">✓ Longer sequences</ns0:text>
+    <ns0:text x="170" y="355.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Used in: GPT-4, LLaMA 2, Mistral</ns0:text>
+  </ns0:g>
+</ns0:svg>

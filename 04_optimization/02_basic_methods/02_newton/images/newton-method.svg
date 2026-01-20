@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#faf5ff"/>
+      <stop offset="100%" style="stop-color:#f3e8ff"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#7c3aed"/>
+    </marker>
+  </defs>
+  
+  <rect width="1800" height="1200" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#6b21a8" font-family="Arial, sans-serif" font-size="52" font-weight="bold">Newton's Method</text>
+  <text x="900" y="120" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="26">Second-order optimization using curvature information</text>
+  
+  <!-- Visual Comparison -->
+  <g transform="translate(100, 180)" filter="url(#shadow)">
+    <rect width="1600" height="500" rx="18" fill="#ffffff" stroke="#8b5cf6" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="36" font-weight="bold">📊 Gradient Descent vs Newton's Method</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#e9d5ff" stroke-width="2"/>
+    
+    <!-- Gradient Descent -->
+    <g transform="translate(150, 120)">
+      <text x="250" y="0" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="28" font-weight="bold">Gradient Descent</text>
+      
+      <!-- Function curve -->
+      <path d="M 50 300 Q 150 280 250 150 Q 350 280 450 300" fill="none" stroke="#94a3b8" stroke-width="3"/>
+      
+      <!-- Minimum -->
+      <circle cx="250" cy="150" r="8" fill="#10b981" stroke="#ffffff" stroke-width="2"/>
+      <line x1="250" y1="150" x2="250" y2="310" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4"/>
+      
+      <!-- Starting point -->
+      <circle cx="120" cy="285" r="10" fill="#3b82f6"/>
+      <text x="120" y="265" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Start</text>
+      
+      <!-- Gradient descent steps -->
+      <line x1="120" y1="285" x2="160" y2="275" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrow)"/>
+      <line x1="160" y1="275" x2="190" y2="250" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrow)"/>
+      <line x1="190" y1="250" x2="210" y2="210" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrow)"/>
+      <line x1="210" y1="210" x2="225" y2="175" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrow)"/>
+      <line x1="225" y1="175" x2="240" y2="160" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrow)"/>
+      
+      <text x="250" y="360" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="19">Many small steps</text>
+      <text x="250" y="385" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="18">Uses only first derivative</text>
+    </g>
+    
+    <!-- Newton's Method -->
+    <g transform="translate(850, 120)">
+      <text x="250" y="0" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="28" font-weight="bold">Newton's Method</text>
+      
+      <!-- Function curve -->
+      <path d="M 50 300 Q 150 280 250 150 Q 350 280 450 300" fill="none" stroke="#94a3b8" stroke-width="3"/>
+      
+      <!-- Minimum -->
+      <circle cx="250" cy="150" r="8" fill="#10b981" stroke="#ffffff" stroke-width="2"/>
+      <line x1="250" y1="150" x2="250" y2="310" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4"/>
+      
+      <!-- Starting point -->
+      <circle cx="120" cy="285" r="10" fill="#8b5cf6"/>
+      <text x="120" y="265" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Start</text>
+      
+      <!-- Quadratic approximation -->
+      <path d="M 50 320 Q 120 285 250 150" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6,4"/>
+      <text x="150" y="240" fill="#f59e0b" font-family="Arial, sans-serif" font-size="14">Quadratic approx</text>
+      
+      <!-- Newton steps (fewer, larger) -->
+      <line x1="120" y1="285" x2="210" y2="180" stroke="#8b5cf6" stroke-width="5" marker-end="url(#arrow)"/>
+      <line x1="210" y1="180" x2="245" y2="155" stroke="#8b5cf6" stroke-width="5" marker-end="url(#arrow)"/>
+      
+      <text x="250" y="360" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="19">Few large steps</text>
+      <text x="250" y="385" text-anchor="middle" fill="#6b21a8" font-family="Arial, sans-serif" font-size="18">Uses second derivative (Hessian)</text>
+    </g>
+  </g>
+  
+  <!-- Algorithm -->
+  <g transform="translate(100, 730)" filter="url(#shadow)">
+    <rect width="750" height="390" rx="18" fill="#ffffff" stroke="#3b82f6" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="34" font-weight="bold">📐 Newton's Update Rule</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#bfdbfe" stroke-width="2"/>
+    
+    <g transform="translate(50, 110)">
+      <rect x="40" y="0" width="610" height="70" fill="#eff6ff" rx="12"/>
+      <text x="345" y="45" text-anchor="middle" fill="#1e40af" font-family="Consolas, monospace" font-size="32" font-weight="bold">θ_{t+1} = θ_t - H⁻¹∇f(θ_t)</text>
+      
+      <text x="345" y="110" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="22">where:</text>
+      
+      <rect x="40" y="125" width="610" height="90" fill="#dbeafe" rx="12"/>
+      <text x="345" y="160" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="20">• ∇f(θ_t) = gradient (first derivative)</text>
+      <text x="345" y="190" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="20">• H = Hessian matrix (second derivatives)</text>
+      
+      <rect x="40" y="235" width="610" height="125" fill="#fef3c7" rx="12"/>
+      <text x="345" y="270" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Key Idea:</text>
+      <text x="345" y="300" text-anchor="middle" fill="#78350f" font-family="Arial, sans-serif" font-size="18">Fit quadratic approximation at current point</text>
+      <text x="345" y="328" text-anchor="middle" fill="#78350f" font-family="Arial, sans-serif" font-size="18">Jump directly to minimum of approximation</text>
+      <text x="345" y="356" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Converges in one step for quadratic functions!</text>
+    </g>
+  </g>
+  
+  <!-- Pros and Cons -->
+  <g transform="translate(900, 730)" filter="url(#shadow)">
+    <rect width="800" height="390" rx="18" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="400" y="50" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="34" font-weight="bold">⚖️ Pros &amp; Cons</text>
+    <line x1="40" y1="70" x2="760" y2="70" stroke="#d1fae5" stroke-width="2"/>
+    
+    <g transform="translate(60, 110)">
+      <text x="0" y="0" fill="#10b981" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Advantages:</text>
+      <text x="20" y="32" fill="#059669" font-family="Arial, sans-serif" font-size="19">✓ Quadratic convergence (very fast near optimum)</text>
+      <text x="20" y="60" fill="#059669" font-family="Arial, sans-serif" font-size="19">✓ Uses curvature information</text>
+      <text x="20" y="88" fill="#059669" font-family="Arial, sans-serif" font-size="19">✓ Fewer iterations than gradient descent</text>
+      
+      <text x="0" y="138" fill="#ef4444" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Disadvantages:</text>
+      <text x="20" y="170" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">✗ Expensive: O(n³) to compute H⁻¹</text>
+      <text x="20" y="198" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">✗ Requires Hessian (n×n matrix)</text>
+      <text x="20" y="226" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">✗ Can diverge if Hessian not positive definite</text>
+      <text x="20" y="254" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">✗ Impractical for large-scale ML (millions of params)</text>
+      
+      <rect x="0" y="280" width="680" height="80" fill="#fef3c7" rx="12"/>
+      <text x="340" y="315" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="20" font-weight="bold">💡 Practical Alternative: Quasi-Newton Methods</text>
+      <text x="340" y="345" text-anchor="middle" fill="#78350f" font-family="Arial, sans-serif" font-size="18">(BFGS, L-BFGS) approximate H⁻¹ efficiently</text>
+    </g>
+  </g>
+</svg>

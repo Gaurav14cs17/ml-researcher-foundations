@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!-- Background -->
+  <rect width="900" height="500" fill="#f8f9fa" rx="8"/>
+  
+  <!-- Title -->
+  <text x="450" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#212529">
+    Matrix Multiplication: C = AB
+  </text>
+  
+  <!-- Matrix A (m×n) -->
+  <g id="matrixA">
+    <text x="100" y="80" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#007bff">
+      Matrix A (3×2)
+    </text>
+    <!-- Border -->
+    <rect x="70" y="100" width="100" height="120" fill="none" stroke="#007bff" stroke-width="3" rx="5"/>
+    <!-- Elements -->
+    <text x="95" y="130" font-family="Arial, sans-serif" font-size="14" fill="#212529">1  2</text>
+    <text x="95" y="160" font-family="Arial, sans-serif" font-size="14" fill="#212529">3  4</text>
+    <text x="95" y="190" font-family="Arial, sans-serif" font-size="14" fill="#212529">5  6</text>
+    
+    <!-- Highlight row -->
+    <rect x="75" y="145" width="90" height="20" fill="#007bff" opacity="0.2"/>
+  </g>
+  
+  <!-- Multiplication sign -->
+  <text x="200" y="170" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#212529">
+    ×
+  </text>
+  
+  <!-- Matrix B (n×p) -->
+  <g id="matrixB">
+    <text x="280" y="80" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#dc3545">
+      Matrix B (2×4)
+    </text>
+    <!-- Border -->
+    <rect x="240" y="100" width="160" height="80" fill="none" stroke="#dc3545" stroke-width="3" rx="5"/>
+    <!-- Elements -->
+    <text x="255" y="130" font-family="Arial, sans-serif" font-size="14" fill="#212529">7   8   9  10</text>
+    <text x="255" y="160" font-family="Arial, sans-serif" font-size="14" fill="#212529">11  12  13  14</text>
+    
+    <!-- Highlight column -->
+    <rect x="285" y="105" width="30" height="70" fill="#dc3545" opacity="0.2"/>
+  </g>
+  
+  <!-- Equals sign -->
+  <text x="440" y="170" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#212529">
+    =
+  </text>
+  
+  <!-- Matrix C (m×p) -->
+  <g id="matrixC">
+    <text x="600" y="80" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#28a745">
+      Matrix C (3×4)
+    </text>
+    <!-- Border -->
+    <rect x="500" y="100" width="240" height="120" fill="none" stroke="#28a745" stroke-width="3" rx="5"/>
+    <!-- Elements -->
+    <text x="520" y="130" font-family="Arial, sans-serif" font-size="14" fill="#212529">29   32   35   38</text>
+    <text x="520" y="160" font-family="Arial, sans-serif" font-size="14" fill="#212529">65   72   79   86</text>
+    <text x="520" y="190" font-family="Arial, sans-serif" font-size="14" fill="#212529">101  112  123  134</text>
+    
+    <!-- Highlight result element -->
+    <circle cx="560" cy="152" r="20" fill="#fd7e14" opacity="0.3"/>
+  </g>
+  
+  <!-- Computation explanation -->
+  <g id="computation">
+    <rect x="100" y="260" width="700" height="200" fill="#212529" stroke="#444444" stroke-width="2" rx="5"/>
+    
+    <text x="450" y="290" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#212529">
+      Computing C[2,2] (highlighted element)
+    </text>
+    
+    <!-- Step by step -->
+    <text x="120" y="325" font-family="Arial, sans-serif" font-size="14" fill="#212529">
+      1. Take row 2 of A: [3, 4]
+    </text>
+    <rect x="280" y="310" width="70" height="20" fill="#007bff" opacity="0.2"/>
+    <text x="290" y="325" font-family="Arial, sans-serif" font-size="12" fill="#007bff">[3, 4]</text>
+    
+    <text x="120" y="360" font-family="Arial, sans-serif" font-size="14" fill="#212529">
+      2. Take column 2 of B: [8, 12]
+    </text>
+    <rect x="300" y="345" width="80" height="20" fill="#dc3545" opacity="0.2"/>
+    <text x="310" y="360" font-family="Arial, sans-serif" font-size="12" fill="#dc3545">[8, 12]</text>
+    
+    <text x="120" y="395" font-family="Arial, sans-serif" font-size="14" fill="#212529">
+      3. Dot product: 3×8 + 4×12 = 24 + 48 = 72
+    </text>
+    <rect x="260" y="380" width="150" height="20" fill="#fd7e14" opacity="0.2"/>
+    <text x="270" y="395" font-family="Arial, sans-serif" font-size="12" fill="#fd7e14" font-weight="bold">72</text>
+    
+    <text x="120" y="430" font-family="Arial, sans-serif" font-size="14" fill="#28a745" font-weight="bold">
+      ∴ C[2,2] = 72 ✓
+    </text>
+  </g>
+  
+  <!-- Formula -->
+  <text x="450" y="490" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#212529" font-style="italic">
+    General: C[i,j] = Σₖ A[i,k] × B[k,j]
+  </text>
+</svg>
+

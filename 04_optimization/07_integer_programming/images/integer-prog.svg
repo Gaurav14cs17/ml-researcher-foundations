@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgIP2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold">Integer Programming</ns0:text>
+  <ns0:g transform="translate(50, 70)">
+    <ns0:rect width="220" height="120" rx="10" fill="#2d2d2d20" stroke="#007bff"/>
+    <ns0:text x="110" y="60.0" text-anchor="middle" fill="#1565c0" font-size="12" font-weight="bold">Integer LP (ILP)</ns0:text>
+    <ns0:text x="110" y="85.0" text-anchor="middle" fill="#1565c0" font-size="9">min cᵀx</ns0:text>
+    <ns0:text x="110" y="110.0" text-anchor="middle" fill="#1565c0" font-size="9">s.t. Ax ≤ b</ns0:text>
+    <ns0:text x="110" y="135.0" text-anchor="middle" fill="#1565c0" font-size="9">x ∈ ℤⁿ</ns0:text>
+    <ns0:text x="110" y="160.0" text-anchor="middle" fill="#1565c0" font-size="8">Scheduling, routing</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(290, 70)">
+    <ns0:rect width="220" height="120" rx="10" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="110" y="185.0" text-anchor="middle" fill="#2e7d32" font-size="12" font-weight="bold">Mixed-Integer (MIP)</ns0:text>
+    <ns0:text x="110" y="210.0" text-anchor="middle" fill="#2e7d32" font-size="9">Some vars continuous</ns0:text>
+    <ns0:text x="110" y="235.0" text-anchor="middle" fill="#2e7d32" font-size="9">Some vars integer</ns0:text>
+    <ns0:text x="110" y="260.0" text-anchor="middle" fill="#2e7d32" font-size="9">x ∈ ℝᵖ × ℤᵍ</ns0:text>
+    <ns0:text x="110" y="285.0" text-anchor="middle" fill="#34d399" font-size="8">Supply chain, design</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(530, 70)">
+    <ns0:rect width="220" height="120" rx="10" fill="#2d2d2d20" stroke="#fd7e14"/>
+    <ns0:text x="110" y="310.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">Binary/0-1</ns0:text>
+    <ns0:text x="110" y="335.0" text-anchor="middle" fill="#e65100" font-size="9">x ∈ {0,1}ⁿ</ns0:text>
+    <ns0:text x="110" y="360.0" text-anchor="middle" fill="#e65100" font-size="9">Yes/no decisions</ns0:text>
+    <ns0:text x="110" y="385.0" text-anchor="middle" fill="#e65100" font-size="9">Knapsack, SAT</ns0:text>
+    <ns0:text x="110" y="410.0" text-anchor="middle" fill="#e65100" font-size="8">Feature selection</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(50, 210)">
+    <ns0:rect width="700" height="160" rx="10" fill="#1a237e" stroke="#e0e0e0"/>
+    <ns0:text x="350" y="435.0" text-anchor="middle" fill="#e65100" font-size="11" font-weight="bold">Solution Methods</ns0:text>
+    <ns0:text x="140" y="460.0" text-anchor="middle" fill="#8b5cf6" font-size="10" font-weight="bold">Branch &amp; Bound</ns0:text>
+    <ns0:text x="140" y="485.0" text-anchor="middle" fill="#c4b5fd" font-size="8">Tree search with LP bounds</ns0:text>
+    <ns0:text x="140" y="510.0" text-anchor="middle" fill="#c4b5fd" font-size="7">Divide &amp;amp; conquer</ns0:text>
+    <ns0:text x="350" y="535.0" text-anchor="middle" fill="#c62828" font-size="10" font-weight="bold">Cutting Planes</ns0:text>
+    <ns0:text x="350" y="560.0" text-anchor="middle" fill="#c62828" font-size="8">Add constraints iteratively</ns0:text>
+    <ns0:text x="350" y="585.0" text-anchor="middle" fill="#c62828" font-size="7">Tighten LP relaxation</ns0:text>
+    <ns0:text x="560" y="610.0" text-anchor="middle" fill="#00838f" font-size="10" font-weight="bold">Branch &amp; Cut</ns0:text>
+    <ns0:text x="560" y="635.0" text-anchor="middle" fill="#67e8f9" font-size="8">Combine both methods</ns0:text>
+    <ns0:text x="560" y="660.0" text-anchor="middle" fill="#67e8f9" font-size="7">State-of-the-art</ns0:text>
+    <ns0:text x="350" y="685.0" text-anchor="middle" fill="#a5b4fc" font-size="9">NP-hard in general! Solvers: Gurobi, CPLEX, OR-Tools</ns0:text>
+    <ns0:text x="350" y="710.0" text-anchor="middle" fill="#a5b4fc" font-size="8">ML connection: Neural combinatorial optimization, GNN + ILP</ns0:text>
+  </ns0:g>
+</ns0:svg>

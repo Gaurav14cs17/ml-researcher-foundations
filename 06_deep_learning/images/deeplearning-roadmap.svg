@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2025.0 1237.5">
+  <ns0:defs>
+    <ns0:linearGradient id="dlBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect width="2025.0" height="1237.5" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="450" y="35" text-anchor="middle" fill="#ec4899" font-family="Arial, sans-serif" font-size="24" font-weight="bold">🧬 Deep Learning Roadmap</ns0:text>
+  <ns0:text x="450" y="60" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12">Week 9-12 | ~41 hours | Prerequisites: ML Theory</ns0:text>
+  <ns0:g transform="translate(50, 85)">
+    <ns0:rect width="170" height="130" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+    <ns0:rect width="170" height="35" rx="10" fill="#1565c0"/>
+    <ns0:text x="85" y="85.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11" font-weight="bold">🧠 Neural Networks</ns0:text>
+    <ns0:text x="85" y="110.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="10">~6 hours</ns0:text>
+    <ns0:text x="15" y="135.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Neurons, Layers</ns0:text>
+    <ns0:text x="15" y="160.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Activations (ReLU)</ns0:text>
+    <ns0:text x="15" y="185.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Forward pass</ns0:text>
+  </ns0:g>
+  <ns0:text x="230" y="210.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="16">→</ns0:text>
+  <ns0:g transform="translate(250, 85)">
+    <ns0:rect width="170" height="130" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+    <ns0:rect width="170" height="35" rx="10" fill="#2e7d32"/>
+    <ns0:text x="85" y="235.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11" font-weight="bold">🔄 Backpropagation</ns0:text>
+    <ns0:text x="85" y="260.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">~6 hours</ns0:text>
+    <ns0:text x="15" y="285.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Chain rule ⭐</ns0:text>
+    <ns0:text x="15" y="310.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Autodiff</ns0:text>
+    <ns0:text x="15" y="335.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Computational graphs</ns0:text>
+  </ns0:g>
+  <ns0:text x="430" y="360.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="16">→</ns0:text>
+  <ns0:g transform="translate(450, 85)">
+    <ns0:rect width="170" height="130" rx="10" fill="#1a237e" stroke="#fd7e14" stroke-width="2"/>
+    <ns0:rect width="170" height="35" rx="10" fill="#e65100"/>
+    <ns0:text x="85" y="385.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11" font-weight="bold">⚙️ Training</ns0:text>
+    <ns0:text x="85" y="410.0" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="10">~8 hours</ns0:text>
+    <ns0:text x="15" y="435.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• SGD, Adam ⭐</ns0:text>
+    <ns0:text x="15" y="460.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• BatchNorm, LayerNorm</ns0:text>
+    <ns0:text x="15" y="485.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Dropout, Scheduling</ns0:text>
+  </ns0:g>
+  <ns0:text x="630" y="510.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="16">→</ns0:text>
+  <ns0:g transform="translate(650, 85)">
+    <ns0:rect width="170" height="130" rx="10" fill="#1a237e" stroke="#dc3545" stroke-width="2"/>
+    <ns0:rect width="170" height="35" rx="10" fill="#c62828"/>
+    <ns0:text x="85" y="535.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11" font-weight="bold">🔥 Hot Topics</ns0:text>
+    <ns0:text x="85" y="560.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="10">~6 hours</ns0:text>
+    <ns0:text x="15" y="585.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Flash Attention ⭐</ns0:text>
+    <ns0:text x="15" y="610.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• LoRA / QLoRA ⭐</ns0:text>
+    <ns0:text x="15" y="635.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">• Mixed Precision</ns0:text>
+  </ns0:g>
+  <ns0:text x="450" y="660.0" text-anchor="middle" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="16" font-weight="bold">🏗️ Architectures (~15 hours)</ns0:text>
+  <ns0:g transform="translate(50, 265)">
+    <ns0:rect width="140" height="110" rx="10" fill="#1a237e" stroke="#17a2b8" stroke-width="2"/>
+    <ns0:text x="70" y="685.0" text-anchor="middle" fill="#00838f" font-family="Arial, sans-serif" font-size="11" font-weight="bold">CNN</ns0:text>
+    <ns0:text x="70" y="710.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Convolutions</ns0:text>
+    <ns0:text x="70" y="735.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Pooling</ns0:text>
+    <ns0:text x="70" y="760.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Images</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(210, 265)">
+    <ns0:rect width="140" height="110" rx="10" fill="#1a237e" stroke="#8b5cf6" stroke-width="2"/>
+    <ns0:text x="70" y="785.0" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="11" font-weight="bold">RNN/LSTM</ns0:text>
+    <ns0:text x="70" y="810.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Gates</ns0:text>
+    <ns0:text x="70" y="835.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Memory cells</ns0:text>
+    <ns0:text x="70" y="860.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Sequences</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(370, 265)">
+    <ns0:rect width="160" height="110" rx="10" fill="#1a237e" stroke="#ec4899" stroke-width="3"/>
+    <ns0:text x="80" y="885.0" text-anchor="middle" fill="#ec4899" font-family="Arial, sans-serif" font-size="11" font-weight="bold">⭐ Transformer</ns0:text>
+    <ns0:text x="80" y="910.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Self-Attention</ns0:text>
+    <ns0:text x="80" y="935.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Multi-Head</ns0:text>
+    <ns0:text x="80" y="960.0" text-anchor="middle" fill="#f472b6" font-family="Arial, sans-serif" font-size="8">GPT, BERT, LLaMA</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(550, 265)">
+    <ns0:rect width="140" height="110" rx="10" fill="#1a237e" stroke="#84cc16" stroke-width="2"/>
+    <ns0:text x="70" y="985.0" text-anchor="middle" fill="#84cc16" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Diffusion</ns0:text>
+    <ns0:text x="70" y="1010.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Denoising</ns0:text>
+    <ns0:text x="70" y="1035.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Score matching</ns0:text>
+    <ns0:text x="70" y="1060.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Image gen</ns0:text>
+  </ns0:g>
+  <ns0:g transform="translate(710, 265)">
+    <ns0:rect width="140" height="110" rx="10" fill="#1a237e" stroke="#14b8a6" stroke-width="2"/>
+    <ns0:text x="70" y="1085.0" text-anchor="middle" fill="#14b8a6" font-family="Arial, sans-serif" font-size="11" font-weight="bold">MoE</ns0:text>
+    <ns0:text x="70" y="1110.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Routing</ns0:text>
+    <ns0:text x="70" y="1135.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="9">Experts</ns0:text>
+    <ns0:text x="70" y="1160.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="8">Scaling</ns0:text>
+  </ns0:g>
+  <ns0:rect x="250" y="420" width="400" height="50" rx="12" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+  <ns0:text x="450" y="1185.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12">Next: Reinforcement Learning (RLHF, DPO) →</ns0:text>
+  <ns0:text x="450" y="1210.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">⭐ = Essential for modern ML research | Most time spent here!</ns0:text>
+</ns0:svg>

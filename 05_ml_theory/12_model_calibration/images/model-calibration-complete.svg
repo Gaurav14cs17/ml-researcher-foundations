@@ -1,0 +1,188 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2475.0 2025.0">
+  <ns0:text x="550" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Model Calibration: Trustworthy Confidence Estimates
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="500" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      1. What is Calibration?
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="315.0" fill="#f8f9fa" stroke="#007bff" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="80.0" font-size="14" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#1565c0">Problem:</ns0:tspan>
+        Model outputs probabilities, but are they trustworthy?
+      </ns0:text>
+      <ns0:g transform="translate(0, 30)">
+        <ns0:text x="0" y="105.0" font-size="13" fill="#1a237e">
+          <ns0:tspan font-weight="bold" fill="#c62828">Poorly Calibrated:</ns0:tspan>
+          Model says 90% confidence → Actually correct only 70% of the time
+        </ns0:text>
+        <ns0:text x="0" y="130.0" font-size="13" fill="#2e7d32" font-weight="bold">
+          <ns0:tspan fill="#145a32">Well Calibrated:</ns0:tspan>
+          Model says 90% confidence → Correct ~90% of the time → Confidence matches accuracy
+        </ns0:text>
+        <ns0:text x="0" y="155.0" font-size="12" fill="#1a237e">
+          Formally: P(Y=y | p̂=p) = p     (predicted probability = actual accuracy)
+        </ns0:text>
+        <ns0:text x="0" y="180.0" font-size="12" fill="#1a237e">
+          <ns0:tspan x="0" dy="0">Why it matters: Medical diagnosis, autonomous vehicles,</ns0:tspan>
+          <ns0:tspan x="0" dy="1.2em">decision-making under uncertainty</ns0:tspan>
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 260)">
+    <ns0:text x="500" y="205.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      2. Reliability Diagram (Calibration Plot)
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="280" fill="#1a237e" stroke="#28a745" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(50, 60)">
+      <ns0:g>
+        <ns0:line x1="0" y1="200" x2="200" y2="200" stroke="#ffffff" stroke-width="2"/>
+        <ns0:line x1="0" y1="0" x2="0" y2="205" stroke="#ffffff" stroke-width="2"/>
+        <ns0:line x1="0" y1="0" x2="200" y2="0" stroke="#444444" stroke-width="1" stroke-dasharray="2,2" opacity="0.3"/>
+        <ns0:line x1="0" y1="50" x2="200" y2="50" stroke="#444444" stroke-width="1" stroke-dasharray="2,2" opacity="0.3"/>
+        <ns0:line x1="0" y1="100" x2="200" y2="100" stroke="#444444" stroke-width="1" stroke-dasharray="2,2" opacity="0.3"/>
+        <ns0:line x1="0" y1="150" x2="200" y2="150" stroke="#444444" stroke-width="1" stroke-dasharray="2,2" opacity="0.3"/>
+        <ns0:line x1="50" y1="0" x2="50" y2="200" stroke="#444444" stroke-width="1" stroke-dasharray="2,2" opacity="0.3"/>
+        <ns0:line x1="100" y1="0" x2="100" y2="200" stroke="#444444" stroke-width="1" stroke-dasharray="2,2" opacity="0.3"/>
+        <ns0:line x1="150" y1="0" x2="150" y2="200" stroke="#444444" stroke-width="1" stroke-dasharray="2,2" opacity="0.3"/>
+        <ns0:line x1="200" y1="0" x2="200" y2="200" stroke="#444444" stroke-width="1" stroke-dasharray="2,2" opacity="0.3"/>
+        <ns0:line x1="0" y1="200" x2="200" y2="0" stroke="#28a745" stroke-width="3" stroke-dasharray="5,5"/>
+        <ns0:text x="210" y="230.0" font-size="11" fill="#2e7d32" font-weight="bold">
+          Perfect
+        </ns0:text>
+        <ns0:text x="210" y="255.0" font-size="11" fill="#2e7d32" font-weight="bold">
+          calibration
+        </ns0:text>
+        <ns0:path d="M 0,200 Q 50,180 100,140 Q 150,80 200,20" fill="none" stroke="#dc3545" stroke-width="3"/>
+        <ns0:text x="210" y="280.0" font-size="11" fill="#c62828" font-weight="bold">
+          Overconfident
+        </ns0:text>
+        <ns0:path d="M 0,200 Q 50,170 100,110 Q 150,60 200,40" fill="none" stroke="#007bff" stroke-width="3"/>
+        <ns0:text x="210" y="305.0" font-size="11" fill="#1565c0" font-weight="bold">
+          Underconfident
+        </ns0:text>
+        <ns0:text x="100" y="330.0" font-size="12" text-anchor="middle" fill="#1a237e">
+          Predicted Confidence
+        </ns0:text>
+        <ns0:text x="-20" y="355.0" font-size="12" fill="#1a237e" transform="rotate(-90 -20 100)">
+          Accuracy
+        </ns0:text>
+        <ns0:text x="-5" y="380.0" font-size="10" text-anchor="end" fill="#1a237e">0</ns0:text>
+        <ns0:text x="-5" y="405.0" font-size="10" text-anchor="end" fill="#1a237e">0.5</ns0:text>
+        <ns0:text x="-5" y="430.0" font-size="10" text-anchor="end" fill="#1a237e">1</ns0:text>
+        <ns0:text x="0" y="455.0" font-size="10" text-anchor="middle" fill="#1a237e">0</ns0:text>
+        <ns0:text x="100" y="480.0" font-size="10" text-anchor="middle" fill="#1a237e">0.5</ns0:text>
+        <ns0:text x="200" y="505.0" font-size="10" text-anchor="middle" fill="#1a237e">1</ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(280, 20)">
+        <ns0:text x="0" y="530.0" font-size="13" font-weight="bold" fill="#145a32">
+          Interpretation:
+        </ns0:text>
+        <ns0:g transform="translate(0, 25)">
+          <ns0:rect x="0" y="-5" width="3" height="18" fill="#2e7d32"/>
+          <ns0:text x="10" y="555.0" font-size="12" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#2e7d32">Perfect:</ns0:tspan>
+            Confidence = accuracy
+          </ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(0, 50)">
+          <ns0:rect x="0" y="-5" width="3" height="18" fill="#c62828"/>
+          <ns0:text x="10" y="580.0" font-size="12" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#c62828">Overconfident:</ns0:tspan>
+            Says 90%, actually 70%
+          </ns0:text>
+          <ns0:text x="10" y="605.0" font-size="11" fill="#1a237e">
+            Common in modern deep networks!
+          </ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(0, 90)">
+          <ns0:rect x="0" y="-5" width="3" height="18" fill="#1565c0"/>
+          <ns0:text x="10" y="630.0" font-size="12" fill="#1a237e">
+            <ns0:tspan font-weight="bold" fill="#1565c0">Underconfident:</ns0:tspan>
+            Says 70%, actually 90%
+          </ns0:text>
+          <ns0:text x="10" y="655.0" font-size="11" fill="#1a237e">
+            Rare, but possible
+          </ns0:text>
+        </ns0:g>
+        <ns0:g transform="translate(0, 130)">
+          <ns0:text x="0" y="680.0" font-size="13" font-weight="bold" fill="#145a32">
+            Example (Overconfident):
+          </ns0:text>
+          <ns0:text x="0" y="705.0" font-size="11" fill="#1a237e">
+            Bin predictions by confidence
+          </ns0:text>
+          <ns0:text x="0" y="730.0" font-size="11" fill="#c62828">
+            80-90% bucket: 85% avg confidence
+          </ns0:text>
+          <ns0:text x="0" y="755.0" font-size="11" fill="#c62828">
+            But only 72% actually correct!
+          </ns0:text>
+        </ns0:g>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 580)">
+    <ns0:text x="500" y="780.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+      3. Expected Calibration Error (ECE)
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="100" fill="#1a237e" stroke="#6f42c1" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="805.0" font-size="14" font-weight="bold" fill="#6c3483">
+        Quantify miscalibration:
+      </ns0:text>
+      <ns0:rect x="0" y="20" width="940" height="40" fill="#1a237e" stroke="#6f42c1" stroke-width="1" rx="3"/>
+      <ns0:g transform="translate(15, 38)">
+        <ns0:text x="0" y="830.0" font-size="12" font-family="Arial, sans-serif" fill="#6a1b9a">
+          ECE = Σ_m (n_m / n) |acc(B_m) - conf(B_m)|
+        </ns0:text>
+        <ns0:text x="0" y="855.0" font-size="11" fill="#1a237e">
+          <ns0:tspan x="0" dy="0">Bin predictions into M bins → Weighted average of |accuracy</ns0:tspan>
+          <ns0:tspan x="0" dy="1.2em">- confidence| per bin</ns0:tspan>
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 720)">
+    <ns0:text x="500" y="880.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#e67e22">
+      4. Calibration Methods
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="2250.0" height="150" fill="#1a237e" stroke="#fd7e14" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:g>
+        <ns0:text x="0" y="905.0" font-size="13" fill="#1a237e">
+          • 
+          <ns0:tspan font-weight="bold" fill="#d84315">Temperature Scaling:</ns0:tspan>
+          Divide logits by T &gt; 1 before softmax → p'ᵢ = exp(zᵢ/T) / Σⱼ exp(zⱼ/T)
+        </ns0:text>
+        <ns0:text x="20" y="930.0" font-size="11" fill="#1a237e">
+          Simple, effective! Learn T on validation set. Higher T → softer probabilities
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 45)">
+        <ns0:text x="0" y="955.0" font-size="13" fill="#1a237e">
+          • 
+          <ns0:tspan font-weight="bold" fill="#d84315">Platt Scaling:</ns0:tspan>
+          Train logistic regression on validation: p' = σ(a·z + b)
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 68)">
+        <ns0:text x="0" y="980.0" font-size="13" fill="#1a237e">
+          • 
+          <ns0:tspan font-weight="bold" fill="#d84315">Ensemble Methods:</ns0:tspan>
+          Average predictions from multiple models → Better calibration
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 91)">
+        <ns0:text x="0" y="1005.0" font-size="13" fill="#1a237e">
+          • 
+          <ns0:tspan font-weight="bold" fill="#d84315">Focal Loss:</ns0:tspan>
+          Down-weight easy examples during training → Improves calibration
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>

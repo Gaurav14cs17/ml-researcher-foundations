@@ -1,0 +1,124 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 2475.0 1912.5">
+  <ns0:rect width="100%" height="100%" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="550" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    Distance &amp;amp; Similarity Metrics in Machine Learning
+  </ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:text x="450" y="55.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">
+      1. Euclidean Distance (L2 Norm)
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="900" height="160" fill="#1a237e" stroke="#007bff" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="80.0" font-size="14" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#1565c0">Straight-line distance</ns0:tspan>
+        (as the crow flies)
+      </ns0:text>
+      <ns0:rect x="0" y="20" width="840" height="40" fill="#1a237e" stroke="#007bff" stroke-width="1" rx="3"/>
+      <ns0:text x="420" y="105.0" font-size="16" font-family="Arial, sans-serif" text-anchor="middle" fill="#1a5276">
+        d(x, y) = √(Σᵢ (xᵢ - yᵢ)²) = ||x - y||₂
+      </ns0:text>
+      <ns0:g transform="translate(0, 75)">
+        <ns0:text x="0" y="130.0" font-size="13" fill="#2e7d32">✓ Most intuitive</ns0:text>
+        <ns0:text x="180" y="155.0" font-size="13" fill="#2e7d32">✓ Works well in low dimensions</ns0:text>
+        <ns0:text x="480" y="180.0" font-size="13" fill="#c62828">✗ Sensitive to scale</ns0:text>
+        <ns0:text x="0" y="205.0" font-size="12" fill="#1a237e">
+          Use in: K-means, KNN, K-NN regression, metric learning
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 280)">
+    <ns0:text x="450" y="230.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">
+      2. Manhattan Distance (L1 Norm, Taxicab)
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="900" height="160" fill="#1a237e" stroke="#28a745" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="255.0" font-size="14" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#145a32">Grid-like distance</ns0:tspan>
+        (city blocks)
+      </ns0:text>
+      <ns0:rect x="0" y="20" width="840" height="40" fill="#1a237e" stroke="#28a745" stroke-width="1" rx="3"/>
+      <ns0:text x="420" y="280.0" font-size="16" font-family="Arial, sans-serif" text-anchor="middle" fill="#145a32">
+        d(x, y) = Σᵢ |xᵢ - yᵢ| = ||x - y||₁
+      </ns0:text>
+      <ns0:g transform="translate(0, 75)">
+        <ns0:text x="0" y="305.0" font-size="13" fill="#2e7d32">✓ Robust to outliers</ns0:text>
+        <ns0:text x="220" y="330.0" font-size="13" fill="#2e7d32">✓ Better for high dimensions</ns0:text>
+        <ns0:text x="500" y="355.0" font-size="13" fill="#2e7d32">✓ Computationally simpler</ns0:text>
+        <ns0:text x="0" y="380.0" font-size="12" fill="#1a237e">
+          Use in: Sparse data, high-dimensional spaces, L1 regularization
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 480)">
+    <ns0:text x="450" y="405.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#6a1b9a">
+      3. Cosine Similarity (Angular Distance)
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="900" height="180" fill="#1a237e" stroke="#6f42c1" stroke-width="3" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:text x="0" y="430.0" font-size="14" fill="#1a237e">
+        <ns0:tspan font-weight="bold" fill="#6c3483">Angle between vectors</ns0:tspan>
+        (magnitude-independent)
+      </ns0:text>
+      <ns0:rect x="0" y="20" width="840" height="45" fill="#1a237e" stroke="#6f42c1" stroke-width="1" rx="3"/>
+      <ns0:g transform="translate(10, 20)">
+        <ns0:text x="410" y="455.0" font-size="15" font-family="Arial, sans-serif" text-anchor="middle" fill="#4a148c">
+          similarity(x, y) = (x·y) / (||x|| ||y||) = cos(θ)
+        </ns0:text>
+        <ns0:text x="410" y="480.0" font-size="13" text-anchor="middle" fill="#1a237e">
+          Range: [-1, 1]  →  Distance = 1 - similarity
+        </ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 85)">
+        <ns0:text x="0" y="505.0" font-size="13" fill="#2e7d32">✓ Magnitude-invariant</ns0:text>
+        <ns0:text x="240" y="530.0" font-size="13" fill="#2e7d32">✓ Perfect for text (TF-IDF)</ns0:text>
+        <ns0:text x="520" y="555.0" font-size="13" fill="#2e7d32">✓ High-dim friendly</ns0:text>
+        <ns0:text x="0" y="580.0" font-size="12" fill="#1a237e">
+          Use in: Document similarity, recommendation systems, NLP embeddings
+        </ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+  <ns0:g transform="translate(50, 700)">
+    <ns0:text x="450" y="605.0" font-size="16" font-weight="bold" text-anchor="middle" fill="#e65100">
+      4. Quick Comparison
+    </ns0:text>
+    <ns0:rect x="0" y="20" width="900" height="120" fill="#1a237e" stroke="#fd7e14" stroke-width="2" rx="8"/>
+    <ns0:g transform="translate(30, 50)">
+      <ns0:g>
+        <ns0:rect x="0" y="0" width="200" height="25" fill="#fdebd0" stroke="#e67e22" stroke-width="1"/>
+        <ns0:text x="100" y="630.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#d35400">Metric</ns0:text>
+        <ns0:rect x="200" y="0" width="280" height="25" fill="#fdebd0" stroke="#e67e22" stroke-width="1"/>
+        <ns0:text x="340" y="655.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#d35400">Best For</ns0:text>
+        <ns0:rect x="480" y="0" width="360" height="25" fill="#fdebd0" stroke="#e67e22" stroke-width="1"/>
+        <ns0:text x="660" y="680.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#d35400">Key Property</ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 25)">
+        <ns0:rect x="0" y="0" width="200" height="22" fill="#fff9e6"/>
+        <ns0:text x="10" y="705.0" font-size="11" fill="#1565c0" font-weight="bold">Euclidean (L2)</ns0:text>
+        <ns0:rect x="200" y="0" width="280" height="22" fill="#fff9e6"/>
+        <ns0:text x="210" y="730.0" font-size="11" fill="#1a237e">Low-dim, continuous data</ns0:text>
+        <ns0:rect x="480" y="0" width="360" height="22" fill="#fff9e6"/>
+        <ns0:text x="490" y="755.0" font-size="11" fill="#1a237e">Straight-line distance, scale-dependent</ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 47)">
+        <ns0:rect x="0" y="0" width="200" height="22" fill="#fff9e6"/>
+        <ns0:text x="10" y="780.0" font-size="11" fill="#2e7d32" font-weight="bold">Manhattan (L1)</ns0:text>
+        <ns0:rect x="200" y="0" width="280" height="22" fill="#fff9e6"/>
+        <ns0:text x="210" y="805.0" font-size="11" fill="#1a237e">High-dim, sparse data</ns0:text>
+        <ns0:rect x="480" y="0" width="360" height="22" fill="#fff9e6"/>
+        <ns0:text x="490" y="830.0" font-size="11" fill="#1a237e">Grid distance, robust to outliers</ns0:text>
+      </ns0:g>
+      <ns0:g transform="translate(0, 69)">
+        <ns0:rect x="0" y="0" width="200" height="22" fill="#fff9e6"/>
+        <ns0:text x="10" y="855.0" font-size="11" fill="#6a1b9a" font-weight="bold">Cosine</ns0:text>
+        <ns0:rect x="200" y="0" width="280" height="22" fill="#fff9e6"/>
+        <ns0:text x="210" y="880.0" font-size="11" fill="#1a237e">Text, embeddings</ns0:text>
+        <ns0:rect x="480" y="0" width="360" height="22" fill="#fff9e6"/>
+        <ns0:text x="490" y="905.0" font-size="11" fill="#1a237e">Direction-based, magnitude-invariant</ns0:text>
+      </ns0:g>
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>

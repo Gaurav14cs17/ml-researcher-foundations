@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 900.0">
+  <ns0:defs>
+    <ns0:linearGradient id="bgGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color:#ffffff"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d"/>
+    </ns0:linearGradient>
+    <ns0:marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <ns0:polygon points="0 0, 10 3.5, 0 7" fill="#6366f1"/>
+    </ns0:marker>
+  </ns0:defs>
+  <ns0:rect width="1800.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="35" text-anchor="middle" fill="#1a237e" font-size="22" font-weight="bold" font-family="Arial, sans-serif">Deep Learning Training Loop</ns0:text>
+  <ns0:g transform="translate(50, 80)">
+    <ns0:rect width="150" height="100" rx="10" fill="#10b98130" stroke="#10b981" stroke-width="2"/>
+    <ns0:text x="75" y="60.0" text-anchor="middle" fill="#2e7d32" font-size="14" font-weight="bold">1. Forward</ns0:text>
+    <ns0:text x="75" y="85.0" text-anchor="middle" fill="#2e7d32" font-size="11">ŷ = model(x)</ns0:text>
+    <ns0:text x="75" y="110.0" text-anchor="middle" fill="#2e7d32" font-size="11">L = loss(ŷ, y)</ns0:text>
+  </ns0:g>
+  <ns0:line x1="210" y1="130" x2="260" y2="130" stroke="#6366f1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <ns0:g transform="translate(270, 80)">
+    <ns0:rect width="150" height="100" rx="10" fill="#dc354530" stroke="#dc3545" stroke-width="2"/>
+    <ns0:text x="75" y="135.0" text-anchor="middle" fill="#c62828" font-size="14" font-weight="bold">2. Backward</ns0:text>
+    <ns0:text x="75" y="160.0" text-anchor="middle" fill="#c62828" font-size="11">loss.backward()</ns0:text>
+    <ns0:text x="75" y="185.0" text-anchor="middle" fill="#c62828" font-size="11">Compute ∂L/∂W</ns0:text>
+  </ns0:g>
+  <ns0:line x1="430" y1="130" x2="480" y2="130" stroke="#6366f1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <ns0:g transform="translate(490, 80)">
+    <ns0:rect width="150" height="100" rx="10" fill="#007bff30" stroke="#007bff" stroke-width="2"/>
+    <ns0:text x="75" y="210.0" text-anchor="middle" fill="#1565c0" font-size="14" font-weight="bold">3. Update</ns0:text>
+    <ns0:text x="75" y="235.0" text-anchor="middle" fill="#1565c0" font-size="11">optimizer.step()</ns0:text>
+    <ns0:text x="75" y="260.0" text-anchor="middle" fill="#1565c0" font-size="11">W ← W - α∇L</ns0:text>
+  </ns0:g>
+  <ns0:path d="M 640 130 Q 700 130 700 240 Q 700 350 400 350 Q 100 350 100 240 Q 100 190 100 180" fill="none" stroke="#6366f1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <ns0:text x="700" y="285.0" fill="#a5b4fc" font-size="12">Repeat</ns0:text>
+  <ns0:g transform="translate(50, 220)">
+    <ns0:text x="0" y="310.0" fill="#e65100" font-size="14" font-weight="bold">Key Components:</ns0:text>
+    <ns0:rect x="0" y="20" width="180" height="60" rx="6" fill="#8b5cf620" stroke="#8b5cf6"/>
+    <ns0:text x="90" y="335.0" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="bold">Optimizer</ns0:text>
+    <ns0:text x="90" y="360.0" text-anchor="middle" fill="#a5b4fc" font-size="10">SGD, Adam, AdamW</ns0:text>
+    <ns0:rect x="200" y="20" width="180" height="60" rx="6" fill="#2d2d2d20" stroke="#fd7e14"/>
+    <ns0:text x="290" y="385.0" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">LR Scheduler</ns0:text>
+    <ns0:text x="290" y="410.0" text-anchor="middle" fill="#e65100" font-size="10">Cosine, warmup, step</ns0:text>
+    <ns0:rect x="400" y="20" width="180" height="60" rx="6" fill="#2d2d2d20" stroke="#10b981"/>
+    <ns0:text x="490" y="435.0" text-anchor="middle" fill="#2e7d32" font-size="12" font-weight="bold">Regularization</ns0:text>
+    <ns0:text x="490" y="460.0" text-anchor="middle" fill="#2e7d32" font-size="10">Dropout, weight decay</ns0:text>
+    <ns0:rect x="600" y="20" width="150" height="60" rx="6" fill="#2d2d2d20" stroke="#dc3545"/>
+    <ns0:text x="675" y="485.0" text-anchor="middle" fill="#c62828" font-size="12" font-weight="bold">Grad Clipping</ns0:text>
+    <ns0:text x="675" y="510.0" text-anchor="middle" fill="#c62828" font-size="10">Prevent explosion</ns0:text>
+  </ns0:g>
+  <ns0:rect x="100" y="320" width="600" height="40" rx="6" fill="#1a237e" stroke="#e0e0e0"/>
+  <ns0:text x="400" y="535.0" text-anchor="middle" fill="#1a237e" font-size="12">
+    <ns0:tspan fill="#e65100" font-weight="bold">Modern recipe: </ns0:tspan>
+    AdamW + Cosine LR + Warmup + Weight Decay (GPT, LLaMA, BERT)
+  </ns0:text>
+</ns0:svg>

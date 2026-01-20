@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="380" fill="url(#bgGrad)" rx="12"/>
+  <text x="400" y="35" text-anchor="middle" fill="#1abc9c" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Attention Sharing (MQA/GQA)</text>
+  
+  <rect x="40" y="60" width="230" height="140" rx="10" fill="#2c3e50" stroke="#e74c3c" stroke-width="2"/>
+  <text x="155" y="90" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="13" font-weight="bold">MHA (Standard)</text>
+  <text x="155" y="115" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">H query heads</text>
+  <text x="155" y="135" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">H key heads</text>
+  <text x="155" y="155" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">H value heads</text>
+  <text x="155" y="185" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="10">KV cache: 100%</text>
+  
+  <rect x="285" y="60" width="230" height="140" rx="10" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
+  <text x="400" y="90" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="13" font-weight="bold">MQA (Multi-Query)</text>
+  <text x="400" y="115" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">H query heads</text>
+  <text x="400" y="135" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10" font-weight="bold">1 key head (shared)</text>
+  <text x="400" y="155" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10" font-weight="bold">1 value head (shared)</text>
+  <text x="400" y="185" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="10">KV cache: 1/H (~6%)</text>
+  
+  <rect x="530" y="60" width="230" height="140" rx="10" fill="#2c3e50" stroke="#27ae60" stroke-width="2"/>
+  <text x="645" y="90" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="13" font-weight="bold">GQA (Grouped)</text>
+  <text x="645" y="115" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">H query heads</text>
+  <text x="645" y="135" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10" font-weight="bold">G key heads (G&lt;H)</text>
+  <text x="645" y="155" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10" font-weight="bold">G value heads (G&lt;H)</text>
+  <text x="645" y="185" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="10">KV cache: G/H (~12%)</text>
+  
+  <rect x="40" y="220" width="720" height="140" rx="10" fill="#2c3e50" stroke="#3498db" stroke-width="2"/>
+  <text x="400" y="255" text-anchor="middle" fill="#3498db" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Real-World Usage</text>
+  
+  <text x="150" y="290" text-anchor="middle" fill="#e74c3c" font-family="Arial, sans-serif" font-size="12" font-weight="bold">PaLM</text>
+  <text x="150" y="315" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">MQA</text>
+  <text x="150" y="340" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10">8× faster decoding</text>
+  
+  <text x="350" y="290" text-anchor="middle" fill="#f39c12" font-family="Arial, sans-serif" font-size="12" font-weight="bold">LLaMA-2</text>
+  <text x="350" y="315" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">GQA (8 groups)</text>
+  <text x="350" y="340" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10">4× smaller cache</text>
+  
+  <text x="550" y="290" text-anchor="middle" fill="#27ae60" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Mistral</text>
+  <text x="550" y="315" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">GQA</text>
+  <text x="550" y="340" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10">Fast inference</text>
+  
+  <text x="720" y="290" text-anchor="middle" fill="#9b59b6" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Falcon</text>
+  <text x="720" y="315" text-anchor="middle" fill="#ecf0f1" font-family="Arial, sans-serif" font-size="10">MQA</text>
+  <text x="720" y="340" text-anchor="middle" fill="#2ecc71" font-family="Arial, sans-serif" font-size="10">Memory efficient</text>
+</svg>
+

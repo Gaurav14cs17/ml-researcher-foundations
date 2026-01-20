@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef3c7"/>
+      <stop offset="100%" style="stop-color:#fde68a"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#78350f"/>
+    </marker>
+  </defs>
+  
+  <rect width="1800" height="1200" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#78350f" font-family="Arial, sans-serif" font-size="52" font-weight="bold">MDP Components</text>
+  <text x="900" y="120" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="26">Markov Decision Process - The Foundation of Reinforcement Learning</text>
+  
+  <!-- Five Components -->
+  <g transform="translate(100, 180)" filter="url(#shadow)">
+    <rect width="1600" height="900" rx="18" fill="#ffffff" stroke="#f59e0b" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="38" font-weight="bold">The Five Components of an MDP</text>
+    <line x1="40" y1="75" x2="1560" y2="75" stroke="#fde68a" stroke-width="2"/>
+    
+    <!-- Component 1: States -->
+    <g transform="translate(80, 120)">
+      <rect width="700" height="150" fill="#eff6ff" stroke="#3b82f6" stroke-width="3" rx="14"/>
+      <text x="350" y="40" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="30" font-weight="bold">1. States (S)</text>
+      <line x1="30" y1="60" x2="670" y2="60" stroke="#bfdbfe" stroke-width="2"/>
+      <text x="350" y="95" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="20">Set of all possible situations the agent can be in</text>
+      <text x="350" y="125" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="18">Example: Robot position, game board configuration</text>
+    </g>
+    
+    <!-- Component 2: Actions -->
+    <g transform="translate(820, 120)">
+      <rect width="700" height="150" fill="#f0fdf4" stroke="#10b981" stroke-width="3" rx="14"/>
+      <text x="350" y="40" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="30" font-weight="bold">2. Actions (A)</text>
+      <line x1="30" y1="60" x2="670" y2="60" stroke="#d1fae5" stroke-width="2"/>
+      <text x="350" y="95" text-anchor="middle" fill="#065f46" font-family="Arial, sans-serif" font-size="20">Set of all possible moves the agent can take</text>
+      <text x="350" y="125" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="18">Example: Move up/down/left/right, buy/sell/hold</text>
+    </g>
+    
+    <!-- Component 3: Transition Function -->
+    <g transform="translate(80, 300)">
+      <rect width="700" height="170" fill="#faf5ff" stroke="#8b5cf6" stroke-width="3" rx="14"/>
+      <text x="350" y="40" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="30" font-weight="bold">3. Transition Function P</text>
+      <line x1="30" y1="60" x2="670" y2="60" stroke="#e9d5ff" stroke-width="2"/>
+      <rect x="50" y="75" width="600" height="50" fill="#f3e8ff" rx="10"/>
+      <text x="350" y="108" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="24">P(s'|s, a) = Pr(S_{t+1}=s' | S_t=s, A_t=a)</text>
+      <text x="350" y="150" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="18">Probability of transitioning to state s' given action a</text>
+    </g>
+    
+    <!-- Component 4: Reward Function -->
+    <g transform="translate(820, 300)">
+      <rect width="700" height="170" fill="#fee2e2" stroke="#ef4444" stroke-width="3" rx="14"/>
+      <text x="350" y="40" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="30" font-weight="bold">4. Reward Function R</text>
+      <line x1="30" y1="60" x2="670" y2="60" stroke="#fecaca" stroke-width="2"/>
+      <rect x="50" y="75" width="600" height="50" fill="#fecaca" rx="10"/>
+      <text x="350" y="108" text-anchor="middle" fill="#991b1b" font-family="Consolas, monospace" font-size="24">R(s, a, s') = Expected reward</text>
+      <text x="350" y="150" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="18">Immediate reward for taking action a in state s</text>
+    </g>
+    
+    <!-- Component 5: Discount Factor -->
+    <g transform="translate(450, 500)">
+      <rect width="700" height="170" fill="#fef3c7" stroke="#f59e0b" stroke-width="3" rx="14"/>
+      <text x="350" y="40" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="30" font-weight="bold">5. Discount Factor γ</text>
+      <line x1="30" y1="60" x2="670" y2="60" stroke="#fde68a" stroke-width="2"/>
+      <rect x="100" y="75" width="500" height="50" fill="#fde68a" rx="10"/>
+      <text x="350" y="108" text-anchor="middle" fill="#78350f" font-family="Consolas, monospace" font-size="26">γ ∈ [0, 1]</text>
+      <text x="350" y="150" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="18">Balances immediate vs future rewards (γ=0: myopic, γ=1: farsighted)</text>
+    </g>
+    
+    <!-- MDP Tuple -->
+    <g transform="translate(80, 700)">
+      <rect width="1440" height="150" fill="#ecfdf5" stroke="#14b8a6" stroke-width="4" rx="14"/>
+      <text x="720" y="45" text-anchor="middle" fill="#14b8a6" font-family="Arial, sans-serif" font-size="32" font-weight="bold">📐 Formal Definition</text>
+      <line x1="40" y1="65" x2="1400" y2="65" stroke="#99f6e4" stroke-width="2"/>
+      <rect x="200" y="85" width="1040" height="55" fill="#f0fdfa" rx="12"/>
+      <text x="720" y="125" text-anchor="middle" fill="#0f766e" font-family="Consolas, monospace" font-size="32" font-weight="bold">MDP = (S, A, P, R, γ)</text>
+    </g>
+  </g>
+  
+  <!-- Key Insight -->
+  <rect x="100" y="1110" width="1600" height="80" fill="#f59e0b" rx="16" filter="url(#shadow)"/>
+  <text x="900" y="1150" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="26" font-weight="bold">💡 Markov Property: Future depends only on current state, not history</text>
+  <text x="900" y="1180" text-anchor="middle" fill="#fef3c7" font-family="Arial, sans-serif" font-size="22">P(S_{t+1} | S_t, S_{t-1}, ..., S_0) = P(S_{t+1} | S_t)</text>
+</svg>

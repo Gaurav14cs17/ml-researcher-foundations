@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1575.0 900.0">
+  <ns0:rect width="1575.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="350" y="35" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="22" font-weight="bold">KL Divergence: D_KL(P || Q)</ns0:text>
+  <ns0:text x="350" y="60" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12">&quot;Extra bits needed to encode P using Q&quot;</ns0:text>
+  <ns0:g transform="translate(100, 150)">
+    <ns0:path d="M0 100 Q50 100 100 60 Q150 0 200 60 Q250 100 300 100" stroke="#007bff" stroke-width="3" fill="none"/>
+    <ns0:text x="150" y="85.0" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="14" font-weight="bold">P (true)</ns0:text>
+    <ns0:path d="M50 100 Q100 100 150 70 Q200 20 250 70 Q300 100 350 100" stroke="#dc3545" stroke-width="3" fill="none" stroke-dasharray="8,4"/>
+    <ns0:text x="250" y="110.0" text-anchor="middle" fill="#c62828" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Q (model)</ns0:text>
+    <ns0:line x1="0" y1="100" x2="350" y2="100" stroke="#e0e0e0" stroke-width="1"/>
+    <ns0:text x="175" y="130" text-anchor="middle" fill="#e65100" font-family="Arial, sans-serif" font-size="11">← KL divergence measures this gap →</ns0:text>
+  </ns0:g>
+  <ns0:rect x="480" y="100" width="200" height="100" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+  <ns0:text x="580" y="155.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Formula</ns0:text>
+  <ns0:text x="580" y="180.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">D_KL(P||Q) =</ns0:text>
+  <ns0:text x="580" y="205.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">Σ P(x) log(P(x)/Q(x))</ns0:text>
+  <ns0:rect x="50" y="290" width="280" height="90" rx="10" fill="#1a237e" stroke="#007bff" stroke-width="2"/>
+  <ns0:text x="190" y="315" text-anchor="middle" fill="#1565c0" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Properties</ns0:text>
+  <ns0:text x="70" y="340" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">• D_KL(P||Q) ≥ 0 (always non-negative)</ns0:text>
+  <ns0:text x="70" y="360" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">• D_KL(P||Q) ≠ D_KL(Q||P) (asymmetric!)</ns0:text>
+  <ns0:text x="70" y="385.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">• = 0 iff P = Q</ns0:text>
+  <ns0:rect x="370" y="290" width="280" height="90" rx="10" fill="#1a237e" stroke="#28a745" stroke-width="2"/>
+  <ns0:text x="510" y="410.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="12" font-weight="bold">ML Applications</ns0:text>
+  <ns0:text x="390" y="435.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">• VAE: D_KL(q(z|x) || p(z))</ns0:text>
+  <ns0:text x="390" y="460.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">• Knowledge distillation</ns0:text>
+  <ns0:text x="390" y="485.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="11">• Policy optimization (TRPO)</ns0:text>
+</ns0:svg>

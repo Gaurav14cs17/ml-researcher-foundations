@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1800.0 1350.0">
+  <ns0:rect width="100%" height="100%" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="400" y="30" font-size="20" font-weight="bold" text-anchor="middle" fill="#1a237e">
+    SGD Convergence: Full-Batch vs Mini-Batch vs Stochastic
+  </ns0:text>
+  <ns0:defs>
+    <ns0:radialGradient id="lossGradient" cx="50%" cy="50%">
+      <ns0:stop offset="0%" style="stop-color:#2d2d2d;stop-opacity:1"/>
+      <ns0:stop offset="100%" style="stop-color:#2d2d2d;stop-opacity:1"/>
+    </ns0:radialGradient>
+  </ns0:defs>
+  <ns0:ellipse cx="400" cy="350" rx="300" ry="200" fill="url(#lossGradient)" opacity="0.3"/>
+  <ns0:line x1="50" y1="550" x2="750" y2="550" stroke="#e0e0e0" stroke-width="2"/>
+  <ns0:line x1="50" y1="550" x2="50" y2="50" stroke="#e0e0e0" stroke-width="2"/>
+  <ns0:text x="400" y="580" font-size="14" text-anchor="middle" fill="#1a237e">Iterations</ns0:text>
+  <ns0:text x="20" y="605.0" font-size="14" text-anchor="middle" fill="#1a237e" transform="rotate(-90 20 300)">Loss</ns0:text>
+  <ns0:path d="M 80,100 Q 150,95 220,120 T 360,180 T 500,280 T 650,400 Q 680,450 700,500" fill="none" stroke="#2ecc71" stroke-width="3" stroke-dasharray="none"/>
+  <ns0:path d="M 80,100 L 100,110 L 120,105 L 140,125 L 160,130 L 180,140 L 200,145 L 220,155 L 240,165 L 260,175 L 280,190 L 300,200 L 320,215 L 340,230 L 360,250 L 380,265 L 400,285 L 420,305 L 440,325 L 460,350 L 480,375 L 500,395 L 520,420 L 540,440 L 560,460 L 580,475 L 600,485 L 620,492 L 640,497 L 660,500 L 680,502 L 700,503" fill="none" stroke="#007bff" stroke-width="3"/>
+  <ns0:path d="M 80,100 L 95,130 L 105,110 L 120,145 L 130,125 L 145,160 L 155,140 L 170,175 L 185,155 L 200,185 L 215,170 L 230,200 L 245,185 L 260,215 L 280,200 L 295,230 L 310,220 L 330,250 L 345,240 L 365,270 L 380,260 L 400,290 L 420,280 L 440,310 L 460,305 L 480,335 L 500,330 L 520,360 L 540,355 L 560,385 L 580,380 L 600,405 L 620,400 L 640,420 L 660,418 L 680,430 L 700,432" fill="none" stroke="#dc3545" stroke-width="2"/>
+  <ns0:circle cx="700" cy="500" r="8" fill="#e65100" stroke="#fd7e14" stroke-width="2"/>
+  <ns0:text x="720" y="630.0" font-size="12" fill="#e65100" font-weight="bold">θ*</ns0:text>
+  <ns0:circle cx="80" cy="100" r="6" fill="#6a1b9a" stroke="#6f42c1" stroke-width="2"/>
+  <ns0:text x="85" y="655.0" font-size="12" fill="#6a1b9a" font-weight="bold">θ₀</ns0:text>
+  <ns0:rect x="520" y="70" width="250" height="120" fill="#1a237e" stroke="#444444" stroke-width="1" rx="5"/>
+  <ns0:text x="645" y="680.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#1a237e">Convergence Path</ns0:text>
+  <ns0:line x1="530" y1="110" x2="570" y2="110" stroke="#2ecc71" stroke-width="3"/>
+  <ns0:text x="580" y="705.0" font-size="12" fill="#1a237e">Full Batch GD</ns0:text>
+  <ns0:text x="580" y="730.0" font-size="10" fill="#1a237e">(Smooth, slow)</ns0:text>
+  <ns0:line x1="530" y1="145" x2="570" y2="145" stroke="#007bff" stroke-width="3"/>
+  <ns0:text x="580" y="755.0" font-size="12" fill="#1a237e">Mini-Batch (b=32)</ns0:text>
+  <ns0:text x="580" y="780.0" font-size="10" fill="#1a237e">(Balanced)</ns0:text>
+  <ns0:line x1="530" y1="175" x2="570" y2="175" stroke="#dc3545" stroke-width="2"/>
+  <ns0:text x="580" y="805.0" font-size="12" fill="#1a237e">Stochastic (b=1)</ns0:text>
+  <ns0:text x="580" y="830.0" font-size="10" fill="#1a237e">(Noisy, explores)</ns0:text>
+  <ns0:rect x="50" y="70" width="200" height="95" fill="#1a237e" stroke="#e0e0e0" stroke-width="1" rx="5"/>
+  <ns0:text x="150" y="855.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a237e">Convergence Rates</ns0:text>
+  <ns0:text x="60" y="880.0" font-size="11" fill="#2e7d32">Full Batch: O(1/k)</ns0:text>
+  <ns0:text x="60" y="905.0" font-size="11" fill="#1565c0">Mini-Batch: O(1/√k)</ns0:text>
+  <ns0:text x="60" y="930.0" font-size="11" fill="#c62828">SGD: O(1/√k)</ns0:text>
+  <ns0:text x="150" y="955.0" font-size="9" text-anchor="middle" fill="#1a237e">(k = iterations)</ns0:text>
+  <ns0:g transform="translate(280, 70)">
+    <ns0:rect x="0" y="0" width="180" height="80" fill="#fff9e6" stroke="#fd7e14" stroke-width="1" rx="5"/>
+    <ns0:text x="90" y="980.0" font-size="12" font-weight="bold" text-anchor="middle" fill="#e67e22">Gradient Variance</ns0:text>
+    <ns0:text x="10" y="1005.0" font-size="10" fill="#1a237e">Var[g̃] ∝ σ²/b</ns0:text>
+    <ns0:text x="10" y="1030.0" font-size="10" fill="#1a237e">b=1024: Low noise</ns0:text>
+    <ns0:text x="10" y="1055.0" font-size="10" fill="#1a237e">b=1: High noise</ns0:text>
+  </ns0:g>
+  <ns0:text x="400" y="1080.0" font-size="10" text-anchor="middle" fill="#1a237e">
+    Note: Noise helps escape local minima and find flatter minima (better generalization)
+  </ns0:text>
+</ns0:svg>

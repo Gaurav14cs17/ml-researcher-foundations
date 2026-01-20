@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0.0 0.0 1575.0 900.0">
+  <ns0:rect width="1575.0" height="900.0" fill="#f8f9fa" rx="8"/>
+  <ns0:text x="350" y="35" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="22" font-weight="bold">Markov Decision Process (MDP)</ns0:text>
+  <ns0:circle cx="150" cy="180" r="45" fill="#1565c0" stroke="#007bff" stroke-width="3"/>
+  <ns0:text x="150" y="185" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" font-weight="bold">S₁</ns0:text>
+  <ns0:circle cx="350" cy="120" r="45" fill="#1565c0" stroke="#007bff" stroke-width="3"/>
+  <ns0:text x="350" y="210.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" font-weight="bold">S₂</ns0:text>
+  <ns0:circle cx="350" cy="250" r="45" fill="#1565c0" stroke="#007bff" stroke-width="3"/>
+  <ns0:text x="350" y="255" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" font-weight="bold">S₃</ns0:text>
+  <ns0:circle cx="550" cy="180" r="45" fill="#2e7d32" stroke="#28a745" stroke-width="3"/>
+  <ns0:text x="550" y="280.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="16" font-weight="bold">S₄</ns0:text>
+  <ns0:text x="550" y="305.0" text-anchor="middle" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">Terminal</ns0:text>
+  <ns0:path d="M190 155 Q270 100 305 120" stroke="#fd7e14" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <ns0:text x="240" y="330.0" fill="#e65100" font-family="Arial, sans-serif" font-size="10">a₁, r=+1</ns0:text>
+  <ns0:path d="M190 205 Q270 280 305 255" stroke="#fd7e14" stroke-width="2" fill="none"/>
+  <ns0:text x="240" y="355.0" fill="#e65100" font-family="Arial, sans-serif" font-size="10">a₂, r=0</ns0:text>
+  <ns0:path d="M395 120 Q470 120 505 160" stroke="#fd7e14" stroke-width="2" fill="none"/>
+  <ns0:text x="460" y="380.0" fill="#e65100" font-family="Arial, sans-serif" font-size="10">a₁, r=+10</ns0:text>
+  <ns0:path d="M395 250 Q470 250 505 200" stroke="#fd7e14" stroke-width="2" fill="none"/>
+  <ns0:text x="460" y="405.0" fill="#e65100" font-family="Arial, sans-serif" font-size="10">a₁, r=+5</ns0:text>
+  <ns0:path d="M350 165 L350 205" stroke="#dc3545" stroke-width="2" fill="none"/>
+  <ns0:text x="370" y="430.0" fill="#c62828" font-family="Arial, sans-serif" font-size="10">a₂, r=-1</ns0:text>
+  <ns0:rect x="50" y="310" width="600" height="70" rx="10" fill="#1a237e" stroke="#e0e0e0" stroke-width="2"/>
+  <ns0:text x="350" y="455.0" text-anchor="middle" fill="#1a237e" font-family="Arial, sans-serif" font-size="12" font-weight="bold">MDP = (S, A, P, R, γ)</ns0:text>
+  <ns0:text x="130" y="480.0" fill="#1565c0" font-family="Arial, sans-serif" font-size="10">S: States</ns0:text>
+  <ns0:text x="220" y="505.0" fill="#e65100" font-family="Arial, sans-serif" font-size="10">A: Actions</ns0:text>
+  <ns0:text x="310" y="530.0" fill="#6a1b9a" font-family="Arial, sans-serif" font-size="10">P: Transitions</ns0:text>
+  <ns0:text x="420" y="555.0" fill="#2e7d32" font-family="Arial, sans-serif" font-size="10">R: Rewards</ns0:text>
+  <ns0:text x="520" y="580.0" fill="#1a237e" font-family="Arial, sans-serif" font-size="10">γ: Discount</ns0:text>
+</ns0:svg>

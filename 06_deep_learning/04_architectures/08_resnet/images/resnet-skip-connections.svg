@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef2f2"/>
+      <stop offset="100%" style="stop-color:#fee2e2"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#dc2626"/>
+    </marker>
+  </defs>
+  
+  <rect width="1800" height="1200" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="900" y="70" text-anchor="middle" fill="#991b1b" font-family="Arial, sans-serif" font-size="52" font-weight="bold">ResNet Skip Connections</text>
+  <text x="900" y="120" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="26">Residual Learning - Solving the vanishing gradient problem</text>
+  
+  <!-- Plain Network vs ResNet -->
+  <g transform="translate(100, 180)" filter="url(#shadow)">
+    <rect width="1600" height="580" rx="18" fill="#ffffff" stroke="#ef4444" stroke-width="4"/>
+    <text x="800" y="50" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="36" font-weight="bold">Plain Network vs Residual Block</text>
+    <line x1="40" y1="70" x2="1560" y2="70" stroke="#fecaca" stroke-width="2"/>
+    
+    <!-- Plain Network -->
+    <g transform="translate(200, 130)">
+      <text x="200" y="0" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="28" font-weight="bold">Plain Network</text>
+      
+      <!-- Input -->
+      <rect x="120" y="30" width="160" height="60" fill="#dbeafe" stroke="#3b82f6" stroke-width="3" rx="10"/>
+      <text x="200" y="68" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="22" font-weight="bold">x</text>
+      
+      <!-- Arrow down -->
+      <line x1="200" y1="90" x2="200" y2="130" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+      
+      <!-- Conv Layer 1 -->
+      <rect x="80" y="130" width="240" height="70" fill="#eff6ff" stroke="#3b82f6" stroke-width="3" rx="10"/>
+      <text x="200" y="160" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Conv + BN + ReLU</text>
+      <text x="200" y="185" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="16">Weight layer</text>
+      
+      <!-- Arrow down -->
+      <line x1="200" y1="200" x2="200" y2="240" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+      
+      <!-- Conv Layer 2 -->
+      <rect x="80" y="240" width="240" height="70" fill="#eff6ff" stroke="#3b82f6" stroke-width="3" rx="10"/>
+      <text x="200" y="270" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Conv + BN + ReLU</text>
+      <text x="200" y="295" text-anchor="middle" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="16">Weight layer</text>
+      
+      <!-- Arrow down -->
+      <line x1="200" y1="310" x2="200" y2="350" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+      
+      <!-- Output -->
+      <rect x="120" y="350" width="160" height="60" fill="#dbeafe" stroke="#3b82f6" stroke-width="3" rx="10"/>
+      <text x="200" y="388" text-anchor="middle" fill="#1e40af" font-family="Arial, sans-serif" font-size="22" font-weight="bold">F(x)</text>
+      
+      <text x="200" y="450" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="19">✗ Gradient vanishing</text>
+      <text x="200" y="478" text-anchor="middle" fill="#b91c1c" font-family="Arial, sans-serif" font-size="19">✗ Hard to train deep</text>
+    </g>
+    
+    <!-- Residual Block -->
+    <g transform="translate(900, 130)">
+      <text x="200" y="0" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="28" font-weight="bold">Residual Block</text>
+      
+      <!-- Input -->
+      <rect x="120" y="30" width="160" height="60" fill="#dcfce7" stroke="#10b981" stroke-width="3" rx="10"/>
+      <text x="200" y="68" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="22" font-weight="bold">x</text>
+      
+      <!-- Main path arrow -->
+      <line x1="200" y1="90" x2="200" y2="130" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+      
+      <!-- Skip connection (identity) -->
+      <path d="M 200 60 Q 380 60 380 240 Q 380 390 200 390" fill="none" stroke="#f59e0b" stroke-width="6" stroke-dasharray="8,4"/>
+      <text x="420" y="230" fill="#f59e0b" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Identity</text>
+      <text x="420" y="255" fill="#d97706" font-family="Arial, sans-serif" font-size="18">Skip Connection</text>
+      
+      <!-- Conv Layer 1 -->
+      <rect x="80" y="130" width="240" height="70" fill="#f0fdf4" stroke="#10b981" stroke-width="3" rx="10"/>
+      <text x="200" y="160" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Conv + BN + ReLU</text>
+      <text x="200" y="185" text-anchor="middle" fill="#15803d" font-family="Arial, sans-serif" font-size="16">Weight layer</text>
+      
+      <!-- Arrow down -->
+      <line x1="200" y1="200" x2="200" y2="240" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+      
+      <!-- Conv Layer 2 -->
+      <rect x="80" y="240" width="240" height="70" fill="#f0fdf4" stroke="#10b981" stroke-width="3" rx="10"/>
+      <text x="200" y="270" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Conv + BN</text>
+      <text x="200" y="295" text-anchor="middle" fill="#15803d" font-family="Arial, sans-serif" font-size="16">Weight layer (no ReLU)</text>
+      
+      <!-- Arrow down -->
+      <line x1="200" y1="310" x2="200" y2="350" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+      
+      <!-- Addition -->
+      <circle cx="200" cy="380" r="30" fill="#f59e0b" stroke="#d97706" stroke-width="3"/>
+      <text x="200" y="390" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="32" font-weight="bold">+</text>
+      
+      <!-- ReLU after addition -->
+      <line x1="200" y1="410" x2="200" y2="450" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+      <text x="240" y="435" fill="#64748b" font-family="Arial, sans-serif" font-size="16">ReLU</text>
+      
+      <!-- Output -->
+      <rect x="120" y="450" width="160" height="60" fill="#dcfce7" stroke="#10b981" stroke-width="3" rx="10"/>
+      <text x="200" y="488" text-anchor="middle" fill="#059669" font-family="Arial, sans-serif" font-size="22" font-weight="bold">F(x) + x</text>
+    </g>
+  </g>
+  
+  <!-- Mathematical Formulation -->
+  <g transform="translate(100, 810)" filter="url(#shadow)">
+    <rect width="750" height="310" rx="18" fill="#ffffff" stroke="#8b5cf6" stroke-width="4"/>
+    <text x="375" y="50" text-anchor="middle" fill="#8b5cf6" font-family="Arial, sans-serif" font-size="32" font-weight="bold">📐 Mathematical Form</text>
+    <line x1="40" y1="70" x2="710" y2="70" stroke="#e9d5ff" stroke-width="2"/>
+    
+    <g transform="translate(50, 110)">
+      <text x="325" y="0" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Residual Mapping:</text>
+      <rect x="80" y="15" width="490" height="70" fill="#faf5ff" rx="12"/>
+      <text x="325" y="55" text-anchor="middle" fill="#6b21a8" font-family="Consolas, monospace" font-size="28" font-weight="bold">y = F(x, {Wᵢ}) + x</text>
+      
+      <text x="325" y="120" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="20">Instead of learning H(x) directly,</text>
+      <text x="325" y="148" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="20">learn the residual F(x) = H(x) - x</text>
+      
+      <rect x="50" y="170" width="550" height="110" fill="#fef3c7" rx="12"/>
+      <text x="325" y="205" text-anchor="middle" fill="#92400e" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Key Insight:</text>
+      <text x="325" y="235" text-anchor="middle" fill="#78350f" font-family="Arial, sans-serif" font-size="18">It's easier to learn the residual (difference)</text>
+      <text x="325" y="262" text-anchor="middle" fill="#78350f" font-family="Arial, sans-serif" font-size="18">than the entire transformation</text>
+    </g>
+  </g>
+  
+  <!-- Benefits -->
+  <g transform="translate(900, 810)" filter="url(#shadow)">
+    <rect width="800" height="310" rx="18" fill="#ffffff" stroke="#10b981" stroke-width="4"/>
+    <text x="400" y="50" text-anchor="middle" fill="#10b981" font-family="Arial, sans-serif" font-size="32" font-weight="bold">🎯 Key Benefits</text>
+    <line x1="40" y1="70" x2="760" y2="70" stroke="#d1fae5" stroke-width="2"/>
+    
+    <g transform="translate(60, 110)">
+      <text x="0" y="0" fill="#059669" font-family="Arial, sans-serif" font-size="22" font-weight="bold">1. Solves Vanishing Gradients:</text>
+      <text x="20" y="30" fill="#15803d" font-family="Arial, sans-serif" font-size="19">• Direct path for gradients to flow back</text>
+      <text x="20" y="58" fill="#15803d" font-family="Arial, sans-serif" font-size="19">• Enables training of 100+ layer networks</text>
+      
+      <text x="0" y="100" fill="#059669" font-family="Arial, sans-serif" font-size="22" font-weight="bold">2. Easier Optimization:</text>
+      <text x="20" y="130" fill="#15803d" font-family="Arial, sans-serif" font-size="19">• Learning residuals is easier than full mapping</text>
+      <text x="20" y="158" fill="#15803d" font-family="Arial, sans-serif" font-size="19">• Can learn identity if needed (F(x) = 0)</text>
+      
+      <text x="0" y="200" fill="#10b981" font-family="Arial, sans-serif" font-size="22" font-weight="bold">3. Better Performance:</text>
+      <text x="20" y="230" fill="#15803d" font-family="Arial, sans-serif" font-size="19">⭐ Won ImageNet 2015 with 152 layers</text>
+    </g>
+  </g>
+  
+  <!-- Key Formula -->
+  <rect x="100" y="1140" width="1600" height="60" fill="#ef4444" rx="14" filter="url(#shadow)"/>
+  <text x="900" y="1177" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="26" font-weight="bold">💡 ResNet Formula: y = F(x) + x  •  Learn the residual, not the full transformation</text>
+</svg>

@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">
+  <!-- Background -->
+  <rect width="1000" height="600" fill="#f8f9fa" rx="8"/>
+  
+  <!-- Title -->
+  <text x="500" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#212529">
+    IEEE 754 Floating Point Representation
+  </text>
+  
+  <!-- Float32 visualization -->
+  <g id="float32">
+    <text x="500" y="70" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#007bff">
+      Float32 (32 bits total)
+    </text>
+    
+    <!-- Bit layout -->
+    <g id="bits">
+      <!-- Sign bit -->
+      <rect x="100" y="90" width="60" height="80" fill="#dc3545" stroke="#dc3545" stroke-width="2"/>
+      <text x="130" y="135" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#212529" font-weight="bold">S</text>
+      <text x="130" y="155" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#212529">1 bit</text>
+      
+      <!-- Exponent -->
+      <rect x="170" y="90" width="300" height="80" fill="#fd7e14" stroke="#fd7e14" stroke-width="2" rx="8"/>
+      <text x="320" y="135" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#212529" font-weight="bold">Exponent</text>
+      <text x="320" y="155" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#212529">8 bits</text>
+      
+      <!-- Mantissa (Fraction) -->
+      <rect x="480" y="90" width="420" height="80" fill="#28a745" stroke="#28a745" stroke-width="2" rx="8"/>
+      <text x="690" y="135" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#212529" font-weight="bold">Mantissa (Fraction)</text>
+      <text x="690" y="155" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#212529">23 bits</text>
+    </g>
+    
+    <!-- Labels -->
+    <text x="130" y="195" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#dc3545">
+      Sign
+    </text>
+    <text x="320" y="195" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fd7e14">
+      Exponent (e)
+    </text>
+    <text x="690" y="195" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#28a745">
+      Mantissa (m)
+    </text>
+  </g>
+  
+  <!-- Formula -->
+  <rect x="200" y="220" width="600" height="60" fill="#212529" stroke="#444444" stroke-width="2" rx="8"/>
+  <text x="500" y="250" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#212529" font-weight="bold">
+    Value = (-1)ˢ × 1.m × 2^(e - 127)
+  </text>
+  <text x="500" y="270" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#212529" font-style="italic">
+    (Normalized form: implicit leading 1)
+  </text>
+  
+  <!-- Example -->
+  <g id="example">
+    <rect x="50" y="300" width="900" height="120" fill="#212529" stroke="#007bff" stroke-width="2" rx="8"/>
+    <text x="500" y="325" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#007bff">
+      Example: Representing 6.5
+    </text>
+    
+    <text x="70" y="355" font-family="Arial, sans-serif" font-size="13" fill="#212529">
+      <tspan x="70" dy="0">1. Binary: 6.5₁₀ = 110.1₂ = 1.101 × 2³</tspan>
+      <tspan x="70" dy="22">2. Sign: positive → s = </tspan>
+      <tspan fill="#dc3545" font-weight="bold">0</tspan>
+      
+      <tspan x="70" dy="22">3. Exponent: 3 + 127 (bias) = 130₁₀ = </tspan>
+      <tspan fill="#fd7e14" font-weight="bold">10000010₂</tspan>
+      
+      <tspan x="70" dy="22">4. Mantissa: .101 → </tspan>
+      <tspan fill="#28a745" font-weight="bold">10100000000000000000000₂</tspan>
+    </text>
+  </g>
+  
+  <!-- Special values -->
+  <g id="special">
+    <rect x="50" y="440" width="440" height="140" fill="#212529" stroke="#6f42c1" stroke-width="2" rx="8"/>
+    <text x="270" y="465" font-family="Arial, sans-serif" font-size="15" font-weight="bold" text-anchor="middle" fill="#6f42c1">
+      Special Values
+    </text>
+    
+    <text x="70" y="490" font-family="Arial, sans-serif" font-size="12" fill="#212529">
+      <tspan x="70" dy="0" font-weight="bold" fill="#dc3545">+∞:</tspan>
+      <tspan> e=255, m=0, s=0</tspan>
+      
+      <tspan x="70" dy="22" font-weight="bold" fill="#dc3545">-∞:</tspan>
+      <tspan> e=255, m=0, s=1</tspan>
+      
+      <tspan x="70" dy="22" font-weight="bold" fill="#e67e22">NaN:</tspan>
+      <tspan> e=255, m≠0</tspan>
+      
+      <tspan x="70" dy="22" font-weight="bold" fill="#28a745">Zero:</tspan>
+      <tspan> e=0, m=0</tspan>
+      
+      <tspan x="70" dy="22" font-weight="bold" fill="#007bff">Denorm:</tspan>
+      <tspan> e=0, m≠0</tspan>
+    </text>
+  </g>
+  
+  <!-- ML Implications -->
+  <g id="ml-implications">
+    <rect x="510" y="440" width="440" height="140" fill="#212529" stroke="#dc3545" stroke-width="2" rx="8"/>
+    <text x="730" y="465" font-family="Arial, sans-serif" font-size="15" font-weight="bold" text-anchor="middle" fill="#dc3545">
+      ⚠️ ML Implications
+    </text>
+    
+    <text x="530" y="490" font-family="Arial, sans-serif" font-size="12" fill="#212529">
+      <tspan x="530" dy="0" font-weight="bold">Precision limits:</tspan>
+      <tspan x="540" dy="20">• ~7 decimal digits for float32</tspan>
+      
+      <tspan x="530" dy="25" font-weight="bold">Common issues:</tspan>
+      <tspan x="540" dy="20">• Overflow: exp(large) → ∞</tspan>
+      <tspan x="540" dy="18">• Underflow: exp(-large) → 0</tspan>
+      <tspan x="540" dy="18">• NaN: 0/0, ∞-∞, log(-1)</tspan>
+    </text>
+  </g>
+  
+  <!-- Mixed precision note -->
+  <rect x="50" y="50" width="350" height="50" fill="#d5f4e6" stroke="#28a745" stroke-width="2" rx="5"/>
+  <text x="225" y="75" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#28a745">
+    <tspan x="225" dy="0" font-weight="bold">Modern ML: Mixed Precision Training</tspan>
+    <tspan x="225" dy="16" font-size="11">FP16/BF16 for speed, FP32 for stability</tspan>
+  </text>
+</svg>
+
