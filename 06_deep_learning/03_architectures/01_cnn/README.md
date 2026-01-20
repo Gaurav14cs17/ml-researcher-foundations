@@ -63,6 +63,7 @@ Number of valid positions with stride s: floor((remaining)/s) + 1
 ```
 
 **Common cases:**
+
 | Configuration | Formula | Result |
 |--------------|---------|--------|
 | Same padding, stride=1 | $p = \frac{k-1}{2}$ | $H\_{out} = H\_{in}$ |

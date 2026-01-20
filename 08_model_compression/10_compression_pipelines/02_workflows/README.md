@@ -92,16 +92,19 @@ Original Model (100%)
        |
        v
 +--------------+
+
 |   Pruning    |  Remove 50% weights (magnitude)
 +--------------+
        |
        v
 +--------------+
+
 |  Fine-tune   |  Recover accuracy (3-5 epochs)
 +--------------+
        |
        v
 +--------------+
+
 | Quantization |  FP32 → INT8
 +--------------+
        |
@@ -119,6 +122,7 @@ Teacher Model (Large)
        |
        v
 +--------------+
+
 | Distillation |  Train smaller student
 |   L = αL_CE + (1-α)T²L_KL
 +--------------+
@@ -128,6 +132,7 @@ Student Model (Small)
        |
        v
 +--------------+
+
 | Quantization |  INT8
 +--------------+
        |
@@ -145,21 +150,25 @@ Pretrained LLM (FP16)
        |
        v
 +------------------+
+
 | 4-bit Quantization|  bitsandbytes NF4
 +------------------+
        |
        v
 +------------------+
+
 |   Add LoRA       |  r=16, α=32
 +------------------+
        |
        v
 +------------------+
+
 |   Train LoRA     |  0.1% parameters
 +------------------+
        |
        v
 +------------------+
+
 | Merge (optional) |  W = W_base + BA
 +------------------+
        |

@@ -103,6 +103,7 @@ Find the hypothesis in class \(\mathcal{H}\) that minimizes training loss.
 **Corollary:** With probability \(\geq 1 - \delta\):
 
 ```math
+
 |R(h) - \hat{R}_S(h)| \leq \sqrt{\frac{\ln(2/\delta)}{2n}}
 
 ```

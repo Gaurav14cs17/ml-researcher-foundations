@@ -83,6 +83,7 @@ The prefix "steers" attention by providing additional context.
 #### 3.1 Parameters per Layer
 
 ```math
+
 |\theta_{prefix}^{layer}| = 2 \times l \times d
 
 ```
@@ -101,6 +102,7 @@ The prefix "steers" attention by providing additional context.
 **Example (GPT-2 Medium, $L=24$, $d=1024$, $l=100$):**
 
 ```math
+
 |\theta_{prefix}| = 2 \times 24 \times 100 \times 1024 = 4.9M
 
 ```

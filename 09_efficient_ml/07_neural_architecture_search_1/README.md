@@ -240,6 +240,7 @@ For a cell with \( N \) nodes and \( K \) operations:
 **Number of possible cells:**
 
 ```math
+
 |\mathcal{A}_{cell}| = K^{\binom{N}{2}} = K^{N(N-1)/2}
 
 ```
@@ -254,6 +255,7 @@ For a cell with \( N \) nodes and \( K \) operations:
 With normal + reduction cells:
 
 ```math
+
 |\mathcal{A}_{total}| = |\mathcal{A}_{cell}|^2 \approx 10^{10}
 
 ```

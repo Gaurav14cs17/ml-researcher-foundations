@@ -184,6 +184,7 @@ Theorem: T is a γ-contraction under the infinity norm:
 ||TQ₁ - TQ₂||_∞ ≤ γ ||Q₁ - Q₂||_∞
 
 Proof:
+
 |(TQ₁)(s,a) - (TQ₂)(s,a)| 
     = |γ Σ_{s'} P(s'|s,a) [max_{a'} Q₁(s',a') - max_{a'} Q₂(s',a')]|
     ≤ γ Σ_{s'} P(s'|s,a) |max_{a'} Q₁(s',a') - max_{a'} Q₂(s',a')|

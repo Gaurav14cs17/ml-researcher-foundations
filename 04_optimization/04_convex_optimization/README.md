@@ -29,6 +29,7 @@ A convex optimization problem has:
 
 ```
 +---------------------------------------------------------+
+
 |                                                         |
 |   CONVEX OPTIMIZATION PROBLEM:                          |
 |                                                         |
@@ -229,6 +230,7 @@ Problem: We want to maximize log p(x) (log-likelihood)
 Solution: Maximize a lower bound instead = ELBO
 
 +-----------------------------------------------------+
+
 |                                                     |
 |   log p(x) = ELBO + KL(q || p)                     |
 |                                                     |
@@ -331,6 +333,7 @@ Noise   Less Noisy      Cleaner  Clean!
 
 ```
 +---------------------------------------------------------+
+
 |                                                         |
 |  log p(x_0) ≥ ELBO = E_q[ log p(x_T)                   |
 |                          + Σ log p(x_{t-1}|x_t)        |

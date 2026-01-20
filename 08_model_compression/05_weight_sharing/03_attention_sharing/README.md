@@ -85,6 +85,7 @@ where $g(i) = \lfloor i \cdot g / h \rfloor$.
 #### 3.2 Parameter Spectrum
 
 | Method | K,V Groups | K,V Parameters | 
+
 |--------|------------|----------------|
 | MHA | $h$ | $2d^2$ |
 | GQA-4 | 4 | $4 \cdot 2d\_k d$ |

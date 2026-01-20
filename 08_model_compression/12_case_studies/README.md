@@ -73,6 +73,7 @@ Where $\mathcal{L}\_{cos}$ is cosine embedding loss for hidden states.
 ```
 
 **Quality vs LLaMA:**
+
 | Model | Params (Active) | MMLU | HumanEval |
 |-------|-----------------|------|-----------|
 | LLaMA-70B | 70B | 68.9 | 37.8 |
@@ -92,6 +93,7 @@ Same quality, 5× fewer active params!
 For $D\_K=3$, $N=256$: $\frac{1}{1/256 + 1/9} \approx 8.2\times$
 
 **MobileNetV3 vs ResNet-50:**
+
 | Model | Params | FLOPs | Top-1 |
 |-------|--------|-------|-------|
 | ResNet-50 | 25.6M | 4.1B | 76.0% |

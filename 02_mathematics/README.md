@@ -18,6 +18,7 @@
 
 ```
 +-----------------------------------------------------------------------------+
+
 |                           MATHEMATICS LEARNING PATH                          |
 +-----------------------------------------------------------------------------+
 |                                                                              |
@@ -189,6 +190,7 @@ L1 (Manhattan) --→ L2 (Euclidean) --→ Cosine --→ Mahalanobis
 
 ```
 +-----------------------------------------------------------------------------+
+
 |                          CONNECTIONS                                         |
 +-----------------------------------------------------------------------------+
 |                                                                              |
@@ -259,29 +261,37 @@ Adam: θ ← θ - η·m̂/(√v̂+ε)
 ```
 02_mathematics/
 +-- 01_linear_algebra/          # 10 topics
+
 |   +-- 01_decompositions/
 |   +-- 02_dimensionality_reduction/
 |   +-- 03_eigen/
+
 |   +-- 04_eigenvalues/
 |   +-- 05_matrix_factorization/
 |   +-- 06_matrix_properties/
+
 |   +-- 07_svd/
 |   +-- 08_transformations/
 |   +-- 09_vectors_matrices/
+
 |   +-- 10_vector_spaces/
 +-- 02_calculus/                # 6 topics
 |   +-- 01_chain_rule/
 |   +-- 02_derivatives/
+
 |   +-- 03_gradients/
 |   +-- 04_integration/
 |   +-- 05_limits_continuity/
+
 |   +-- 06_taylor/
 +-- 03_optimization/            # 7 topics
 |   +-- 01_basics/
 |   +-- 02_constrained/
+
 |   +-- 03_convex/
 |   +-- 04_duality/
 |   +-- 05_first_order/
+
 |   +-- 06_second_order/
 |   +-- 07_stochastic/
 +-- 04_distance_metrics/        # 1 topic

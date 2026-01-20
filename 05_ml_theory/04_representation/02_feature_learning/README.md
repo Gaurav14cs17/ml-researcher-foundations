@@ -100,6 +100,7 @@ Each layer builds on the previous, creating abstraction hierarchy
 ```
 Before Deep Learning (Manual Features):
 +----------------------------------------------+
+
 |  Image → SIFT/HOG/SURF → Classifier → Output |
 |           Hand-crafted                        |
 |           (2000s)                             |
@@ -107,6 +108,7 @@ Before Deep Learning (Manual Features):
 
 With Deep Learning (Learned Features):
 +----------------------------------------------+
+
 |  Image → [CNN Layers] → Classifier → Output  |
 |           Learned                             |
 |           (2012+)                             |

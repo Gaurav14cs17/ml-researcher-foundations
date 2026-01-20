@@ -202,6 +202,7 @@ For $K=3$, $C\_{out}=256$: $CR \approx 8-9\times$
 ```
 Original weight matrix W ∈ ℝ^(m×n):
 +-------------------------------------+
+
 |  W: m × n matrix                    |
 |  Parameters: m × n                  |
 |  Example: 4096 × 4096 = 16M params |
@@ -209,6 +210,7 @@ Original weight matrix W ∈ ℝ^(m×n):
 
 Low-rank factorization W ≈ UV^T:
 +-------------------------------------+
+
 |  U: m × r matrix                    |
 |  V: n × r matrix                    |
 |  Parameters: r(m + n)               |
@@ -218,6 +220,7 @@ Low-rank factorization W ≈ UV^T:
 
 For LoRA: ΔW = BA
 +-------------------------------------+
+
 |  B: d × r, A: r × k                |
 |  Only train B, A (frozen W₀)       |
 |  r = 16: ~100× fewer parameters    |

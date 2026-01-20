@@ -162,6 +162,7 @@ Visual Interpretation:
 
 Case 1: INACTIVE constraint (gᵢ < 0)
 +-----------------------------------+
+
 |   Optimal point inside region     |
 |                                   |
 |         •  x*                     |
@@ -175,6 +176,7 @@ Case 1: INACTIVE constraint (gᵢ < 0)
 
 Case 2: ACTIVE constraint (gᵢ = 0)
 +-----------------------------------+
+
 |   Optimal point on boundary       |
 |                                   |
 |      ----●---- boundary           |

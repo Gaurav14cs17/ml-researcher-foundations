@@ -20,6 +20,7 @@ Function f(x)
      |
      v
 +-----------------------------------------------------+
+
 |                                                     |
 |   First Derivative        Second Derivative         |
 |   ∇f (Gradient)           H (Hessian)              |
@@ -46,6 +47,7 @@ The gradient is a vector of all partial derivatives. It points in the direction 
 
 ```
 +---------------------------------------------------------+
+
 |                                                         |
 |   For f(x₁, x₂, ..., xₙ):                              |
 |                                                         |
@@ -270,6 +272,7 @@ The Hessian is a matrix of **second partial derivatives**. It tells us about the
 
 ```
 +---------------------------------------------------------+
+
 |                                                         |
 |   For f(x₁, x₂, ..., xₙ):                              |
 |                                                         |

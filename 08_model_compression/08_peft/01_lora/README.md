@@ -70,6 +70,7 @@ where $\alpha$ is a scaling hyperparameter.
 **Full fine-tuning parameters:**
 
 ```math
+
 |\theta_{full}| = d \times k
 
 ```

@@ -200,6 +200,7 @@ Generation $k+1$ learns from generation $k$ with same architecture.
 ```
 Teacher (Large):                     Student (Small):
 +----------------+                   +----------------+
+
 |                |                   |                |
 |   BERT-Large   |   Knowledge       |   DistilBERT   |
 |   340M params  | ------------>     |   66M params   |

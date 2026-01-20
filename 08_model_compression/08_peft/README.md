@@ -116,6 +116,7 @@ Where $P\_k, P\_v \in \mathbb{R}^{l \times d}$ are learnable prefix matrices.
 **Parameter Count:**
 
 ```math
+
 |\theta_{prefix}| = 2 \times l \times d \times L
 
 ```

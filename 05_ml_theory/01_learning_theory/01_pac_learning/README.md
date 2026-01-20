@@ -99,6 +99,7 @@ By union bound over all bad hypotheses:
 Setting this \(\leq \delta\):
 
 ```math
+
 |\mathcal{H}| \cdot e^{-\epsilon m} \leq \delta
 m \geq \frac{1}{\epsilon}\left(\ln|\mathcal{H}| + \ln\frac{1}{\delta}\right) \quad \blacksquare
 

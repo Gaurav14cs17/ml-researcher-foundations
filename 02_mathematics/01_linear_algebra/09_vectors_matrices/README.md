@@ -44,6 +44,7 @@
 
 ```
 +-----------------------------------------------------------------------------+
+
 |                    VECTORS AND MATRICES IN ML                                |
 +-----------------------------------------------------------------------------+
 |                                                                              |
@@ -250,6 +251,7 @@ L2 Regularization (Ridge/Weight Decay):
   Effect: Shrinks weights toward 0 (but not exactly 0)
 
 +----------------------------------------------------------+
+
 |  Why L1 produces sparsity but L2 doesn't:                |
 |                                                          |
 |  L1 gradient = constant (±λ) regardless of |wᵢ|         |

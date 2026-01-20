@@ -78,6 +78,7 @@ By the end of this article, you will be able to:
 
 ```
 +-----------------------------------------------------------------------------+
+
 |                        ABSTRACTION HIERARCHY                                |
 +-----------------------------------------------------------------------------+
 |                                                                             |
@@ -108,6 +109,7 @@ By the end of this article, you will be able to:
 
 ```
 +-----------------------------------------------------------------------------+
+
 |                    NECESSARY vs SUFFICIENT CONDITIONS                        |
 +-----------------------------------------------------------------------------+
 |                                                                             |
@@ -147,6 +149,7 @@ An abstraction can be viewed as a **functor** F: C → D between categories:
 ABSTRACTION = Focus on WHAT, not HOW
 
 +-----------------------------------------------------------------+
+
 |  Concrete World                    Abstract World               |
 |  (Many Details)      ---F---▶      (Essential Structure)       |
 |                                                                 |
@@ -372,6 +375,7 @@ print(f"Level 1 == Level 2: {np.allclose(result1, result2)}")
 ```
 SUFFICIENT (P → Q):           NECESSARY (Q → P):            IFF (P ↔ Q):
 +---------------------+       +---------------------+       +-----------------+
+
 |         Q           |       |         P           |       |                 |
 |    +---------+      |       |    +---------+      |       |    +-------+   |
 |    |    P    |      |       |    |    Q    |      |       |    | P = Q |   |
@@ -642,6 +646,7 @@ NecessarySufficientDemo.check_convexity_vs_global_min()
 
 ```
 +---------------------------------------------------------------------------+
+
 |                      DEFINITIONS vs THEOREMS                              |
 +---------------------------------------------------------------------------+
 |                                                                           |
@@ -808,6 +813,7 @@ print(f"sin(x) is convex: {DefinitionsDemo.definition_convexity(f_nonconvex, 0, 
 
 ```
 +---------------------------------------------------------------------------+
+
 |                    THE POWER OF COUNTEREXAMPLES                           |
 +---------------------------------------------------------------------------+
 |                                                                           |

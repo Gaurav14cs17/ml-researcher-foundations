@@ -434,8 +434,10 @@ Good preconditioner M satisfies:
 
 Common preconditioners:
 +--------------------+----------------------------+
+
 | Preconditioner     | Description                |
 +--------------------+----------------------------+
+
 | Jacobi (M = D)     | Diagonal of A              |
 | SSOR               | Symmetric SOR              |
 | Incomplete Cholesky| Approximate L Lᵀ          |

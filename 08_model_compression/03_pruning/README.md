@@ -186,18 +186,21 @@ Where:
 ```
 Unstructured Pruning:
 +-------------------------------------+
+
 |  Before:  [1.2, 0.01, -0.8, 0.002] |
 |  After:   [1.2, 0,    -0.8, 0    ] |  (zeros where small)
 +-------------------------------------+
 
 Structured Pruning:
 +-------------------------------------+
+
 |  Before:  Conv with 64 filters     |
 |  After:   Conv with 48 filters     |  (remove entire filters)
 +-------------------------------------+
 
 2:4 Structured Sparsity:
 +-------------------------------------+
+
 |  Before:  [a, b, c, d, e, f, g, h] |
 |  After:   [a, 0, c, 0, e, 0, g, 0] |  (2 zeros per 4)
 +-------------------------------------+

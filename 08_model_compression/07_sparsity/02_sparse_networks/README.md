@@ -52,6 +52,7 @@ Components:
 Stores (row, col, value) triplets.
 
 **Comparison:**
+
 | Format | Storage | Row Access | Col Access | Matrix-Vector |
 |--------|---------|------------|------------|---------------|
 | Dense | $O(mn)$ | $O(1)$ | $O(1)$ | $O(mn)$ |
@@ -160,6 +161,7 @@ A_{ij} = \begin{cases} \text{attention}(q_i, k_j) & |i-j| \leq w \\ 0 & \text{ot
 ```
 
 **Sparse Patterns Comparison:**
+
 | Method | Pattern | Complexity | Use Case |
 |--------|---------|------------|----------|
 | Full | Dense | $O(n^2)$ | Short sequences |
@@ -174,6 +176,7 @@ A_{ij} = \begin{cases} \text{attention}(q_i, k_j) & |i-j| \leq w \\ 0 & \text{ot
 ```
 Unstructured Sparsity:
 +-------------------------------------+
+
 | [1.2, 0, 0.8, 0, 0, 0.3, 0, 0.9]   |
 | Zeros anywhere                      |
 | Flexible but hardware-unfriendly    |
@@ -181,6 +184,7 @@ Unstructured Sparsity:
 
 Structured Sparsity (2:4):
 +-------------------------------------+
+
 | [1.2, 0, | 0.8, 0, | 0.3, 0, | 0.9, 0] |
 | 2 zeros per 4 elements              |
 | NVIDIA Ampere supports natively!    |
@@ -188,6 +192,7 @@ Structured Sparsity (2:4):
 
 Block Sparsity:
 +-------------------------------------+
+
 | [Block1, 0, 0, Block4]              |
 | Entire blocks are zero              |
 | Very hardware-friendly              |

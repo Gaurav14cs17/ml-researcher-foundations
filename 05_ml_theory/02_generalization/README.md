@@ -83,6 +83,7 @@ We want:    Test loss to decrease too
 The gap between them is the GENERALIZATION GAP
 
 +------------------------------------------------------------+
+
 |                                                            |
 |  Test Error                                                |
 |     |                                                      |

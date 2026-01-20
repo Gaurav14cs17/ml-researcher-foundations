@@ -180,8 +180,10 @@ For 7B model: $7 \times 10^9 \times 16 = 112$ GB just for training!
 ```
 Original Model          Compressed Model
 +----------------+      +----------------+
+
 |                |      |                |
 |   340M params  | -->  |   66M params   |  (DistilBERT)
+
 |   1.3 GB       |      |   260 MB       |
 |   100ms        |      |   30ms         |
 |                |      |                |

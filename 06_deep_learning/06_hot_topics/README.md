@@ -73,6 +73,7 @@ Impact: Personalized AI, multi-task models
 
 ```
 +-------------------------------------+
+
 |  Modern Efficient LLM Training      |
 +-------------------------------------+
 |                                     |

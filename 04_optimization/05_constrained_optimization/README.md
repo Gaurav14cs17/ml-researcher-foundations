@@ -45,6 +45,7 @@ Unconstrained:              Constrained:
 
 ```
 +---------------------------------------------------------+
+
 |                                                         |
 |   LAGRANGE MULTIPLIERS              KKT CONDITIONS      |
 |   --------------------              --------------      |
@@ -298,6 +299,7 @@ KKT (Karush-Kuhn-Tucker) conditions are **necessary conditions** for optimality 
 
 ```
 +---------------------------------------------------------+
+
 |                                                         |
 |   The Problem:                                          |
 |                                                         |
@@ -321,6 +323,7 @@ KKT (Karush-Kuhn-Tucker) conditions are **necessary conditions** for optimality 
 At the optimal point (x*, μ*, λ*):
 
 +---------------------------------------------------------+
+
 |                                                         |
 |   1. STATIONARITY                                       |
 |      ∇f(x*) + Σᵢ μᵢ*∇gᵢ(x*) + Σⱼ λⱼ*∇hⱼ(x*) = 0       |
@@ -353,6 +356,7 @@ At the optimal point (x*, μ*, λ*):
 ```
 Case 1: Constraint ACTIVE (gᵢ = 0)
 +---------------------------------+
+
 |                                 |
 |   Optimal point ON boundary     |
 |                                 |
@@ -367,6 +371,7 @@ Case 1: Constraint ACTIVE (gᵢ = 0)
 
 Case 2: Constraint INACTIVE (gᵢ < 0)
 +---------------------------------+
+
 |                                 |
 |   Optimal point INSIDE          |
 |                                 |
@@ -530,9 +535,11 @@ basic-methods/gradient-descent
          |
          ↓
 +--------+--------+
+
 | CONSTRAINED OPT |
 +-----------------+
 | • lagrange/     |--> Used in SVM!
+
 | • kkt/          |--> Used in RLHF!
 +--------+--------+
          |

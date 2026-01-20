@@ -69,6 +69,7 @@ n qubits: 2^n states simultaneously
 **Single qubit:**
 
 ```math
+
 |\psi\rangle = \alpha|0\rangle + \beta|1\rangle
 
 ```
@@ -78,6 +79,7 @@ where \( \alpha, \beta \in \mathbb{C} \) and \( |\alpha|^2 + |\beta|^2 = 1 \).
 **Bloch sphere representation:**
 
 ```math
+
 |\psi\rangle = \cos\frac{\theta}{2}|0\rangle + e^{i\phi}\sin\frac{\theta}{2}|1\rangle
 
 ```
@@ -85,6 +87,7 @@ where \( \alpha, \beta \in \mathbb{C} \) and \( |\alpha|^2 + |\beta|^2 = 1 \).
 **n-qubit state:**
 
 ```math
+
 |\psi\rangle = \sum_{i=0}^{2^n-1} \alpha_i |i\rangle
 
 ```
@@ -132,6 +135,7 @@ R_Y(\theta) = \begin{pmatrix} \cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\ \s
 **Quantum neural network:**
 
 ```math
+
 |\psi_{out}\rangle = U(\theta) |0\rangle^{\otimes n}
 
 ```

@@ -73,6 +73,7 @@ Understanding floating-point math **prevents mysterious training failures**:
 ```
 IEEE 754 Float32 (32 bits):
 +---+--------------+-----------------------------+
+
 | S |   Exponent   |          Mantissa           |
 | 1 |    8 bits    |          23 bits            |
 +---+--------------+-----------------------------+
@@ -211,6 +212,7 @@ def stable_cross_entropy(logits, labels):
 
 ```
 +-------------------------------------------------------------+
+
 |                   MIXED PRECISION TRAINING                  |
 +-------------------------------------------------------------+
 |                                                             |

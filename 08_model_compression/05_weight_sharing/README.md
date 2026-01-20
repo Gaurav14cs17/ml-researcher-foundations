@@ -231,6 +231,7 @@ Storage:
 ```
 ALBERT Cross-Layer Sharing:
 +-------------------------------------+
+
 |  Layer 1-12: All use same W         |
 |  Parameters: 1/12 of BERT!          |
 +-------------------------------------+

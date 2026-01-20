@@ -118,6 +118,7 @@ T^π is a contraction with factor γ:
 ||T^π V₁ - T^π V₂||_∞ ≤ γ ||V₁ - V₂||_∞
 
 Proof of contraction:
+
 |(T^π V₁)(s) - (T^π V₂)(s)| 
 = |Σ_a π(a|s) Σ_s' P(s'|s,a) γ[V₁(s') - V₂(s')]|
 ≤ Σ_a π(a|s) Σ_s' P(s'|s,a) γ|V₁(s') - V₂(s')|
@@ -242,6 +243,7 @@ T* is a contraction:
 ||T* V₁ - T* V₂||_∞ ≤ γ ||V₁ - V₂||_∞
 
 Proof:
+
 |(T* V₁)(s) - (T* V₂)(s)|
 = |max_a Q₁(s,a) - max_a Q₂(s,a)|
 ≤ max_a |Q₁(s,a) - Q₂(s,a)|

@@ -369,6 +369,7 @@ OFA network with:
 **Total sub-networks:**
 
 ```math
+
 |\mathcal{A}| = 5 \times 4^{20} \times 3^{20} \times 5 \approx 10^{19}
 
 ```

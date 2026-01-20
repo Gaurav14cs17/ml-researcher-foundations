@@ -169,20 +169,25 @@ This allows gradient-based optimization of policies!
 
 ```
 RL Methods
+
 |
 +-- Value-Based
 |   +-- Dynamic Programming (known model)
 |   |   +-- Policy Iteration
+
 |   |   +-- Value Iteration
 |   |
 |   +-- Model-Free
+
 |       +-- Monte Carlo
 |       +-- TD Learning (SARSA)
 |       +-- Q-Learning → DQN → Rainbow
+
 |
 +-- Policy-Based
 |   +-- REINFORCE
 |   +-- Actor-Critic (A2C, A3C)
+
 |   +-- PPO, TRPO → RLHF for LLMs
 |
 +-- Model-Based

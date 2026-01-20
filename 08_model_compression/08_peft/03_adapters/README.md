@@ -63,6 +63,7 @@ z' = z + \text{Adapter}_{ffn}(z)
 #### 2.1 Parameters per Adapter
 
 ```math
+
 |\theta_{adapter}| = 2 \times d \times r = 2dr
 
 ```
@@ -81,6 +82,7 @@ z' = z + \text{Adapter}_{ffn}(z)
 **Full model (L layers):**
 
 ```math
+
 |\theta_{total}| = 4Ldr
 
 ```

@@ -210,8 +210,10 @@ For n = 100K: 10 billion scores! (impossible)
 
 Solutions:
 +-------------+------------+--------------+
+
 |   Method    | Complexity |   Key Idea   |
 +-------------+------------+--------------+
+
 | Linformer   |   O(nk)    | Project K,V  |
 | Performer   |   O(nm)    | Kernel trick |
 | Flash Attn  |   O(n²)    | IO-aware     |

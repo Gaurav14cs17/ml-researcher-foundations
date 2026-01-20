@@ -55,9 +55,11 @@
 
 ```
 +---------------------------------------------------------------------------------+
+
 |                          MATHEMATICAL FOUNDATIONS                                |
 |                     Building Blocks for ML Research                              |
 +---------------------------------------------------------------------------------+
+
 |                                                                                  |
 |     +------------------+         +------------------+                           |
 |     |  📐 Mathematical |         |  🔢 Proof        |                           |
@@ -113,6 +115,7 @@
 
 ```
 +-----------------------------------------------------------------+
+
 |                    ABSTRACTION LEVELS IN ML                      |
 +-----------------------------------------------------------------+
 |                                                                  |
@@ -276,12 +279,14 @@ The gradient being zero is not sufficient. ∎
         |                       |                       |
         ▼                       ▼                       ▼
 +---------------+     +-----------------+     +-----------------+
+
 | P → Q         |     | ∀n ∈ ℕ: P(n)   |     | ¬∃ or unique    |
 | (implication) |     | (for all n)    |     | (impossibility) |
 +-------+-------+     +--------+--------+     +--------+--------+
         |                      |                       |
         ▼                      ▼                       ▼
 +---------------+     +-----------------+     +-----------------+
+
 | DIRECT PROOF  |     |   INDUCTION     |     | CONTRADICTION   |
 | Assume P,     |     | Base + Step     |     | Assume opposite |
 | derive Q      |     |                 |     | find conflict   |
@@ -741,6 +746,7 @@ Therefore, 3n² + 2n + 1 = O(n²) ∎
 
 ```
 +-----------------------------------------------------------------------------+
+
 |                         IEEE 754 FLOATING POINT                              |
 +-----------------------------------------------------------------------------+
 |                                                                              |
@@ -1022,26 +1028,32 @@ for batch_idx, (data, target) in enumerate(dataloader):
 ```
 01_foundations/
 +-- README.md                      ← You are here (Overview)
+
 |
 +-- 01_mathematical_thinking/
 |   +-- README.md                  # Abstraction, necessary vs sufficient
 |   +-- images/
+
 |
 +-- 02_proof_techniques/
 |   +-- README.md                  # Direct, contradiction, induction
 |   +-- images/
+
 |
 +-- 03_set_theory/
 |   +-- README.md                  # Sets, functions, relations, σ-algebras
 |   +-- images/
+
 |
 +-- 04_logic/
 |   +-- README.md                  # Propositional, predicate, inference
 |   +-- images/
+
 |
 +-- 05_asymptotic_analysis/
 |   +-- README.md                  # Big-O, Ω, Θ, little-o analysis
 |   +-- images/
+
 |
 +-- 06_numerical_computation/
 |   +-- README.md                  # Floating point, stability, mixed precision

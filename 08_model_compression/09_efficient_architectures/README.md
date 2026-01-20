@@ -209,6 +209,7 @@ Efficient Architecture: Design small but powerful
 
 Examples:
 +----------------------------------------------------------+
+
 | Task: Image Classification                                |
 +----------------------------------------------------------+
 | ResNet-50:     25M params,  4 GFLOPs                     |

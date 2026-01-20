@@ -47,12 +47,14 @@ Memory: O(n²) - prohibitive for long sequences!
 
 ```
 +-------------------------------------+
+
 |  SRAM (on-chip)                     |
 |  • Fast: ~19 TB/s bandwidth         |
 |  • Small: ~20 MB                    |
 +-------------------------------------+
          ↕ (expensive data movement!)
 +-------------------------------------+
+
 |  HBM (High Bandwidth Memory)        |
 |  • Slower: ~1.5 TB/s bandwidth      |
 |  • Large: ~40 GB                    |

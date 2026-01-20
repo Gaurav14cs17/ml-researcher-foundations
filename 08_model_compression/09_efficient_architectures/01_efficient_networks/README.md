@@ -126,6 +126,7 @@ d = \alpha^\phi, \quad w = \beta^\phi, \quad r = \gamma^\phi
 ```
 
 **Scaling Examples:**
+
 | Model | $\phi$ | Depth | Width | Resolution | FLOPS |
 |-------|--------|-------|-------|------------|-------|
 | B0 | 0 | 1.0× | 1.0× | 224 | 0.39B |

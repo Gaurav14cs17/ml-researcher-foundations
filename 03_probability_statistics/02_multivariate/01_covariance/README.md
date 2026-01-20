@@ -127,8 +127,10 @@ Define $\tilde{X} = X - \mu\_X$ and $\tilde{Y} = Y - \mu\_Y$.
 By Cauchy-Schwarz inequality:
 
 ```math
+
 |E[\tilde{X}\tilde{Y}]|^2 \leq E[\tilde{X}^2] \cdot E[\tilde{Y}^2]
 |\text{Cov}(X, Y)|^2 \leq \text{Var}(X) \cdot \text{Var}(Y) = \sigma_X^2 \sigma_Y^2
+
 |\text{Cov}(X, Y)| \leq \sigma_X \sigma_Y
 -1 \leq \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y} \leq 1 \quad \blacksquare
 
