@@ -43,9 +43,9 @@
 
 A function $T: V \to W$ between vector spaces is a **linear transformation** (or linear map) if:
 
-$$
+```math
 T(\alpha\mathbf{u} + \beta\mathbf{v}) = \alpha T(\mathbf{u}) + \beta T(\mathbf{v})
-$$
+```
 
 for all vectors $\mathbf{u}, \mathbf{v} \in V$ and scalars $\alpha, \beta$.
 
@@ -90,9 +90,9 @@ Therefore T(0) = 0 for any linear map.  ∎
 
 Every linear transformation $T: \mathbb{R}^n \to \mathbb{R}^m$ can be uniquely represented by a matrix $A \in \mathbb{R}^{m \times n}$:
 
-$$
+```math
 T(\mathbf{x}) = A\mathbf{x}
-$$
+```
 
 ### 🔍 Proof (Constructive)
 
@@ -197,9 +197,9 @@ The same linear transformation has different matrix representations in different
 
 If $A$ represents $T$ in the standard basis and $B$ represents $T$ in basis $\{\mathbf{v}\_1, \ldots, \mathbf{v}\_n\}$, then:
 
-$$
+```math
 B = P^{-1}AP
-$$
+```
 
 where $P = [\mathbf{v}\_1 | \cdots | \mathbf{v}\_n]$ (change of basis matrix).
 
@@ -253,15 +253,15 @@ For linear transformation $T: V \to W$:
 
 **Kernel (Null Space)**:
 
-$$
+```math
 \ker(T) = \{\mathbf{v} \in V : T(\mathbf{v}) = \mathbf{0}\}
-$$
+```
 
 **Image (Range)**:
 
-$$
+```math
 \text{Im}(T) = \{T(\mathbf{v}) : \mathbf{v} \in V\}
-$$
+```
 
 ### 🔍 Proof: Kernel is a Subspace
 
@@ -308,15 +308,15 @@ Therefore Im(T) is a subspace.  ∎
 
 For linear transformation $T: V \to W$ where $V$ is finite-dimensional:
 
-$$
+```math
 \dim(\ker(T)) + \dim(\text{Im}(T)) = \dim(V)
-$$
+```
 
 Or equivalently, for matrix $A \in \mathbb{R}^{m \times n}$:
 
-$$
+```math
 \text{nullity}(A) + \text{rank}(A) = n
-$$
+```
 
 ### 🔍 Proof
 
@@ -408,7 +408,6 @@ def verify_linearity(T, x, y, alpha=2.0, beta=3.0, tol=1e-10):
 
 def change_of_basis(A, P):
     """Compute matrix representation in new basis defined by P"""
-
     # B = P⁻¹ A P
     return np.linalg.inv(P) @ A @ P
 
@@ -477,7 +476,6 @@ print(f"Top singular values: {analysis.singular_values()[:5]}")
 ### 🤖 Application 1: Dense/Linear Layers
 
 ```python
-
 # Dense layer: y = Wx + b
 # 
 # The W matrix IS a linear transformation from ℝⁿ → ℝᵐ
@@ -490,7 +488,6 @@ class DenseLayer(nn.Module):
         self.b = nn.Parameter(torch.zeros(out_features))
     
     def forward(self, x):
-
         # Linear transformation + translation
         return x @ self.W.T + self.b
 ```
@@ -521,19 +518,16 @@ class AttentionProjections(nn.Module):
 ### 🤖 Application 3: Embedding Lookup as Linear Transformation
 
 ```python
-
 # Embedding lookup is a linear transformation!
 # One-hot × Embedding matrix = Embedding vector
 
 class EmbeddingAsLinear(nn.Module):
     def __init__(self, vocab_size, embed_dim):
         super().__init__()
-
         # Embedding matrix: vocab_size × embed_dim
         self.E = nn.Parameter(torch.randn(vocab_size, embed_dim))
     
     def forward(self, indices):
-
         # One-hot encoding
         one_hot = torch.zeros(len(indices), self.E.shape[0])
         one_hot.scatter_(1, indices.unsqueeze(1), 1)

@@ -31,7 +31,6 @@ Group Norm: Normalize over groups
 ## 💻 Code
 
 ```python
-
 # Batch Norm (CNNs)
 bn = nn.BatchNorm2d(64)
 

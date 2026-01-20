@@ -23,23 +23,23 @@ Diffusion models are generative models that learn to reverse a gradual noising p
 
 ### Forward Diffusion Process
 
-Starting from data $x_0$, we gradually add Gaussian noise over $T$ steps:
+Starting from data \(x_0\), we gradually add Gaussian noise over \(T\) steps:
 
-$$
+```math
 q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t} x_{t-1}, \beta_t I)
-$$
+```
 
-where $\beta_t$ is the noise schedule ($\beta_t \in (0, 1)$).
+where \(\beta_t\) is the noise schedule (\(\beta_t \in (0, 1)\)).
 
-**Key property: We can sample $x_t$ directly from $x_0$:**
+**Key property: We can sample \(x_t\) directly from \(x_0\):**
 
-$$
+```math
 q(x_t | x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0, (1-\bar{\alpha}_t) I)
-$$
+```
 
 where:
-- $\alpha_t = 1 - \beta_t$
-- $\bar{\alpha}_t = \prod_{s=1}^{t} \alpha_s$
+- \(\alpha_t = 1 - \beta_t\)
+- \(\bar{\alpha}_t = \prod_{s=1}^{t} \alpha_s\)
 
 **Proof:**
 ```
@@ -64,24 +64,24 @@ Var[√(α_t β_{t-1}) ε_{t-2} + √β_t ε_{t-1}]
 
 ### Reverse Process
 
-We want to learn $p_\theta(x_{t-1} | x_t)$ to reverse the diffusion:
+We want to learn \(p_\theta(x_{t-1} | x_t)\) to reverse the diffusion:
 
-$$
+```math
 p_\theta(x_{t-1} | x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
-$$
+```
 
-**The true reverse has a tractable form given $x_0$:**
+**The true reverse has a tractable form given \(x_0\):**
 
-$$
+```math
 q(x_{t-1} | x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t, x_0), \tilde{\beta}_t I)
-$$
+```
 
 where:
 
-$$
+```math
 \tilde{\mu}_t = \frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1 - \bar{\alpha}_t} x_0 + \frac{\sqrt{\alpha_t}(1 - \bar{\alpha}_{t-1})}{1 - \bar{\alpha}_t} x_t
 \tilde{\beta}_t = \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \beta_t
-$$
+```
 
 ---
 
@@ -89,28 +89,28 @@ $$
 
 ### Variational Lower Bound
 
-$$
+```math
 \log p(x_0) \geq \mathbb{E}_q\left[\log \frac{p(x_{0:T})}{q(x_{1:T}|x_0)}\right] = -L_{VLB}
-$$
+```
 
 Decomposing the VLB:
 
-$$
+```math
 L_{VLB} = L_0 + L_1 + \cdots + L_{T-1} + L_T
-$$
+```
 
 where:
-- $L_0 = -\log p_\theta(x_0 | x_1)$ (reconstruction)
-- $L_t = D_{KL}(q(x_{t-1}|x_t, x_0) \| p_\theta(x_{t-1}|x_t))$ (denoising)
-- $L_T = D_{KL}(q(x_T|x_0) \| p(x_T))$ (prior, no learnable params)
+- \(L_0 = -\log p_\theta(x_0 | x_1)\) (reconstruction)
+- \(L_t = D_{KL}(q(x_{t-1}|x_t, x_0) \| p_\theta(x_{t-1}|x_t))\) (denoising)
+- \(L_T = D_{KL}(q(x_T|x_0) \| p(x_T))\) (prior, no learnable params)
 
 ### Simplified Training Loss (DDPM)
 
-Instead of predicting $\mu_\theta$, we predict the noise $\epsilon_\theta$:
+Instead of predicting \(\mu_\theta\), we predict the noise \(\epsilon_\theta\):
 
-$$
+```math
 L_{simple} = \mathbb{E}_{t, x_0, \epsilon}\left[\|\epsilon - \epsilon_\theta(\sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon, t)\|^2\right]
-$$
+```
 
 **Why this works:**
 ```
@@ -129,25 +129,25 @@ If ε_θ(x_t, t) ≈ ε (the actual noise added), then:
 
 ### Linear Schedule (Original DDPM)
 
-$$
+```math
 \beta_t = \beta_1 + \frac{t-1}{T-1}(\beta_T - \beta_1)
-$$
+```
 
-Typically: $\beta_1 = 10^{-4}$, $\beta_T = 0.02$, $T = 1000$
+Typically: \(\beta_1 = 10^{-4}\), \(\beta_T = 0.02\), \(T = 1000\)
 
 ### Cosine Schedule (Improved)
 
-$$
+```math
 \bar{\alpha}_t = \frac{f(t)}{f(0)}, \quad f(t) = \cos\left(\frac{t/T + s}{1 + s} \cdot \frac{\pi}{2}\right)^2
-$$
+```
 
 **Advantage:** More uniform signal-to-noise ratio across timesteps.
 
 ### Signal-to-Noise Ratio
 
-$$
+```math
 SNR(t) = \frac{\bar{\alpha}_t}{1 - \bar{\alpha}_t}
-$$
+```
 
 Linear schedule: SNR drops quickly, wastes steps
 Cosine schedule: SNR decreases more uniformly
@@ -159,7 +159,6 @@ Cosine schedule: SNR decreases more uniformly
 ### DDPM Sampling
 
 ```python
-
 # Start from pure noise
 x_T ~ N(0, I)
 
@@ -173,11 +172,11 @@ for t = T, T-1, ..., 1:
 
 Denoising Diffusion Implicit Models allow non-Markovian sampling:
 
-$$
+```math
 x_{t-1} = \sqrt{\bar{\alpha}_{t-1}} \underbrace{\left(\frac{x_t - \sqrt{1-\bar{\alpha}_t}\epsilon_\theta(x_t, t)}{\sqrt{\bar{\alpha}_t}}\right)}_{\text{predicted } x_0} + \sqrt{1-\bar{\alpha}_{t-1}-\sigma_t^2} \cdot \epsilon_\theta(x_t, t) + \sigma_t \epsilon
-$$
+```
 
-Setting $\sigma_t = 0$ gives deterministic sampling.
+Setting \(\sigma_t = 0\) gives deterministic sampling.
 
 **Benefit:** Can skip steps (e.g., 50 steps instead of 1000).
 
@@ -275,7 +274,6 @@ class SimpleUNet(nn.Module):
         Returns:
             predicted noise (same shape as x)
         """
-
         # Time embedding
         t_emb = self.time_mlp(t)
         
@@ -348,7 +346,6 @@ class GaussianDiffusion:
         """
         Compute mean and variance of p(x_{t-1} | x_t)
         """
-
         # Predict noise
         noise_pred = model(x_t, t)
         
@@ -381,7 +378,6 @@ class GaussianDiffusion:
         """
         Generate samples by iterative denoising
         """
-
         # Start from pure noise
         x = torch.randn(shape, device=device)
         
@@ -473,7 +469,6 @@ print(f"Training loss: {loss.item():.4f}")
 
 # Fast sampling with DDIM
 ddim = DDIMSampler(diffusion, ddim_steps=50)
-
 # samples = ddim.sample(model, (4, 3, 64, 64), device)
 
 print("Model ready for training!")

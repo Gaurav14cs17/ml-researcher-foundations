@@ -40,39 +40,39 @@
 
 ### Objective Function
 
-$$
+```math
 J = \sum_{i=1}^n \sum_{k=1}^K r_{ik} \|x_i - \mu_k\|^2
-$$
+```
 
-where $r_{ik} \in \{0,1\}$ indicates if $x_i$ belongs to cluster $k$.
+where \(r_{ik} \in \{0,1\}\) indicates if \(x_i\) belongs to cluster \(k\).
 
 ### Lloyd's Algorithm
 
 **E-step (Assignment):**
 
-$$
+```math
 r_{ik} = \begin{cases} 1 & \text{if } k = \arg\min_j \|x_i - \mu_j\|^2 \\ 0 & \text{otherwise} \end{cases}
-$$
+```
 
 **M-step (Update):**
 
-$$
+```math
 \mu_k = \frac{\sum_i r_{ik} x_i}{\sum_i r_{ik}}
-$$
+```
 
 **Theorem:** K-means converges to a local minimum.
 
-**Proof:** Each step decreases or maintains $J$. Assignment step: each point moves to closest centroid, reducing its contribution. Update step: mean minimizes sum of squared distances. Since $J \geq 0$ and decreases, it converges. $\blacksquare$
+**Proof:** Each step decreases or maintains \(J\). Assignment step: each point moves to closest centroid, reducing its contribution. Update step: mean minimizes sum of squared distances. Since \(J \geq 0\) and decreases, it converges. \(\blacksquare\)
 
 ### K-Means++ Initialization
 
-$$
+```math
 P(x_i \text{ as next center}) \propto D(x_i)^2
-$$
+```
 
-where $D(x_i)$ = distance to nearest existing center.
+where \(D(x_i)\) = distance to nearest existing center.
 
-**Theorem:** K-means++ achieves $O(\log k)$-approximation in expectation.
+**Theorem:** K-means++ achieves \(O(\log k)\)-approximation in expectation.
 
 ---
 
@@ -80,26 +80,26 @@ where $D(x_i)$ = distance to nearest existing center.
 
 ### Model
 
-$$
+```math
 p(x) = \sum_{k=1}^K \pi_k \mathcal{N}(x | \mu_k, \Sigma_k)
-$$
+```
 
 ### EM Algorithm
 
 **E-step:** Compute responsibilities:
 
-$$
+```math
 \gamma_{ik} = \frac{\pi_k \mathcal{N}(x_i | \mu_k, \Sigma_k)}{\sum_j \pi_j \mathcal{N}(x_i | \mu_j, \Sigma_j)}
-$$
+```
 
 **M-step:** Update parameters:
 
-$$
+```math
 N_k = \sum_i \gamma_{ik}
 \mu_k = \frac{1}{N_k}\sum_i \gamma_{ik} x_i
 \Sigma_k = \frac{1}{N_k}\sum_i \gamma_{ik}(x_i - \mu_k)(x_i - \mu_k)^\top
 \pi_k = \frac{N_k}{n}
-$$
+```
 
 **Theorem:** EM monotonically increases log-likelihood.
 
@@ -109,16 +109,16 @@ $$
 
 ### Algorithm
 
-1. Construct similarity graph with adjacency $W$
-2. Compute normalized Laplacian $L = I - D^{-1/2}WD^{-1/2}$
-3. Find $k$ smallest eigenvectors of $L$
+1. Construct similarity graph with adjacency \(W\)
+2. Compute normalized Laplacian \(L = I - D^{-1/2}WD^{-1/2}\)
+3. Find \(k\) smallest eigenvectors of \(L\)
 4. Run k-means on eigenvector embeddings
 
 ### Graph Laplacian
 
-**Unnormalized:** $L = D - W$
+**Unnormalized:** \(L = D - W\)
 
-**Normalized:** $L_{\text{sym}} = D^{-1/2}LD^{-1/2}$
+**Normalized:** \(L_{\text{sym}} = D^{-1/2}LD^{-1/2}\)
 
 **Property:** Number of zero eigenvalues = number of connected components.
 
@@ -128,14 +128,14 @@ $$
 
 ### Definitions
 
-- **Core point:** Has $\geq$ minPts in $\epsilon$-neighborhood
-- **Border point:** In $\epsilon$-neighborhood of core point
+- **Core point:** Has \(\geq\) minPts in \(\epsilon\)-neighborhood
+- **Border point:** In \(\epsilon\)-neighborhood of core point
 - **Noise:** Neither core nor border
 
 ### Algorithm
 
 1. Find all core points
-2. Connect core points within $\epsilon$ distance
+2. Connect core points within \(\epsilon\) distance
 3. Assign border points to clusters
 4. Mark remaining as noise
 
@@ -168,7 +168,6 @@ class KMeans:
         centers = [X[np.random.randint(n)]]
         
         for _ in range(1, self.n_clusters):
-
             # Distance to nearest center
             distances = np.min(cdist(X, np.array(centers)), axis=1)
             
@@ -259,7 +258,6 @@ class GaussianMixture:
         prev_log_likelihood = -np.inf
         
         for iteration in range(self.max_iters):
-
             # E-step: Compute responsibilities
             resp = np.zeros((n, K))
             for k in range(K):
@@ -350,7 +348,6 @@ def silhouette_score(X, labels):
     
     scores = []
     for i in range(n):
-
         # Intra-cluster distance
         same_cluster = labels == labels[i]
         if np.sum(same_cluster) <= 1:
@@ -380,10 +377,10 @@ def silhouette_score(X, labels):
 
 | Algorithm | Cluster Shape | Complexity | Outliers |
 |-----------|---------------|------------|----------|
-| K-Means | Spherical | $O(nkd)$ | Sensitive |
-| GMM | Elliptical | $O(nkd^2)$ | Sensitive |
-| Spectral | Arbitrary | $O(n^3)$ | Moderate |
-| DBSCAN | Arbitrary | $O(n^2)$ | Robust |
+| K-Means | Spherical | \(O(nkd)\) | Sensitive |
+| GMM | Elliptical | \(O(nkd^2)\) | Sensitive |
+| Spectral | Arbitrary | \(O(n^3)\) | Moderate |
+| DBSCAN | Arbitrary | \(O(n^2)\) | Robust |
 
 ---
 

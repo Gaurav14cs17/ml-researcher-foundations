@@ -23,21 +23,21 @@ The Transformer architecture, introduced in "Attention Is All You Need" (2017), 
 
 ### Scaled Dot-Product Attention
 
-**Input:** Query $Q$, Key $K$, Value $V$ matrices
+**Input:** Query \(Q\), Key \(K\), Value \(V\) matrices
 
-$$
+```math
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V
-$$
+```
 
 **Dimensions:**
-- $Q \in \mathbb{R}^{n \times d_k}$
-- $K \in \mathbb{R}^{m \times d_k}$
-- $V \in \mathbb{R}^{m \times d_v}$
-- Output: $\mathbb{R}^{n \times d_v}$
+- \(Q \in \mathbb{R}^{n \times d_k}\)
+- \(K \in \mathbb{R}^{m \times d_k}\)
+- \(V \in \mathbb{R}^{m \times d_v}\)
+- Output: \(\mathbb{R}^{n \times d_v}\)
 
-### Why Scaling by $\sqrt{d_k}$?
+### Why Scaling by \(\sqrt{d_k}\)?
 
-**Problem:** For large $d_k$, dot products grow large, pushing softmax into saturation.
+**Problem:** For large \(d_k\), dot products grow large, pushing softmax into saturation.
 
 **Proof:**
 ```
@@ -75,23 +75,23 @@ Output is weighted combination of values
 
 ### Formulation
 
-$$
+```math
 \text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) W^O
-$$
+```
 
 where each head:
 
-$$
+```math
 \text{head}_i = \text{Attention}(Q W_i^Q, K W_i^K, V W_i^V)
-$$
+```
 
 **Projections:**
-- $W_i^Q \in \mathbb{R}^{d_{model} \times d_k}$
-- $W_i^K \in \mathbb{R}^{d_{model} \times d_k}$
-- $W_i^V \in \mathbb{R}^{d_{model} \times d_v}$
-- $W^O \in \mathbb{R}^{hd_v \times d_{model}}$
+- \(W_i^Q \in \mathbb{R}^{d_{model} \times d_k}\)
+- \(W_i^K \in \mathbb{R}^{d_{model} \times d_k}\)
+- \(W_i^V \in \mathbb{R}^{d_{model} \times d_v}\)
+- \(W^O \in \mathbb{R}^{hd_v \times d_{model}}\)
 
-Typically: $d_k = d_v = d_{model} / h$
+Typically: \(d_k = d_v = d_{model} / h\)
 
 ### Why Multiple Heads?
 
@@ -115,10 +115,10 @@ Each head learns different relationship types!
 
 ### Sinusoidal Encoding
 
-$$
+```math
 PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
-$$
+```
 
 ### Why Sinusoidal?
 
@@ -147,16 +147,16 @@ Model can learn to attend to relative positions.
 
 Modern alternative used in LLaMA, GPT-NeoX:
 
-$$
+```math
 f_q(x_m, m) = (W_q x_m) e^{im\theta}
 f_k(x_n, n) = (W_k x_n) e^{in\theta}
-$$
+```
 
-**Key property:** Attention only depends on relative position $m - n$:
+**Key property:** Attention only depends on relative position \(m - n\):
 
-$$
+```math
 \langle f_q(x_m, m), f_k(x_n, n) \rangle = \text{Re}[(W_q x_m)(W_k x_n)^* e^{i(m-n)\theta}]
-$$
+```
 
 ---
 
@@ -192,29 +192,29 @@ Output
 
 **Post-LN (Original):**
 
-$$
+```math
 x = x + \text{Attn}(x)
 x = \text{LN}(x)
-$$
+```
 
 **Pre-LN (Modern):**
 
-$$
+```math
 x = x + \text{Attn}(\text{LN}(x))
-$$
+```
 
 Pre-LN is more stable for deep networks (gradient scale is bounded).
 
 ### Feed-Forward Network
 
-$$
+```math
 \text{FFN}(x) = W_2 \cdot \text{activation}(W_1 x + b_1) + b_2
-$$
+```
 
 **Dimensions:**
-- $W_1 \in \mathbb{R}^{d_{model} \times d_{ff}}$
-- $W_2 \in \mathbb{R}^{d_{ff} \times d_{model}}$
-- Typical: $d_{ff} = 4 \cdot d_{model}$
+- \(W_1 \in \mathbb{R}^{d_{model} \times d_{ff}}\)
+- \(W_2 \in \mathbb{R}^{d_{ff} \times d_{model}}\)
+- Typical: \(d_{ff} = 4 \cdot d_{model}\)
 
 **Activation evolution:**
 - Original: ReLU
@@ -229,11 +229,11 @@ $$
 
 For autoregressive generation, prevent attending to future:
 
-$$
+```math
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} + M\right) V
-$$
+```
 
-where mask $M_{ij} = -\infty$ if $j > i$, else 0.
+where mask \(M_{ij} = -\infty\) if \(j > i\), else 0.
 
 ### Cross-Attention
 
@@ -241,18 +241,18 @@ Encoder-decoder models:
 - Q from decoder
 - K, V from encoder
 
-$$
+```math
 \text{CrossAttn}(Q_{dec}, K_{enc}, V_{enc})
-$$
+```
 
 ### Efficient Attention Variants
 
 | Method | Complexity | Description |
 |--------|------------|-------------|
-| **Standard** | $O(n^2d)$ | Full attention matrix |
-| **Sparse** | $O(n\sqrt{n}d)$ | Fixed sparse patterns |
-| **Linear** | $O(nd^2)$ | Kernel approximation |
-| **Flash Attention** | $O(n^2d)$ | Memory-efficient |
+| **Standard** | \(O(n^2d)\) | Full attention matrix |
+| **Sparse** | \(O(n\sqrt{n}d)\) | Fixed sparse patterns |
+| **Linear** | \(O(nd^2)\) | Kernel approximation |
+| **Flash Attention** | \(O(n^2d)\) | Memory-efficient |
 
 ---
 
@@ -464,7 +464,6 @@ class TransformerBlock(nn.Module):
         self.dropout = nn.Dropout(dropout)
     
     def forward(self, x, mask=None):
-
         # Self-attention with residual
         attn_output, _ = self.attention(self.ln1(x), self.ln1(x), self.ln1(x), mask)
         x = x + self.dropout(attn_output)
@@ -506,7 +505,6 @@ class Transformer(nn.Module):
         Returns:
             output: (batch, seq_len, d_model)
         """
-
         # Embed tokens and add positional encoding
         x = self.token_embedding(x) * math.sqrt(self.d_model)
         x = self.positional_encoding(x)
@@ -539,7 +537,6 @@ class GPTModel(nn.Module):
         self.lm_head.weight = self.transformer.token_embedding.weight
     
     def forward(self, x):
-
         # Create causal mask
         seq_len = x.size(1)
         mask = Transformer.create_causal_mask(seq_len, x.device)
@@ -558,7 +555,6 @@ class GPTModel(nn.Module):
         Autoregressive generation
         """
         for _ in range(max_new_tokens):
-
             # Get logits for last position
             logits = self(prompt)[:, -1, :] / temperature
             
@@ -597,9 +593,9 @@ print(f"Parameters: {n_params / 1e6:.2f}M")
 
 | Component | Time | Space |
 |-----------|------|-------|
-| Self-Attention | $O(n^2 d)$ | $O(n^2 + nd)$ |
-| FFN | $O(n d d_{ff})$ | $O(n d_{ff})$ |
-| Full Layer | $O(n^2 d + n d d_{ff})$ | $O(n^2 + n d_{ff})$ |
+| Self-Attention | \(O(n^2 d)\) | \(O(n^2 + nd)\) |
+| FFN | \(O(n d d_{ff})\) | \(O(n d_{ff})\) |
+| Full Layer | \(O(n^2 d + n d d_{ff})\) | \(O(n^2 + n d_{ff})\) |
 
 ---
 

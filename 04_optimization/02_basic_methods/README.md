@@ -77,7 +77,6 @@
 ## 📐 The Algorithm
 
 ```python
-
 # Gradient Descent in 5 lines
 x = initial_guess
 for i in range(max_iterations):
@@ -137,10 +136,10 @@ Return x_k
 
 **Assumptions:**
 1. f is convex
-2. f is L-smooth: $\|\nabla f(x) - \nabla f(y)\| \leq L\|x - y\|$
+2. f is L-smooth: \(\|\nabla f(x) - \nabla f(y)\| \leq L\|x - y\|\)
 3. Step size: α = 1/L
 
-**Conclusion:** $f(x_k) - f(x^*) \leq \frac{2L\|x_0 - x^*\|^2}{k}$
+**Conclusion:** \(f(x_k) - f(x^*) \leq \frac{2L\|x_0 - x^*\|^2}{k}\)
 
 **Convergence rate:** O(1/k) iterations
 
@@ -203,7 +202,7 @@ Step 9: Sum telescoping series from 0 to k-1
 
 **Theorem 2: Exponential Convergence**
 
-**Additional assumption:** f is μ-strongly convex: $f(y) \geq f(x) + \nabla f(x)^T(y-x) + \frac{\mu}{2}\|y-x\|^2$
+**Additional assumption:** f is μ-strongly convex: \(f(y) \geq f(x) + \nabla f(x)^T(y-x) + \frac{\mu}{2}\|y-x\|^2\)
 
 **Conclusion with α = 1/L:**
 \[f(x_k) - f(x^*) \leq (1 - \mu/L)^k (f(x_0) - f(x^*))\]
@@ -253,9 +252,9 @@ For non-convex f (L-smooth):
 GD with α = 1/L satisfies:
 \[\min_{0 \leq k \leq K-1} \|\nabla f(x_k)\|^2 \leq \frac{2L(f(x_0) - f_{inf})}{K}\]
 
-where $f_{inf} = \inf_x f(x)$
+where \(f_{inf} = \inf_x f(x)\)
 
-**Interpretation:** Find ε-stationary point ($\|\nabla f\| \leq \epsilon$) in O(1/ε²) iterations
+**Interpretation:** Find ε-stationary point (\(\|\nabla f\| \leq \epsilon\)) in O(1/ε²) iterations
 
 ---
 

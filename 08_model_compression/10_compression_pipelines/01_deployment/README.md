@@ -23,21 +23,21 @@
 
 **Total Latency:**
 
-$$
+```math
 T_{total} = T_{compute} + T_{memory} + T_{communication}
-$$
+```
 
 **Compute-Bound:**
 
-$$
+```math
 T_{compute} = \frac{\text{FLOPs}}{\text{Peak Throughput}}
-$$
+```
 
 **Memory-Bound (LLMs during decoding):**
 
-$$
+```math
 T_{memory} = \frac{\text{Model Parameters} \times \text{bytes/param}}{\text{Memory Bandwidth}}
-$$
+```
 
 **Example (LLaMA-7B on A100):**
 - FP16: $7B \times 2 / 2\text{TB/s} = 7\text{ms/token}$
@@ -47,15 +47,15 @@ $$
 
 **Batch Processing:**
 
-$$
+```math
 \text{Throughput} = \frac{\text{Batch Size}}{T_{batch}}
-$$
+```
 
 **Tokens per Second:**
 
-$$
+```math
 \text{tok/s} = \frac{B \times L}{T_{prefill} + L \times T_{decode}}
-$$
+```
 
 Where:
 - $B$ = batch size
@@ -67,15 +67,15 @@ Where:
 
 **Inference Memory:**
 
-$$
+```math
 M_{inference} = M_{model} + M_{KV} + M_{activations}
-$$
+```
 
 **KV Cache:**
 
-$$
+```math
 M_{KV} = 2 \times L \times H \times d_k \times B \times S \times b_{kv}
-$$
+```
 
 Where:
 - $L$ = layers
@@ -87,23 +87,23 @@ Where:
 
 **Example (LLaMA-7B, seq=4096, batch=1):**
 
-$$
+```math
 M_{KV} = 2 \times 32 \times 32 \times 128 \times 1 \times 4096 \times 2 = 2.1\text{GB}
-$$
+```
 
 ### 4. Hardware Efficiency
 
 **Arithmetic Intensity:**
 
-$$
+```math
 \text{AI} = \frac{\text{FLOPs}}{\text{Bytes Transferred}}
-$$
+```
 
 **Roofline Model:**
 
-$$
+```math
 \text{Achieved FLOPS} = \min(\text{Peak FLOPS}, \text{AI} \times \text{Bandwidth})
-$$
+```
 
 **LLM Decoding:** Very low AI (~1) → Memory-bound → Compression helps!
 
@@ -186,7 +186,6 @@ with open('model.tflite', 'wb') as f:
 ### Server (TensorRT)
 
 ```bash
-
 # Convert ONNX to TensorRT with FP16
 trtexec --onnx=model.onnx \
         --saveEngine=model.trt \
@@ -203,14 +202,12 @@ with open("model.trt", "rb") as f:
     engine = trt.Runtime(trt.Logger()).deserialize_cuda_engine(f.read())
 
 context = engine.create_execution_context()
-
 # ... allocate buffers and run inference
 ```
 
 ### Local LLM (llama.cpp)
 
 ```bash
-
 # Quantize model
 ./quantize model-fp16.gguf model-q4_k_m.gguf Q4_K_M
 

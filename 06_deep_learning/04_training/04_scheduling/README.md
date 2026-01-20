@@ -31,9 +31,9 @@ Learning rate scheduling adjusts the learning rate during training. Starting hig
 
 ### SGD Update Rule
 
-$$
+```math
 \theta_{t+1} = \theta_t - \eta_t \nabla_\theta \mathcal{L}(\theta_t)
-$$
+```
 
 Where $\eta\_t$ is the learning rate at step $t$.
 
@@ -43,9 +43,9 @@ Where $\eta\_t$ is the learning rate at step $t$.
 
 For strongly convex functions, SGD converges with rate:
 
-$$
+```math
 \mathbb{E}[\|\theta_T - \theta^*\|^2] = O\left(\frac{1}{T}\right) \text{ when } \eta_t = O\left(\frac{1}{t}\right)
-$$
+```
 
 **Intuition:**
 - **Large LR early:** Explore broadly, escape saddle points
@@ -57,17 +57,17 @@ $$
 
 ### 1. Constant Learning Rate
 
-$$
+```math
 \eta_t = \eta_0
-$$
+```
 
 **Use:** Quick experiments, baselines.
 
 ### 2. Step Decay
 
-$$
+```math
 \eta_t = \eta_0 \cdot \gamma^{\lfloor t/s \rfloor}
-$$
+```
 
 Where $\gamma \in (0, 1)$ is the decay factor and $s$ is the step size.
 
@@ -78,29 +78,29 @@ Where $\gamma \in (0, 1)$ is the decay factor and $s$ is the step size.
 
 ### 3. Exponential Decay
 
-$$
+```math
 \eta_t = \eta_0 \cdot \gamma^t
-$$
+```
 
 **Continuous version:**
 
-$$
+```math
 \eta_t = \eta_0 \cdot e^{-\lambda t}
-$$
+```
 
 ### 4. Polynomial Decay
 
-$$
+```math
 \eta_t = \eta_0 \cdot \left(1 - \frac{t}{T}\right)^p
-$$
+```
 
 Where $p$ controls decay speed (typically $p = 1$ for linear, $p = 2$ for quadratic).
 
 ### 5. Cosine Annealing
 
-$$
+```math
 \eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{\pi t}{T}\right)\right)
-$$
+```
 
 **Properties:**
 - Smooth decay from $\eta\_{max}$ to $\eta\_{min}$
@@ -109,9 +109,9 @@ $$
 
 ### 6. Cosine Annealing with Warm Restarts
 
-$$
+```math
 \eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{\pi T_{cur}}{T_i}\right)\right)
-$$
+```
 
 Where $T\_{cur}$ is steps since last restart and $T\_i$ is the $i$-th restart period.
 
@@ -125,9 +125,9 @@ Where $T\_{cur}$ is steps since last restart and $T\_i$ is the $i$-th restart pe
 
 1. **Adam's running averages:** Not calibrated at start
 
-$$
+```math
 m_0 = 0, \quad v_0 = 0
-$$math
+```math
 Bias correction helps, but initial steps are still noisy.
 
 2. **Large gradients:** Randomly initialized networks have large gradients
@@ -142,16 +142,16 @@ Bias correction helps, but initial steps are still noisy.
 \text{schedule}(t) & t \geq T_{warmup}
 \end{cases}
 
-$$
+```math
 ### Warmup + Cosine Decay (LLM Standard)
-$$
+```
 
 \eta_t = \begin{cases}
 \eta_{max} \cdot \frac{t}{T_w} & t < T_w \\
 \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{\pi(t - T_w)}{T - T_w}\right)\right) & t \geq T_w
 \end{cases}
 
-$$
+```math
 **Typical values for LLMs:**
 - $T\_w = 2000$ steps (warmup)
 - $\eta\_{max} = 3 \times 10^{-4}$
@@ -165,7 +165,7 @@ $$
 1. **Warmup:** LR increases from $\eta\_{low}$ to $\eta\_{max}$
 2. **Annealing:** LR decreases from $\eta\_{max}$ to $\eta\_{low}$
 3. **Fine-tune:** LR drops further to $\eta\_{low}/10$
-$$
+```
 
 \eta_t = \begin{cases}
 \eta_{low} + (\eta_{max} - \eta_{low}) \cdot \frac{t}{T_1} & t < T_1 \\
@@ -233,11 +233,9 @@ def warmup_cosine_schedule(step, warmup_steps=2000, total_steps=100000, min_lr_r
     Warmup + Cosine decay schedule
     """
     if step < warmup_steps:
-
         # Linear warmup
         return step / warmup_steps
     else:
-
         # Cosine decay
         progress = (step - warmup_steps) / (total_steps - warmup_steps)
         return min_lr_ratio + (1 - min_lr_ratio) * 0.5 * (1 + math.cos(math.pi * progress))
@@ -281,7 +279,6 @@ def get_lr(step, warmup_steps, total_steps, max_lr, min_lr):
     """
     Complete LR schedule for LLM training
     """
-
     # 1) Linear warmup
     if step < warmup_steps:
         return max_lr * (step + 1) / warmup_steps

@@ -65,18 +65,18 @@ Standard attention is O(N²) in sequence length:
 
 **Attention mechanism:**
 
-$$
+```math
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V
-$$
+```
 
 **Complexity analysis:**
 
-For $Q, K, V \in \mathbb{R}^{N \times d}$:
-- $QK^T$: $O(N^2 d)$ FLOPs, $O(N^2)$ memory
-- Softmax: $O(N^2)$ FLOPs
-- Attention × V: $O(N^2 d)$ FLOPs
+For \( Q, K, V \in \mathbb{R}^{N \times d} \):
+- \( QK^T \): \( O(N^2 d) \) FLOPs, \( O(N^2) \) memory
+- Softmax: \( O(N^2) \) FLOPs
+- Attention × V: \( O(N^2 d) \) FLOPs
 
-**Total:** $O(N^2 d)$ time, $O(N^2)$ memory
+**Total:** \( O(N^2 d) \) time, \( O(N^2) \) memory
 
 ---
 
@@ -84,7 +84,7 @@ For $Q, K, V \in \mathbb{R}^{N \times d}$:
 
 **Key insight:** Standard attention is memory-bound, not compute-bound.
 
-**Problem:** Writing $N \times N$ attention matrix to HBM is slow.
+**Problem:** Writing \( N \times N \) attention matrix to HBM is slow.
 
 **Solution:** Compute attention in blocks, never materialize full matrix.
 
@@ -98,14 +98,14 @@ For each query block Qi (size B_r × d):
         Oi += Pij @ Vj                  # Accumulate
 ```
 
-**Memory:** $O(N)$ instead of $O(N^2)$
+**Memory:** \( O(N) \) instead of \( O(N^2) \)
 
 **I/O Complexity:**
 
-Standard: $O(Nd + N^2)$ HBM accesses
-FlashAttention: $O(N^2 d^2 / M)$ HBM accesses
+Standard: \( O(Nd + N^2) \) HBM accesses
+FlashAttention: \( O(N^2 d^2 / M) \) HBM accesses
 
-where $M$ is SRAM size.
+where \( M \) is SRAM size.
 
 ---
 
@@ -115,13 +115,13 @@ where $M$ is SRAM size.
 
 **Standard:**
 
-$$
+```math
 p_i = \frac{\exp(x_i - \max_j x_j)}{\sum_k \exp(x_k - \max_j x_j)}
-$$
+```
 
 **Online algorithm (for tiled computation):**
 
-Maintain running $m$ (max) and $\ell$ (sum of exp):
+Maintain running \( m \) (max) and \( \ell \) (sum of exp):
 ```
 For each new block:
     m_new = max(m_old, max(block))
@@ -137,29 +137,29 @@ For each new block:
 
 **Rewrite standard attention:**
 
-$$
+```math
 \text{Attention}(Q, K, V) = \text{softmax}(QK^T) V
-$$
+```
 
 **Linear attention approximation:**
 
-$$
+```math
 \text{Attention}(Q, K, V) \approx \phi(Q) \cdot (\phi(K)^T V)
-$$
+```
 
-where $\phi$ is a feature map.
+where \( \phi \) is a feature map.
 
 **Complexity:**
-- Compute $\phi(K)^T V$: $O(Nd^2)$
-- Compute $\phi(Q) \cdot (\phi(K)^T V)$: $O(Nd^2)$
+- Compute \( \phi(K)^T V \): \( O(Nd^2) \)
+- Compute \( \phi(Q) \cdot (\phi(K)^T V) \): \( O(Nd^2) \)
 
-**Total:** $O(Nd^2)$ — linear in $N$!
+**Total:** \( O(Nd^2) \) — linear in \( N \)!
 
 **Performer kernel:**
 
-$$
+```math
 \phi(x) = \frac{\exp(-\|x\|^2/2)}{\sqrt{m}} [\sin(\omega_1^T x), \cos(\omega_1^T x), ..., \sin(\omega_m^T x), \cos(\omega_m^T x)]
-$$
+```
 
 Random features approximate softmax kernel.
 
@@ -170,36 +170,36 @@ Random features approximate softmax kernel.
 **Without KV cache (inefficient):**
 For each new token, recompute all K, V:
 
-$$
+```math
 K = [K_{1}, ..., K_{N}], \quad V = [V_{1}, ..., V_{N}]
-$$
+```
 
 **With KV cache:**
 
-$$
+```math
 K_{N+1} = \text{concat}(K_{cached}, k_{new})
 V_{N+1} = \text{concat}(V_{cached}, v_{new})
-$$
+```
 
 **Memory requirement:**
 
-$$
+```math
 M_{KV} = 2 \times L \times N \times d \times b
-$$
+```
 
 where:
-- $L$ = number of layers
-- $N$ = sequence length
-- $d$ = head dimension
-- $b$ = bytes per element
+- \( L \) = number of layers
+- \( N \) = sequence length
+- \( d \) = head dimension
+- \( b \) = bytes per element
 
 **Example (LLaMA-7B, 2K context, FP16):**
 
-$$
+```math
 M_{KV} = 2 \times 32 \times 2048 \times 128 \times 2 = 32\text{MB per head}
-$$
+```
 
-With 32 heads: $32 \times 32 = 1\text{GB}$ per request!
+With 32 heads: \( 32 \times 32 = 1\text{GB} \) per request!
 
 ---
 
@@ -207,17 +207,17 @@ With 32 heads: $32 \times 32 = 1\text{GB}$ per request!
 
 **Standard MHA:** Separate K, V for each head.
 
-$$
+```math
 K_h, V_h \text{ for } h = 1, ..., H
-$$
+```
 
 **MQA:** Share K, V across all heads.
 
-$$
+```math
 K, V \text{ (single set for all heads)}
-$$
+```
 
-**Memory reduction:** $H \times$ for KV cache.
+**Memory reduction:** \( H \times \) for KV cache.
 
 **Accuracy trade-off:** ~1% degradation, often recoverable with fine-tuning.
 
@@ -227,15 +227,15 @@ $$
 
 **Middle ground:** Share KV within groups.
 
-For $H$ query heads and $G$ KV groups:
+For \( H \) query heads and \( G \) KV groups:
 
-$$
+```math
 K_g, V_g \text{ for } g = 1, ..., G
-$$
+```
 
-Each query head $h$ uses $K_{\lfloor hG/H \rfloor}, V_{\lfloor hG/H \rfloor}$.
+Each query head \( h \) uses \( K_{\lfloor hG/H \rfloor}, V_{\lfloor hG/H \rfloor} \).
 
-**Memory reduction:** $H/G \times$ for KV cache.
+**Memory reduction:** \( H/G \times \) for KV cache.
 
 **Example (LLaMA-2):** 32 query heads, 8 KV groups → 4× reduction.
 
@@ -245,16 +245,16 @@ Each query head $h$ uses $K_{\lfloor hG/H \rfloor}, V_{\lfloor hG/H \rfloor}$.
 
 **Local attention pattern:**
 
-$$
+```math
 A_{ij} = \begin{cases} 
 \text{softmax}(Q_i K_j^T / \sqrt{d}) & \text{if } |i - j| \leq w \\
 0 & \text{otherwise}
 \end{cases}
-$$
+```
 
-**Complexity:** $O(Nw)$ instead of $O(N^2)$.
+**Complexity:** \( O(Nw) \) instead of \( O(N^2) \).
 
-**Effective receptive field:** After $L$ layers, each token can attend to $L \cdot w$ positions.
+**Effective receptive field:** After \( L \) layers, each token can attend to \( L \cdot w \) positions.
 
 **Mistral 7B:** Uses sliding window (4K) + attention sinks.
 
@@ -263,15 +263,15 @@ $$
 ### Sparse Attention Patterns
 
 **Fixed patterns:**
-- **Strided:** Attend to every $k$-th position
+- **Strided:** Attend to every \( k \)-th position
 - **Local + Global:** Local window + special tokens
 - **Axial:** Separate row and column attention
 
 **Longformer pattern:**
 
-$$
+```math
 A = A_{local} + A_{global}
-$$
+```
 
 Global tokens (e.g., [CLS]) attend to all positions.
 
@@ -283,27 +283,27 @@ Global tokens (e.g., [CLS]) attend to all positions.
 
 **Standard attention I/O:**
 
-$$
+```math
 \text{IO}_{std} = O(Nd + N^2) = O(N^2) \text{ for } N > d
-$$
+```
 
 **FlashAttention I/O:**
 
-$$
+```math
 \text{IO}_{flash} = O\left(\frac{N^2 d^2}{M}\right)
-$$
+```
 
 **Speedup ratio:**
 
-$$
+```math
 \text{Speedup} = \frac{N^2}{N^2 d^2 / M} = \frac{M}{d^2}
-$$
+```
 
 For A100 (M = 20MB SRAM), d = 128:
 
-$$
+```math
 \text{Speedup} \approx \frac{20 \times 10^6}{128^2} \approx 1200\times \text{ I/O reduction}
-$$
+```
 
 Actual speedup: 2-4× (compute still has overhead).
 
@@ -312,20 +312,20 @@ Actual speedup: 2-4× (compute still has overhead).
 ### Memory-Compute Trade-off in KV Cache
 
 **With KV cache:**
-- Memory: $O(NLd)$
-- Compute per token: $O(Nd)$
+- Memory: \( O(NLd) \)
+- Compute per token: \( O(Nd) \)
 
 **Without KV cache:**
-- Memory: $O(Ld)$
-- Compute per token: $O(N^2d)$
+- Memory: \( O(Ld) \)
+- Compute per token: \( O(N^2d) \)
 
 **Break-even point:**
 
-$$
+```math
 N_{cache} \cdot Ld = N_{no-cache}^2 \cdot d
-$$
+```
 
-For large $N$, cache always wins.
+For large \( N \), cache always wins.
 
 ---
 

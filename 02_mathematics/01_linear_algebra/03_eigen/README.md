@@ -83,9 +83,9 @@
 
 For a square matrix $A \in \mathbb{R}^{n \times n}$:
 
-$$
+```math
 A\mathbf{v} = \lambda\mathbf{v}
-$$
+```
 
 where:
 - $\lambda \in \mathbb{C}$ is an **eigenvalue**
@@ -132,15 +132,15 @@ This is the CHARACTERISTIC POLYNOMIAL
 
 ### The Characteristic Polynomial
 
-$$
+```math
 p(\lambda) = \det(A - \lambda I)
-$$
+```
 
 This is a polynomial of degree $n$ in $\lambda$:
 
-$$
+```math
 p(\lambda) = (-1)^n \lambda^n + (-1)^{n-1}\text{tr}(A)\lambda^{n-1} + \cdots + \det(A)
-$$
+```
 
 ### 💡 Example: 2×2 Matrix
 
@@ -248,9 +248,9 @@ Step 4: Since Q is orthogonal (QᵀQ = I):
 
 ### 📐 Corollary: Spectral Decomposition
 
-$$
+```math
 A = \sum_{i=1}^{n} \lambda_i \mathbf{v}_i \mathbf{v}_i^T
-$$
+```
 
 Each term $\lambda\_i \mathbf{v}\_i \mathbf{v}\_i^T$ is a rank-1 projection matrix!
 
@@ -360,9 +360,9 @@ Comparing coefficients of λⁿ⁻¹:
 
 **Theorem**: Every matrix satisfies its own characteristic polynomial.
 
-$$
+```math
 p(A) = A^n - \text{tr}(A)A^{n-1} + \cdots + (-1)^n\det(A)I = 0
-$$
+```
 
 **Application**: Express $A^{-1}$ as polynomial in $A$:
 ```
@@ -512,11 +512,9 @@ def eigenanalysis(A):
     is_symmetric = np.allclose(A, A.T)
     
     if is_symmetric:
-
         # Use eigh for symmetric (faster, more stable, guaranteed real)
         eigenvalues, eigenvectors = np.linalg.eigh(A)
     else:
-
         # General case (may have complex eigenvalues)
         eigenvalues, eigenvectors = np.linalg.eig(A)
     
@@ -606,7 +604,6 @@ def matrix_function(A, f):
 
 # Example usage
 if __name__ == "__main__":
-
     # Symmetric matrix example
     A = np.array([[3, 1], [1, 3]])
     
@@ -641,7 +638,6 @@ import torch
 
 def eigen_torch(A_tensor):
     """Eigendecomposition with GPU support"""
-
     # For symmetric matrices
     if torch.allclose(A_tensor, A_tensor.T):
         eigenvalues, eigenvectors = torch.linalg.eigh(A_tensor)
@@ -669,7 +665,6 @@ def pca_via_eigen(X, n_components):
     PCA using eigendecomposition of covariance matrix.
     Principal components = eigenvectors with largest eigenvalues.
     """
-
     # Center the data
     X_centered = X - X.mean(axis=0)
     
@@ -762,7 +757,6 @@ def spectral_clustering(adjacency, n_clusters):
     """
     Spectral clustering using graph Laplacian eigenvectors.
     """
-
     # Degree matrix
     D = np.diag(adjacency.sum(axis=1))
     
@@ -794,12 +788,10 @@ def spectral_clustering(adjacency, n_clusters):
 ### ❌ Mistake 1: Confusing Eigenvalues with Singular Values
 
 ```python
-
 # Eigenvalues: only for SQUARE matrices
 # Singular values: for ANY matrix
 
 A = np.random.randn(5, 3)  # Rectangular
-
 # eigenvalues = np.linalg.eig(A)  # ERROR!
 U, singular_values, Vt = np.linalg.svd(A)  # Correct
 
@@ -809,7 +801,6 @@ U, singular_values, Vt = np.linalg.svd(A)  # Correct
 ### ❌ Mistake 2: Expecting Real Eigenvalues for Non-Symmetric Matrices
 
 ```python
-
 # Non-symmetric matrices can have complex eigenvalues
 A = np.array([[0, -1], [1, 0]])  # 90° rotation
 eigenvalues = np.linalg.eigvals(A)
@@ -819,11 +810,9 @@ print(eigenvalues)  # [0+1j, 0-1j] - complex!
 ### ❌ Mistake 3: Not Checking for Defective Matrices
 
 ```python
-
 # Not all matrices are diagonalizable!
 A = np.array([[1, 1], [0, 1]])  # Jordan block
 eigenvalues, eigenvectors = np.linalg.eig(A)
-
 # Only ONE eigenvector exists, but we get two (numerically corrupted)
 ```
 

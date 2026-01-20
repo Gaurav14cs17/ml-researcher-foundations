@@ -78,15 +78,15 @@ Find orthogonal directions (principal components) that maximize variance in the 
 
 Given centered data $X \in \mathbb{R}^{n \times d}$ (n samples, d features):
 
-$$
+```math
 \text{Covariance matrix: } \Sigma = \frac{1}{n-1}X^TX
-$$
+```
 
 **Goal**: Find projection $W \in \mathbb{R}^{d \times k}$ that maximizes:
 
-$$
+```math
 \text{Var}(XW) = W^T \Sigma W
-$$
+```
 
 subject to $W^TW = I$ (orthonormal columns)
 
@@ -202,7 +202,6 @@ def pca_from_scratch(X, n_components):
     3. Eigendecomposition
     4. Project onto top eigenvectors
     """
-
     # Center
     X_centered = X - X.mean(axis=0)
     

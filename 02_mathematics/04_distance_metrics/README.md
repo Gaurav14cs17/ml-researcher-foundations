@@ -102,15 +102,15 @@ Conversion examples:
 
 ### 📌 General Lp Norm
 
-$$
+```math
 \|x\|_p = \left( \sum_{i=1}^{n} |x_i|^p \right)^{1/p}
-$$
+```
 
 ### 📌 Lp Distance
 
-$$
+```math
 d_p(x, y) = \|x - y\|_p
-$$
+```
 
 ### 📊 Special Cases
 
@@ -158,15 +158,15 @@ L∞: max(|1-4|, |2-5|, |3-6|) = max(3, 3, 3) = 3
 
 ### 📌 Definition
 
-$$
+```math
 \cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\|\mathbf{x}\| \|\mathbf{y}\|} = \frac{\sum_i x_i y_i}{\sqrt{\sum_i x_i^2} \sqrt{\sum_i y_i^2}}
-$$
+```
 
 ### 📌 Cosine Distance
 
-$$
+```math
 d_{\cos}(\mathbf{x}, \mathbf{y}) = 1 - \cos(\theta)
-$$
+```
 
 ### 📐 Properties
 
@@ -189,9 +189,9 @@ This makes it perfect for:
 
 For **normalized vectors** ($\|x\| = \|y\| = 1$):
 
-$$
+```math
 \|x - y\|_2^2 = 2(1 - \cos(\theta)) = 2 \cdot d_{\cos}(x, y)
-$$
+```
 
 This is why many embedding methods normalize vectors!
 
@@ -201,9 +201,9 @@ This is why many embedding methods normalize vectors!
 
 ### 📌 Definition
 
-$$
+```math
 d_M(\mathbf{x}, \mathbf{y}) = \sqrt{(\mathbf{x} - \mathbf{y})^T \Sigma^{-1} (\mathbf{x} - \mathbf{y})}
-$$
+```
 
 where $\Sigma$ is the covariance matrix of the data.
 
@@ -333,7 +333,6 @@ def compute_mahalanobis(x, y, data):
 
 # Example: Correlated data
 np.random.seed(42)
-
 # Generate correlated 2D data
 mean = [0, 0]
 cov = [[1, 0.8], [0.8, 1]]

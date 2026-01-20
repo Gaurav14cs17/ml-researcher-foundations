@@ -72,19 +72,19 @@
 
 ### 📌 General Constrained Problem
 
-$$
+```math
 \begin{align}
 \min_{\mathbf{x}} \quad & f(\mathbf{x}) \\
 \text{s.t.} \quad & g_i(\mathbf{x}) \leq 0, \quad i = 1, \ldots, m \quad \text{(inequality)} \\
 & h_j(\mathbf{x}) = 0, \quad j = 1, \ldots, p \quad \text{(equality)}
 \end{align}
-$$
+```
 
 ### 📐 The Lagrangian
 
-$$
+```math
 \mathcal{L}(\mathbf{x}, \boldsymbol{\mu}, \boldsymbol{\lambda}) = f(\mathbf{x}) + \sum_{i=1}^{m} \mu_i g_i(\mathbf{x}) + \sum_{j=1}^{p} \lambda_j h_j(\mathbf{x})
-$$
+```
 
 where:
 - $\mu\_i \geq 0$: multipliers for inequality constraints
@@ -96,17 +96,17 @@ where:
 
 ### 📌 Problem (Equality Only)
 
-$$
+```math
 \min f(\mathbf{x}) \quad \text{s.t.} \quad h(\mathbf{x}) = 0
-$$
+```
 
 ### 📐 Theorem
 
 At a local minimum $\mathbf{x}^*$ with $\nabla h(\mathbf{x}^*) \neq 0$, there exists $\lambda^*$ such that:
 
-$$
+```math
 \nabla f(\mathbf{x}^*) + \lambda^* \nabla h(\mathbf{x}^*) = 0
-$$
+```
 
 ### 🔍 Proof (Geometric Argument)
 
@@ -175,27 +175,27 @@ For the constrained problem with both equality and inequality constraints, the *
 
 **1. Stationarity**:
 
-$$
+```math
 \nabla f(\mathbf{x}^*) + \sum_i \mu_i^* \nabla g_i(\mathbf{x}^*) + \sum_j \lambda_j^* \nabla h_j(\mathbf{x}^*) = 0
-$$
+```
 
 **2. Primal Feasibility**:
 
-$$
+```math
 g_i(\mathbf{x}^*) \leq 0, \quad h_j(\mathbf{x}^*) = 0
-$$
+```
 
 **3. Dual Feasibility**:
 
-$$
+```math
 \mu_i^* \geq 0
-$$
+```
 
 **4. Complementary Slackness**:
 
-$$
+```math
 \mu_i^* g_i(\mathbf{x}^*) = 0 \quad \forall i
-$$
+```
 
 ### 🔍 Understanding Complementary Slackness
 
@@ -256,23 +256,23 @@ Final answer: x* = 2, unconstrained optimum is feasible!
 
 The **dual function**:
 
-$$
+```math
 g(\boldsymbol{\mu}, \boldsymbol{\lambda}) = \inf_{\mathbf{x}} \mathcal{L}(\mathbf{x}, \boldsymbol{\mu}, \boldsymbol{\lambda})
-$$
+```
 
 The **dual problem**:
 
-$$
+```math
 \max_{\boldsymbol{\mu} \geq 0, \boldsymbol{\lambda}} g(\boldsymbol{\mu}, \boldsymbol{\lambda})
-$$
+```
 
 ### 📐 Weak Duality
 
 For any feasible primal $\mathbf{x}$ and dual $(\boldsymbol{\mu}, \boldsymbol{\lambda})$:
 
-$$
+```math
 g(\boldsymbol{\mu}, \boldsymbol{\lambda}) \leq f(\mathbf{x})
-$$
+```
 
 **Proof**:
 ```
@@ -286,9 +286,9 @@ g(μ, λ) = inf_x L(x, μ, λ)
 
 Under **Slater's condition** (exists strictly feasible point), the duality gap is zero:
 
-$$
+```math
 p^* = d^* \quad \text{(optimal values are equal)}
-$$
+```
 
 ---
 
@@ -370,7 +370,6 @@ def lagrangian_method_manual():
     min x² + y²
     s.t. x + y = 1
     """
-
     # System: ∇L = 0
     # 2x + λ = 0
     # 2y + λ = 0

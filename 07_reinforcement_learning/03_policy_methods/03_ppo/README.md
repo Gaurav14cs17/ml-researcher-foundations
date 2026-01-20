@@ -166,7 +166,6 @@ class PPO:
     
     def update(self, states, actions, old_log_probs, rewards, dones):
         """PPO update step"""
-
         # Compute values and advantages
         values = self.value_fn(states).squeeze()
         advantages, returns = self.compute_gae(rewards, values.detach(), dones)
@@ -175,7 +174,6 @@ class PPO:
         advantages = (advantages - advantages.mean()) / (advantages.std() + 1e-8)
         
         for _ in range(self.epochs):
-
             # Current policy log probs
             log_probs = self.policy.log_prob(states, actions)
             

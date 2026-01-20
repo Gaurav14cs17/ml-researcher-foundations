@@ -27,9 +27,9 @@
 
 **Objective:** Represent $n$ weights using only $K$ unique values.
 
-$$
+```math
 \min_{\{c_j\}_{j=1}^K, \{a_i\}_{i=1}^n} \sum_{i=1}^n \|w_i - c_{a_i}\|^2
-$$
+```
 
 where:
 - $w\_i$ = original weight value
@@ -54,27 +54,27 @@ where:
 
 **Original:**
 
-$$
+```math
 \text{Bits}_{orig} = n \times 32 \text{ (FP32)}
-$$
+```
 
 **Clustered:**
 
-$$
+```math
 \text{Bits}_{clustered} = \underbrace{K \times 32}_{\text{centroids}} + \underbrace{n \times \lceil\log_2(K)\rceil}_{\text{indices}}
-$$
+```
 
 #### 2.2 Compression Ratio
 
-$$
+```math
 CR = \frac{32n}{32K + n\lceil\log_2(K)\rceil}
-$$
+```
 
 **For $n \gg K$:**
 
-$$
+```math
 CR \approx \frac{32}{\lceil\log_2(K)\rceil}
-$$
+```
 
 | K | Bits/Index | CR |
 |---|-----------|-----|
@@ -91,17 +91,17 @@ $$
 
 **Theorem:** For K-means with $K$ clusters on distribution $p(w)$:
 
-$$
+```math
 \mathbb{E}[\|w - c_{a(w)}\|^2] = O\left(\frac{\sigma_w^2}{K^{2/d}}\right)
-$$
+```
 
 where $d$ is intrinsic dimension (1 for scalar weights).
 
 **For scalar weights:**
 
-$$
+```math
 \text{MSE} = O\left(\frac{\sigma_w^2}{K^2}\right)
-$$
+```
 
 #### 3.2 Comparison to Uniform Quantization
 
@@ -122,23 +122,23 @@ K-means adapts to actual weight distribution!
 
 **Shannon Entropy:**
 
-$$
+```math
 H = -\sum_{j=1}^K p_j \log_2(p_j)
-$$
+```
 
 where $p\_j = \frac{|S\_j|}{n}$.
 
 **Huffman codes achieve:**
 
-$$
+```math
 H \leq \text{bits/weight} \leq H + 1
-$$
+```
 
 #### 4.2 Combined Compression
 
-$$
+```math
 \text{Bits}_{final} = K \times 32 + n \times H
-$$
+```
 
 **Example:**
 - K = 16, equal frequencies: $H = 4$ bits
@@ -153,15 +153,15 @@ $$
 
 **During backprop, gradients are shared across cluster:**
 
-$$
+```math
 \frac{\partial \mathcal{L}}{\partial c_j} = \sum_{i: a_i = j} \frac{\partial \mathcal{L}}{\partial w_i}
-$$
+```
 
 **Update rule:**
 
-$$
+```math
 c_j \leftarrow c_j - \eta \sum_{i: a_i = j} \frac{\partial \mathcal{L}}{\partial w_i}
-$$
+```
 
 #### 5.2 Cluster Re-assignment
 
@@ -256,7 +256,6 @@ class ClusteredLinear(nn.Module):
     
     def _initialize(self):
         """Initialize with standard linear initialization, then cluster."""
-
         # Standard init
         weight = torch.empty(self.out_features, self.in_features)
         nn.init.kaiming_uniform_(weight)
@@ -275,7 +274,6 @@ class ClusteredLinear(nn.Module):
         self.indices = torch.tensor(kmeans.labels_.reshape(self.out_features, self.in_features))
     
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-
         # Reconstruct weight matrix from centroids and indices
         weight = self.centroids[self.indices]
         
@@ -352,7 +350,6 @@ def deep_compression_pipeline(model: nn.Module, n_clusters: int = 16):
     
     for name, module in model.named_modules():
         if isinstance(module, nn.Linear):
-
             # Cluster weights
             clusterer = WeightClusterer(n_clusters)
             weights_np = module.weight.data.numpy()

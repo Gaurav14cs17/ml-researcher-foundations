@@ -504,7 +504,6 @@ Learning Path:
 > Copy this checklist to track your journey!
 
 ```markdown
-
 ## My ML Foundations Progress
 
 ### Foundations

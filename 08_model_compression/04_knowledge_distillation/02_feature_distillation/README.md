@@ -28,9 +28,9 @@
 **FitNets (Romero et al., 2015):**
 Transfer intermediate representations, not just outputs.
 
-$$
+```math
 \mathcal{L}_{hint} = \|r(F_s^l) - F_t^{l'}\|_2^2
-$$
+```
 
 where:
 - $F\_s^l$ = student features at layer $l$
@@ -53,9 +53,9 @@ where:
 **Two-stage training:**
 1. **Stage 1:** Train hint layers only
 
-$$
+```math
 \min_{\theta_s^{1:l}, W_r} \|r(F_s^l) - F_t^{l'}\|_2^2
-$$math
+```math
 2. **Stage 2:** Train full network with KD
 ```
 
@@ -70,9 +70,9 @@ $$math
 
 **Attention map (Zagoruyko & Komodakis, 2016):**
 
-$$
+```math
 A = \sum_{c=1}^{C} |F_c|^p
-$$
+```
 
 where $F\_c$ is the feature map of channel $c$ and $p \in \{1, 2\}$.
 
@@ -80,9 +80,9 @@ where $F\_c$ is the feature map of channel $c$ and $p \in \{1, 2\}$.
 
 #### 2.2 Attention Transfer Loss
 
-$$
+```math
 \mathcal{L}_{AT} = \sum_l \left\|\frac{A_s^l}{\|A_s^l\|_2} - \frac{A_t^l}{\|A_t^l\|_2}\right\|_p^p
-$$
+```
 
 **Normalization:** Makes attention maps comparable across layers/networks.
 
@@ -90,9 +90,9 @@ $$
 
 **Gradient of attention loss:**
 
-$$
+```math
 \frac{\partial \mathcal{L}_{AT}}{\partial F_s^{(c)}} = p \cdot |F_s^{(c)}|^{p-1} \cdot \text{sign}(F_s^{(c)}) \cdot \frac{\partial}{\partial A_s}\left\|\frac{A_s}{\|A_s\|} - \frac{A_t}{\|A_t\|}\right\|
-$$
+```
 
 ---
 
@@ -105,17 +105,17 @@ Transfer activation patterns, not values.
 
 **Binary activation map:**
 
-$$
+```math
 B = \mathbf{1}[F > 0]
-$$
+```
 
 #### 3.2 Maximum Mean Discrepancy
 
 **MMD between student and teacher activations:**
 
-$$
+```math
 \mathcal{L}_{MMD} = \left\|\frac{1}{n}\sum_{i=1}^n \phi(F_s^{(i)}) - \frac{1}{n}\sum_{i=1}^n \phi(F_t^{(i)})\right\|^2
-$$
+```
 
 where $\phi$ is a kernel feature map.
 
@@ -134,9 +134,9 @@ where $\phi$ is a kernel feature map.
 
 #### 4.2 Multi-layer Distillation
 
-$$
+```math
 \mathcal{L}_{multi} = \sum_{(l_s, l_t) \in \mathcal{P}} \lambda_l \|r_l(F_s^{l_s}) - F_t^{l_t}\|_2^2
-$$
+```
 
 where $\mathcal{P}$ is a set of layer pairs.
 
@@ -144,15 +144,15 @@ where $\mathcal{P}$ is a set of layer pairs.
 
 **Correlation Matrix:**
 
-$$
+```math
 G = F^T F \in \mathbb{R}^{n \times n}
-$$
+```
 
 **Loss:**
 
-$$
+```math
 \mathcal{L}_{corr} = \|G_s - G_t\|_F^2
-$$
+```
 
 Matches relationships between samples, not absolute values.
 
@@ -164,9 +164,9 @@ Matches relationships between samples, not absolute values.
 
 **Flow between layers (Yim et al., 2017):**
 
-$$
+```math
 G = \sum_{s=1}^{h \times w} F_1(s) \otimes F_2(s)
-$$
+```
 
 where $\otimes$ is outer product, $F\_1, F\_2$ are features from consecutive layers.
 
@@ -174,15 +174,15 @@ where $\otimes$ is outer product, $F\_1, F\_2$ are features from consecutive lay
 
 **FSP matrix captures transformation:**
 
-$$
+```math
 G_{FSP} = \frac{1}{hw} F_1^T F_2 \in \mathbb{R}^{c_1 \times c_2}
-$$
+```
 
 **Loss:**
 
-$$
+```math
 \mathcal{L}_{FSP} = \sum_l \|G_s^l - G_t^l\|_F^2
-$$
+```
 
 ---
 
@@ -198,7 +198,6 @@ class FitNetLoss(nn.Module):
     
     def __init__(self, student_channels: int, teacher_channels: int):
         super().__init__()
-
         # Regressor to match dimensions
         self.regressor = nn.Conv2d(student_channels, teacher_channels, 1)
     
@@ -209,7 +208,6 @@ class FitNetLoss(nn.Module):
             student_features: [B, C_s, H, W]
             teacher_features: [B, C_t, H, W]
         """
-
         # Project student features
         projected = self.regressor(student_features)
         
@@ -239,7 +237,6 @@ class AttentionTransferLoss(nn.Module):
             student_features: [B, C, H, W]
             teacher_features: [B, C, H, W]
         """
-
         # Compute attention maps
         s_attn = self._attention_map(student_features)
         t_attn = self._attention_map(teacher_features)
@@ -282,7 +279,6 @@ class CorrelationDistillationLoss(nn.Module):
         # Match (need to handle different channel numbers)
         # Option 1: Use pooling to match dimensions
         if s_corr.size(1) != t_corr.size(1):
-
             # Resize using linear interpolation
             s_corr = F.interpolate(s_corr.unsqueeze(1), 
                                    size=t_corr.shape[1:],
@@ -343,7 +339,6 @@ class MultiLayerDistillation(nn.Module):
         total_loss = 0
         
         for i, (s_feat, t_feat) in enumerate(zip(student_features, teacher_features)):
-
             # Project
             projected = self.regressors[i](s_feat)
             
@@ -405,7 +400,6 @@ class FeatureDistillationTrainer:
     
     def compute_loss(self, inputs: torch.Tensor, labels: torch.Tensor):
         """Compute combined distillation loss."""
-
         # Forward pass
         with torch.no_grad():
             teacher_logits = self.teacher(inputs)

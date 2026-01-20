@@ -82,7 +82,6 @@ x_approx = (q - zero_point) * scale
 
 ### Example
 ```python
-
 # FP32 weights: [0.1, 0.5, 0.9, 1.2]
 # Scale = 1.2 / 127 ≈ 0.0094
 # INT8: [11, 53, 96, 127]
@@ -127,7 +126,6 @@ q = round(x / scale) + zero_point
 Quantize a pre-trained model without retraining:
 
 ```python
-
 # 1. Calibrate on sample data
 model.eval()
 with torch.no_grad():
@@ -148,35 +146,35 @@ quantized_weights = round(weights / scale) + zero_point
 
 ### Uniform Quantization
 
-Map continuous values $x \in [x_{min}, x_{max}]$ to discrete integers $q \in [0, 2^b - 1]$:
+Map continuous values \( x \in [x_{min}, x_{max}] \) to discrete integers \( q \in [0, 2^b - 1] \):
 
-$$
+```math
 q = \text{round}\left(\frac{x - x_{min}}{x_{max} - x_{min}} \cdot (2^b - 1)\right)
-$$
+```
 
 **Scale factor:**
 
-$$
+```math
 s = \frac{x_{max} - x_{min}}{2^b - 1}
-$$
+```
 
 **Zero-point:**
 
-$$
+```math
 z = \text{round}\left(-\frac{x_{min}}{s}\right)
-$$
+```
 
 **Quantization function:**
 
-$$
+```math
 Q(x) = \text{clamp}\left(\text{round}\left(\frac{x}{s}\right) + z, 0, 2^b-1\right)
-$$
+```
 
 **Dequantization:**
 
-$$
+```math
 \hat{x} = s \cdot (q - z)
-$$
+```
 
 ---
 
@@ -184,24 +182,24 @@ $$
 
 **Quantization error:**
 
-$$
+```math
 \epsilon = x - \hat{x} = x - s \cdot (Q(x) - z)
-$$
+```
 
 **Mean Squared Error (for uniform distribution):**
 
-Assuming uniform quantization with step size $\Delta = s$:
+Assuming uniform quantization with step size \( \Delta = s \):
 
-$$
+```math
 \mathbb{E}[\epsilon^2] = \frac{\Delta^2}{12} = \frac{s^2}{12}
-$$
+```
 
 **Proof:**
-For uniform rounding error $\epsilon \sim \text{Uniform}(-\Delta/2, \Delta/2)$:
+For uniform rounding error \( \epsilon \sim \text{Uniform}(-\Delta/2, \Delta/2) \):
 
-$$
+```math
 \mathbb{E}[\epsilon^2] = \int_{-\Delta/2}^{\Delta/2} \epsilon^2 \cdot \frac{1}{\Delta} d\epsilon = \frac{1}{\Delta} \cdot \frac{\epsilon^3}{3}\Big|_{-\Delta/2}^{\Delta/2} = \frac{\Delta^2}{12}
-$$
+```
 
 ---
 
@@ -209,15 +207,15 @@ $$
 
 **Symmetric (zero-point = 0):**
 
-$$
+```math
 q = \text{round}\left(\frac{x}{s}\right), \quad s = \frac{\max(|x_{max}|, |x_{min}|)}{2^{b-1}-1}
-$$
+```
 
 **Asymmetric (zero-point ≠ 0):**
 
-$$
+```math
 q = \text{round}\left(\frac{x}{s}\right) + z, \quad s = \frac{x_{max} - x_{min}}{2^b - 1}
-$$
+```
 
 **Trade-off:**
 - Symmetric: Simpler hardware (no zero-point addition), but wastes range if data is skewed
@@ -227,27 +225,27 @@ $$
 
 ### Per-Channel Quantization
 
-For weight tensor $W \in \mathbb{R}^{C_{out} \times C_{in} \times k \times k}$:
+For weight tensor \( W \in \mathbb{R}^{C_{out} \times C_{in} \times k \times k} \):
 
-**Per-tensor:** One scale $s$ for all of $W$
+**Per-tensor:** One scale \( s \) for all of \( W \)
 
-$$
+```math
 W_q = Q(W; s, z)
-$$
+```
 
-**Per-channel:** Separate scale $s_c$ for each output channel
+**Per-channel:** Separate scale \( s_c \) for each output channel
 
-$$
+```math
 W_q[c,:,:,:] = Q(W[c,:,:,:]; s_c, z_c)
-$$
+```
 
 **Why per-channel is better:**
 
 Different channels can have very different weight distributions:
 
-$$
+```math
 \text{Var}(W[c_1]) \gg \text{Var}(W[c_2])
-$$
+```
 
 Per-channel adapts to each distribution → lower quantization error.
 
@@ -257,62 +255,62 @@ Per-channel adapts to each distribution → lower quantization error.
 
 #### 1. Min-Max Calibration
 
-$$
+```math
 s = \frac{x_{max} - x_{min}}{2^b - 1}
-$$
+```
 
 Simple but sensitive to outliers.
 
 #### 2. Percentile Calibration
 Use 99.9th percentile instead of max:
 
-$$
+```math
 s = \frac{P_{99.9}(|x|)}{2^{b-1} - 1}
-$$
+```
 
 Robust to outliers but may clip extreme values.
 
 #### 3. MSE Calibration
 Find scale that minimizes reconstruction error:
 
-$$
+```math
 s^* = \arg\min_s \|x - \hat{x}(s)\|_2^2
-$$
+```
 
 Solved by grid search over candidate scales.
 
 #### 4. KL-Divergence Calibration (TensorRT)
 Minimize information loss:
 
-$$
+```math
 s^* = \arg\min_s D_{KL}(P_x \| P_{\hat{x}})
-$$
+```
 
-where $P_x$ and $P_{\hat{x}}$ are histograms of original and quantized values.
+where \( P_x \) and \( P_{\hat{x}} \) are histograms of original and quantized values.
 
 ---
 
 ### Quantized Matrix Multiplication
 
-For $Y = XW$ with quantized inputs:
+For \( Y = XW \) with quantized inputs:
 
-$$
+```math
 Y = (X_q - z_x) \cdot s_x \cdot (W_q - z_w) \cdot s_w
-$$
+```
 
 Expanding:
 
-$$
+```math
 Y = s_x s_w \left[ X_q W_q - z_x \sum W_q - z_w \sum X_q + z_x z_w \cdot \text{const} \right]
-$$
+```
 
-**Optimization:** Pre-compute $z_x \sum W_q$, $z_w \sum X_q$, and $z_x z_w$ terms.
+**Optimization:** Pre-compute \( z_x \sum W_q \), \( z_w \sum X_q \), and \( z_x z_w \) terms.
 
-For symmetric quantization ($z_x = z_w = 0$):
+For symmetric quantization (\( z_x = z_w = 0 \)):
 
-$$
+```math
 Y = s_x s_w \cdot X_q W_q
-$$
+```
 
 Much simpler! Just integer matmul + single scaling.
 
@@ -320,27 +318,27 @@ Much simpler! Just integer matmul + single scaling.
 
 ### Clipping and Optimal Range
 
-**Problem:** Choosing $[x_{min}, x_{max}]$ involves trade-off:
+**Problem:** Choosing \( [x_{min}, x_{max}] \) involves trade-off:
 - Wide range → large quantization step → large quantization error
 - Narrow range → clipping outliers → clipping error
 
 **Total error:**
 
-$$
+```math
 \mathcal{L}(r) = \mathcal{L}_{quant}(r) + \mathcal{L}_{clip}(r)
-$$
+```
 
 **Optimal range minimizes total error:**
 
-$$
+```math
 r^* = \arg\min_r \mathcal{L}(r)
-$$
+```
 
-For Gaussian-distributed weights with std $\sigma$:
+For Gaussian-distributed weights with std \( \sigma \):
 
-$$
+```math
 r^* \approx 2.5\sigma \text{ to } 3\sigma
-$$
+```
 
 This clips ~1% of values but significantly reduces quantization error.
 
@@ -352,24 +350,24 @@ This clips ~1% of values but significantly reduces quantization error.
 
 During QAT, the quantization function is:
 
-$$
+```math
 y = Q(x) = s \cdot \text{round}\left(\frac{x}{s}\right)
-$$
+```
 
 The gradient is zero almost everywhere (round is step function).
 
 **Straight-Through Estimator (STE):**
 
-$$
+```math
 \frac{\partial y}{\partial x} \approx 1 \text{ (identity)}
-$$
+```
 
 **Proof of STE validity:**
 In expectation, the gradient of round is 1:
 
-$$
+```math
 \mathbb{E}\left[\frac{\partial \text{round}(x)}{\partial x}\right] = 1
-$$
+```
 
 because the quantization error has zero mean.
 
@@ -377,14 +375,14 @@ because the quantization error has zero mean.
 
 ### Bit-Width and Model Size
 
-For a model with $N$ parameters:
+For a model with \( N \) parameters:
 
 | Precision | Size |
 |-----------|------|
-| FP32 | $4N$ bytes |
-| FP16 | $2N$ bytes |
-| INT8 | $N$ bytes |
-| INT4 | $0.5N$ bytes |
+| FP32 | \( 4N \) bytes |
+| FP16 | \( 2N \) bytes |
+| INT8 | \( N \) bytes |
+| INT4 | \( 0.5N \) bytes |
 
 **Compression ratio FP32→INT4:** 8×
 
@@ -418,7 +416,6 @@ For a model with $N$ parameters:
 | [← Pruning & Sparsity II](../04_pruning_sparsity_2/README.md) | [Efficient ML](../README.md) | [Quantization II →](../06_quantization_2/README.md) |
 
 ---
-
 ## 📚 References
 
 | Type | Resource | Link |

@@ -133,7 +133,6 @@ def q_learning(env, num_episodes, alpha=0.1, gamma=0.99, epsilon=0.1):
         done = False
         
         while not done:
-
             # ε-greedy action selection
             if np.random.random() < epsilon:
                 action = env.action_space.sample()  # Explore

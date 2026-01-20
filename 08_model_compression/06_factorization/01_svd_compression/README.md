@@ -27,9 +27,9 @@
 
 **For any matrix $W \in \mathbb{R}^{m \times n}$:**
 
-$$
+```math
 W = U \Sigma V^T
-$$
+```
 
 where:
 - $U \in \mathbb{R}^{m \times m}$ - left singular vectors (orthogonal)
@@ -40,9 +40,9 @@ where:
 
 **For $m \geq n$:**
 
-$$
+```math
 W = U_n \Sigma_n V^T
-$$
+```
 
 where $U\_n \in \mathbb{R}^{m \times n}$, $\Sigma\_n \in \mathbb{R}^{n \times n}$.
 
@@ -54,9 +54,9 @@ where $U\_n \in \mathbb{R}^{m \times n}$, $\Sigma\_n \in \mathbb{R}^{n \times n}
 
 **Keep only $k$ largest singular values:**
 
-$$
+```math
 W_k = U_k \Sigma_k V_k^T
-$$
+```
 
 where:
 - $U\_k \in \mathbb{R}^{m \times k}$ (first $k$ columns)
@@ -67,15 +67,15 @@ where:
 
 **Theorem:** The rank-$k$ truncated SVD is the best rank-$k$ approximation:
 
-$$
+```math
 W_k = \arg\min_{\text{rank}(A) \leq k} \|W - A\|_F
-$$
+```
 
 **Optimal error:**
 
-$$
+```math
 \|W - W_k\|_F = \sqrt{\sum_{i=k+1}^{r} \sigma_i^2}
-$$
+```
 
 where $r = \text{rank}(W)$ and $\sigma\_i$ are singular values.
 
@@ -95,24 +95,24 @@ where $A \in \mathbb{R}^{m \times k}$, $B \in \mathbb{R}^{k \times n}$.
 
 #### 3.2 Compression Ratio
 
-$$
+```math
 CR = \frac{mn}{k(m+n)} = \frac{mn}{km + kn}
-$$
+```
 
 **For square matrices ($m = n$):**
 
-$$
+```math
 CR = \frac{n^2}{2kn} = \frac{n}{2k}
-$$
+```
 
 #### 3.3 Break-even Analysis
 
 **Compression useful when:**
 
-$$
+```math
 k(m + n) < mn
 k < \frac{mn}{m + n}
-$$
+```
 
 **For $m = n$:** $k < n/2$
 
@@ -124,37 +124,37 @@ $$
 
 **Total "energy":**
 
-$$
+```math
 E_{total} = \|W\|_F^2 = \sum_{i=1}^{r} \sigma_i^2
-$$
+```
 
 **Energy captured by rank-$k$:**
 
-$$
+```math
 E_k = \sum_{i=1}^{k} \sigma_i^2
-$$
+```
 
 **Energy ratio:**
 
-$$
+```math
 \rho_k = \frac{E_k}{E_{total}} = \frac{\sum_{i=1}^k \sigma_i^2}{\sum_{i=1}^r \sigma_i^2}
-$$
+```
 
 #### 4.2 Rank Selection
 
 **Choose $k$ such that:**
 
-$$
+```math
 \rho_k \geq \tau
-$$
+```
 
 where $\tau \in [0.9, 0.99]$ is the target energy threshold.
 
 **Approximation error:**
 
-$$
+```math
 \frac{\|W - W_k\|_F^2}{\|W\|_F^2} = 1 - \rho_k \leq 1 - \tau
-$$
+```
 
 ---
 
@@ -248,7 +248,6 @@ class SVDLinear(nn.Module):
         self._init_weights()
     
     def _init_weights(self):
-
         # Initialize to approximate Xavier/Kaiming
         nn.init.kaiming_uniform_(self.A)
         nn.init.kaiming_uniform_(self.B)
@@ -278,7 +277,6 @@ class SVDLinear(nn.Module):
         return layer
     
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-
         # Compute W @ x = A @ (B @ x)
         # More efficient for rank < min(in, out) / 2
         out = x @ self.B.T  # [B, L, rank]
@@ -331,7 +329,6 @@ def compress_model(model: nn.Module, energy_threshold: float = 0.95,
     
     for name, module in list(model.named_modules()):
         if isinstance(module, nn.Linear):
-
             # Compute optimal rank
             weight = module.weight.data.numpy()
             compressor = SVDCompressor(energy_threshold)
@@ -341,7 +338,6 @@ def compress_model(model: nn.Module, energy_threshold: float = 0.95,
             cr = compressor.compression_ratio(weight.shape, rank)
             
             if cr >= min_compression:
-
                 # Replace with SVD layer
                 svd_layer = SVDLinear.from_linear(module, rank=rank)
                 

@@ -154,7 +154,6 @@ class DQNetwork(nn.Module):
     
     def __init__(self, action_dim):
         super().__init__()
-
         # Convolutional layers (for image input)
         self.conv1 = nn.Conv2d(4, 32, kernel_size=8, stride=4)
         self.conv2 = nn.Conv2d(32, 64, kernel_size=4, stride=2)
@@ -251,7 +250,6 @@ class DQNAgent:
         
         self.optimizer.zero_grad()
         loss.backward()
-
         # Gradient clipping
         torch.nn.utils.clip_grad_norm_(self.q_network.parameters(), 10)
         self.optimizer.step()
@@ -283,7 +281,6 @@ def double_dqn_update(q_network, target_network, batch, gamma):
     q_values = q_network(states).gather(1, actions.unsqueeze(1)).squeeze(1)
     
     with torch.no_grad():
-
         # Online network selects best action
         next_actions = q_network(next_states).argmax(1, keepdim=True)
         

@@ -65,9 +65,9 @@ This lecture covers **efficient training techniques**:
 
 **Standard FP32 training:**
 
-$$
+```math
 w \leftarrow w - \eta \nabla_w \mathcal{L}
-$$
+```
 
 **Mixed precision:**
 1. Weights stored in FP32 (master copy)
@@ -76,27 +76,27 @@ $$
 
 **Loss scaling (prevent underflow):**
 
-$$
+```math
 \mathcal{L}_{scaled} = s \cdot \mathcal{L}
 g_{unscaled} = g_{scaled} / s
-$$
+```
 
 **Why it works:**
 
-FP16 has limited range: $2^{-24}$ to $2^{15}$.
+FP16 has limited range: \( 2^{-24} \) to \( 2^{15} \).
 
-Gradients can underflow (become 0) if too small. Scaling by $s$ (e.g., 1024) shifts values into representable range.
+Gradients can underflow (become 0) if too small. Scaling by \( s \) (e.g., 1024) shifts values into representable range.
 
 ---
 
 ### BF16 vs FP16
 
 **FP16:** 5 exponent bits, 10 mantissa bits
-- Range: $\pm 65504$
+- Range: \( \pm 65504 \)
 - Precision: ~3.3 digits
 
 **BF16:** 8 exponent bits, 7 mantissa bits
-- Range: $\pm 3.4 \times 10^{38}$ (same as FP32!)
+- Range: \( \pm 3.4 \times 10^{38} \) (same as FP32!)
 - Precision: ~2.4 digits
 
 **BF16 advantage:** No overflow issues, simpler training (no loss scaling needed).
@@ -107,54 +107,54 @@ Gradients can underflow (become 0) if too small. Scaling by $s$ (e.g., 1024) shi
 
 **Standard backprop memory:**
 
-$$
+```math
 M_{act} = \sum_{l=1}^L |a_l|
-$$
+```
 
 For L layers, store all L activations.
 
 **Checkpointing strategy:**
 
-Divide network into $K$ segments. Only store activations at segment boundaries.
+Divide network into \( K \) segments. Only store activations at segment boundaries.
 
-$$
+```math
 M_{checkpoint} = K \cdot |a_{segment}| + \max_l |a_l|
-$$
+```
 
 **Optimal K:**
 
-$$
+```math
 K^* = \sqrt{L}
 M_{optimal} = O(\sqrt{L})
-$$
+```
 
 **Proof:**
-Total memory = $K \cdot |a| + L/K \cdot |a|$
+Total memory = \( K \cdot |a| + L/K \cdot |a| \)
 
 Taking derivative w.r.t. K and setting to 0:
 
-$$
+```math
 \frac{d}{dK}(K + L/K) = 1 - L/K^2 = 0 \implies K = \sqrt{L}
-$$
+```
 
-**Trade-off:** ~33% more compute (recompute $L - K$ activations).
+**Trade-off:** ~33% more compute (recompute \( L - K \) activations).
 
 ---
 
 ### 8-bit Optimizer States
 
 **Adam state per parameter:**
-- First moment $m_t$: FP32 (4 bytes)
-- Second moment $v_t$: FP32 (4 bytes)
+- First moment \( m_t \): FP32 (4 bytes)
+- Second moment \( v_t \): FP32 (4 bytes)
 - Total: 8 bytes per parameter
 
 **8-bit Adam:**
 
 Block-wise quantization:
 
-$$
+```math
 m_t^{int8} = \text{round}\left(\frac{m_t}{s_m}\right), \quad s_m = \max(|m_t|) / 127
-$$
+```
 
 **Memory:** 2 bytes (int8) + 2 bytes (scale) per block ≈ 2 bytes per parameter.
 
@@ -166,35 +166,35 @@ $$
 
 **Full fine-tuning:**
 
-$$
+```math
 W_{new} = W_0 + \Delta W
-$$
+```
 
-$\Delta W$ is full rank: $d \times d$ parameters.
+\( \Delta W \) is full rank: \( d \times d \) parameters.
 
 **LoRA:**
 
-$$
+```math
 W_{new} = W_0 + BA
-$$
+```
 
-where $B \in \mathbb{R}^{d \times r}, A \in \mathbb{R}^{r \times d}, r \ll d$.
+where \( B \in \mathbb{R}^{d \times r}, A \in \mathbb{R}^{r \times d}, r \ll d \).
 
 **Parameter reduction:**
 
-$$
+```math
 \frac{|LoRA|}{|Full|} = \frac{2dr}{d^2} = \frac{2r}{d}
-$$
+```
 
-For $d = 4096, r = 16$: 0.8% of full fine-tuning parameters!
+For \( d = 4096, r = 16 \): 0.8% of full fine-tuning parameters!
 
 **Mathematical justification:**
 
 Pre-trained weights occupy a low-rank subspace. Fine-tuning for a specific task adds a low-rank perturbation:
 
-$$
+```math
 \Delta W \approx \sum_{i=1}^r \sigma_i u_i v_i^T
-$$
+```
 
 LoRA directly parameterizes this low-rank structure.
 
@@ -204,9 +204,9 @@ LoRA directly parameterizes this low-rank structure.
 
 **Effective batch size:**
 
-$$
+```math
 B_{eff} = B_{micro} \times K_{accum}
-$$
+```
 
 **Update rule:**
 ```python
@@ -218,9 +218,9 @@ for step in range(steps):
     optimizer.zero_grad()
 ```
 
-**Memory:** Only need $B_{micro}$ in memory.
+**Memory:** Only need \( B_{micro} \) in memory.
 
-**Equivalence:** Mathematically equivalent to single batch of size $B_{eff}$.
+**Equivalence:** Mathematically equivalent to single batch of size \( B_{eff} \).
 
 ---
 
@@ -228,19 +228,19 @@ for step in range(steps):
 
 **Standard attention backward:**
 
-Need to store $Q, K, V, A$ (attention matrix) for backward pass.
+Need to store \( Q, K, V, A \) (attention matrix) for backward pass.
 
-$$
+```math
 M_{attn} = O(N^2)
-$$
+```
 
 **FlashAttention backward:**
 
 Recompute attention during backward pass.
 
-$$
+```math
 M_{attn} = O(N)
-$$
+```
 
 **Trade-off:** ~2× compute, but fits longer sequences.
 
@@ -250,24 +250,24 @@ $$
 
 ### Training Memory Formula
 
-For model with $N$ parameters, batch size $B$, sequence length $L$:
+For model with \( N \) parameters, batch size \( B \), sequence length \( L \):
 
-$$
+```math
 M_{total} = M_{model} + M_{grad} + M_{opt} + M_{act}
 M_{total} = N \cdot b_{weight} + N \cdot b_{grad} + N \cdot b_{opt} + B \cdot L \cdot d \cdot b_{act}
-$$
+```
 
 For FP32 Adam:
-- $b_{weight} = 4$
-- $b_{grad} = 4$
-- $b_{opt} = 8$ (two FP32 moments)
-- Total: $16N + \text{activations}$
+- \( b_{weight} = 4 \)
+- \( b_{grad} = 4 \)
+- \( b_{opt} = 8 \) (two FP32 moments)
+- Total: \( 16N + \text{activations} \)
 
 For mixed precision with 8-bit Adam:
-- $b_{weight} = 2$ (FP16) + 4 (FP32 master) = 6
-- $b_{grad} = 2$
-- $b_{opt} = 2$
-- Total: $10N + \text{activations}$
+- \( b_{weight} = 2 \) (FP16) + 4 (FP32 master) = 6
+- \( b_{grad} = 2 \)
+- \( b_{opt} = 2 \)
+- Total: \( 10N + \text{activations} \)
 
 **40% memory reduction!**
 
@@ -277,13 +277,13 @@ For mixed precision with 8-bit Adam:
 
 **Operator fusion:**
 
-$$
+```math
 y = \text{gelu}(\text{dropout}(\text{linear}(x)))
-$$
+```
 
 Fused into single kernel: 1 memory read/write instead of 3.
 
-**Memory reduction:** $3 \times$ less memory traffic.
+**Memory reduction:** \( 3 \times \) less memory traffic.
 
 **Computation graph optimization:**
 - Dead code elimination
@@ -312,7 +312,6 @@ Fused into single kernel: 1 memory read/write instead of 3.
 | [← Efficient Transformers](../11_efficient_transformers/README.md) | [Efficient ML](../README.md) | [On-Device Training →](../13_on_device_training/README.md) |
 
 ---
-
 ## 📚 References
 
 | Type | Resource | Link |

@@ -92,27 +92,27 @@ graph LR
 
 ### Bayes' Theorem
 
-$$
+```math
 P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)} = \frac{\text{Likelihood} \times \text{Prior}}{\text{Evidence}}
-$$
+```
 
 ### Multivariate Gaussian
 
-$$
+```math
 p(\mathbf{x}) = (2\pi)^{-d/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^\top\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)
-$$
+```
 
 ### Cross-Entropy & KL Divergence
 
-$$
+```math
 H(p,q) = -\sum_x p(x)\log q(x) = H(p) + D_{KL}(p \| q)
-$$
+```
 
 ### MLE = Training
 
-$$
+```math
 \theta_{MLE} = \arg\max_\theta P(D|\theta) = \arg\min_\theta \left[-\sum_i \log P(y_i|x_i;\theta)\right]
-$$
+```
 
 ---
 

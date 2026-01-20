@@ -192,7 +192,6 @@ def select_branch_variable_strong(x_frac, model, fractional_vars):
     best_var = None
     
     for j in fractional_vars:
-
         # Evaluate down branch (x_j ≤ floor)
         model.add_constraint(x[j] <= floor(x_frac[j]))
         z_down = model.solve_lp()
@@ -286,7 +285,6 @@ def branch_and_cut(c, A, b, integer_vars):
     """
     Branch and Cut for ILP
     """
-
     # Initialize
     queue = [Node(bounds={})]  # Root node
     best_solution = None
@@ -320,7 +318,6 @@ def branch_and_cut(c, A, b, integer_vars):
                 best_obj = z_lp
                 best_solution = x_lp
         else:
-
             # Branch
             j = select_branch_var(x_lp, integer_vars)
             queue.append(Node(bounds={**node.bounds, j: ('<=', floor(x_lp[j]))}))

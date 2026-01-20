@@ -62,13 +62,13 @@ This lecture covers **distributed training** for large models:
 
 **Setup:** N GPUs, each with model replica.
 
-**Forward:** Each GPU processes $B/N$ samples.
+**Forward:** Each GPU processes \( B/N \) samples.
 
 **Gradient aggregation:**
 
-$$
+```math
 g = \frac{1}{N} \sum_{i=1}^{N} g_i
-$$
+```
 
 **AllReduce operation:** Each GPU ends with same averaged gradient.
 
@@ -78,9 +78,9 @@ Data parallel with N GPUs and batch B/N per GPU = single GPU with batch B.
 
 **Proof:** 
 
-$$
+```math
 g_{DP} = \frac{1}{N} \sum_{i=1}^{N} \frac{1}{B/N} \sum_{j \in \text{batch}_i} \nabla \mathcal{L}_j = \frac{1}{B} \sum_{j=1}^{B} \nabla \mathcal{L}_j = g_{single}
-$$
+```
 
 ---
 
@@ -88,9 +88,9 @@ $$
 
 **Standard DDP memory per GPU:**
 
-$$
+```math
 M_{DDP} = M_{model} + M_{grad} + M_{opt}
-$$
+```
 
 All GPUs have full copies—redundant!
 
@@ -98,15 +98,15 @@ All GPUs have full copies—redundant!
 
 | Stage | Partitioned | Memory/GPU |
 |-------|-------------|------------|
-| ZeRO-1 | Optimizer states | $M_{model} + M_{grad} + M_{opt}/N$ |
-| ZeRO-2 | + Gradients | $M_{model} + M_{grad}/N + M_{opt}/N$ |
-| ZeRO-3 | + Parameters | $(M_{model} + M_{grad} + M_{opt})/N$ |
+| ZeRO-1 | Optimizer states | \( M_{model} + M_{grad} + M_{opt}/N \) |
+| ZeRO-2 | + Gradients | \( M_{model} + M_{grad}/N + M_{opt}/N \) |
+| ZeRO-3 | + Parameters | \( (M_{model} + M_{grad} + M_{opt})/N \) |
 
 **ZeRO-3 memory:**
 
-$$
+```math
 M_{ZeRO-3} = \frac{M_{total}}{N} + M_{activation}
-$$
+```
 
 **Linear scaling with N GPUs!**
 
@@ -116,37 +116,37 @@ $$
 
 **Split weight matrices across GPUs:**
 
-For $Y = XW$, partition $W$ column-wise:
+For \( Y = XW \), partition \( W \) column-wise:
 
-$$
+```math
 W = [W_1 | W_2 | ... | W_N]
-$$
+```
 
-Each GPU $i$ computes:
+Each GPU \( i \) computes:
 
-$$
+```math
 Y_i = X W_i
-$$
+```
 
 **Concatenate results:**
 
-$$
+```math
 Y = [Y_1 | Y_2 | ... | Y_N]
-$$
+```
 
 **For MLP in transformer:**
 
 Column parallel (first linear):
 
-$$
+```math
 Y = XW_1 = [XW_1^{(1)} | XW_1^{(2)}]
-$$
+```
 
 Row parallel (second linear):
 
-$$
+```math
 Z = YW_2 = Y^{(1)}W_2^{(1)} + Y^{(2)}W_2^{(2)}
-$$
+```
 
 **AllReduce after row parallel.**
 
@@ -173,9 +173,9 @@ Bubble time = 2/3 of total.
 
 With K micro-batches:
 
-$$
+```math
 \text{Bubble fraction} = \frac{P-1}{K + P - 1}
-$$
+```
 
 where P = pipeline stages.
 
@@ -193,15 +193,15 @@ where P = pipeline stages.
 
 **Total parallelism:**
 
-$$
+```math
 N_{total} = N_{DP} \times N_{TP} \times N_{PP}
-$$
+```
 
 **Memory per GPU:**
 
-$$
+```math
 M = \frac{M_{model}}{N_{TP} \times N_{PP}} + M_{activation}
-$$
+```
 
 ---
 
@@ -209,25 +209,25 @@ $$
 
 **Data parallel AllReduce:**
 
-$$
+```math
 T_{allreduce} = 2(N-1)/N \cdot M_{grad} / BW
-$$
+```
 
-Ring AllReduce achieves bandwidth-optimal $O(1)$ w.r.t. N GPUs.
+Ring AllReduce achieves bandwidth-optimal \( O(1) \) w.r.t. N GPUs.
 
 **Tensor parallel AllReduce:**
 
-$$
+```math
 T_{TP} = M_{activation} / BW
-$$
+```
 
 Called 2× per transformer layer.
 
 **Pipeline parallelism:**
 
-$$
+```math
 T_{PP} = (K-1) \times M_{activation} / BW
-$$
+```
 
 Communication overlapped with compute.
 
@@ -237,34 +237,34 @@ Communication overlapped with compute.
 
 **Chinchilla optimal training:**
 
-$$
+```math
 C = 6ND
-$$
+```
 
 where:
-- $C$ = compute (FLOP)
-- $N$ = parameters
-- $D$ = training tokens
+- \( C \) = compute (FLOP)
+- \( N \) = parameters
+- \( D \) = training tokens
 
 **Optimal ratio:**
 
-$$
+```math
 D \approx 20N
-$$
+```
 
 **Derivation:**
 
 Loss scales as:
 
-$$
+```math
 L(N, D) \propto N^{-\alpha} + D^{-\beta}
-$$
+```
 
-For fixed compute $C = 6ND$, minimize loss:
+For fixed compute \( C = 6ND \), minimize loss:
 
-$$
+```math
 \frac{\partial L}{\partial N} = 0 \implies D/N = \text{const} \approx 20
-$$
+```
 
 ---
 
@@ -272,15 +272,15 @@ $$
 
 ### AllReduce Complexity
 
-**Naive AllReduce:** $O(N)$ communication rounds.
+**Naive AllReduce:** \( O(N) \) communication rounds.
 
-**Ring AllReduce:** $O(1)$ with respect to N.
+**Ring AllReduce:** \( O(1) \) with respect to N.
 
 Algorithm:
-1. Reduce-scatter: Each GPU sends/receives $M/N$ data $N-1$ times
-2. All-gather: Each GPU sends/receives $M/N$ data $N-1$ times
+1. Reduce-scatter: Each GPU sends/receives \( M/N \) data \( N-1 \) times
+2. All-gather: Each GPU sends/receives \( M/N \) data \( N-1 \) times
 
-Total: $2(N-1) \times M/N \approx 2M$ data transferred.
+Total: \( 2(N-1) \times M/N \approx 2M \) data transferred.
 
 ---
 
@@ -288,17 +288,17 @@ Total: $2(N-1) \times M/N \approx 2M$ data transferred.
 
 **Q, K, V projections (column parallel):**
 
-$$
+```math
 [Q, K, V] = X[W_Q, W_K, W_V]
-$$
+```
 
-Split $W_Q, W_K, W_V$ across heads → each GPU handles subset of heads.
+Split \( W_Q, W_K, W_V \) across heads → each GPU handles subset of heads.
 
 **Output projection (row parallel):**
 
-$$
+```math
 O = \text{Concat}(head_1, ..., head_H) W_O
-$$
+```
 
 **Communication:** Single AllReduce after attention block.
 
@@ -322,7 +322,6 @@ $$
 | [← On-Device Training](../13_on_device_training/README.md) | [Efficient ML](../README.md) | [Efficient Vision Models →](../15_efficient_vision_models/README.md) |
 
 ---
-
 ## 📚 References
 
 | Type | Resource | Link |

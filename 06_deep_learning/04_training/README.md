@@ -37,7 +37,6 @@
 ```python
 for epoch in range(epochs):
     for batch in dataloader:
-
         # Forward
         outputs = model(batch['input'])
         loss = criterion(outputs, batch['target'])

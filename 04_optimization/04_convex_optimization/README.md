@@ -356,13 +356,11 @@ Key insight:
 ## 💻 Training Code (Simplified)
 
 ```python
-
 # Diffusion Model Training with ELBO-based Loss
 import torch
 import torch.nn as nn
 
 def train_step(model, x_0, noise_schedule):
-
     # Sample random timestep
     t = torch.randint(0, T, (batch_size,))
     

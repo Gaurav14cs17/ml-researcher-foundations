@@ -231,7 +231,6 @@ class MDP:
     
     def step(self, action: int) -> Tuple[int, float, bool, dict]:
         """Execute action, return (next_state, reward, done, info)"""
-
         # Sample next state
         probs = self.P[self.state, action]
         next_state = np.random.choice(self.n_states, p=probs)
@@ -307,12 +306,10 @@ def policy_iteration(mdp: MDP) -> Tuple[np.ndarray, np.ndarray]:
     3. Policy Improvement: Compute greedy policy
     4. If policy unchanged, return; else go to 2
     """
-
     # Initialize random policy
     policy = np.ones((mdp.n_states, mdp.n_actions)) / mdp.n_actions
     
     while True:
-
         # Policy Evaluation
         V = policy_evaluation(mdp, policy)
         

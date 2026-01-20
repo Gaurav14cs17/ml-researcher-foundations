@@ -135,9 +135,9 @@ $W$ is a subspace iff:
 
 Or equivalently (single condition):
 
-$$
+```math
 \alpha\mathbf{u} + \beta\mathbf{v} \in W \text{ for all } \mathbf{u}, \mathbf{v} \in W, \alpha, \beta \in \mathbb{F}
-$$
+```
 
 ### 💡 Examples
 
@@ -171,9 +171,9 @@ Not a subspace! (doesn't contain origin)
 
 Vectors $\mathbf{v}\_1, \ldots, \mathbf{v}\_k$ are **linearly independent** if:
 
-$$
+```math
 \alpha_1\mathbf{v}_1 + \alpha_2\mathbf{v}_2 + \cdots + \alpha_k\mathbf{v}_k = \mathbf{0} \implies \alpha_1 = \alpha_2 = \cdots = \alpha_k = 0
-$$
+```
 
 Otherwise, they are **linearly dependent**.
 
@@ -238,9 +238,9 @@ Only trivial solution → INDEPENDENT
 
 The **span** of vectors $\mathbf{v}\_1, \ldots, \mathbf{v}\_k$ is all linear combinations:
 
-$$
+```math
 \text{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\} = \{\alpha_1\mathbf{v}_1 + \cdots + \alpha_k\mathbf{v}_k : \alpha_i \in \mathbb{F}\}
-$$
+```
 
 ### 📌 Basis
 
@@ -297,9 +297,9 @@ To express [3,1]ᵀ:
 
 All bases of a finite-dimensional vector space have the same number of elements. This number is the **dimension** of the space.
 
-$$
+```math
 \dim(V) = |\text{any basis of } V|
-$$
+```
 
 ### 🔍 Proof Sketch
 
@@ -462,7 +462,6 @@ print(f"Nullity: {subspaces['nullity']}")
 ### 🤖 Application 1: Feature Spaces
 
 ```python
-
 # Word embeddings live in a vector space
 # Similar words should be close in this space
 
@@ -499,7 +498,6 @@ def find_all_solutions(A, b):
     General solution = particular solution + null space
     x = x_particular + null(A)
     """
-
     # Particular solution (least-norm)
     x_particular = np.linalg.lstsq(A, b, rcond=None)[0]
     

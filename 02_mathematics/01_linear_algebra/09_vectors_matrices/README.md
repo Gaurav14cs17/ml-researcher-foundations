@@ -73,9 +73,9 @@
 
 A **vector** $\mathbf{x} \in \mathbb{R}^n$ is an ordered list of $n$ real numbers:
 
-$$
+```math
 \mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix}
-$$
+```
 
 ### 📐 Vector Operations
 
@@ -93,9 +93,9 @@ $$
 
 ### 📌 Definition
 
-$$
+```math
 \mathbf{x} \cdot \mathbf{y} = \mathbf{x}^T\mathbf{y} = \sum_{i=1}^{n} x_i y_i = \|\mathbf{x}\| \|\mathbf{y}\| \cos\theta
-$$
+```
 
 ### 🔍 Proof: Geometric Formula
 
@@ -257,9 +257,9 @@ L2 Regularization (Ridge/Weight Decay):
 
 **Definition**: For $A \in \mathbb{R}^{m \times n}$ and $B \in \mathbb{R}^{n \times p}$:
 
-$$
+```math
 (AB)_{ij} = \sum_{k=1}^{n} A_{ik}B_{kj}
-$$
+```
 
 **Dimensions**: $(m \times n) \cdot (n \times p) = (m \times p)$
 
@@ -402,9 +402,9 @@ Examples: Rotation matrices, reflection matrices, permutation matrices
 
 ### 📌 Trace
 
-$$
+```math
 \text{tr}(A) = \sum_{i=1}^{n} A_{ii}
-$$
+```
 
 ### Key Properties
 
@@ -432,9 +432,9 @@ tr(ABC) = tr((AB)C) = tr(C(AB)) = tr(CAB)  ∎
 
 ### 📌 Determinant
 
-$$
+```math
 \det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^{n} A_{i,\sigma(i)}
-$$
+```
 
 ### Key Properties
 
@@ -524,7 +524,6 @@ def verify_transpose_product(A, B):
 
 def efficient_trace_product(A, B):
     """Compute tr(AB) without forming AB"""
-
     # tr(AB) = Σᵢⱼ AᵢⱼBⱼᵢ = Σᵢⱼ AᵢⱼBᵀᵢⱼ
     return np.sum(A * B.T)  # O(n²) instead of O(n³)
 
@@ -545,7 +544,6 @@ def is_positive_definite(A, tol=1e-10):
 # =============================================================================
 
 if __name__ == "__main__":
-
     # Vector examples
     x = np.array([1.0, 2.0, 3.0])
     y = np.array([4.0, 5.0, 6.0])
@@ -647,7 +645,6 @@ def layer_norm(x, gamma, beta, eps=1e-5):
     x: [B, T, D] input
     gamma, beta: [D] learnable parameters
     """
-
     # Compute mean and variance over last dimension
     mean = x.mean(dim=-1, keepdim=True)
     var = x.var(dim=-1, keepdim=True, unbiased=False)
@@ -669,7 +666,6 @@ def cosine_similarity_search(query, database):
     query: [D] single query vector
     database: [N, D] database of N vectors
     """
-
     # Normalize
     query_norm = query / torch.norm(query)
     db_norm = database / torch.norm(database, dim=1, keepdim=True)

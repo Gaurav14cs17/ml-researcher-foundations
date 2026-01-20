@@ -42,27 +42,27 @@
 
 The **true risk** is the expected loss over the data distribution:
 
-$$
+```math
 R(h) = \mathbb{E}_{(x,y) \sim P}[\ell(h(x), y)] = \int \ell(h(x), y) \, dP(x, y)
-$$
+```
 
-**Problem:** We don't know $P$!
+**Problem:** We don't know \(P\)!
 
 ### Empirical Risk
 
 The **empirical risk** approximates true risk using training data:
 
-$$
+```math
 \hat{R}(h) = \frac{1}{n}\sum_{i=1}^n \ell(h(x_i), y_i)
-$$
+```
 
-**Law of Large Numbers:** As $n \to \infty$, $\hat{R}(h) \to R(h)$.
+**Law of Large Numbers:** As \(n \to \infty\), \(\hat{R}(h) \to R(h)\).
 
 ### Generalization Gap
 
-$$
+```math
 \text{Gap}(h) = R(h) - \hat{R}(h)
-$$
+```
 
 **Goal:** Control this gap to ensure good generalization.
 
@@ -70,17 +70,17 @@ $$
 
 ## 📐 Empirical Risk Minimization (ERM)
 
-$$
+```math
 \hat{h}_{\text{ERM}} = \arg\min_{h \in \mathcal{H}} \hat{R}(h)
-$$
+```
 
-**Theorem (Uniform Convergence):** With probability $\geq 1 - \delta$:
+**Theorem (Uniform Convergence):** With probability \(\geq 1 - \delta\):
 
-$$
+```math
 \sup_{h \in \mathcal{H}} |R(h) - \hat{R}(h)| \leq \epsilon(n, |\mathcal{H}|, \delta)
-$$
+```
 
-where $\epsilon$ decreases with $n$ and increases with complexity of $\mathcal{H}$.
+where \(\epsilon\) decreases with \(n\) and increases with complexity of \(\mathcal{H}\).
 
 ---
 
@@ -88,15 +88,15 @@ where $\epsilon$ decreases with $n$ and increases with complexity of $\mathcal{H
 
 Add complexity penalty to control overfitting:
 
-$$
+```math
 \hat{h}_{\text{SRM}} = \arg\min_{h \in \mathcal{H}} \left[\hat{R}(h) + \lambda \Omega(h)\right]
-$$
+```
 
 | Component | Meaning |
 |-----------|---------|
-| $\hat{R}(h)$ | Data fit (training loss) |
-| $\Omega(h)$ | Complexity penalty |
-| $\lambda$ | Trade-off parameter |
+| \(\hat{R}(h)\) | Data fit (training loss) |
+| \(\Omega(h)\) | Complexity penalty |
+| \(\lambda\) | Trade-off parameter |
 
 ---
 
@@ -163,7 +163,6 @@ def train_with_risk_minimization(model, train_loader, val_loader,
     val_risks = []
     
     for epoch in range(epochs):
-
         # Training (minimize structural risk)
         model.train()
         total_train_loss = 0

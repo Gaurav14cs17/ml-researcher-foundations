@@ -210,7 +210,6 @@ def cem_planning(model, state, horizon, n_samples=500, n_elite=50, n_iters=5):
     std = np.ones((horizon, action_dim))
     
     for _ in range(n_iters):
-
         # Sample action sequences
         actions = np.random.normal(mean, std, (n_samples, horizon, action_dim))
         

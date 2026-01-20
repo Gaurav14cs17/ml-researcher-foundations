@@ -40,21 +40,21 @@
 
 ### Formal Definition
 
-A concept class $\mathcal{C}$ is **PAC-learnable** if there exists an algorithm $\mathcal{A}$ and a polynomial $p(\cdot, \cdot, \cdot, \cdot)$ such that:
+A concept class \(\mathcal{C}\) is **PAC-learnable** if there exists an algorithm \(\mathcal{A}\) and a polynomial \(p(\cdot, \cdot, \cdot, \cdot)\) such that:
 
 For all:
-- Concepts $c \in \mathcal{C}$
-- Distributions $\mathcal{D}$ over $\mathcal{X}$
-- Accuracy parameter $\varepsilon > 0$
-- Confidence parameter $\delta > 0$
+- Concepts \(c \in \mathcal{C}\)
+- Distributions \(\mathcal{D}\) over \(\mathcal{X}\)
+- Accuracy parameter \(\varepsilon > 0\)
+- Confidence parameter \(\delta > 0\)
 
-Given $m \geq p(1/\varepsilon, 1/\delta, n, \text{size}(c))$ samples drawn i.i.d. from $\mathcal{D}$:
+Given \(m \geq p(1/\varepsilon, 1/\delta, n, \text{size}(c))\) samples drawn i.i.d. from \(\mathcal{D}\):
 
-$$
+```math
 \Pr[R(h) \leq \varepsilon] \geq 1 - \delta
-$$
+```
 
-where $R(h) = \Pr_{x \sim \mathcal{D}}[h(x) \neq c(x)]$ is the true error.
+where \(R(h) = \Pr_{x \sim \mathcal{D}}[h(x) \neq c(x)]\) is the true error.
 
 ---
 
@@ -62,43 +62,43 @@ where $R(h) = \Pr_{x \sim \mathcal{D}}[h(x) \neq c(x)]$ is the true error.
 
 ### Finite Hypothesis Class
 
-**Theorem:** For a finite hypothesis class $\mathcal{H}$, the sample complexity is:
+**Theorem:** For a finite hypothesis class \(\mathcal{H}\), the sample complexity is:
 
-$$
+```math
 m \geq \frac{1}{\varepsilon}\left(\ln|\mathcal{H}| + \ln\frac{1}{\delta}\right)
-$$
+```
 
 **Proof:**
 
-Let $h^* \in \mathcal{H}$ be a hypothesis with $R(h^*) > \varepsilon$.
+Let \(h^* \in \mathcal{H}\) be a hypothesis with \(R(h^*) > \varepsilon\).
 
 For each training example:
 
-$$
+```math
 \Pr_{(x,y) \sim \mathcal{D}}[h^*(x) = c(x)] \leq 1 - \varepsilon
-$$
+```
 
-For $m$ independent samples:
+For \(m\) independent samples:
 
-$$
+```math
 \Pr[\text{all samples labeled correctly by } h^*] \leq (1-\varepsilon)^m \leq e^{-\varepsilon m}
-$$
+```
 
 By union bound over all "bad" hypotheses:
 
-$$
+```math
 \Pr[\exists h \in \mathcal{H}: R(h) > \varepsilon \text{ and } \hat{R}(h) = 0] \leq |\mathcal{H}| \cdot e^{-\varepsilon m}
-$$
+```
 
-Setting this $\leq \delta$ and solving for $m$. $\blacksquare$
+Setting this \(\leq \delta\) and solving for \(m\). \(\blacksquare\)
 
 ### VC Dimension Based
 
-For hypothesis class with VC dimension $d$:
+For hypothesis class with VC dimension \(d\):
 
-$$
+```math
 m \geq \frac{1}{\varepsilon}\left(d\ln\frac{2}{\varepsilon} + \ln\frac{1}{\delta}\right) = O\left(\frac{d + \ln(1/\delta)}{\varepsilon}\right)
-$$
+```
 
 ---
 
@@ -106,28 +106,28 @@ $$
 
 ### Fundamental Theorem of PAC Learning
 
-**Theorem:** The following are equivalent for a hypothesis class $\mathcal{H}$:
-1. $\mathcal{H}$ is PAC-learnable
-2. $\mathcal{H}$ has finite VC dimension
-3. $\mathcal{H}$ is uniformly learnable (ERM works)
+**Theorem:** The following are equivalent for a hypothesis class \(\mathcal{H}\):
+1. \(\mathcal{H}\) is PAC-learnable
+2. \(\mathcal{H}\) has finite VC dimension
+3. \(\mathcal{H}\) is uniformly learnable (ERM works)
 
 ### Occam's Razor Bound
 
-**Theorem:** For a hypothesis $h \in \mathcal{H}$ with description length $|h|$ bits:
+**Theorem:** For a hypothesis \(h \in \mathcal{H}\) with description length \(|h|\) bits:
 
-$$
+```math
 \Pr[R(h) \leq \hat{R}(h) + \sqrt{\frac{|h|\ln 2 + \ln(1/\delta)}{2m}}] \geq 1 - \delta
-$$
+```
 
 **Implication:** Shorter (simpler) hypotheses generalize better.
 
 ### No Free Lunch Theorem
 
-**Theorem:** For any learning algorithm $\mathcal{A}$ and sample size $m < |\mathcal{X}|/2$:
+**Theorem:** For any learning algorithm \(\mathcal{A}\) and sample size \(m < |\mathcal{X}|/2\):
 
-There exists a distribution $\mathcal{D}$ and labeling such that:
-1. There exists a perfect classifier in $\mathcal{H}$
-2. $\mathcal{A}$'s expected error $\geq 1/4$
+There exists a distribution \(\mathcal{D}\) and labeling such that:
+1. There exists a perfect classifier in \(\mathcal{H}\)
+2. \(\mathcal{A}\)'s expected error \(\geq 1/4\)
 
 **Implication:** No universal best algorithm. Prior assumptions are necessary.
 
@@ -213,7 +213,6 @@ class PACLearner:
         best_error = float('inf')
         
         for h in self.hypothesis_class:
-
             # Compute empirical risk
             predictions = np.array([h(x) for x in X])
             error = np.mean(predictions != y)
@@ -280,9 +279,9 @@ if __name__ == "__main__":
 
 | Concept | Meaning | Importance |
 |---------|---------|------------|
-| $\varepsilon$ | Max error we tolerate | Smaller = harder |
-| $\delta$ | Probability of failure | Smaller = more confident |
-| VC Dimension | Capacity of $\mathcal{H}$ | Larger = need more data |
+| \(\varepsilon\) | Max error we tolerate | Smaller = harder |
+| \(\delta\) | Probability of failure | Smaller = more confident |
+| VC Dimension | Capacity of \(\mathcal{H}\) | Larger = need more data |
 | Sample Complexity | Data needed | Must be polynomial |
 
 ---

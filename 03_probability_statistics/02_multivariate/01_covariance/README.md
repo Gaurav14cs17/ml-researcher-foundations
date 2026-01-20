@@ -31,49 +31,49 @@ Covariance matrices are central to ML: they describe feature relationships, enab
 
 ### Definition
 
-$$
+```math
 \text{Cov}(X, Y) = E[(X - \mu_X)(Y - \mu_Y)] = E[XY] - E[X]E[Y]
-$$
+```
 
 **Proof of Alternative Form:**
 
-$$
+```math
 \text{Cov}(X, Y) = E[(X - \mu_X)(Y - \mu_Y)]
 = E[XY - X\mu_Y - Y\mu_X + \mu_X\mu_Y]
 = E[XY] - \mu_Y E[X] - \mu_X E[Y] + \mu_X\mu_Y
 = E[XY] - \mu_X\mu_Y - \mu_X\mu_Y + \mu_X\mu_Y
 = E[XY] - E[X]E[Y] \quad \blacksquare
-$$
+```
 
 ### Properties
 
 **1. Variance is a Special Case:**
 
-$$
+```math
 \text{Cov}(X, X) = \text{Var}(X)
-$$
+```
 
 **2. Symmetry:**
 
-$$
+```math
 \text{Cov}(X, Y) = \text{Cov}(Y, X)
-$$
+```
 
 **3. Bilinearity:**
 
-$$
+```math
 \text{Cov}(aX, bY) = ab \cdot \text{Cov}(X, Y)
 \text{Cov}(X + Y, Z) = \text{Cov}(X, Z) + \text{Cov}(Y, Z)
-$$
+```
 
 **Proof of Bilinearity (Scaling):**
 
-$$
+```math
 \text{Cov}(aX, bY) = E[(aX - aE[X])(bY - bE[Y])]
 = E[ab(X - E[X])(Y - E[Y])]
 = ab \cdot E[(X - E[X])(Y - E[Y])]
 = ab \cdot \text{Cov}(X, Y) \quad \blacksquare
-$$
+```
 
 **4. Independence Implies Zero Covariance:**
 
@@ -83,9 +83,9 @@ If X and Y are independent, then $\text{Cov}(X, Y) = 0$.
 
 If X, Y independent: $E[XY] = E[X]E[Y]$
 
-$$
+```math
 \text{Cov}(X, Y) = E[XY] - E[X]E[Y] = E[X]E[Y] - E[X]E[Y] = 0 \quad \blacksquare
-$$
+```
 
 **Warning:** The converse is FALSE! $\text{Cov}(X, Y) = 0$ does NOT imply independence.
 
@@ -99,17 +99,17 @@ $$
 
 ### Pearson Correlation Coefficient
 
-$$
+```math
 \rho(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma_X \cdot \sigma_Y}
-$$
+```
 
 ### Properties
 
 **1. Bounded:**
 
-$$
+```math
 -1 \leq \rho(X, Y) \leq 1
-$$
+```
 
 **Proof (Cauchy-Schwarz):**
 
@@ -117,24 +117,24 @@ Define $\tilde{X} = X - \mu\_X$ and $\tilde{Y} = Y - \mu\_Y$.
 
 By Cauchy-Schwarz inequality:
 
-$$
+```math
 |E[\tilde{X}\tilde{Y}]|^2 \leq E[\tilde{X}^2] \cdot E[\tilde{Y}^2]
 |\text{Cov}(X, Y)|^2 \leq \text{Var}(X) \cdot \text{Var}(Y) = \sigma_X^2 \sigma_Y^2
 |\text{Cov}(X, Y)| \leq \sigma_X \sigma_Y
 -1 \leq \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y} \leq 1 \quad \blacksquare
-$$
+```
 
 **2. Perfect Correlation:**
 
-$$
+```math
 |\rho| = 1 \iff Y = aX + b \text{ for some constants } a, b
-$$
+```
 
 **3. Uncorrelated:**
 
-$$
+```math
 \rho = 0 \iff \text{Cov}(X, Y) = 0
-$$
+```
 
 ---
 
@@ -144,32 +144,32 @@ $$
 
 For a random vector $\mathbf{X} = [X\_1, X\_2, \ldots, X\_n]^\top$:
 
-$$
+```math
 \boldsymbol{\Sigma} = \text{Cov}(\mathbf{X}) = E[(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^\top]
-$$
+```
 
 **Element-wise:**
 
-$$
+```math
 \Sigma_{ij} = \text{Cov}(X_i, X_j)
-$$
+```
 
 **Matrix Form:**
 
-$$
+```math
 \boldsymbol{\Sigma} = E[\mathbf{X}\mathbf{X}^\top] - \boldsymbol{\mu}\boldsymbol{\mu}^\top
-$$
+```
 
 ### Structure
 
-$$
+```math
 \boldsymbol{\Sigma} = \begin{bmatrix} 
 \text{Var}(X_1) & \text{Cov}(X_1, X_2) & \cdots & \text{Cov}(X_1, X_n) \\
 \text{Cov}(X_2, X_1) & \text{Var}(X_2) & \cdots & \text{Cov}(X_2, X_n) \\
 \vdots & \vdots & \ddots & \vdots \\
 \text{Cov}(X_n, X_1) & \text{Cov}(X_n, X_2) & \cdots & \text{Var}(X_n)
 \end{bmatrix}
-$$
+```
 
 - **Diagonal entries:** Variances
 - **Off-diagonal entries:** Covariances
@@ -184,12 +184,12 @@ $$
 
 **Proof:**
 
-$$
+```math
 \mathbf{v}^\top \boldsymbol{\Sigma} \mathbf{v} = \mathbf{v}^\top E[(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^\top] \mathbf{v}
 = E[\mathbf{v}^\top (\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^\top \mathbf{v}]
 = E[(\mathbf{v}^\top (\mathbf{X} - \boldsymbol{\mu}))^2]
 = E[Z^2] \geq 0 \quad \blacksquare
-$$
+```
 
 where $Z = \mathbf{v}^\top (\mathbf{X} - \boldsymbol{\mu})$ is a scalar random variable.
 
@@ -197,9 +197,9 @@ where $Z = \mathbf{v}^\top (\mathbf{X} - \boldsymbol{\mu})$ is a scalar random v
 
 Since $\boldsymbol{\Sigma}$ is symmetric positive semi-definite:
 
-$$
+```math
 \boldsymbol{\Sigma} = \mathbf{U} \boldsymbol{\Lambda} \mathbf{U}^\top
-$$
+```
 
 where:
 - $\mathbf{U}$: orthogonal matrix of eigenvectors
@@ -213,35 +213,35 @@ where:
 
 Given n samples $\mathbf{X}\_1, \ldots, \mathbf{X}\_n$:
 
-$$
+```math
 \hat{\boldsymbol{\Sigma}} = \frac{1}{n} \sum_{i=1}^{n} (\mathbf{X}_i - \bar{\mathbf{X}})(\mathbf{X}_i - \bar{\mathbf{X}})^\top
-$$
+```
 
 ### Unbiased Estimator (Bessel's Correction)
 
-$$
+```math
 \hat{\boldsymbol{\Sigma}}_{\text{unbiased}} = \frac{1}{n-1} \sum_{i=1}^{n} (\mathbf{X}_i - \bar{\mathbf{X}})(\mathbf{X}_i - \bar{\mathbf{X}})^\top
-$$
+```
 
 **Why n-1?** We lose one degree of freedom by estimating the mean from the same data.
 
 **Proof that n-1 gives unbiased estimator:**
 
-$$
+```math
 E\left[\frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})^2\right] = \sigma^2
-$$
+```
 
 The key insight is that:
 
-$$
+```math
 \sum_{i=1}^{n}(X_i - \bar{X})^2 = \sum_{i=1}^{n}(X_i - \mu)^2 - n(\bar{X} - \mu)^2
-$$
+```
 
 Taking expectations and using $E[(\bar{X} - \mu)^2] = \sigma^2/n$:
 
-$$
+```math
 E\left[\sum_{i=1}^{n}(X_i - \bar{X})^2\right] = n\sigma^2 - n \cdot \frac{\sigma^2}{n} = (n-1)\sigma^2 \quad \blacksquare
-$$
+```
 
 ---
 
@@ -249,29 +249,29 @@ $$
 
 **Theorem:** If $\mathbf{Y} = \mathbf{A}\mathbf{X} + \mathbf{b}$, then:
 
-$$
+```math
 \text{Cov}(\mathbf{Y}) = \mathbf{A} \text{Cov}(\mathbf{X}) \mathbf{A}^\top = \mathbf{A}\boldsymbol{\Sigma}\mathbf{A}^\top
-$$
+```
 
 **Proof:**
 
-$$
+```math
 \text{Cov}(\mathbf{Y}) = E[(\mathbf{Y} - E[\mathbf{Y}])(\mathbf{Y} - E[\mathbf{Y}])^\top]
-$$
+```
 
 Since $E[\mathbf{Y}] = \mathbf{A}E[\mathbf{X}] + \mathbf{b} = \mathbf{A}\boldsymbol{\mu} + \mathbf{b}$:
 
-$$
+```math
 \mathbf{Y} - E[\mathbf{Y}] = \mathbf{A}\mathbf{X} + \mathbf{b} - \mathbf{A}\boldsymbol{\mu} - \mathbf{b} = \mathbf{A}(\mathbf{X} - \boldsymbol{\mu})
-$$
+```
 
 Therefore:
 
-$$
+```math
 \text{Cov}(\mathbf{Y}) = E[\mathbf{A}(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^\top\mathbf{A}^\top]
 = \mathbf{A} E[(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^\top] \mathbf{A}^\top
 = \mathbf{A} \boldsymbol{\Sigma} \mathbf{A}^\top \quad \blacksquare
-$$
+```
 
 ---
 
@@ -281,22 +281,22 @@ $$
 
 **Method:** 
 
-$$
+```math
 \mathbf{Z} = \boldsymbol{\Sigma}^{-1/2}(\mathbf{X} - \boldsymbol{\mu})
-$$
+```
 
 **Result:**
 
-$$
+```math
 \text{Cov}(\mathbf{Z}) = \boldsymbol{\Sigma}^{-1/2} \boldsymbol{\Sigma} (\boldsymbol{\Sigma}^{-1/2})^\top = \mathbf{I}
-$$
+```
 
 **Via Eigendecomposition:**
 
-$$
+```math
 \boldsymbol{\Sigma} = \mathbf{U}\boldsymbol{\Lambda}\mathbf{U}^\top
 \boldsymbol{\Sigma}^{-1/2} = \mathbf{U}\boldsymbol{\Lambda}^{-1/2}\mathbf{U}^\top
-$$
+```
 
 ---
 
@@ -304,9 +304,9 @@ $$
 
 **Definition:**
 
-$$
+```math
 d_M(\mathbf{x}, \boldsymbol{\mu}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})}
-$$
+```
 
 **Properties:**
 - Accounts for correlations between features
@@ -328,9 +328,9 @@ $$
 
 **Projection onto k principal components:**
 
-$$
+```math
 \mathbf{Z} = \mathbf{U}_k^\top (\mathbf{X} - \bar{\mathbf{X}})
-$$
+```
 
 where $\mathbf{U}\_k$ contains the top k eigenvectors.
 

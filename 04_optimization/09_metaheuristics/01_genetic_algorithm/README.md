@@ -75,12 +75,10 @@ Permutation: Swap two positions
 ## 📐 Algorithm
 
 ```python
-
 # Initialize
 population = random_population(size=N)
 
 for generation in range(max_generations):
-
     # 1. Evaluate
     fitness = [evaluate(individual) for individual in population]
     
@@ -152,13 +150,11 @@ class GeneticAlgorithm:
         return individual
     
     def evolve(self, generations=100):
-
         # Initialize
         population = [np.random.randint(0, 2, self.gene_length) 
                      for _ in range(self.pop_size)]
         
         for gen in range(generations):
-
             # Evaluate
             fitness = [self.fitness(ind) for ind in population]
             
@@ -192,7 +188,6 @@ print(f"Best solution: {best}")
 
 ### 1. **Traveling Salesman Problem (TSP)**
 ```python
-
 # Chromosome: Permutation of cities [3,1,4,2,5]
 # Fitness: -total_distance
 # Crossover: Order crossover (preserve relative order)
@@ -201,7 +196,6 @@ print(f"Best solution: {best}")
 
 ### 2. **Function Optimization**
 ```python
-
 # Chromosome: Real vector [x₁, x₂, ..., xₙ]
 # Fitness: f(x)
 # Crossover: Arithmetic (0.5*parent1 + 0.5*parent2)
@@ -210,7 +204,6 @@ print(f"Best solution: {best}")
 
 ### 3. **Neural Network Architecture Search**
 ```python
-
 # Chromosome: [layers, neurons, activation, ...]
 # Fitness: Validation accuracy
 # Crossover: Mix architectures

@@ -25,10 +25,10 @@
 
 **The Quantization Function is Non-Differentiable:**
 
-$$
+```math
 Q(x) = s \cdot \text{round}(x/s)
 \frac{\partial Q}{\partial x} = 0 \text{ almost everywhere}
-$$
+```
 
 This breaks backpropagation!
 
@@ -42,15 +42,15 @@ This breaks backpropagation!
 
 **Forward pass:** Use true quantization
 
-$$
+```math
 \hat{x} = Q(x)
-$$
+```
 
 **Backward pass:** Pass gradients through as identity
 
-$$
+```math
 \frac{\partial \mathcal{L}}{\partial x} \approx \frac{\partial \mathcal{L}}{\partial \hat{x}}
-$$
+```
 
 #### 2.2 Mathematical Justification
 
@@ -59,17 +59,17 @@ $$
 **Analysis:**
 The true gradient is:
 
-$$
+```math
 \frac{\partial \mathcal{L}}{\partial x} = \frac{\partial \mathcal{L}}{\partial \hat{x}} \cdot \frac{\partial \hat{x}}{\partial x}
-$$
+```
 
 With STE, we approximate $\frac{\partial \hat{x}}{\partial x} \approx 1$.
 
 **Expected value analysis:**
 
-$$
+```math
 \mathbb{E}\left[\frac{\partial Q}{\partial x}\right] = \mathbb{E}[\mathbf{1}_{Q \text{ continuous at } x}] = 0
-$$
+```
 
 But STE gives $\mathbb{E}[1] = 1$, which captures the "direction" of change.
 
@@ -77,9 +77,9 @@ But STE gives $\mathbb{E}[1] = 1$, which captures the "direction" of change.
 
 **Better approximation:**
 
-$$
+```math
 \frac{\partial Q}{\partial x} \approx \mathbf{1}_{x \in [x_{min}, x_{max}]}
-$$
+```
 
 This sets gradient to 0 for clipped values (saturation).
 
@@ -97,7 +97,6 @@ class STEQuantize(torch.autograd.Function):
     @staticmethod
     def backward(ctx, grad_output):
         x, scale = ctx.saved_tensors
-
         # Clipped STE: zero gradient for clipped values
         x_q = x / scale
         mask = (x_q >= ctx.qmin) & (x_q <= ctx.qmax)
@@ -113,9 +112,9 @@ class STEQuantize(torch.autograd.Function):
 
 **Fake Quantization:** Simulate quantization during training while keeping FP32 precision.
 
-$$
+```math
 \text{FakeQuant}(x) = s \cdot \text{clamp}\left(\text{round}\left(\frac{x}{s}\right), q_{min}, q_{max}\right)
-$$
+```
 
 **Key insight:** Output is still FP32, but values are restricted to quantization grid.
 
@@ -139,30 +138,30 @@ where ε ∈ [-0.5, 0.5] is rounding error
 
 **Make scale a learnable parameter:**
 
-$$
+```math
 s = f_\theta(W) \quad \text{or} \quad s = \text{learnable parameter}
-$$
+```
 
 **Gradient of loss w.r.t. scale:**
 
-$$
+```math
 \frac{\partial \mathcal{L}}{\partial s} = \frac{\partial \mathcal{L}}{\partial \hat{W}} \cdot \frac{\partial \hat{W}}{\partial s}
 \frac{\partial \hat{W}}{\partial s} = W_q - \frac{W}{s^2} \cdot s = W_q - \frac{W}{s}
-$$
+```
 
 #### 4.2 LSQ (Learned Step Size Quantization)
 
 **Formulation:**
 
-$$
+```math
 \hat{W} = s \cdot \text{clip}\left(\text{round}\left(\frac{W}{s}\right), -Q_N, Q_P\right)
-$$
+```
 
 **Scale gradient with normalization:**
 
-$$
+```math
 \frac{\partial \mathcal{L}}{\partial s} = \frac{\partial \mathcal{L}}{\partial \hat{W}} \cdot \frac{\partial \hat{W}}{\partial s} \cdot \frac{1}{\sqrt{n \cdot Q_P}}
-$$
+```
 
 The normalization $\frac{1}{\sqrt{n \cdot Q\_P}}$ balances gradient magnitudes.
 
@@ -189,9 +188,9 @@ The normalization $\frac{1}{\sqrt{n \cdot Q\_P}}$ balances gradient magnitudes.
 
 **Temperature Annealing for Soft Quantization:**
 
-$$
+```math
 Q_\tau(x) = s \cdot \text{softround}_\tau(x/s)
-$$
+```
 
 where $\text{softround}\_\tau \to \text{round}$ as $\tau \to 0$.
 
@@ -214,7 +213,6 @@ class QATLinear(nn.Module):
         self.a_scale = nn.Parameter(torch.tensor(1.0))
     
     def forward(self, x):
-
         # Quantize weights
         w_q = self.fake_quantize(
             self.linear.weight, 
@@ -247,10 +245,10 @@ class QATLinear(nn.Module):
 
 **Before quantization, fold BN into preceding conv/linear:**
 
-$$
+```math
 W_{folded} = \frac{\gamma}{\sqrt{\sigma^2 + \epsilon}} \cdot W
 b_{folded} = \gamma \cdot \frac{-\mu}{\sqrt{\sigma^2 + \epsilon}} + \beta + \frac{\gamma}{\sqrt{\sigma^2 + \epsilon}} \cdot b
-$$
+```
 
 **Why fold?**
 - Reduces operations at inference
@@ -346,7 +344,6 @@ class QATModel(nn.Module):
         """Initialize quantization parameters."""
         for name, module in self.model.named_modules():
             if isinstance(module, (nn.Linear, nn.Conv2d)):
-
                 # Initialize weight scale
                 w_max = module.weight.abs().max()
                 self.w_scales[name.replace('.', '_')] = nn.Parameter(
@@ -371,7 +368,6 @@ class QATModel(nn.Module):
         return FakeQuantize.apply(x, scale, 0, qmin, qmax)
     
     def forward(self, x):
-
         # Hook-based quantization would go here
         # For simplicity, showing manual approach
         return self.model(x)
@@ -382,7 +378,6 @@ class QATModel(nn.Module):
         for name, module in self.model.named_modules():
             if isinstance(module, (nn.Linear, nn.Conv2d)):
                 key = name.replace('.', '_')
-
                 # Exponential moving average
                 ema_factor = 0.99
                 current_max = x.abs().max()

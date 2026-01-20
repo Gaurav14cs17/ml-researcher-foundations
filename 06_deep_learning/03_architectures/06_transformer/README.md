@@ -64,9 +64,9 @@
 
 #### Step 1: Linear Projections
 
-$$
+```math
 Q = XW^Q, \quad K = XW^K, \quad V = XW^V
-$$
+```
 
 Where:
 - $W^Q \in \mathbb{R}^{d \times d\_k}$ (query projection)
@@ -80,26 +80,26 @@ Where:
 
 #### Step 2: Compute Attention Scores
 
-$$
+```math
 S = QK^\top \in \mathbb{R}^{n \times n}
 S_{ij} = \sum_{k=1}^{d_k} Q_{ik} \cdot K_{jk} = \langle q_i, k_j \rangle
-$$
+```
 
 **Interpretation:** $S\_{ij}$ measures similarity between query at position $i$ and key at position $j$.
 
 #### Step 3: Scaling
 
-$$
+```math
 \text{ScaledScores} = \frac{QK^\top}{\sqrt{d_k}}
-$$
+```
 
 **Why scale by $\sqrt{d\_k}$?**
 
 **Theorem:** If $q, k \sim \mathcal{N}(0, 1)$ are independent, then:
 
-$$
+```math
 \text{Var}(q \cdot k) = d_k
-$$
+```
 
 **Proof:**
 ```
@@ -118,10 +118,10 @@ Scaling by √d_k normalizes variance to 1.
 
 #### Step 4: Softmax Normalization
 
-$$
+```math
 A = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right) \in \mathbb{R}^{n \times n}
 A_{ij} = \frac{\exp(S_{ij}/\sqrt{d_k})}{\sum_{l=1}^n \exp(S_{il}/\sqrt{d_k})}
-$$
+```
 
 **Properties:**
 - $\sum\_j A\_{ij} = 1$ (rows sum to 1)
@@ -130,18 +130,18 @@ $$
 
 #### Step 5: Weighted Aggregation
 
-$$
+```math
 \text{Output} = AV \in \mathbb{R}^{n \times d_v}
 \text{Output}_i = \sum_{j=1}^n A_{ij} \cdot V_j
-$$
+```
 
 **Interpretation:** Each output is a weighted average of all values.
 
 #### Complete Formula
 
-$$
+```math
 \boxed{\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right) V}
-$$
+```
 
 ---
 
@@ -151,10 +151,10 @@ $$
 
 **Solution:** $H$ parallel attention heads:
 
-$$
+```math
 \text{MultiHead}(X) = \text{Concat}(\text{head}_1, ..., \text{head}_H) W^O
 \text{head}_h = \text{Attention}(XW_h^Q, XW_h^K, XW_h^V)
-$$
+```
 
 Where:
 - $W\_h^Q, W\_h^K \in \mathbb{R}^{d \times d\_k}$ with $d\_k = d/H$
@@ -163,9 +163,9 @@ Where:
 
 **Parameter Count:**
 
-$$
+```math
 \text{Params} = 3 \cdot H \cdot d \cdot \frac{d}{H} + d^2 = 3d^2 + d^2 = 4d^2
-$$
+```
 
 **Interpretation:** Different heads learn different relationship types:
 - Head 1: Syntactic relationships
@@ -179,18 +179,18 @@ $$
 
 **Problem:** Attention is permutation-equivariant!
 
-$$
+```math
 \text{Attention}(\pi(X)) = \pi(\text{Attention}(X))
-$$
+```
 
 Where $\pi$ is any permutation. This means "dog bites man" = "man bites dog" without positions!
 
 #### Sinusoidal Positional Encoding
 
-$$
+```math
 PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d}}\right)
 PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d}}\right)
-$$
+```
 
 **Why This Formula?**
 
@@ -232,13 +232,13 @@ This is a linear combination with coefficients depending only on k!
 
 **Solution:** Add causal mask before softmax.
 
-$$
+```math
 \text{mask}_{ij} = \begin{cases}
 0 & \text{if } j \leq i \\
 -\infty & \text{if } j > i
 \end{cases}
 A = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}} + \text{mask}\right)
-$$
+```
 
 **Effect:** $\exp(-\infty) = 0$, so future tokens get zero attention weight.
 
@@ -268,33 +268,33 @@ $$
 
 **Forward:**
 
-$$
+```math
 A = \text{softmax}(S), \quad O = AV
-$$
+```
 
 **Backward (Gradient of softmax):**
 
 For softmax row $a = \text{softmax}(s)$:
 
-$$
+```math
 \frac{\partial a_i}{\partial s_j} = a_i(\delta_{ij} - a_j)
-$$
+```
 
 **Jacobian:**
 
-$$
+```math
 \frac{\partial a}{\partial s} = \text{diag}(a) - aa^\top
-$$
+```
 
 **Gradient of attention output:**
 
-$$
+```math
 \frac{\partial L}{\partial V} = A^\top \frac{\partial L}{\partial O}
 \frac{\partial L}{\partial A} = \frac{\partial L}{\partial O} V^\top
 \frac{\partial L}{\partial S} = A \odot \left(\frac{\partial L}{\partial A} - \mathbf{1}\left(A \odot \frac{\partial L}{\partial A}\right)^\top\right)
 \frac{\partial L}{\partial Q} = \frac{1}{\sqrt{d_k}} \frac{\partial L}{\partial S} K
 \frac{\partial L}{\partial K} = \frac{1}{\sqrt{d_k}} \left(\frac{\partial L}{\partial S}\right)^\top Q
-$$
+```
 
 ---
 
@@ -441,7 +441,6 @@ class TransformerBlock(nn.Module):
         self.dropout = nn.Dropout(dropout)
     
     def forward(self, x, mask=None):
-
         # Pre-LN: LayerNorm before sublayer
         attn_out, _ = self.attn(self.ln1(x), mask)
         x = x + self.dropout(attn_out)
@@ -486,7 +485,6 @@ class Transformer(nn.Module):
                 nn.init.normal_(module.weight, std=0.02)
     
     def forward(self, x, mask=None):
-
         # Create causal mask if not provided
         if mask is None:
             mask = self._create_causal_mask(x.size(1), x.device)

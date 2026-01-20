@@ -27,15 +27,15 @@
 
 **Unstructured:**
 
-$$
+```math
 W_{pruned}[i,j] = 0 \text{ for some } (i,j)
-$$
+```
 
 **Structured (filter pruning):**
 
-$$
+```math
 W_{pruned}[f,:,:,:] = 0 \text{ for entire filter } f
-$$
+```
 
 ---
 
@@ -45,9 +45,9 @@ $$
 
 **Remove entire convolution filters:**
 
-$$
+```math
 W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K} \to W' \in \mathbb{R}^{C'_{out} \times C_{in} \times K \times K}
-$$
+```
 
 **Effect:** Reduces output channels, affects next layer's input.
 
@@ -55,9 +55,9 @@ $$
 
 **Remove input channels:**
 
-$$
+```math
 W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K} \to W' \in \mathbb{R}^{C_{out} \times C'_{in} \times K \times K}
-$$
+```
 
 **Must prune:** Corresponding output feature maps in previous layer.
 
@@ -65,19 +65,19 @@ $$
 
 **Remove entire attention heads:**
 
-$$
+```math
 \text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, ..., \text{head}_h) W^O
 \to \text{Concat}(\text{head}_1, ..., \text{head}_{h'}) W'^O
-$$
+```
 
 #### 2.4 Block/Layer Pruning
 
 **Remove entire layers:**
 
-$$
+```math
 f(x) = f_L \circ f_{L-1} \circ ... \circ f_1(x)
 \to f'(x) = f_L \circ f_{L-1} \circ ... \circ f_{l+1} \circ f_{l-1} \circ ... \circ f_1(x)
-$$
+```
 
 ---
 
@@ -87,15 +87,15 @@ $$
 
 **Filter importance (Li et al., 2016):**
 
-$$
+```math
 s_f = \|W_f\|_1 = \sum_{c,i,j} |W[f,c,i,j]|
-$$
+```
 
 or
 
-$$
+```math
 s_f = \|W_f\|_2 = \sqrt{\sum_{c,i,j} W[f,c,i,j]^2}
-$$
+```
 
 **Prune filters with smallest norm.**
 
@@ -103,15 +103,15 @@ $$
 
 **Importance based on gradient-weight product:**
 
-$$
+```math
 s_f = \left|\sum_{c,i,j} \frac{\partial\mathcal{L}}{\partial W[f,c,i,j]} \cdot W[f,c,i,j]\right|
-$$
+```
 
 **Approximation of loss change when removing filter:**
 
-$$
+```math
 \Delta\mathcal{L}_f \approx \nabla_{W_f}\mathcal{L}^T \cdot (-W_f) = -\sum_{c,i,j} g_{f,c,i,j} \cdot w_{f,c,i,j}
-$$
+```
 
 Taking absolute value: $s\_f = |...|$
 
@@ -119,9 +119,9 @@ Taking absolute value: $s\_f = |...|$
 
 **Average Percentage of Zeros (Hu et al., 2016):**
 
-$$
+```math
 \text{APoZ}(f) = \frac{1}{N}\sum_{n=1}^{N} \mathbf{1}[a_f^{(n)} = 0]
-$$
+```
 
 where $a\_f^{(n)}$ is activation of filter $f$ on sample $n$ (after ReLU).
 
@@ -131,9 +131,9 @@ where $a\_f^{(n)}$ is activation of filter $f$ on sample $n$ (after ReLU).
 
 **Prune filters closest to geometric median:**
 
-$$
+```math
 f^* = \arg\min_f \sum_{f' \neq f} \|W_f - W_{f'}\|_2
-$$
+```
 
 **Intuition:** Redundant filters are "in the middle" of others.
 
@@ -147,25 +147,25 @@ $$
 
 **Add group sparsity penalty during training:**
 
-$$
+```math
 \mathcal{L}_{total} = \mathcal{L}_{task} + \lambda \sum_g \|W_g\|_2
-$$
+```
 
 where groups $g$ are filters, channels, etc.
 
 **Why $L\_{2,1}$ norm?**
 
-$$
+```math
 \|W\|_{2,1} = \sum_g \sqrt{\sum_{i \in g} w_i^2}
-$$
+```
 
 This encourages entire groups to be zero (group sparsity).
 
 **Gradient:**
 
-$$
+```math
 \frac{\partial \|W_g\|_2}{\partial w_i} = \frac{w_i}{\|W_g\|_2}
-$$
+```
 
 Weights in small groups get larger gradients → pushed to zero.
 
@@ -173,17 +173,17 @@ Weights in small groups get larger gradients → pushed to zero.
 
 **Soft mask per structure:**
 
-$$
+```math
 \hat{W}_f = m_f \cdot W_f
-$$
+```
 
 where $m\_f \in [0,1]$ is learned.
 
 **During training:**
 
-$$
+```math
 \mathcal{L} = \mathcal{L}_{task} + \lambda \sum_f |m_f|
-$$
+```
 
 **After training:** Prune structures with $m\_f < \tau$.
 
@@ -195,9 +195,9 @@ $$
 
 **Measure accuracy drop when pruning each layer:**
 
-$$
+```math
 \Delta\text{Acc}_l(s) = \text{Acc}(W) - \text{Acc}(W \text{ with layer } l \text{ at sparsity } s)
-$$
+```
 
 **Result:** Some layers are more sensitive than others.
 
@@ -207,15 +207,15 @@ $$
 
 **Use Batch Normalization scaling factors:**
 
-$$
+```math
 y = \gamma \cdot \hat{x} + \beta
-$$
+```
 
 **Add L1 penalty on $\gamma$:**
 
-$$
+```math
 \mathcal{L} = \mathcal{L}_{task} + \lambda \sum_c |\gamma_c|
-$$
+```
 
 **Prune channels with small $\gamma\_c$.**
 
@@ -248,9 +248,9 @@ Conv1 → BN1 → ReLU → Conv2 → BN2 → Add → ...
 
 **For residual connections:**
 
-$$
+```math
 y = F(x) + x
-$$
+```
 
 **If we prune channels in $F$, we must also prune in skip connection.**
 
@@ -277,7 +277,6 @@ class StructuredPruner:
         importance = {}
         for name, module in self.model.named_modules():
             if isinstance(module, nn.Conv2d):
-
                 # L1 norm per filter: sum over (C_in, H, W)
                 w = module.weight.data  # [C_out, C_in, H, W]
                 imp = w.abs().sum(dim=(1, 2, 3))  # [C_out]
@@ -302,7 +301,6 @@ class StructuredPruner:
             
             for name, module in self.model.named_modules():
                 if isinstance(module, nn.Conv2d):
-
                     # |gradient × weight| summed per filter
                     taylor = (module.weight.grad * module.weight).abs()
                     importance[name] += taylor.sum(dim=(1, 2, 3)).cpu()
@@ -311,7 +309,6 @@ class StructuredPruner:
     
     def prune_filters(self, importance: dict, sparsity: float):
         """Prune filters based on importance scores."""
-
         # Global threshold
         all_scores = torch.cat([imp for imp in importance.values()])
         threshold = torch.quantile(all_scores, sparsity)
@@ -334,7 +331,6 @@ class StructuredPruner:
     
     def reconstruct_model(self, masks: dict):
         """Reconstruct model with pruned filters."""
-
         # This is complex - need to handle dependencies
         # Simplified version for sequential models
         
@@ -431,7 +427,6 @@ class AttentionHeadPruner:
         
         def make_hook(name):
             def hook(module, input, output):
-
                 # Assuming output contains attention weights
                 if hasattr(module, 'attention_weights'):
                     attention_scores[name] = module.attention_weights
@@ -453,7 +448,6 @@ class AttentionHeadPruner:
         
         # Compute importance (e.g., entropy of attention)
         for name, attn in attention_scores.items():
-
             # Higher entropy = more diverse attention = more important
             entropy = -(attn * attn.log()).sum(dim=-1).mean()
             importance[name] = entropy
@@ -486,17 +480,17 @@ class AttentionHeadPruner:
 
 #### 8.2 Mathematical Constraint
 
-$$
+```math
 \forall i: |\{j \in [4i, 4i+4) : w_j = 0\}| = 2
-$$
+```
 
 #### 8.3 Finding Optimal 2:4 Pattern
 
 **For each group of 4 weights, keep 2 with largest magnitude:**
 
-$$
+```math
 \text{mask} = \text{TopK}(|w_{4i:4i+4}|, k=2)
-$$
+```
 
 ---
 

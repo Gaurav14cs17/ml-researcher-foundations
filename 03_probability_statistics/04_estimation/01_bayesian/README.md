@@ -25,9 +25,9 @@
 
 ### Bayes' Theorem
 
-$$
+```math
 P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}
-$$
+```
 
 | Term | Name | Role |
 |------|------|------|
@@ -38,9 +38,9 @@ $$
 
 ### Log-Posterior Decomposition
 
-$$
+```math
 \log P(\theta|D) = \underbrace{\log P(D|\theta)}_{\text{log-likelihood}} + \underbrace{\log P(\theta)}_{\text{log-prior}} - \underbrace{\log P(D)}_{\text{constant}}
-$$
+```
 
 **Key insight:** Posterior ∝ Likelihood × Prior
 
@@ -50,9 +50,9 @@ $$
 
 For new observation $x^*$:
 
-$$
+```math
 P(x^*|D) = \int P(x^*|\theta) \cdot P(\theta|D) \, d\theta
-$$
+```
 
 **This is the key advantage of Bayesian inference:**
 - Averages predictions over all possible θ
@@ -67,34 +67,34 @@ $$
 
 Prior $P(\theta)$ is **conjugate** to likelihood $P(D|\theta)$ if:
 
-$$
+```math
 P(\theta|D) \in \text{same family as } P(\theta)
-$$
+```
 
 ### Proof: Beta-Bernoulli Conjugacy
 
 **Prior:** $\theta \sim \text{Beta}(\alpha, \beta)$
 
-$$
+```math
 P(\theta) = \frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha, \beta)}
-$$
+```
 
 **Likelihood:** $D = \{x\_1, \ldots, x\_n\}$ where $x\_i \sim \text{Bernoulli}(\theta)$
 
-$$
+```math
 P(D|\theta) = \theta^k (1-\theta)^{n-k}
-$$
+```
 
 where $k = \sum\_{i=1}^n x\_i$ (number of successes).
 
 **Posterior:**
 
-$$
+```math
 P(\theta|D) \propto P(D|\theta) \cdot P(\theta)
 \propto \theta^k (1-\theta)^{n-k} \cdot \theta^{\alpha-1}(1-\theta)^{\beta-1}
 = \theta^{(\alpha+k)-1}(1-\theta)^{(\beta+n-k)-1}
 \therefore \theta|D \sim \text{Beta}(\alpha + k, \beta + n - k) \quad \blacksquare
-$$
+```
 
 **Interpretation:**
 - $\alpha$ = "pseudo-observations" of success
@@ -122,23 +122,23 @@ $$
 
 **Posterior:**
 
-$$
+```math
 \mu | D \sim \mathcal{N}(\mu_n, \sigma_n^2)
-$$
+```
 
 where:
 
-$$
+```math
 \frac{1}{\sigma_n^2} = \frac{1}{\sigma_0^2} + \frac{n}{\sigma^2}
 \frac{\mu_n}{\sigma_n^2} = \frac{\mu_0}{\sigma_0^2} + \frac{n\bar{x}}{\sigma^2}
-$$
+```
 
 **Precision form (more intuitive):**
 
-$$
+```math
 \text{Posterior precision} = \text{Prior precision} + \text{Data precision}
 \text{Posterior mean} = \text{Weighted average of prior mean and sample mean}
-$$
+```
 
 ---
 
@@ -150,31 +150,31 @@ When $P(\theta|D)$ is intractable, use **Variational Inference**.
 
 Start with log-evidence:
 
-$$
+```math
 \log P(D) = \log \int P(D, \theta) \, d\theta
-$$
+```
 
 Introduce approximate posterior $q(\theta)$:
 
-$$
+```math
 \log P(D) = \log \int \frac{P(D, \theta)}{q(\theta)} q(\theta) \, d\theta
-$$
+```
 
 Apply Jensen's inequality ($\log$ is concave):
 
-$$
+```math
 \log P(D) \geq \int q(\theta) \log \frac{P(D, \theta)}{q(\theta)} d\theta
 = \int q(\theta) \log \frac{P(D|\theta)P(\theta)}{q(\theta)} d\theta
 = \underbrace{E_q[\log P(D|\theta)]}_{\text{reconstruction}} - \underbrace{D_{KL}(q(\theta) \| P(\theta))}_{\text{regularization}}
-$$
+```
 
 This is the **ELBO** (Evidence Lower Bound).
 
 ### ELBO = log P(D) - KL(q || posterior)
 
-$$
+```math
 \text{ELBO} = \log P(D) - D_{KL}(q(\theta) \| P(\theta|D))
-$$
+```
 
 Since $D\_{KL} \geq 0$, ELBO ≤ log P(D). Maximizing ELBO:
 1. Maximizes lower bound on evidence
@@ -194,9 +194,9 @@ Since $D\_{KL} \geq 0$, ELBO ≤ log P(D). Maximizing ELBO:
 
 The smallest interval containing 95% posterior probability:
 
-$$
+```math
 \text{HPD}_{0.95} = \{\theta : P(\theta|D) \geq k\}
-$$
+```
 
 where $k$ is chosen so $\int\_{\text{HPD}} P(\theta|D) d\theta = 0.95$.
 
@@ -366,7 +366,6 @@ class VariationalInference(nn.Module):
 
 # Example usage
 def log_likelihood(theta):
-
     # Example: data likelihood
     data = torch.tensor([1.0, 2.0, 1.5, 2.5, 1.8])
     return dist.Normal(theta[0], 1.0).log_prob(data).sum()
@@ -396,7 +395,6 @@ def bayesian_linear_regression(X, y):
         y ~ N(α + Xβ, σ²)
     """
     with pm.Model() as model:
-
         # Priors
         alpha = pm.Normal('alpha', mu=0, sigma=10)
         beta = pm.Normal('beta', mu=0, sigma=10, shape=X.shape[1])

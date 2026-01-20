@@ -42,42 +42,42 @@
 
 **Objective:**
 
-$$
+```math
 \min_{\mu_1,...,\mu_K} \sum_{i=1}^n \min_{k=1,...,K} \|x_i - \mu_k\|^2
-$$
+```
 
 **Algorithm:**
-1. **Assign:** $z_i = \arg\min_k \|x_i - \mu_k\|^2$
-2. **Update:** $\mu_k = \frac{1}{|C_k|}\sum_{i \in C_k} x_i$
+1. **Assign:** \(z_i = \arg\min_k \|x_i - \mu_k\|^2\)
+2. **Update:** \(\mu_k = \frac{1}{|C_k|}\sum_{i \in C_k} x_i\)
 
 **Theorem:** K-means converges to a local minimum.
 
-**Proof:** Each step decreases or maintains the objective. Assignment step: each point moves to closest centroid. Update step: centroid is mean of cluster (minimizes sum of squared distances). Objective is bounded below by 0. $\blacksquare$
+**Proof:** Each step decreases or maintains the objective. Assignment step: each point moves to closest centroid. Update step: centroid is mean of cluster (minimizes sum of squared distances). Objective is bounded below by 0. \(\blacksquare\)
 
 ### Gaussian Mixture Models (GMM)
 
 **Model:**
 
-$$
+```math
 p(x) = \sum_{k=1}^K \pi_k \mathcal{N}(x | \mu_k, \Sigma_k)
-$$
+```
 
-where $\sum_k \pi_k = 1$ and $\pi_k \geq 0$.
+where \(\sum_k \pi_k = 1\) and \(\pi_k \geq 0\).
 
 **EM Algorithm:**
 
 **E-step:** Compute responsibilities:
 
-$$
+```math
 \gamma_{ik} = \frac{\pi_k \mathcal{N}(x_i | \mu_k, \Sigma_k)}{\sum_j \pi_j \mathcal{N}(x_i | \mu_j, \Sigma_j)}
-$$
+```
 
 **M-step:** Update parameters:
 
-$$
+```math
 \mu_k = \frac{\sum_i \gamma_{ik} x_i}{\sum_i \gamma_{ik}}, \quad \Sigma_k = \frac{\sum_i \gamma_{ik}(x_i - \mu_k)(x_i - \mu_k)^\top}{\sum_i \gamma_{ik}}
 \pi_k = \frac{1}{n}\sum_i \gamma_{ik}
-$$
+```
 
 ---
 
@@ -87,29 +87,29 @@ $$
 
 **Objective:** Find directions of maximum variance.
 
-$$
+```math
 \max_{w: \|w\|=1} w^\top \Sigma w
-$$
+```
 
-where $\Sigma = \frac{1}{n}\sum_i (x_i - \bar{x})(x_i - \bar{x})^\top$ is the covariance matrix.
+where \(\Sigma = \frac{1}{n}\sum_i (x_i - \bar{x})(x_i - \bar{x})^\top\) is the covariance matrix.
 
-**Solution:** $w_1$ = eigenvector of $\Sigma$ with largest eigenvalue.
+**Solution:** \(w_1\) = eigenvector of \(\Sigma\) with largest eigenvalue.
 
-**Theorem:** The first $k$ principal components minimize reconstruction error:
+**Theorem:** The first \(k\) principal components minimize reconstruction error:
 
-$$
+```math
 \min_{W \in \mathbb{R}^{d \times k}} \sum_{i=1}^n \|x_i - WW^\top x_i\|^2
-$$
+```
 
-**Proof:** Using SVD of centered data matrix $X = U\Sigma V^\top$, optimal $W$ is first $k$ columns of $V$. $\blacksquare$
+**Proof:** Using SVD of centered data matrix \(X = U\Sigma V^\top\), optimal \(W\) is first \(k\) columns of \(V\). \(\blacksquare\)
 
 ### Kernel PCA
 
 For non-linear dimensionality reduction:
 
-1. Compute kernel matrix $K_{ij} = k(x_i, x_j)$
-2. Center: $\tilde{K} = K - \frac{1}{n}\mathbf{1}\mathbf{1}^\top K - K\frac{1}{n}\mathbf{1}\mathbf{1}^\top + \frac{1}{n^2}\mathbf{1}\mathbf{1}^\top K \mathbf{1}\mathbf{1}^\top$
-3. Eigendecompose $\tilde{K}$ and project
+1. Compute kernel matrix \(K_{ij} = k(x_i, x_j)\)
+2. Center: \(\tilde{K} = K - \frac{1}{n}\mathbf{1}\mathbf{1}^\top K - K\frac{1}{n}\mathbf{1}\mathbf{1}^\top + \frac{1}{n^2}\mathbf{1}\mathbf{1}^\top K \mathbf{1}\mathbf{1}^\top\)
+3. Eigendecompose \(\tilde{K}\) and project
 
 ---
 
@@ -117,35 +117,35 @@ For non-linear dimensionality reduction:
 
 ### Evidence Lower Bound (ELBO)
 
-$$
+```math
 \log p(x) \geq \mathbb{E}_{q(z|x)}[\log p(x|z)] - D_{\text{KL}}(q(z|x) \| p(z)) = \mathcal{L}_{\text{ELBO}}
-$$
+```
 
 **Proof:**
 
-$$
+```math
 \log p(x) = \log \int p(x, z) dz = \log \int \frac{p(x, z)}{q(z|x)} q(z|x) dz
-$$
+```
 
 By Jensen's inequality:
 
-$$
+```math
 \geq \int q(z|x) \log \frac{p(x, z)}{q(z|x)} dz = \mathbb{E}_q[\log p(x|z)] - D_{\text{KL}}(q \| p(z)) \quad \blacksquare
-$$
+```
 
 ### Reparameterization Trick
 
 To enable backpropagation through sampling:
 
-$$
+```math
 z = \mu_\phi(x) + \sigma_\phi(x) \odot \epsilon, \quad \epsilon \sim \mathcal{N}(0, I)
-$$
+```
 
 ### KL Divergence (Gaussian)
 
-$$
+```math
 D_{\text{KL}}(\mathcal{N}(\mu, \sigma^2) \| \mathcal{N}(0, 1)) = \frac{1}{2}\sum_j (\mu_j^2 + \sigma_j^2 - \log \sigma_j^2 - 1)
-$$
+```
 
 ---
 
@@ -210,7 +210,6 @@ class PCA:
         self.n_components = n_components
     
     def fit(self, X):
-
         # Center data
         self.mean = X.mean(axis=0)
         X_centered = X - self.mean
@@ -299,7 +298,6 @@ class VAE(nn.Module):
         Reconstruction: E_q[log p(x|z)] ≈ -||x - x̂||²
         KL: D_KL(N(μ,σ²) || N(0,1)) = ½Σ(μ² + σ² - log(σ²) - 1)
         """
-
         # Reconstruction loss (binary cross-entropy for images)
         recon_loss = F.binary_cross_entropy(x_recon, x, reduction='sum')
         
@@ -333,7 +331,6 @@ class GMM:
         self.weights = np.ones(K) / K
         
         for _ in range(self.max_iters):
-
             # E-step: compute responsibilities
             resp = self._e_step(X)
             

@@ -62,39 +62,39 @@ MobileNet (2017) → EfficientNet (2019) → ConvNeXt (2022)
 
 **Standard convolution:**
 
-$$
+```math
 Y = X * K
-$$
+```
 
-where $K \in \mathbb{R}^{C_{out} \times C_{in} \times k \times k}$.
+where \( K \in \mathbb{R}^{C_{out} \times C_{in} \times k \times k} \).
 
 **FLOPs:**
 
-$$
+```math
 \text{FLOPs}_{std} = C_{in} \times C_{out} \times k^2 \times H \times W
-$$
+```
 
 **Depthwise separable:**
-1. **Depthwise:** $K_{dw} \in \mathbb{R}^{C_{in} \times 1 \times k \times k}$
-2. **Pointwise:** $K_{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 \times 1}$
+1. **Depthwise:** \( K_{dw} \in \mathbb{R}^{C_{in} \times 1 \times k \times k} \)
+2. **Pointwise:** \( K_{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 \times 1} \)
 
-$$
+```math
 Y = (X *_{dw} K_{dw}) *_{pw} K_{pw}
-$$
+```
 
 **FLOPs:**
 
-$$
+```math
 \text{FLOPs}_{dw+pw} = C_{in} \times k^2 \times H \times W + C_{in} \times C_{out} \times H \times W
-$$
+```
 
 **Speedup ratio:**
 
-$$
+```math
 \frac{\text{FLOPs}_{std}}{\text{FLOPs}_{dw+pw}} = \frac{C_{in} \times C_{out} \times k^2}{C_{in} \times k^2 + C_{in} \times C_{out}} = \frac{C_{out} \times k^2}{k^2 + C_{out}}
-$$
+```
 
-For $C_{out} = 256, k = 3$: Speedup ≈ 8.5×.
+For \( C_{out} = 256, k = 3 \): Speedup ≈ 8.5×.
 
 ---
 
@@ -114,10 +114,10 @@ x → narrow → wide → narrow → + x
 
 **Memory analysis:**
 
-$$
+```math
 M_{inverted} = C + eC = (1+e)C
 M_{standard} = C + C/e = C(1 + 1/e)
-$$
+```
 
 For expansion e=6: Inverted stores 7C, standard stores 1.17C per block.
 
@@ -130,14 +130,14 @@ But inverted has skip at low dimension → overall memory efficient.
 **Observation:** ReLU destroys information in low-dimensional spaces.
 
 **Proof sketch:**
-For $x \in \mathbb{R}^d$, ReLU zeros out ~50% of dimensions on average.
-If $d$ is small, this loses significant information.
+For \( x \in \mathbb{R}^d \), ReLU zeros out ~50% of dimensions on average.
+If \( d \) is small, this loses significant information.
 
 **Solution:** Remove ReLU after last pointwise conv (before addition).
 
-$$
+```math
 Y = X + \text{Linear}(\text{ReLU}(\text{DW}(\text{ReLU}(\text{Expand}(X)))))
-$$
+```
 
 ---
 
@@ -145,20 +145,20 @@ $$
 
 **Channel attention:**
 
-$$
+```math
 s = \sigma(W_2 \cdot \text{ReLU}(W_1 \cdot \text{GAP}(X)))
 Y = s \odot X
-$$
+```
 
 where GAP = Global Average Pooling.
 
 **Complexity:**
 
-$$
+```math
 \text{FLOPs}_{SE} = 2 \times C \times C/r
-$$
+```
 
-where $r$ is reduction ratio (typically 4-16).
+where \( r \) is reduction ratio (typically 4-16).
 
 **Negligible overhead** (~2% FLOPs increase, ~1% accuracy gain).
 
@@ -173,25 +173,25 @@ where $r$ is reduction ratio (typically 4-16).
 
 **Compound scaling:**
 
-$$
+```math
 d = \alpha^\phi, \quad w = \beta^\phi, \quad r = \gamma^\phi
-$$
+```
 
 **FLOP constraint:**
 
-$$
+```math
 \text{FLOPs} \propto d \cdot w^2 \cdot r^2 = \alpha \cdot \beta^2 \cdot \gamma^2 = 2
-$$
+```
 
-**Grid search:** $\alpha = 1.2, \beta = 1.1, \gamma = 1.15$
+**Grid search:** \( \alpha = 1.2, \beta = 1.1, \gamma = 1.15 \)
 
 **Proof of optimality:**
 
 For fixed compute, optimizing accuracy:
 
-$$
+```math
 \max_{d,w,r} \text{Acc}(d,w,r) \quad \text{s.t.} \quad d \cdot w^2 \cdot r^2 = C
-$$
+```
 
 Empirically, joint scaling outperforms single-dimension scaling.
 
@@ -201,17 +201,17 @@ Empirically, joint scaling outperforms single-dimension scaling.
 
 **Patch embedding:**
 
-$$
+```math
 \text{Patches} = \frac{H \times W}{P^2}
-$$
+```
 
 For 224×224 image with 16×16 patches: 196 tokens.
 
 **Attention complexity:**
 
-$$
+```math
 \text{FLOPs}_{attn} = O(N^2 \cdot d) = O\left(\frac{H^2 W^2}{P^4} \cdot d\right)
-$$
+```
 
 **Quadratic in image size!**
 
@@ -221,17 +221,17 @@ $$
 
 **Local window attention:**
 
-$$
+```math
 A_{ij} = 0 \text{ if } i,j \text{ not in same window}
-$$
+```
 
 **Complexity:**
 
-$$
+```math
 \text{FLOPs}_{swin} = O\left(\frac{HW}{M^2} \cdot M^4 \cdot d\right) = O(HW \cdot M^2 \cdot d)
-$$
+```
 
-**Linear in image size** for fixed window size $M$!
+**Linear in image size** for fixed window size \( M \)!
 
 **Shifted window:** Alternating shifts enable cross-window information flow.
 
@@ -287,7 +287,6 @@ $$
 | [← Distributed Training](../14_distributed_training/README.md) | [Efficient ML](../README.md) | [Efficient LLMs →](../16_efficient_llms/README.md) |
 
 ---
-
 ## 📚 References
 
 | Type | Resource | Link |

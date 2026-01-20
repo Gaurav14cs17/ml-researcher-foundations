@@ -27,15 +27,15 @@
 
 **Input embedding:**
 
-$$
+```math
 x_{embed} = E_{in}[token], \quad E_{in} \in \mathbb{R}^{V \times d}
-$$
+```
 
 **Output projection:**
 
-$$
+```math
 p(y|h) = \text{softmax}(W_{out} h), \quad W_{out} \in \mathbb{R}^{V \times d}
-$$
+```
 
 **Parameters:** $2 \times V \times d$
 
@@ -43,15 +43,15 @@ $$
 
 **Tie output to input:**
 
-$$
+```math
 W_{out} = E_{in}
-$$
+```
 
 **Output computation:**
 
-$$
+```math
 p(y|h) = \text{softmax}(E_{in} h)
-$$
+```
 
 **Parameters:** $V \times d$ (50% reduction!)
 
@@ -65,9 +65,9 @@ $$
 
 **With tying:**
 
-$$
+```math
 p(y_i|h) \propto \exp(e_i^T h)
-$$
+```
 
 where $e\_i$ is the embedding of word $i$.
 
@@ -80,9 +80,9 @@ where $e\_i$ is the embedding of word $i$.
 
 **Learned matrix:**
 
-$$
+```math
 W = E_{in}^T E_{in}
-$$
+```
 
 This is a rank-$d$ approximation of the full $V \times V$ word similarity matrix.
 
@@ -101,15 +101,15 @@ This is a rank-$d$ approximation of the full $V \times V$ word similarity matrix
 
 **Percentage of total:**
 
-$$
+```math
 \frac{131M}{7B} \approx 1.9\%
-$$
+```
 
 #### 3.2 Memory Savings
 
-$$
+```math
 \text{Memory saved} = V \times d \times 4 \text{ bytes} = 500 \text{ MB}
-$$
+```
 
 ---
 
@@ -119,15 +119,15 @@ $$
 
 **Loss gradient:**
 
-$$
+```math
 \frac{\partial \mathcal{L}}{\partial E_{in}} = \underbrace{\frac{\partial \mathcal{L}}{\partial E_{in}}|_{input}}_{\text{from embedding lookup}} + \underbrace{\frac{\partial \mathcal{L}}{\partial E_{in}}|_{output}}_{\text{from output projection}}
-$$
+```
 
 **Contribution from output:**
 
-$$
+```math
 \frac{\partial \mathcal{L}}{\partial E_i} += \sum_t (\hat{p}_t - y_t)_i \cdot h_t
-$$
+```
 
 #### 4.2 Regularization Effect
 
@@ -181,7 +181,6 @@ class TiedEmbeddingLanguageModel(nn.Module):
         Returns:
             logits: [B, L, V] unnormalized log probabilities
         """
-
         # Embed tokens
         x = self.embedding(input_ids)  # [B, L, D]
         

@@ -40,14 +40,14 @@
 
 ### General Regularized Objective
 
-$$
+```math
 \mathcal{L}_{\text{reg}}(\theta) = \underbrace{\mathcal{L}_{\text{data}}(\theta)}_{\text{empirical risk}} + \underbrace{\lambda \Omega(\theta)}_{\text{regularization penalty}}
-$$
+```
 
 where:
-- $\mathcal{L}_{\text{data}}$: Data fitting term (e.g., cross-entropy, MSE)
-- $\Omega(\theta)$: Regularization function (complexity penalty)
-- $\lambda > 0$: Regularization strength (hyperparameter)
+- \(\mathcal{L}_{\text{data}}\): Data fitting term (e.g., cross-entropy, MSE)
+- \(\Omega(\theta)\): Regularization function (complexity penalty)
+- \(\lambda > 0\): Regularization strength (hyperparameter)
 
 ---
 
@@ -55,69 +55,69 @@ where:
 
 ### Definition
 
-$$
+```math
 \Omega(\theta) = \|\theta\|_2^2 = \sum_{i} \theta_i^2
-$$
+```
 
 **Full Objective:**
 
-$$
+```math
 \mathcal{L}_{\text{ridge}}(\theta) = \frac{1}{n}\sum_{i=1}^{n} \ell(f_\theta(x_i), y_i) + \lambda \|\theta\|_2^2
-$$
+```
 
 ### Gradient
 
-$$
+```math
 \nabla_\theta \Omega = 2\theta
-$$
+```
 
 **Effect:** Shrinks weights proportionally toward zero.
 
 **Update Rule (SGD with weight decay):**
 
-$$
+```math
 \theta \leftarrow \theta - \eta \nabla_\theta \mathcal{L}_{\text{data}} - 2\eta\lambda\theta = (1 - 2\eta\lambda)\theta - \eta \nabla_\theta \mathcal{L}_{\text{data}}
-$$
+```
 
 ### Closed-Form Solution (Linear Regression)
 
-For linear regression $y = X\beta + \varepsilon$:
+For linear regression \(y = X\beta + \varepsilon\):
 
-$$
+```math
 \hat{\beta}_{\text{ridge}} = (X^\top X + \lambda I)^{-1} X^\top y
-$$
+```
 
 **Proof:**
 
 Set gradient to zero:
 
-$$
+```math
 \nabla_\beta \left[\|y - X\beta\|^2 + \lambda\|\beta\|^2\right] = -2X^\top(y - X\beta) + 2\lambda\beta = 0
 X^\top X\beta + \lambda\beta = X^\top y
 (X^\top X + \lambda I)\beta = X^\top y
 \boxed{\hat{\beta}_{\text{ridge}} = (X^\top X + \lambda I)^{-1} X^\top y}
-$$
+```
 
 ### Bayesian Interpretation
 
 **Theorem:** Ridge regression is equivalent to MAP estimation with Gaussian prior.
 
-**Prior:** $\theta \sim \mathcal{N}(0, \tau^2 I)$
+**Prior:** \(\theta \sim \mathcal{N}(0, \tau^2 I)\)
 
 **Posterior:**
 
-$$
+```math
 p(\theta | \mathcal{D}) \propto p(\mathcal{D} | \theta) \cdot p(\theta)
 \log p(\theta | \mathcal{D}) = -\frac{1}{2\sigma^2}\|y - X\theta\|^2 - \frac{1}{2\tau^2}\|\theta\|^2 + \text{const}
-$$
+```
 
 **MAP estimate:**
 
-$$
+```math
 \hat{\theta}_{\text{MAP}} = \arg\max_\theta \log p(\theta | \mathcal{D}) = \arg\min_\theta \left[\|y - X\theta\|^2 + \frac{\sigma^2}{\tau^2}\|\theta\|^2\right]
-$$
+```
 
-Setting $\lambda = \frac{\sigma^2}{\tau^2}$ gives ridge regression.
+Setting \(\lambda = \frac{\sigma^2}{\tau^2}\) gives ridge regression.
 
 ---
 
@@ -125,21 +125,21 @@ Setting $\lambda = \frac{\sigma^2}{\tau^2}$ gives ridge regression.
 
 ### Definition
 
-$$
+```math
 \Omega(\theta) = \|\theta\|_1 = \sum_{i} |\theta_i|
-$$
+```
 
 **Full Objective:**
 
-$$
+```math
 \mathcal{L}_{\text{lasso}}(\theta) = \frac{1}{n}\sum_{i=1}^{n} \ell(f_\theta(x_i), y_i) + \lambda \|\theta\|_1
-$$
+```
 
 ### Subgradient
 
-$$
+```math
 \partial_{\theta_i} \Omega = \text{sign}(\theta_i) = \begin{cases} 1 & \theta_i > 0 \\ [-1, 1] & \theta_i = 0 \\ -1 & \theta_i < 0 \end{cases}
-$$
+```
 
 **Effect:** Constant push toward zero → **sparse solutions**.
 
@@ -147,13 +147,13 @@ $$
 
 **Geometric Intuition:**
 
-The L1 ball $\|\theta\|_1 \leq t$ has corners aligned with axes. The solution lies where the level curves of $\mathcal{L}_{\text{data}}$ first touch the constraint region—likely at a corner where some $\theta_i = 0$.
+The L1 ball \(\|\theta\|_1 \leq t\) has corners aligned with axes. The solution lies where the level curves of \(\mathcal{L}_{\text{data}}\) first touch the constraint region—likely at a corner where some \(\theta_i = 0\).
 
 **Proximal Operator (Soft Thresholding):**
 
-$$
+```math
 \text{prox}_{\lambda\|\cdot\|_1}(\theta) = \text{sign}(\theta) \odot \max(|\theta| - \lambda, 0)
-$$
+```
 
 This explicitly sets small weights to exactly zero.
 
@@ -163,10 +163,10 @@ This explicitly sets small weights to exactly zero.
 
 **Laplace Prior:**
 
-$$
+```math
 p(\theta_i) = \frac{1}{2b} \exp\left(-\frac{|\theta_i|}{b}\right)
 \log p(\theta) = -\frac{1}{b}\|\theta\|_1 + \text{const}
-$$
+```
 
 ---
 
@@ -176,15 +176,15 @@ $$
 
 Combines L1 and L2:
 
-$$
+```math
 \Omega(\theta) = \alpha\|\theta\|_1 + (1-\alpha)\|\theta\|_2^2
-$$
+```
 
 **Full Objective:**
 
-$$
+```math
 \mathcal{L}_{\text{elastic}} = \mathcal{L}_{\text{data}} + \lambda \left[\alpha\|\theta\|_1 + (1-\alpha)\|\theta\|_2^2\right]
-$$
+```
 
 ### Advantages
 
@@ -201,35 +201,35 @@ $$
 
 ### Definition
 
-During training, randomly zero out each hidden unit with probability $p$:
+During training, randomly zero out each hidden unit with probability \(p\):
 
-$$
+```math
 \tilde{h}_i = h_i \cdot m_i, \quad m_i \sim \text{Bernoulli}(1-p)
-$$
+```
 
 During inference, scale activations:
 
-$$
+```math
 \tilde{h}_i = (1-p) \cdot h_i
-$$
+```
 
 ### Mathematical Interpretation
 
 **Theorem (Wager et al., 2013):** Dropout is approximately equivalent to L2 regularization:
 
-$$
+```math
 \mathbb{E}[\mathcal{L}_{\text{dropout}}] \approx \mathcal{L}_{\text{data}} + \lambda \sum_i p(1-p) \left(\frac{\partial \mathcal{L}}{\partial h_i}\right)^2 h_i^2
-$$
+```
 
 ### Ensemble Interpretation
 
-**Theorem:** Dropout trains an ensemble of $2^n$ networks (all subnetworks), with weight sharing.
+**Theorem:** Dropout trains an ensemble of \(2^n\) networks (all subnetworks), with weight sharing.
 
 At test time, the scaled network approximates the geometric mean of all subnetwork predictions:
 
-$$
+```math
 \tilde{f}(x) \approx \left(\prod_{S \subseteq \{1,...,n\}} f_S(x)\right)^{1/2^n}
-$$
+```
 
 ---
 
@@ -237,8 +237,8 @@ $$
 
 | Aspect | L1 (Lasso) | L2 (Ridge) |
 |--------|------------|------------|
-| **Penalty** | $\sum_i \|\theta_i\|$ | $\sum_i \theta_i^2$ |
-| **Gradient** | $\text{sign}(\theta)$ | $2\theta$ |
+| **Penalty** | \(\sum_i \|\theta_i\|\) | \(\sum_i \theta_i^2\) |
+| **Gradient** | \(\text{sign}(\theta)\) | \(2\theta\) |
 | **Sparsity** | Yes (zeros out weights) | No (shrinks but ≠ 0) |
 | **Solution uniqueness** | May not be unique | Always unique |
 | **Prior (Bayesian)** | Laplace | Gaussian |
@@ -425,7 +425,6 @@ class SpectralNormMLP(nn.Module):
     
     def __init__(self, input_dim, hidden_dim, output_dim):
         super().__init__()
-
         # Spectral norm constrains largest singular value of weight matrix
         self.fc1 = spectral_norm(nn.Linear(input_dim, hidden_dim))
         self.fc2 = spectral_norm(nn.Linear(hidden_dim, hidden_dim))
@@ -452,7 +451,6 @@ def train_with_regularization(model, train_loader, val_loader, epochs=100):
     early_stopping = EarlyStopping(patience=10)
     
     for epoch in range(epochs):
-
         # Training
         model.train()
         train_loss = 0.0

@@ -40,29 +40,29 @@
 
 ### Setting
 
-Given training data $\{(x_i, y_i)\}_{i=1}^n$ where $x_i \in \mathbb{R}^d$ and $y_i \in \{-1, +1\}$.
+Given training data \(\{(x_i, y_i)\}_{i=1}^n\) where \(x_i \in \mathbb{R}^d\) and \(y_i \in \{-1, +1\}\).
 
-**Goal:** Find hyperplane $w^\top x + b = 0$ that separates classes with maximum margin.
+**Goal:** Find hyperplane \(w^\top x + b = 0\) that separates classes with maximum margin.
 
 ### Margin Definitions
 
-**Functional Margin:** For point $(x_i, y_i)$:
+**Functional Margin:** For point \((x_i, y_i)\):
 
-$$
+```math
 \hat{\gamma}_i = y_i(w^\top x_i + b)
-$$
+```
 
 **Geometric Margin:** Distance from point to hyperplane:
 
-$$
+```math
 \gamma_i = \frac{y_i(w^\top x_i + b)}{\|w\|}
-$$
+```
 
 **Margin of classifier:** Minimum distance to any training point:
 
-$$
+```math
 \gamma = \min_{i=1,\ldots,n} \gamma_i
-$$
+```
 
 ---
 
@@ -72,49 +72,49 @@ $$
 
 For linearly separable data:
 
-$$
+```math
 \max_{w, b} \quad \gamma = \frac{\hat{\gamma}}{\|w\|}
 \text{s.t.} \quad y_i(w^\top x_i + b) \geq \hat{\gamma} \quad \forall i
-$$
+```
 
-**Canonical form** (set $\hat{\gamma} = 1$):
+**Canonical form** (set \(\hat{\gamma} = 1\)):
 
-$$
+```math
 \min_{w, b} \quad \frac{1}{2}\|w\|^2
 \text{s.t.} \quad y_i(w^\top x_i + b) \geq 1 \quad \forall i
-$$
+```
 
-**Interpretation:** Minimizing $\|w\|$ maximizes margin $\gamma = 1/\|w\|$.
+**Interpretation:** Minimizing \(\|w\|\) maximizes margin \(\gamma = 1/\|w\|\).
 
 ### Lagrangian Formulation
 
-$$
+```math
 \mathcal{L}(w, b, \alpha) = \frac{1}{2}\|w\|^2 - \sum_{i=1}^n \alpha_i[y_i(w^\top x_i + b) - 1]
-$$
+```
 
 ### KKT Conditions
 
 **Stationarity:**
 
-$$
+```math
 \nabla_w \mathcal{L} = w - \sum_{i=1}^n \alpha_i y_i x_i = 0 \implies \boxed{w = \sum_{i=1}^n \alpha_i y_i x_i}
 \nabla_b \mathcal{L} = -\sum_{i=1}^n \alpha_i y_i = 0 \implies \boxed{\sum_{i=1}^n \alpha_i y_i = 0}
-$$
+```
 
-**Dual feasibility:** $\alpha_i \geq 0$
+**Dual feasibility:** \(\alpha_i \geq 0\)
 
-**Complementary slackness:** $\alpha_i[y_i(w^\top x_i + b) - 1] = 0$
+**Complementary slackness:** \(\alpha_i[y_i(w^\top x_i + b) - 1] = 0\)
 
 ### Dual Problem
 
 Substituting KKT conditions into Lagrangian:
 
-$$
+```math
 \max_\alpha \quad \sum_{i=1}^n \alpha_i - \frac{1}{2}\sum_{i,j=1}^n \alpha_i \alpha_j y_i y_j x_i^\top x_j
 \text{s.t.} \quad \alpha_i \geq 0, \quad \sum_{i=1}^n \alpha_i y_i = 0
-$$
+```
 
-**Key insight:** Dual depends only on inner products $x_i^\top x_j$ → kernel trick!
+**Key insight:** Dual depends only on inner products \(x_i^\top x_j\) → kernel trick!
 
 ---
 
@@ -122,30 +122,30 @@ $$
 
 ### Motivation
 
-Real data is rarely linearly separable. Allow some misclassifications with slack variables $\xi_i$.
+Real data is rarely linearly separable. Allow some misclassifications with slack variables \(\xi_i\).
 
 ### Primal Formulation
 
-$$
+```math
 \min_{w, b, \xi} \quad \frac{1}{2}\|w\|^2 + C\sum_{i=1}^n \xi_i
 \text{s.t.} \quad y_i(w^\top x_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0 \quad \forall i
-$$
+```
 
 **Interpretation:**
-- $C$ = regularization parameter (trade-off between margin and violations)
-- $\xi_i > 0$: point is within margin or misclassified
-- $\xi_i > 1$: point is misclassified
+- \(C\) = regularization parameter (trade-off between margin and violations)
+- \(\xi_i > 0\): point is within margin or misclassified
+- \(\xi_i > 1\): point is misclassified
 
 ### Dual Formulation
 
-$$
+```math
 \max_\alpha \quad \sum_{i=1}^n \alpha_i - \frac{1}{2}\sum_{i,j} \alpha_i \alpha_j y_i y_j x_i^\top x_j
 \text{s.t.} \quad 0 \leq \alpha_i \leq C, \quad \sum_{i=1}^n \alpha_i y_i = 0
-$$
+```
 
-**Support Vectors:** Points with $\alpha_i > 0$:
-- $0 < \alpha_i < C$: On margin boundary
-- $\alpha_i = C$: Inside margin or misclassified
+**Support Vectors:** Points with \(\alpha_i > 0\):
+- \(0 < \alpha_i < C\): On margin boundary
+- \(\alpha_i = C\): Inside margin or misclassified
 
 ---
 
@@ -155,27 +155,27 @@ $$
 
 Replace inner products with kernel function:
 
-$$
+```math
 \max_\alpha \quad \sum_{i=1}^n \alpha_i - \frac{1}{2}\sum_{i,j} \alpha_i \alpha_j y_i y_j k(x_i, x_j)
 \text{s.t.} \quad 0 \leq \alpha_i \leq C, \quad \sum_i \alpha_i y_i = 0
-$$
+```
 
 ### Decision Function
 
-$$
+```math
 f(x) = \text{sign}\left(\sum_{i=1}^n \alpha_i y_i k(x, x_i) + b\right)
-$$
+```
 
-**Only support vectors contribute** (points with $\alpha_i > 0$).
+**Only support vectors contribute** (points with \(\alpha_i > 0\)).
 
 ### Common Kernels
 
 | Kernel | Formula | Use Case |
 |--------|---------|----------|
-| **Linear** | $k(x,y) = x^\top y$ | Linearly separable |
-| **Polynomial** | $k(x,y) = (x^\top y + c)^d$ | Polynomial boundaries |
-| **RBF** | $k(x,y) = e^{-\gamma\|x-y\|^2}$ | General non-linear |
-| **Sigmoid** | $k(x,y) = \tanh(\alpha x^\top y + c)$ | Neural network-like |
+| **Linear** | \(k(x,y) = x^\top y\) | Linearly separable |
+| **Polynomial** | \(k(x,y) = (x^\top y + c)^d\) | Polynomial boundaries |
+| **RBF** | \(k(x,y) = e^{-\gamma\|x-y\|^2}\) | General non-linear |
+| **Sigmoid** | \(k(x,y) = \tanh(\alpha x^\top y + c)\) | Neural network-like |
 
 ---
 
@@ -183,24 +183,24 @@ $$
 
 ### Margin-Based Generalization Bound
 
-**Theorem:** With probability $\geq 1 - \delta$:
+**Theorem:** With probability \(\geq 1 - \delta\):
 
-$$
+```math
 R(h) \leq \hat{R}_\gamma(h) + \sqrt{\frac{c_1}{n}\left(\frac{R^2 \|w\|^2}{\gamma^2}\log n + \log\frac{1}{\delta}\right)}
-$$
+```
 
 where:
-- $\hat{R}_\gamma(h)$ = fraction of points with margin $< \gamma$
-- $R$ = radius of data
+- \(\hat{R}_\gamma(h)\) = fraction of points with margin \(< \gamma\)
+- \(R\) = radius of data
 - Bound is independent of dimension!
 
 ### Structural Risk Minimization
 
 SVM minimizes:
 
-$$
+```math
 \text{Regularized Risk} = \underbrace{C\sum_i \max(0, 1 - y_i f(x_i))}_{\text{Hinge loss}} + \underbrace{\frac{1}{2}\|w\|^2}_{\text{Complexity penalty}}
-$$
+```
 
 ---
 
@@ -320,7 +320,6 @@ class SoftMarginSVM:
         # SMO main loop
         for _ in range(1000):
             for i in range(n):
-
                 # Error for sample i
                 E_i = self._decision(K[i]) - y[i]
                 

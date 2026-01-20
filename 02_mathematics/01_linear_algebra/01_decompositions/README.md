@@ -92,9 +92,9 @@
 
 **For ANY matrix** $A \in \mathbb{R}^{m \times n}$:
 
-$$
+```math
 A = U\Sigma V^T
-$$
+```
 
 where:
 - $U \in \mathbb{R}^{m \times m}$: orthogonal matrix (left singular vectors)
@@ -175,9 +175,9 @@ In matrix form:
 
 **Theorem**: The best rank-$k$ approximation to $A$ (in Frobenius norm) is:
 
-$$
+```math
 A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T
-$$
+```
 
 **Error**: $\|A - A\_k\|\_F^2 = \sum\_{i=k+1}^{r} \sigma\_i^2$
 
@@ -243,7 +243,6 @@ Error: ‖A-A₂‖_F = σ₃ = 0.1 (only 10% of smallest component lost)
 ### 🤖 ML Application: LoRA (Low-Rank Adaptation)
 
 ```python
-
 # LoRA exploits Eckart-Young: weight updates often have low intrinsic rank
 #
 # Instead of updating full W (d×k parameters):
@@ -270,7 +269,6 @@ class LoRALinear(nn.Module):
         self.B = nn.Parameter(torch.zeros(out_features, rank))
     
     def forward(self, x):
-
         # W' = W + scaling * B @ A
         return x @ self.W.T + self.scaling * (x @ self.A.T @ self.B.T)
 
@@ -287,15 +285,15 @@ class LoRALinear(nn.Module):
 
 For a **square matrix** $A \in \mathbb{R}^{n \times n}$:
 
-$$
+```math
 A\mathbf{v} = \lambda\mathbf{v}
-$$
+```
 
 If $A$ has $n$ linearly independent eigenvectors:
 
-$$
+```math
 A = Q\Lambda Q^{-1}
-$$
+```
 
 For **symmetric** $A$: $A = Q\Lambda Q^T$ (orthogonal $Q$)
 
@@ -425,9 +423,9 @@ For such matrices, use:
 
 For any matrix $A \in \mathbb{R}^{m \times n}$ with $m \geq n$:
 
-$$
+```math
 A = QR
-$$
+```
 
 where:
 - $Q \in \mathbb{R}^{m \times n}$: orthonormal columns ($Q^TQ = I$)
@@ -440,7 +438,6 @@ Input: Matrix A = [a₁ | a₂ | ... | aₙ] (columns)
 Output: Q (orthonormal columns), R (upper triangular)
 
 For j = 1, 2, ..., n:
-
     # Start with original column
     ũⱼ = aⱼ
     
@@ -545,9 +542,9 @@ As k → ∞: Aₖ → upper triangular (eigenvalues on diagonal)
 
 For a **symmetric positive definite** matrix $A$:
 
-$$
+```math
 A = LL^T
-$$
+```
 
 where $L$ is lower triangular with positive diagonal entries.
 
@@ -599,7 +596,6 @@ def cholesky(A):
     L = np.zeros((n, n))
     
     for j in range(n):
-
         # Diagonal element
         L[j, j] = np.sqrt(A[j, j] - np.sum(L[j, :j]**2))
         
@@ -634,7 +630,6 @@ Verify: LLᵀ = [2  0][2  1] = [4  2] = A ✓
 
 **Gaussian Processes**: Computing $\mathcal{N}(\mu, K)$
 ```python
-
 # Sampling from multivariate Gaussian
 L = np.linalg.cholesky(K)  # K = covariance matrix
 z = np.random.randn(n)      # Standard normal
@@ -653,9 +648,9 @@ log_det = 2 * np.sum(np.log(np.diag(L)))
 
 For a square matrix $A$ (with partial pivoting):
 
-$$
+```math
 PA = LU
-$$
+```
 
 where:
 - $P$: permutation matrix
@@ -666,7 +661,6 @@ where:
 
 ```
 For k = 1 to n-1:
-
     # Pivot: swap rows if needed for stability
     Find i ≥ k with max |Aᵢₖ|
     Swap rows k and i
@@ -836,7 +830,6 @@ def low_rank_approximation_torch(A, k):
 
 ### ❌ Mistake 1: Using Eigendecomposition on Non-Square Matrix
 ```python
-
 # WRONG
 A = np.random.randn(5, 3)
 eigenvalues, eigenvectors = np.linalg.eig(A)  # ERROR!
@@ -847,7 +840,6 @@ U, S, Vt = np.linalg.svd(A)
 
 ### ❌ Mistake 2: Assuming All Matrices are Diagonalizable
 ```python
-
 # This matrix is defective (not diagonalizable)
 A = np.array([[1, 1], [0, 1]])
 
@@ -857,7 +849,6 @@ T, Q = linalg.schur(A)
 
 ### ❌ Mistake 3: Using Cholesky on Non-PD Matrix
 ```python
-
 # WRONG: Matrix must be positive definite
 A = np.array([[1, 2], [2, 1]])  # Eigenvalues: 3, -1 (not PD!)
 L = np.linalg.cholesky(A)  # LinAlgError!
@@ -870,7 +861,6 @@ if np.all(eigenvalues > 0):
 
 ### ❌ Mistake 4: Ignoring Numerical Stability
 ```python
-
 # FRAGILE: Normal equations
 x = np.linalg.inv(A.T @ A) @ A.T @ b
 

@@ -23,9 +23,9 @@
 
 **Standard Convolution:**
 
-$$
+```math
 Y = W * X, \quad W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
-$$
+```
 
 **Computation:** $O(K^2 \cdot C\_{in} \cdot C\_{out} \cdot H \cdot W)$
 
@@ -33,23 +33,23 @@ $$
 
 *Step 1 - Depthwise:*
 
-$$
+```math
 H_c = W_c^{dw} * X_c, \quad W^{dw} \in \mathbb{R}^{C_{in} \times 1 \times K \times K}
-$$
+```
 
 *Step 2 - Pointwise:*
 
-$$
+```math
 Y = W^{pw} \cdot H, \quad W^{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 \times 1}
-$$
+```
 
 **Computation:** $O(K^2 \cdot C\_{in} \cdot H \cdot W + C\_{in} \cdot C\_{out} \cdot H \cdot W)$
 
 **Reduction Ratio:**
 
-$$
+```math
 \frac{K^2 C_{in} C_{out}}{K^2 C_{in} + C_{in} C_{out}} = \frac{1}{1/C_{out} + 1/K^2}
-$$
+```
 
 For $K=3$, $C\_{out}=256$: Reduction ≈ $8-9\times$
 
@@ -59,9 +59,9 @@ For $K=3$, $C\_{out}=256$: Reduction ≈ $8-9\times$
 
 **Inverted Residual:** Narrow → Wide → Narrow
 
-$$
+```math
 Y = X + \text{Conv}_{1\times1}^{proj}(\text{DWConv}(\text{Conv}_{1\times1}^{expand}(X)))
-$$
+```
 
 **Expansion Factor $t$:**
 - Input: $d$ dimensions
@@ -75,25 +75,25 @@ $$
 
 **Standard Attention:**
 
-$$
+```math
 \text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d}}\right)V
 \text{Complexity: } O(n^2 d)
-$$
+```
 
 **Linear Attention:**
 
-$$
+```math
 \text{Attention}(Q,K,V) = \phi(Q)(\phi(K)^T V)
-$$
+```
 
 Where $\phi: \mathbb{R}^d \to \mathbb{R}^m$ is a feature map.
 
 **Key Insight:** Compute $(\phi(K)^T V)$ first!
 
-$$
+```math
 \phi(K)^T V \in \mathbb{R}^{m \times d}, \quad \text{Cost: } O(nmd)
 \phi(Q) \cdot (\phi(K)^T V) \in \mathbb{R}^{n \times d}, \quad \text{Cost: } O(nmd)
-$$
+```
 
 **Total Complexity:** $O(nmd)$ vs $O(n^2d)$
 
@@ -106,21 +106,21 @@ $$
 
 **Constraint (FLOPS):**
 
-$$
+```math
 d \cdot w^2 \cdot r^2 = \alpha \cdot \beta^2 \cdot \gamma^2 \approx 2
-$$
+```
 
 **Optimal Coefficients (from grid search):**
 
-$$
+```math
 \alpha = 1.2, \quad \beta = 1.1, \quad \gamma = 1.15
-$$
+```
 
 **Scaling Law:**
 
-$$
+```math
 \text{FLOPS} \propto d \cdot w^2 \cdot r^2 \propto 2^\phi
-$$
+```
 
 | Model | $\phi$ | FLOPS | Top-1 Acc |
 |-------|--------|-------|-----------|
@@ -140,10 +140,10 @@ $$
 
 **IO Complexity:**
 
-$$
+```math
 \text{Standard: } O(n^2 d + n^2) \text{ HBM accesses}
 \text{Flash: } O(n^2 d^2 / M) \text{ HBM accesses}
-$$
+```
 
 Where $M$ = SRAM size. For typical GPU: $10-100\times$ fewer memory accesses!
 
@@ -151,24 +151,24 @@ Where $M$ = SRAM size. For typical GPU: $10-100\times$ fewer memory accesses!
 
 **Multi-Head Attention (MHA):**
 
-$$
+```math
 \text{heads} = h, \quad \text{K,V heads} = h
 \text{KV cache: } O(h \cdot d_k \cdot L)
-$$
+```
 
 **Multi-Query Attention (MQA):**
 
-$$
+```math
 \text{Q heads} = h, \quad \text{K,V heads} = 1
 \text{KV cache: } O(d_k \cdot L)
-$$
+```
 
 **Grouped Query Attention (GQA):**
 
-$$
+```math
 \text{Q heads} = h, \quad \text{K,V heads} = g
 \text{KV cache: } O(g \cdot d_k \cdot L)
-$$
+```
 
 **Trade-off:** MHA > GQA > MQA (quality), MQA > GQA > MHA (efficiency)
 

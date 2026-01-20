@@ -298,7 +298,6 @@ def f(x):
 x = torch.tensor([1.0, 1.0])
 H = compute_hessian(f, x)
 print(f"Hessian:\n{H}")
-
 # [[2., 1.],
 #  [1., 6.]]
 ```

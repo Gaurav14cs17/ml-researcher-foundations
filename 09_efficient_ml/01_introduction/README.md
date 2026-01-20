@@ -114,64 +114,64 @@ Machine learning models are getting bigger every year:
 
 #### FLOPs (Floating Point Operations)
 
-For a matrix multiplication $Y = XW$ where $X \in \mathbb{R}^{m \times n}$ and $W \in \mathbb{R}^{n \times p}$:
+For a matrix multiplication \( Y = XW \) where \( X \in \mathbb{R}^{m \times n} \) and \( W \in \mathbb{R}^{n \times p} \):
 
-$$
+```math
 \text{FLOPs} = 2 \times m \times n \times p
-$$
+```
 
-**Proof:** Each output element $Y_{ij} = \sum_{k=1}^{n} X_{ik} W_{kj}$ requires:
-- $n$ multiplications
-- $n-1$ additions ≈ $n$ operations
+**Proof:** Each output element \( Y_{ij} = \sum_{k=1}^{n} X_{ik} W_{kj} \) requires:
+- \( n \) multiplications
+- \( n-1 \) additions ≈ \( n \) operations
 
-Total: $m \times p \times 2n = 2mnp$ FLOPs.
+Total: \( m \times p \times 2n = 2mnp \) FLOPs.
 
 #### Memory Footprint
 
-$$
+```math
 \text{Memory} = \sum_{l=1}^{L} |\theta_l| \times b_l
-$$
+```
 
-where $|\theta_l|$ is the number of parameters in layer $l$ and $b_l$ is bytes per parameter.
+where \( |\theta_l| \) is the number of parameters in layer \( l \) and \( b_l \) is bytes per parameter.
 
 **Example:** A model with 7B parameters in FP16:
 
-$$
+```math
 \text{Memory} = 7 \times 10^9 \times 2 \text{ bytes} = 14 \text{ GB}
-$$
+```
 
 #### Efficiency Ratio
 
-$$
+```math
 \eta = \frac{\text{Accuracy}(\mathcal{M})}{\text{Cost}(\mathcal{M})}
-$$
+```
 
 where Cost can be FLOPs, latency, energy, or memory.
 
 ### Pareto Optimality
 
-A model $\mathcal{M}^*$ is **Pareto optimal** if no other model achieves:
+A model \( \mathcal{M}^* \) is **Pareto optimal** if no other model achieves:
 - Higher accuracy with same or lower cost
 - Same accuracy with lower cost
 
-$$
+```math
 \nexists \mathcal{M}: \text{Acc}(\mathcal{M}) \geq \text{Acc}(\mathcal{M}^*) \land \text{Cost}(\mathcal{M}) \leq \text{Cost}(\mathcal{M}^*)
-$$
+```
 
 with at least one strict inequality.
 
 ### Scaling Laws (Chinchilla)
 
-The optimal relationship between compute $C$, parameters $N$, and data $D$:
+The optimal relationship between compute \( C \), parameters \( N \), and data \( D \):
 
-$$
+```math
 L(N, D) = \frac{A}{N^\alpha} + \frac{B}{D^\beta} + E
-$$
+```
 
 where:
-- $\alpha \approx 0.34$, $\beta \approx 0.28$
-- $A, B, E$ are constants
-- Optimal allocation: $D \approx 20N$ (tokens ≈ 20× parameters)
+- \( \alpha \approx 0.34 \), \( \beta \approx 0.28 \)
+- \( A, B, E \) are constants
+- Optimal allocation: \( D \approx 20N \) (tokens ≈ 20× parameters)
 
 ---
 
@@ -181,21 +181,21 @@ where:
 
 For transformer inference, the compute-to-memory ratio:
 
-$$
+```math
 \text{Arithmetic Intensity} = \frac{\text{FLOPs}}{\text{Bytes}} = \frac{2 \times \text{batch} \times \text{seq} \times d^2}{d^2 \times \text{bytes\_per\_param}}
-$$
+```
 
 **Insight:** At batch size 1, arithmetic intensity is low → memory-bound.
 
 ### Energy Consumption Model
 
-$$
+```math
 E_{\text{total}} = E_{\text{compute}} + E_{\text{memory}}
 E_{\text{compute}} = \text{FLOPs} \times E_{\text{per\_FLOP}}
 E_{\text{memory}} = \text{Data\_moved} \times E_{\text{per\_byte}}
-$$
+```
 
-For modern hardware: $E_{\text{memory}} \gg E_{\text{compute}}$
+For modern hardware: \( E_{\text{memory}} \gg E_{\text{compute}} \)
 
 Memory access costs **100-1000×** more energy than arithmetic!
 
@@ -219,7 +219,6 @@ Memory access costs **100-1000×** more energy than arithmetic!
 | [← Section 08: Model Compression](../../08_model_compression/README.md) | [Efficient ML](../README.md) | [Basics →](../02_basics/README.md) |
 
 ---
-
 ## 📚 References
 
 | Type | Resource | Link |

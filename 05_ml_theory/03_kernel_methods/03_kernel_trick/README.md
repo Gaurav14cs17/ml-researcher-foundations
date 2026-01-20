@@ -42,23 +42,23 @@ The **kernel trick** is one of the most elegant ideas in machine learning. It al
 
 Many algorithms require computing inner products in feature space:
 
-$$
+```math
 \langle \phi(x), \phi(y) \rangle_{\mathcal{H}}
-$$
+```
 
-If $\phi: \mathcal{X} \to \mathcal{H}$ maps to a high-dimensional space $\mathcal{H}$, direct computation is expensive or impossible.
+If \(\phi: \mathcal{X} \to \mathcal{H}\) maps to a high-dimensional space \(\mathcal{H}\), direct computation is expensive or impossible.
 
 ### The Solution: Kernel Functions
 
-**Definition:** A kernel is a function $k: \mathcal{X} \times \mathcal{X} \to \mathbb{R}$ such that:
+**Definition:** A kernel is a function \(k: \mathcal{X} \times \mathcal{X} \to \mathbb{R}\) such that:
 
-$$
+```math
 k(x, y) = \langle \phi(x), \phi(y) \rangle_{\mathcal{H}}
-$$
+```
 
-for some feature map $\phi$ and inner product space $\mathcal{H}$.
+for some feature map \(\phi\) and inner product space \(\mathcal{H}\).
 
-**The Trick:** Compute $k(x, y)$ directly without explicitly computing $\phi(x)$ or $\phi(y)$!
+**The Trick:** Compute \(k(x, y)\) directly without explicitly computing \(\phi(x)\) or \(\phi(y)\)!
 
 ---
 
@@ -66,32 +66,32 @@ for some feature map $\phi$ and inner product space $\mathcal{H}$.
 
 ### Positive Semi-Definite Kernels
 
-**Definition:** A kernel $k$ is **positive semi-definite (PSD)** if for any finite set $\{x_1, \ldots, x_n\} \subset \mathcal{X}$, the Gram matrix:
+**Definition:** A kernel \(k\) is **positive semi-definite (PSD)** if for any finite set \(\{x_1, \ldots, x_n\} \subset \mathcal{X}\), the Gram matrix:
 
-$$
+```math
 K_{ij} = k(x_i, x_j)
-$$
+```
 
-is positive semi-definite: $\forall \alpha \in \mathbb{R}^n: \alpha^\top K \alpha \geq 0$.
+is positive semi-definite: \(\forall \alpha \in \mathbb{R}^n: \alpha^\top K \alpha \geq 0\).
 
 ### Mercer's Theorem
 
-**Theorem (Mercer, 1909):** A symmetric function $k: \mathcal{X} \times \mathcal{X} \to \mathbb{R}$ is a valid kernel if and only if it is positive semi-definite.
+**Theorem (Mercer, 1909):** A symmetric function \(k: \mathcal{X} \times \mathcal{X} \to \mathbb{R}\) is a valid kernel if and only if it is positive semi-definite.
 
-**Equivalently:** $k$ is a valid kernel iff there exists a feature map $\phi$ and an inner product space $\mathcal{H}$ such that:
+**Equivalently:** \(k\) is a valid kernel iff there exists a feature map \(\phi\) and an inner product space \(\mathcal{H}\) such that:
 
-$$
+```math
 k(x, y) = \langle \phi(x), \phi(y) \rangle_{\mathcal{H}}
-$$
+```
 
 ### Proof Sketch (Finite Case)
 
-Given PSD kernel $k$ and points $\{x_1, \ldots, x_n\}$:
+Given PSD kernel \(k\) and points \(\{x_1, \ldots, x_n\}\):
 
-1. Form Gram matrix $K$ with $K_{ij} = k(x_i, x_j)$
-2. Since $K$ is PSD, eigendecompose: $K = V\Lambda V^\top$ with $\lambda_i \geq 0$
-3. Define $\phi(x_i) = \sqrt{\Lambda} V^\top e_i$
-4. Then $\langle\phi(x_i), \phi(x_j)\rangle = e_i^\top V \Lambda V^\top e_j = K_{ij} = k(x_i, x_j)$ ✓
+1. Form Gram matrix \(K\) with \(K_{ij} = k(x_i, x_j)\)
+2. Since \(K\) is PSD, eigendecompose: \(K = V\Lambda V^\top\) with \(\lambda_i \geq 0\)
+3. Define \(\phi(x_i) = \sqrt{\Lambda} V^\top e_i\)
+4. Then \(\langle\phi(x_i), \phi(x_j)\rangle = e_i^\top V \Lambda V^\top e_j = K_{ij} = k(x_i, x_j)\) ✓
 
 ---
 
@@ -99,48 +99,48 @@ Given PSD kernel $k$ and points $\{x_1, \ldots, x_n\}$:
 
 ### Linear Kernel
 
-$$
+```math
 k(x, y) = x^\top y
-$$
+```
 
-**Feature map:** $\phi(x) = x$ (identity)
+**Feature map:** \(\phi(x) = x\) (identity)
 
 **Use case:** Linear relationships, already separable data
 
 ### Polynomial Kernel
 
-$$
+```math
 k(x, y) = (x^\top y + c)^d
-$$
+```
 
-**Feature map:** Contains all monomials up to degree $d$
+**Feature map:** Contains all monomials up to degree \(d\)
 
-**Example (d=2, c=1 in $\mathbb{R}^2$):**
+**Example (d=2, c=1 in \(\mathbb{R}^2\)):**
 
-For $x = [x_1, x_2]^\top$:
+For \(x = [x_1, x_2]^\top\):
 
-$$
+```math
 k(x, y) = (x_1 y_1 + x_2 y_2 + 1)^2
 = x_1^2 y_1^2 + 2x_1 x_2 y_1 y_2 + x_2^2 y_2^2 + 2x_1 y_1 + 2x_2 y_2 + 1
-$$
+```
 
 Implicit feature map:
 
-$$
+```math
 \phi(x) = [x_1^2, \sqrt{2}x_1 x_2, x_2^2, \sqrt{2}x_1, \sqrt{2}x_2, 1]^\top
-$$
+```
 
 **Verification:**
 
-$$
+```math
 \phi(x)^\top \phi(y) = x_1^2 y_1^2 + 2x_1 x_2 y_1 y_2 + x_2^2 y_2^2 + 2x_1 y_1 + 2x_2 y_2 + 1 = k(x, y) \checkmark
-$$
+```
 
 ### Gaussian (RBF) Kernel
 
-$$
+```math
 k(x, y) = \exp\left(-\gamma \|x - y\|^2\right) = \exp\left(-\frac{\|x - y\|^2}{2\sigma^2}\right)
-$$
+```
 
 **Feature map dimension:** Infinite!
 
@@ -148,18 +148,18 @@ $$
 
 Using Taylor expansion of exponential:
 
-$$
+```math
 e^{-\gamma\|x-y\|^2} = e^{-\gamma\|x\|^2} e^{-\gamma\|y\|^2} e^{2\gamma x^\top y}
 = e^{-\gamma\|x\|^2} e^{-\gamma\|y\|^2} \sum_{n=0}^{\infty} \frac{(2\gamma x^\top y)^n}{n!}
-$$
+```
 
 Each term in the series corresponds to polynomial features of increasing degree.
 
 ### Laplacian Kernel
 
-$$
+```math
 k(x, y) = \exp(-\gamma \|x - y\|_1)
-$$
+```
 
 **Properties:** More robust to outliers than RBF, infinite-dimensional feature space.
 
@@ -169,23 +169,23 @@ $$
 
 ### Closure Properties
 
-If $k_1, k_2$ are valid kernels, then so are:
+If \(k_1, k_2\) are valid kernels, then so are:
 
 | Operation | Formula | Proof |
 |-----------|---------|-------|
-| **Sum** | $k = k_1 + k_2$ | $\phi = [\phi_1; \phi_2]$ |
-| **Product** | $k = k_1 \cdot k_2$ | $\phi = \phi_1 \otimes \phi_2$ |
-| **Scaling** | $k = c \cdot k_1, c > 0$ | $\phi = \sqrt{c}\phi_1$ |
-| **Polynomial** | $k = (k_1)^d$ | Repeated tensor product |
-| **Exponential** | $k = e^{k_1}$ | Taylor series |
+| **Sum** | \(k = k_1 + k_2\) | \(\phi = [\phi_1; \phi_2]\) |
+| **Product** | \(k = k_1 \cdot k_2\) | \(\phi = \phi_1 \otimes \phi_2\) |
+| **Scaling** | \(k = c \cdot k_1, c > 0\) | \(\phi = \sqrt{c}\phi_1\) |
+| **Polynomial** | \(k = (k_1)^d\) | Repeated tensor product |
+| **Exponential** | \(k = e^{k_1}\) | Taylor series |
 
 ### Gram Matrix Properties
 
-For Gram matrix $K$ with $K_{ij} = k(x_i, x_j)$:
+For Gram matrix \(K\) with \(K_{ij} = k(x_i, x_j)\):
 
-- $K$ is symmetric: $K = K^\top$
-- $K$ is PSD: all eigenvalues $\geq 0$
-- $K$ determines the kernel (up to feature map choice)
+- \(K\) is symmetric: \(K = K^\top\)
+- \(K\) is PSD: all eigenvalues \(\geq 0\)
+- \(K\) determines the kernel (up to feature map choice)
 
 ---
 
@@ -195,29 +195,29 @@ For Gram matrix $K$ with $K_{ij} = k(x_i, x_j)$:
 
 **Theorem:** Consider the optimization problem:
 
-$$
+```math
 \min_{f \in \mathcal{H}_k} \left[\sum_{i=1}^n L(y_i, f(x_i)) + \lambda \|f\|_{\mathcal{H}_k}^2\right]
-$$
+```
 
-where $\mathcal{H}_k$ is the RKHS induced by kernel $k$.
+where \(\mathcal{H}_k\) is the RKHS induced by kernel \(k\).
 
 **Then the optimal solution has the form:**
 
-$$
+```math
 f^*(x) = \sum_{i=1}^n \alpha_i k(x, x_i)
-$$
+```
 
 ### Proof Sketch
 
-1. Decompose $f = f_\parallel + f_\perp$ where $f_\parallel \in \text{span}\{k(\cdot, x_i)\}_{i=1}^n$
-2. By reproducing property: $f(x_i) = \langle f, k(\cdot, x_i)\rangle = f_\parallel(x_i)$
-3. Loss term depends only on $f_\parallel$
-4. Regularizer: $\|f\|^2 = \|f_\parallel\|^2 + \|f_\perp\|^2 \geq \|f_\parallel\|^2$
-5. Optimal $f_\perp = 0$, so $f^* = f_\parallel = \sum_i \alpha_i k(\cdot, x_i)$
+1. Decompose \(f = f_\parallel + f_\perp\) where \(f_\parallel \in \text{span}\{k(\cdot, x_i)\}_{i=1}^n\)
+2. By reproducing property: \(f(x_i) = \langle f, k(\cdot, x_i)\rangle = f_\parallel(x_i)\)
+3. Loss term depends only on \(f_\parallel\)
+4. Regularizer: \(\|f\|^2 = \|f_\parallel\|^2 + \|f_\perp\|^2 \geq \|f_\parallel\|^2\)
+5. Optimal \(f_\perp = 0\), so \(f^* = f_\parallel = \sum_i \alpha_i k(\cdot, x_i)\)
 
 ### Implication
 
-**Kernelized algorithms need only store $n$ coefficients $\alpha_i$, not infinite-dimensional weights!**
+**Kernelized algorithms need only store \(n\) coefficients \(\alpha_i\), not infinite-dimensional weights!**
 
 ---
 
@@ -359,7 +359,6 @@ class KernelSVM:
         # Simplified SMO (gradient ascent on dual)
         for _ in range(1000):
             for i in range(n):
-
                 # Compute gradient for alpha_i
                 grad = 1 - y[i] * np.sum(self.alpha * y * K[i])
                 
@@ -438,7 +437,6 @@ class KernelPCA:
 # ============================================================
 
 if __name__ == "__main__":
-
     # Verify polynomial kernel
     print("=== Polynomial Kernel Verification ===")
     verify_polynomial_kernel_2d()
@@ -471,10 +469,10 @@ if __name__ == "__main__":
 
 | Method | How Kernel is Used |
 |--------|-------------------|
-| **SVM** | Decision: $\text{sign}\left(\sum_i \alpha_i y_i k(x, x_i) + b\right)$ |
-| **Kernel PCA** | Eigendecomposition of Gram matrix $K$ |
+| **SVM** | Decision: \(\text{sign}\left(\sum_i \alpha_i y_i k(x, x_i) + b\right)\) |
+| **Kernel PCA** | Eigendecomposition of Gram matrix \(K\) |
 | **Gaussian Processes** | Kernel = covariance function |
-| **Kernel Ridge Regression** | Solution: $\alpha = (K + \lambda I)^{-1} y$ |
+| **Kernel Ridge Regression** | Solution: \(\alpha = (K + \lambda I)^{-1} y\) |
 | **Kernel k-Means** | Distance in feature space via kernels |
 
 ---

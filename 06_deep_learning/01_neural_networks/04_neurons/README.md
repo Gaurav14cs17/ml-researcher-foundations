@@ -122,7 +122,6 @@ class Neuron:
     """A single artificial neuron"""
     
     def __init__(self, n_inputs, activation='sigmoid'):
-
         # Xavier initialization
         self.w = np.random.randn(n_inputs) / np.sqrt(n_inputs)
         self.b = 0.0
@@ -168,7 +167,6 @@ def perceptron_train(X, y, max_epochs=100, lr=1.0):
         for xi, yi in zip(X, y):
             prediction = np.sign(np.dot(w, xi) + b)
             if prediction != yi:
-
                 # Misclassified! Update
                 w += lr * yi * xi
                 b += lr * yi

@@ -208,7 +208,6 @@ class RSSM(nn.Module):
     
     def observe(self, obs, action, h_prev, z_prev):
         """One step with observation (training)"""
-
         # Deterministic transition
         h = self.gru(torch.cat([z_prev, action], -1), h_prev)
         

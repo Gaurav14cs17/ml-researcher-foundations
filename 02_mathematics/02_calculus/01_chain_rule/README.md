@@ -71,9 +71,9 @@
 
 If $y = f(u)$ and $u = g(x)$, then:
 
-$$
+```math
 \frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx} = f'(g(x)) \cdot g'(x)
-$$
+```
 
 ### 💡 Examples
 
@@ -113,23 +113,23 @@ dy/dx = dy/du · du/dv · dv/dx
 
 If $z = f(u, v)$ where $u = u(x, y)$ and $v = v(x, y)$:
 
-$$
+```math
 \frac{\partial z}{\partial x} = \frac{\partial z}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial z}{\partial v}\frac{\partial v}{\partial x}
-$$
+```
 
 ### 📐 General Form
 
 For $L = L(y\_1, y\_2, \ldots, y\_m)$ where each $y\_i = y\_i(x\_1, \ldots, x\_n)$:
 
-$$
+```math
 \frac{\partial L}{\partial x_j} = \sum_{i=1}^{m} \frac{\partial L}{\partial y_i} \cdot \frac{\partial y_i}{\partial x_j}
-$$
+```
 
 **Matrix Form** (using Jacobians):
 
-$$
+```math
 \frac{\partial L}{\partial \mathbf{x}} = J_\mathbf{y}^T \frac{\partial L}{\partial \mathbf{y}}
-$$
+```
 
 ### 💡 Example
 
@@ -279,7 +279,6 @@ class ComputationalGraph:
         grads = {id(self.tape[-1][1][0]): grad_output}
         
         for backward_fn, inputs in reversed(self.tape):
-
             # Get gradient of output
             grad_out = grads.get(id(inputs[0]), 0)
             
@@ -347,7 +346,6 @@ dx = 1 -→ ∂h₁/∂x -→ ∂h₂/∂x -→ ∂L/∂x    1 = ∂L/∂L ←- 
 ### 📐 Graph Representation
 
 ```python
-
 # Expression: L = (a * b + c)²
 
 # Graph structure:
@@ -444,7 +442,6 @@ x = torch.tensor([1.0, 2.0], requires_grad=True)
 from torch.autograd.functional import jacobian
 J = jacobian(f, x)
 print(f"Jacobian:\n{J}")
-
 # [[2x₀, 1  ],
 #  [x₁,  x₀ ],
 #  [cos(x₀), 0]] = [[2, 1], [2, 1], [0.54, 0]]

@@ -233,7 +233,6 @@ The "score" ε_θ approximates:
 ## 💻 Training Code (Simplified)
 
 ```python
-
 # Diffusion Model Training with ELBO-based Loss
 import torch
 import torch.nn as nn
@@ -275,7 +274,6 @@ def sample(model, noise_schedule, shape, T=1000, device='cuda'):
     """
     Sample from diffusion model using reverse process
     """
-
     # Start from pure noise
     x = torch.randn(shape, device=device)
     

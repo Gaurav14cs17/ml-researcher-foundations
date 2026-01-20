@@ -44,7 +44,7 @@ Critic: V_ω(s)    - Value network (parameterized by ω)
 
 ### Policy Gradient with Baseline
 
-The key insight is that we can subtract any baseline $b(s)$ from the return without changing the expected gradient:
+The key insight is that we can subtract any baseline \( b(s) \) from the return without changing the expected gradient:
 
 **Theorem (Baseline Invariance):**
 ```
@@ -57,7 +57,7 @@ E[∇_θ log π_θ(a|s) · b(s)] = Σ_a π_θ(a|s) · ∇_θ log π_θ(a|s) · b
                             = b(s) · ∇_θ 1 = 0
 ```
 
-The optimal baseline that minimizes variance is $b^*(s) = V^π(s)$.
+The optimal baseline that minimizes variance is \( b^*(s) = V^π(s) \).
 
 ### Advantage Function
 
@@ -121,7 +121,6 @@ A2C (Synchronous Advantage Actor-Critic) collects experiences from multiple para
 ```
 Initialize policy π_θ, value function V_ω
 For each iteration:
-
     # Collect n-step trajectories from N parallel environments
     For each environment i:
         Collect (s_t, a_t, r_t, s_{t+1}) for n steps
@@ -390,7 +389,6 @@ def train_a2c(env, agent, n_episodes=1000, n_steps=5):
         done = False
         
         while not done:
-
             # Collect n-step trajectory
             states, actions, rewards, dones = [], [], [], []
             

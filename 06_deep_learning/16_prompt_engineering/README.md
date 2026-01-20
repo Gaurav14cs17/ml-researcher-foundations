@@ -42,7 +42,6 @@ Prompt Structure:
 ## 💻 Examples
 
 ```python
-
 # Zero-shot
 prompt = "Classify this review as positive or negative: 'Great product!'"
 

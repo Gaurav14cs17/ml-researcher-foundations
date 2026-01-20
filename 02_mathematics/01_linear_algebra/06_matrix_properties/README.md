@@ -45,9 +45,9 @@
 
 ### 📌 Definition
 
-$$
+```math
 \text{rank}(A) = \dim(\text{column space}) = \dim(\text{row space})
-$$
+```
 
 Equivalently: number of non-zero singular values.
 
@@ -180,9 +180,9 @@ Verify: det(A) = 2×2 - 1×1 = 4 - 1 = 3 ✓
 
 ### 📌 Definition
 
-$$
+```math
 \text{tr}(A) = \sum_{i=1}^{n} A_{ii}
-$$
+```
 
 ### 📐 Key Properties
 
@@ -211,7 +211,6 @@ tr(ABC) = tr((AB)C) = tr(C(AB)) = tr(CAB)  ∎
 
 **Efficient Gradient Computation**:
 ```python
-
 # Goal: Compute tr(ABᵀC)
 # Naive: O(n³) to form products, O(n) for trace
 
@@ -228,9 +227,9 @@ tr(ABC) = tr((AB)C) = tr(C(AB)) = tr(CAB)  ∎
 
 ### 📌 Definition
 
-$$
+```math
 \kappa(A) = \|A\| \cdot \|A^{-1}\| = \frac{\sigma_{\max}}{\sigma_{\min}}
-$$
+```
 
 ### 📐 Interpretation
 
@@ -378,7 +377,6 @@ def matrix_properties(A):
         results['is_symmetric'] = np.allclose(A, A.T)
         
         if results['is_symmetric']:
-
             # Positive definiteness
             eigenvalues_real = np.linalg.eigvalsh(A)
             results['is_positive_definite'] = np.all(eigenvalues_real > 0)

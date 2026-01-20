@@ -37,46 +37,46 @@ Dynamic Programming (DP) computes optimal policies when the MDP model (transitio
 
 ### MDP Definition
 
-An MDP is defined by $(\mathcal{S}, \mathcal{A}, P, R, \gamma)$:
-- $\mathcal{S}$: State space
-- $\mathcal{A}$: Action space
-- $P(s'|s,a)$: Transition probability
-- $R(s,a,s')$: Reward function
-- $\gamma \in [0,1)$: Discount factor
+An MDP is defined by \((\mathcal{S}, \mathcal{A}, P, R, \gamma)\):
+- \(\mathcal{S}\): State space
+- \(\mathcal{A}\): Action space
+- \(P(s'|s,a)\): Transition probability
+- \(R(s,a,s')\): Reward function
+- \(\gamma \in [0,1)\): Discount factor
 
 ### Bellman Equations
 
 **State Value Function:**
 
-$$
+```math
 V^\pi(s) = \mathbb{E}_\pi\left[\sum_{t=0}^\infty \gamma^t R_t | S_0 = s\right]
-$$
+```
 
 **Bellman Expectation Equation:**
 
-$$
+```math
 V^\pi(s) = \sum_a \pi(a|s) \sum_{s'} P(s'|s,a) \left[R(s,a,s') + \gamma V^\pi(s')\right]
-$$
+```
 
 **Action Value Function:**
 
-$$
+```math
 Q^\pi(s,a) = \sum_{s'} P(s'|s,a) \left[R(s,a,s') + \gamma \sum_{a'} \pi(a'|s') Q^\pi(s',a')\right]
-$$
+```
 
 ### Bellman Optimality Equations
 
 **Optimal State Value:**
 
-$$
+```math
 V^*(s) = \max_a \sum_{s'} P(s'|s,a) \left[R(s,a,s') + \gamma V^*(s')\right]
-$$
+```
 
 **Optimal Action Value:**
 
-$$
+```math
 Q^*(s,a) = \sum_{s'} P(s'|s,a) \left[R(s,a,s') + \gamma \max_{a'} Q^*(s',a')\right]
-$$
+```
 
 ---
 
@@ -84,7 +84,7 @@ $$
 
 ### Iterative Policy Evaluation
 
-**Goal:** Compute $V^\pi$ for a given policy $\pi$.
+**Goal:** Compute \(V^\pi\) for a given policy \(\pi\).
 
 **Algorithm:**
 ```
@@ -99,7 +99,7 @@ Repeat until Δ < θ:
 
 ### Convergence Proof
 
-**Theorem:** Iterative policy evaluation converges to $V^\pi$.
+**Theorem:** Iterative policy evaluation converges to \(V^\pi\).
 
 **Proof:**
 ```
@@ -122,9 +122,9 @@ V_k → V^π as k → ∞  ✓
 
 **Convergence rate:**
 
-$$
+```math
 \|V_k - V^\pi\|_\infty \leq \gamma^k \|V_0 - V^\pi\|_\infty
-$$
+```
 
 ---
 
@@ -158,7 +158,7 @@ $$
 
 ### Policy Improvement Theorem
 
-**Theorem:** If $\pi'$ is greedy with respect to $V^\pi$, then $\pi' \geq \pi$ (i.e., $V^{\pi'}(s) \geq V^\pi(s)$ for all $s$).
+**Theorem:** If \(\pi'\) is greedy with respect to \(V^\pi\), then \(\pi' \geq \pi\) (i.e., \(V^{\pi'}(s) \geq V^\pi(s)\) for all \(s\)).
 
 **Proof:**
 ```
@@ -214,7 +214,7 @@ In practice: Often converges in O(|S|²|A|) time
 
 ### Convergence Proof
 
-**Theorem:** Value iteration converges to $V^*$.
+**Theorem:** Value iteration converges to \(V^*\).
 
 **Proof:**
 ```
@@ -383,13 +383,11 @@ class DynamicProgramming:
             V: optimal value function
             policy: optimal policy
         """
-
         # Initialize random policy
         self.policy = np.random.randint(0, self.mdp.n_actions, self.mdp.n_states)
         
         iteration = 0
         while True:
-
             # Policy Evaluation
             V = self.policy_evaluation(self.policy, theta)
             
@@ -578,10 +576,10 @@ print(f"Value function:\n{V_ps.reshape(4, 4)}")
 
 | Algorithm | Time per Iteration | Convergence | Total |
 |-----------|-------------------|-------------|-------|
-| **Policy Evaluation** | $O(S^2A)$ | $O(\log(1/\epsilon)/\log(1/\gamma))$ | $O(S^2A/\epsilon)$ |
-| **Policy Iteration** | $O(S^2A + S^3)$ | $O(A^S)$ worst, $O(S)$ typical | Varies |
-| **Value Iteration** | $O(S^2A)$ | $O(\log(1/\epsilon)/\log(1/\gamma))$ | $O(S^2A/\epsilon)$ |
-| **Prioritized Sweeping** | $O(\log S)$ per update | Problem-dependent | Often $O(S \log S)$ |
+| **Policy Evaluation** | \(O(S^2A)\) | \(O(\log(1/\epsilon)/\log(1/\gamma))\) | \(O(S^2A/\epsilon)\) |
+| **Policy Iteration** | \(O(S^2A + S^3)\) | \(O(A^S)\) worst, \(O(S)\) typical | Varies |
+| **Value Iteration** | \(O(S^2A)\) | \(O(\log(1/\epsilon)/\log(1/\gamma))\) | \(O(S^2A/\epsilon)\) |
+| **Prioritized Sweeping** | \(O(\log S)\) per update | Problem-dependent | Often \(O(S \log S)\) |
 
 ---
 

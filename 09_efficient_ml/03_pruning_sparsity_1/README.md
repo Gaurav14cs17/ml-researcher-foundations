@@ -69,7 +69,6 @@ Train Full Model → Prune Weights → Fine-tune → Deploy
 Remove individual weights anywhere in the network.
 
 ```python
-
 # Before: Dense weight matrix
 W = [[0.1, 0.5, 0.2],
      [0.8, 0.3, 0.1],
@@ -88,7 +87,6 @@ W = [[0.1, 0.0, 0.2],
 Remove entire channels, filters, or attention heads.
 
 ```python
-
 # Before: 64 channels
 # After: 32 channels (remove entire channels)
 ```
@@ -165,77 +163,77 @@ This paper introduced the standard pruning pipeline used today.
 
 The magnitude-based importance score:
 
-$$
+```math
 I(w_{ij}) = |w_{ij}|
-$$
+```
 
 Pruning mask:
 
-$$
+```math
 m_{ij} = \mathbb{1}[|w_{ij}| > \tau]
-$$
+```
 
-where $\tau$ is the threshold for target sparsity $s$:
+where \( \tau \) is the threshold for target sparsity \( s \):
 
-$$
+```math
 \tau = \text{Percentile}(|W|, 100 \times s)
-$$
+```
 
 **Theoretical Justification:**
 
-For a linear layer $y = Wx + b$, the contribution of weight $w_{ij}$ to output:
+For a linear layer \( y = Wx + b \), the contribution of weight \( w_{ij} \) to output:
 
-$$
+```math
 \Delta y_i = w_{ij} \cdot x_j
-$$
+```
 
 Expected contribution magnitude:
 
-$$
+```math
 \mathbb{E}[|\Delta y_i|] = |w_{ij}| \cdot \mathbb{E}[|x_j|]
-$$
+```
 
-If inputs are normalized, $\mathbb{E}[|x_j|] \approx \text{const}$, so:
+If inputs are normalized, \( \mathbb{E}[|x_j|] \approx \text{const} \), so:
 
-$$
+```math
 \text{Importance} \propto |w_{ij}|
-$$
+```
 
 ---
 
 ### Taylor Expansion Criterion
 
-First-order Taylor approximation of loss change when pruning weight $w$:
+First-order Taylor approximation of loss change when pruning weight \( w \):
 
-$$
+```math
 \Delta \mathcal{L}(w) = \mathcal{L}(w=0) - \mathcal{L}(w) \approx -\frac{\partial \mathcal{L}}{\partial w} \cdot w
-$$
+```
 
 **Proof:**
 
 Taylor expansion around current weight value:
 
-$$
+```math
 \mathcal{L}(w + \Delta w) \approx \mathcal{L}(w) + \frac{\partial \mathcal{L}}{\partial w} \Delta w + \frac{1}{2} \frac{\partial^2 \mathcal{L}}{\partial w^2} (\Delta w)^2
-$$
+```
 
-Setting $w \to 0$ means $\Delta w = -w$:
+Setting \( w \to 0 \) means \( \Delta w = -w \):
 
-$$
+```math
 \mathcal{L}(0) \approx \mathcal{L}(w) - \frac{\partial \mathcal{L}}{\partial w} \cdot w
-$$
+```
 
 Therefore:
 
-$$
+```math
 \Delta \mathcal{L} = \mathcal{L}(0) - \mathcal{L}(w) \approx -\frac{\partial \mathcal{L}}{\partial w} \cdot w
-$$
+```
 
 Importance score:
 
-$$
+```math
 I(w) = \left| w \cdot \frac{\partial \mathcal{L}}{\partial w} \right|
-$$
+```
 
 ---
 
@@ -243,43 +241,43 @@ $$
 
 Using second-order Taylor expansion:
 
-$$
+```math
 \Delta \mathcal{L}(w) \approx -g_w \cdot w + \frac{1}{2} H_{ww} \cdot w^2
-$$
+```
 
-where $g_w = \frac{\partial \mathcal{L}}{\partial w}$ and $H_{ww} = \frac{\partial^2 \mathcal{L}}{\partial w^2}$.
+where \( g_w = \frac{\partial \mathcal{L}}{\partial w} \) and \( H_{ww} = \frac{\partial^2 \mathcal{L}}{\partial w^2} \).
 
-At a local minimum, $g_w \approx 0$, so:
+At a local minimum, \( g_w \approx 0 \), so:
 
-$$
+```math
 \Delta \mathcal{L}(w) \approx \frac{1}{2} H_{ww} \cdot w^2
-$$
+```
 
-**Optimal Brain Damage** (LeCun et al., 1990): Prune weights with smallest $H_{ww} \cdot w^2$.
+**Optimal Brain Damage** (LeCun et al., 1990): Prune weights with smallest \( H_{ww} \cdot w^2 \).
 
 ---
 
 ### Structured Pruning: Filter Importance
 
-For a convolutional filter $F_i \in \mathbb{R}^{C_{in} \times k \times k}$:
+For a convolutional filter \( F_i \in \mathbb{R}^{C_{in} \times k \times k} \):
 
 **L1-norm criterion:**
 
-$$
+```math
 I(F_i) = \sum_{c,h,w} |F_{i,c,h,w}|
-$$
+```
 
 **L2-norm criterion:**
 
-$$
+```math
 I(F_i) = \sqrt{\sum_{c,h,w} F_{i,c,h,w}^2}
-$$
+```
 
 **Geometric median criterion** (more robust):
 
-$$
+```math
 I(F_i) = \sum_{j \neq i} \|F_i - F_j\|_2
-$$
+```
 
 Filters similar to others are more redundant → prune them.
 
@@ -289,14 +287,14 @@ Filters similar to others are more redundant → prune them.
 
 Empirical observation follows a characteristic curve:
 
-$$
+```math
 \text{Accuracy}(s) \approx \text{Acc}_0 - \alpha \cdot \exp\left(\frac{s - s_0}{\beta}\right)
-$$
+```
 
 where:
-- $s$ = sparsity level
-- $s_0$ = critical sparsity (where accuracy starts dropping)
-- $\alpha, \beta$ = model-specific constants
+- \( s \) = sparsity level
+- \( s_0 \) = critical sparsity (where accuracy starts dropping)
+- \( \alpha, \beta \) = model-specific constants
 
 **Key insight:** Accuracy is relatively stable until critical sparsity, then drops rapidly.
 
@@ -306,16 +304,16 @@ where:
 
 **Cubic sparsity schedule** (commonly used):
 
-$$
+```math
 s_t = s_f + (s_0 - s_f)\left(1 - \frac{t - t_0}{n\Delta t}\right)^3
-$$
+```
 
 where:
-- $s_0$ = initial sparsity (usually 0)
-- $s_f$ = final target sparsity
-- $t_0$ = start step
-- $n$ = number of pruning steps
-- $\Delta t$ = pruning interval
+- \( s_0 \) = initial sparsity (usually 0)
+- \( s_f \) = final target sparsity
+- \( t_0 \) = start step
+- \( n \) = number of pruning steps
+- \( \Delta t \) = pruning interval
 
 **Why cubic?** Removes more weights early (when easier to recover) and fewer later (when more critical).
 
@@ -325,45 +323,45 @@ where:
 
 ### Compression Ratio Calculation
 
-For unstructured sparsity $s$:
+For unstructured sparsity \( s \):
 
-$$
+```math
 \text{Compression Ratio} = \frac{1}{1-s}
-$$
+```
 
 At 90% sparsity: CR = 10×
 
 **With sparse storage (CSR format):**
 
-$$
+```math
 \text{Memory} = \text{nnz} \times (\text{value\_size} + \text{index\_size})
-$$
+```
 
 Actual compression:
 
-$$
+```math
 \text{CR}_{actual} = \frac{n \times \text{value\_size}}{\text{nnz} \times (\text{value\_size} + \text{index\_size})}
-$$
+```
 
 For 90% sparsity with FP32 values and INT32 indices:
 
-$$
+```math
 \text{CR}_{actual} = \frac{n \times 4}{0.1n \times (4 + 4)} = \frac{4}{0.8} = 5\times
-$$
+```
 
 ---
 
 ### Gradient Flow Through Sparse Networks
 
-During fine-tuning with pruning mask $M$:
+During fine-tuning with pruning mask \( M \):
 
-**Forward:** $Y = (M \odot W) X$
+**Forward:** \( Y = (M \odot W) X \)
 
 **Backward:**
 
-$$
+```math
 \frac{\partial \mathcal{L}}{\partial W} = M \odot \left(\frac{\partial \mathcal{L}}{\partial Y} X^T\right)
-$$
+```
 
 Gradients only flow through unpruned weights.
 
@@ -387,7 +385,6 @@ Gradients only flow through unpruned weights.
 | [← Basics](../02_basics/README.md) | [Efficient ML](../README.md) | [Pruning & Sparsity II →](../04_pruning_sparsity_2/README.md) |
 
 ---
-
 ## 📚 References
 
 | Type | Resource | Link |

@@ -41,26 +41,26 @@ The bias-variance tradeoff is **the most fundamental concept in ML theory**. It 
 
 Let the true relationship be:
 
-$$
+```math
 y = f(x) + \varepsilon, \quad \text{where } \varepsilon \sim \mathcal{N}(0, \sigma^2)
-$$
+```
 
-Given training data $\mathcal{D}$, we learn an estimator $\hat{f}(x; \mathcal{D})$.
+Given training data \(\mathcal{D}\), we learn an estimator \(\hat{f}(x; \mathcal{D})\).
 
 ### Theorem: Bias-Variance Decomposition
 
 **For squared error loss, the expected prediction error decomposes as:**
 
-$$
+```math
 \mathbb{E}_{\mathcal{D}, \varepsilon}\left[(y - \hat{f}(x))^2\right] = \underbrace{\text{Bias}^2(\hat{f}(x))}_{\text{systematic error}} + \underbrace{\text{Var}(\hat{f}(x))}_{\text{sensitivity to data}} + \underbrace{\sigma^2}_{\text{irreducible noise}}
-$$
+```
 
 where:
 
-$$
+```math
 \text{Bias}(\hat{f}(x)) = \mathbb{E}_{\mathcal{D}}[\hat{f}(x)] - f(x)
 \text{Var}(\hat{f}(x)) = \mathbb{E}_{\mathcal{D}}\left[(\hat{f}(x) - \mathbb{E}_{\mathcal{D}}[\hat{f}(x)])^2\right]
-$$
+```
 
 ---
 
@@ -68,51 +68,51 @@ $$
 
 **Step 1: Expand the squared error**
 
-$$
+```math
 \mathbb{E}[(y - \hat{f})^2] = \mathbb{E}[(y - f + f - \hat{f})^2]
 = \mathbb{E}[(y - f)^2] + \mathbb{E}[(f - \hat{f})^2] + 2\mathbb{E}[(y - f)(f - \hat{f})]
-$$
+```
 
 **Step 2: Evaluate the cross-term**
 
-Since $\varepsilon = y - f$ is independent of $\hat{f}$ and $\mathbb{E}[\varepsilon] = 0$:
+Since \(\varepsilon = y - f\) is independent of \(\hat{f}\) and \(\mathbb{E}[\varepsilon] = 0\):
 
-$$
+```math
 \mathbb{E}[(y - f)(f - \hat{f})] = \mathbb{E}[\varepsilon(f - \hat{f})] = \mathbb{E}[\varepsilon] \cdot \mathbb{E}[f - \hat{f}] = 0
-$$
+```
 
 **Step 3: First term (noise)**
 
-$$
+```math
 \mathbb{E}[(y - f)^2] = \mathbb{E}[\varepsilon^2] = \sigma^2
-$$
+```
 
 **Step 4: Second term (decompose further)**
 
-Let $\bar{f} = \mathbb{E}_{\mathcal{D}}[\hat{f}]$ (expected prediction across datasets).
+Let \(\bar{f} = \mathbb{E}_{\mathcal{D}}[\hat{f}]\) (expected prediction across datasets).
 
-$$
+```math
 \mathbb{E}[(f - \hat{f})^2] = \mathbb{E}[(f - \bar{f} + \bar{f} - \hat{f})^2]
 = (f - \bar{f})^2 + \mathbb{E}[(\bar{f} - \hat{f})^2] + 2(f - \bar{f})\mathbb{E}[\bar{f} - \hat{f}]
-$$
+```
 
 **Step 5: The cross-term vanishes**
 
-$$
+```math
 \mathbb{E}[\bar{f} - \hat{f}] = \bar{f} - \mathbb{E}[\hat{f}] = \bar{f} - \bar{f} = 0
-$$
+```
 
 **Step 6: Final result**
 
-$$
+```math
 \mathbb{E}[(f - \hat{f})^2] = \underbrace{(f - \bar{f})^2}_{\text{Bias}^2} + \underbrace{\mathbb{E}[(\hat{f} - \bar{f})^2]}_{\text{Variance}}
-$$
+```
 
 Therefore:
 
-$$
+```math
 \boxed{\mathbb{E}[(y - \hat{f})^2] = \text{Bias}^2 + \text{Variance} + \sigma^2}
-$$
+```
 
 ---
 
@@ -152,9 +152,9 @@ Expected Error
 
 **Definition:** The model is too simple to capture the underlying pattern.
 
-$$
+```math
 \text{Bias}^2 = (\mathbb{E}[\hat{f}] - f)^2 \gg 0
-$$
+```
 
 **Symptoms:**
 - High training error
@@ -169,15 +169,15 @@ $$
 
 **Mathematical Example:**
 
-True function: $f(x) = x^2$
+True function: \(f(x) = x^2\)
 
-Model: $\hat{f}(x) = ax + b$ (linear)
+Model: \(\hat{f}(x) = ax + b\) (linear)
 
-Best linear fit minimizes $\int (x^2 - ax - b)^2 dx$, but cannot represent curvature.
+Best linear fit minimizes \(\int (x^2 - ax - b)^2 dx\), but cannot represent curvature.
 
-$$
+```math
 \text{Bias}^2 = \mathbb{E}_x[(x^2 - ax^* - b^*)^2] > 0
-$$
+```
 
 ---
 
@@ -185,9 +185,9 @@ $$
 
 **Definition:** The model is too sensitive to the specific training data.
 
-$$
+```math
 \text{Var}(\hat{f}) = \mathbb{E}[(\hat{f} - \mathbb{E}[\hat{f}])^2] \gg 0
-$$
+```
 
 **Symptoms:**
 - Low training error
@@ -203,57 +203,57 @@ $$
 
 **Mathematical Example:**
 
-Consider polynomial regression of degree $d$ on $n$ points:
+Consider polynomial regression of degree \(d\) on \(n\) points:
 
-$$
+```math
 \text{Var}(\hat{f}(x)) = \sigma^2 \cdot \mathbf{x}^\top (\mathbf{X}^\top\mathbf{X})^{-1} \mathbf{x}
-$$
+```
 
-As $d \to n$, $(\mathbf{X}^\top\mathbf{X})^{-1}$ becomes ill-conditioned and variance explodes.
+As \(d \to n\), \((\mathbf{X}^\top\mathbf{X})^{-1}\) becomes ill-conditioned and variance explodes.
 
 ---
 
 ## 📐 Formal Analysis for Linear Regression
 
-For linear regression $\hat{f}(x) = x^\top \hat{\beta}$ where $\hat{\beta} = (X^\top X)^{-1} X^\top y$:
+For linear regression \(\hat{f}(x) = x^\top \hat{\beta}\) where \(\hat{\beta} = (X^\top X)^{-1} X^\top y\):
 
 ### Bias
 
-$$
+```math
 \mathbb{E}[\hat{\beta}] = (X^\top X)^{-1} X^\top \mathbb{E}[y] = (X^\top X)^{-1} X^\top X\beta = \beta
-$$
+```
 
 **Linear regression is unbiased** when the model is correctly specified.
 
 ### Variance
 
-$$
+```math
 \text{Var}(\hat{\beta}) = (X^\top X)^{-1} X^\top \text{Var}(y) X (X^\top X)^{-1} = \sigma^2 (X^\top X)^{-1}
-$$
+```
 
 **Prediction variance at point x:**
 
-$$
+```math
 \text{Var}(\hat{f}(x)) = \sigma^2 x^\top (X^\top X)^{-1} x
-$$
+```
 
 ### Ridge Regression Reduces Variance
 
-With L2 regularization: $\hat{\beta}_{\text{ridge}} = (X^\top X + \lambda I)^{-1} X^\top y$
+With L2 regularization: \(\hat{\beta}_{\text{ridge}} = (X^\top X + \lambda I)^{-1} X^\top y\)
 
 **Bias (now non-zero):**
 
-$$
+```math
 \text{Bias}(\hat{\beta}_{\text{ridge}}) = -\lambda (X^\top X + \lambda I)^{-1} \beta
-$$
+```
 
 **Variance (reduced):**
 
-$$
+```math
 \text{Var}(\hat{\beta}_{\text{ridge}}) = \sigma^2 (X^\top X + \lambda I)^{-1} X^\top X (X^\top X + \lambda I)^{-1}
-$$
+```
 
-**Theorem:** There exists $\lambda^* > 0$ such that $\text{MSE}(\hat{\beta}_{\text{ridge}}) < \text{MSE}(\hat{\beta}_{\text{OLS}})$.
+**Theorem:** There exists \(\lambda^* > 0\) such that \(\text{MSE}(\hat{\beta}_{\text{ridge}}) < \text{MSE}(\hat{\beta}_{\text{OLS}})\).
 
 ---
 
@@ -261,9 +261,9 @@ $$
 
 ### Classical View
 
-$$
+```math
 \text{Test Error} = \text{Bias}^2 + \text{Variance} + \sigma^2
-$$
+```
 
 Increasing model complexity: Bias ↓, Variance ↑
 
@@ -333,12 +333,10 @@ def bias_variance_demo(n_samples=30, n_bootstrap=100, noise_std=0.3):
     results = []
     
     for ax, degree in zip(axes, degrees):
-
         # Bootstrap predictions: simulate training on different datasets
         predictions = np.zeros((n_bootstrap, len(X_test)))
         
         for b in range(n_bootstrap):
-
             # Resample with replacement (different training set)
             idx = np.random.choice(n_samples, n_samples, replace=True)
             X_boot, y_boot = X[idx], y[idx]
@@ -422,7 +420,6 @@ def bias_variance_decomposition(model_class, X_train, y_train, X_test, y_test,
     predictions = np.zeros((n_bootstrap, n_test))
     
     for b in range(n_bootstrap):
-
         # Bootstrap sample (different training set)
         idx = np.random.choice(len(X_train), len(X_train), replace=True)
         X_boot, y_boot = X_train[idx], y_train[idx]

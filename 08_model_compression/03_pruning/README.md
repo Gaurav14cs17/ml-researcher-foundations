@@ -23,43 +23,43 @@
 
 **Basic Criterion:**
 
-$$
+```math
 \text{Prune } w_{ij} \text{ if } |w_{ij}| < \tau
-$$
+```
 
 **Global vs Layer-wise Pruning:**
 
 *Global:* Single threshold $\tau$ for entire network
 
-$$
+```math
 \mathcal{P} = \{w : |w| < \tau_{global}\}
-$$
+```
 
 *Layer-wise:* Per-layer threshold based on percentile
 
-$$
+```math
 \mathcal{P}_l = \{w \in W_l : |w| < \text{Percentile}(|W_l|, p)\}
-$$
+```
 
 ### 2. Optimal Brain Damage (OBD)
 
 **Second-Order Taylor Expansion:**
 
-$$
+```math
 \Delta\mathcal{L} = \sum_i g_i \delta w_i + \frac{1}{2}\sum_i h_{ii} \delta w_i^2 + O(\delta w^3)
-$$
+```
 
 At a minimum, $g\_i = \frac{\partial\mathcal{L}}{\partial w\_i} \approx 0$, so:
 
-$$
+```math
 \Delta\mathcal{L} \approx \frac{1}{2}\sum_i h_{ii} w_i^2
-$$
+```
 
 **Saliency (Importance Score):**
 
-$$
+```math
 s_i^{OBD} = \frac{1}{2}h_{ii}w_i^2
-$$
+```
 
 Prune weights with lowest saliency.
 
@@ -69,15 +69,15 @@ Prune weights with lowest saliency.
 
 When pruning weight $w\_q$, optimal adjustment to other weights:
 
-$$
+```math
 \delta w = -\frac{w_q}{[H^{-1}]_{qq}}H^{-1}e_q
-$$
+```
 
 **Saliency:**
 
-$$
+```math
 s_q^{OBS} = \frac{w_q^2}{2[H^{-1}]_{qq}}
-$$
+```
 
 **Advantage:** Accounts for weight correlations
 **Disadvantage:** Computing $H^{-1}$ is expensive ($O(n^3)$)
@@ -86,9 +86,9 @@ $$
 
 **Criterion:** Prune weights moving toward zero during training
 
-$$
+```math
 s_i = -w_i \cdot \frac{\partial\mathcal{L}}{\partial w_i}
-$$
+```
 
 If $s\_i > 0$: weight is moving away from zero (important)
 If $s\_i < 0$: weight is moving toward zero (can prune)
@@ -115,32 +115,32 @@ Let $f(x; \theta)$ be a dense neural network. There exists a sparse mask $m \in 
 
 **Filter Pruning (L1/L2 norm):**
 
-$$
+```math
 s_f = \|W_f\|_p = \left(\sum_{i,j,k} |w_{f,i,j,k}|^p\right)^{1/p}
-$$
+```
 
 **Channel Importance (Taylor Expansion):**
 
-$$
+```math
 s_c = \left|\sum_i \frac{\partial\mathcal{L}}{\partial a_c^{(i)}} \cdot a_c^{(i)}\right|
-$$
+```
 
 Where $a\_c$ are activations of channel $c$.
 
 **Geometric Median (FPGM):**
 Remove filters closest to geometric median:
 
-$$
+```math
 f^* = \arg\min_f \sum_{f' \neq f} \|W_f - W_{f'}\|_2
-$$
+```
 
 ### 7. Sparse Training Theory
 
 **Gradual Magnitude Pruning (Zhu & Gupta, 2017):**
 
-$$
+```math
 s_t = s_f + (s_i - s_f)\left(1 - \frac{t - t_0}{n\Delta t}\right)^3
-$$
+```
 
 Where:
 - $s\_t$ = sparsity at step $t$
@@ -159,9 +159,9 @@ Where:
 
 **Mathematical Constraint:**
 
-$$
+```math
 \forall i: |\{j \in [iM, (i+1)M) : w_j \neq 0\}| = M - N
-$$
+```
 
 ---
 
@@ -240,12 +240,10 @@ prune.global_unstructured(
 # ========== Lottery Ticket (Iterative Magnitude Pruning) ==========
 def lottery_ticket_pruning(model, train_fn, prune_percent=0.2, iterations=10):
     """Find winning ticket via IMP"""
-
     # Save initial weights
     initial_state = {k: v.clone() for k, v in model.state_dict().items()}
     
     for i in range(iterations):
-
         # Train
         train_fn(model)
         

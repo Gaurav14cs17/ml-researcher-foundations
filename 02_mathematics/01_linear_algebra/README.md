@@ -103,9 +103,9 @@
 
 A **vector** is an ordered list of numbers representing a point or direction in space.
 
-$$
+```math
 \mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix} \in \mathbb{R}^n
-$$
+```
 
 ### 📐 Vector Operations
 
@@ -166,7 +166,6 @@ x·y = 1×1 + 1×(-1) = 0  ⟹ x ⊥ y (orthogonal)
 
 **Example 4**: Projection
 ```python
-
 # Project x onto y
 x = [3, 4]
 y = [1, 0]
@@ -201,7 +200,6 @@ def project_onto(x, y):
 def dot_product_torch(x, y):
     """Compute dot product with PyTorch"""
     return torch.dot(x, y)  # For 1D tensors
-
     # or torch.matmul(x, y) for general case
 
 # Example usage
@@ -231,7 +229,6 @@ def scaled_dot_product_attention(Q, K, V, d_k):
     The dot product QK^T measures similarity between queries and keys.
     Scaling by √d_k prevents softmax saturation for large d_k.
     """
-
     # Q, K: (batch, seq_len, d_k)
     # V: (batch, seq_len, d_v)
     
@@ -377,7 +374,6 @@ def batch_matmul_torch():
 # Efficient trace computation
 def efficient_trace(A, B):
     """Compute tr(AB) without forming AB"""
-
     # tr(AB) = sum of element-wise product of A and B^T
     return np.sum(A * B.T)  # O(n²) instead of O(n³)
 ```
@@ -582,9 +578,9 @@ def spectral_norm(W, num_iters=1):
 
 For a square matrix $A \in \mathbb{R}^{n \times n}$:
 
-$$
+```math
 A\mathbf{v} = \lambda\mathbf{v}
-$$
+```
 
 where:
 - $\lambda$ is an **eigenvalue** (scalar)
@@ -702,11 +698,9 @@ def eigendecomposition(A):
     For symmetric matrices, use eigh (faster, more stable)
     """
     if np.allclose(A, A.T):
-
         # Symmetric matrix: eigenvalues real, eigenvectors orthogonal
         eigenvalues, eigenvectors = np.linalg.eigh(A)
     else:
-
         # General matrix: may have complex eigenvalues
         eigenvalues, eigenvectors = np.linalg.eig(A)
     
@@ -748,7 +742,6 @@ def pca_eigen(X, n_components):
     PCA via eigendecomposition of covariance matrix.
     Principal components = eigenvectors with largest eigenvalues.
     """
-
     # Center the data
     X_centered = X - X.mean(axis=0)
     
@@ -868,9 +861,9 @@ A = QΛQᵀ  ∎
 
 **SVD Existence**: For ANY matrix $A \in \mathbb{R}^{m \times n}$:
 
-$$
+```math
 A = U\Sigma V^T
-$$
+```
 
 where:
 - $U \in \mathbb{R}^{m \times m}$: orthogonal (left singular vectors)
@@ -971,7 +964,6 @@ def svd_decomposition(A, full_matrices=True):
 
 def verify_svd(A, U, S, Vt):
     """Verify A = UΣVᵀ"""
-
     # For economy SVD
     A_reconstructed = U @ np.diag(S) @ Vt
     error = np.linalg.norm(A - A_reconstructed)
@@ -1010,15 +1002,15 @@ def svd_torch(A_tensor):
 
 The best rank-$k$ approximation to $A$ (in Frobenius norm) is:
 
-$$
+```math
 A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T = U_k \Sigma_k V_k^T
-$$
+```
 
 with approximation error:
 
-$$
+```math
 \|A - A_k\|_F^2 = \sum_{i=k+1}^{r} \sigma_i^2
-$$
+```
 
 ### 🔍 Proof (Eckart-Young)
 
@@ -1134,7 +1126,6 @@ class LoRALayer(nn.Module):
         self.scaling = alpha / rank
     
     def forward(self, x):
-
         # Original output + low-rank update
         return x @ self.W.T + (x @ self.A.T @ self.B.T) * self.scaling
 
@@ -1237,7 +1228,6 @@ def is_positive_definite(A, tol=1e-10):
 
 def make_positive_definite(A, epsilon=1e-6):
     """Make a matrix positive definite by adding to diagonal"""
-
     # Eigenvalue modification
     eigenvalues, eigenvectors = np.linalg.eigh(A)
     eigenvalues = np.maximum(eigenvalues, epsilon)
@@ -1261,7 +1251,6 @@ def solve_with_cholesky(A, b):
     More stable and faster than direct inversion for PD matrices.
     """
     L = np.linalg.cholesky(A)
-
     # A = LLᵀ, so solve Ly = b then Lᵀx = y
     y = np.linalg.solve(L, b)
     x = np.linalg.solve(L.T, y)
@@ -1303,9 +1292,9 @@ def compute_covariance(X):
 
 For any matrix $A \in \mathbb{R}^{m \times n}$ with $m \geq n$:
 
-$$
+```math
 A = QR
-$$
+```
 
 where:
 - $Q \in \mathbb{R}^{m \times n}$: columns are orthonormal
@@ -1317,7 +1306,6 @@ where:
 Given columns a₁, ..., aₙ of A:
 
 For j = 1 to n:
-
     # Start with original column
     ũⱼ = aⱼ
     
@@ -1428,7 +1416,6 @@ def solve_least_squares_qr(A, b):
 ### ❌ Mistake 1: Confusing Eigendecomposition and SVD
 
 ```python
-
 # WRONG: Using eigen on non-square matrix
 A = np.random.randn(3, 5)
 eigenvalues, eigenvectors = np.linalg.eig(A)  # ERROR!
@@ -1440,7 +1427,6 @@ U, S, Vt = np.linalg.svd(A)
 ### ❌ Mistake 2: Forgetting Transpose Order Reverses
 
 ```python
-
 # WRONG: (AB)ᵀ = AᵀBᵀ
 wrong = A.T @ B.T
 
@@ -1451,7 +1437,6 @@ correct = B.T @ A.T
 ### ❌ Mistake 3: Assuming Matrix Multiplication Commutes
 
 ```python
-
 # WRONG: Assuming AB = BA
 result1 = A @ B
 result2 = B @ A  # Generally different!
@@ -1460,7 +1445,6 @@ result2 = B @ A  # Generally different!
 ### ❌ Mistake 4: Numerical Instability with Matrix Inverse
 
 ```python
-
 # FRAGILE: Direct inversion
 x = np.linalg.inv(A) @ b
 
@@ -1475,7 +1459,6 @@ x = np.linalg.solve(L.T, np.linalg.solve(L, b))
 ### ❌ Mistake 5: Not Checking Positive Definiteness
 
 ```python
-
 # WRONG: Assuming covariance is always invertible
 cov = X.T @ X / n
 inv_cov = np.linalg.inv(cov)  # May fail if singular!

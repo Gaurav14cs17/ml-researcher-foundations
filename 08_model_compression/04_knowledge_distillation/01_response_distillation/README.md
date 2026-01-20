@@ -27,27 +27,27 @@
 
 **Distillation Loss (Hinton et al., 2015):**
 
-$$
+```math
 \mathcal{L}_{KD} = \alpha \cdot \mathcal{L}_{hard} + (1-\alpha) \cdot T^2 \cdot \mathcal{L}_{soft}
-$$
+```
 
 **Hard Loss (Ground Truth):**
 
-$$
+```math
 \mathcal{L}_{hard} = H(y, p_s) = -\sum_i y_i \log p_s^{(i)}
-$$
+```
 
 **Soft Loss (Teacher Knowledge):**
 
-$$
+```math
 \mathcal{L}_{soft} = D_{KL}(p_t^T \| p_s^T) = \sum_i p_t^{T,(i)} \log \frac{p_t^{T,(i)}}{p_s^{T,(i)}}
-$$
+```
 
 where temperature-scaled softmax:
 
-$$
+```math
 p^T = \text{softmax}(z/T) = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)}
-$$
+```
 
 ---
 
@@ -57,19 +57,19 @@ $$
 
 **Low Temperature (T → 0):**
 
-$$
+```math
 \lim_{T \to 0} p_i^T = \begin{cases} 1 & i = \arg\max_j z_j \\ 0 & \text{otherwise} \end{cases}
-$$
+```
 
 Becomes one-hot (hard labels).
 
 **High Temperature (T → ∞):**
 Using Taylor expansion $e^x \approx 1 + x$:
 
-$$
+```math
 p_i^T = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)} \approx \frac{1 + z_i/T}{\sum_j (1 + z_j/T)} = \frac{1 + z_i/T}{n + \sum_j z_j/T}
 \approx \frac{1}{n} + \frac{z_i - \bar{z}}{nT} + O(1/T^2)
-$$
+```
 
 Becomes uniform distribution.
 
@@ -79,23 +79,23 @@ Becomes uniform distribution.
 
 **Theorem:** As $T \to \infty$, the soft labels linearize:
 
-$$
+```math
 p_i^T = \frac{1}{n} + \frac{z_i - \bar{z}}{nT} + O(1/T^2)
-$$
+```
 
 **Proof:**
 
-$$
+```math
 p_i^T = \frac{e^{z_i/T}}{\sum_j e^{z_j/T}}
-$$
+```
 
 Let $u\_i = z\_i/T$. Using $e^{u\_i} = 1 + u\_i + u\_i^2/2 + O(u\_i^3)$:
 
-$$
+```math
 p_i^T = \frac{1 + u_i + O(u_i^2)}{\sum_j (1 + u_j + O(u_j^2))} = \frac{1 + z_i/T}{n + \sum_j z_j/T} + O(1/T^2)
 = \frac{1}{n} \cdot \frac{1 + z_i/T}{1 + \bar{z}/T} = \frac{1}{n}(1 + z_i/T)(1 - \bar{z}/T + O(1/T^2))
 = \frac{1}{n} + \frac{z_i - \bar{z}}{nT} + O(1/T^2)
-$$
+```
 
 ---
 
@@ -105,29 +105,29 @@ $$
 
 **Gradient w.r.t. student logits $z\_s$:**
 
-$$
+```math
 \frac{\partial \mathcal{L}_{soft}}{\partial z_s^{(i)}} = \frac{1}{T}\left(p_s^{T,(i)} - p_t^{T,(i)}\right)
-$$
+```
 
 **Proof:**
 
-$$
+```math
 \mathcal{L}_{soft} = \sum_j p_t^{T,(j)} \log p_t^{T,(j)} - \sum_j p_t^{T,(j)} \log p_s^{T,(j)}
-$$
+```
 
 Only second term depends on $z\_s$:
 
-$$
+```math
 \frac{\partial \mathcal{L}_{soft}}{\partial z_s^{(i)}} = -\sum_j p_t^{T,(j)} \frac{\partial \log p_s^{T,(j)}}{\partial z_s^{(i)}}
-$$
+```
 
 Using softmax derivative:
 
-$$
+```math
 \frac{\partial p_s^{T,(j)}}{\partial z_s^{(i)}} = \frac{1}{T}p_s^{T,(j)}(\delta_{ij} - p_s^{T,(i)})
 \frac{\partial \mathcal{L}_{soft}}{\partial z_s^{(i)}} = -\frac{1}{T}\sum_j p_t^{T,(j)}\left(\delta_{ij} - p_s^{T,(i)}\right)
 = \frac{1}{T}\left(p_s^{T,(i)} - p_t^{T,(i)}\right)
-$$
+```
 
 #### 3.2 Why $T^2$ Scaling?
 
@@ -135,9 +135,9 @@ $$
 
 **Solution:** Multiply loss by $T^2$:
 
-$$
+```math
 \frac{\partial (T^2 \mathcal{L}_{soft})}{\partial z_s^{(i)}} = T\left(p_s^{T,(i)} - p_t^{T,(i)}\right)
-$$
+```
 
 Now gradient is $O(T)$ for soft labels, comparable to hard loss.
 
@@ -149,9 +149,9 @@ Now gradient is $O(T)$ for soft labels, comparable to hard loss.
 
 **Definition:** Information in soft labels beyond hard labels.
 
-$$
+```math
 \text{Dark Knowledge} = I(X; p_t^T) - I(X; y)
-$$
+```
 
 where $I$ is mutual information.
 
@@ -179,9 +179,9 @@ Higher entropy = more information transferred per sample.
 
 For a probabilistic model, the optimal loss for parameter estimation is the negative log-likelihood. The KL divergence:
 
-$$
+```math
 D_{KL}(p_t \| p_s) = \mathbb{E}_{x \sim p_t}[\log p_t(x) - \log p_s(x)]
-$$
+```
 
 The gradient variance is minimized when using the true data distribution (teacher) as the target. ∎
 
@@ -189,23 +189,23 @@ The gradient variance is minimized when using the true data distribution (teache
 
 **Theorem:** The gradient of soft loss w.r.t. student parameters has magnitude inversely proportional to $T$:
 
-$$
+```math
 \left\|\frac{\partial \mathcal{L}_{soft}}{\partial \theta_s}\right\| = O(1/T)
-$$
+```
 
 **Proof:**
 
-$$
+```math
 \frac{\partial \mathcal{L}_{soft}}{\partial \theta_s} = \frac{\partial \mathcal{L}_{soft}}{\partial z_s} \cdot \frac{\partial z_s}{\partial \theta_s}
-$$
+```
 
 We showed $\frac{\partial \mathcal{L}\_{soft}}{\partial z\_s^{(i)}} = \frac{1}{T}(p\_s^{T,(i)} - p\_t^{T,(i)})$.
 
 Since $|p\_s^{T,(i)} - p\_t^{T,(i)}| \leq 2$ and the chain rule preserves the $1/T$ scaling:
 
-$$
+```math
 \left\|\frac{\partial \mathcal{L}_{soft}}{\partial \theta_s}\right\| = O(1/T) \cdot \left\|\frac{\partial z_s}{\partial \theta_s}\right\| = O(1/T)
-$$
+```
 
 **Corollary:** The $T^2$ scaling in the loss compensates this, making effective gradient $O(T)$. ∎
 
@@ -217,27 +217,27 @@ $$
 
 As $T \to \infty$:
 
-$$
+```math
 p_t^{T,(i)} \to \frac{1}{n} + \frac{z_t^{(i)} - \bar{z}_t}{nT}
-$$
+```
 
 For very large $T$:
 
-$$
+```math
 p_t^{T,(i)} \approx \frac{1}{n}
-$$
+```
 
 The soft loss becomes:
 
-$$
+```math
 \mathcal{L}_{soft} = D_{KL}\left(\frac{1}{n} \| p_s^T\right) = \log n - H(p_s^T)
-$$
+```
 
 This is equivalent to entropy regularization, which is related to label smoothing:
 
-$$
+```math
 y_{smooth}^{(i)} = (1-\epsilon)y^{(i)} + \frac{\epsilon}{n}
-$$
+```
 
 with $\epsilon = (1-\alpha)T^2/(\alpha + (1-\alpha)T^2)$. ∎
 
@@ -245,9 +245,9 @@ with $\epsilon = (1-\alpha)T^2/(\alpha + (1-\alpha)T^2)$. ∎
 
 **Theorem (Information Bottleneck):** A student network can only recover teacher knowledge up to its information capacity:
 
-$$
+```math
 I(X; \hat{Y}_s) \leq I(X; \hat{Y}_t)
-$$
+```
 
 with equality only if student capacity $\geq$ teacher capacity.
 
@@ -255,9 +255,9 @@ with equality only if student capacity $\geq$ teacher capacity.
 
 By the data processing inequality, for the chain $X \to Y\_t \to Y\_s$:
 
-$$
+```math
 I(X; Y_s) \leq I(X; Y_t)
-$$
+```
 
 Information can only be lost, not created, during distillation. The student's representation is a "compression" of the teacher's. ∎
 
@@ -269,9 +269,9 @@ Information can only be lost, not created, during distillation. The student's re
 
 **Label smoothing:**
 
-$$
+```math
 y_{smooth} = (1-\epsilon)y + \frac{\epsilon}{n}
-$$
+```
 
 **Connection:** Knowledge distillation with $T \to \infty$ is similar to label smoothing.
 
@@ -279,9 +279,9 @@ $$
 
 **Use teacher predictions as labels:**
 
-$$
+```math
 \hat{y} = \arg\max_i p_t^{(i)}
-$$
+```
 
 Special case: $T = 1$ with hard assignment.
 
@@ -289,10 +289,10 @@ Special case: $T = 1$ with hard assignment.
 
 **Iterative distillation:**
 
-$$
+```math
 \text{Student}_1 \leftarrow \text{Distill}(\text{Teacher})
 \text{Student}_2 \leftarrow \text{Distill}(\text{Student}_1)
-$$
+```
 
 ...
 
@@ -331,7 +331,6 @@ class ResponseDistillationLoss(nn.Module):
         Returns:
             Combined distillation loss
         """
-
         # Hard loss (cross-entropy with ground truth)
         hard_loss = F.cross_entropy(student_logits, labels)
         

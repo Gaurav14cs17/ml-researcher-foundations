@@ -142,7 +142,6 @@ for labeling in all_labelings:
 # Sample complexity bound
 def sample_complexity(vc_dim, epsilon, delta):
     """PAC sample complexity bound"""
-
     # Fundamental theorem of learning
     m = (4 / epsilon) * (vc_dim * np.log(12 / epsilon) + np.log(2 / delta))
     return int(np.ceil(m))

@@ -88,7 +88,6 @@ def gradient_descent(f, grad_f, x0, lr=0.01, n_iters=100):
 f = lambda x: x[0]**2 + 2*x[1]**2
 grad_f = lambda x: np.array([2*x[0], 4*x[1]])
 x_opt = gradient_descent(f, grad_f, np.array([5.0, 3.0]))
-
 # x_opt ≈ [0, 0]
 
 # PyTorch autograd

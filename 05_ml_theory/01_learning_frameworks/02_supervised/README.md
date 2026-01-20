@@ -32,7 +32,7 @@
 
 ## 📂 Overview
 
-**Supervised learning** is the most common ML paradigm where models learn from labeled examples $(x, y)$ to predict outputs for new inputs.
+**Supervised learning** is the most common ML paradigm where models learn from labeled examples \((x, y)\) to predict outputs for new inputs.
 
 ---
 
@@ -40,17 +40,17 @@
 
 ### Problem Setting
 
-Given training data $\mathcal{D} = \{(x_i, y_i)\}_{i=1}^n$ sampled i.i.d. from distribution $P_{XY}$:
+Given training data \(\mathcal{D} = \{(x_i, y_i)\}_{i=1}^n\) sampled i.i.d. from distribution \(P_{XY}\):
 
-$$
+```math
 \min_{f \in \mathcal{F}} R(f) = \min_{f \in \mathcal{F}} \mathbb{E}_{(x,y) \sim P}[\ell(f(x), y)]
-$$
+```
 
-Since $P$ is unknown, we minimize empirical risk:
+Since \(P\) is unknown, we minimize empirical risk:
 
-$$
+```math
 \hat{R}(f) = \frac{1}{n}\sum_{i=1}^n \ell(f(x_i), y_i)
-$$
+```
 
 ---
 
@@ -60,47 +60,47 @@ $$
 
 **Softmax function:**
 
-$$
+```math
 P(y = c | x) = \text{softmax}(f(x))_c = \frac{\exp(f_c(x))}{\sum_{j=1}^C \exp(f_j(x))}
-$$
+```
 
 **Cross-Entropy Loss:**
 
-$$
+```math
 \mathcal{L}_{\text{CE}} = -\sum_{c=1}^C y_c \log(\hat{y}_c) = -\log(\hat{y}_{c^*})
-$$
+```
 
-where $c^*$ is the true class.
+where \(c^*\) is the true class.
 
 ### Binary Classification
 
 **Sigmoid function:**
 
-$$
+```math
 \sigma(z) = \frac{1}{1 + e^{-z}}
-$$
+```
 
 **Binary Cross-Entropy:**
 
-$$
+```math
 \mathcal{L}_{\text{BCE}} = -[y \log(\hat{y}) + (1-y)\log(1-\hat{y})]
-$$
+```
 
 ### Theoretical Properties
 
 **Theorem (Bayes Optimal Classifier):** The classifier minimizing 0-1 loss is:
 
-$$
+```math
 h^*(x) = \arg\max_c P(Y = c | X = x)
-$$
+```
 
 **Proof:** 
 
-$$
+```math
 \text{error}(h) = \mathbb{E}[\mathbb{1}[h(X) \neq Y]] = \mathbb{E}_X[\mathbb{E}_{Y|X}[\mathbb{1}[h(X) \neq Y]]]
-$$
+```
 
-For each $x$, the inner expectation is minimized by choosing $h(x) = \arg\max_c P(Y=c|X=x)$. $\blacksquare$
+For each \(x\), the inner expectation is minimized by choosing \(h(x) = \arg\max_c P(Y=c|X=x)\). \(\blacksquare\)
 
 ---
 
@@ -108,15 +108,15 @@ For each $x$, the inner expectation is minimized by choosing $h(x) = \arg\max_c 
 
 ### Ordinary Least Squares
 
-$$
+```math
 \mathcal{L}_{\text{MSE}} = \frac{1}{n}\sum_{i=1}^n (y_i - f(x_i))^2
-$$
+```
 
 **Closed-form solution (linear case):**
 
-$$
+```math
 \hat{\beta} = (X^\top X)^{-1} X^\top y
-$$
+```
 
 **Theorem:** OLS is BLUE (Best Linear Unbiased Estimator) under Gauss-Markov conditions.
 
@@ -124,15 +124,15 @@ $$
 
 **MAE Loss (L1):**
 
-$$
+```math
 \mathcal{L}_{\text{MAE}} = \frac{1}{n}\sum_{i=1}^n |y_i - f(x_i)|
-$$
+```
 
 **Huber Loss:**
 
-$$
+```math
 \mathcal{L}_\delta(r) = \begin{cases} \frac{1}{2}r^2 & |r| \leq \delta \\ \delta|r| - \frac{1}{2}\delta^2 & |r| > \delta \end{cases}
-$$
+```
 
 ---
 
@@ -196,7 +196,6 @@ class LinearRegression:
     """
     
     def fit(self, X, y):
-
         # Add bias term
         X = np.column_stack([np.ones(len(X)), X])
         
@@ -229,7 +228,6 @@ class LogisticRegression:
         self.b = 0
         
         for _ in range(self.max_iter):
-
             # Forward pass
             z = X @ self.w + self.b
             y_pred = self.sigmoid(z)
@@ -291,11 +289,11 @@ class NeuralNetClassifier(nn.Module):
 
 | Loss | Formula | Use Case | Properties |
 |------|---------|----------|------------|
-| **Cross-Entropy** | $-\sum y_c \log \hat{y}_c$ | Classification | Convex, smooth |
-| **MSE** | $\frac{1}{n}\sum(y-\hat{y})^2$ | Regression | Penalizes large errors |
-| **MAE** | $\frac{1}{n}\sum\|y-\hat{y}\|$ | Robust regression | Robust to outliers |
+| **Cross-Entropy** | \(-\sum y_c \log \hat{y}_c\) | Classification | Convex, smooth |
+| **MSE** | \(\frac{1}{n}\sum(y-\hat{y})^2\) | Regression | Penalizes large errors |
+| **MAE** | \(\frac{1}{n}\sum\|y-\hat{y}\|\) | Robust regression | Robust to outliers |
 | **Huber** | MSE if small, MAE if large | Robust regression | Best of both |
-| **Hinge** | $\max(0, 1-y\hat{y})$ | SVM | Margin-based |
+| **Hinge** | \(\max(0, 1-y\hat{y})\) | SVM | Margin-based |
 
 ---
 

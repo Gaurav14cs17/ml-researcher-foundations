@@ -76,9 +76,9 @@
 
 ### 📌 Formal Definition
 
-$$
+```math
 f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
-$$
+```
 
 Alternative notation: $\frac{df}{dx}$, $\frac{dy}{dx}$, $Df$, $\dot{f}$
 
@@ -237,9 +237,9 @@ This is why ReLU works better:
 
 For $f(x\_1, x\_2, \ldots, x\_n)$:
 
-$$
+```math
 \frac{\partial f}{\partial x_i} = \lim_{h \to 0} \frac{f(x_1, \ldots, x_i + h, \ldots, x_n) - f(x_1, \ldots, x_n)}{h}
-$$
+```
 
 *Differentiate with respect to one variable, treating others as constants.*
 
@@ -257,9 +257,9 @@ f(x, y) = x²y + 3xy² + y³
 
 The **gradient** collects all partial derivatives:
 
-$$
+```math
 \nabla f = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix}
-$$
+```
 
 ---
 

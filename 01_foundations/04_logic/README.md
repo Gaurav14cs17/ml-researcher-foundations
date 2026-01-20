@@ -633,7 +633,6 @@ for x1, x2 in [(0, 0), (0, 1), (1, 0), (1, 1)]:
 
 # Verify cannot learn with single layer
 print("\nAttempting single-layer XOR (will fail):")
-
 # No w1, w2, b can satisfy all 4 conditions simultaneously
 ```
 

@@ -33,29 +33,29 @@ Federated Learning (FL) enables training ML models across decentralized data sou
 
 **Global objective:**
 
-$$
+```math
 \min_w F(w) = \sum_{k=1}^{K} \frac{n_k}{n} F_k(w)
-$$
+```
 
 where:
-- $K$: number of clients
-- $n_k$: number of samples on client $k$
-- $n = \sum_k n_k$: total samples
-- $F_k(w) = \frac{1}{n_k} \sum_{i \in \mathcal{D}_k} \ell(w; x_i, y_i)$: local objective
+- \(K\): number of clients
+- \(n_k\): number of samples on client \(k\)
+- \(n = \sum_k n_k\): total samples
+- \(F_k(w) = \frac{1}{n_k} \sum_{i \in \mathcal{D}_k} \ell(w; x_i, y_i)\): local objective
 
 ### Comparison to Centralized Learning
 
 **Centralized:**
 
-$$
+```math
 w^* = \arg\min_w \frac{1}{n} \sum_{i=1}^{n} \ell(w; x_i, y_i)
-$$
+```
 
 **Federated (equivalent if IID):**
 
-$$
+```math
 w^* = \arg\min_w \sum_{k=1}^{K} \frac{n_k}{n} \cdot \frac{1}{n_k} \sum_{i \in \mathcal{D}_k} \ell(w; x_i, y_i)
-$$
+```
 
 ---
 
@@ -87,15 +87,15 @@ For round t = 0, 1, ..., T-1:
 
 **Theorem (FedAvg Convergence):** Under standard assumptions (L-smooth, μ-strongly convex), FedAvg converges with:
 
-$$
+```math
 \mathbb{E}[F(w_T)] - F(w^*) \leq O\left(\frac{1}{T} + \frac{E\eta^2L\sigma^2}{K} + E^2\eta^2L^2\Gamma\right)
-$$
+```
 
 where:
-- $\sigma^2$: variance of stochastic gradients
-- $\Gamma = F^* - \sum_k \frac{n_k}{n} F_k^*$: degree of non-IID-ness
+- \(\sigma^2\): variance of stochastic gradients
+- \(\Gamma = F^* - \sum_k \frac{n_k}{n} F_k^*\): degree of non-IID-ness
 
-**Key insight:** Non-IID data ($\Gamma > 0$) causes additional error!
+**Key insight:** Non-IID data (\(\Gamma > 0\)) causes additional error!
 
 ### Proof Sketch
 
@@ -120,27 +120,27 @@ Summing over T rounds gives the convergence bound.
 
 Adds proximal term to prevent client drift:
 
-$$
+```math
 \min_w F_k(w) + \frac{\mu}{2}\|w - w_t\|^2
-$$
+```
 
 **Local update:**
 
-$$
+```math
 w_k^{e+1} = w_k^e - \eta(\nabla F_k(w_k^e) + \mu(w_k^e - w_t))
-$$
+```
 
 ### 2. SCAFFOLD
 
 Uses control variates to correct client drift:
 
-$$
+```math
 w_k^{e+1} = w_k^e - \eta(\nabla F_k(w_k^e) - c_k + c)
-$$
+```
 
 where:
-- $c_k$: client control variate (tracks $\nabla F_k$)
-- $c$: server control variate (tracks $\nabla F$)
+- \(c_k\): client control variate (tracks \(\nabla F_k\))
+- \(c\): server control variate (tracks \(\nabla F\))
 
 **Update rule:**
 ```
@@ -152,11 +152,11 @@ c^{new} = c + (1/K) Σ_k (c_k^{new} - c_k)
 
 Normalizes updates by local computation:
 
-$$
+```math
 w_{t+1} = w_t - \tau_{eff} \cdot \frac{\sum_k \Delta w_k / \tau_k}{\sum_k n_k/n}
-$$
+```
 
-where $\tau_k$ is the number of local steps on client $k$.
+where \(\tau_k\) is the number of local steps on client \(k\).
 
 ---
 
@@ -166,17 +166,17 @@ where $\tau_k$ is the number of local steps on client $k$.
 
 Add noise to gradients before aggregation:
 
-$$
+```math
 \tilde{g}_k = g_k + \mathcal{N}(0, \sigma^2 C^2 I)
-$$
+```
 
-where $C$ is the clipping threshold.
+where \(C\) is the clipping threshold.
 
 **Privacy guarantee:**
 
-$$
+```math
 (\epsilon, \delta)\text{-DP with } \sigma \geq \frac{c \cdot C \sqrt{T \log(1/\delta)}}{n\epsilon}
-$$
+```
 
 ### Secure Aggregation
 
@@ -341,7 +341,6 @@ def run_federated_training(
     losses = []
     
     for round_idx in range(num_rounds):
-
         # Select random subset of clients
         selected_clients = random.sample(clients, min(clients_per_round, len(clients)))
         
@@ -407,7 +406,6 @@ class SecureAggregationServer(FederatedServer):
         Aggregate masked updates
         Masks cancel out: Σ(Δw_k + r_k) = Σ Δw_k (since Σ r_k = 0)
         """
-
         # This is a simplified version - real implementation uses
         # Diffie-Hellman key exchange and pairwise masking
         self.aggregate(masked_updates, client_weights)
@@ -433,17 +431,14 @@ def create_federated_data(num_clients: int, samples_per_client: int, non_iid: bo
     
     for k in range(num_clients):
         if non_iid:
-
             # Non-IID: each client has different label distribution
             main_class = k % 10
             x = torch.randn(samples_per_client, 784)
             y = torch.full((samples_per_client,), main_class, dtype=torch.long)
-
             # Add some noise to labels
             noise_idx = torch.randperm(samples_per_client)[:samples_per_client // 5]
             y[noise_idx] = torch.randint(0, 10, (len(noise_idx),))
         else:
-
             # IID: uniform distribution
             x = torch.randn(samples_per_client, 784)
             y = torch.randint(0, 10, (samples_per_client,))
@@ -466,7 +461,6 @@ clients = [
 ]
 
 print("Running federated training...")
-
 # run_federated_training(server, clients, num_rounds=10, clients_per_round=5)
 print("Federated learning complete!")
 ```
@@ -477,7 +471,7 @@ print("Federated learning complete!")
 
 | Challenge | Problem | Solution |
 |-----------|---------|----------|
-| **Non-IID Data** | $\Gamma > 0$ causes drift | FedProx, SCAFFOLD |
+| **Non-IID Data** | \(\Gamma > 0\) causes drift | FedProx, SCAFFOLD |
 | **Communication** | Large model updates | Compression, sparse updates |
 | **Stragglers** | Slow clients delay rounds | Async FL, timeout |
 | **Privacy** | Gradients leak data | DP, Secure Aggregation |

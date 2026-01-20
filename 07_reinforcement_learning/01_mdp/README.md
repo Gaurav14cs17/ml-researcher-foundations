@@ -133,7 +133,6 @@ class SimpleMDP:
         return self.state
     
     def step(self, action):
-
         # Sample next state from P(s'|s,a)
         next_state = np.random.choice(
             self.n_states, 
@@ -156,7 +155,6 @@ def value_iteration(mdp, theta=1e-6):
         delta = 0
         for s in range(mdp.n_states):
             v = V[s]
-
             # Bellman optimality update
             V[s] = max(
                 sum(mdp.P[s,a,s_next] * (mdp.R[s,a,s_next] + mdp.gamma * V[s_next])

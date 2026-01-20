@@ -31,9 +31,9 @@ The exponential family unifies most common distributions under one framework. Th
 
 ### Canonical Form
 
-$$
+```math
 p(x|\boldsymbol{\eta}) = h(x) \exp\left(\boldsymbol{\eta}^\top \mathbf{T}(x) - A(\boldsymbol{\eta})\right)
-$$
+```
 
 | Component | Name | Description |
 |-----------|------|-------------|
@@ -44,9 +44,9 @@ $$
 
 ### Alternative Form (Standard Parameters)
 
-$$
+```math
 p(x|\boldsymbol{\theta}) = h(x) \exp\left(\boldsymbol{\eta}(\boldsymbol{\theta})^\top \mathbf{T}(x) - A(\boldsymbol{\theta})\right)
-$$
+```
 
 ---
 
@@ -54,36 +54,36 @@ $$
 
 ### Theorem: Moments from Log-Partition
 
-$$
+```math
 E[\mathbf{T}(x)] = \nabla_{\boldsymbol{\eta}} A(\boldsymbol{\eta})
 \text{Cov}[\mathbf{T}(x)] = \nabla^2_{\boldsymbol{\eta}} A(\boldsymbol{\eta})
-$$
+```
 
 ### Proof
 
 The normalization constraint:
 
-$$
+```math
 \int h(x) \exp\left(\boldsymbol{\eta}^\top \mathbf{T}(x) - A(\boldsymbol{\eta})\right) dx = 1
-$$
+```
 
 Rearranging:
 
-$$
+```math
 \exp(A(\boldsymbol{\eta})) = \int h(x) \exp\left(\boldsymbol{\eta}^\top \mathbf{T}(x)\right) dx
-$$
+```
 
 Taking the gradient with respect to $\boldsymbol{\eta}$:
 
-$$
+```math
 \exp(A(\boldsymbol{\eta})) \cdot \nabla A(\boldsymbol{\eta}) = \int h(x) \mathbf{T}(x) \exp\left(\boldsymbol{\eta}^\top \mathbf{T}(x)\right) dx
-$$
+```
 
 Dividing both sides by $\exp(A(\boldsymbol{\eta}))$:
 
-$$
+```math
 \nabla A(\boldsymbol{\eta}) = \int \mathbf{T}(x) \cdot h(x) \exp\left(\boldsymbol{\eta}^\top \mathbf{T}(x) - A(\boldsymbol{\eta})\right) dx = E[\mathbf{T}(x)] \quad \blacksquare
-$$
+```
 
 Similarly, the second derivative gives the covariance.
 
@@ -93,9 +93,9 @@ Similarly, the second derivative gives the covariance.
 
 ### Bernoulli
 
-$$
+```math
 P(x|\theta) = \theta^x (1-\theta)^{1-x} = \exp\left(x \log\frac{\theta}{1-\theta} + \log(1-\theta)\right)
-$$
+```
 
 | Component | Value |
 |-----------|-------|
@@ -108,9 +108,9 @@ $$
 
 ### Gaussian (Known Variance)
 
-$$
+```math
 p(x|\mu) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
-$$
+```
 
 | Component | Value |
 |-----------|-------|
@@ -121,9 +121,9 @@ $$
 
 ### Gaussian (Unknown Mean and Variance)
 
-$$
+```math
 p(x|\mu, \sigma^2) \propto \exp\left(\frac{\mu}{\sigma^2} x - \frac{1}{2\sigma^2} x^2\right)
-$$
+```
 
 | Component | Value |
 |-----------|-------|
@@ -133,9 +133,9 @@ $$
 
 ### Poisson
 
-$$
+```math
 P(x|\lambda) = \frac{\lambda^x e^{-\lambda}}{x!}
-$$
+```
 
 | Component | Value |
 |-----------|-------|
@@ -146,9 +146,9 @@ $$
 
 ### Categorical/Multinomial
 
-$$
+```math
 P(x|\boldsymbol{\pi}) = \prod_{k=1}^K \pi_k^{x_k}
-$$
+```
 
 | Component | Value |
 |-----------|-------|
@@ -164,29 +164,29 @@ $$
 
 **Theorem:** MLE sets sample moments equal to population moments:
 
-$$
+```math
 \nabla A(\hat{\boldsymbol{\eta}}) = \frac{1}{n} \sum_{i=1}^n \mathbf{T}(x_i)
-$$
+```
 
 ### Proof
 
 Log-likelihood:
 
-$$
+```math
 \ell(\boldsymbol{\eta}) = \sum_{i=1}^n \left[\boldsymbol{\eta}^\top \mathbf{T}(x_i) - A(\boldsymbol{\eta}) + \log h(x_i)\right]
-$$
+```
 
 Gradient:
 
-$$
+```math
 \nabla_{\boldsymbol{\eta}} \ell = \sum_{i=1}^n \mathbf{T}(x_i) - n \cdot \nabla A(\boldsymbol{\eta})
-$$
+```
 
 Setting to zero:
 
-$$
+```math
 \nabla A(\hat{\boldsymbol{\eta}}) = \frac{1}{n} \sum_{i=1}^n \mathbf{T}(x_i) \quad \blacksquare
-$$
+```
 
 ---
 
@@ -194,18 +194,18 @@ $$
 
 **Theorem:** Exponential family distributions have conjugate priors of the form:
 
-$$
+```math
 p(\boldsymbol{\eta}) \propto \exp\left(\boldsymbol{\eta}^\top \boldsymbol{\chi} - \nu A(\boldsymbol{\eta})\right)
-$$
+```
 
 where $\boldsymbol{\chi}$ and $\nu$ are hyperparameters.
 
 **Posterior update:**
 
-$$
+```math
 \boldsymbol{\chi}_n = \boldsymbol{\chi}_0 + \sum_{i=1}^n \mathbf{T}(x_i)
 \nu_n = \nu_0 + n
-$$
+```
 
 ---
 
@@ -227,9 +227,9 @@ $$
 
 Using canonical link makes the gradient simple:
 
-$$
+```math
 \nabla_{\boldsymbol{\beta}} \ell = \sum_i (y_i - \mu_i) \mathbf{x}_i
-$$
+```
 
 This is the same form regardless of distribution!
 
@@ -241,15 +241,15 @@ This is the same form regardless of distribution!
 
 For exponential families:
 
-$$
+```math
 \mathbf{F}(\boldsymbol{\eta}) = \text{Cov}[\mathbf{T}(x)] = \nabla^2 A(\boldsymbol{\eta})
-$$
+```
 
 ### Natural Gradient
 
-$$
+```math
 \tilde{\nabla} \ell = \mathbf{F}^{-1} \nabla \ell
-$$
+```
 
 **Advantage:** Invariant to parameterization, faster convergence.
 
@@ -295,7 +295,6 @@ def log_partition_bernoulli(eta):
 
 def mean_from_log_partition(eta):
     """E[X] = dA/dη for Bernoulli"""
-
     # dA/dη = exp(η)/(1+exp(η)) = σ(η)
     return torch.sigmoid(eta)
 
@@ -313,12 +312,10 @@ class LogisticRegression(nn.Module):
         self.linear = nn.Linear(input_dim, 1)
     
     def forward(self, x):
-
         # Returns logits (natural parameters)
         return self.linear(x)
     
     def predict_proba(self, x):
-
         # Convert to probabilities
         return torch.sigmoid(self.forward(x))
 
@@ -329,7 +326,6 @@ def mle_bernoulli(data):
     For Bernoulli: T(x) = x
     """
     sample_mean = data.mean()
-
     # Convert to natural parameter
     eta_mle = torch.log(sample_mean / (1 - sample_mean))
     return eta_mle

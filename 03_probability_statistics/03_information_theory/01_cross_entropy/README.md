@@ -593,7 +593,6 @@ Binary cross-entropy is logistic regression loss!
 **Memory Optimization:**
 
 ```
-
 # Bad: Stores intermediate probabilities
 probs = F.softmax(logits, dim=-1)
 loss = -torch.log(probs[range(len(probs)), labels]).mean()
