@@ -34,6 +34,7 @@ Where $\Phi^{-1}$ is inverse normal CDF.
 
 **Double Quantization:**
 Quantize the quantization constants themselves:
+
 ```math
 \text{FP32 scale} \to \text{FP8 scale}
 ```
@@ -43,11 +44,13 @@ Additional 0.5 bits/param savings.
 ### 2. GPTQ Algorithm
 
 **Layer-wise Quantization:**
+
 ```math
 \arg\min_{\hat{W}} \|WX - \hat{W}X\|_2^2
 ```
 
 **Optimal Brain Quantization (OBQ):**
+
 ```math
 \hat{w}_q = \text{round}(w_q / s) \cdot s
 \delta_{-q} = -\frac{w_q - \hat{w}_q}{[H^{-1}]_{qq}} H^{-1}_{:,q}
@@ -60,11 +63,13 @@ Where $H = XX^T$ (Hessian).
 ### 3. AWQ Importance Metric
 
 **Activation-Aware Importance:**
+
 ```math
 s_j = \mathbb{E}[|X_j|]
 ```
 
 **Per-channel Scaling:**
+
 ```math
 \hat{W}[:,j] = W[:,j] \cdot s_j^\alpha
 \hat{X}[j] = X[j] / s_j^\alpha
@@ -75,6 +80,7 @@ With $\alpha \in [0, 1]$ balancing weight and activation quantization.
 ### 4. TensorRT Optimization
 
 **Layer Fusion:**
+
 ```math
 \text{Conv} \to \text{BN} \to \text{ReLU} \Rightarrow \text{ConvBNReLU}
 ```
@@ -83,6 +89,7 @@ With $\alpha \in [0, 1]$ balancing weight and activation quantization.
 Select best CUDA kernel for each layer based on shape.
 
 **INT8 Calibration:**
+
 ```math
 s = \frac{\max(|x|)}{127} \quad \text{(per-tensor)}
 ```
@@ -138,6 +145,7 @@ model = get_peft_model(model, lora_config)
 ### LLM Inference (GPTQ/AWQ)
 
 ```python
+
 # GPTQ with AutoGPTQ
 from auto_gptq import AutoGPTQForCausalLM
 
@@ -162,6 +170,7 @@ model.quantize(
 ### CPU Inference (llama.cpp)
 
 ```bash
+
 # Quantize to GGUF
 ./quantize model-fp16.gguf model-q4_k_m.gguf Q4_K_M
 
@@ -195,6 +204,7 @@ outputs = llm.generate(
 ### Production (TensorRT-LLM)
 
 ```python
+
 # Build TensorRT engine
 from tensorrt_llm import LLaMAForCausalLM
 
@@ -224,6 +234,7 @@ model = LLaMAForCausalLM.from_hugging_face(
 ## 🛠️ Installation Guide
 
 ```bash
+
 # bitsandbytes (CUDA required)
 pip install bitsandbytes
 

@@ -325,6 +325,7 @@ def simplex(c, A, b):
     basis = list(range(n - m, n))
     
     while True:
+
         # Extract basis matrix
         B = A[:, basis]
         B_inv = np.linalg.inv(B)
@@ -342,6 +343,7 @@ def simplex(c, A, b):
         
         j = np.argmin(reduced_costs)
         if reduced_costs[j] >= -1e-10:
+
             # Optimal!
             x = np.zeros(n)
             x[basis] = x_B
@@ -532,6 +534,7 @@ def solve_primal_dual(c, A_ub, b_ub):
     Primal: min cᵀx s.t. Ax ≤ b, x ≥ 0
     Dual:   max bᵀy s.t. Aᵀy ≤ c, y ≥ 0
     """
+
     # Solve primal
     result_primal = linprog(c, A_ub=A_ub, b_ub=b_ub, method='highs')
     x_opt = result_primal.x
@@ -722,6 +725,7 @@ def interior_point_lp(c, A, b, tol=1e-8, mu_factor=0.1):
     y = np.zeros(m)  # Dual variables
     
     for iteration in range(100):
+
         # Duality gap and barrier parameter
         mu = (x @ s) / n
         if mu < tol:

@@ -48,16 +48,19 @@ Covariance matrices are central to ML: they describe feature relationships, enab
 ### Properties
 
 **1. Variance is a Special Case:**
+
 ```math
 \text{Cov}(X, X) = \text{Var}(X)
 ```
 
 **2. Symmetry:**
+
 ```math
 \text{Cov}(X, Y) = \text{Cov}(Y, X)
 ```
 
 **3. Bilinearity:**
+
 ```math
 \text{Cov}(aX, bY) = ab \cdot \text{Cov}(X, Y)
 \text{Cov}(X + Y, Z) = \text{Cov}(X, Z) + \text{Cov}(Y, Z)
@@ -103,6 +106,7 @@ If X, Y independent: $E[XY] = E[X]E[Y]$
 ### Properties
 
 **1. Bounded:**
+
 ```math
 -1 \leq \rho(X, Y) \leq 1
 ```
@@ -112,6 +116,7 @@ If X, Y independent: $E[XY] = E[X]E[Y]$
 Define $\tilde{X} = X - \mu\_X$ and $\tilde{Y} = Y - \mu\_Y$.
 
 By Cauchy-Schwarz inequality:
+
 ```math
 |E[\tilde{X}\tilde{Y}]|^2 \leq E[\tilde{X}^2] \cdot E[\tilde{Y}^2]
 |\text{Cov}(X, Y)|^2 \leq \text{Var}(X) \cdot \text{Var}(Y) = \sigma_X^2 \sigma_Y^2
@@ -120,11 +125,13 @@ By Cauchy-Schwarz inequality:
 ```
 
 **2. Perfect Correlation:**
+
 ```math
 |\rho| = 1 \iff Y = aX + b \text{ for some constants } a, b
 ```
 
 **3. Uncorrelated:**
+
 ```math
 \rho = 0 \iff \text{Cov}(X, Y) = 0
 ```
@@ -142,11 +149,13 @@ For a random vector $\mathbf{X} = [X\_1, X\_2, \ldots, X\_n]^\top$:
 ```
 
 **Element-wise:**
+
 ```math
 \Sigma_{ij} = \text{Cov}(X_i, X_j)
 ```
 
 **Matrix Form:**
+
 ```math
 \boldsymbol{\Sigma} = E[\mathbf{X}\mathbf{X}^\top] - \boldsymbol{\mu}\boldsymbol{\mu}^\top
 ```
@@ -187,6 +196,7 @@ where $Z = \mathbf{v}^\top (\mathbf{X} - \boldsymbol{\mu})$ is a scalar random v
 **3. Eigenvalue Decomposition:**
 
 Since $\boldsymbol{\Sigma}$ is symmetric positive semi-definite:
+
 ```math
 \boldsymbol{\Sigma} = \mathbf{U} \boldsymbol{\Lambda} \mathbf{U}^\top
 ```
@@ -222,11 +232,13 @@ E\left[\frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})^2\right] = \sigma^2
 ```
 
 The key insight is that:
+
 ```math
 \sum_{i=1}^{n}(X_i - \bar{X})^2 = \sum_{i=1}^{n}(X_i - \mu)^2 - n(\bar{X} - \mu)^2
 ```
 
 Taking expectations and using $E[(\bar{X} - \mu)^2] = \sigma^2/n$:
+
 ```math
 E\left[\sum_{i=1}^{n}(X_i - \bar{X})^2\right] = n\sigma^2 - n \cdot \frac{\sigma^2}{n} = (n-1)\sigma^2 \quad \blacksquare
 ```
@@ -254,6 +266,7 @@ Since $E[\mathbf{Y}] = \mathbf{A}E[\mathbf{X}] + \mathbf{b} = \mathbf{A}\boldsym
 ```
 
 Therefore:
+
 ```math
 \text{Cov}(\mathbf{Y}) = E[\mathbf{A}(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^\top\mathbf{A}^\top]
 = \mathbf{A} E[(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^\top] \mathbf{A}^\top
@@ -267,11 +280,13 @@ Therefore:
 **Goal:** Transform data so that covariance = identity matrix
 
 **Method:** 
+
 ```math
 \mathbf{Z} = \boldsymbol{\Sigma}^{-1/2}(\mathbf{X} - \boldsymbol{\mu})
 ```
 
 **Result:**
+
 ```math
 \text{Cov}(\mathbf{Z}) = \boldsymbol{\Sigma}^{-1/2} \boldsymbol{\Sigma} (\boldsymbol{\Sigma}^{-1/2})^\top = \mathbf{I}
 ```
@@ -288,6 +303,7 @@ Therefore:
 ## 📐 Mahalanobis Distance
 
 **Definition:**
+
 ```math
 d_M(\mathbf{x}, \boldsymbol{\mu}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})}
 ```
@@ -311,6 +327,7 @@ d_M(\mathbf{x}, \boldsymbol{\mu}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \
 5. Explained variance: eigenvalues $\lambda\_i$
 
 **Projection onto k principal components:**
+
 ```math
 \mathbf{Z} = \mathbf{U}_k^\top (\mathbf{X} - \bar{\mathbf{X}})
 ```

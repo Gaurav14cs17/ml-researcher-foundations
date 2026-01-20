@@ -31,13 +31,13 @@ Taylor series represent smooth functions as infinite polynomials. The first few 
 
 ### Definition
 
-**Taylor Series:** If \(f\) is infinitely differentiable at \(a\), its Taylor series is:
+**Taylor Series:** If $f$ is infinitely differentiable at $a$, its Taylor series is:
 
 ```math
 f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f'''(a)}{3!}(x-a)^3 + \cdots
 ```
 
-**Maclaurin Series:** Taylor series centered at \(a = 0\):
+**Maclaurin Series:** Taylor series centered at $a = 0$:
 
 ```math
 f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!}x^n
@@ -45,7 +45,7 @@ f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!}x^n
 
 ### Taylor's Theorem with Remainder
 
-**Theorem:** If \(f\) has \(n+1\) continuous derivatives on \([a, x]\), then:
+**Theorem:** If $f$ has $n+1$ continuous derivatives on $[a, x]$, then:
 
 ```math
 f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k + R_n(x)
@@ -54,13 +54,15 @@ f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k + R_n(x)
 where the remainder \(R_n(x)\) can be expressed as:
 
 **Lagrange Form:**
+
 ```math
 R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}
 ```
 
-for some \(c\) between \(a\) and \(x\).
+for some $c$ between $a$ and $x$.
 
 **Integral Form:**
+
 ```math
 R_n(x) = \frac{1}{n!}\int_a^x (x-t)^n f^{(n+1)}(t) \, dt
 ```
@@ -71,7 +73,7 @@ R_n(x) = \frac{1}{n!}\int_a^x (x-t)^n f^{(n+1)}(t) \, dt
 
 ### Why Does Taylor Series Work?
 
-**Key Insight:** We want to find coefficients \(c_0, c_1, c_2, \ldots\) such that:
+**Key Insight:** We want to find coefficients $c_0, c_1, c_2, \ldots$ such that:
 
 ```math
 f(x) = c_0 + c_1(x-a) + c_2(x-a)^2 + c_3(x-a)^3 + \cdots
@@ -173,7 +175,7 @@ sin(x) = x - x³/3! + x⁵/5! - x⁷/7! + ... ✓
 \ln(1+x) = \sum_{n=1}^{\infty} \frac{(-1)^{n+1} x^n}{n} = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots
 ```
 
-**Radius of convergence:** \(-1 < x \leq 1\)
+**Radius of convergence:** $-1 < x \leq 1$
 
 ### Geometric Series
 
@@ -181,7 +183,7 @@ sin(x) = x - x³/3! + x⁵/5! - x⁷/7! + ... ✓
 \frac{1}{1-x} = \sum_{n=0}^{\infty} x^n = 1 + x + x^2 + x^3 + \cdots
 ```
 
-**Radius of convergence:** \(|x| < 1\)
+**Radius of convergence:** $|x| < 1$
 
 ---
 
@@ -189,7 +191,7 @@ sin(x) = x - x³/3! + x⁵/5! - x⁷/7! + ... ✓
 
 ### Second-Order Expansion (Critical for ML)
 
-For \(f: \mathbb{R}^n \to \mathbb{R}\), the Taylor expansion around \(a\) is:
+For $f: \mathbb{R}^n \to \mathbb{R}$, the Taylor expansion around $a$ is:
 
 ```math
 f(x) = f(a) + \nabla f(a)^T (x-a) + \frac{1}{2}(x-a)^T H_f(a) (x-a) + O(\|x-a\|^3)
@@ -309,9 +311,10 @@ This explains temperature in knowledge distillation!
 
 ### Radius of Convergence
 
-**Definition:** The radius of convergence \(R\) is the largest value such that the series converges for \(|x - a| < R\).
+**Definition:** The radius of convergence $R$ is the largest value such that the series converges for $|x - a| < R$.
 
 **Ratio Test:**
+
 ```math
 R = \lim_{n \to \infty} \left| \frac{a_n}{a_{n+1}} \right|
 ```
@@ -498,11 +501,13 @@ def compute_taylor_terms(f, x0, order=2):
     f1 = grad1.item()
     
     if order >= 2:
+
         # Second derivative
         grad2 = torch.autograd.grad(grad1, x, create_graph=True)[0]
         f2 = grad2.item()
     
     if order >= 3:
+
         # Third derivative
         grad3 = torch.autograd.grad(grad2, x, create_graph=True)[0]
         f3 = grad3.item()
@@ -514,6 +519,7 @@ f = lambda x: torch.exp(x)
 terms = compute_taylor_terms(f, 0.0, order=3)
 print(f"Taylor coefficients of e^x at 0:")
 print(f"f(0) = {terms[0]}, f'(0) = {terms[1]}, f''(0) = {terms[2]}, f'''(0) = {terms[3]}")
+
 # Should all be 1.0
 ```
 
@@ -571,8 +577,8 @@ print(f"Optimal x: {x_opt}")  # Should be [2, 3]
 
 | Application | Taylor Order | Usage |
 |-------------|--------------|-------|
-| **Gradient Descent** | 1st order | \(x \leftarrow x - \eta \nabla f\) |
-| **Newton's Method** | 2nd order | \(x \leftarrow x - H^{-1} \nabla f\) |
+| **Gradient Descent** | 1st order | $x \leftarrow x - \eta \nabla f$ |
+| **Newton's Method** | 2nd order | $x \leftarrow x - H^{-1} \nabla f$ |
 | **BFGS/L-BFGS** | Quasi-2nd order | Approximate Hessian |
 | **Natural Gradient** | 2nd order | Fisher information matrix |
 | **Loss Curvature** | 2nd order | Sharpness analysis |
@@ -586,7 +592,7 @@ print(f"Optimal x: {x_opt}")  # Should be [2, 3]
 |---------|-----------|------------|
 | **Taylor's Theorem** | \(f(x) = \sum \frac{f^{(n)}(a)}{n!}(x-a)^n + R_n\) | Foundation |
 | **Lagrange Remainder** | \(R_n = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}\) | Error bounds |
-| **Convergence** | \(R \to \infty\) for \(e^x\), \(\sin x\), \(\cos x\) | Global validity |
+| **Convergence** | $R \to \infty$ for $e^x$, $\sin x$, $\cos x$ | Global validity |
 | **Multivariate** | \(f(x) \approx f(a) + \nabla f^T(x-a) + \frac{1}{2}(x-a)^T H(x-a)\) | Optimization |
 
 ---

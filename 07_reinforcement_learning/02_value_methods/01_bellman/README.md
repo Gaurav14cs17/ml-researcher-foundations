@@ -153,6 +153,7 @@ def value_iteration(P, R, gamma=0.99, theta=1e-6):
     while True:
         V_new = np.zeros(n_states)
         for s in range(n_states):
+
             # Bellman optimality update
             Q_s = np.zeros(n_actions)
             for a in range(n_actions):
@@ -182,6 +183,7 @@ def q_learning(env, n_episodes=1000, alpha=0.1, gamma=0.99, epsilon=0.1):
         done = False
         
         while not done:
+
             # ε-greedy action selection
             if np.random.random() < epsilon:
                 action = np.random.randint(env.n_actions)

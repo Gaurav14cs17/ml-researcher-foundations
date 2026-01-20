@@ -40,9 +40,9 @@
 
 ### Setting
 
-Given training data \(\{(x_i, y_i)\}_{i=1}^n\) where \(x_i \in \mathbb{R}^d\) and \(y_i \in \{-1, +1\}\).
+Given training data \(\{(x_i, y_i)\}_{i=1}^n\) where $x_i \in \mathbb{R}^d$ and $y_i \in \{-1, +1\}$.
 
-**Goal:** Find hyperplane \(w^\top x + b = 0\) that separates classes with maximum margin.
+**Goal:** Find hyperplane $w^\top x + b = 0$ that separates classes with maximum margin.
 
 ### Margin Definitions
 
@@ -77,14 +77,14 @@ For linearly separable data:
 \text{s.t.} \quad y_i(w^\top x_i + b) \geq \hat{\gamma} \quad \forall i
 ```
 
-**Canonical form** (set \(\hat{\gamma} = 1\)):
+**Canonical form** (set $\hat{\gamma} = 1$):
 
 ```math
 \min_{w, b} \quad \frac{1}{2}\|w\|^2
 \text{s.t.} \quad y_i(w^\top x_i + b) \geq 1 \quad \forall i
 ```
 
-**Interpretation:** Minimizing \(\|w\|\) maximizes margin \(\gamma = 1/\|w\|\).
+**Interpretation:** Minimizing $\|w\|$ maximizes margin $\gamma = 1/\|w\|$.
 
 ### Lagrangian Formulation
 
@@ -101,7 +101,7 @@ For linearly separable data:
 \nabla_b \mathcal{L} = -\sum_{i=1}^n \alpha_i y_i = 0 \implies \boxed{\sum_{i=1}^n \alpha_i y_i = 0}
 ```
 
-**Dual feasibility:** \(\alpha_i \geq 0\)
+**Dual feasibility:** $\alpha_i \geq 0$
 
 **Complementary slackness:** \(\alpha_i[y_i(w^\top x_i + b) - 1] = 0\)
 
@@ -114,7 +114,7 @@ Substituting KKT conditions into Lagrangian:
 \text{s.t.} \quad \alpha_i \geq 0, \quad \sum_{i=1}^n \alpha_i y_i = 0
 ```
 
-**Key insight:** Dual depends only on inner products \(x_i^\top x_j\) → kernel trick!
+**Key insight:** Dual depends only on inner products $x_i^\top x_j$ → kernel trick!
 
 ---
 
@@ -122,7 +122,7 @@ Substituting KKT conditions into Lagrangian:
 
 ### Motivation
 
-Real data is rarely linearly separable. Allow some misclassifications with slack variables \(\xi_i\).
+Real data is rarely linearly separable. Allow some misclassifications with slack variables $\xi_i$.
 
 ### Primal Formulation
 
@@ -132,9 +132,9 @@ Real data is rarely linearly separable. Allow some misclassifications with slack
 ```
 
 **Interpretation:**
-- \(C\) = regularization parameter (trade-off between margin and violations)
-- \(\xi_i > 0\): point is within margin or misclassified
-- \(\xi_i > 1\): point is misclassified
+- $C$ = regularization parameter (trade-off between margin and violations)
+- $\xi_i > 0$: point is within margin or misclassified
+- $\xi_i > 1$: point is misclassified
 
 ### Dual Formulation
 
@@ -143,9 +143,9 @@ Real data is rarely linearly separable. Allow some misclassifications with slack
 \text{s.t.} \quad 0 \leq \alpha_i \leq C, \quad \sum_{i=1}^n \alpha_i y_i = 0
 ```
 
-**Support Vectors:** Points with \(\alpha_i > 0\):
-- \(0 < \alpha_i < C\): On margin boundary
-- \(\alpha_i = C\): Inside margin or misclassified
+**Support Vectors:** Points with $\alpha_i > 0$:
+- $0 < \alpha_i < C$: On margin boundary
+- $\alpha_i = C$: Inside margin or misclassified
 
 ---
 
@@ -166,7 +166,7 @@ Replace inner products with kernel function:
 f(x) = \text{sign}\left(\sum_{i=1}^n \alpha_i y_i k(x, x_i) + b\right)
 ```
 
-**Only support vectors contribute** (points with \(\alpha_i > 0\)).
+**Only support vectors contribute** (points with $\alpha_i > 0$).
 
 ### Common Kernels
 
@@ -183,15 +183,15 @@ f(x) = \text{sign}\left(\sum_{i=1}^n \alpha_i y_i k(x, x_i) + b\right)
 
 ### Margin-Based Generalization Bound
 
-**Theorem:** With probability \(\geq 1 - \delta\):
+**Theorem:** With probability $\geq 1 - \delta$:
 
 ```math
 R(h) \leq \hat{R}_\gamma(h) + \sqrt{\frac{c_1}{n}\left(\frac{R^2 \|w\|^2}{\gamma^2}\log n + \log\frac{1}{\delta}\right)}
 ```
 
 where:
-- \(\hat{R}_\gamma(h)\) = fraction of points with margin \(< \gamma\)
-- \(R\) = radius of data
+- \(\hat{R}_\gamma(h)\) = fraction of points with margin $< \gamma$
+- $R$ = radius of data
 - Bound is independent of dimension!
 
 ### Structural Risk Minimization
@@ -320,6 +320,7 @@ class SoftMarginSVM:
         # SMO main loop
         for _ in range(1000):
             for i in range(n):
+
                 # Error for sample i
                 E_i = self._decision(K[i]) - y[i]
                 

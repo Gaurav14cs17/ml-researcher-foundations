@@ -98,6 +98,7 @@ Projection g(·)       Projection g(·)
 ```
 
 Where:
+
 ```math
 \ell(i, j) = -\log \frac{\exp(\text{sim}(z_i, z_j)/\tau)}{\sum_{k=1}^{2N} \mathbf{1}_{k \neq i} \exp(\text{sim}(z_i, z_k)/\tau)}
 ```
@@ -308,6 +309,7 @@ def clip_loss(image_embeddings, text_embeddings, temperature=0.07):
     image_embeddings: (batch, dim)
     text_embeddings: (batch, dim)
     """
+
     # Normalize
     image_embeddings = F.normalize(image_embeddings, dim=-1)
     text_embeddings = F.normalize(text_embeddings, dim=-1)

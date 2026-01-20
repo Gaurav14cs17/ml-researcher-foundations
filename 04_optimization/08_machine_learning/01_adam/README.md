@@ -807,6 +807,7 @@ class Adam:
         self.t += 1
         
         for i, (param, grad) in enumerate(zip(self.params, gradients)):
+
             # Add weight decay to gradient (L2 regularization)
             if self.weight_decay != 0:
                 grad = grad + self.weight_decay * param

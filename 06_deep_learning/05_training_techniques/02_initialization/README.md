@@ -23,7 +23,7 @@ Proper weight initialization is crucial for training deep networks. Bad initiali
 
 ### Variance Propagation
 
-For a fully connected layer \(y = Wx\) where \(W \in \mathbb{R}^{m \times n}\):
+For a fully connected layer $y = Wx$ where $W \in \mathbb{R}^{m \times n}$:
 
 ```math
 y_i = \sum_{j=1}^{n} w_{ij} x_j
@@ -38,7 +38,7 @@ Var[yᵢ] = Var[Σⱼ wᵢⱼ xⱼ]
         = n · Var[w] · Var[x]     (if E[x]=0)
 ```
 
-**Key insight:** If \(\text{Var}[w] = 1/n\), then \(\text{Var}[y] = \text{Var}[x]\)
+**Key insight:** If $\text{Var}[w] = 1/n$, then $\text{Var}[y] = \text{Var}[x]$
 
 ---
 
@@ -69,6 +69,7 @@ Var[W] = 1/n_out
 ```
 
 **Xavier compromise:**
+
 ```math
 \text{Var}[W] = \frac{2}{n_{in} + n_{out}}
 ```
@@ -125,11 +126,13 @@ Var[W] = 2/n_in
 ```
 
 **He Initialization:**
+
 ```math
 W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)
 ```
 
 Or for uniform:
+
 ```math
 W \sim U\left[-\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}}\right]
 ```
@@ -140,18 +143,19 @@ W \sim U\left[-\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}}\right]
 
 | Method | Variance | Best For | Formula |
 |--------|----------|----------|---------|
-| **Xavier Uniform** | \(\frac{2}{n_{in}+n_{out}}\) | tanh, sigmoid | \(U[-\sqrt{6/(n_{in}+n_{out})}, +\sqrt{6/(n_{in}+n_{out})}]\) |
-| **Xavier Normal** | \(\frac{2}{n_{in}+n_{out}}\) | tanh, sigmoid | \(N(0, 2/(n_{in}+n_{out}))\) |
-| **He Uniform** | \(\frac{2}{n_{in}}\) | ReLU, LeakyReLU | \(U[-\sqrt{6/n_{in}}, +\sqrt{6/n_{in}}]\) |
-| **He Normal** | \(\frac{2}{n_{in}}\) | ReLU, LeakyReLU | \(N(0, 2/n_{in})\) |
-| **LeCun** | \(\frac{1}{n_{in}}\) | SELU | \(N(0, 1/n_{in})\) |
-| **Orthogonal** | - | RNNs | \(W = QR\) decomposition |
+| **Xavier Uniform** | $\frac{2}{n_{in}+n_{out}}$ | tanh, sigmoid | \(U[-\sqrt{6/(n_{in}+n_{out})}, +\sqrt{6/(n_{in}+n_{out})}]\) |
+| **Xavier Normal** | $\frac{2}{n_{in}+n_{out}}$ | tanh, sigmoid | \(N(0, 2/(n_{in}+n_{out}))\) |
+| **He Uniform** | $\frac{2}{n_{in}}$ | ReLU, LeakyReLU | $U[-\sqrt{6/n_{in}}, +\sqrt{6/n_{in}}]$ |
+| **He Normal** | $\frac{2}{n_{in}}$ | ReLU, LeakyReLU | \(N(0, 2/n_{in})\) |
+| **LeCun** | $\frac{1}{n_{in}}$ | SELU | \(N(0, 1/n_{in})\) |
+| **Orthogonal** | - | RNNs | $W = QR$ decomposition |
 
 ---
 
 ## 🎯 LeakyReLU Adjustment
 
-For LeakyReLU with slope \(\alpha\):
+For LeakyReLU with slope $\alpha$:
+
 ```math
 \text{LeakyReLU}(x) = \begin{cases} x & x > 0 \\ \alpha x & x \leq 0 \end{cases}
 ```
@@ -164,6 +168,7 @@ E[a²] = (1/2)·E[y²|y>0] + (1/2)·α²·E[y²|y<0]
 ```
 
 **Adjusted initialization:**
+
 ```math
 \text{Var}[W] = \frac{2}{(1 + \alpha^2) \cdot n_{in}}
 ```
@@ -176,7 +181,7 @@ E[a²] = (1/2)·E[y²|y>0] + (1/2)·α²·E[y²|y<0]
 
 **Key property:** Orthogonal matrices preserve norms.
 
-For \(Q^TQ = I\):
+For $Q^TQ = I$:
 ```
 ||Qx||² = xᵀQᵀQx = xᵀx = ||x||²
 
@@ -192,6 +197,7 @@ def orthogonal_init(shape):
     """
     Generate orthogonal matrix via QR decomposition
     """
+
     # Start with random Gaussian matrix
     a = np.random.randn(*shape)
     
@@ -267,6 +273,7 @@ def orthogonal(shape, gain=1.0):
     """
     rows, cols = shape
     if rows < cols:
+
         # Generate more rows, then truncate
         flat_shape = (cols, rows)
     else:
@@ -389,6 +396,7 @@ class InitializedConvNet(nn.Module):
     def _init_weights(self):
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
+
                 # He initialization for ReLU
                 init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
                 if m.bias is not None:
@@ -418,12 +426,15 @@ class ProperlyInitializedLSTM(nn.Module):
     def _init_weights(self):
         for name, param in self.lstm.named_parameters():
             if 'weight_ih' in name:
+
                 # Input-hidden weights: Xavier
                 init.xavier_uniform_(param)
             elif 'weight_hh' in name:
+
                 # Hidden-hidden weights: Orthogonal
                 init.orthogonal_(param)
             elif 'bias' in name:
+
                 # Biases: zero, except forget gate
                 init.zeros_(param)
                 
@@ -486,9 +497,9 @@ print(f"Output mean: {y.mean():.4f}, std: {y.std():.4f}")
 | Activation | Initialization | Variance |
 |------------|----------------|----------|
 | **tanh, sigmoid** | Xavier/Glorot | \(2/(n_{in}+n_{out})\) |
-| **ReLU** | He/Kaiming | \(2/n_{in}\) |
+| **ReLU** | He/Kaiming | $2/n_{in}$ |
 | **LeakyReLU(α)** | Modified He | \(2/((1+α^2)n_{in})\) |
-| **SELU** | LeCun | \(1/n_{in}\) |
+| **SELU** | LeCun | $1/n_{in}$ |
 | **Linear** | Xavier | \(2/(n_{in}+n_{out})\) |
 | **LSTM/GRU** | Orthogonal + bias | See above |
 
@@ -500,8 +511,8 @@ print(f"Output mean: {y.mean():.4f}, std: {y.std():.4f}")
 |---------|---------|
 | **Bias initialization** | Almost always zero (except LSTM forget gate = 1) |
 | **BatchNorm reduces sensitivity** | With BN, initialization matters less |
-| **Residual connections** | Scale by \(1/\sqrt{N}\) for N blocks |
-| **Transformers** | Often use scaled initialization: \(1/\sqrt{d_{model}}\) |
+| **Residual connections** | Scale by $1/\sqrt{N}$ for N blocks |
+| **Transformers** | Often use scaled initialization: $1/\sqrt{d_{model}}$ |
 
 ---
 

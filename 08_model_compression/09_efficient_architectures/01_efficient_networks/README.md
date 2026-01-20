@@ -22,6 +22,7 @@
 ### 1. Depthwise Separable Convolution
 
 **Standard Convolution Analysis:**
+
 ```math
 Y = W * X
 W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
@@ -33,12 +34,14 @@ W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
 **Depthwise Separable Decomposition:**
 
 *Depthwise (spatial filtering):*
+
 ```math
 H_c = W_c^{dw} * X_c, \quad c = 1, ..., C_{in}
 W^{dw} \in \mathbb{R}^{C_{in} \times 1 \times K \times K}
 ```
 
 *Pointwise (channel mixing):*
+
 ```math
 Y = W^{pw} \cdot H
 W^{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 \times 1}
@@ -47,6 +50,7 @@ W^{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 \times 1}
 **Total Parameters:** $C\_{in} \times K^2 + C\_{out} \times C\_{in}$
 
 **Reduction Factor:**
+
 ```math
 \frac{C_{out} \times C_{in} \times K^2}{C_{in} \times K^2 + C_{out} \times C_{in}} = \frac{C_{out} \times K^2}{K^2 + C_{out}}
 ```
@@ -56,22 +60,26 @@ For $K=3$, $C\_{out}=256$: $\frac{256 \times 9}{9 + 256} = 8.7\times$
 ### 2. Inverted Residual (MobileNetV2)
 
 **Architecture:**
+
 ```math
 Y = X + \text{Proj}(\text{DW}(\text{Expand}(X)))
 ```
 
 **Expansion Phase:**
+
 ```math
 H_1 = \text{ReLU6}(\text{BN}(\text{Conv}_{1\times1}(X)))
 H_1 \in \mathbb{R}^{B \times (t \cdot C) \times H \times W}
 ```
 
 **Depthwise Phase:**
+
 ```math
 H_2 = \text{ReLU6}(\text{BN}(\text{DWConv}_{K\times K}(H_1)))
 ```
 
 **Projection Phase (Linear):**
+
 ```math
 Y = \text{BN}(\text{Conv}_{1\times1}(H_2))
 Y \in \mathbb{R}^{B \times C' \times H \times W}
@@ -88,17 +96,20 @@ Nonlinearity destroys information in low-dimensional space. Linear projection pr
 - Resolution coefficient: $\gamma$
 
 **Scaling Law:**
+
 ```math
 d = \alpha^\phi, \quad w = \beta^\phi, \quad r = \gamma^\phi
 ```
 
 **FLOPS Constraint:**
+
 ```math
 \text{FLOPS} \propto d \cdot w^2 \cdot r^2
 \alpha \cdot \beta^2 \cdot \gamma^2 \approx 2
 ```
 
 **Grid Search Results:**
+
 ```math
 \alpha = 1.2, \quad \beta = 1.1, \quad \gamma = 1.15
 ```
@@ -114,6 +125,7 @@ d = \alpha^\phi, \quad w = \beta^\phi, \quad r = \gamma^\phi
 ### 4. Squeeze-and-Excitation (SE) Blocks
 
 **Channel Attention:**
+
 ```math
 z = F_{sq}(U) = \frac{1}{H \times W}\sum_{i,j} u_{ij}
 s = F_{ex}(z) = \sigma(W_2 \cdot \delta(W_1 \cdot z))
@@ -136,11 +148,13 @@ Where:
 - Number of layers per stage
 
 **Objective:**
+
 ```math
 \max_{\alpha} \text{Accuracy}(N(\alpha)) \quad \text{s.t.} \quad \text{Latency}(N(\alpha)) \leq T
 ```
 
 **MnasNet/EfficientNet used reinforcement learning with:**
+
 ```math
 R(\alpha) = \text{Acc}(\alpha) \times \left(\frac{\text{Latency}(\alpha)}{T}\right)^w
 ```

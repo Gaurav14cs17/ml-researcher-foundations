@@ -62,21 +62,25 @@ E[\mathbf{T}(x)] = \nabla_{\boldsymbol{\eta}} A(\boldsymbol{\eta})
 ### Proof
 
 The normalization constraint:
+
 ```math
 \int h(x) \exp\left(\boldsymbol{\eta}^\top \mathbf{T}(x) - A(\boldsymbol{\eta})\right) dx = 1
 ```
 
 Rearranging:
+
 ```math
 \exp(A(\boldsymbol{\eta})) = \int h(x) \exp\left(\boldsymbol{\eta}^\top \mathbf{T}(x)\right) dx
 ```
 
 Taking the gradient with respect to $\boldsymbol{\eta}$:
+
 ```math
 \exp(A(\boldsymbol{\eta})) \cdot \nabla A(\boldsymbol{\eta}) = \int h(x) \mathbf{T}(x) \exp\left(\boldsymbol{\eta}^\top \mathbf{T}(x)\right) dx
 ```
 
 Dividing both sides by $\exp(A(\boldsymbol{\eta}))$:
+
 ```math
 \nabla A(\boldsymbol{\eta}) = \int \mathbf{T}(x) \cdot h(x) \exp\left(\boldsymbol{\eta}^\top \mathbf{T}(x) - A(\boldsymbol{\eta})\right) dx = E[\mathbf{T}(x)] \quad \blacksquare
 ```
@@ -167,16 +171,19 @@ P(x|\boldsymbol{\pi}) = \prod_{k=1}^K \pi_k^{x_k}
 ### Proof
 
 Log-likelihood:
+
 ```math
 \ell(\boldsymbol{\eta}) = \sum_{i=1}^n \left[\boldsymbol{\eta}^\top \mathbf{T}(x_i) - A(\boldsymbol{\eta}) + \log h(x_i)\right]
 ```
 
 Gradient:
+
 ```math
 \nabla_{\boldsymbol{\eta}} \ell = \sum_{i=1}^n \mathbf{T}(x_i) - n \cdot \nabla A(\boldsymbol{\eta})
 ```
 
 Setting to zero:
+
 ```math
 \nabla A(\hat{\boldsymbol{\eta}}) = \frac{1}{n} \sum_{i=1}^n \mathbf{T}(x_i) \quad \blacksquare
 ```
@@ -194,6 +201,7 @@ p(\boldsymbol{\eta}) \propto \exp\left(\boldsymbol{\eta}^\top \boldsymbol{\chi} 
 where $\boldsymbol{\chi}$ and $\nu$ are hyperparameters.
 
 **Posterior update:**
+
 ```math
 \boldsymbol{\chi}_n = \boldsymbol{\chi}_0 + \sum_{i=1}^n \mathbf{T}(x_i)
 \nu_n = \nu_0 + n
@@ -218,6 +226,7 @@ where $\boldsymbol{\chi}$ and $\nu$ are hyperparameters.
 ### Why Canonical Link?
 
 Using canonical link makes the gradient simple:
+
 ```math
 \nabla_{\boldsymbol{\beta}} \ell = \sum_i (y_i - \mu_i) \mathbf{x}_i
 ```
@@ -231,6 +240,7 @@ This is the same form regardless of distribution!
 ### Fisher Information Matrix
 
 For exponential families:
+
 ```math
 \mathbf{F}(\boldsymbol{\eta}) = \text{Cov}[\mathbf{T}(x)] = \nabla^2 A(\boldsymbol{\eta})
 ```
@@ -285,6 +295,7 @@ def log_partition_bernoulli(eta):
 
 def mean_from_log_partition(eta):
     """E[X] = dA/dη for Bernoulli"""
+
     # dA/dη = exp(η)/(1+exp(η)) = σ(η)
     return torch.sigmoid(eta)
 
@@ -302,10 +313,12 @@ class LogisticRegression(nn.Module):
         self.linear = nn.Linear(input_dim, 1)
     
     def forward(self, x):
+
         # Returns logits (natural parameters)
         return self.linear(x)
     
     def predict_proba(self, x):
+
         # Convert to probabilities
         return torch.sigmoid(self.forward(x))
 
@@ -316,6 +329,7 @@ def mle_bernoulli(data):
     For Bernoulli: T(x) = x
     """
     sample_mean = data.mean()
+
     # Convert to natural parameter
     eta_mle = torch.log(sample_mean / (1 - sample_mean))
     return eta_mle

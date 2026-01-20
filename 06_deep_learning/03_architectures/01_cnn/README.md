@@ -102,6 +102,7 @@ Where:
 Base case: $RF\_1 = k\_1$ (first layer sees kernel-sized region)
 
 Inductive step: Each position at layer $l$ corresponds to $s\_{l-1}$ positions at layer $l-1$. Adding $(k\_l - 1)$ kernel elements, we get:
+
 ```math
 RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i
 ```
@@ -163,6 +164,7 @@ This enables:
 ## 📐 Backpropagation Through Convolution
 
 ### Forward Pass:
+
 ```math
 y = x * w + b
 ```
@@ -170,11 +172,13 @@ y = x * w + b
 ### Backward Pass (Gradients):
 
 **Gradient w.r.t. weights:**
+
 ```math
 \frac{\partial L}{\partial w} = x * \frac{\partial L}{\partial y}
 ```
 
 **Gradient w.r.t. input:**
+
 ```math
 \frac{\partial L}{\partial x} = \frac{\partial L}{\partial y} *_{full} \text{rot}_{180}(w)
 ```
@@ -291,11 +295,13 @@ class DepthwiseSeparableConv(nn.Module):
     """
     def __init__(self, in_channels, out_channels, kernel_size=3, stride=1, padding=1):
         super().__init__()
+
         # Depthwise: one filter per input channel
         self.depthwise = nn.Conv2d(
             in_channels, in_channels, kernel_size, 
             stride=stride, padding=padding, groups=in_channels
         )
+
         # Pointwise: 1×1 conv to combine channels
         self.pointwise = nn.Conv2d(in_channels, out_channels, 1)
     

@@ -34,7 +34,7 @@
 
 ### Why Ensembles Work
 
-**Theorem (Condorcet's Jury):** If each of \(n\) classifiers has accuracy \(p > 0.5\), the majority vote accuracy approaches 1 as \(n \to \infty\).
+**Theorem (Condorcet's Jury):** If each of $n$ classifiers has accuracy $p > 0.5$, the majority vote accuracy approaches 1 as $n \to \infty$.
 
 **Bias-Variance for Ensembles:**
 
@@ -44,13 +44,13 @@ For averaged predictions \(\bar{f}(x) = \frac{1}{B}\sum_{b=1}^B f_b(x)\):
 \text{Var}(\bar{f}) = \frac{1}{B^2}\sum_{b=1}^B \text{Var}(f_b) + \frac{1}{B^2}\sum_{b \neq b'} \text{Cov}(f_b, f_{b'})
 ```
 
-If models are independent with equal variance \(\sigma^2\):
+If models are independent with equal variance $\sigma^2$:
 
 ```math
 \text{Var}(\bar{f}) = \frac{\sigma^2}{B}
 ```
 
-**Key insight:** Averaging reduces variance by factor of \(B\)!
+**Key insight:** Averaging reduces variance by factor of $B$!
 
 ---
 
@@ -58,31 +58,32 @@ If models are independent with equal variance \(\sigma^2\):
 
 ### Algorithm
 
-1. Generate \(B\) bootstrap samples \(\mathcal{D}_1, \ldots, \mathcal{D}_B\)
-2. Train model \(f_b\) on each \(\mathcal{D}_b\)
+1. Generate $B$ bootstrap samples $\mathcal{D}_1, \ldots, \mathcal{D}_B$
+2. Train model $f_b$ on each $\mathcal{D}_b$
 3. Aggregate:
    - Regression: \(\hat{f}(x) = \frac{1}{B}\sum_{b=1}^B f_b(x)\)
    - Classification: \(\hat{f}(x) = \text{mode}(\{f_b(x)\}_{b=1}^B)\)
 
 ### Variance Reduction Theorem
 
-**Theorem:** For base learners with variance \(\sigma^2\) and pairwise correlation \(\rho\):
+**Theorem:** For base learners with variance $\sigma^2$ and pairwise correlation $\rho$:
 
 ```math
 \text{Var}(\bar{f}) = \rho\sigma^2 + \frac{1-\rho}{B}\sigma^2
 ```
 
 **Proof:**
+
 ```math
 \text{Var}\left(\frac{1}{B}\sum_b f_b\right) = \frac{1}{B^2}\left[B\sigma^2 + B(B-1)\rho\sigma^2\right] = \rho\sigma^2 + \frac{(1-\rho)\sigma^2}{B}
 ```
 
-As \(B \to \infty\): \(\text{Var}(\bar{f}) \to \rho\sigma^2\). \(\blacksquare\)
+As $B \to \infty$: \(\text{Var}(\bar{f}) \to \rho\sigma^2\). $\blacksquare$
 
 ### Random Forest
 
-Adds feature randomization to reduce \(\rho\):
-- At each split, consider only \(\sqrt{d}\) random features
+Adds feature randomization to reduce $\rho$:
+- At each split, consider only $\sqrt{d}$ random features
 - Reduces correlation between trees
 
 ---
@@ -91,24 +92,27 @@ Adds feature randomization to reduce \(\rho\):
 
 ### AdaBoost Algorithm
 
-**Input:** Training data \(\{(x_i, y_i)\}_{i=1}^n\), \(y_i \in \{-1, +1\}\), \(T\) iterations
+**Input:** Training data \(\{(x_i, y_i)\}_{i=1}^n\), $y_i \in \{-1, +1\}$, $T$ iterations
 
 **Initialize:** \(w_i^{(1)} = \frac{1}{n}\)
 
-**For \(t = 1, \ldots, T\):**
+**For $t = 1, \ldots, T$:**
 
-1. Train weak learner \(h_t\) on weighted data
+1. Train weak learner $h_t$ on weighted data
 2. Compute weighted error:
+
 ```math
 \epsilon_t = \sum_{i=1}^n w_i^{(t)} \mathbb{1}[h_t(x_i) \neq y_i]
 ```
 
 3. Compute learner weight:
+
 ```math
 \alpha_t = \frac{1}{2}\ln\left(\frac{1-\epsilon_t}{\epsilon_t}\right)
 ```
 
 4. Update sample weights:
+
 ```math
 w_i^{(t+1)} = \frac{w_i^{(t)} \exp(-\alpha_t y_i h_t(x_i))}{Z_t}
 ```
@@ -123,7 +127,7 @@ w_i^{(t+1)} = \frac{w_i^{(t)} \exp(-\alpha_t y_i h_t(x_i))}{Z_t}
 \frac{1}{n}\sum_{i=1}^n \mathbb{1}[H(x_i) \neq y_i] \leq \prod_{t=1}^T 2\sqrt{\epsilon_t(1-\epsilon_t)}
 ```
 
-**Proof:** Using \(\exp(-y_i H(x_i)) \geq \mathbb{1}[H(x_i) \neq y_i]\) and telescoping. \(\blacksquare\)
+**Proof:** Using \(\exp(-y_i H(x_i)) \geq \mathbb{1}[H(x_i) \neq y_i]\) and telescoping. $\blacksquare$
 
 ---
 
@@ -137,7 +141,7 @@ Build model additively:
 F_m(x) = F_{m-1}(x) + \gamma_m h_m(x)
 ```
 
-where \(h_m\) fits the negative gradient (pseudo-residuals):
+where $h_m$ fits the negative gradient (pseudo-residuals):
 
 ```math
 r_{im} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]_{F=F_{m-1}}
@@ -148,7 +152,7 @@ r_{im} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]_{F=F_{m-1
 | Loss | Pseudo-Residual |
 |------|-----------------|
 | **MSE** \((y-F)^2\) | \(y - F_{m-1}(x)\) |
-| **Absolute** \(\|y-F\|\) | \(\text{sign}(y - F_{m-1}(x))\) |
+| **Absolute** $\|y-F\|$ | \(\text{sign}(y - F_{m-1}(x))\) |
 | **Logistic** | \(y - \sigma(F_{m-1}(x))\) |
 
 ### XGBoost Objective
@@ -163,7 +167,7 @@ Second-order Taylor approximation:
 \approx \sum_i [g_i f_t(x_i) + \frac{1}{2}h_i f_t^2(x_i)] + \Omega(f_t)
 ```
 
-where \(g_i = \partial_{\hat{y}} \ell\) and \(h_i = \partial^2_{\hat{y}} \ell\).
+where $g_i = \partial_{\hat{y}} \ell$ and $h_i = \partial^2_{\hat{y}} \ell$.
 
 ---
 
@@ -191,6 +195,7 @@ class AdaBoost:
         w = np.ones(n) / n  # Initialize weights
         
         for t in range(self.n_estimators):
+
             # Train weak learner
             model = DecisionTreeClassifier(max_depth=self.max_depth)
             model.fit(X, y, sample_weight=w)
@@ -233,16 +238,19 @@ class GradientBoostingRegressor:
         self.models = []
     
     def fit(self, X, y):
+
         # Initialize with mean
         self.init_pred = np.mean(y)
         F = np.full(len(y), self.init_pred)
         
         for _ in range(self.n_estimators):
+
             # Compute pseudo-residuals (negative gradient for MSE)
             residuals = y - F
             
             # Fit tree to residuals
             tree = DecisionTreeClassifier(max_depth=self.max_depth)
+
             # For regression, we'd use DecisionTreeRegressor
             # Using simple implementation here
             tree.fit(X, np.sign(residuals))
@@ -282,6 +290,7 @@ class RandomForest:
             n_features = d
         
         for _ in range(self.n_estimators):
+
             # Bootstrap sample
             idx = np.random.choice(n, n, replace=True)
             X_boot, y_boot = X[idx], y[idx]
@@ -299,6 +308,7 @@ class RandomForest:
     
     def predict(self, X):
         predictions = np.array([tree.predict(X) for tree in self.trees])
+
         # Majority vote
         return np.apply_along_axis(
             lambda x: np.bincount(x.astype(int)).argmax(),

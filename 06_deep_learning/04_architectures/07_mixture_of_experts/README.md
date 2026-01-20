@@ -28,18 +28,20 @@ y = \sum_{i=1}^{N} G(x)_i \cdot E_i(x)
 ```
 
 where:
-- \(N\): number of experts
-- \(E_i(x)\): output of expert \(i\)
-- \(G(x)_i\): gating weight for expert \(i\)
+- $N$: number of experts
+- \(E_i(x)\): output of expert $i$
+- \(G(x)_i\): gating weight for expert $i$
 
 ### Gating Function
 
 **Softmax routing:**
+
 ```math
 G(x) = \text{softmax}(W_g x)
 ```
 
 **Top-k sparse routing:**
+
 ```math
 G(x) = \text{softmax}(\text{TopK}(W_g x, k))
 ```
@@ -73,14 +75,15 @@ Parameters: 8× of dense FFN
 **Problem:** Some experts may be underutilized (routing collapse).
 
 **Auxiliary loss for load balancing:**
+
 ```math
 L_{aux} = \alpha \cdot N \cdot \sum_{i=1}^{N} f_i \cdot P_i
 ```
 
 where:
-- \(f_i\): fraction of tokens routed to expert \(i\)
-- \(P_i\): average routing probability for expert \(i\)
-- \(\alpha\): balancing coefficient (typically 0.01)
+- $f_i$: fraction of tokens routed to expert $i$
+- $P_i$: average routing probability for expert $i$
+- $\alpha$: balancing coefficient (typically 0.01)
 
 **Derivation:**
 ```
@@ -99,6 +102,7 @@ At optimum: P_i = f_i = 1/N → L_aux = α·N·(1/N)·(1/N)·N = α
 ### Capacity Factor
 
 Each expert has limited capacity:
+
 ```math
 \text{capacity} = \frac{k \cdot \text{tokens}}{N} \cdot \text{capacity\_factor}
 ```
@@ -117,6 +121,7 @@ Trade-off: Higher capacity → more compute but less dropping
 ### Token Dropping
 
 ```python
+
 # Compute assignments
 gates = softmax(router(x))
 top_k_indices = gates.topk(k).indices
@@ -127,6 +132,7 @@ expert_counts = bincount(top_k_indices)
 # Drop tokens exceeding capacity
 for expert_id in range(num_experts):
     if expert_counts[expert_id] > capacity:
+
         # Keep only first 'capacity' tokens
         drop_mask[expert_id] = True
 ```
@@ -138,6 +144,7 @@ for expert_id in range(num_experts):
 ### 1. Switch Transformer (Top-1)
 
 Use only 1 expert per token:
+
 ```math
 G(x) = \text{onehot}(\arg\max_i (W_g x)_i)
 ```
@@ -238,6 +245,7 @@ class TopKRouter(nn.Module):
         Load balancing auxiliary loss
         L_aux = α · N · Σᵢ fᵢ · Pᵢ
         """
+
         # Router probability (soft assignment)
         router_probs = F.softmax(logits, dim=-1)  # (batch, seq, experts)
         
@@ -289,6 +297,7 @@ class MoELayer(nn.Module):
         
         # Get routing weights and indices
         gates, indices, aux_loss = self.router(x)
+
         # gates: (batch, seq, top_k)
         # indices: (batch, seq, top_k)
         
@@ -297,12 +306,14 @@ class MoELayer(nn.Module):
         
         # Process each expert
         for expert_idx in range(self.num_experts):
+
             # Find tokens routed to this expert
             # (for each top-k slot)
             for k in range(self.top_k):
                 mask = indices[:, :, k] == expert_idx  # (batch, seq)
                 
                 if mask.any():
+
                     # Get tokens for this expert
                     expert_input = x[mask]  # (num_tokens, d_model)
                     
@@ -384,6 +395,7 @@ class MoETransformerBlock(nn.Module):
         self.dropout = nn.Dropout(dropout)
     
     def forward(self, x, mask=None):
+
         # Self-attention
         h = self.ln1(x)
         attn_out, _ = self.attn(h, h, h, attn_mask=mask)
@@ -418,6 +430,7 @@ class SparseMoE(nn.Module):
                     MoETransformerBlock(d_model, n_heads, d_ff, num_experts, top_k, dropout)
                 )
             else:
+
                 # Dense FFN layer
                 self.layers.append(
                     nn.TransformerEncoderLayer(d_model, n_heads, d_ff, dropout, 

@@ -80,11 +80,13 @@ X_1, \ldots, X_n \sim \mathcal{N}(\mu, \sigma^2)
 ```
 
 **Log-likelihood:**
+
 ```math
 \ell(\mu) = -\frac{n}{2}\log(2\pi\sigma^2) - \frac{1}{2\sigma^2}\sum_{i=1}^{n}(x_i - \mu)^2
 ```
 
 **MLE:**
+
 ```math
 \mu_{MLE} = \frac{1}{n}\sum_{i=1}^{n} x_i = \bar{x}
 ```
@@ -96,6 +98,7 @@ X_1, \ldots, X_n \sim \text{Bernoulli}(p)
 ```
 
 **Log-likelihood:**
+
 ```math
 \ell(p) = k \log p + (n-k) \log(1-p)
 ```
@@ -103,6 +106,7 @@ X_1, \ldots, X_n \sim \text{Bernoulli}(p)
 where $k = \sum\_{i=1}^{n} x\_i$.
 
 **MLE:**
+
 ```math
 p_{MLE} = \frac{k}{n} = \frac{\sum_i x_i}{n}
 ```
@@ -119,6 +123,7 @@ P(\theta) = \mathcal{N}(0, \sigma^2 I)
 ```
 
 **MAP objective:**
+
 ```math
 \arg\max_\theta \left[\sum_i \log P(x_i|\theta) - \lambda\|\theta\|^2\right]
 ```
@@ -132,6 +137,7 @@ P(\theta) \propto \exp(-|\theta|/b)
 ```
 
 **MAP objective:**
+
 ```math
 \arg\max_\theta \left[\sum_i \log P(x_i|\theta) - \lambda\|\theta\|_1\right]
 ```
@@ -239,6 +245,7 @@ I(\theta) = -E\left[\frac{\partial^2 \log P(X|\theta)}{\partial \theta^2}\right]
 - $\text{Var}(\hat{\theta}\_{MLE}) \approx \frac{1}{I(\theta)}$ (asymptotically)
 
 **Cramér-Rao Lower Bound:**
+
 ```math
 \text{Var}(\hat{\theta}) \geq \frac{1}{I(\theta)}
 ```

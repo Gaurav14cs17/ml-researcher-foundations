@@ -515,6 +515,7 @@ def crowding_distance(front_indices: List[int],
     obj = objectives[front_indices]
     
     for m in range(objectives.shape[1]):
+
         # Sort by objective m
         sorted_idx = np.argsort(obj[:, m])
         
@@ -546,6 +547,7 @@ def nsga2_select(population: np.ndarray,
         if len(selected) + len(front) <= n_select:
             selected.extend(front)
         else:
+
             # Need to select subset based on crowding distance
             n_needed = n_select - len(selected)
             cd = crowding_distance(front, objectives)

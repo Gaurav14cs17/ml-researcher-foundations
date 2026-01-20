@@ -18,6 +18,7 @@
 ### 1. MoE Layer Formulation
 
 **General MoE Output:**
+
 ```math
 y = \sum_{i=1}^{N} g_i(x) \cdot E_i(x)
 ```
@@ -28,6 +29,7 @@ Where:
 - $E\_i(x)$ = output of expert $i$
 
 **Gating Function:**
+
 ```math
 g(x) = \text{softmax}(W_g \cdot x)
 g_i(x) = \frac{\exp(W_g^{(i)} \cdot x)}{\sum_j \exp(W_g^{(j)} \cdot x)}
@@ -36,6 +38,7 @@ g_i(x) = \frac{\exp(W_g^{(i)} \cdot x)}{\sum_j \exp(W_g^{(j)} \cdot x)}
 ### 2. Top-K Sparse Routing
 
 **Sparse Gating (Top-K):**
+
 ```math
 g(x) = \text{TopK}(\text{softmax}(W_g \cdot x + \epsilon))
 ```
@@ -45,11 +48,13 @@ Where:
 - Only top-$K$ values are non-zero
 
 **Normalization after Top-K:**
+
 ```math
 \hat{g}_i(x) = \frac{g_i(x)}{\sum_{j \in \text{TopK}} g_j(x)}
 ```
 
 **Sparse Output:**
+
 ```math
 y = \sum_{i \in \text{TopK}(g)} \hat{g}_i(x) \cdot E_i(x)
 ```
@@ -57,16 +62,19 @@ y = \sum_{i \in \text{TopK}(g)} \hat{g}_i(x) \cdot E_i(x)
 ### 3. Computational Efficiency
 
 **Dense Model FLOPs:**
+
 ```math
 \text{FLOPs}_{dense} = \text{FLOPs}_{attention} + \text{FLOPs}_{FFN}
 ```
 
 **MoE Model FLOPs:**
+
 ```math
 \text{FLOPs}_{MoE} = \text{FLOPs}_{attention} + K \cdot \text{FLOPs}_{expert}
 ```
 
 **Efficiency Gain:**
+
 ```math
 \text{Speedup} = \frac{N \cdot \text{FLOPs}_{expert}}{K \cdot \text{FLOPs}_{expert}} = \frac{N}{K}
 ```
@@ -78,6 +86,7 @@ For Mixtral (N=8, K=2): $4\times$ fewer FLOPs in FFN layers!
 **Problem:** Without balancing, router may collapse to using few experts.
 
 **Auxiliary Loss (Switch Transformer):**
+
 ```math
 \mathcal{L}_{balance} = \alpha \cdot N \cdot \sum_{i=1}^{N} f_i \cdot P_i
 ```
@@ -89,6 +98,7 @@ Where:
 **Intuition:** Minimizing $\sum f\_i P\_i$ encourages uniform distribution.
 
 **Proof of Effectiveness:**
+
 ```math
 \sum_i f_i P_i \geq \sum_i f_i^2 \geq \frac{1}{N}
 ```
@@ -98,6 +108,7 @@ Equality holds when $f\_i = 1/N$ (perfectly balanced).
 ### 5. Expert Capacity
 
 **Capacity Factor $C$:**
+
 ```math
 \text{Capacity} = C \cdot \frac{B \times L}{N}
 ```
@@ -128,6 +139,7 @@ Each expert selects its top-$K$ tokens to process.
 ### 7. Theoretical Analysis
 
 **Capacity vs Quality Trade-off:**
+
 ```math
 \mathcal{L}_{total} = \mathcal{L}_{task} + \alpha \mathcal{L}_{balance}
 ```
@@ -143,6 +155,7 @@ Each expert selects its top-$K$ tokens to process.
 **Proof:**
 
 By Cauchy-Schwarz inequality:
+
 ```math
 \left(\sum_i f_i P_i\right) \geq \frac{\left(\sum_i \sqrt{f_i P_i}\right)^2}{N}
 ```
@@ -150,6 +163,7 @@ By Cauchy-Schwarz inequality:
 Since $\sum\_i f\_i = 1$ and $\sum\_i P\_i = 1$ (probability constraints):
 
 Using AM-GM on each term:
+
 ```math
 f_i P_i \geq 0 \text{ with equality when } f_i = P_i
 ```
@@ -161,6 +175,7 @@ f_i = P_i = \frac{1}{N} \quad \forall i
 ```
 
 At minimum:
+
 ```math
 \mathcal{L}_{aux}^{min} = N \cdot N \cdot \frac{1}{N} \cdot \frac{1}{N} = 1
 ```
@@ -194,6 +209,7 @@ But larger $N$ means more routing overhead: $C\_{router} = N \cdot d$.
 Total compute: $C\_{total} = K \cdot (P/N) + N \cdot d$
 
 Minimizing w.r.t. $N$:
+
 ```math
 \frac{dC_{total}}{dN} = -\frac{KP}{N^2} + d = 0
 N^* = \sqrt{\frac{KP}{d}} \propto \sqrt{\frac{P \cdot K}{C}}
@@ -219,6 +235,7 @@ Higher $H(g)$ correlates with lower generalization gap.
 4. With high entropy, $N\_{active} \approx N$, utilizing full capacity
 
 **Formal bound:**
+
 ```math
 \text{Generalization gap} \leq O\left(\sqrt{\frac{N_{active} \cdot p}{m}}\right)
 ```
@@ -238,6 +255,7 @@ where $m$ = training samples. ∎
 Forward: $y = \sum\_{i \in \text{TopK}} g\_i(x) E\_i(x)$
 
 By chain rule:
+
 ```math
 \frac{\partial \mathcal{L}}{\partial W_g} = \frac{\partial \mathcal{L}}{\partial y} \cdot \frac{\partial y}{\partial g} \cdot \frac{\partial g}{\partial W_g}
 \frac{\partial y}{\partial g_i} = E_i(x)
@@ -245,6 +263,7 @@ By chain rule:
 ```
 
 Combining:
+
 ```math
 \frac{\partial \mathcal{L}}{\partial W_g^{(j)}} = \sum_i \frac{\partial \mathcal{L}}{\partial y} E_i(x) g_i(\delta_{ij} - g_j) x^T
 ```
@@ -262,6 +281,7 @@ Combining:
 3. By Stone-Weierstrass, sum of localized approximators spans continuous functions
 
 For any $\epsilon > 0$, there exists $N, w$ such that:
+
 ```math
 \sup_{x \in \mathcal{X}} |f(x) - \text{MoE}(x)| < \epsilon
 ```
@@ -386,6 +406,7 @@ class MoELayer(nn.Module):
         Auxiliary loss for load balancing
         L = α * N * Σᵢ fᵢ * Pᵢ
         """
+
         # Average routing probability per expert
         P = router_probs.mean(dim=0)  # [n_experts]
         

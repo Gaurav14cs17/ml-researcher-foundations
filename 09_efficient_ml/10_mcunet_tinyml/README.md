@@ -75,22 +75,25 @@ Running machine learning on **microcontrollers** (MCUs):
 ### Memory Constraint Formalization
 
 **Peak memory during inference:**
+
 ```math
 M_{peak} = \max_l \left(M_{input}^l + M_{output}^l + M_{weights}^l\right)
 ```
 
 **Constraint:**
+
 ```math
 M_{peak} \leq \text{SRAM}_{available}
 ```
 
-For STM32F746: \( \text{SRAM} = 320\text{KB} \)
+For STM32F746: $\text{SRAM} = 320\text{KB}$
 
 ---
 
 ### TinyNAS Search Objective
 
 **Optimization problem:**
+
 ```math
 \max_\alpha \text{Acc}(\alpha)
 \text{s.t.} \quad M_{peak}(\alpha) \leq S_{max}
@@ -98,17 +101,18 @@ For STM32F746: \( \text{SRAM} = 320\text{KB} \)
 ```
 
 where:
-- \( S_{max} \) = SRAM constraint
-- \( F_{max} \) = Flash constraint
-- \( \alpha \) = architecture parameters
+- $S_{max}$ = SRAM constraint
+- $F_{max}$ = Flash constraint
+- $\alpha$ = architecture parameters
 
 ---
 
 ### Peak Memory Analysis
 
-For layer \( l \) with input \( X \in \mathbb{R}^{C_{in} \times H \times W} \) and output \( Y \in \mathbb{R}^{C_{out} \times H' \times W'} \):
+For layer $l$ with input $X \in \mathbb{R}^{C_{in} \times H \times W}$ and output $Y \in \mathbb{R}^{C_{out} \times H' \times W'}$:
 
 **Memory requirement:**
+
 ```math
 M_l = C_{in} \cdot H \cdot W + C_{out} \cdot H' \cdot W'
 ```
@@ -116,6 +120,7 @@ M_l = C_{in} \cdot H \cdot W + C_{out} \cdot H' \cdot W'
 (assuming in-place computation for weights)
 
 **Peak memory for sequential network:**
+
 ```math
 M_{peak} = \max_l (M_{input}^l + M_{output}^l)
 ```
@@ -125,16 +130,18 @@ M_{peak} = \max_l (M_{input}^l + M_{output}^l)
 ### Patch-Based Inference
 
 **Standard inference:**
+
 ```math
 M = C \times H \times W
 ```
 
-**Patch-based (divide into \( P \times P \) patches):**
+**Patch-based (divide into $P \times P$ patches):**
+
 ```math
 M_{patch} = C \times \frac{H}{P} \times \frac{W}{P} = \frac{M}{P^2}
 ```
 
-**Memory reduction:** \( P^2 \times \)
+**Memory reduction:** $P^2 \times$
 
 **Trade-off:** More computation due to overlapping regions.
 
@@ -142,9 +149,10 @@ M_{patch} = C \times \frac{H}{P} \times \frac{W}{P} = \frac{M}{P^2}
 
 ### Layer Scheduling Optimization
 
-**Problem:** Find layer execution order \( \pi \) to minimize peak memory.
+**Problem:** Find layer execution order $\pi$ to minimize peak memory.
 
 **Formulation:**
+
 ```math
 \min_\pi \max_{t} M_{\pi(t)}
 ```
@@ -169,19 +177,21 @@ Optimal choice depends on relative sizes.
 
 ### Inverted Bottleneck Memory Analysis
 
-For inverted bottleneck with expansion ratio \( e \):
+For inverted bottleneck with expansion ratio $e$:
 
-**Input:** \( C \times H \times W \)
-**After expansion:** \( eC \times H \times W \)
-**After depthwise:** \( eC \times H \times W \)
-**Output:** \( C' \times H \times W \)
+**Input:** $C \times H \times W$
+**After expansion:** $eC \times H \times W$
+**After depthwise:** $eC \times H \times W$
+**Output:** $C' \times H \times W$
 
 **Peak memory (naive):**
+
 ```math
 M_{peak} = C \times H \times W + eC \times H \times W = (1+e) \cdot C \cdot H \cdot W
 ```
 
 **With fused operations:**
+
 ```math
 M_{peak} = C \times H \times W + C' \times H \times W
 ```
@@ -193,13 +203,13 @@ M_{peak} = C \times H \times W + C' \times H \times W
 ### In-Place Depthwise Optimization
 
 **Standard depthwise conv:**
-- Read input: \( C \times H \times W \)
-- Write output: \( C \times H' \times W' \)
+- Read input: $C \times H \times W$
+- Write output: $C \times H' \times W'$
 - Memory: \( C(HW + H'W') \)
 
 **In-place (when stride=1, padding=same):**
 - Overwrite input with output
-- Memory: \( C \times H \times W \)
+- Memory: $C \times H \times W$
 
 **Constraint:** Can only use when output fits in input's memory.
 
@@ -208,7 +218,7 @@ M_{peak} = C \times H \times W + C' \times H \times W
 ### Im2col-Free Convolution
 
 **Standard im2col:**
-1. Reshape input to matrix: \( M_{im2col} = C_{in} \times k^2 \times H' \times W' \)
+1. Reshape input to matrix: $M_{im2col} = C_{in} \times k^2 \times H' \times W'$
 2. Matrix multiply with reshaped kernel
 3. Memory: \( O(C_{in} \cdot k^2 \cdot H' \cdot W') \)
 
@@ -229,6 +239,7 @@ M_{peak} = C \times H \times W + C' \times H \times W
 3. **No FPU:** Many MCUs lack floating-point unit
 
 **Per-layer quantization:**
+
 ```math
 W_l^{int8} = \text{round}\left(\frac{W_l}{s_l}\right)
 ```
@@ -240,16 +251,19 @@ W_l^{int8} = \text{round}\left(\frac{W_l}{s_l}\right)
 ### FLOPS Budget Estimation
 
 **Available FLOPS:**
+
 ```math
 F_{available} = \text{freq} \times \text{cycles/FLOP} \times t_{budget}
 ```
 
 For STM32F746 at 216MHz, 1 FLOP/cycle:
+
 ```math
 F_{available} = 216\text{M} \times 1 \times 0.1\text{s} = 21.6 \text{ MFLOPS}
 ```
 
 **MobileNetV2 0.35× at 96×96:**
+
 ```math
 F_{required} \approx 20 \text{ MFLOPS}
 ```
@@ -261,34 +275,39 @@ Feasible!
 ### Model Size Breakdown
 
 **Weights (INT8):**
+
 ```math
 M_{weights} = \sum_l |\theta_l| \text{ bytes}
 ```
 
-**Must fit in Flash:** \( M_{weights} \leq 1\text{MB} \)
+**Must fit in Flash:** $M_{weights} \leq 1\text{MB}$
 
 **Activations (INT8):**
+
 ```math
 M_{act} = \max_l (|X_l| + |Y_l|) \text{ bytes}
 ```
 
-**Must fit in SRAM:** \( M_{act} \leq 320\text{KB} \)
+**Must fit in SRAM:** $M_{act} \leq 320\text{KB}$
 
 ---
 
 ### Energy Consumption Model
 
 **Energy per inference:**
+
 ```math
 E = P \times t = P \times \frac{\text{FLOPs}}{\text{FLOPS}}
 ```
 
 For MCU at 100mW computing 100 MFLOPs:
+
 ```math
 E = 0.1\text{W} \times \frac{10^8}{10^8} = 0.1 \text{ Joule}
 ```
 
 **Battery life (3.7V, 500mAh):**
+
 ```math
 \text{Inferences} = \frac{3.7 \times 0.5 \times 3600}{0.1} = 66,600
 ```
@@ -313,6 +332,7 @@ E = 0.1\text{W} \times \frac{10^8}{10^8} = 0.1 \text{ Joule}
 | [← Knowledge Distillation](../09_knowledge_distillation/README.md) | [Efficient ML](../README.md) | [Efficient Transformers →](../11_efficient_transformers/README.md) |
 
 ---
+
 ## 📚 References
 
 | Type | Resource | Link |

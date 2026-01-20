@@ -32,13 +32,13 @@
 
 ## 📂 Overview
 
-**Hyperparameter tuning** is the process of finding optimal hyperparameters \(\lambda\) that minimize validation error:
+**Hyperparameter tuning** is the process of finding optimal hyperparameters $\lambda$ that minimize validation error:
 
 ```math
 \lambda^* = \arg\min_{\lambda \in \Lambda} \mathcal{L}_{\text{val}}(h_{\lambda})
 ```
 
-where \(h_\lambda\) is the model trained with hyperparameters \(\lambda\).
+where $h_\lambda$ is the model trained with hyperparameters $\lambda$.
 
 ---
 
@@ -62,11 +62,11 @@ Exhaustive search over a discretized grid:
 
 ### Bayesian Optimization
 
-**Objective:** Find \(\lambda^* = \arg\min_\lambda f(\lambda)\) where \(f\) is expensive to evaluate.
+**Objective:** Find \(\lambda^* = \arg\min_\lambda f(\lambda)\) where $f$ is expensive to evaluate.
 
 **Algorithm:**
 1. Model \(f(\lambda)\) with surrogate (GP or TPE)
-2. Select next \(\lambda\) using acquisition function
+2. Select next $\lambda$ using acquisition function
 3. Evaluate \(f(\lambda)\)
 4. Update surrogate
 5. Repeat
@@ -105,7 +105,7 @@ where \(Z = \frac{f^+ - \mu(\lambda)}{\sigma(\lambda)}\).
 \text{UCB}(\lambda) = \mu(\lambda) - \kappa \sigma(\lambda)
 ```
 
-where \(\kappa\) controls exploration vs exploitation.
+where $\kappa$ controls exploration vs exploitation.
 
 ---
 
@@ -113,9 +113,9 @@ where \(\kappa\) controls exploration vs exploitation.
 
 ### Successive Halving
 
-Given budget \(B\) and \(n\) configurations:
-1. Allocate \(B/n\) resources to each configuration
-2. Evaluate and keep top \(1/\eta\) fraction
+Given budget $B$ and $n$ configurations:
+1. Allocate $B/n$ resources to each configuration
+2. Evaluate and keep top $1/\eta$ fraction
 3. Repeat with increased budget
 
 **Theorem:** Successive halving finds the best arm with at most \(O(\frac{B}{\log(n)})\) additional evaluations compared to optimal.
@@ -128,9 +128,9 @@ Run successive halving with different \((n, B/n)\) trade-offs:
 s_{\max} = \lfloor \log_\eta(B) \rfloor
 ```
 
-For each \(s \in \{s_{\max}, \ldots, 0\}\):
+For each $s \in \{s_{\max}, \ldots, 0\}$:
 - \(n = \lceil \frac{B \eta^s}{(s+1)} \rceil\) initial configurations
-- \(r = B \eta^{-s}\) minimum budget per configuration
+- $r = B \eta^{-s}$ minimum budget per configuration
 
 ---
 
@@ -225,6 +225,7 @@ class BayesianOptimizer:
         
         # Bayesian optimization loop
         for i in range(n_iterations):
+
             # Fit GP
             X_arr = np.array(self.X)
             y_arr = np.array(self.y)
@@ -257,6 +258,7 @@ class Hyperband:
     def successive_halving(self, configs, budgets, evaluate_fn):
         """Run successive halving."""
         for budget in budgets:
+
             # Evaluate all configurations
             results = [(c, evaluate_fn(c, budget)) for c in configs]
             
@@ -275,6 +277,7 @@ class Hyperband:
         best_loss = np.inf
         
         for s in range(self.s_max, -1, -1):
+
             # Number of configurations
             n = int(np.ceil((self.s_max + 1) / (s + 1) * self.eta ** s))
             
@@ -299,9 +302,11 @@ class Hyperband:
 
 # Example usage
 if __name__ == "__main__":
+
     # Define objective function (e.g., validation loss)
     def objective(params):
         x, y = params
+
         # Branin function (common benchmark)
         a, b, c = 1, 5.1/(4*np.pi**2), 5/np.pi
         r, s, t = 6, 10, 1/(8*np.pi)

@@ -268,6 +268,7 @@ class RewardModel(nn.Module):
         self.reward_head = nn.Linear(self.backbone.config.hidden_size, 1)
     
     def forward(self, input_ids, attention_mask):
+
         # Get last hidden state
         outputs = self.backbone(
             input_ids=input_ids,
@@ -294,6 +295,7 @@ def train_reward_model(model, dataloader, optimizer, epochs=3):
         total = 0
         
         for batch in dataloader:
+
             # Get rewards for chosen and rejected
             r_chosen = model(batch['chosen_ids'], batch['chosen_mask'])
             r_rejected = model(batch['rejected_ids'], batch['rejected_mask'])
@@ -334,6 +336,7 @@ class RLHFTrainer:
     
     def compute_rewards(self, prompts, responses):
         """Compute reward with KL penalty"""
+
         # Get reward model score
         with torch.no_grad():
             reward_scores = self.reward_model(prompts + responses)
@@ -372,6 +375,7 @@ class RLHFTrainer:
     
     def ppo_step(self, prompts, responses, old_logprobs, old_values):
         """Single PPO update step"""
+
         # Get current policy outputs
         logprobs = self.policy.log_prob(responses, prompts)
         values = self.policy.value(prompts, responses)
@@ -435,6 +439,7 @@ class DPOTrainer:
     
     def dpo_loss(self, chosen_ids, chosen_mask, rejected_ids, rejected_mask):
         """Compute DPO loss"""
+
         # Policy log probs
         policy_chosen_logp = self.compute_log_probs(
             self.model, chosen_ids, chosen_mask, chosen_ids

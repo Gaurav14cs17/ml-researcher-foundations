@@ -70,6 +70,7 @@ as $n \to \infty$. $\quad \blacksquare$
 ```
 
 **Equivalently:**
+
 ```math
 \bar{X}_n \approx \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right)
 ```
@@ -79,6 +80,7 @@ as $n \to \infty$. $\quad \blacksquare$
 ### Proof Sketch (via Characteristic Functions)
 
 **Step 1:** Standardize variables
+
 ```math
 Z_i = \frac{X_i - \mu}{\sigma}
 ```
@@ -86,27 +88,32 @@ Z_i = \frac{X_i - \mu}{\sigma}
 So $E[Z\_i] = 0$ and $\text{Var}(Z\_i) = 1$.
 
 **Step 2:** Define standardized sum
+
 ```math
 S_n = \frac{1}{\sqrt{n}}\sum_{i=1}^{n} Z_i = \frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma}
 ```
 
 **Step 3:** Compute characteristic function
+
 ```math
 \phi_{S_n}(t) = E[e^{itS_n}] = \left[\phi_Z\left(\frac{t}{\sqrt{n}}\right)\right]^n
 ```
 
 **Step 4:** Taylor expansion of $\phi\_Z$
+
 ```math
 \phi_Z(s) = 1 + is \cdot E[Z] - \frac{s^2}{2}E[Z^2] + O(s^3)
 = 1 - \frac{s^2}{2} + O(s^3)
 ```
 
 **Step 5:** Substitute $s = t/\sqrt{n}$
+
 ```math
 \phi_Z\left(\frac{t}{\sqrt{n}}\right) = 1 - \frac{t^2}{2n} + O\left(\frac{1}{n^{3/2}}\right)
 ```
 
 **Step 6:** Take limit
+
 ```math
 \phi_{S_n}(t) = \left[1 - \frac{t^2}{2n}\right]^n \to e^{-t^2/2}
 ```
@@ -140,6 +147,7 @@ P(X \geq a) \leq \frac{E[X]}{a}
 ```
 
 **Proof:**
+
 ```math
 E[X] = E[X \cdot \mathbf{1}_{X \geq a}] + E[X \cdot \mathbf{1}_{X < a}] \geq a \cdot P(X \geq a) \quad \blacksquare
 ```

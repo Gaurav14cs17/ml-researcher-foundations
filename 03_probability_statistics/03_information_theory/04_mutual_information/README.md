@@ -135,11 +135,13 @@ I(X; Y, Z) = I(X; Z) + I(X; Y | Z)
 For Markov chain $X \to Y \to Z$: $I(X; Z | Y) = 0$
 
 Therefore:
+
 ```math
 I(X; Z) + I(X; Y | Z) = I(X; Y)
 ```
 
 Since $I(X; Y | Z) \geq 0$:
+
 ```math
 I(X; Z) \leq I(X; Y) \quad \blacksquare
 ```
@@ -159,6 +161,7 @@ I(X; Y) = -\frac{1}{2}\log(1 - \rho^2)
 ### Proof
 
 For bivariate Gaussian:
+
 ```math
 H(X, Y) = \frac{1}{2}\log((2\pi e)^2 |\boldsymbol{\Sigma}|) = \frac{1}{2}\log((2\pi e)^2 \sigma_X^2 \sigma_Y^2 (1 - \rho^2))
 H(X) = \frac{1}{2}\log(2\pi e \sigma_X^2)
@@ -166,6 +169,7 @@ H(Y) = \frac{1}{2}\log(2\pi e \sigma_Y^2)
 ```
 
 Therefore:
+
 ```math
 I(X; Y) = H(X) + H(Y) - H(X, Y) = -\frac{1}{2}\log(1 - \rho^2) \quad \blacksquare
 ```
@@ -199,6 +203,7 @@ I(X; Y) \geq \log(N) - \mathcal{L}_{NCE}
 ### 1. Binning (Discrete)
 
 For discrete variables:
+
 ```math
 \hat{I}(X; Y) = \sum_{x, y} \hat{p}(x, y) \log\frac{\hat{p}(x, y)}{\hat{p}(x)\hat{p}(y)}
 ```
@@ -214,6 +219,7 @@ where $T$ is a neural network.
 ### 3. Variational Bounds
 
 **Lower bound (ELBO-style):**
+
 ```math
 I(X; Y) \geq \mathbb{E}_{p(x,y)}[\log q(y|x)] + H(Y)
 ```
@@ -282,6 +288,7 @@ class MINE(nn.Module):
         """
         Compute MINE lower bound on I(X; Y)
         """
+
         # Joint samples (x, y) from p(x, y)
         joint = self.net(torch.cat([x, y], dim=1))
         

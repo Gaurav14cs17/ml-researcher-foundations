@@ -59,6 +59,7 @@ g & \text{if } \|g\| \leq \tau \\
 ```
 
 Equivalently:
+
 ```math
 \tilde{g} = \min\left(1, \frac{\tau}{\|g\|}\right) g
 ```

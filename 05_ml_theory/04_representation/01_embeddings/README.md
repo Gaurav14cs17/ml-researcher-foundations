@@ -40,18 +40,20 @@
 ### Embedding Layer
 
 An embedding is a mapping:
+
 ```math
 E: \mathcal{V} \to \mathbb{R}^d
 ```
 
-where \(\mathcal{V}\) is a discrete vocabulary and \(d\) is the embedding dimension.
+where $\mathcal{V}$ is a discrete vocabulary and $d$ is the embedding dimension.
 
-Implemented as a lookup table \(E \in \mathbb{R}^{|\mathcal{V}| \times d}\):
+Implemented as a lookup table $E \in \mathbb{R}^{|\mathcal{V}| \times d}$:
+
 ```math
 e_i = E[i] = E^\top \mathbf{1}_i
 ```
 
-where \(\mathbf{1}_i\) is a one-hot vector.
+where $\mathbf{1}_i$ is a one-hot vector.
 
 ---
 
@@ -59,13 +61,14 @@ where \(\mathbf{1}_i\) is a one-hot vector.
 
 ### Skip-gram Model
 
-Given word \(w_t\), predict context words \(w_{t+j}\):
+Given word $w_t$, predict context words $w_{t+j}$:
 
 ```math
 P(w_{t+j} | w_t) = \frac{\exp(v_{w_{t+j}}^\top v_{w_t})}{\sum_{w \in \mathcal{V}} \exp(v_w^\top v_{w_t})}
 ```
 
 **Objective:** Maximize log-likelihood:
+
 ```math
 \mathcal{L} = \sum_{t=1}^T \sum_{-c \leq j \leq c, j \neq 0} \log P(w_{t+j} | w_t)
 ```
@@ -86,13 +89,14 @@ where \(P_n(w) \propto \text{freq}(w)^{3/4}\).
 
 ### InfoNCE Loss
 
-For positive pair \((x, x^+)\) and negative samples \(\{x_i^-\}_{i=1}^{K}\):
+For positive pair \((x, x^+)\) and negative samples $\{x_i^-\}_{i=1}^{K}$:
 
 ```math
 \mathcal{L}_{\text{NCE}} = -\log \frac{\exp(\text{sim}(f(x), f(x^+))/\tau)}{\exp(\text{sim}(f(x), f(x^+))/\tau) + \sum_{i=1}^K \exp(\text{sim}(f(x), f(x_i^-))/\tau)}
 ```
 
 **Theorem:** InfoNCE optimizes a lower bound on mutual information:
+
 ```math
 I(X; X^+) \geq \log K - \mathcal{L}_{\text{NCE}}
 ```
@@ -107,7 +111,7 @@ I(X; X^+) \geq \log K - \mathcal{L}_{\text{NCE}}
 \text{sim}(u, v) = \frac{u \cdot v}{\|u\| \|v\|} = \cos \theta
 ```
 
-**Property:** Scale-invariant, range \([-1, 1]\).
+**Property:** Scale-invariant, range $[-1, 1]$.
 
 ### Euclidean Distance
 
@@ -171,6 +175,7 @@ class Word2VecSkipGram(nn.Module):
         context_word: [batch_size]
         neg_words: [batch_size, num_neg]
         """
+
         # Embeddings
         center_emb = self.in_embed(center_word)       # [B, D]
         context_emb = self.out_embed(context_word)    # [B, D]
@@ -208,6 +213,7 @@ class ContrastiveLearning(nn.Module):
     
     def forward(self, x1, x2):
         """x1, x2 are two augmentations of the same batch."""
+
         # Encode and project
         z1 = F.normalize(self.projector(self.encoder(x1)), dim=1)
         z2 = F.normalize(self.projector(self.encoder(x2)), dim=1)
@@ -237,6 +243,7 @@ def cosine_similarity_search(query, database, top_k=5):
     
     sim(u, v) = u·v / (||u|| ||v||)
     """
+
     # Normalize
     query_norm = F.normalize(query, dim=-1)
     db_norm = F.normalize(database, dim=-1)

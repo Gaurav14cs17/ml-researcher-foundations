@@ -42,6 +42,7 @@ q(x_t | x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0, (1-\bar{\alpha}_t) I)
 ```
 
 **Reparameterization:**
+
 ```math
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1-\bar{\alpha}_t} \epsilon, \quad \epsilon \sim \mathcal{N}(0, I)
 ```
@@ -61,6 +62,7 @@ q(x_{t-1} | x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t, x_0), \tilde{\be
 ```
 
 Where:
+
 ```math
 \tilde{\mu}_t = \frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1-\bar{\alpha}_t} x_0 + \frac{\sqrt{\alpha_t}(1-\bar{\alpha}_{t-1})}{1-\bar{\alpha}_t} x_t
 \tilde{\beta}_t = \frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t} \beta_t
@@ -93,6 +95,7 @@ x_0 = \frac{x_t - \sqrt{1-\bar{\alpha}_t} \epsilon}{\sqrt{\bar{\alpha}_t}}
 ```
 
 Substituting into $\tilde{\mu}\_t$:
+
 ```math
 \tilde{\mu}_t = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon\right)
 ```
@@ -103,6 +106,7 @@ So predicting $\epsilon$ is equivalent to predicting $\mu$!
 
 ```python
 def train_step(model, x0):
+
     # 1. Sample timestep
     t = torch.randint(0, T, (batch_size,))
     

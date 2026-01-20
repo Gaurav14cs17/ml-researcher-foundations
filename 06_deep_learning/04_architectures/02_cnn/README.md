@@ -23,13 +23,14 @@ Convolutional Neural Networks (CNNs) are specialized neural networks for process
 
 ### 2D Convolution
 
-For input \(I\) and kernel \(K\):
+For input $I$ and kernel $K$:
 
 ```math
 (I * K)[i,j] = \sum_{m=0}^{k_h-1} \sum_{n=0}^{k_w-1} I[i+m, j+n] \cdot K[m, n]
 ```
 
 **With multiple channels (cross-correlation):**
+
 ```math
 Y[c_{out}, i, j] = \sum_{c_{in}=0}^{C_{in}-1} \sum_{m=0}^{k_h-1} \sum_{n=0}^{k_w-1} X[c_{in}, i+m, j+n] \cdot W[c_{out}, c_{in}, m, n] + b[c_{out}]
 ```
@@ -41,14 +42,15 @@ H_{out} = \left\lfloor \frac{H_{in} + 2P - K}{S} \right\rfloor + 1
 ```
 
 where:
-- \(H_{in}\): input height
-- \(P\): padding
-- \(K\): kernel size
-- \(S\): stride
+- $H_{in}$: input height
+- $P$: padding
+- $K$: kernel size
+- $S$: stride
 
 ### Parameter Count
 
 For Conv2d(C_in, C_out, K×K):
+
 ```math
 \text{Parameters} = C_{out} \times (C_{in} \times K \times K + 1)
 ```
@@ -93,6 +95,7 @@ Benefits:
 ### 3. Translation Equivariance
 
 If input shifts, output shifts by the same amount:
+
 ```math
 f(T_x \cdot I) = T_x \cdot f(I)
 ```
@@ -120,6 +123,7 @@ The receptive field is the region of input that affects a single output neuron.
 ### Computing Receptive Field
 
 For a stack of convolutions:
+
 ```math
 R_{out} = R_{in} + (K - 1) \times \prod_{i=1}^{l-1} S_i
 ```
@@ -151,16 +155,19 @@ Same receptive field, fewer parameters, more nonlinearity!
 ### 1. Pooling
 
 **Max Pooling:**
+
 ```math
 Y[i,j] = \max_{m,n \in \text{window}} X[i \cdot s + m, j \cdot s + n]
 ```
 
 **Average Pooling:**
+
 ```math
 Y[i,j] = \frac{1}{k^2} \sum_{m,n \in \text{window}} X[i \cdot s + m, j \cdot s + n]
 ```
 
 **Global Average Pooling (GAP):**
+
 ```math
 Y[c] = \frac{1}{H \times W} \sum_{i,j} X[c, i, j]
 ```
@@ -178,11 +185,12 @@ Benefits:
 ### 3. Dilated (Atrous) Convolution
 
 Insert zeros between kernel elements:
+
 ```math
 Y[i,j] = \sum_{m,n} X[i + r \cdot m, j + r \cdot n] \cdot K[m,n]
 ```
 
-where \(r\) is the dilation rate.
+where $r$ is the dilation rate.
 
 **Benefit:** Larger receptive field without more parameters.
 
@@ -241,12 +249,15 @@ class Conv2dFromScratch(nn.Module):
         # Unfold input into patches
         # This creates a tensor of all (kh × kw) patches
         patches = x.unfold(2, kh, self.stride).unfold(3, kw, self.stride)
+
         # Shape: (batch, in_channels, H_out, W_out, kh, kw)
         
         patches = patches.contiguous().view(batch_size, self.in_channels, H_out, W_out, -1)
+
         # Shape: (batch, in_channels, H_out, W_out, kh*kw)
         
         weight = self.weight.view(self.out_channels, self.in_channels, -1)
+
         # Shape: (out_channels, in_channels, kh*kw)
         
         # Compute convolution via einsum
@@ -294,6 +305,7 @@ class BottleneckBlock(nn.Module):
     
     def __init__(self, in_channels, channels, stride=1, downsample=None):
         super().__init__()
+
         # Bottleneck reduces channels, processes, then expands
         self.conv1 = nn.Conv2d(in_channels, channels, 1, bias=False)
         self.bn1 = nn.BatchNorm2d(channels)
@@ -325,6 +337,7 @@ class SimpleCNN(nn.Module):
         
         # Feature extractor
         self.features = nn.Sequential(
+
             # Block 1: 32 → 16
             nn.Conv2d(in_channels, 64, 3, padding=1),
             nn.BatchNorm2d(64),
@@ -441,6 +454,7 @@ def visualize_features(model, image):
     # Plot
     fig, axes = plt.subplots(2, 4, figsize=(16, 8))
     for idx, (ax, act) in enumerate(zip(axes.flat, activations[:8])):
+
         # Show first channel of each layer
         ax.imshow(act[0, 0].cpu().numpy(), cmap='viridis')
         ax.set_title(f'Layer {idx+1}')

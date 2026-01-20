@@ -76,6 +76,7 @@ Loss: L = 1/2||ŷ - y||²
 **Step 1: Forward pass (compute all activations)**
 
 ```python
+
 # Forward pass
 z₁ = W₁x + b₁        # Pre-activation layer 1
 h = ReLU(z₁)          # Activation layer 1
@@ -179,6 +180,7 @@ def forward_pass(x, W1, b1, W2, b2, y):
     Forward pass with detailed intermediate values
     Returns: all intermediate values + loss
     """
+
     # Layer 1
     z1 = W1 @ x + b1          # Pre-activation [n × 1]
     h = relu(z1)               # Activation [n × 1]
@@ -203,6 +205,7 @@ def backward_pass(cache):
     """
     Backward pass: compute all gradients
     """
+
     # Extract from cache
     x = cache['x']
     z1 = cache['z1']

@@ -384,6 +384,7 @@ def compute_gradient(f, x):
 
 # Example: Gradient of loss
 def mse_loss(params):
+
     # Simulated prediction and target
     pred = params @ torch.randn(3, 1)
     target = torch.ones(3, 1)
@@ -469,6 +470,7 @@ def newtons_method(f, x0, n_steps=10):
     x = x0.clone()
     
     for _ in range(n_steps):
+
         # Compute gradient and Hessian
         x_req = x.clone().requires_grad_(True)
         grad = torch.autograd.grad(f(x_req), x_req, create_graph=True)[0]
@@ -496,8 +498,10 @@ print(f"GD solution: {x_opt}")  # Should approach [1, 1]
 ### 🤖 Gradient Descent
 
 ```python
+
 # The fundamental training loop
 for batch in dataloader:
+
     # Forward
     loss = model(batch)
     
@@ -512,6 +516,7 @@ for batch in dataloader:
 ### 🤖 Newton's Method (Second-Order)
 
 ```python
+
 # Uses Hessian for faster convergence
 # Update: θ ← θ - H⁻¹∇L
 
@@ -522,6 +527,7 @@ for batch in dataloader:
 ### 🤖 Normalizing Flows
 
 ```python
+
 # Change of variables requires Jacobian determinant
 # p(x) = p(f⁻¹(x)) · |det(J_{f⁻¹}(x))|
 

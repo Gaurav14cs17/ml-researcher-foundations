@@ -275,6 +275,7 @@ print(f"Most important: Page {np.argmax(ranks) + 1}")
 ### 📌 The Problem
 
 In RNNs, gradients flow through time via:
+
 ```math
 \frac{\partial h_t}{\partial h_0} = \prod_{k=1}^{t} W_h^T \text{diag}(\sigma'(z_k))
 ```

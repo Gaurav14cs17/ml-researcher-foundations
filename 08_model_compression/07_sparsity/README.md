@@ -22,11 +22,13 @@
 ### 1. Sparse Matrix Computation
 
 **Dense Matrix-Vector Multiplication:**
+
 ```math
 y = Wx, \quad \text{Complexity: } O(mn)
 ```
 
 **Sparse Matrix-Vector Multiplication:**
+
 ```math
 y = W_{sparse}x, \quad \text{Complexity: } O(\text{nnz})
 ```
@@ -34,6 +36,7 @@ y = W_{sparse}x, \quad \text{Complexity: } O(\text{nnz})
 Where $\text{nnz}$ = number of non-zeros.
 
 **Speedup:**
+
 ```math
 \text{Speedup} = \frac{mn}{\text{nnz}} = \frac{1}{1 - \text{sparsity}}
 ```
@@ -43,6 +46,7 @@ For 90% sparsity: $\text{Speedup} = 10\times$ (theoretical)
 ### 2. Sparsity Patterns
 
 **Unstructured Sparsity:**
+
 ```math
 W_{sparse} = W \odot M, \quad M_{ij} \in \{0, 1\}
 ```
@@ -50,6 +54,7 @@ W_{sparse} = W \odot M, \quad M_{ij} \in \{0, 1\}
 Any element can be zero. Maximum flexibility but requires sparse hardware.
 
 **N:M Structured Sparsity:**
+
 ```math
 \forall \text{ group of } M \text{ elements}: \text{exactly } N \text{ are zero}
 ```
@@ -60,6 +65,7 @@ Any element can be zero. Maximum flexibility but requires sparse hardware.
 - 2× speedup on Tensor Cores
 
 **Mathematical Constraint:**
+
 ```math
 \sum_{j=iM}^{(i+1)M-1} \mathbf{1}[w_j \neq 0] = M - N
 ```
@@ -80,11 +86,13 @@ W = \begin{bmatrix} W_{11} & \mathbf{0} \\ \mathbf{0} & W_{22} \end{bmatrix}
 ### 4. Mixture of Experts (MoE) - Activation Sparsity
 
 **MoE Layer:**
+
 ```math
 y = \sum_{i=1}^{N} g_i(x) \cdot E_i(x)
 ```
 
 **Routing Function:**
+
 ```math
 g(x) = \text{TopK}(\text{softmax}(W_r \cdot x + \epsilon))
 ```
@@ -92,11 +100,13 @@ g(x) = \text{TopK}(\text{softmax}(W_r \cdot x + \epsilon))
 Where $\epsilon \sim \text{Gumbel}(0, 1)$ adds exploration noise.
 
 **Only $K$ experts are computed!**
+
 ```math
 y = \sum_{i \in \text{TopK}} g_i(x) \cdot E_i(x)
 ```
 
 **Effective Compute:**
+
 ```math
 \text{FLOPs}_{effective} = \text{FLOPs}_{shared} + K \cdot \text{FLOPs}_{expert}
 ```
@@ -106,6 +116,7 @@ y = \sum_{i \in \text{TopK}} g_i(x) \cdot E_i(x)
 **Problem:** Router may send all tokens to few experts.
 
 **Auxiliary Loss:**
+
 ```math
 \mathcal{L}_{aux} = \alpha \cdot N \cdot \sum_{i=1}^{N} f_i \cdot P_i
 ```
@@ -120,6 +131,7 @@ Where:
 ### 6. Sparse Attention
 
 **Standard Attention:**
+
 ```math
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d}}\right)V
 \text{Complexity: } O(n^2 d)
@@ -128,16 +140,19 @@ Where:
 **Sparse Attention Patterns:**
 
 *Local Attention:*
+
 ```math
 A_{ij} = \begin{cases} \text{softmax}(\cdot) & |i-j| \leq w \\ 0 & \text{otherwise} \end{cases}
 ```
 
 *Global + Local (Longformer):*
+
 ```math
 A = A_{local} + A_{global}
 ```
 
 *Random Sparse (BigBird):*
+
 ```math
 A = A_{local} + A_{global} + A_{random}
 ```
@@ -154,11 +169,13 @@ Let $f(x; \theta\_0)$ be initialized network. $\exists$ mask $m$ s.t.:
 **Sparse Training Methods:**
 
 *Gradual Magnitude Pruning:*
+
 ```math
 s_t = s_f + (s_0 - s_f)\left(1 - \frac{t}{T}\right)^3
 ```
 
 *Dynamic Sparse Training (SET, RigL):*
+
 ```math
 \theta_{t+1} = \text{TopK}(\theta_t - \alpha \nabla\mathcal{L})
 ```

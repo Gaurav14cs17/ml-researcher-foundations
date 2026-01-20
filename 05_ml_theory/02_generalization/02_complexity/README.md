@@ -40,9 +40,9 @@
 
 ### Definition
 
-**VC Dimension** is the largest number of points that can be **shattered** by a hypothesis class \(\mathcal{H}\).
+**VC Dimension** is the largest number of points that can be **shattered** by a hypothesis class $\mathcal{H}$.
 
-**Shattering:** A set \(S = \{x_1, \ldots, x_n\}\) is shattered by \(\mathcal{H}\) if for every labeling \(\mathbf{y} \in \{0,1\}^n\), there exists \(h \in \mathcal{H}\) such that \(h(x_i) = y_i\) for all \(i\).
+**Shattering:** A set $S = \{x_1, \ldots, x_n\}$ is shattered by $\mathcal{H}$ if for every labeling $\mathbf{y} \in \{0,1\}^n$, there exists $h \in \mathcal{H}$ such that \(h(x_i) = y_i\) for all $i$.
 
 ```math
 \text{VC}(\mathcal{H}) = \max\{n : \exists S \text{ of size } n \text{ shattered by } \mathcal{H}\}
@@ -52,11 +52,11 @@
 
 | Hypothesis Class | VC Dimension | Proof Sketch |
 |-----------------|--------------|--------------|
-| Linear classifiers in \(\mathbb{R}^d\) | \(d + 1\) | Can shatter \(d+1\) points in general position |
+| Linear classifiers in $\mathbb{R}^d$ | $d + 1$ | Can shatter $d+1$ points in general position |
 | Decision stumps | 2 | Axis-aligned threshold |
-| Polynomial of degree \(p\) | \(\binom{d+p}{p}\) | Number of terms |
-| Neural net with \(W\) weights | \(O(W \log W)\) | Via covering numbers |
-| \(k\)-NN with \(k=1\) | \(\infty\) | Can memorize any labeling |
+| Polynomial of degree $p$ | $\binom{d+p}{p}$ | Number of terms |
+| Neural net with $W$ weights | \(O(W \log W)\) | Via covering numbers |
+| $k$-NN with $k=1$ | $\infty$ | Can memorize any labeling |
 
 ---
 
@@ -70,9 +70,9 @@
 \hat{\mathcal{R}}_n(\mathcal{H}) = \mathbb{E}_{\boldsymbol{\sigma}}\left[\sup_{h \in \mathcal{H}} \frac{1}{n}\sum_{i=1}^n \sigma_i h(x_i)\right]
 ```
 
-where \(\sigma_i \in \{-1, +1\}\) are i.i.d. Rademacher random variables.
+where $\sigma_i \in \{-1, +1\}$ are i.i.d. Rademacher random variables.
 
-**Intuition:** How well can \(\mathcal{H}\) fit random noise?
+**Intuition:** How well can $\mathcal{H}$ fit random noise?
 
 ### Properties
 
@@ -84,8 +84,8 @@ where \(\sigma_i \in \{-1, +1\}\) are i.i.d. Rademacher random variables.
 
 | Class | Rademacher Complexity |
 |-------|----------------------|
-| Finite class \(\|\mathcal{H}\| = M\) | \(O(\sqrt{\log M / n})\) |
-| Linear classifiers \(\|w\| \leq B\) | \(O(B/\sqrt{n})\) |
+| Finite class $\|\mathcal{H}\| = M$ | \(O(\sqrt{\log M / n})\) |
+| Linear classifiers $\|w\| \leq B$ | \(O(B/\sqrt{n})\) |
 | Lipschitz functions | \(O(1/\sqrt{n})\) |
 
 ---
@@ -94,7 +94,7 @@ where \(\sigma_i \in \{-1, +1\}\) are i.i.d. Rademacher random variables.
 
 ### VC Bound
 
-**Theorem:** For hypothesis class \(\mathcal{H}\) with VC dimension \(d\), with probability \(\geq 1 - \delta\):
+**Theorem:** For hypothesis class $\mathcal{H}$ with VC dimension $d$, with probability $\geq 1 - \delta$:
 
 ```math
 R(h) \leq \hat{R}(h) + \sqrt{\frac{d(\log(2n/d) + 1) + \log(4/\delta)}{n}}
@@ -103,11 +103,11 @@ R(h) \leq \hat{R}(h) + \sqrt{\frac{d(\log(2n/d) + 1) + \log(4/\delta)}{n}}
 **Proof Sketch:**
 1. Use growth function \(\Pi_\mathcal{H}(n) \leq (en/d)^d\) (Sauer's lemma)
 2. Apply union bound over effective hypotheses
-3. Use Hoeffding's inequality \(\blacksquare\)
+3. Use Hoeffding's inequality $\blacksquare$
 
 ### Rademacher Bound
 
-**Theorem:** With probability \(\geq 1 - \delta\):
+**Theorem:** With probability $\geq 1 - \delta$:
 
 ```math
 R(h) \leq \hat{R}(h) + 2\mathcal{R}_n(\mathcal{H}) + \sqrt{\frac{\log(1/\delta)}{2n}}
@@ -174,6 +174,7 @@ def empirical_rademacher(H, X, n_samples=1000):
     max_correlations = []
     
     for _ in range(n_samples):
+
         # Generate Rademacher variables
         sigma = np.random.choice([-1, 1], size=n)
         

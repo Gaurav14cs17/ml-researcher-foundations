@@ -134,6 +134,7 @@ def pgd_attack(model, x, y, epsilon, alpha, num_steps):
 # Adversarial Training
 def adversarial_training_step(model, x, y, optimizer, epsilon):
     """Single adversarial training step"""
+
     # Generate adversarial examples
     model.eval()
     x_adv = pgd_attack(model, x, y, epsilon, epsilon/4, 10)
@@ -157,6 +158,7 @@ def evaluate_robustness(model, test_loader, epsilon):
     total = 0
     
     for x, y in test_loader:
+
         # Clean accuracy
         output_clean = model(x)
         pred_clean = output_clean.argmax(dim=1)

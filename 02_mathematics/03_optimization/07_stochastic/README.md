@@ -77,11 +77,13 @@
 ### 📌 Algorithm
 
 **Full-Batch Gradient Descent**:
+
 ```math
 \theta_{t+1} = \theta_t - \eta \nabla L(\theta_t) = \theta_t - \eta \frac{1}{n}\sum_{i=1}^{n} \nabla \ell_i(\theta_t)
 ```
 
 **Stochastic Gradient Descent**:
+
 ```math
 \theta_{t+1} = \theta_t - \eta \nabla \ell_{i_t}(\theta_t)
 ```
@@ -89,6 +91,7 @@
 where $i\_t$ is randomly sampled.
 
 **Mini-Batch SGD**:
+
 ```math
 \theta_{t+1} = \theta_t - \eta \frac{1}{|B|}\sum_{i \in B} \nabla \ell_i(\theta_t)
 ```
@@ -152,6 +155,7 @@ v_{t+1} &= \beta v_t + \nabla L(\theta_t) \\
 ```
 
 Or equivalently (with damping factor):
+
 ```math
 \begin{align}
 v_{t+1} &= \beta v_t + (1-\beta) \nabla L(\theta_t) \\
@@ -304,16 +308,19 @@ AdamW is what you actually want for regularization!
 ### 📐 Convergence Rates
 
 **Convex Functions**:
+
 ```math
 \mathbb{E}[L(\theta_T) - L(\theta^*)] = O\left(\frac{1}{\sqrt{T}}\right)
 ```
 
 **Strongly Convex Functions**:
+
 ```math
 \mathbb{E}[\|\theta_T - \theta^*\|^2] = O\left(\frac{1}{T}\right)
 ```
 
 **Non-Convex Functions** (finding stationary point):
+
 ```math
 \min_{t \leq T} \mathbb{E}[\|\nabla L(\theta_t)\|^2] = O\left(\frac{1}{\sqrt{T}}\right)
 ```
@@ -321,6 +328,7 @@ AdamW is what you actually want for regularization!
 ### 📐 Learning Rate Decay
 
 For convergence guarantees, need:
+
 ```math
 \sum_{t=1}^{\infty} \eta_t = \infty \quad \text{and} \quad \sum_{t=1}^{\infty} \eta_t^2 < \infty
 ```
@@ -492,6 +500,7 @@ def training_loop(model, train_loader, optimizer, epochs=10):
     for epoch in range(epochs):
         total_loss = 0
         for batch_x, batch_y in train_loader:
+
             # Forward
             outputs = model(batch_x)
             loss = criterion(outputs, batch_y)

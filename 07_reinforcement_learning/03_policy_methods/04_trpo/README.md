@@ -261,6 +261,7 @@ class TRPOAgent:
     
     def kl_divergence(self, states, old_policy_params):
         """Compute mean KL divergence"""
+
         # Save current params
         current_params = self.get_flat_params()
         
@@ -363,6 +364,7 @@ class TRPOAgent:
             if kl <= self.delta and new_loss > loss:
                 break
         else:
+
             # Revert to old params if line search failed
             self.set_flat_params(old_params)
         

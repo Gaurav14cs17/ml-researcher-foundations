@@ -22,12 +22,14 @@
 ### 1. DistilBERT (Distillation)
 
 **Compression Details:**
+
 ```math
 \text{Teacher: BERT-Base} = 110M \text{ params}
 \text{Student: DistilBERT} = 66M \text{ params}
 ```
 
 **Distillation Loss:**
+
 ```math
 \mathcal{L} = \alpha \mathcal{L}_{CE} + (1-\alpha) T^2 \mathcal{L}_{KL} + \beta \mathcal{L}_{cos}
 ```
@@ -62,6 +64,7 @@ Where $\mathcal{L}\_{cos}$ is cosine embedding loss for hidden states.
 - 8 experts, top-2 routing
 
 **Efficiency Analysis:**
+
 ```math
 \text{Compute Savings} = \frac{N_{total}}{N_{active}} = \frac{46.7B}{12.9B} = 3.6\times
 ```
@@ -77,6 +80,7 @@ Same quality, 5× fewer active params!
 ### 4. MobileNet Efficiency
 
 **Depthwise Separable Analysis:**
+
 ```math
 \frac{\text{Standard Conv}}{\text{DW Separable}} = \frac{D_K^2 \cdot M \cdot N}{D_K^2 \cdot M + M \cdot N} = \frac{1}{1/N + 1/D_K^2}
 ```

@@ -55,11 +55,13 @@ Where:
 ### LoRA Formulation
 
 **Original layer:**
+
 ```math
 y = Wx
 ```
 
 **With LoRA:**
+
 ```math
 y = Wx + \frac{\alpha}{r} \cdot BAx
 ```
@@ -126,11 +128,13 @@ lora_params = 4 * r * (d_model + d_inner)  # 262K parameters
 ### SVD Perspective
 
 Any matrix can be decomposed:
+
 ```math
 W = U\Sigma V^\top \quad \text{(SVD)}
 ```
 
 Low-rank approximation:
+
 ```math
 W \approx U_r \Sigma_r V_r^\top = (U_r \Sigma_r) \cdot V_r^\top = B \cdot A
 ```
@@ -140,6 +144,7 @@ W \approx U_r \Sigma_r V_r^\top = (U_r \Sigma_r) \cdot V_r^\top = B \cdot A
 ### Eckart-Young Theorem
 
 The best rank-$r$ approximation of $\Delta W$ is:
+
 ```math
 \Delta W_r = \sum_{i=1}^{r} \sigma_i u_i v_i^\top
 ```
@@ -162,11 +167,13 @@ LoRA learns $B$ and $A$ such that $BA \approx \Delta W\_r$.
 ### Initialization Strategy
 
 **For $A$:** Gaussian initialization
+
 ```math
 A \sim \mathcal{N}(0, \sigma^2)
 ```
 
 **For $B$:** Zero initialization
+
 ```math
 B = 0
 ```
@@ -236,6 +243,7 @@ class LoRALayer(nn.Module):
         self.dropout = nn.Dropout(dropout) if dropout > 0 else nn.Identity()
     
     def forward(self, x):
+
         # Original output (frozen)
         result = self.original(x)
         
@@ -260,6 +268,7 @@ def add_lora_to_model(model, target_modules, rank=8, alpha=16):
     for name, module in model.named_modules():
         if any(target in name for target in target_modules):
             if isinstance(module, nn.Linear):
+
                 # Replace with LoRA layer
                 parent_name = '.'.join(name.split('.')[:-1])
                 child_name = name.split('.')[-1]
@@ -316,10 +325,12 @@ lora_config = LoraConfig(
 # Wrap model with LoRA
 model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
+
 # Output: trainable params: 4.2M || all params: 6.7B || trainable%: 0.063%
 
 # Train normally
 optimizer = torch.optim.AdamW(model.parameters(), lr=1e-4)
+
 # ... training loop ...
 
 # Save only LoRA weights (tiny!)
@@ -353,6 +364,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 # Add LoRA on top of quantized model
 model = get_peft_model(model, lora_config)
+
 # Now trainable with 24GB GPU!
 ```
 
@@ -367,9 +379,11 @@ model = get_peft_model(model, lora_config)
 
 ### DoRA (2024)
 - **Decomposed LoRA:** Separate magnitude and direction
+
 ```math
 W + \Delta W = m \cdot \frac{W + BA}{\|W + BA\|}
 ```
+
 - Learns magnitude $m$ and directional update $BA$
 - Often outperforms standard LoRA
 
@@ -417,6 +431,7 @@ vs. 13 TB for full fine-tuning (1000 × 13 GB)
 ### Serving Multiple Adapters
 
 ```python
+
 # Load base model once
 base_model = load_model("llama-7b")
 
@@ -429,6 +444,7 @@ adapters = {
 
 def inference(prompt, task):
     adapter = adapters[task]
+
     # Apply adapter (just add BA to forward pass)
     output = base_model(prompt, adapter=adapter)
     return output

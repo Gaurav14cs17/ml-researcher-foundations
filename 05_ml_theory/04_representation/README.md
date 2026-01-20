@@ -43,7 +43,7 @@
 A good representation \(z = f_\theta(x)\) should:
 
 1. **Task-relevant information:** \(I(Z; Y)\) is high
-2. **Invariance:** \(Z\) unchanged under irrelevant transformations
+2. **Invariance:** $Z$ unchanged under irrelevant transformations
 3. **Disentanglement:** Factors of variation are separated
 4. **Compactness:** \(\dim(Z) \ll \dim(X)\)
 
@@ -56,7 +56,7 @@ A good representation \(z = f_\theta(x)\) should:
 where:
 - \(I(Z; Y)\): Information about labels (maximize)
 - \(I(Z; X)\): Information from input (compress)
-- \(\beta\): Trade-off parameter
+- $\beta$: Trade-off parameter
 
 ---
 
@@ -75,6 +75,7 @@ where:
 ### Supervised Representation Learning
 
 Learn features jointly with task:
+
 ```math
 \min_{\theta, \phi} \mathbb{E}[\ell(g_\phi(f_\theta(x)), y)]
 ```
@@ -89,11 +90,12 @@ Learn from data structure without labels:
 ### Disentangled Representations
 
 **β-VAE objective:**
+
 ```math
 \mathcal{L} = \mathbb{E}_{q(z|x)}[\log p(x|z)] - \beta D_{KL}(q(z|x) \| p(z))
 ```
 
-Large \(\beta\) encourages disentanglement.
+Large $\beta$ encourages disentanglement.
 
 ---
 
@@ -195,6 +197,7 @@ class MaskedAutoencoder(nn.Module):
         return x_masked, mask, ids_restore
     
     def forward(self, x):
+
         # Patchify and mask
         x_masked, mask, ids_restore = self.random_masking(x, self.mask_ratio)
         

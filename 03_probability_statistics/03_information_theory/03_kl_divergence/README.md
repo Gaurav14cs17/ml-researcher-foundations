@@ -175,10 +175,12 @@ def kl_gaussian(mu1, logvar1, mu2=None, logvar2=None):
     If mu2, logvar2 are None, uses standard normal N(0,1)
     """
     if mu2 is None:
+
         # KL(q || p) where p = N(0, I)
         # = -0.5 * Σ(1 + log(σ²) - μ² - σ²)
         return -0.5 * torch.sum(1 + logvar1 - mu1.pow(2) - logvar1.exp())
     else:
+
         # General case
         var1 = logvar1.exp()
         var2 = logvar2.exp()
@@ -217,6 +219,7 @@ def distillation_loss(student_logits, teacher_logits, temperature=2.0):
     """
     Knowledge distillation: KL(teacher || student) with temperature
     """
+
     # Soft targets with temperature
     soft_teacher = F.softmax(teacher_logits / temperature, dim=-1)
     log_soft_student = F.log_softmax(student_logits / temperature, dim=-1)

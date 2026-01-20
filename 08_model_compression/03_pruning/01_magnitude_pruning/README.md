@@ -32,11 +32,13 @@
 ```
 
 **Pruning mask:**
+
 ```math
 m_{ij} = \mathbf{1}[|w_{ij}| > \tau]
 ```
 
 **Pruned weights:**
+
 ```math
 W_{pruned} = W \odot M
 ```
@@ -46,6 +48,7 @@ where $\odot$ is element-wise multiplication.
 #### 1.2 Threshold Selection
 
 **Fixed sparsity $s$:**
+
 ```math
 \tau = \text{Percentile}(|W|, 100 \cdot s)
 ```
@@ -59,6 +62,7 @@ where $\odot$ is element-wise multiplication.
 #### 2.1 Layer-wise Pruning
 
 **Prune each layer independently:**
+
 ```math
 \tau_l = \text{Percentile}(|W_l|, 100 \cdot s)
 ```
@@ -69,6 +73,7 @@ where $\odot$ is element-wise multiplication.
 #### 2.2 Global Pruning
 
 **Single threshold across all layers:**
+
 ```math
 \tau = \text{Percentile}(\{|w| : w \in \bigcup_l W_l\}, 100 \cdot s)
 ```
@@ -87,11 +92,13 @@ where $\odot$ is element-wise multiplication.
 #### 3.1 Second-Order Analysis
 
 **Taylor expansion of loss around optimal weights $w^*$:**
+
 ```math
 \mathcal{L}(w^* + \delta w) = \mathcal{L}(w^*) + \underbrace{\nabla\mathcal{L}^T \delta w}_{= 0 \text{ at optimum}} + \frac{1}{2}\delta w^T H \delta w + O(\|\delta w\|^3)
 ```
 
 **Key insight:** At optimum, $\nabla\mathcal{L} = 0$, so:
+
 ```math
 \Delta\mathcal{L} \approx \frac{1}{2}\delta w^T H \delta w = \frac{1}{2}\sum_{i,j} H_{ij} \delta w_i \delta w_j
 ```
@@ -99,16 +106,19 @@ where $\odot$ is element-wise multiplication.
 #### 3.2 Diagonal Approximation
 
 **Assumption:** Off-diagonal terms are small, so:
+
 ```math
 \Delta\mathcal{L} \approx \frac{1}{2}\sum_i H_{ii} \delta w_i^2
 ```
 
 **When removing weight $w\_i$ (setting $\delta w\_i = -w\_i$):**
+
 ```math
 \Delta\mathcal{L}_i \approx \frac{1}{2}H_{ii} w_i^2
 ```
 
 **OBD Saliency:**
+
 ```math
 s_i^{OBD} = \frac{1}{2}H_{ii} w_i^2 = \frac{1}{2}\frac{\partial^2\mathcal{L}}{\partial w_i^2} w_i^2
 ```
@@ -116,6 +126,7 @@ s_i^{OBD} = \frac{1}{2}H_{ii} w_i^2 = \frac{1}{2}\frac{\partial^2\mathcal{L}}{\p
 #### 3.3 Relationship to Magnitude Pruning
 
 **If $H\_{ii} \approx \text{constant}$ across weights:**
+
 ```math
 s_i^{OBD} \propto w_i^2
 ```
@@ -136,11 +147,13 @@ Then OBD reduces to magnitude pruning!
 **Don't assume diagonal Hessian.**
 
 **When removing weight $w\_q$, optimal adjustment to other weights:**
+
 ```math
 \delta w_{-q} = -\frac{w_q}{[H^{-1}]_{qq}} H^{-1}_{:,q}
 ```
 
 **OBS Saliency:**
+
 ```math
 s_q^{OBS} = \frac{w_q^2}{2[H^{-1}]_{qq}}
 ```
@@ -148,6 +161,7 @@ s_q^{OBS} = \frac{w_q^2}{2[H^{-1}]_{qq}}
 #### 4.2 Derivation
 
 **Objective:** Minimize loss increase when pruning $w\_q$:
+
 ```math
 \min_{\delta w_{-q}} \frac{1}{2}(\delta w_q, \delta w_{-q})^T H (\delta w_q, \delta w_{-q})
 ```
@@ -155,17 +169,20 @@ s_q^{OBS} = \frac{w_q^2}{2[H^{-1}]_{qq}}
 subject to $\delta w\_q = -w\_q$ (remove the weight).
 
 **Lagrangian:**
+
 ```math
 L = \frac{1}{2}\delta w^T H \delta w + \lambda(e_q^T \delta w + w_q)
 ```
 
 **KKT conditions:**
+
 ```math
 H \delta w + \lambda e_q = 0
 e_q^T \delta w = -w_q
 ```
 
 **Solution:**
+
 ```math
 \delta w = -\lambda H^{-1} e_q
 \lambda = \frac{w_q}{[H^{-1}]_{qq}}
@@ -173,6 +190,7 @@ e_q^T \delta w = -w_q
 ```
 
 **Loss increase:**
+
 ```math
 \Delta\mathcal{L}_q = \frac{1}{2}\delta w^T H \delta w = \frac{w_q^2}{2[H^{-1}]_{qq}}
 ```
@@ -214,6 +232,7 @@ e_q^T \delta w = -w_q
 #### 6.1 Sparsity Schedule
 
 **Cubic schedule (Zhu & Gupta, 2017):**
+
 ```math
 s_t = s_f + (s_0 - s_f)\left(1 - \frac{t - t_0}{n\Delta t}\right)^3
 ```
@@ -234,6 +253,7 @@ where:
 
 **Mathematical intuition:**
 Each pruning step removes small loss increase:
+
 ```math
 \Delta\mathcal{L}_{total} = \sum_i \Delta\mathcal{L}_i
 ```
@@ -342,6 +362,7 @@ class OBDPruner:
             
             for name, param in self.model.named_parameters():
                 if name in fisher_diag:
+
                     # Fisher = E[g g^T], diagonal = E[g^2]
                     fisher_diag[name] += param.grad.data ** 2
             

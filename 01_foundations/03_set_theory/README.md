@@ -197,6 +197,7 @@ Features: Height × Weight × Age = ℝ × ℝ × ℝ = ℝ³
 ### 💻 Code Implementation
 
 ```python
+
 # Python set operations
 A = {1, 2, 3, 4}
 B = {3, 4, 5, 6}
@@ -275,16 +276,19 @@ print(f"P({{1,2}}) = {power_set({1,2})}")
 ### 📖 Inclusion-Exclusion Principle
 
 **For 2 sets:**
+
 ```math
 |A \cup B| = |A| + |B| - |A \cap B|
 ```
 
 **For 3 sets:**
+
 ```math
 |A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|
 ```
 
 **General form:**
+
 ```math
 \left|\bigcup_{i=1}^n A_i\right| = \sum_{i}|A_i| - \sum_{i<j}|A_i \cap A_j| + \sum_{i<j<k}|A_i \cap A_j \cap A_k| - \cdots
 ```
@@ -386,6 +390,7 @@ def is_surjective(f, domain_samples, codomain_samples, tolerance=1e-6):
     """Check if function covers codomain (approximately)."""
     outputs = set([round(f(x), 6) for x in domain_samples])
     codomain = set([round(y, 6) for y in codomain_samples])
+
     # Check if each codomain point is approximately reached
     covered = sum(1 for y in codomain if any(abs(o - y) < tolerance for o in outputs))
     return covered == len(codomain)
@@ -485,6 +490,7 @@ domain = range(10)
 
 result = check_equivalence(same_parity, domain)
 print(f"Same parity relation: {result}")
+
 # Output: is_equivalence: True
 ```
 
@@ -516,6 +522,7 @@ f(n): 0  1 -1  2 -2  3 -3  ...
 ```
 
 **Formula:**
+
 ```math
 f(n) = \begin{cases} n/2 & \text{if } n \text{ even} \\ -(n+1)/2 & \text{if } n \text{ odd} \end{cases}
 ```
@@ -790,6 +797,7 @@ class SetTheory:
     @staticmethod
     def verify_de_morgan(A: set, B: set, U: set) -> dict:
         """Verify De Morgan's laws."""
+
         # Law 1: (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
         lhs1 = U - (A | B)
         rhs1 = (U - A) & (U - B)
@@ -825,6 +833,7 @@ class SetTheory:
     @staticmethod
     def is_function(R: set, A: set, B: set) -> bool:
         """Check if R ⊆ A × B is a function from A to B."""
+
         # Every element of A must appear exactly once as first component
         first_components = [pair[0] for pair in R]
         return set(first_components) == A and len(first_components) == len(A)

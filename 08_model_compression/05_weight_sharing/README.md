@@ -22,6 +22,7 @@
 ### 1. K-Means Clustering for Weights
 
 **Objective Function:**
+
 ```math
 \min_{\{c_j\}, \{a_i\}} \sum_{i=1}^{n} \|w_i - c_{a_i}\|^2
 ```
@@ -40,11 +41,13 @@ Where:
 ### 2. Compression Analysis
 
 **Original Storage:**
+
 ```math
 \text{Bits}_{original} = n \times 32 \text{ bits}
 ```
 
 **Clustered Storage:**
+
 ```math
 \text{Bits}_{clustered} = K \times 32 + n \times \lceil\log_2(K)\rceil \text{ bits}
 ```
@@ -53,11 +56,13 @@ Where:
 - $n \times \lceil\log\_2(K)\rceil$: Store indices
 
 **Compression Ratio:**
+
 ```math
 CR = \frac{32n}{32K + n\lceil\log_2(K)\rceil}
 ```
 
 **For $n \gg K$:**
+
 ```math
 CR \approx \frac{32}{\lceil\log_2(K)\rceil}
 ```
@@ -72,6 +77,7 @@ CR \approx \frac{32}{\lceil\log_2(K)\rceil}
 ### 3. Huffman Coding Enhancement
 
 **Shannon Entropy:**
+
 ```math
 H = -\sum_{j=1}^{K} p_j \log_2(p_j)
 ```
@@ -79,6 +85,7 @@ H = -\sum_{j=1}^{K} p_j \log_2(p_j)
 Where $p\_j = \frac{|S\_j|}{n}$ is the fraction of weights in cluster $j$.
 
 **Huffman Coding Guarantee:**
+
 ```math
 H \leq \mathbb{E}[\text{bits per weight}] \leq H + 1
 ```
@@ -90,22 +97,26 @@ H \leq \mathbb{E}[\text{bits per weight}] \leq H + 1
 ### 4. Weight Tying (Embedding Sharing)
 
 **Standard Transformer Embeddings:**
+
 ```math
 \text{Input embedding: } E_{in} \in \mathbb{R}^{V \times d}
 \text{Output projection: } W_{out} \in \mathbb{R}^{d \times V}
 ```
 
 **With Weight Tying:**
+
 ```math
 W_{out} = E_{in}^T
 ```
 
 **Parameter Savings:**
+
 ```math
 \Delta P = V \times d
 ```
 
 For LLaMA-7B ($V=32000$, $d=4096$):
+
 ```math
 \Delta P = 32000 \times 4096 = 131M \text{ parameters} \approx 500 \text{ MB}
 ```
@@ -113,16 +124,19 @@ For LLaMA-7B ($V=32000$, $d=4096$):
 ### 5. Cross-Layer Parameter Sharing (ALBERT)
 
 **BERT:** Each layer $l$ has unique parameters
+
 ```math
 \theta_l = \{W_Q^l, W_K^l, W_V^l, W_O^l, W_1^l, W_2^l\}
 ```
 
 **ALBERT:** All layers share the same parameters
+
 ```math
 \theta = \theta_1 = \theta_2 = ... = \theta_L
 ```
 
 **Compression Factor:**
+
 ```math
 CR = L \times
 ```
@@ -134,6 +148,7 @@ For BERT-Large ($L=24$): 24× parameter reduction in attention/FFN layers!
 **Problem:** Embedding matrix $E \in \mathbb{R}^{V \times H}$ is huge when $H$ is large.
 
 **Solution:** Factorize into two smaller matrices:
+
 ```math
 E = E_1 \times E_2
 ```
@@ -143,11 +158,13 @@ Where:
 - $E\_2 \in \mathbb{R}^{E \times H}$ (low-dim to hidden)
 
 **Parameter Reduction:**
+
 ```math
 V \times H \to V \times E + E \times H
 ```
 
 For $V=30000$, $H=1024$, $E=128$:
+
 ```math
 30M \to 3.84M + 0.13M = 3.97M \quad (7.5\times \text{ reduction})
 ```
@@ -158,11 +175,13 @@ For $V=30000$, $H=1024$, $E=128$:
 
 **Multi-Query Attention (MQA):**
 Single K,V projection shared across all heads:
+
 ```math
 W_K, W_V \text{ shared for all heads}
 ```
 
 **Parameter Reduction (MQA):**
+
 ```math
 \frac{h \times d_k \times 2}{d_k \times 2} = h \times
 ```
@@ -237,11 +256,13 @@ class ALBERTEncoder(nn.Module):
     
     def __init__(self, d_model, n_heads, d_ff, n_layers):
         super().__init__()
+
         # Single shared layer
         self.shared_layer = nn.TransformerEncoderLayer(d_model, n_heads, d_ff)
         self.n_layers = n_layers
     
     def forward(self, x):
+
         # Apply same layer n_layers times
         for _ in range(self.n_layers):
             x = self.shared_layer(x)
@@ -262,6 +283,7 @@ class TiedEmbeddingLM(nn.Module):
     def forward(self, x):
         h = self.embedding(x)
         h = self.transformer(h)
+
         # Output projection with tied weights
         logits = torch.matmul(h, self.embedding.weight.T)
         return logits
@@ -276,6 +298,7 @@ class MultiQueryAttention(nn.Module):
         self.d_k = d_model // n_heads
         
         self.W_q = nn.Linear(d_model, d_model)
+
         # Shared K,V projections (single head)
         self.W_k = nn.Linear(d_model, self.d_k)
         self.W_v = nn.Linear(d_model, self.d_k)

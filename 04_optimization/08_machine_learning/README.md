@@ -215,6 +215,7 @@ class SGD:
     
     def step(self, grads):
         for i, (param, grad) in enumerate(zip(self.params, grads)):
+
             # Weight decay (L2 regularization)
             if self.weight_decay > 0:
                 grad = grad + self.weight_decay * param
@@ -411,6 +412,7 @@ class Adam:
         self.t += 1
         
         for i, (param, grad) in enumerate(zip(self.params, grads)):
+
             # Update biased first moment
             self.m[i] = self.beta1 * self.m[i] + (1 - self.beta1) * grad
             

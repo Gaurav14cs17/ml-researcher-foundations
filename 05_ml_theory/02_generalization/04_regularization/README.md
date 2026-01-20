@@ -45,9 +45,9 @@
 ```
 
 where:
-- \(\mathcal{L}_{\text{data}}\): Data fitting term (e.g., cross-entropy, MSE)
+- $\mathcal{L}_{\text{data}}$: Data fitting term (e.g., cross-entropy, MSE)
 - \(\Omega(\theta)\): Regularization function (complexity penalty)
-- \(\lambda > 0\): Regularization strength (hyperparameter)
+- $\lambda > 0$: Regularization strength (hyperparameter)
 
 ---
 
@@ -81,7 +81,7 @@ where:
 
 ### Closed-Form Solution (Linear Regression)
 
-For linear regression \(y = X\beta + \varepsilon\):
+For linear regression $y = X\beta + \varepsilon$:
 
 ```math
 \hat{\beta}_{\text{ridge}} = (X^\top X + \lambda I)^{-1} X^\top y
@@ -90,6 +90,7 @@ For linear regression \(y = X\beta + \varepsilon\):
 **Proof:**
 
 Set gradient to zero:
+
 ```math
 \nabla_\beta \left[\|y - X\beta\|^2 + \lambda\|\beta\|^2\right] = -2X^\top(y - X\beta) + 2\lambda\beta = 0
 X^\top X\beta + \lambda\beta = X^\top y
@@ -116,7 +117,7 @@ p(\theta | \mathcal{D}) \propto p(\mathcal{D} | \theta) \cdot p(\theta)
 \hat{\theta}_{\text{MAP}} = \arg\max_\theta \log p(\theta | \mathcal{D}) = \arg\min_\theta \left[\|y - X\theta\|^2 + \frac{\sigma^2}{\tau^2}\|\theta\|^2\right]
 ```
 
-Setting \(\lambda = \frac{\sigma^2}{\tau^2}\) gives ridge regression.
+Setting $\lambda = \frac{\sigma^2}{\tau^2}$ gives ridge regression.
 
 ---
 
@@ -146,7 +147,7 @@ Setting \(\lambda = \frac{\sigma^2}{\tau^2}\) gives ridge regression.
 
 **Geometric Intuition:**
 
-The L1 ball \(\|\theta\|_1 \leq t\) has corners aligned with axes. The solution lies where the level curves of \(\mathcal{L}_{\text{data}}\) first touch the constraint region—likely at a corner where some \(\theta_i = 0\).
+The L1 ball $\|\theta\|_1 \leq t$ has corners aligned with axes. The solution lies where the level curves of $\mathcal{L}_{\text{data}}$ first touch the constraint region—likely at a corner where some $\theta_i = 0$.
 
 **Proximal Operator (Soft Thresholding):**
 
@@ -200,7 +201,7 @@ Combines L1 and L2:
 
 ### Definition
 
-During training, randomly zero out each hidden unit with probability \(p\):
+During training, randomly zero out each hidden unit with probability $p$:
 
 ```math
 \tilde{h}_i = h_i \cdot m_i, \quad m_i \sim \text{Bernoulli}(1-p)
@@ -222,7 +223,7 @@ During inference, scale activations:
 
 ### Ensemble Interpretation
 
-**Theorem:** Dropout trains an ensemble of \(2^n\) networks (all subnetworks), with weight sharing.
+**Theorem:** Dropout trains an ensemble of $2^n$ networks (all subnetworks), with weight sharing.
 
 At test time, the scaled network approximates the geometric mean of all subnetwork predictions:
 
@@ -236,8 +237,8 @@ At test time, the scaled network approximates the geometric mean of all subnetwo
 
 | Aspect | L1 (Lasso) | L2 (Ridge) |
 |--------|------------|------------|
-| **Penalty** | \(\sum_i \|\theta_i\|\) | \(\sum_i \theta_i^2\) |
-| **Gradient** | \(\text{sign}(\theta)\) | \(2\theta\) |
+| **Penalty** | $\sum_i \|\theta_i\|$ | $\sum_i \theta_i^2$ |
+| **Gradient** | \(\text{sign}(\theta)\) | $2\theta$ |
 | **Sparsity** | Yes (zeros out weights) | No (shrinks but ≠ 0) |
 | **Solution uniqueness** | May not be unique | Always unique |
 | **Prior (Bayesian)** | Laplace | Gaussian |
@@ -424,6 +425,7 @@ class SpectralNormMLP(nn.Module):
     
     def __init__(self, input_dim, hidden_dim, output_dim):
         super().__init__()
+
         # Spectral norm constrains largest singular value of weight matrix
         self.fc1 = spectral_norm(nn.Linear(input_dim, hidden_dim))
         self.fc2 = spectral_norm(nn.Linear(hidden_dim, hidden_dim))
@@ -450,6 +452,7 @@ def train_with_regularization(model, train_loader, val_loader, epochs=100):
     early_stopping = EarlyStopping(patience=10)
     
     for epoch in range(epochs):
+
         # Training
         model.train()
         train_loss = 0.0

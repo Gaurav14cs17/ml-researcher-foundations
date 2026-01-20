@@ -80,6 +80,7 @@ where $U \in \mathbb{R}^{m \times k}$ and $V \in \mathbb{R}^{n \times k}$ with $
 ### 📐 Relation to SVD
 
 SVD gives the optimal low-rank approximation:
+
 ```math
 A = U\Sigma V^T \approx U_k \Sigma_k V_k^T
 ```
@@ -109,6 +110,7 @@ Matrix factorization methods relax these.
 Initialize U, V randomly
 
 Repeat until convergence:
+
     # Fix V, solve for U
     For each user i:
         uᵢ = (VᵀV + λI)⁻¹ Vᵀ rᵢ
@@ -159,6 +161,7 @@ With negative values (like SVD), parts could "cancel out"
 Initialize U, V with random positive values
 
 Repeat until convergence:
+
     # Update U
     Uᵢₖ ← Uᵢₖ × (RV)ᵢₖ / (UV^TV)ᵢₖ
     
@@ -215,6 +218,7 @@ where:
 ### 🔍 Optimization
 
 Minimize over observed ratings $\Omega$:
+
 ```math
 \min \sum_{(i,j) \in \Omega} (r_{ij} - \hat{r}_{ij})^2 + \lambda(\|U\|_F^2 + \|V\|_F^2 + \sum_i b_i^2 + \sum_j b_j^2)
 ```
@@ -273,6 +277,7 @@ class MatrixFactorization:
         
         for epoch in range(self.n_epochs):
             for i, j in zip(*observed):
+
                 # Prediction
                 pred = self.predict_single(i, j)
                 error = R[i, j] - pred

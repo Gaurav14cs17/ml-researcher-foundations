@@ -77,11 +77,13 @@ NF4 is optimal for normally distributed weights.
 #### 3.1 The Memory Problem
 
 **Quantization requires scales:**
+
 ```math
 W_q = \text{round}(W / s), \quad s \in \mathbb{R}
 ```
 
 For block-wise quantization (e.g., 64 weights per block):
+
 ```math
 \text{Scale memory} = \frac{|\theta|}{64} \times 32 \text{ bits} = 0.5 \text{ bits/weight}
 ```
@@ -91,6 +93,7 @@ This is significant overhead!
 #### 3.2 Double Quantization Solution
 
 **Quantize the scales themselves:**
+
 ```math
 s_q = \text{round}(s / s_s)
 ```
@@ -98,6 +101,7 @@ s_q = \text{round}(s / s_s)
 where $s\_s$ is a "scale of scales" (per 256 blocks).
 
 **Memory:**
+
 ```math
 \text{Scale memory} = \frac{|\theta|}{64} \times 8 + \frac{|\theta|}{64 \times 256} \times 32
 = 0.127 \text{ bits/weight}
@@ -157,11 +161,13 @@ vs. 16 bits for FP16.
 #### 6.1 Through Quantized Weights
 
 **Forward:**
+
 ```math
 h = Q_{NF4}(W_0) \cdot x + \frac{\alpha}{r} BA \cdot x
 ```
 
 **Backward:**
+
 ```math
 \frac{\partial \mathcal{L}}{\partial A} = \frac{\alpha}{r} B^T \frac{\partial \mathcal{L}}{\partial h} x^T
 ```
@@ -192,11 +198,13 @@ class QLoRAConfig:
     
     def __init__(
         self,
+
         # Quantization
         load_in_4bit: bool = True,
         bnb_4bit_quant_type: str = "nf4",  # or "fp4"
         bnb_4bit_compute_dtype: torch.dtype = torch.bfloat16,
         bnb_4bit_use_double_quant: bool = True,
+
         # LoRA
         r: int = 64,
         lora_alpha: int = 16,
@@ -272,6 +280,7 @@ class NF4Quantizer:
     """NormalFloat 4-bit quantization implementation."""
     
     def __init__(self):
+
         # Pre-compute NF4 quantization levels
         # These are the optimal levels for N(0,1)
         self.levels = torch.tensor([
@@ -290,6 +299,7 @@ class NF4Quantizer:
         Returns:
             Tuple of (quantized weights, scales)
         """
+
         # Reshape to blocks
         original_shape = weights.shape
         weights_flat = weights.flatten()

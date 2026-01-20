@@ -34,16 +34,17 @@ Meta-learning, or "learning to learn," trains models across many tasks so they c
 A meta-learning problem consists of:
 
 - **Task distribution:** \(p(\mathcal{T})\)
-- **Each task:** \(\mathcal{T}_i = \{D_i^{train}, D_i^{test}\}\)
-- **Support set:** \(D_i^{train}\) (few examples for adaptation)
-- **Query set:** \(D_i^{test}\) (for evaluation)
+- **Each task:** $\mathcal{T}_i = \{D_i^{train}, D_i^{test}\}$
+- **Support set:** $D_i^{train}$ (few examples for adaptation)
+- **Query set:** $D_i^{test}$ (for evaluation)
 
 **Meta-objective:**
+
 ```math
 \min_\theta \mathbb{E}_{\mathcal{T} \sim p(\mathcal{T})} \left[ \mathcal{L}(\mathcal{A}(\theta, D^{train}), D^{test}) \right]
 ```
 
-where \(\mathcal{A}\) is the adaptation algorithm.
+where $\mathcal{A}$ is the adaptation algorithm.
 
 ---
 
@@ -51,16 +52,18 @@ where \(\mathcal{A}\) is the adaptation algorithm.
 
 ### Core Idea
 
-Learn an initialization \(\theta\) that can be quickly adapted to any task with a few gradient steps.
+Learn an initialization $\theta$ that can be quickly adapted to any task with a few gradient steps.
 
 ### Algorithm
 
 **Outer loop (meta-update):**
+
 ```math
 \theta \leftarrow \theta - \alpha \nabla_\theta \sum_{\mathcal{T}_i} \mathcal{L}_{\mathcal{T}_i}(f_{\theta'_i})
 ```
 
 **Inner loop (task-specific adaptation):**
+
 ```math
 \theta'_i = \theta - \beta \nabla_\theta \mathcal{L}_{\mathcal{T}_i}(f_\theta)
 ```
@@ -89,6 +92,7 @@ This is why MAML needs second-order derivatives!
 ### First-Order MAML (FOMAML)
 
 Approximate by ignoring second-order terms:
+
 ```math
 \nabla_\theta \mathcal{L}(f_{\theta'}) \approx \nabla_{\theta'} \mathcal{L}(f_{\theta'})
 ```
@@ -112,13 +116,15 @@ Classify by computing distance to class "prototypes" (mean embeddings).
 ### Algorithm
 
 **1. Compute prototypes:**
+
 ```math
 c_k = \frac{1}{|S_k|} \sum_{(x_i, y_i) \in S_k} f_\theta(x_i)
 ```
 
-where \(S_k\) is the support set for class \(k\).
+where $S_k$ is the support set for class $k$.
 
 **2. Classify by distance:**
+
 ```math
 p(y = k | x) = \frac{\exp(-d(f_\theta(x), c_k))}{\sum_{k'} \exp(-d(f_\theta(x), c_{k'}))}
 ```
@@ -156,13 +162,14 @@ p(y|x, S) = \sum_{(x_i, y_i) \in S} a(x, x_i) \cdot y_i
 ```
 
 where attention weights:
+
 ```math
 a(x, x_i) = \frac{\exp(c(f(x), g(x_i)))}{\sum_j \exp(c(f(x), g(x_j)))}
 ```
 
 **Key differences from Prototypical:**
 - Soft attention over all support examples
-- Separate embedding functions \(f\) (query) and \(g\) (support)
+- Separate embedding functions $f$ (query) and $g$ (support)
 - Uses cosine similarity instead of Euclidean distance
 
 ---
@@ -222,10 +229,12 @@ class MAML:
         
         Returns adapted parameters (not in-place)
         """
+
         # Clone parameters for task-specific adaptation
         fast_weights = {name: param.clone() for name, param in self.model.named_parameters()}
         
         for _ in range(self.inner_steps):
+
             # Forward with current fast weights
             logits = self.functional_forward(support_x, fast_weights)
             loss = F.cross_entropy(logits, support_y)
@@ -248,6 +257,7 @@ class MAML:
         """
         Forward pass using given weights (not model's parameters)
         """
+
         # Assuming simple MLP: Linear -> ReLU -> Linear
         x = F.linear(x, weights['fc1.weight'], weights['fc1.bias'])
         x = F.relu(x)
@@ -263,6 +273,7 @@ class MAML:
         meta_loss = 0
         
         for support_x, support_y, query_x, query_y in tasks:
+
             # Inner loop: adapt to task
             fast_weights = self.inner_loop(support_x, support_y, train=True)
             
@@ -396,6 +407,7 @@ class PrototypicalNetwork(nn.Module):
         Returns:
             log_probs: (n_query, n_way)
         """
+
         # Embed support and query
         support_embeddings = self.encoder(support_x)
         query_embeddings = self.encoder(query_x)
@@ -443,6 +455,7 @@ def train_prototypical(model, train_loader, optimizer, n_way, n_shot, n_query):
     total_acc = 0
     
     for batch_idx, (x, y) in enumerate(train_loader):
+
         # Sample episode
         # x: (n_way * (n_shot + n_query), *input_shape)
         
@@ -507,6 +520,7 @@ class Reptile:
         Train model on a single task
         Returns: adapted model parameters
         """
+
         # Clone model
         adapted_model = deepcopy(self.model)
         optimizer = torch.optim.SGD(adapted_model.parameters(), lr=self.inner_lr)
@@ -527,6 +541,7 @@ class Reptile:
         
         tasks: list of (support_x, support_y)
         """
+
         # Store original parameters
         original_params = {name: param.clone() 
                           for name, param in self.model.named_parameters()}
@@ -536,6 +551,7 @@ class Reptile:
                             for name, param in self.model.named_parameters()}
         
         for support_x, support_y in tasks:
+
             # Inner loop
             adapted_model = self.inner_loop(support_x, support_y)
             

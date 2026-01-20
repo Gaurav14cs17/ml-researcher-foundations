@@ -680,6 +680,7 @@ class CheckpointedModel(nn.Module):
         ])
     
     def forward(self, x):
+
         # Wrap expensive layers in checkpoint
         for i, layer in enumerate(self.layers):
             if i % 10 == 0:  # Checkpoint every 10 layers
@@ -836,11 +837,13 @@ y.sum().backward()
 class QuantizeFunction(torch.autograd.Function):
     @staticmethod
     def forward(ctx, input):
+
         # Non-differentiable quantization
         return torch.round(input)
     
     @staticmethod
     def backward(ctx, grad_output):
+
         # Straight-through: pass gradient as-is
         return grad_output
 

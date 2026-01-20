@@ -24,6 +24,7 @@
 **Quantization** is a mapping $Q: \mathbb{R} \to \mathcal{Q}$ where $\mathcal{Q}$ is a finite set of discrete values.
 
 **General Form:**
+
 ```math
 Q(x) = \Delta \cdot \text{round}\left(\frac{x}{\Delta}\right)
 ```
@@ -43,6 +44,7 @@ Q_{sym}(x) = \text{clamp}\left(\text{round}\left(\frac{x}{s}\right), -2^{b-1}, 2
 ```
 
 where the scale factor is:
+
 ```math
 s = \frac{\alpha}{2^{b-1} - 1}
 ```
@@ -61,6 +63,7 @@ Q_{asym}(x) = \text{clamp}\left(\text{round}\left(\frac{x - z}{s}\right), 0, 2^b
 ```
 
 where:
+
 ```math
 s = \frac{\alpha - \beta}{2^b - 1}, \quad z = \beta
 ```
@@ -78,6 +81,7 @@ s = \frac{\alpha - \beta}{2^b - 1}, \quad z = \beta
 
 **Theorem (Quantization Noise Model):**
 For uniform quantization with step size $\Delta$, the quantization error $\epsilon = x - Q(x)$ follows approximately:
+
 ```math
 \epsilon \sim \text{Uniform}\left(-\frac{\Delta}{2}, \frac{\Delta}{2}\right)
 ```
@@ -86,6 +90,7 @@ For uniform quantization with step size $\Delta$, the quantization error $\epsil
 Let $x = k\Delta + r$ where $k \in \mathbb{Z}$ and $r \in [-\Delta/2, \Delta/2]$.
 
 Then $Q(x) = k\Delta$, so:
+
 ```math
 \epsilon = x - Q(x) = r
 ```
@@ -95,11 +100,13 @@ If $x$ is uniformly distributed within each quantization interval, then $r \sim 
 #### 3.2 Mean Squared Error
 
 **Theorem:** The MSE of uniform quantization is:
+
 ```math
 \text{MSE} = \mathbb{E}[\epsilon^2] = \frac{\Delta^2}{12}
 ```
 
 **Proof:**
+
 ```math
 \text{MSE} = \int_{-\Delta/2}^{\Delta/2} \epsilon^2 \cdot \frac{1}{\Delta} d\epsilon = \frac{1}{\Delta}\left[\frac{\epsilon^3}{3}\right]_{-\Delta/2}^{\Delta/2}
 = \frac{1}{\Delta} \cdot \frac{2}{3} \cdot \frac{\Delta^3}{8} = \frac{\Delta^2}{12}
@@ -108,11 +115,13 @@ If $x$ is uniformly distributed within each quantization interval, then $r \sim 
 #### 3.3 Signal-to-Quantization-Noise Ratio (SQNR)
 
 **Definition:**
+
 ```math
 \text{SQNR} = \frac{\sigma_x^2}{\sigma_\epsilon^2} = \frac{\sigma_x^2}{\Delta^2/12} = \frac{12\sigma_x^2}{\Delta^2}
 ```
 
 **In decibels:**
+
 ```math
 \text{SQNR}_{dB} = 10\log_{10}\left(\frac{12\sigma_x^2}{\Delta^2}\right)
 ```
@@ -124,6 +133,7 @@ If $x$ is uniformly distributed within each quantization interval, then $r \sim 
 ```
 
 **Proof:**
+
 ```math
 \text{SQNR}_{dB} = 10\log_{10}\left(\frac{12 \cdot \alpha^2/3}{(2\alpha/2^b)^2}\right) = 10\log_{10}\left(\frac{4\alpha^2 \cdot 2^{2b}}{4\alpha^2}\right)
 = 10\log_{10}(2^{2b}) = 20b \cdot \log_{10}(2) \approx 6.02b
@@ -144,11 +154,13 @@ The +4.77 dB comes from the factor of 12/3 = 4.
 **Proof:**
 
 Step 1: The step size is:
+
 ```math
 \Delta = \frac{2\alpha}{2^b} = \frac{\alpha}{2^{b-1}}
 ```
 
 Step 2: Substituting into the MSE formula:
+
 ```math
 \text{MSE} = \frac{\Delta^2}{12} = \frac{1}{12} \cdot \frac{\alpha^2}{4^{b-1}} = \frac{\alpha^2}{3 \cdot 4^b}
 ```
@@ -173,21 +185,25 @@ R(D) = \frac{1}{2}\log_2\left(\frac{\sigma^2}{D}\right) \text{ bits/sample}
 **Proof:**
 
 The rate-distortion function is defined as:
+
 ```math
 R(D) = \min_{p(\hat{X}|X): \mathbb{E}[(X-\hat{X})^2] \leq D} I(X; \hat{X})
 ```
 
 For Gaussian source with MSE distortion, the optimal test channel is:
+
 ```math
 \hat{X} = X + N, \quad N \sim \mathcal{N}(0, D) \text{ independent of } X
 ```
 
 The mutual information:
+
 ```math
 I(X; \hat{X}) = h(\hat{X}) - h(\hat{X}|X) = h(\hat{X}) - h(N)
 ```
 
 Since $\hat{X} = X + N$ where both are Gaussian:
+
 ```math
 \text{Var}(\hat{X}) = \sigma^2 + D
 I(X; \hat{X}) = \frac{1}{2}\log_2(2\pi e(\sigma^2 + D)) - \frac{1}{2}\log_2(2\pi e D)
@@ -198,6 +214,7 @@ For small $D$: $R(D) \approx \frac{1}{2}\log\_2(\sigma^2/D)$
 
 **Implication for Quantization:**
 With $b$ bits, minimum achievable distortion is:
+
 ```math
 D_{min} = \sigma^2 \cdot 2^{-2b}
 ```
@@ -221,17 +238,20 @@ This shows 4-bit quantization achieves $D \approx \sigma^2/65536$, often suffici
 **Theorem (Necessary Conditions):** The optimal quantizer satisfies:
 
 1. **Centroid Condition:** Each quantization level is the centroid of its region:
+
 ```math
 q_i = \frac{\int_{d_{i-1}}^{d_i} x \cdot p(x) dx}{\int_{d_{i-1}}^{d_i} p(x) dx} = \mathbb{E}[X | d_{i-1} < X \leq d_i]
 ```
 
 2. **Nearest Neighbor Condition:** Each decision boundary is the midpoint:
+
 ```math
 d_i = \frac{q_i + q_{i+1}}{2}
 ```
 
 **Proof of Centroid Condition:**
 Taking derivative of MSE w.r.t. $q\_i$:
+
 ```math
 \frac{\partial}{\partial q_i} \int_{d_{i-1}}^{d_i} (x - q_i)^2 p(x) dx = -2\int_{d_{i-1}}^{d_i} (x - q_i) p(x) dx = 0
 ```

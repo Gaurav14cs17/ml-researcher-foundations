@@ -113,6 +113,7 @@ Where $r\_{i-j}$ is a learnable relative position embedding.
 ```
 
 Where each head:
+
 ```math
 \text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)
 ```
@@ -131,6 +132,7 @@ Where each head:
 ```
 
 With $d\_k = d\_v = d\_{model}/h$:
+
 ```math
 = 4 \cdot d_{model}^2
 ```
@@ -212,6 +214,7 @@ For softmax with scores $S = QK^\top / \sqrt{d\_k}$:
 ```
 
 Then:
+
 ```math
 \frac{\partial \mathcal{L}}{\partial Q} = \frac{1}{\sqrt{d_k}}\frac{\partial \mathcal{L}}{\partial S} K
 \frac{\partial \mathcal{L}}{\partial K} = \frac{1}{\sqrt{d_k}}\frac{\partial \mathcal{L}}{\partial S}^\top Q

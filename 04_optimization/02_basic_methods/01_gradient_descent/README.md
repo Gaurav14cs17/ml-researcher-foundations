@@ -45,6 +45,7 @@
 ## 📐 The Algorithm
 
 ```python
+
 # Gradient Descent in 5 lines
 x = initial_guess
 for i in range(max_iterations):
@@ -840,6 +841,7 @@ def detailed_gd_example():
     """
     Complete worked example with all mathematical steps
     """
+
     # Setup: f(w) = 1/2 * ||Xw - y||²
     np.random.seed(42)
     n, d = 100, 2

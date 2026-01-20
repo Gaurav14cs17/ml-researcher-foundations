@@ -44,15 +44,15 @@ R(h) = \mathbb{E}_{(x,y) \sim \mathcal{D}}[\ell(h(x), y)] = \int \ell(h(x), y) \
 ```
 
 where:
-- \(h: \mathcal{X} \to \mathcal{Y}\) is a hypothesis
-- \(\mathcal{D}\) is the unknown data distribution
-- \(\ell: \mathcal{Y} \times \mathcal{Y} \to \mathbb{R}_{\geq 0}\) is the loss function
+- $h: \mathcal{X} \to \mathcal{Y}$ is a hypothesis
+- $\mathcal{D}$ is the unknown data distribution
+- $\ell: \mathcal{Y} \times \mathcal{Y} \to \mathbb{R}_{\geq 0}$ is the loss function
 
-**Problem:** We cannot compute \(R(h)\) because \(\mathcal{D}\) is unknown!
+**Problem:** We cannot compute \(R(h)\) because $\mathcal{D}$ is unknown!
 
 ### Empirical Risk
 
-Given training set \(S = \{(x_i, y_i)\}_{i=1}^n\) sampled i.i.d. from \(\mathcal{D}\):
+Given training set \(S = \{(x_i, y_i)\}_{i=1}^n\) sampled i.i.d. from $\mathcal{D}$:
 
 ```math
 \hat{R}_S(h) = \frac{1}{n} \sum_{i=1}^{n} \ell(h(x_i), y_i)
@@ -66,7 +66,7 @@ This is the average loss over training data—computable!
 \hat{h}_{\text{ERM}} = \arg\min_{h \in \mathcal{H}} \hat{R}_S(h)
 ```
 
-Find the hypothesis in class \(\mathcal{H}\) that minimizes training loss.
+Find the hypothesis in class $\mathcal{H}$ that minimizes training loss.
 
 ---
 
@@ -74,26 +74,27 @@ Find the hypothesis in class \(\mathcal{H}\) that minimizes training loss.
 
 ### Law of Large Numbers
 
-**Theorem:** For fixed \(h\), as \(n \to \infty\):
+**Theorem:** For fixed $h$, as $n \to \infty$:
 
 ```math
 \hat{R}_S(h) \xrightarrow{p} R(h)
 ```
 
 **Proof:** By LLN, since \(\ell(h(x_i), y_i)\) are i.i.d.:
+
 ```math
 \frac{1}{n}\sum_{i=1}^n \ell(h(x_i), y_i) \xrightarrow{p} \mathbb{E}[\ell(h(x), y)] = R(h) \quad \blacksquare
 ```
 
 ### Hoeffding's Inequality (Concentration)
 
-**Theorem:** For bounded loss \(\ell \in [0, 1]\), for any fixed \(h\):
+**Theorem:** For bounded loss $\ell \in [0, 1]$, for any fixed $h$:
 
 ```math
 \Pr\left[|R(h) - \hat{R}_S(h)| > \epsilon\right] \leq 2\exp(-2n\epsilon^2)
 ```
 
-**Corollary:** With probability \(\geq 1 - \delta\):
+**Corollary:** With probability $\geq 1 - \delta$:
 
 ```math
 |R(h) - \hat{R}_S(h)| \leq \sqrt{\frac{\ln(2/\delta)}{2n}}
@@ -101,18 +102,19 @@ Find the hypothesis in class \(\mathcal{H}\) that minimizes training loss.
 
 ### Uniform Convergence
 
-**Theorem (Finite Hypothesis Class):** For \(|\mathcal{H}| < \infty\), with probability \(\geq 1 - \delta\):
+**Theorem (Finite Hypothesis Class):** For $|\mathcal{H}| < \infty$, with probability $\geq 1 - \delta$:
 
 ```math
 \sup_{h \in \mathcal{H}} |R(h) - \hat{R}_S(h)| \leq \sqrt{\frac{\ln(2|\mathcal{H}|/\delta)}{2n}}
 ```
 
 **Proof:** Apply union bound:
+
 ```math
 \Pr\left[\exists h: |R(h) - \hat{R}_S(h)| > \epsilon\right] \leq \sum_{h \in \mathcal{H}} \Pr\left[|R(h) - \hat{R}_S(h)| > \epsilon\right] \leq |\mathcal{H}| \cdot 2e^{-2n\epsilon^2}
 ```
 
-Setting this to \(\delta\) and solving for \(\epsilon\). \(\blacksquare\)
+Setting this to $\delta$ and solving for $\epsilon$. $\blacksquare$
 
 ---
 
@@ -120,7 +122,7 @@ Setting this to \(\delta\) and solving for \(\epsilon\). \(\blacksquare\)
 
 ### Main Theorem
 
-**Theorem:** Let \(\mathcal{H}\) be a hypothesis class with VC dimension \(d\). With probability \(\geq 1 - \delta\):
+**Theorem:** Let $\mathcal{H}$ be a hypothesis class with VC dimension $d$. With probability $\geq 1 - \delta$:
 
 ```math
 R(\hat{h}_{\text{ERM}}) \leq \hat{R}_S(\hat{h}_{\text{ERM}}) + \sqrt{\frac{8d\ln(en/d) + 8\ln(4/\delta)}{n}}
@@ -150,8 +152,8 @@ R(\hat{h}) = \underbrace{\hat{R}_S(\hat{h})}_{\text{training error}} + \underbra
 
 | Condition | Result |
 |-----------|--------|
-| \(n\) too small | Large generalization gap |
-| \(\mathcal{H}\) too complex | Can fit noise |
+| $n$ too small | Large generalization gap |
+| $\mathcal{H}$ too complex | Can fit noise |
 | Training error ≈ 0 | High variance |
 
 ### Solutions

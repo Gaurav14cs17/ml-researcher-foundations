@@ -44,6 +44,7 @@ Where $\mathcal{N}(v)$ are neighbors of node $v$.
 ### Spectral Foundation
 
 Graph Laplacian:
+
 ```math
 L = D - A = U\Lambda U^T
 ```
@@ -51,6 +52,7 @@ L = D - A = U\Lambda U^T
 Where $D$ is the degree matrix.
 
 Spectral convolution:
+
 ```math
 g_\theta * x = Ug_\theta(\Lambda)U^T x
 ```
@@ -138,16 +140,19 @@ h_v^{(l)} = \sigma\left(W^{(l)} \cdot [h_v^{(l-1)} \| h_{\mathcal{N}(v)}^{(l)}]\
 ### General Framework
 
 **Message function:**
+
 ```math
 m_v^{(l+1)} = \sum_{u \in \mathcal{N}(v)} M^{(l)}(h_v^{(l)}, h_u^{(l)}, e_{vu})
 ```
 
 **Update function:**
+
 ```math
 h_v^{(l+1)} = U^{(l)}(h_v^{(l)}, m_v^{(l+1)})
 ```
 
 **Readout (graph-level):**
+
 ```math
 \hat{y} = R(\{h_v^{(L)} : v \in V\})
 ```

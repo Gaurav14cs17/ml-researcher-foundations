@@ -36,6 +36,7 @@ Random vectors are essential for multivariate ML: each data point is a random ve
 ```
 
 Each $X\_i$ is a random variable. The vector is a measurable function:
+
 ```math
 \mathbf{X}: \Omega \to \mathbb{R}^n
 ```
@@ -72,11 +73,13 @@ f_{\mathbf{X}}(x_1, \ldots, x_n) \geq 0
 The marginal distribution of $X\_i$ is obtained by "integrating out" other variables.
 
 **Discrete:**
+
 ```math
 P(X_i = x) = \sum_{x_{-i}} P(X_1 = x_1, \ldots, X_n = x_n)
 ```
 
 **Continuous:**
+
 ```math
 f_{X_i}(x) = \int \cdots \int f_{\mathbf{X}}(x_1, \ldots, x_n) \, dx_{-i}
 ```
@@ -90,6 +93,7 @@ f_{X_1}(x) = \int_{-\infty}^{\infty} f_{X_1, X_2}(x, y) \, dy
 ```
 
 For bivariate Gaussian $\mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$:
+
 ```math
 X_1 \sim \mathcal{N}(\mu_1, \Sigma_{11})
 ```
@@ -105,6 +109,7 @@ p(X_1 = x_1 | X_2 = x_2) = \frac{p(X_1 = x_1, X_2 = x_2)}{p(X_2 = x_2)}
 ```
 
 **Continuous:**
+
 ```math
 f(x|y) = \frac{f(x, y)}{f(y)}
 ```
@@ -122,11 +127,13 @@ p(x_1, x_2, \ldots, x_n) = p(x_1) \cdot p(x_2|x_1) \cdot p(x_3|x_1, x_2) \cdots 
 ### Definition
 
 Random variables $X$ and $Y$ are **independent** if:
+
 ```math
 p(x, y) = p(x) \cdot p(y)
 ```
 
 **Equivalent:**
+
 ```math
 P(X \in A, Y \in B) = P(X \in A) \cdot P(Y \in B) \quad \forall A, B
 ```
@@ -134,6 +141,7 @@ P(X \in A, Y \in B) = P(X \in A) \cdot P(Y \in B) \quad \forall A, B
 ### Conditional Independence
 
 $X \perp Y | Z$ means:
+
 ```math
 p(x, y | z) = p(x|z) \cdot p(y|z)
 ```

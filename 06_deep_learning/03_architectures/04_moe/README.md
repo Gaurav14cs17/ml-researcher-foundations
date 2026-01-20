@@ -66,16 +66,19 @@ Where $h = W\_g \cdot x$ and TopK selects indices with highest values.
 ### 3. Computational Complexity Analysis
 
 **Dense Model:**
+
 ```math
 \text{FLOPs}_{\text{dense}} = O(d \cdot d_{ff})
 ```
 
 **Sparse MoE (Top-K routing):**
+
 ```math
 \text{FLOPs}_{\text{MoE}} = O(d \cdot N) + K \cdot O(d \cdot d_{ff}) = O(K \cdot d \cdot d_{ff})
 ```
 
 **Parameters:**
+
 ```math
 \text{Params}_{\text{MoE}} = N \cdot \text{Params}_{\text{expert}} + \text{Params}_{\text{router}}
 ```
@@ -229,6 +232,7 @@ class TopKRouter(nn.Module):
         self.num_experts = num_experts
     
     def forward(self, x):
+
         # x: (batch, seq, d_model)
         logits = self.gate(x)  # (batch, seq, num_experts)
         
@@ -250,6 +254,7 @@ class TopKRouter(nn.Module):
         P_i: average routing probability to expert i
         Loss = N * Σ_i (f_i * P_i)
         """
+
         # f_i: fraction of tokens choosing expert i
         one_hot = F.one_hot(selected_experts, self.num_experts).float()
         tokens_per_expert = one_hot.sum(dim=[0, 1, 2])  # (num_experts,)
@@ -311,8 +316,10 @@ class MoETransformerBlock(nn.Module):
         self.ln2 = nn.LayerNorm(d_model)
     
     def forward(self, x):
+
         # Self-attention
         x = x + self.attn(self.ln1(x), self.ln1(x), self.ln1(x))[0]
+
         # MoE FFN
         x = x + self.moe(self.ln2(x))
         return x

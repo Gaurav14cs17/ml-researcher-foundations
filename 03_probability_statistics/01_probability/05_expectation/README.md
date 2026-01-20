@@ -48,6 +48,7 @@ E[X] = \int_{-\infty}^{\infty} x \cdot f(x) \, dx
 ### Linearity of Expectation
 
 **Theorem:**
+
 ```math
 E[aX + b] = a \cdot E[X] + b
 ```
@@ -65,6 +66,7 @@ E[aX + b] = \sum_x (ax + b) \cdot P(X = x)
 ### Addition Property
 
 **Theorem:**
+
 ```math
 E[X + Y] = E[X] + E[Y] \quad \text{(ALWAYS, even if X, Y are dependent!)}
 ```
@@ -84,6 +86,7 @@ E[X + Y] = \sum_x \sum_y (x + y) \cdot P(X = x, Y = y)
 ### Multiplication Property
 
 **Theorem:** If X and Y are **independent**:
+
 ```math
 E[XY] = E[X] \cdot E[Y]
 ```
@@ -106,11 +109,13 @@ E[XY] = \sum_x \sum_y xy \cdot P(X = x, Y = y)
 **Theorem:** For any function g(X):
 
 **Discrete:**
+
 ```math
 E[g(X)] = \sum_x g(x) \cdot P(X = x)
 ```
 
 **Continuous:**
+
 ```math
 E[g(X)] = \int_{-\infty}^{\infty} g(x) \cdot f(x) \, dx
 ```
@@ -146,6 +151,7 @@ E[X^2] = \sum_x x^2 \cdot P(X = x)
 ### Variance Properties
 
 **Theorem:**
+
 ```math
 \text{Var}(aX + b) = a^2 \text{Var}(X)
 ```
@@ -162,11 +168,13 @@ E[X^2] = \sum_x x^2 \cdot P(X = x)
 ---
 
 **Theorem (Variance of Sum):**
+
 ```math
 \text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y) + 2\text{Cov}(X,Y)
 ```
 
 If X and Y are **independent**:
+
 ```math
 \text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)
 ```
@@ -198,6 +206,7 @@ If X and Y are **independent**:
 ### Standardized Moments
 
 **Skewness (Asymmetry):**
+
 ```math
 \gamma_1 = \frac{E[(X-\mu)^3]}{\sigma^3}
 ```
@@ -207,6 +216,7 @@ If X and Y are **independent**:
 - $\gamma\_1 < 0$: Left tail longer (negative skew)
 
 **Kurtosis (Tail Weight):**
+
 ```math
 \gamma_2 = \frac{E[(X-\mu)^4]}{\sigma^4}
 ```
@@ -222,11 +232,13 @@ If X and Y are **independent**:
 ## 📐 Moment Generating Functions
 
 **Definition:**
+
 ```math
 M_X(t) = E[e^{tX}]
 ```
 
 **Why useful?**
+
 ```math
 \frac{d^n M_X}{dt^n}\bigg|_{t=0} = E[X^n]
 ```
@@ -246,6 +258,7 @@ Taking the n-th derivative and evaluating at t=0:
 **Example: Gaussian MGF**
 
 For $X \sim \mathcal{N}(\mu, \sigma^2)$:
+
 ```math
 M_X(t) = \exp\left(\mu t + \frac{\sigma^2 t^2}{2}\right)
 ```
@@ -285,11 +298,13 @@ M_X(t) = \exp\left(\mu t + \frac{\sigma^2 t^2}{2}\right)
 ## 📐 Jensen's Inequality
 
 **Theorem:** For a convex function $g$:
+
 ```math
 g(E[X]) \leq E[g(X)]
 ```
 
 For a concave function $g$:
+
 ```math
 g(E[X]) \geq E[g(X)]
 ```
@@ -377,6 +392,7 @@ class AdamMoments:
         
         # Update biased first moment estimate
         self.m = self.beta1 * self.m + (1 - self.beta1) * grad
+
         # Update biased second moment estimate
         self.v = self.beta2 * self.v + (1 - self.beta2) * grad**2
         

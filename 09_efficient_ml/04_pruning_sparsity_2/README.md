@@ -82,6 +82,7 @@ Finding Winning Tickets:
 ### COO (Coordinate)
 Store (row, col, value) for each non-zero:
 ```python
+
 # Dense: [[1, 0, 2], [0, 0, 3], [4, 0, 0]]
 # COO: rows=[0,0,1,2], cols=[0,2,2,0], vals=[1,2,3,4]
 ```
@@ -89,6 +90,7 @@ Store (row, col, value) for each non-zero:
 ### CSR (Compressed Sparse Row)
 More efficient for row-wise operations:
 ```python
+
 # vals = [1, 2, 3, 4]
 # col_idx = [0, 2, 2, 0]  
 # row_ptr = [0, 2, 3, 4]  # Start of each row
@@ -125,11 +127,14 @@ Instead of fixed sparsity patterns, let them change during training:
 3. **SNIP** - Prune at initialization
 
 ```python
+
 # RigL pseudo-code
 for epoch in training:
     if epoch % update_freq == 0:
+
         # Drop smallest magnitude weights
         drop_mask = magnitude_threshold(weights)
+
         # Grow new weights based on gradient
         grow_mask = gradient_threshold(gradients)
         update_sparsity_mask(drop_mask, grow_mask)
@@ -166,12 +171,12 @@ Pruning large language models is different:
 
 ### Lottery Ticket Hypothesis Formalization
 
-Let \( f(x; \theta) \) be a neural network with parameters \( \theta \in \mathbb{R}^d \).
+Let \( f(x; \theta) \) be a neural network with parameters $\theta \in \mathbb{R}^d$.
 
 **Lottery Ticket Conjecture:**
 
-For a dense network \( f(x; \theta_0) \) with random initialization \( \theta_0 \), there exists:
-- A sparse mask \( m \in \{0,1\}^d \) with \( \|m\|_0 \ll d \)
+For a dense network \( f(x; \theta_0) \) with random initialization $\theta_0$, there exists:
+- A sparse mask $m \in \{0,1\}^d$ with $\|m\|_0 \ll d$
 - Such that training \( f(x; m \odot \theta_0) \) achieves comparable accuracy to training \( f(x; \theta_0) \)
 
 **Formal Statement:**
@@ -181,9 +186,9 @@ For a dense network \( f(x; \theta_0) \) with random initialization \( \theta_0 
 ```
 
 where:
-- \( \theta^*_{sparse} \) = trained from \( m \odot \theta_0 \)
-- \( \theta^*_{dense} \) = trained from \( \theta_0 \)
-- \( \|m\|_0 / d \) can be as low as 10-20%
+- $\theta^*_{sparse}$ = trained from $m \odot \theta_0$
+- $\theta^*_{dense}$ = trained from $\theta_0$
+- $\|m\|_0 / d$ can be as low as 10-20%
 
 **Key Insight:** Initialization matters—random reinitialization fails.
 
@@ -198,6 +203,7 @@ where:
 ```
 
 For nnz non-zeros with INT32 indices and FP32 values:
+
 ```math
 \text{Memory}_{COO} = \text{nnz} \times (2 \times 4 + 4) = 12 \times \text{nnz} \text{ bytes}
 ```
@@ -208,7 +214,8 @@ For nnz non-zeros with INT32 indices and FP32 values:
 \text{Memory}_{CSR} = \text{nnz} \times (\text{idx\_size} + \text{val\_size}) + (n_{rows}+1) \times \text{ptr\_size}
 ```
 
-For matrix \( A \in \mathbb{R}^{m \times n} \):
+For matrix $A \in \mathbb{R}^{m \times n}$:
+
 ```math
 \text{Memory}_{CSR} = 8 \times \text{nnz} + 4 \times (m+1) \text{ bytes}
 ```
@@ -218,11 +225,13 @@ For matrix \( A \in \mathbb{R}^{m \times n} \):
 #### Crossover Point
 
 Dense is better when:
+
 ```math
 m \times n \times \text{val\_size} < \text{nnz} \times (\text{idx\_size} + \text{val\_size})
 ```
 
 For FP32 with INT32 indices:
+
 ```math
 \frac{\text{nnz}}{m \times n} > \frac{4}{8} = 0.5
 ```
@@ -239,12 +248,14 @@ For FP32 with INT32 indices:
 
 **Representability:** How well can 2:4 approximate arbitrary weights?
 
-For weights \( W = [w_1, w_2, w_3, w_4] \), the 2:4 approximation keeps the 2 largest magnitude:
+For weights $W = [w_1, w_2, w_3, w_4]$, the 2:4 approximation keeps the 2 largest magnitude:
+
 ```math
 \hat{W} = [w_1, 0, w_3, 0] \text{ if } |w_1|, |w_3| \geq |w_2|, |w_4|
 ```
 
 **Approximation Error:**
+
 ```math
 \|\hat{W} - W\|_F^2 = w_2^2 + w_4^2
 ```
@@ -258,23 +269,26 @@ For weights \( W = [w_1, w_2, w_3, w_4] \), the 2:4 approximation keeps the 2 la
 **Algorithm:**
 
 At each update step:
-1. **Drop:** Remove fraction \( \alpha \) of weights with smallest magnitude
+1. **Drop:** Remove fraction $\alpha$ of weights with smallest magnitude
 2. **Grow:** Add same number of weights with largest gradient magnitude
 3. **Train:** Update remaining weights
 
 **Drop criterion:**
+
 ```math
 \mathcal{D} = \{(i,j) : |w_{ij}| < \tau_{\text{drop}}\}
 ```
 
 **Grow criterion:**
+
 ```math
 \mathcal{G} = \{(i,j) : |g_{ij}| > \tau_{\text{grow}} \land (i,j) \notin \text{active}\}
 ```
 
-where \( g_{ij} = \frac{\partial \mathcal{L}}{\partial w_{ij}} \).
+where $g_{ij} = \frac{\partial \mathcal{L}}{\partial w_{ij}}$.
 
 **Update schedule for drop fraction:**
+
 ```math
 \alpha_t = \alpha_0 \left(1 - \frac{t}{T}\right)^3
 ```
@@ -285,24 +299,27 @@ Cubic decay: More exploration early, more exploitation later.
 
 ### SparseGPT: One-Shot LLM Pruning
 
-**Problem:** Prune weight matrix \( W \) to minimize reconstruction error:
+**Problem:** Prune weight matrix $W$ to minimize reconstruction error:
+
 ```math
 \min_{\hat{W}} \|WX - \hat{W}X\|_F^2 \quad \text{s.t.} \quad \hat{W} \text{ is } s\text{-sparse}
 ```
 
 **Solution using Hessian information:**
 
-For each column \( j \), the optimal update when pruning \( w_j \):
+For each column $j$, the optimal update when pruning $w_j$:
+
 ```math
 \delta_{j:} = -\frac{w_j}{[H^{-1}]_{jj}} \cdot [H^{-1}]_{:j}
 ```
 
-where \( H = XX^T \) is the Hessian approximation.
+where $H = XX^T$ is the Hessian approximation.
 
 **Algorithm (column-by-column):**
 ```
 for j in columns:
     if should_prune(w_j):
+
         # Compensate remaining weights
         w_{j+1:} += w_j * H^{-1}_{j+1:,j} / H^{-1}_{jj}
         w_j = 0
@@ -314,13 +331,13 @@ for j in columns:
 
 ### Layer Sensitivity Analysis
 
-**Sensitivity score for layer \( l \):**
+**Sensitivity score for layer $l$:**
 
 ```math
 S_l = \frac{\Delta \mathcal{L}}{\Delta s_l}
 ```
 
-where \( \Delta \mathcal{L} \) is loss increase when pruning layer \( l \) to sparsity \( s_l \).
+where $\Delta \mathcal{L}$ is loss increase when pruning layer $l$ to sparsity $s_l$.
 
 **Empirical finding:** First and last layers are most sensitive.
 
@@ -337,12 +354,13 @@ where \( \Delta \mathcal{L} \) is loss increase when pruning layer \( l \) to sp
 
 ### Sparse Matrix-Vector Multiplication Speedup
 
-For sparse matrix \( A \) with nnz non-zeros, computing \( y = Ax \):
+For sparse matrix $A$ with nnz non-zeros, computing $y = Ax$:
 
 **Dense:** \( O(mn) \) operations
 **Sparse:** \( O(\text{nnz}) \) operations
 
 **Speedup ratio:**
+
 ```math
 \text{Speedup} = \frac{mn}{\text{nnz}} = \frac{1}{1-s}
 ```
@@ -365,8 +383,8 @@ I(X; \hat{Y}) \approx I(X; Y)
 ```
 
 where:
-- \( Y \) = dense network output
-- \( \hat{Y} \) = pruned network output
+- $Y$ = dense network output
+- $\hat{Y}$ = pruned network output
 - \( I(\cdot; \cdot) \) = mutual information
 
 **Data Processing Inequality:** \( I(X; \hat{Y}) \leq I(X; Y) \)
@@ -388,10 +406,12 @@ def find_lottery_ticket(model, train_fn, prune_ratio=0.2, iterations=5):
     """
     Find winning ticket via iterative magnitude pruning
     """
+
     # Save original initialization
     original_state = copy.deepcopy(model.state_dict())
     
     for iteration in range(iterations):
+
         # Train the model
         train_fn(model)
         
@@ -435,6 +455,7 @@ def sparse_gpt_prune(W, X, sparsity=0.5):
     W: weight matrix (out_features, in_features)
     X: calibration inputs (batch, in_features)
     """
+
     # Compute Hessian approximation
     H = X.T @ X / X.shape[0]
     H_inv = torch.linalg.inv(H + 1e-4 * torch.eye(H.shape[0]))
@@ -442,12 +463,14 @@ def sparse_gpt_prune(W, X, sparsity=0.5):
     W_pruned = W.clone()
     
     for j in range(W.shape[1]):
+
         # Find weights to prune in this column
         col = W_pruned[:, j]
         threshold = torch.quantile(col.abs(), sparsity)
         prune_mask = col.abs() < threshold
         
         if prune_mask.any():
+
             # Compute compensation for remaining columns
             for i in torch.where(prune_mask)[0]:
                 if j + 1 < W.shape[1]:

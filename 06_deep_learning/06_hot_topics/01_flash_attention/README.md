@@ -67,6 +67,7 @@ Memory: O(n²) - prohibitive for long sequences!
 ### Problem: Softmax Needs All Values
 
 Standard softmax:
+
 ```math
 \text{softmax}(x)_i = \frac{e^{x_i}}{\sum_j e^{x_j}}
 ```
@@ -78,6 +79,7 @@ Needs global sum → can't compute in blocks!
 **Key observation:** Softmax can be computed iteratively.
 
 For vectors $x^{(1)}$ and $x^{(2)}$:
+
 ```math
 m^{(1)} = \max(x^{(1)}), \quad m^{(2)} = \max(x^{(2)})
 m^{\text{new}} = \max(m^{(1)}, m^{(2)})
@@ -94,6 +96,7 @@ This allows processing in blocks while maintaining numerical stability!
 ### Tiling Strategy
 
 ```python
+
 # Conceptual overview
 Block_size = B = SRAM_size / (3 * d)  # Fit Q, K, V blocks
 
@@ -171,6 +174,7 @@ Given $\frac{\partial L}{\partial O}$:
 ```
 
 For softmax gradient (let $P = \frac{\partial L}{\partial A}$):
+
 ```math
 \frac{\partial L}{\partial S} = A \odot (P - \text{rowsum}(A \odot P))
 \frac{\partial L}{\partial Q} = \frac{1}{\sqrt{d}} \frac{\partial L}{\partial S} K
@@ -256,6 +260,7 @@ def measure_memory(seq_len, use_flash=False):
     if use_flash:
         output = F.scaled_dot_product_attention(q, k, v, is_causal=True)
     else:
+
         # Standard attention
         scores = (q @ k.transpose(-2, -1)) / 8.0
         attn = torch.softmax(scores, dim=-1)

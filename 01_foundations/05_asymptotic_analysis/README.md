@@ -94,6 +94,7 @@ lookup  search   scan     sort       (naive)    (naive)  force
 > **Big-O:** f(n) = O(g(n)) means there exist constants c > 0 and n₀ such that:
 > $$
 \forall n \geq n_0: f(n) \leq c \cdot g(n)
+
 ```math
 > 
 > *"f grows at most as fast as g"*
@@ -143,6 +144,7 @@ To prove f(n) = O(g(n)):
 > $$
 \forall n \geq n_0: f(n) \geq c \cdot g(n)
 ```
+
 > *"f grows at least as fast as g"*
 
 > **Big-Theta (Θ):** f(n) = Θ(g(n)) iff f(n) = O(g(n)) AND f(n) = Ω(g(n))
@@ -182,12 +184,13 @@ To prove f(n) = O(g(n)):
 > **Little-o:** f(n) = o(g(n)) means:
 > $$
 \lim_{n \to \infty} \frac{f(n)}{g(n)} = 0
+
 ```math
 > *"f grows strictly slower than g"*
 
 ### 📝 Examples
-
 ```
+
 n = o(n²)           # n grows slower than n²
 log n = o(n)        # log grows slower than linear
 n² = o(2ⁿ)          # polynomial < exponential

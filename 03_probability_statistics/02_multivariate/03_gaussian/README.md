@@ -57,11 +57,13 @@ p(\mathbf{x}) = (2\pi)^{-d/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2
 **Theorem:** Any subset of variables from a joint Gaussian is also Gaussian.
 
 **Setup:**
+
 ```math
 \begin{bmatrix} \mathbf{x}_1 \\ \mathbf{x}_2 \end{bmatrix} \sim \mathcal{N}\left(\begin{bmatrix} \boldsymbol{\mu}_1 \\ \boldsymbol{\mu}_2 \end{bmatrix}, \begin{bmatrix} \boldsymbol{\Sigma}_{11} & \boldsymbol{\Sigma}_{12} \\ \boldsymbol{\Sigma}_{21} & \boldsymbol{\Sigma}_{22} \end{bmatrix}\right)
 ```
 
 **Marginal:**
+
 ```math
 \mathbf{x}_1 \sim \mathcal{N}(\boldsymbol{\mu}_1, \boldsymbol{\Sigma}_{11})
 ```
@@ -93,11 +95,13 @@ This is $\mathcal{N}(\boldsymbol{\mu}\_1, \boldsymbol{\Sigma}\_{11})$. $\blacksq
 ```
 
 **Conditional Mean:**
+
 ```math
 \boldsymbol{\mu}_{1|2} = \boldsymbol{\mu}_1 + \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}(\mathbf{a} - \boldsymbol{\mu}_2)
 ```
 
 **Conditional Covariance:**
+
 ```math
 \boldsymbol{\Sigma}_{1|2} = \boldsymbol{\Sigma}_{11} - \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}\boldsymbol{\Sigma}_{21}
 ```
@@ -125,6 +129,7 @@ Using the block matrix inversion formula:
 ```
 
 where:
+
 ```math
 \boldsymbol{\Lambda}_{11} = (\boldsymbol{\Sigma}_{11} - \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}\boldsymbol{\Sigma}_{21})^{-1} = \boldsymbol{\Sigma}_{1|2}^{-1}
 ```
@@ -144,6 +149,7 @@ Q = (\mathbf{x}_1 - \boldsymbol{\mu}_{1|2})^\top \boldsymbol{\Lambda}_{11} (\mat
 ```
 
 where:
+
 ```math
 \boldsymbol{\mu}_{1|2} = \boldsymbol{\mu}_1 - \boldsymbol{\Lambda}_{11}^{-1}\boldsymbol{\Lambda}_{12}(\mathbf{a} - \boldsymbol{\mu}_2)
 ```
@@ -175,11 +181,13 @@ If $\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, then:
 **Proof using Characteristic Functions:**
 
 The characteristic function of $\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ is:
+
 ```math
 \phi_{\mathbf{X}}(\mathbf{t}) = \exp\left(i\mathbf{t}^\top\boldsymbol{\mu} - \frac{1}{2}\mathbf{t}^\top\boldsymbol{\Sigma}\mathbf{t}\right)
 ```
 
 For $\mathbf{Y} = \mathbf{A}\mathbf{X} + \mathbf{b}$:
+
 ```math
 \phi_{\mathbf{Y}}(\mathbf{t}) = E[e^{i\mathbf{t}^\top\mathbf{Y}}] = E[e^{i\mathbf{t}^\top(\mathbf{A}\mathbf{X}+\mathbf{b})}]
 = e^{i\mathbf{t}^\top\mathbf{b}} E[e^{i(\mathbf{A}^\top\mathbf{t})^\top\mathbf{X}}]
@@ -213,6 +221,7 @@ p_1(\mathbf{x}) \cdot p_2(\mathbf{x}) \propto \mathcal{N}(\mathbf{x}; \boldsymbo
 ```
 
 where:
+
 ```math
 \boldsymbol{\Sigma} = (\boldsymbol{\Sigma}_1^{-1} + \boldsymbol{\Sigma}_2^{-1})^{-1}
 \boldsymbol{\mu} = \boldsymbol{\Sigma}(\boldsymbol{\Sigma}_1^{-1}\boldsymbol{\mu}_1 + \boldsymbol{\Sigma}_2^{-1}\boldsymbol{\mu}_2)
@@ -269,6 +278,7 @@ To sample $\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$:
 3. Set $\mathbf{X} = \boldsymbol{\mu} + \mathbf{L}\mathbf{Z}$
 
 **Why it works:**
+
 ```math
 E[\mathbf{X}] = \boldsymbol{\mu} + \mathbf{L}E[\mathbf{Z}] = \boldsymbol{\mu}
 \text{Cov}[\mathbf{X}] = \mathbf{L}\text{Cov}[\mathbf{Z}]\mathbf{L}^\top = \mathbf{L}\mathbf{I}\mathbf{L}^\top = \mathbf{L}\mathbf{L}^\top = \boldsymbol{\Sigma} \quad \blacksquare
@@ -296,6 +306,7 @@ f \sim \mathcal{GP}(m, k)
 ```
 
 For any set of points $\{x\_1, \ldots, x\_n\}$:
+
 ```math
 [f(x_1), \ldots, f(x_n)]^\top \sim \mathcal{N}(\mathbf{m}, \mathbf{K})
 ```

@@ -383,6 +383,7 @@ def pca_via_svd(X, n_components):
     Principal components = columns of V
     Projected data = UΣ = XV
     """
+
     # Center the data
     mean = X.mean(axis=0)
     X_centered = X - mean

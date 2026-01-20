@@ -48,12 +48,14 @@ where:
 #### 2.2 With Prefix
 
 **Concatenate prefix to K and V:**
+
 ```math
 K' = [P_K; K] \in \mathbb{R}^{(l+n) \times d}
 V' = [P_V; V] \in \mathbb{R}^{(l+n) \times d}
 ```
 
 **Attention becomes:**
+
 ```math
 \text{Attn}(Q, K', V') = \text{softmax}\left(\frac{Q[P_K; K]^T}{\sqrt{d}}\right)[P_V; V]
 ```
@@ -61,6 +63,7 @@ V' = [P_V; V] \in \mathbb{R}^{(l+n) \times d}
 #### 2.3 Decomposition
 
 **Attention output:**
+
 ```math
 O = \text{softmax}\left(\frac{[Q P_K^T | QK^T]}{\sqrt{d}}\right) \begin{bmatrix} P_V \\ V \end{bmatrix}
 = \alpha \cdot \text{softmax}\left(\frac{QP_K^T}{\sqrt{d}}\right)P_V + (1-\alpha) \cdot \text{softmax}\left(\frac{QK^T}{\sqrt{d}}\right)V
@@ -83,11 +86,13 @@ The prefix "steers" attention by providing additional context.
 #### 3.2 Total Parameters
 
 **For L-layer transformer:**
+
 ```math
 |\theta_{prefix}| = 2 \times L \times l \times d
 ```
 
 **Example (GPT-2 Medium, $L=24$, $d=1024$, $l=100$):**
+
 ```math
 |\theta_{prefix}| = 2 \times 24 \times 100 \times 1024 = 4.9M
 ```
@@ -107,6 +112,7 @@ vs. 345M for full model → **1.4%**
 #### 4.2 MLP Reparameterization
 
 **Use a smaller embedding + MLP:**
+
 ```math
 P_K = \text{MLP}(E_K)
 P_V = \text{MLP}(E_V)
@@ -135,6 +141,7 @@ where:
 #### 5.1 Soft Prompts
 
 **Prepend to input embeddings only (not K, V):**
+
 ```math
 X' = [P; X]
 ```
@@ -166,11 +173,13 @@ where $P \in \mathbb{R}^{l \times d}$ is learned.
 #### 6.2 Connection to Prompting
 
 **Hard prompt:** Fixed text prepended to input
+
 ```math
 \text{Input: } \text{"Translate to French: "} + \text{sentence}
 ```
 
 **Soft prompt:** Learned embeddings
+
 ```math
 \text{Input: } P + \text{Embed(sentence)}
 ```
@@ -217,6 +226,7 @@ class PrefixTuning(nn.Module):
             Tuple of (prefix_keys, prefix_values)
             Each: [num_layers, batch_size, n_heads, prefix_length, d_head]
         """
+
         # Get prefix indices
         prefix_indices = torch.arange(self.prefix_length, device=self.prefix_embedding.weight.device)
         
@@ -279,6 +289,7 @@ class PrefixAttention(nn.Module):
         Q = self.q_proj(x).view(B, L, self.n_heads, self.d_head).transpose(1, 2)
         K = self.k_proj(x).view(B, L, self.n_heads, self.d_head).transpose(1, 2)
         V = self.v_proj(x).view(B, L, self.n_heads, self.d_head).transpose(1, 2)
+
         # Q, K, V: [B, H, L, d_h]
         
         # Concatenate prefix
@@ -290,6 +301,7 @@ class PrefixAttention(nn.Module):
         scores = torch.matmul(Q, K.transpose(-2, -1)) / (self.d_head ** 0.5)
         
         if attention_mask is not None:
+
             # Extend mask for prefix (prefix is always attended to)
             if prefix_k is not None:
                 prefix_len = prefix_k.size(2)
@@ -316,6 +328,7 @@ class PromptTuning(nn.Module):
         self.prompt_embeddings = nn.Parameter(torch.randn(num_tokens, d_model))
         
         if init_from_vocab:
+
             # Would initialize from actual vocabulary embeddings
             nn.init.normal_(self.prompt_embeddings, std=0.02)
     
@@ -368,6 +381,7 @@ def count_prefix_parameters(model: PrefixTuning):
 
 # Example usage
 if __name__ == "__main__":
+
     # Configuration
     num_layers = 12
     d_model = 768

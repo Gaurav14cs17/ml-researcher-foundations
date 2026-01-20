@@ -166,12 +166,14 @@ Properties:
 class ICM(nn.Module):
     def __init__(self, state_dim, action_dim, hidden_dim=256):
         super().__init__()
+
         # Feature encoder
         self.encoder = nn.Sequential(
             nn.Linear(state_dim, hidden_dim),
             nn.ReLU(),
             nn.Linear(hidden_dim, hidden_dim)
         )
+
         # Forward model: predict next features
         self.forward_model = nn.Sequential(
             nn.Linear(hidden_dim + action_dim, hidden_dim),

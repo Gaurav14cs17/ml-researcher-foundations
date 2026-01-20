@@ -179,6 +179,7 @@ optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
 # Training loop
 for epoch in range(100):
     for x_batch, y_batch in dataloader:
+
         # Forward pass
         output = model(x_batch)
         loss = criterion(output, y_batch)
@@ -757,10 +758,12 @@ class MomentumSGD:
             v = self.velocities[i]
             
             if self.nesterov:
+
                 # Nesterov momentum
                 v = self.momentum * v + grad
                 param -= self.lr * (grad + self.momentum * v)
             else:
+
                 # Standard (Polyak) momentum
                 v = self.momentum * v + grad
                 param -= self.lr * v

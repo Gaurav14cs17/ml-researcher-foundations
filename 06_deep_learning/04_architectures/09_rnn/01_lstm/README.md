@@ -45,7 +45,7 @@ or
 
 ### LSTM Equations (Complete)
 
-**Input:** \(x_t \in \mathbb{R}^d\), previous hidden state \(h_{t-1} \in \mathbb{R}^h\), previous cell state \(c_{t-1} \in \mathbb{R}^h\)
+**Input:** $x_t \in \mathbb{R}^d$, previous hidden state $h_{t-1} \in \mathbb{R}^h$, previous cell state $c_{t-1} \in \mathbb{R}^h$
 
 **1. Forget Gate:** What information to discard from cell state
 
@@ -106,11 +106,11 @@ Intuition:
 
 | Parameter | Dimension | Count |
 |-----------|-----------|-------|
-| \(W_f, W_i, W_c, W_o\) | \(h \times (h + d)\) | 4 matrices |
-| \(b_f, b_i, b_c, b_o\) | \(h\) | 4 vectors |
+| $W_f, W_i, W_c, W_o$ | \(h \times (h + d)\) | 4 matrices |
+| $b_f, b_i, b_c, b_o$ | $h$ | 4 vectors |
 | **Total** | | \(4h(h+d) + 4h = 4h(h+d+1)\) |
 
-**Example:** For \(h = 512\), \(d = 256\):
+**Example:** For $h = 512$, $d = 256$:
 - Total parameters per layer: \(4 \times 512 \times (512 + 256 + 1) \approx 1.57M\)
 
 ---
@@ -183,8 +183,10 @@ Simplified version with 2 gates instead of 3:
 z_t = \sigma(W_z \cdot [h_{t-1}, x_t])
 $$ (update gate)
 ```
+
 r_t = \sigma(W_r \cdot [h_{t-1}, x_t])
 $$ (reset gate)
+
 ```math
 \tilde{h}_t = \tanh(W \cdot [r_t \odot h_{t-1}, x_t])
 h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t
@@ -194,7 +196,7 @@ h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t
 
 ### 3. Coupled Forget-Input Gates
 
-Force \(i_t = 1 - f_t\):
+Force $i_t = 1 - f_t$:
 
 ```math
 c_t = f_t \odot c_{t-1} + (1 - f_t) \odot \tilde{c}_t
@@ -210,6 +212,7 @@ c_t = f_t \odot c_{t-1} + (1 - f_t) \odot \tilde{c}_t
 
 ```python
 for t in range(T):
+
     # Concatenate inputs
     z_t = concat(h_{t-1}, x_t)  # Shape: (h + d)
     
@@ -445,10 +448,13 @@ class LSTMFromScratch(nn.Module):
         
         # Forget gate
         self.W_f = nn.Linear(input_dim + hidden_dim, hidden_dim)
+
         # Input gate
         self.W_i = nn.Linear(input_dim + hidden_dim, hidden_dim)
+
         # Candidate
         self.W_c = nn.Linear(input_dim + hidden_dim, hidden_dim)
+
         # Output gate
         self.W_o = nn.Linear(input_dim + hidden_dim, hidden_dim)
         
@@ -522,6 +528,7 @@ class BiLSTM(nn.Module):
             output: (batch, seq_len, 2 * hidden_dim)
         """
         if lengths is not None:
+
             # Pack padded sequence
             x_packed = nn.utils.rnn.pack_padded_sequence(
                 x, lengths.cpu(), batch_first=True, enforce_sorted=False
@@ -579,7 +586,7 @@ print(f"Output: {output.shape}, h_n: {h_n.shape}, c_n: {c_n.shape}")
 
 | Feature | RNN | LSTM | GRU | Transformer |
 |---------|-----|------|-----|-------------|
-| **Parameters** | \(h^2\) | \(4h^2\) | \(3h^2\) | \(4h^2 + 2h^2/n_{heads}\) |
+| **Parameters** | $h^2$ | $4h^2$ | $3h^2$ | $4h^2 + 2h^2/n_{heads}$ |
 | **Vanishing gradient** | Severe | Solved | Solved | N/A |
 | **Parallelization** | Sequential | Sequential | Sequential | Fully parallel |
 | **Long-range** | Poor | Good | Good | Excellent |
@@ -591,8 +598,8 @@ print(f"Output: {output.shape}, h_n: {h_n.shape}, c_n: {c_n.shape}")
 
 | Insight | Explanation |
 |---------|-------------|
-| **Forget gate bias = 1** | Initialize \(b_f = 1\) so \(f_t \approx 1\) initially, allowing gradient flow |
-| **Cell state is nearly linear** | \(c_t = f_t \odot c_{t-1} + ...\) allows error to flow unchanged |
+| **Forget gate bias = 1** | Initialize $b_f = 1$ so $f_t \approx 1$ initially, allowing gradient flow |
+| **Cell state is nearly linear** | $c_t = f_t \odot c_{t-1} + ...$ allows error to flow unchanged |
 | **Peephole not always better** | Original LSTM often works just as well |
 | **GRU is often sufficient** | Fewer parameters, similar performance |
 

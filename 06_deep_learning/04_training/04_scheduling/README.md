@@ -83,6 +83,7 @@ Where $\gamma \in (0, 1)$ is the decay factor and $s$ is the step size.
 ```
 
 **Continuous version:**
+
 ```math
 \eta_t = \eta_0 \cdot e^{-\lambda t}
 ```
@@ -123,6 +124,7 @@ Where $T\_{cur}$ is steps since last restart and $T\_i$ is the $i$-th restart pe
 **Why warmup?**
 
 1. **Adam's running averages:** Not calibrated at start
+
 ```math
 m_0 = 0, \quad v_0 = 0
 ```math
@@ -134,17 +136,21 @@ Bias correction helps, but initial steps are still noisy.
 
 ### Linear Warmup
 ```
+
 \eta_t = \begin{cases}
 \eta_{max} \cdot \frac{t}{T_{warmup}} & t < T_{warmup} \\
 \text{schedule}(t) & t \geq T_{warmup}
 \end{cases}
+
 ```math
 ### Warmup + Cosine Decay (LLM Standard)
 ```
+
 \eta_t = \begin{cases}
 \eta_{max} \cdot \frac{t}{T_w} & t < T_w \\
 \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{\pi(t - T_w)}{T - T_w}\right)\right) & t \geq T_w
 \end{cases}
+
 ```math
 **Typical values for LLMs:**
 - $T\_w = 2000$ steps (warmup)
@@ -160,6 +166,7 @@ Bias correction helps, but initial steps are still noisy.
 2. **Annealing:** LR decreases from $\eta\_{max}$ to $\eta\_{low}$
 3. **Fine-tune:** LR drops further to $\eta\_{low}/10$
 ```
+
 \eta_t = \begin{cases}
 \eta_{low} + (\eta_{max} - \eta_{low}) \cdot \frac{t}{T_1} & t < T_1 \\
 \eta_{max} - (\eta_{max} - \eta_{low}) \cdot \frac{t - T_1}{T_2 - T_1} & T_1 \leq t < T_2 \\
@@ -226,9 +233,11 @@ def warmup_cosine_schedule(step, warmup_steps=2000, total_steps=100000, min_lr_r
     Warmup + Cosine decay schedule
     """
     if step < warmup_steps:
+
         # Linear warmup
         return step / warmup_steps
     else:
+
         # Cosine decay
         progress = (step - warmup_steps) / (total_steps - warmup_steps)
         return min_lr_ratio + (1 - min_lr_ratio) * 0.5 * (1 + math.cos(math.pi * progress))
@@ -272,6 +281,7 @@ def get_lr(step, warmup_steps, total_steps, max_lr, min_lr):
     """
     Complete LR schedule for LLM training
     """
+
     # 1) Linear warmup
     if step < warmup_steps:
         return max_lr * (step + 1) / warmup_steps

@@ -18,21 +18,25 @@
 ### 1. Hinton's Knowledge Distillation
 
 **Complete Loss Function:**
+
 ```math
 \mathcal{L}_{KD} = \alpha \cdot \mathcal{L}_{hard} + (1-\alpha) \cdot T^2 \cdot \mathcal{L}_{soft}
 ```
 
 **Hard Loss (Ground Truth):**
+
 ```math
 \mathcal{L}_{hard} = -\sum_i y_i \log p_i^s = H(y, p^s)
 ```
 
 **Soft Loss (Teacher Knowledge):**
+
 ```math
 \mathcal{L}_{soft} = D_{KL}(p^t_T \| p^s_T) = \sum_i p_i^{t,T} \log \frac{p_i^{t,T}}{p_i^{s,T}}
 ```
 
 Where temperature-scaled softmax:
+
 ```math
 p_i^T = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)}
 ```
@@ -50,6 +54,7 @@ Let $z\_i$ be logits and $\bar{z} = \frac{1}{n}\sum\_i z\_i$
 ```
 
 Therefore:
+
 ```math
 p_i^T = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)} \approx \frac{1 + z_i/T}{n + \sum_j z_j/T}
 \approx \frac{1}{n} + \frac{z_i - \bar{z}}{nT} + O(1/T^2)
@@ -71,6 +76,7 @@ p_i^T = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)} \approx \frac{1 + z_i/T}{n + \sum
 **Why $T^2$ scaling?**
 
 The gradient scales as $1/T$, and we want gradients comparable to hard loss:
+
 ```math
 \frac{\partial (T^2 \mathcal{L}_{soft})}{\partial z_s^{(i)}} = T\left(p_i^{s,T} - p_i^{t,T}\right)
 ```
@@ -80,22 +86,26 @@ This makes the soft loss contribution independent of temperature choice.
 ### 4. Information-Theoretic Perspective
 
 **Mutual Information:**
+
 ```math
 I(X; Y) = H(Y) - H(Y|X)
 ```
 
 **Knowledge in Soft Labels:**
 The soft labels contain more information than hard labels:
+
 ```math
 I(X; p^t_T) > I(X; y)
 ```
 
 Because:
+
 ```math
 H(p^t_T) > H(y) \text{ (soft labels have higher entropy)}
 ```
 
 **Dark Knowledge:** Information in $p^t\_T$ beyond $y$:
+
 ```math
 \text{Dark Knowledge} = I(X; p^t_T) - I(X; y)
 ```
@@ -103,6 +113,7 @@ H(p^t_T) > H(y) \text{ (soft labels have higher entropy)}
 ### 5. Feature-Based Distillation
 
 **FitNets (Romero et al., 2015):**
+
 ```math
 \mathcal{L}_{hint} = \|r(F_s^l) - F_t^l\|_2^2
 ```
@@ -112,6 +123,7 @@ Where:
 - $r(\cdot)$: Regressor to match dimensions
 
 **Attention Transfer (Zagoruyko & Komodakis, 2016):**
+
 ```math
 \mathcal{L}_{AT} = \sum_l \left\|\frac{Q_s^l}{\|Q_s^l\|_2} - \frac{Q_t^l}{\|Q_t^l\|_2}\right\|_p
 ```
@@ -123,6 +135,7 @@ Where attention maps: $Q^l = \sum\_c |F^l\_c|^2$ (sum over channels)
 **Relational Knowledge Distillation (RKD):**
 
 *Distance-wise:*
+
 ```math
 \mathcal{L}_{RKD-D} = \sum_{(i,j)} l_\delta(\psi_D(t_i, t_j), \psi_D(s_i, s_j))
 ```
@@ -130,6 +143,7 @@ Where attention maps: $Q^l = \sum\_c |F^l\_c|^2$ (sum over channels)
 Where $\psi\_D(x\_i, x\_j) = \frac{1}{\mu}\|x\_i - x\_j\|\_2$ (normalized distance)
 
 *Angle-wise:*
+
 ```math
 \mathcal{L}_{RKD-A} = \sum_{(i,j,k)} l_\delta(\psi_A(t_i, t_j, t_k), \psi_A(s_i, s_j, s_k))
 ```
@@ -139,6 +153,7 @@ Where $\psi\_A$ computes angle between vectors.
 ### 7. Contrastive Distillation
 
 **CRD (Contrastive Representation Distillation):**
+
 ```math
 \mathcal{L}_{CRD} = -\mathbb{E}_{(x,y^+)} \log \frac{h(T(x), S(y^+))}{h(T(x), S(y^+)) + \sum_{y^-} h(T(x), S(y^-))}
 ```
@@ -151,6 +166,7 @@ Where:
 ### 8. Self-Distillation
 
 **Born-Again Networks:**
+
 ```math
 S^{(k+1)} \leftarrow \text{train}(S^{(k)}, D_{KL}(p^{(k)} \| p^{(k+1)}))
 ```
@@ -201,6 +217,7 @@ class DistillationLoss(nn.Module):
         self.alpha = alpha
     
     def forward(self, student_logits, teacher_logits, labels):
+
         # Hard loss (cross-entropy with ground truth)
         hard_loss = F.cross_entropy(student_logits, labels)
         
@@ -219,10 +236,12 @@ class FeatureDistillationLoss(nn.Module):
     
     def __init__(self, student_dim, teacher_dim):
         super().__init__()
+
         # Regressor to match dimensions
         self.regressor = nn.Linear(student_dim, teacher_dim)
     
     def forward(self, student_features, teacher_features):
+
         # Project student features
         projected = self.regressor(student_features)
         
@@ -237,8 +256,10 @@ class AttentionTransferLoss(nn.Module):
         self.p = p
     
     def forward(self, student_activations, teacher_activations):
+
         # Compute attention maps (spatial sum of squared activations)
         def attention_map(x):
+
             # x: [B, C, H, W]
             return x.pow(2).sum(dim=1)  # [B, H, W]
         

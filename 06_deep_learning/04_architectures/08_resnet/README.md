@@ -26,6 +26,7 @@ Even if a deeper network could learn identity mappings for extra layers, trainin
 **Key Insight:** Instead of learning $H(x)$, learn the residual $F(x) = H(x) - x$
 
 **Residual Block:**
+
 ```math
 y = F(x) + x
 ```
@@ -65,6 +66,7 @@ h_{l+1} = h_l + F(h_l; W_l)
 ```
 
 Expanding (ignoring higher-order terms):
+
 ```math
 \approx 1 + \sum_l \frac{\partial F_l}{\partial h_l} + \text{higher order terms}
 ```
@@ -116,11 +118,13 @@ BN and ReLU before convolution. Slightly better gradient flow.
 When input/output dimensions differ:
 
 **Option A: Zero Padding**
+
 ```math
 y = F(x) + \text{pad}(x)
 ```
 
 **Option B: Projection (1×1 Conv)**
+
 ```math
 y = F(x) + W_s x
 ```
@@ -293,6 +297,7 @@ model = models.resnet50(pretrained=True)
 ### ResNeXt
 
 Aggregated residual transformations:
+
 ```math
 F(x) = \sum_{i=1}^{C} T_i(x)
 ```
@@ -302,6 +307,7 @@ Where $C$ is cardinality (number of parallel paths).
 ### DenseNet
 
 Dense connections: each layer receives all preceding features:
+
 ```math
 x_l = H_l([x_0, x_1, ..., x_{l-1}])
 ```
@@ -309,6 +315,7 @@ x_l = H_l([x_0, x_1, ..., x_{l-1}])
 ### SE-ResNet
 
 Squeeze-and-Excitation: channel attention:
+
 ```math
 y = F(x) \cdot \sigma(W_2 \text{ReLU}(W_1 \text{GAP}(F(x))))
 ```

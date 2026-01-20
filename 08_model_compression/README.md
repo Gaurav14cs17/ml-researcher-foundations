@@ -98,6 +98,7 @@ CR = \frac{\text{Original Size}}{\text{Compressed Size}} = \frac{|M|}{|M_c|}
 **Theorem (Pareto Frontier):** For a given compression technique, there exists a Pareto frontier where no compression can simultaneously improve both model size and accuracy. Any point on this frontier represents an optimal trade-off.
 
 **Rate-Distortion Theory Connection:**
+
 ```math
 R(D) = \min_{p(\hat{W}|W)} I(W; \hat{W}) \quad \text{s.t.} \quad \mathbb{E}[d(W, \hat{W})] \leq D
 ```
@@ -110,6 +111,7 @@ Where:
 ### 3. Memory-Compute Relationship
 
 **Memory Complexity:**
+
 ```math
 \text{Memory} = O(P \times b)
 ```
@@ -117,6 +119,7 @@ Where:
 Where $P$ = parameters, $b$ = bytes per parameter
 
 **Compute Complexity:**
+
 ```math
 \text{FLOPs} = O(\text{ops} \times \text{precision-factor})
 ```
@@ -131,6 +134,7 @@ Where $P$ = parameters, $b$ = bytes per parameter
 ### 4. Universal Compression Bound
 
 **Shannon's Source Coding Theorem:**
+
 ```math
 H(W) \leq R \leq H(W) + 1
 ```
@@ -138,6 +142,7 @@ H(W) \leq R \leq H(W) + 1
 The minimum average bits per weight is bounded by the entropy $H(W)$ of the weight distribution.
 
 **For Gaussian-distributed weights:**
+
 ```math
 H(W) = \frac{1}{2}\log_2(2\pi e \sigma^2) \approx 4-5 \text{ bits}
 ```

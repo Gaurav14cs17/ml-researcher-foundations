@@ -54,6 +54,7 @@ Y[c_{out}, h, w] = \sum_{c_{in}=1}^{C_{in}} \sum_{i=1}^{K} \sum_{j=1}^{K} W[c_{o
 #### 2.2 Depthwise Convolution
 
 **One filter per input channel:**
+
 ```math
 Y_{dw}[c, h, w] = \sum_{i=1}^{K} \sum_{j=1}^{K} W_{dw}[c, i, j] \cdot X[c, h+i, w+j]
 ```
@@ -65,6 +66,7 @@ Y_{dw}[c, h, w] = \sum_{i=1}^{K} \sum_{j=1}^{K} W_{dw}[c, i, j] \cdot X[c, h+i, 
 #### 2.3 Pointwise Convolution
 
 **1×1 convolution for channel mixing:**
+
 ```math
 Y[c_{out}, h, w] = \sum_{c_{in}=1}^{C_{in}} W_{pw}[c_{out}, c_{in}] \cdot Y_{dw}[c_{in}, h, w]
 ```
@@ -84,11 +86,13 @@ Y[c_{out}, h, w] = \sum_{c_{in}=1}^{C_{in}} W_{pw}[c_{out}, c_{in}] \cdot Y_{dw}
 **Depthwise Separable:** $C\_{in} \cdot K^2 + C\_{out} \cdot C\_{in}$
 
 **Ratio:**
+
 ```math
 \frac{C_{in} \cdot K^2 + C_{out} \cdot C_{in}}{C_{out} \cdot C_{in} \cdot K^2} = \frac{1}{C_{out}} + \frac{1}{K^2}
 ```
 
 **For typical values ($C\_{out} = 256$, $K = 3$):**
+
 ```math
 \frac{1}{256} + \frac{1}{9} \approx 0.11 \approx \frac{1}{9}
 ```
@@ -98,6 +102,7 @@ Y[c_{out}, h, w] = \sum_{c_{in}=1}^{C_{in}} W_{pw}[c_{out}, c_{in}] \cdot Y_{dw}
 #### 3.2 FLOP Reduction
 
 Same ratio as parameters:
+
 ```math
 \frac{\text{DSConv FLOPs}}{\text{Standard FLOPs}} = \frac{1}{C_{out}} + \frac{1}{K^2}
 ```
@@ -109,11 +114,13 @@ Same ratio as parameters:
 #### 4.1 Low-Rank Approximation
 
 **Standard conv as 4D tensor:**
+
 ```math
 \mathcal{W} \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
 ```
 
 **Depthwise separable as rank-1 approximation in first two modes:**
+
 ```math
 \mathcal{W} \approx \sum_{r=1}^{R} a_r \otimes b_r \otimes c_r
 ```
@@ -254,6 +261,7 @@ class EfficientChannelAttention(nn.Module):
         self.sigmoid = nn.Sigmoid()
     
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+
         # Global average pooling
         y = self.avg_pool(x)  # [B, C, 1, 1]
         y = y.squeeze(-1).transpose(-1, -2)  # [B, 1, C]
@@ -298,6 +306,7 @@ def convert_to_depthwise_separable(model: nn.Module,
     
     for name, module in list(model.named_modules()):
         if isinstance(module, nn.Conv2d):
+
             # Skip if already depthwise or 1×1
             if module.groups > 1 or module.kernel_size == (1, 1):
                 continue

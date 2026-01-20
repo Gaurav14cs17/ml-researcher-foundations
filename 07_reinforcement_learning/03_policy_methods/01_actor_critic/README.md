@@ -121,6 +121,7 @@ A2C (Synchronous Advantage Actor-Critic) collects experiences from multiple para
 ```
 Initialize policy π_θ, value function V_ω
 For each iteration:
+
     # Collect n-step trajectories from N parallel environments
     For each environment i:
         Collect (s_t, a_t, r_t, s_{t+1}) for n steps
@@ -389,6 +390,7 @@ def train_a2c(env, agent, n_episodes=1000, n_steps=5):
         done = False
         
         while not done:
+
             # Collect n-step trajectory
             states, actions, rewards, dones = [], [], [], []
             

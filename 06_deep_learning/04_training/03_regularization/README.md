@@ -50,11 +50,13 @@ L_{\text{total}} = L_{\text{data}} + \frac{\lambda}{2} \sum_i w_i^2 = L_{\text{d
 ```
 
 **Gradient:**
+
 ```math
 \frac{\partial L_{\text{total}}}{\partial w} = \frac{\partial L_{\text{data}}}{\partial w} + \lambda w
 ```
 
 **Update Rule:**
+
 ```math
 w_{t+1} = w_t - \alpha \left(\frac{\partial L_{\text{data}}}{\partial w} + \lambda w_t\right) = (1 - \alpha\lambda) w_t - \alpha \frac{\partial L_{\text{data}}}{\partial w}
 ```
@@ -66,16 +68,19 @@ w_{t+1} = w_t - \alpha \left(\frac{\partial L_{\text{data}}}{\partial w} + \lamb
 **Theorem:** L2 regularization is equivalent to MAP estimation with Gaussian prior.
 
 **Proof:**
+
 ```math
 p(w|D) \propto p(D|w) \cdot p(w)
 ```
 
 With Gaussian prior $p(w) = \mathcal{N}(0, \sigma^2 I)$:
+
 ```math
 \log p(w|D) = \log p(D|w) - \frac{1}{2\sigma^2} \|w\|_2^2 + \text{const}
 ```
 
 Maximizing this equals minimizing:
+
 ```math
 L_{\text{data}} + \frac{1}{2\sigma^2} \|w\|_2^2
 ```
@@ -93,6 +98,7 @@ L_{\text{total}} = L_{\text{data}} + \lambda \sum_i |w_i| = L_{\text{data}} + \l
 ```
 
 **Subgradient:**
+
 ```math
 \frac{\partial L_{\text{total}}}{\partial w_i} = \frac{\partial L_{\text{data}}}{\partial w_i} + \lambda \cdot \text{sign}(w_i)
 ```
@@ -113,11 +119,13 @@ Optimal point more likely to hit corner in L1 → exact zeros.
 **Proof (1D case):**
 
 For $L = (y - wx)^2 + \lambda|w|$:
+
 ```math
 \frac{\partial L}{\partial w} = -2x(y-wx) + \lambda \cdot \text{sign}(w)
 ```
 
 Setting to zero:
+
 ```math
 w^* = \text{sign}(w^*) \cdot \max\left(0, |yx| - \frac{\lambda}{2x^2}\right)
 ```
@@ -145,6 +153,7 @@ h = h    # No dropout, no scaling (inverted dropout)
 ### Mathematical Analysis
 
 **Expectation preservation:**
+
 ```math
 \mathbb{E}[\text{dropout}(h)] = \mathbb{E}\left[\frac{m \odot h}{1-p}\right] = \frac{(1-p) h}{1-p} = h
 ```
@@ -207,11 +216,13 @@ for epoch in range(max_epochs):
 **Theorem:** Early stopping is equivalent to L2 regularization for linear models.
 
 For gradient descent on linear regression with learning rate $\alpha$:
+
 ```math
 w_t = (I - (I - \alpha X^\top X)^t) w^*_{\text{OLS}}
 ```
 
 This has similar effect to:
+
 ```math
 w^*_{\lambda} = (X^\top X + \lambda I)^{-1} X^\top y
 ```
@@ -225,16 +236,19 @@ where $\lambda$ is determined by number of iterations $t$.
 ### Formulation
 
 Instead of one-hot labels:
+
 ```math
 y_{\text{hard}} = [0, 0, 1, 0, 0]
 ```
 
 Use smoothed labels:
+
 ```math
 y_{\text{smooth}} = (1-\epsilon) \cdot y_{\text{hard}} + \frac{\epsilon}{K}
 ```
 
 For $\epsilon = 0.1$, $K = 5$:
+
 ```math
 y_{\text{smooth}} = [0.02, 0.02, 0.92, 0.02, 0.02]
 ```
@@ -313,6 +327,7 @@ class DropPath(nn.Module):
             return x
         
         keep_prob = 1 - self.p
+
         # Random tensor shape: (batch, 1, 1, 1, ...) for broadcasting
         shape = (x.shape[0],) + (1,) * (x.ndim - 1)
         random_tensor = keep_prob + torch.rand(shape, device=x.device)

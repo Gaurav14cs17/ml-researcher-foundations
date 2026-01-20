@@ -45,7 +45,7 @@ Let the true relationship be:
 y = f(x) + \varepsilon, \quad \text{where } \varepsilon \sim \mathcal{N}(0, \sigma^2)
 ```
 
-Given training data \(\mathcal{D}\), we learn an estimator \(\hat{f}(x; \mathcal{D})\).
+Given training data $\mathcal{D}$, we learn an estimator \(\hat{f}(x; \mathcal{D})\).
 
 ### Theorem: Bias-Variance Decomposition
 
@@ -75,7 +75,7 @@ where:
 
 **Step 2: Evaluate the cross-term**
 
-Since \(\varepsilon = y - f\) is independent of \(\hat{f}\) and \(\mathbb{E}[\varepsilon] = 0\):
+Since $\varepsilon = y - f$ is independent of $\hat{f}$ and $\mathbb{E}[\varepsilon] = 0$:
 
 ```math
 \mathbb{E}[(y - f)(f - \hat{f})] = \mathbb{E}[\varepsilon(f - \hat{f})] = \mathbb{E}[\varepsilon] \cdot \mathbb{E}[f - \hat{f}] = 0
@@ -89,7 +89,7 @@ Since \(\varepsilon = y - f\) is independent of \(\hat{f}\) and \(\mathbb{E}[\va
 
 **Step 4: Second term (decompose further)**
 
-Let \(\bar{f} = \mathbb{E}_{\mathcal{D}}[\hat{f}]\) (expected prediction across datasets).
+Let $\bar{f} = \mathbb{E}_{\mathcal{D}}[\hat{f}]$ (expected prediction across datasets).
 
 ```math
 \mathbb{E}[(f - \hat{f})^2] = \mathbb{E}[(f - \bar{f} + \bar{f} - \hat{f})^2]
@@ -203,13 +203,13 @@ Best linear fit minimizes \(\int (x^2 - ax - b)^2 dx\), but cannot represent cur
 
 **Mathematical Example:**
 
-Consider polynomial regression of degree \(d\) on \(n\) points:
+Consider polynomial regression of degree $d$ on $n$ points:
 
 ```math
 \text{Var}(\hat{f}(x)) = \sigma^2 \cdot \mathbf{x}^\top (\mathbf{X}^\top\mathbf{X})^{-1} \mathbf{x}
 ```
 
-As \(d \to n\), \((\mathbf{X}^\top\mathbf{X})^{-1}\) becomes ill-conditioned and variance explodes.
+As $d \to n$, \((\mathbf{X}^\top\mathbf{X})^{-1}\) becomes ill-conditioned and variance explodes.
 
 ---
 
@@ -253,13 +253,14 @@ With L2 regularization: \(\hat{\beta}_{\text{ridge}} = (X^\top X + \lambda I)^{-
 \text{Var}(\hat{\beta}_{\text{ridge}}) = \sigma^2 (X^\top X + \lambda I)^{-1} X^\top X (X^\top X + \lambda I)^{-1}
 ```
 
-**Theorem:** There exists \(\lambda^* > 0\) such that \(\text{MSE}(\hat{\beta}_{\text{ridge}}) < \text{MSE}(\hat{\beta}_{\text{OLS}})\).
+**Theorem:** There exists $\lambda^* > 0$ such that \(\text{MSE}(\hat{\beta}_{\text{ridge}}) < \text{MSE}(\hat{\beta}_{\text{OLS}})\).
 
 ---
 
 ## 🌍 Modern Deep Learning Perspective
 
 ### Classical View
+
 ```math
 \text{Test Error} = \text{Bias}^2 + \text{Variance} + \sigma^2
 ```
@@ -332,10 +333,12 @@ def bias_variance_demo(n_samples=30, n_bootstrap=100, noise_std=0.3):
     results = []
     
     for ax, degree in zip(axes, degrees):
+
         # Bootstrap predictions: simulate training on different datasets
         predictions = np.zeros((n_bootstrap, len(X_test)))
         
         for b in range(n_bootstrap):
+
             # Resample with replacement (different training set)
             idx = np.random.choice(n_samples, n_samples, replace=True)
             X_boot, y_boot = X[idx], y[idx]
@@ -419,6 +422,7 @@ def bias_variance_decomposition(model_class, X_train, y_train, X_test, y_test,
     predictions = np.zeros((n_bootstrap, n_test))
     
     for b in range(n_bootstrap):
+
         # Bootstrap sample (different training set)
         idx = np.random.choice(len(X_train), len(X_train), replace=True)
         X_boot, y_boot = X_train[idx], y_train[idx]

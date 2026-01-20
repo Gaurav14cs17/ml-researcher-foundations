@@ -158,6 +158,7 @@ y_i = \gamma \hat{x}_i + \beta
 ```
 
 Using mask $m \sim \text{Bernoulli}(1-p)$:
+
 ```math
 y = \frac{x \odot m}{1-p}
 ```
@@ -189,6 +190,7 @@ E \in \mathbb{R}^{V \times d}
 ```
 
 Given token index $i$:
+
 ```math
 y = E[i, :] \in \mathbb{R}^d
 ```
@@ -229,6 +231,7 @@ s_i(1 - s_i) & \text{if } i = j \\
 ```
 
 Or in matrix form:
+
 ```math
 \frac{\partial s}{\partial x} = \text{diag}(s) - s s^\top
 ```
@@ -257,26 +260,32 @@ import torch.nn.functional as F
 
 # Linear (Fully Connected)
 linear = nn.Linear(in_features=512, out_features=256)
+
 # Parameters: 512 * 256 + 256 = 131,328
 
 # Convolutional
 conv = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=3, padding=1)
+
 # Parameters: 64 * (3 * 3 * 3 + 1) = 1,792
 
 # Multi-head Attention
 attention = nn.MultiheadAttention(embed_dim=512, num_heads=8)
+
 # Parameters: 4 * 512 * 512 = 1,048,576
 
 # Layer Normalization
 norm = nn.LayerNorm(normalized_shape=512)
+
 # Parameters: 512 + 512 = 1,024 (gamma and beta)
 
 # Dropout
 dropout = nn.Dropout(p=0.1)
+
 # Parameters: 0 (just masks during training)
 
 # Embedding
 embedding = nn.Embedding(num_embeddings=50000, embedding_dim=512)
+
 # Parameters: 50000 * 512 = 25,600,000
 
 # Custom Layer Implementation

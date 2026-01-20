@@ -58,16 +58,19 @@ p_X(x) = P(X = x)
 ### Examples
 
 **Bernoulli:**
+
 ```math
 P(X = 1) = p, \quad P(X = 0) = 1 - p
 ```
 
 **Binomial:**
+
 ```math
 P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}
 ```
 
 **Poisson:**
+
 ```math
 P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
 ```
@@ -91,16 +94,19 @@ P(a \leq X \leq b) = \int_a^b f_X(x) \, dx
 ### Examples
 
 **Uniform:**
+
 ```math
 f(x) = \frac{1}{b-a}, \quad x \in [a, b]
 ```
 
 **Exponential:**
+
 ```math
 f(x) = \lambda e^{-\lambda x}, \quad x \geq 0
 ```
 
 **Gaussian:**
+
 ```math
 f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
 ```
@@ -125,11 +131,13 @@ F_X(x) = P(X \leq x)
 ### Relation to PMF/PDF
 
 **Discrete:**
+
 ```math
 F(x) = \sum_{x_i \leq x} p(x_i)
 ```
 
 **Continuous:**
+
 ```math
 F(x) = \int_{-\infty}^{x} f(t) \, dt
 f(x) = \frac{dF}{dx}
@@ -150,11 +158,13 @@ f_Y(y) = f_X(g^{-1}(y)) \cdot \left|\frac{d}{dy}g^{-1}(y)\right|
 **Proof:**
 
 For increasing $g$:
+
 ```math
 F_Y(y) = P(Y \leq y) = P(g(X) \leq y) = P(X \leq g^{-1}(y)) = F_X(g^{-1}(y))
 ```
 
 Differentiating:
+
 ```math
 f_Y(y) = f_X(g^{-1}(y)) \cdot \frac{d}{dy}g^{-1}(y) \quad \blacksquare
 ```
@@ -174,11 +184,13 @@ This is the chi-squared distribution with 1 degree of freedom!
 ### Expectation (Mean)
 
 **Discrete:**
+
 ```math
 E[X] = \sum_x x \cdot P(X = x)
 ```
 
 **Continuous:**
+
 ```math
 E[X] = \int_{-\infty}^{\infty} x \cdot f(x) \, dx
 ```
@@ -199,6 +211,7 @@ E[g(X)] = \int_{-\infty}^{\infty} g(x) \cdot f(x) \, dx
 ```
 
 **Proof of alternative form:**
+
 ```math
 \text{Var}(X) = E[X^2 - 2\mu X + \mu^2] = E[X^2] - 2\mu^2 + \mu^2 = E[X^2] - \mu^2 \quad \blacksquare
 ```
@@ -228,6 +241,7 @@ M_X(t) = \exp\left(\mu t + \frac{\sigma^2 t^2}{2}\right)
 ```
 
 **Proof:**
+
 ```math
 M_X(t) = E[e^{tX}] = \int \frac{1}{\sqrt{2\pi\sigma^2}} e^{tx} e^{-\frac{(x-\mu)^2}{2\sigma^2}} dx
 ```

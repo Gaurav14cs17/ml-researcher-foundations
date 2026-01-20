@@ -236,6 +236,7 @@ v_{k+1} &= \beta v_k + \nabla f(\theta_k - \eta \beta v_k) \quad \text{(gradient
 ```
 
 Alternative form:
+
 ```math
 \begin{align}
 y_k &= \theta_k + \beta(\theta_k - \theta_{k-1}) \\
@@ -281,11 +282,13 @@ Nesterov achieves **optimal** rate for first-order methods!
 ### 📐 Theory
 
 For L-smooth functions, convergence guaranteed if:
+
 ```math
 \eta \leq \frac{1}{L}
 ```
 
 For optimal convergence in strongly convex case:
+
 ```math
 \eta = \frac{1}{L}
 ```
@@ -302,6 +305,7 @@ For optimal convergence in strongly convex case:
 ### 💻 Learning Rate Schedules
 
 ```python
+
 # Step decay
 def step_decay(epoch, initial_lr=0.1, drop=0.5, epochs_drop=30):
     return initial_lr * (drop ** (epoch // epochs_drop))
@@ -333,6 +337,7 @@ For $f(\theta) = g(\theta) + h(\theta)$ where $g$ is smooth and $h$ is non-smoot
 ```
 
 where the proximal operator is:
+
 ```math
 \text{prox}_{\eta h}(x) = \arg\min_z \left( h(z) + \frac{1}{2\eta}\|z - x\|^2 \right)
 ```
@@ -401,6 +406,7 @@ def nesterov_gd(grad_f, x0, lr=0.01, beta=0.9, n_steps=1000):
     history = []
     
     for k in range(n_steps):
+
         # Lookahead point
         x_lookahead = x - lr * beta * v
         
@@ -434,6 +440,7 @@ def ista(X, y, lam=0.1, lr=None, n_steps=1000):
         lr = 1 / L
     
     for k in range(n_steps):
+
         # Gradient step for smooth part
         grad = X.T @ (X @ theta - y)
         z = theta - lr * grad

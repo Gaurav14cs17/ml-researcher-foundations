@@ -32,6 +32,7 @@ For an $L$-layer network with loss $\mathcal{L}$:
 ```
 
 **Jacobian at each layer:**
+
 ```math
 \frac{\partial h_l}{\partial h_{l-1}} = W_l^\top \cdot \text{diag}(\sigma'(z_{l-1}))
 ```
@@ -75,6 +76,7 @@ Let $\sigma\_{\max}(M)$ denote the largest singular value of matrix $M$.
 **Proof:** $\max\_{x} \sigma(x)(1-\sigma(x)) = \frac{1}{4}$ at $x=0$.
 
 For $L$ layers:
+
 ```math
 \left\|\frac{\partial h_L}{\partial h_1}\right\| \leq \left(\frac{1}{4}\right)^{L-1} \|W_2\| \cdots \|W_L\|
 ```
@@ -114,6 +116,7 @@ Still saturates at large $|x|$, causing vanishing gradients.
 Consider $h\_l = W h\_{l-1}$ with $W = \begin{pmatrix} 1.5 & 0 \\ 0 & 1.5 \end{pmatrix}$
 
 After $L$ layers:
+
 ```math
 \frac{\partial h_L}{\partial h_1} = W^{L-1} = \begin{pmatrix} 1.5^{L-1} & 0 \\ 0 & 1.5^{L-1} \end{pmatrix}
 ```
@@ -127,11 +130,13 @@ For $L = 50$: $1.5^{49} \approx 6.4 \times 10^8$ (explodes!)
 ### 1. Skip Connections (ResNet)
 
 **Architecture:**
+
 ```math
 h_{l+1} = h_l + F(h_l; W_l)
 ```
 
 **Gradient:**
+
 ```math
 \frac{\partial h_{l+1}}{\partial h_l} = I + \frac{\partial F}{\partial h_l}
 ```
@@ -143,6 +148,7 @@ h_{l+1} = h_l + F(h_l; W_l)
 ```
 
 Expanding:
+
 ```math
 = I + \sum_l \frac{\partial F_l}{\partial h_l} + \sum_{l_1 < l_2} \frac{\partial F_{l_1}}{\partial h_{l_1}} \frac{\partial F_{l_2}}{\partial h_{l_2}} + \cdots
 ```
@@ -152,6 +158,7 @@ The identity $I$ ensures gradient of at least 1 flows through!
 ### 2. Gradient Clipping
 
 **Algorithm:**
+
 ```math
 \hat{g} = \begin{cases}
 g & \text{if } \|g\| \leq \tau \\
@@ -168,6 +175,7 @@ torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 ### 3. Layer Normalization
 
 **Forward:**
+
 ```math
 \hat{h} = \frac{h - \mu}{\sigma} \cdot \gamma + \beta
 ```
@@ -179,11 +187,13 @@ Normalizing activations prevents them from growing unboundedly, which stabilizes
 ### 4. Proper Initialization
 
 **Xavier (sigmoid/tanh):**
+
 ```math
 W \sim \mathcal{N}\left(0, \frac{2}{n_{in} + n_{out}}\right)
 ```
 
 **Kaiming (ReLU):**
+
 ```math
 W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)
 ```
@@ -281,11 +291,13 @@ C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t
 ```
 
 **Gradient through cell state:**
+
 ```math
 \frac{\partial C_t}{\partial C_{t-1}} = f_t
 ```
 
 If $f\_t \approx 1$:
+
 ```math
 \frac{\partial C_T}{\partial C_1} = \prod_{t=2}^{T} f_t \approx 1
 ```

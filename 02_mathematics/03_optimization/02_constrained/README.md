@@ -174,21 +174,25 @@ The uniform distribution maximizes entropy!
 For the constrained problem with both equality and inequality constraints, the **Karush-Kuhn-Tucker conditions** are:
 
 **1. Stationarity**:
+
 ```math
 \nabla f(\mathbf{x}^*) + \sum_i \mu_i^* \nabla g_i(\mathbf{x}^*) + \sum_j \lambda_j^* \nabla h_j(\mathbf{x}^*) = 0
 ```
 
 **2. Primal Feasibility**:
+
 ```math
 g_i(\mathbf{x}^*) \leq 0, \quad h_j(\mathbf{x}^*) = 0
 ```
 
 **3. Dual Feasibility**:
+
 ```math
 \mu_i^* \geq 0
 ```
 
 **4. Complementary Slackness**:
+
 ```math
 \mu_i^* g_i(\mathbf{x}^*) = 0 \quad \forall i
 ```
@@ -251,11 +255,13 @@ Final answer: x* = 2, unconstrained optimum is feasible!
 ### 📐 Lagrangian Dual Problem
 
 The **dual function**:
+
 ```math
 g(\boldsymbol{\mu}, \boldsymbol{\lambda}) = \inf_{\mathbf{x}} \mathcal{L}(\mathbf{x}, \boldsymbol{\mu}, \boldsymbol{\lambda})
 ```
 
 The **dual problem**:
+
 ```math
 \max_{\boldsymbol{\mu} \geq 0, \boldsymbol{\lambda}} g(\boldsymbol{\mu}, \boldsymbol{\lambda})
 ```
@@ -364,6 +370,7 @@ def lagrangian_method_manual():
     min x² + y²
     s.t. x + y = 1
     """
+
     # System: ∇L = 0
     # 2x + λ = 0
     # 2y + λ = 0

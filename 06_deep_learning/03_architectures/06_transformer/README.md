@@ -96,6 +96,7 @@ S_{ij} = \sum_{k=1}^{d_k} Q_{ik} \cdot K_{jk} = \langle q_i, k_j \rangle
 **Why scale by $\sqrt{d\_k}$?**
 
 **Theorem:** If $q, k \sim \mathcal{N}(0, 1)$ are independent, then:
+
 ```math
 \text{Var}(q \cdot k) = d_k
 ```
@@ -161,6 +162,7 @@ Where:
 - $W^O \in \mathbb{R}^{Hd\_v \times d}$ (output projection)
 
 **Parameter Count:**
+
 ```math
 \text{Params} = 3 \cdot H \cdot d \cdot \frac{d}{H} + d^2 = 3d^2 + d^2 = 4d^2
 ```
@@ -265,6 +267,7 @@ A = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}} + \text{mask}\right)
 ### 6. Gradient Flow Analysis
 
 **Forward:**
+
 ```math
 A = \text{softmax}(S), \quad O = AV
 ```
@@ -272,16 +275,19 @@ A = \text{softmax}(S), \quad O = AV
 **Backward (Gradient of softmax):**
 
 For softmax row $a = \text{softmax}(s)$:
+
 ```math
 \frac{\partial a_i}{\partial s_j} = a_i(\delta_{ij} - a_j)
 ```
 
 **Jacobian:**
+
 ```math
 \frac{\partial a}{\partial s} = \text{diag}(a) - aa^\top
 ```
 
 **Gradient of attention output:**
+
 ```math
 \frac{\partial L}{\partial V} = A^\top \frac{\partial L}{\partial O}
 \frac{\partial L}{\partial A} = \frac{\partial L}{\partial O} V^\top
@@ -435,6 +441,7 @@ class TransformerBlock(nn.Module):
         self.dropout = nn.Dropout(dropout)
     
     def forward(self, x, mask=None):
+
         # Pre-LN: LayerNorm before sublayer
         attn_out, _ = self.attn(self.ln1(x), mask)
         x = x + self.dropout(attn_out)
@@ -479,6 +486,7 @@ class Transformer(nn.Module):
                 nn.init.normal_(module.weight, std=0.02)
     
     def forward(self, x, mask=None):
+
         # Create causal mask if not provided
         if mask is None:
             mask = self._create_causal_mask(x.size(1), x.device)

@@ -85,6 +85,7 @@ Subject to: g(x, y) = x + y - 1 = 0
 
 **Solution:**
 ```python
+
 # Lagrangian: L = x² + y² + λ(x + y - 1)
 
 # Conditions:
@@ -512,6 +513,7 @@ w* = eigenvector of Σ
 **Neural Network Training with Constraints:**
 
 ```python
+
 # Example: Train NN with orthogonal weights
 # Constraint: WᵀW = I
 
@@ -519,6 +521,7 @@ def augmented_lagrangian_step(W, lambda_mat, rho):
     """
     One step of augmented Lagrangian optimization
     """
+
     # Standard training loss
     loss = compute_loss(W)
     

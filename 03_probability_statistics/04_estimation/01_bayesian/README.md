@@ -66,6 +66,7 @@ P(x^*|D) = \int P(x^*|\theta) \cdot P(\theta|D) \, d\theta
 ### Definition
 
 Prior $P(\theta)$ is **conjugate** to likelihood $P(D|\theta)$ if:
+
 ```math
 P(\theta|D) \in \text{same family as } P(\theta)
 ```
@@ -365,6 +366,7 @@ class VariationalInference(nn.Module):
 
 # Example usage
 def log_likelihood(theta):
+
     # Example: data likelihood
     data = torch.tensor([1.0, 2.0, 1.5, 2.5, 1.8])
     return dist.Normal(theta[0], 1.0).log_prob(data).sum()
@@ -394,6 +396,7 @@ def bayesian_linear_regression(X, y):
         y ~ N(α + Xβ, σ²)
     """
     with pm.Model() as model:
+
         # Priors
         alpha = pm.Normal('alpha', mu=0, sigma=10)
         beta = pm.Normal('beta', mu=0, sigma=10, shape=X.shape[1])

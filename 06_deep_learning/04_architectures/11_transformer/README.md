@@ -23,21 +23,21 @@ The Transformer architecture, introduced in "Attention Is All You Need" (2017), 
 
 ### Scaled Dot-Product Attention
 
-**Input:** Query \(Q\), Key \(K\), Value \(V\) matrices
+**Input:** Query $Q$, Key $K$, Value $V$ matrices
 
 ```math
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V
 ```
 
 **Dimensions:**
-- \(Q \in \mathbb{R}^{n \times d_k}\)
-- \(K \in \mathbb{R}^{m \times d_k}\)
-- \(V \in \mathbb{R}^{m \times d_v}\)
-- Output: \(\mathbb{R}^{n \times d_v}\)
+- $Q \in \mathbb{R}^{n \times d_k}$
+- $K \in \mathbb{R}^{m \times d_k}$
+- $V \in \mathbb{R}^{m \times d_v}$
+- Output: $\mathbb{R}^{n \times d_v}$
 
-### Why Scaling by \(\sqrt{d_k}\)?
+### Why Scaling by $\sqrt{d_k}$?
 
-**Problem:** For large \(d_k\), dot products grow large, pushing softmax into saturation.
+**Problem:** For large $d_k$, dot products grow large, pushing softmax into saturation.
 
 **Proof:**
 ```
@@ -80,17 +80,18 @@ Output is weighted combination of values
 ```
 
 where each head:
+
 ```math
 \text{head}_i = \text{Attention}(Q W_i^Q, K W_i^K, V W_i^V)
 ```
 
 **Projections:**
-- \(W_i^Q \in \mathbb{R}^{d_{model} \times d_k}\)
-- \(W_i^K \in \mathbb{R}^{d_{model} \times d_k}\)
-- \(W_i^V \in \mathbb{R}^{d_{model} \times d_v}\)
-- \(W^O \in \mathbb{R}^{hd_v \times d_{model}}\)
+- $W_i^Q \in \mathbb{R}^{d_{model} \times d_k}$
+- $W_i^K \in \mathbb{R}^{d_{model} \times d_k}$
+- $W_i^V \in \mathbb{R}^{d_{model} \times d_v}$
+- $W^O \in \mathbb{R}^{hd_v \times d_{model}}$
 
-Typically: \(d_k = d_v = d_{model} / h\)
+Typically: $d_k = d_v = d_{model} / h$
 
 ### Why Multiple Heads?
 
@@ -151,7 +152,8 @@ f_q(x_m, m) = (W_q x_m) e^{im\theta}
 f_k(x_n, n) = (W_k x_n) e^{in\theta}
 ```
 
-**Key property:** Attention only depends on relative position \(m - n\):
+**Key property:** Attention only depends on relative position $m - n$:
+
 ```math
 \langle f_q(x_m, m), f_k(x_n, n) \rangle = \text{Re}[(W_q x_m)(W_k x_n)^* e^{i(m-n)\theta}]
 ```
@@ -189,12 +191,14 @@ Output
 ### Pre-LN vs Post-LN
 
 **Post-LN (Original):**
+
 ```math
 x = x + \text{Attn}(x)
 x = \text{LN}(x)
 ```
 
 **Pre-LN (Modern):**
+
 ```math
 x = x + \text{Attn}(\text{LN}(x))
 ```
@@ -208,9 +212,9 @@ Pre-LN is more stable for deep networks (gradient scale is bounded).
 ```
 
 **Dimensions:**
-- \(W_1 \in \mathbb{R}^{d_{model} \times d_{ff}}\)
-- \(W_2 \in \mathbb{R}^{d_{ff} \times d_{model}}\)
-- Typical: \(d_{ff} = 4 \cdot d_{model}\)
+- $W_1 \in \mathbb{R}^{d_{model} \times d_{ff}}$
+- $W_2 \in \mathbb{R}^{d_{ff} \times d_{model}}$
+- Typical: $d_{ff} = 4 \cdot d_{model}$
 
 **Activation evolution:**
 - Original: ReLU
@@ -229,7 +233,7 @@ For autoregressive generation, prevent attending to future:
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} + M\right) V
 ```
 
-where mask \(M_{ij} = -\infty\) if \(j > i\), else 0.
+where mask $M_{ij} = -\infty$ if $j > i$, else 0.
 
 ### Cross-Attention
 
@@ -460,6 +464,7 @@ class TransformerBlock(nn.Module):
         self.dropout = nn.Dropout(dropout)
     
     def forward(self, x, mask=None):
+
         # Self-attention with residual
         attn_output, _ = self.attention(self.ln1(x), self.ln1(x), self.ln1(x), mask)
         x = x + self.dropout(attn_output)
@@ -501,6 +506,7 @@ class Transformer(nn.Module):
         Returns:
             output: (batch, seq_len, d_model)
         """
+
         # Embed tokens and add positional encoding
         x = self.token_embedding(x) * math.sqrt(self.d_model)
         x = self.positional_encoding(x)
@@ -533,6 +539,7 @@ class GPTModel(nn.Module):
         self.lm_head.weight = self.transformer.token_embedding.weight
     
     def forward(self, x):
+
         # Create causal mask
         seq_len = x.size(1)
         mask = Transformer.create_causal_mask(seq_len, x.device)
@@ -551,6 +558,7 @@ class GPTModel(nn.Module):
         Autoregressive generation
         """
         for _ in range(max_new_tokens):
+
             # Get logits for last position
             logits = self(prompt)[:, -1, :] / temperature
             

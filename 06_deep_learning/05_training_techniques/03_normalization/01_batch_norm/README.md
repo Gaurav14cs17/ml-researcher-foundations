@@ -23,28 +23,31 @@ Batch Normalization (BatchNorm) is one of the most important innovations in deep
 
 ### Forward Pass
 
-For a mini-batch \(\mathcal{B} = \{x_1, \ldots, x_m\}\):
+For a mini-batch $\mathcal{B} = \{x_1, \ldots, x_m\}$:
 
 **Step 1: Compute batch statistics**
+
 ```math
 \mu_{\mathcal{B}} = \frac{1}{m} \sum_{i=1}^{m} x_i
 \sigma^2_{\mathcal{B}} = \frac{1}{m} \sum_{i=1}^{m} (x_i - \mu_{\mathcal{B}})^2
 ```
 
 **Step 2: Normalize**
+
 ```math
 \hat{x}_i = \frac{x_i - \mu_{\mathcal{B}}}{\sqrt{\sigma^2_{\mathcal{B}} + \epsilon}}
 ```
 
 **Step 3: Scale and shift (learnable)**
+
 ```math
 y_i = \gamma \hat{x}_i + \beta
 ```
 
 where:
-- \(\gamma\): learnable scale parameter (initialized to 1)
-- \(\beta\): learnable shift parameter (initialized to 0)
-- \(\epsilon\): small constant for numerical stability (typically \(10^{-5}\))
+- $\gamma$: learnable scale parameter (initialized to 1)
+- $\beta$: learnable shift parameter (initialized to 0)
+- $\epsilon$: small constant for numerical stability (typically $10^{-5}$)
 
 ---
 
@@ -99,30 +102,33 @@ Inference: Use running averages (stable)
 
 ### Gradient Computation (Complete Proof)
 
-Given \(\frac{\partial L}{\partial y_i}\), compute gradients with respect to \(\gamma\), \(\beta\), and \(x_i\).
+Given $\frac{\partial L}{\partial y_i}$, compute gradients with respect to $\gamma$, $\beta$, and $x_i$.
 
-**Gradient with respect to \(\gamma\):**
+**Gradient with respect to $\gamma$:**
+
 ```math
 \frac{\partial L}{\partial \gamma} = \sum_{i=1}^{m} \frac{\partial L}{\partial y_i} \cdot \hat{x}_i
 ```
 
-**Gradient with respect to \(\beta\):**
+**Gradient with respect to $\beta$:**
+
 ```math
 \frac{\partial L}{\partial \beta} = \sum_{i=1}^{m} \frac{\partial L}{\partial y_i}
 ```
 
-**Gradient with respect to \(\hat{x}_i\):**
+**Gradient with respect to $\hat{x}_i$:**
+
 ```math
 \frac{\partial L}{\partial \hat{x}_i} = \frac{\partial L}{\partial y_i} \cdot \gamma
 ```
 
-**Gradient with respect to \(\sigma^2_{\mathcal{B}}\):**
+**Gradient with respect to $\sigma^2_{\mathcal{B}}$:**
 ```
 ∂L/∂σ²_B = Σᵢ ∂L/∂x̂ᵢ · (xᵢ - μ_B) · (-1/2)(σ²_B + ε)^(-3/2)
          = -1/2 · (σ²_B + ε)^(-3/2) · Σᵢ ∂L/∂x̂ᵢ · (xᵢ - μ_B)
 ```
 
-**Gradient with respect to \(\mu_{\mathcal{B}}\):**
+**Gradient with respect to $\mu_{\mathcal{B}}$:**
 ```
 ∂L/∂μ_B = Σᵢ ∂L/∂x̂ᵢ · (-1/√(σ²_B + ε))
         + ∂L/∂σ²_B · (-2/m) Σᵢ (xᵢ - μ_B)
@@ -130,7 +136,7 @@ Given \(\frac{\partial L}{\partial y_i}\), compute gradients with respect to \(\
         (second term is 0 because Σᵢ(xᵢ - μ_B) = 0)
 ```
 
-**Gradient with respect to \(x_i\):**
+**Gradient with respect to $x_i$:**
 ```
 ∂L/∂xᵢ = ∂L/∂x̂ᵢ · 1/√(σ²_B + ε)
        + ∂L/∂σ²_B · 2(xᵢ - μ_B)/m
@@ -155,7 +161,7 @@ Simplified form:
 
 ### Mathematical Comparison
 
-For input tensor \(x \in \mathbb{R}^{N \times C \times H \times W}\):
+For input tensor $x \in \mathbb{R}^{N \times C \times H \times W}$:
 
 ```
 Batch Norm: Normalize over (N, H, W) for each C
@@ -205,6 +211,7 @@ class BatchNorm:
             x: (N, C) or (N, C, H, W)
         """
         if x.ndim == 4:
+
             # For CNNs: (N, C, H, W) -> (N*H*W, C)
             N, C, H, W = x.shape
             x_flat = x.transpose(0, 2, 3, 1).reshape(-1, C)
@@ -218,6 +225,7 @@ class BatchNorm:
         Forward pass for 2D input (N, C)
         """
         if self.training:
+
             # Compute batch statistics
             mu = x.mean(axis=0)
             var = x.var(axis=0)
@@ -226,6 +234,7 @@ class BatchNorm:
             self.running_mean = (1 - self.momentum) * self.running_mean + self.momentum * mu
             self.running_var = (1 - self.momentum) * self.running_var + self.momentum * var
         else:
+
             # Use running statistics
             mu = self.running_mean
             var = self.running_var
@@ -323,11 +332,13 @@ class BatchNormCustom(nn.Module):
             x: (N, C, ...) - can be 2D (N, C) or 4D (N, C, H, W)
         """
         if self.training:
+
             # Compute batch statistics
             if x.dim() == 2:
                 mean = x.mean(dim=0)
                 var = x.var(dim=0, unbiased=False)
             else:
+
                 # For (N, C, H, W): compute over N, H, W
                 mean = x.mean(dim=(0, 2, 3))
                 var = x.var(dim=(0, 2, 3), unbiased=False)
@@ -507,6 +518,7 @@ print(f"Max difference: {(out_original - out_fused).abs().max():.2e}")
 ### Common Pitfalls
 
 ```python
+
 # ❌ Wrong: Using batch stats at inference
 model.train()  # Always in training mode
 output = model(x)  # Batch stats vary!

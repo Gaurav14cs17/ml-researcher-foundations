@@ -20,6 +20,7 @@
 Treat image as sequence of patches, apply standard Transformer.
 
 **Key Equation:**
+
 ```math
 \text{Image} \in \mathbb{R}^{H \times W \times C} \rightarrow \text{Patches} \in \mathbb{R}^{N \times (P^2 \cdot C)}
 ```
@@ -62,6 +63,7 @@ z_l = \text{MLP}(\text{LN}(z'_l)) + z'_l
 ```
 
 **Multi-Head Self-Attention (MSA):**
+
 ```math
 \text{MSA}(z) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
 ```
@@ -159,8 +161,10 @@ class PatchEmbedding(nn.Module):
         )
     
     def forward(self, x):
+
         # (B, C, H, W) -> (B, embed_dim, n_patches_h, n_patches_w)
         x = self.proj(x)
+
         # (B, embed_dim, n_h, n_w) -> (B, n_patches, embed_dim)
         x = x.flatten(2).transpose(1, 2)
         return x

@@ -46,6 +46,7 @@ h_t = \text{RNN}(x_t, h_{t-1})
 Final hidden state: $c = h\_n$ (context vector)
 
 For bidirectional:
+
 ```math
 h_t = [\overrightarrow{h}_t; \overleftarrow{h}_t]
 ```
@@ -74,21 +75,25 @@ Long sequences → information loss.
 ### Bahdanau Attention (Additive)
 
 **Alignment score:**
+
 ```math
 e_{t,s} = v^T \tanh(W_a s_{t-1} + U_a h_s)
 ```
 
 **Attention weights:**
+
 ```math
 \alpha_{t,s} = \frac{\exp(e_{t,s})}{\sum_{k=1}^{n} \exp(e_{t,k})}
 ```
 
 **Context vector:**
+
 ```math
 c_t = \sum_{s=1}^{n} \alpha_{t,s} h_s
 ```
 
 **Decoder update:**
+
 ```math
 s_t = \text{RNN}(y_{t-1}, s_{t-1}, c_t)
 ```
@@ -158,6 +163,7 @@ Maintain top-$k$ candidates at each step:
 ```
 
 **Length normalization:**
+
 ```math
 \text{score}_{norm} = \frac{\text{score}(y_{1:t})}{t^\alpha}
 ```
@@ -187,9 +193,11 @@ class Encoder(nn.Module):
                            batch_first=True, bidirectional=True, dropout=dropout)
     
     def forward(self, src):
+
         # src: (batch, src_len)
         embedded = self.embedding(src)  # (batch, src_len, embed_dim)
         outputs, (hidden, cell) = self.rnn(embedded)
+
         # outputs: (batch, src_len, 2*hidden_dim)
         # hidden: (2*n_layers, batch, hidden_dim)
         return outputs, hidden, cell
@@ -201,6 +209,7 @@ class Attention(nn.Module):
         self.v = nn.Linear(decoder_dim, 1, bias=False)
     
     def forward(self, hidden, encoder_outputs):
+
         # hidden: (batch, decoder_dim)
         # encoder_outputs: (batch, src_len, encoder_dim)
         
@@ -224,6 +233,7 @@ class Decoder(nn.Module):
         self.dropout = nn.Dropout(dropout)
     
     def forward(self, input, hidden, cell, encoder_outputs):
+
         # input: (batch, 1) - single token
         # hidden: (n_layers, batch, decoder_dim)
         # encoder_outputs: (batch, src_len, encoder_dim)
@@ -251,6 +261,7 @@ class Seq2Seq(nn.Module):
         self.device = device
     
     def forward(self, src, tgt, teacher_forcing_ratio=0.5):
+
         # src: (batch, src_len)
         # tgt: (batch, tgt_len)
         

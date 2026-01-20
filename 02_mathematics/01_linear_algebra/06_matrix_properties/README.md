@@ -211,6 +211,7 @@ tr(ABC) = tr((AB)C) = tr(C(AB)) = tr(CAB)  ∎
 
 **Efficient Gradient Computation**:
 ```python
+
 # Goal: Compute tr(ABᵀC)
 # Naive: O(n³) to form products, O(n) for trace
 
@@ -377,6 +378,7 @@ def matrix_properties(A):
         results['is_symmetric'] = np.allclose(A, A.T)
         
         if results['is_symmetric']:
+
             # Positive definiteness
             eigenvalues_real = np.linalg.eigvalsh(A)
             results['is_positive_definite'] = np.all(eigenvalues_real > 0)

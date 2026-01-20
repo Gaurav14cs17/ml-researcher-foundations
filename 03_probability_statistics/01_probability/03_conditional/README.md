@@ -194,6 +194,7 @@ P(A_1 \cap A_2 \cap \cdots \cap A_n) = P(A_1) \prod_{k=2}^{n} P(A_k | A_1 \cap \
 **Proof by Induction:**
 
 *Base case (n=2):*
+
 ```math
 P(A_1 \cap A_2) = P(A_2|A_1)P(A_1) \quad \checkmark
 ```
@@ -206,11 +207,13 @@ P(A_1 \cap \cdots \cap A_n) = P(B \cap A_n) = P(A_n|B) \cdot P(B)
 ```
 
 By induction hypothesis:
+
 ```math
 P(B) = P(A_1) \prod_{k=2}^{n-1} P(A_k | A_1 \cap \cdots \cap A_{k-1})
 ```
 
 Therefore:
+
 ```math
 P(A_1 \cap \cdots \cap A_n) = P(A_1) \prod_{k=2}^{n} P(A_k | A_1 \cap \cdots \cap A_{k-1}) \quad \blacksquare
 ```
@@ -226,16 +229,19 @@ P(A_1 \cap \cdots \cap A_n) = P(A_1) \prod_{k=2}^{n} P(A_k | A_1 \cap \cdots \ca
 ```
 
 For independent random variables:
+
 ```math
 E[XY] = \int\int xy \cdot p(x,y) \, dx\,dy
 ```
 
 Since $p(x,y) = p(x)p(y)$ for independent variables:
+
 ```math
 E[XY] = \int\int xy \cdot p(x)p(y) \, dx\,dy = \left(\int x \cdot p(x)dx\right)\left(\int y \cdot p(y)dy\right) = E[X]E[Y]
 ```
 
 Therefore:
+
 ```math
 \text{Cov}(X,Y) = E[X]E[Y] - E[X]E[Y] = 0 \quad \blacksquare
 ```
@@ -255,16 +261,19 @@ Therefore:
 **Proof:**
 
 Prior density:
+
 ```math
 p(\theta) = \frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha,\beta)}
 ```
 
 Likelihood:
+
 ```math
 P(X=x|\theta) = \binom{n}{x}\theta^x(1-\theta)^{n-x}
 ```
 
 Posterior (using Bayes):
+
 ```math
 p(\theta|X=x) \propto p(X=x|\theta) \cdot p(\theta)
 \propto \theta^x(1-\theta)^{n-x} \cdot \theta^{\alpha-1}(1-\theta)^{\beta-1}
@@ -351,13 +360,16 @@ def bayesian_diagnosis(prior_disease, sensitivity, specificity, test_positive):
     sensitivity: P(positive | disease) - true positive rate
     specificity: P(negative | no disease) - true negative rate
     """
+
     # P(positive)
     p_positive = sensitivity * prior_disease + (1-specificity) * (1-prior_disease)
     
     if test_positive:
+
         # P(disease | positive) = P(positive | disease) * P(disease) / P(positive)
         posterior = (sensitivity * prior_disease) / p_positive
     else:
+
         # P(disease | negative)
         p_negative = 1 - p_positive
         posterior = ((1-sensitivity) * prior_disease) / p_negative
@@ -396,6 +408,7 @@ class NaiveBayes:
         self.n_classes = n_classes
     
     def fit(self, X, y):
+
         # Compute class priors P(C)
         self.class_prior = np.bincount(y) / len(y)
         
@@ -404,6 +417,7 @@ class NaiveBayes:
         self.stds = np.array([X[y==c].std(axis=0) for c in range(self.n_classes)])
     
     def predict_proba(self, X):
+
         # log P(C|x) ∝ log P(C) + Σ log P(xᵢ|C)
         log_probs = np.zeros((len(X), self.n_classes))
         for c in range(self.n_classes):

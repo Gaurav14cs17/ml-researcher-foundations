@@ -145,6 +145,7 @@ import torch
 
 def visualize_first_layer_filters(model):
     """Visualize what the first conv layer learned"""
+
     # Get first conv layer weights
     filters = model.conv1.weight.data.clone()
     
@@ -155,6 +156,7 @@ def visualize_first_layer_filters(model):
     fig, axes = plt.subplots(8, 8, figsize=(12, 12))
     for i, ax in enumerate(axes.flat):
         if i < filters.shape[0]:
+
             # Show RGB filter as image
             ax.imshow(filters[i].permute(1, 2, 0).cpu())
         ax.axis('off')

@@ -18,6 +18,7 @@
 ### 1. Sparsity Definition
 
 **Sparsity Ratio:**
+
 ```math
 s = \frac{\|\mathbf{w}\|_0}{\text{total params}} = \frac{\#\text{zeros}}{\#\text{total}}
 ```
@@ -29,6 +30,7 @@ s = \frac{\|\mathbf{w}\|_0}{\text{total params}} = \frac{\#\text{zeros}}{\#\text
 ### 2. Sparse Matrix Representations
 
 **Compressed Sparse Row (CSR):**
+
 ```math
 \text{Storage: } O(\text{nnz} + n)
 ```
@@ -39,6 +41,7 @@ Components:
 - `row_ptr`: Start of each row in values array
 
 **Coordinate Format (COO):**
+
 ```math
 \text{Storage: } 3 \times \text{nnz}
 ```
@@ -57,6 +60,7 @@ Stores (row, col, value) triplets.
 **Definition:** In every $M$ consecutive elements, exactly $N$ are non-zero.
 
 **2:4 Sparsity (NVIDIA Ampere):**
+
 ```math
 \forall i: \sum_{j=4i}^{4i+3} \mathbf{1}[w_j \neq 0] = 2
 ```
@@ -70,6 +74,7 @@ Stores (row, col, value) triplets.
 **Hardware Speedup:** 2× on NVIDIA Ampere Tensor Cores
 
 **Mathematical Formulation:**
+
 ```math
 W_{2:4} = W \odot M_{2:4}
 ```
@@ -110,6 +115,7 @@ return m, θ₀
 - Prune + Regrow based on importance
 
 **RigL (Rigged Lottery):**
+
 ```math
 \text{Drop: } \arg\min_{|\mathcal{S}|=k} \sum_{i \in \mathcal{S}} |w_i|
 \text{Grow: } \arg\max_{|\mathcal{S}|=k} \sum_{i \in \mathcal{S}} |\nabla_i|
@@ -120,12 +126,14 @@ Drop smallest magnitude, grow largest gradient.
 ### 6. Sparse Attention
 
 **Standard Attention Complexity:**
+
 ```math
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d}}\right)V
 \text{Memory: } O(n^2), \quad \text{Compute: } O(n^2 d)
 ```
 
 **Local Attention:**
+
 ```math
 A_{ij} = \begin{cases} \text{attention}(q_i, k_j) & |i-j| \leq w \\ 0 & \text{otherwise} \end{cases}
 \text{Complexity: } O(nw)
@@ -134,6 +142,7 @@ A_{ij} = \begin{cases} \text{attention}(q_i, k_j) & |i-j| \leq w \\ 0 & \text{ot
 **Global + Local (Longformer):**
 - Select $g$ global tokens that attend to all
 - All other tokens use local window $w$
+
 ```math
 \text{Complexity: } O(n(w + g))
 ```
@@ -184,6 +193,7 @@ import torch.nn as nn
 # ========== 2:4 Sparsity Implementation ==========
 def apply_2_4_sparsity(tensor):
     """Apply 2:4 structured sparsity"""
+
     # Reshape to groups of 4
     shape = tensor.shape
     tensor_flat = tensor.flatten()
@@ -217,6 +227,7 @@ def iterative_magnitude_pruning(model, train_fn, prune_rate=0.2, rounds=10):
              if 'weight' in k}
     
     for round in range(rounds):
+
         # Train model
         train_fn(model)
         

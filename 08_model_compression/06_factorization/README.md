@@ -18,6 +18,7 @@
 ### 1. Singular Value Decomposition (SVD)
 
 **Theorem (SVD):** Any matrix $W \in \mathbb{R}^{m \times n}$ can be decomposed as:
+
 ```math
 W = U \Sigma V^T
 ```
@@ -36,6 +37,7 @@ Where:
 ### 2. Low-Rank Approximation
 
 **Truncated SVD (Rank-$k$ Approximation):**
+
 ```math
 W_k = U_k \Sigma_k V_k^T = \sum_{i=1}^{k} \sigma_i u_i v_i^T
 ```
@@ -44,12 +46,14 @@ Where $U\_k, V\_k$ contain only the first $k$ columns.
 
 **Eckart-Young-Mirsky Theorem:**
 The truncated SVD gives the optimal rank-$k$ approximation:
+
 ```math
 W_k = \arg\min_{\text{rank}(A) \leq k} \|W - A\|_F
 ```
 
 **Proof Sketch:**
 For any rank-$k$ matrix $A$:
+
 ```math
 \|W - A\|_F^2 \geq \sum_{i=k+1}^{r} \sigma_i^2 = \|W - W_k\|_F^2
 ```
@@ -61,16 +65,19 @@ For any rank-$k$ matrix $A$:
 **Factorized Parameters:** $m \times k + k \times n = k(m + n)$
 
 **Compression Ratio:**
+
 ```math
 CR = \frac{mn}{k(m+n)}
 ```
 
 **For square matrices ($m = n$):**
+
 ```math
 CR = \frac{n^2}{2kn} = \frac{n}{2k}
 ```
 
 **Example:** $n = 4096$, $k = 64$:
+
 ```math
 CR = \frac{4096}{128} = 32\times
 ```
@@ -78,16 +85,19 @@ CR = \frac{4096}{128} = 32\times
 ### 4. Error Analysis
 
 **Frobenius Norm Error:**
+
 ```math
 \|W - W_k\|_F = \sqrt{\sum_{i=k+1}^{r} \sigma_i^2}
 ```
 
 **Relative Error:**
+
 ```math
 \frac{\|W - W_k\|_F}{\|W\|_F} = \sqrt{\frac{\sum_{i=k+1}^{r} \sigma_i^2}{\sum_{i=1}^{r} \sigma_i^2}}
 ```
 
 **Spectral Norm Error:**
+
 ```math
 \|W - W_k\|_2 = \sigma_{k+1}
 ```
@@ -95,6 +105,7 @@ CR = \frac{4096}{128} = 32\times
 ### 5. LoRA as Implicit Low-Rank Factorization
 
 **LoRA learns:**
+
 ```math
 \Delta W = BA
 ```
@@ -105,11 +116,13 @@ Where:
 
 **Connection to SVD:**
 The learned $\Delta W$ is implicitly low-rank:
+
 ```math
 \text{rank}(\Delta W) = \text{rank}(BA) \leq r
 ```
 
 **During training, LoRA learns:**
+
 ```math
 BA \approx U_r \Sigma_r V_r^T
 ```
@@ -119,6 +132,7 @@ Where $U\_r \Sigma\_r V\_r^T$ is the optimal rank-$r$ approximation to the true 
 ### 6. Tensor Decomposition (CP and Tucker)
 
 **CP Decomposition (CANDECOMP/PARAFAC):**
+
 ```math
 \mathcal{W} \approx \sum_{r=1}^{R} \lambda_r \cdot a_r \otimes b_r \otimes c_r
 ```
@@ -126,6 +140,7 @@ Where $U\_r \Sigma\_r V\_r^T$ is the optimal rank-$r$ approximation to the true 
 For a 4D convolution kernel $\mathcal{W} \in \mathbb{R}^{C\_{out} \times C\_{in} \times H \times W}$.
 
 **Tucker Decomposition:**
+
 ```math
 \mathcal{W} \approx \mathcal{G} \times_1 U_1 \times_2 U_2 \times_3 U_3 \times_4 U_4
 ```
@@ -140,6 +155,7 @@ Where $\mathcal{G}$ is a smaller core tensor.
 ### 7. Depthwise Separable Convolution (Factorized Conv)
 
 **Standard Convolution:**
+
 ```math
 Y = W * X, \quad W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
 \text{Params: } C_{out} \times C_{in} \times K^2
@@ -154,6 +170,7 @@ Y = W * X, \quad W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
 ```
 
 **Compression Ratio:**
+
 ```math
 CR = \frac{C_{out} \times C_{in} \times K^2}{C_{in} \times K^2 + C_{out} \times C_{in}} = \frac{C_{out} K^2}{K^2 + C_{out}}
 ```

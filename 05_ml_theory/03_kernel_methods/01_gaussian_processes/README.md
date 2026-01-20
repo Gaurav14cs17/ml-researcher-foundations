@@ -49,7 +49,7 @@ where:
 - \(m(x) = \mathbb{E}[f(x)]\) is the mean function (often \(m(x) = 0\))
 - \(k(x, x') = \text{Cov}(f(x), f(x'))\) is the covariance (kernel) function
 
-**Property:** For any finite set \(\{x_1, \ldots, x_n\}\):
+**Property:** For any finite set $\{x_1, \ldots, x_n\}$:
 
 ```math
 \begin{bmatrix} f(x_1) \\ \vdots \\ f(x_n) \end{bmatrix} \sim \mathcal{N}\left(\begin{bmatrix} m(x_1) \\ \vdots \\ m(x_n) \end{bmatrix}, \begin{bmatrix} k(x_1, x_1) & \cdots & k(x_1, x_n) \\ \vdots & \ddots & \vdots \\ k(x_n, x_1) & \cdots & k(x_n, x_n) \end{bmatrix}\right)
@@ -77,7 +77,7 @@ where \(K = k(X, X)\), \(K_* = k(X, X_*)\), \(K_{**} = k(X_*, X_*)\).
 
 ### Posterior Predictive Distribution
 
-**Theorem:** Given training data \((X, \mathbf{y})\) and test points \(X_*\):
+**Theorem:** Given training data \((X, \mathbf{y})\) and test points $X_*$:
 
 ```math
 \mathbf{f}_* | X_*, X, \mathbf{y} \sim \mathcal{N}(\boldsymbol{\mu}_*, \boldsymbol{\Sigma}_*)
@@ -93,7 +93,7 @@ For \(\begin{bmatrix} \mathbf{a} \\ \mathbf{b} \end{bmatrix} \sim \mathcal{N}\le
 \mathbf{a} | \mathbf{b} \sim \mathcal{N}(\boldsymbol{\mu}_a + CB^{-1}(\mathbf{b} - \boldsymbol{\mu}_b), A - CB^{-1}C^\top)
 ```
 
-Applying with observation noise \(\mathbf{y} = \mathbf{f} + \boldsymbol{\varepsilon}\). \(\blacksquare\)
+Applying with observation noise $\mathbf{y} = \mathbf{f} + \boldsymbol{\varepsilon}$. $\blacksquare$
 
 ---
 
@@ -107,12 +107,12 @@ Applying with observation noise \(\mathbf{y} = \mathbf{f} + \boldsymbol{\varepsi
 
 **Interpretation:**
 - **Data fit:** \(-\frac{1}{2}\mathbf{y}^\top(K + \sigma_n^2 I)^{-1}\mathbf{y}\)
-- **Complexity penalty:** \(-\frac{1}{2}\log|K + \sigma_n^2 I|\)
+- **Complexity penalty:** $-\frac{1}{2}\log|K + \sigma_n^2 I|$
 - **Normalization:** \(-\frac{n}{2}\log(2\pi)\)
 
 ### Hyperparameter Optimization
 
-Optimize kernel hyperparameters \(\boldsymbol{\theta}\) by maximizing log marginal likelihood:
+Optimize kernel hyperparameters $\boldsymbol{\theta}$ by maximizing log marginal likelihood:
 
 ```math
 \frac{\partial \log p(\mathbf{y}|X, \boldsymbol{\theta})}{\partial \theta_j} = \frac{1}{2}\text{tr}\left((\boldsymbol{\alpha}\boldsymbol{\alpha}^\top - K^{-1})\frac{\partial K}{\partial \theta_j}\right)
@@ -130,8 +130,8 @@ where \(\boldsymbol{\alpha} = (K + \sigma_n^2 I)^{-1}\mathbf{y}\).
 k(x, x') = \sigma_f^2 \exp\left(-\frac{\|x - x'\|^2}{2\ell^2}\right)
 ```
 
-- \(\sigma_f^2\): signal variance (output scale)
-- \(\ell\): length scale (smoothness)
+- $\sigma_f^2$: signal variance (output scale)
+- $\ell$: length scale (smoothness)
 
 ### Matérn
 
@@ -140,10 +140,10 @@ k_\nu(r) = \sigma_f^2 \frac{2^{1-\nu}}{\Gamma(\nu)}\left(\frac{\sqrt{2\nu}r}{\el
 ```
 
 Special cases:
-- \(\nu = 1/2\): Exponential (Ornstein-Uhlenbeck)
-- \(\nu = 3/2\): Once differentiable
-- \(\nu = 5/2\): Twice differentiable
-- \(\nu \to \infty\): RBF
+- $\nu = 1/2$: Exponential (Ornstein-Uhlenbeck)
+- $\nu = 3/2$: Once differentiable
+- $\nu = 5/2$: Twice differentiable
+- $\nu \to \infty$: RBF
 
 ### Periodic
 
@@ -210,6 +210,7 @@ class GaussianProcess:
         mean = K_star @ self.alpha
         
         if return_std:
+
             # Variance: K** - K*ᵀ (K + σ²I)⁻¹ K*
             v = cho_solve((self.L, self.lower), K_star.T)
             var = self._rbf_kernel(X_test, X_test) - K_star @ v
@@ -305,6 +306,7 @@ class BayesianOptimization:
         
         # Optimization loop
         for _ in range(n_iter):
+
             # Fit GP
             X = np.array(self.X_observed)
             y = np.array(self.y_observed)

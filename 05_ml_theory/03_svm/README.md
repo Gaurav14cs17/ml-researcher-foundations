@@ -40,15 +40,16 @@
 
 ### Problem Formulation
 
-For linearly separable data with labels \(y_i \in \{-1, +1\}\):
+For linearly separable data with labels $y_i \in \{-1, +1\}$:
 
 **Primal Problem:**
+
 ```math
 \min_{w, b} \frac{1}{2}\|w\|^2
 \text{s.t. } y_i(w^\top x_i + b) \geq 1, \quad \forall i
 ```
 
-**Margin:** The geometric margin is \(\gamma = \frac{2}{\|w\|}\).
+**Margin:** The geometric margin is $\gamma = \frac{2}{\|w\|}$.
 
 ### Lagrangian
 
@@ -57,6 +58,7 @@ For linearly separable data with labels \(y_i \in \{-1, +1\}\):
 ```
 
 **KKT Conditions:**
+
 ```math
 \nabla_w \mathcal{L} = 0 \Rightarrow w = \sum_i \alpha_i y_i x_i
 \nabla_b \mathcal{L} = 0 \Rightarrow \sum_i \alpha_i y_i = 0
@@ -69,29 +71,31 @@ For linearly separable data with labels \(y_i \in \{-1, +1\}\):
 \text{s.t. } \alpha_i \geq 0, \quad \sum_i \alpha_i y_i = 0
 ```
 
-**Key insight:** Only inner products \(x_i^\top x_j\) appear → kernel trick!
+**Key insight:** Only inner products $x_i^\top x_j$ appear → kernel trick!
 
 ---
 
 ## 📐 Soft-Margin SVM
 
-For non-separable data, introduce slack variables \(\xi_i \geq 0\):
+For non-separable data, introduce slack variables $\xi_i \geq 0$:
 
 **Primal Problem:**
+
 ```math
 \min_{w, b, \xi} \frac{1}{2}\|w\|^2 + C\sum_{i=1}^n \xi_i
 \text{s.t. } y_i(w^\top x_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0
 ```
 
 **Dual Problem:**
+
 ```math
 \max_\alpha \sum_{i=1}^n \alpha_i - \frac{1}{2}\sum_{i,j} \alpha_i \alpha_j y_i y_j x_i^\top x_j
 \text{s.t. } 0 \leq \alpha_i \leq C, \quad \sum_i \alpha_i y_i = 0
 ```
 
-**Interpretation of \(C\):**
-- Large \(C\): Small margin, fewer violations
-- Small \(C\): Large margin, more violations
+**Interpretation of $C$:**
+- Large $C$: Small margin, fewer violations
+- Small $C$: Large margin, more violations
 
 ---
 
@@ -106,6 +110,7 @@ x_i^\top x_j \to k(x_i, x_j) = \phi(x_i)^\top \phi(x_j)
 ```
 
 **Decision Function:**
+
 ```math
 f(x) = \text{sign}\left(\sum_{i=1}^n \alpha_i y_i k(x_i, x) + b\right)
 ```
@@ -114,8 +119,8 @@ f(x) = \text{sign}\left(\sum_{i=1}^n \alpha_i y_i k(x_i, x) + b\right)
 
 | Kernel | Formula | Feature Space |
 |--------|---------|---------------|
-| Linear | \(x^\top y\) | Original \(\mathbb{R}^d\) |
-| Polynomial | \((x^\top y + c)^p\) | \(\binom{d+p}{p}\) dimensions |
+| Linear | $x^\top y$ | Original $\mathbb{R}^d$ |
+| Polynomial | \((x^\top y + c)^p\) | $\binom{d+p}{p}$ dimensions |
 | RBF | \(\exp(-\gamma\|x-y\|^2)\) | Infinite dimensional |
 
 ### RBF Kernel Properties
@@ -132,7 +137,7 @@ k(x, x') = \exp\left(-\frac{\|x - x'\|^2}{2\sigma^2}\right)
 
 ### Generalization Bound
 
-**Theorem:** For SVM with margin \(\gamma\) on data with radius \(R\):
+**Theorem:** For SVM with margin $\gamma$ on data with radius $R$:
 
 ```math
 R(f) \leq \hat{R}(f) + O\left(\frac{R^2/\gamma^2}{n}\right)
@@ -142,10 +147,10 @@ R(f) \leq \hat{R}(f) + O\left(\frac{R^2/\gamma^2}{n}\right)
 
 ### Support Vectors
 
-**Theorem:** The solution only depends on support vectors (points with \(\alpha_i > 0\)).
+**Theorem:** The solution only depends on support vectors (points with $\alpha_i > 0$).
 
 For hard-margin: support vectors lie on the margin.
-For soft-margin: \(\alpha_i = C\) indicates violation.
+For soft-margin: $\alpha_i = C$ indicates violation.
 
 ---
 

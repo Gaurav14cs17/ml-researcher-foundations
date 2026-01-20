@@ -44,7 +44,7 @@
 
 **Target domain:** \(\mathcal{D}_T = \{(x_i^t, y_i^t)\}_{i=1}^{n_t}\) from \(P_T(X, Y)\)
 
-**Goal:** Learn \(f_T: X \to Y\) using both \(\mathcal{D}_S\) and \(\mathcal{D}_T\).
+**Goal:** Learn $f_T: X \to Y$ using both $\mathcal{D}_S$ and $\mathcal{D}_T$.
 
 ### Types of Transfer
 
@@ -60,31 +60,34 @@
 
 ### Pre-training + Fine-tuning
 
-**Stage 1 (Pre-training):** Learn encoder \(\phi_\theta\) on source task:
+**Stage 1 (Pre-training):** Learn encoder $\phi_\theta$ on source task:
+
 ```math
 \theta^* = \arg\min_\theta \mathcal{L}_S(\phi_\theta; \mathcal{D}_S)
 ```
 
 **Stage 2 (Fine-tuning):** Adapt to target with small learning rate:
+
 ```math
 \theta^{**} = \arg\min_\theta \mathcal{L}_T(\phi_\theta; \mathcal{D}_T)
 ```
 
-starting from \(\theta = \theta^*\).
+starting from $\theta = \theta^*$.
 
 ### Why Transfer Works
 
 **Hypothesis:** Features learned on source task are useful for target task.
 
 **Theorem (Ben-David et al.):** For domain adaptation:
+
 ```math
 \epsilon_T(h) \leq \epsilon_S(h) + d_{\mathcal{H}}(S, T) + \lambda
 ```
 
 where:
-- \(\epsilon_T, \epsilon_S\) are target/source errors
-- \(d_{\mathcal{H}}(S, T)\) is the \(\mathcal{H}\)-divergence between domains
-- \(\lambda\) is the optimal joint error
+- $\epsilon_T, \epsilon_S$ are target/source errors
+- \(d_{\mathcal{H}}(S, T)\) is the $\mathcal{H}$-divergence between domains
+- $\lambda$ is the optimal joint error
 
 ---
 
@@ -98,7 +101,7 @@ Instead of updating all parameters, learn low-rank updates:
 W' = W + \Delta W = W + BA
 ```
 
-where \(B \in \mathbb{R}^{d \times r}\), \(A \in \mathbb{R}^{r \times k}\), and \(r \ll \min(d, k)\).
+where $B \in \mathbb{R}^{d \times r}$, $A \in \mathbb{R}^{r \times k}$, and \(r \ll \min(d, k)\).
 
 ### Parameter Efficiency
 
@@ -141,6 +144,7 @@ class LoRALayer(nn.Module):
         self.lora_B = nn.Parameter(torch.zeros(d, rank))
     
     def forward(self, x):
+
         # Original output
         original_output = self.original_layer(x)
         
@@ -237,6 +241,7 @@ def create_transfer_model(pretrained_name, num_classes, strategy='feature_extrac
         for param in backbone.parameters():
             param.requires_grad = False
     elif strategy == 'fine_tuning':
+
         # Freeze early layers
         for name, param in backbone.named_parameters():
             if 'layer4' not in name and 'encoder.layers.11' not in name:
@@ -280,6 +285,7 @@ class DomainAdaptationModel(nn.Module):
         class_output = self.classifier(features)
         
         if domain_labels is not None:
+
             # Gradient reversal for domain classifier
             reversed_features = GradientReversal.apply(features, self.alpha)
             domain_output = self.domain_classifier(reversed_features)

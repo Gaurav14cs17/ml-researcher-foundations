@@ -22,6 +22,7 @@
 ### 1. Depthwise Separable Convolution
 
 **Standard Convolution:**
+
 ```math
 Y = W * X, \quad W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
 ```
@@ -31,11 +32,13 @@ Y = W * X, \quad W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
 **Depthwise Separable (MobileNet):**
 
 *Step 1 - Depthwise:*
+
 ```math
 H_c = W_c^{dw} * X_c, \quad W^{dw} \in \mathbb{R}^{C_{in} \times 1 \times K \times K}
 ```
 
 *Step 2 - Pointwise:*
+
 ```math
 Y = W^{pw} \cdot H, \quad W^{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 \times 1}
 ```
@@ -43,6 +46,7 @@ Y = W^{pw} \cdot H, \quad W^{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 
 **Computation:** $O(K^2 \cdot C\_{in} \cdot H \cdot W + C\_{in} \cdot C\_{out} \cdot H \cdot W)$
 
 **Reduction Ratio:**
+
 ```math
 \frac{K^2 C_{in} C_{out}}{K^2 C_{in} + C_{in} C_{out}} = \frac{1}{1/C_{out} + 1/K^2}
 ```
@@ -70,12 +74,14 @@ Y = X + \text{Conv}_{1\times1}^{proj}(\text{DWConv}(\text{Conv}_{1\times1}^{expa
 ### 3. Linear Attention
 
 **Standard Attention:**
+
 ```math
 \text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d}}\right)V
 \text{Complexity: } O(n^2 d)
 ```
 
 **Linear Attention:**
+
 ```math
 \text{Attention}(Q,K,V) = \phi(Q)(\phi(K)^T V)
 ```
@@ -83,6 +89,7 @@ Y = X + \text{Conv}_{1\times1}^{proj}(\text{DWConv}(\text{Conv}_{1\times1}^{expa
 Where $\phi: \mathbb{R}^d \to \mathbb{R}^m$ is a feature map.
 
 **Key Insight:** Compute $(\phi(K)^T V)$ first!
+
 ```math
 \phi(K)^T V \in \mathbb{R}^{m \times d}, \quad \text{Cost: } O(nmd)
 \phi(Q) \cdot (\phi(K)^T V) \in \mathbb{R}^{n \times d}, \quad \text{Cost: } O(nmd)
@@ -98,16 +105,19 @@ Where $\phi: \mathbb{R}^d \to \mathbb{R}^m$ is a feature map.
 - Resolution: $r = \gamma^\phi$
 
 **Constraint (FLOPS):**
+
 ```math
 d \cdot w^2 \cdot r^2 = \alpha \cdot \beta^2 \cdot \gamma^2 \approx 2
 ```
 
 **Optimal Coefficients (from grid search):**
+
 ```math
 \alpha = 1.2, \quad \beta = 1.1, \quad \gamma = 1.15
 ```
 
 **Scaling Law:**
+
 ```math
 \text{FLOPS} \propto d \cdot w^2 \cdot r^2 \propto 2^\phi
 ```
@@ -129,6 +139,7 @@ d \cdot w^2 \cdot r^2 = \alpha \cdot \beta^2 \cdot \gamma^2 \approx 2
 - Flash: $O(n)$ (stream through tiles)
 
 **IO Complexity:**
+
 ```math
 \text{Standard: } O(n^2 d + n^2) \text{ HBM accesses}
 \text{Flash: } O(n^2 d^2 / M) \text{ HBM accesses}
@@ -139,18 +150,21 @@ Where $M$ = SRAM size. For typical GPU: $10-100\times$ fewer memory accesses!
 ### 6. Grouped Query Attention (GQA)
 
 **Multi-Head Attention (MHA):**
+
 ```math
 \text{heads} = h, \quad \text{K,V heads} = h
 \text{KV cache: } O(h \cdot d_k \cdot L)
 ```
 
 **Multi-Query Attention (MQA):**
+
 ```math
 \text{Q heads} = h, \quad \text{K,V heads} = 1
 \text{KV cache: } O(d_k \cdot L)
 ```
 
 **Grouped Query Attention (GQA):**
+
 ```math
 \text{Q heads} = h, \quad \text{K,V heads} = g
 \text{KV cache: } O(g \cdot d_k \cdot L)

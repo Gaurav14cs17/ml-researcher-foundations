@@ -34,7 +34,7 @@
 ### Supervised Learning
 
 **Problem Setting:**
-Given a training set \(\mathcal{D} = \{(x_i, y_i)\}_{i=1}^{N}\) where \(x_i \in \mathcal{X}\) and \(y_i \in \mathcal{Y}\), we aim to learn a function \(f: \mathcal{X} \rightarrow \mathcal{Y}\).
+Given a training set \(\mathcal{D} = \{(x_i, y_i)\}_{i=1}^{N}\) where $x_i \in \mathcal{X}$ and $y_i \in \mathcal{Y}$, we aim to learn a function $f: \mathcal{X} \rightarrow \mathcal{Y}$.
 
 **Objective Function:**
 
@@ -63,7 +63,7 @@ Given a training set \(\mathcal{D} = \{(x_i, y_i)\}_{i=1}^{N}\) where \(x_i \in 
 \mathcal{L}_{\text{MLM}} = -\mathbb{E}_{x \sim \mathcal{D}} \left[ \sum_{i \in \mathcal{M}} \log P(x_i | x_{\backslash \mathcal{M}}; \theta) \right]
 ```
 
-where \(\mathcal{M}\) is the set of masked token positions.
+where $\mathcal{M}$ is the set of masked token positions.
 
 **2. Autoregressive (GPT):**
 
@@ -79,7 +79,7 @@ For positive pair \((z_i, z_j)\) from the same image:
 \mathcal{L}_{i,j} = -\log \frac{\exp(\text{sim}(z_i, z_j)/\tau)}{\sum_{k=1}^{2N} \mathbb{1}_{[k \neq i]} \exp(\text{sim}(z_i, z_k)/\tau)}
 ```
 
-where \(\text{sim}(u, v) = \frac{u^\top v}{\|u\| \|v\|}\) is cosine similarity and \(\tau\) is temperature.
+where \(\text{sim}(u, v) = \frac{u^\top v}{\|u\| \|v\|}\) is cosine similarity and $\tau$ is temperature.
 
 **Proof: Why Contrastive Loss Works**
 
@@ -89,13 +89,13 @@ The InfoNCE loss is a lower bound on mutual information:
 I(X; Y) \geq \log(N) - \mathcal{L}_{\text{NCE}}
 ```
 
-Maximizing \(-\mathcal{L}_{\text{NCE}}\) maximizes a lower bound on \(I(X; Y)\), learning representations that capture shared information between views.
+Maximizing $-\mathcal{L}_{\text{NCE}}$ maximizes a lower bound on \(I(X; Y)\), learning representations that capture shared information between views.
 
 ---
 
 ### Unsupervised Learning
 
-**Problem Setting:** Given \(\mathcal{D} = \{x_i\}_{i=1}^{N}\), discover structure without labels.
+**Problem Setting:** Given $\mathcal{D} = \{x_i\}_{i=1}^{N}$, discover structure without labels.
 
 **1. Clustering (k-Means):**
 
@@ -109,7 +109,7 @@ Maximizing \(-\mathcal{L}_{\text{NCE}}\) maximizes a lower bound on \(I(X; Y)\),
 \max_{W \in \mathbb{R}^{d \times k}} \text{Var}(Wx) \quad \text{s.t.} \quad W^\top W = I
 ```
 
-**Solution:** \(W\) = top-k eigenvectors of covariance matrix \(\Sigma = \frac{1}{N}\sum_i (x_i - \bar{x})(x_i - \bar{x})^\top\)
+**Solution:** $W$ = top-k eigenvectors of covariance matrix \(\Sigma = \frac{1}{N}\sum_i (x_i - \bar{x})(x_i - \bar{x})^\top\)
 
 **3. Variational Autoencoder (VAE):**
 
@@ -144,14 +144,14 @@ R(h) = \mathbb{E}_{(x,y) \sim P}[\ell(h(x), y)] = \int \ell(h(x), y) \, dP(x, y)
 ### Theoretical Justification
 
 **Theorem (Law of Large Numbers):**
-For fixed hypothesis \(h\):
+For fixed hypothesis $h$:
 
 ```math
 \hat{R}(h) \xrightarrow{p} R(h) \quad \text{as } n \to \infty
 ```
 
 **Theorem (Uniform Convergence):**
-For hypothesis class \(\mathcal{H}\) with finite VC dimension \(d\):
+For hypothesis class $\mathcal{H}$ with finite VC dimension $d$:
 
 ```math
 \Pr\left[\sup_{h \in \mathcal{H}} |R(h) - \hat{R}(h)| > \epsilon\right] \leq 4 \cdot m_{\mathcal{H}}(2n) \cdot e^{-n\epsilon^2/8}
@@ -161,14 +161,14 @@ where \(m_{\mathcal{H}}(n)\) is the growth function.
 
 ### Generalization Bound
 
-**Theorem:** With probability \(\geq 1 - \delta\):
+**Theorem:** With probability $\geq 1 - \delta$:
 
 ```math
 R(\hat{h}) \leq \hat{R}(\hat{h}) + \sqrt{\frac{2d \log(en/d) + 2\log(2/\delta)}{n}}
 ```
 
 **Proof Sketch:**
-1. Apply Hoeffding's inequality to bound deviation for single \(h\)
+1. Apply Hoeffding's inequality to bound deviation for single $h$
 2. Use union bound over effective hypotheses (bounded by growth function)
 3. Apply Sauer's lemma: \(m_{\mathcal{H}}(n) \leq \left(\frac{en}{d}\right)^d\)
 
@@ -185,7 +185,7 @@ R(\hat{h}) = \underbrace{\hat{R}(\hat{h})}_{\text{training error}} + \underbrace
 | **Regularized ERM** | \(\min \hat{R}(h) + \lambda\Omega(h)\) | Constrains hypothesis complexity |
 | **Early Stopping** | Stop before convergence | Implicit regularization |
 | **Cross-Validation** | Holdout set | Estimate true risk |
-| **More Data** | Increase \(n\) | Tighter bound |
+| **More Data** | Increase $n$ | Tighter bound |
 
 ---
 

@@ -43,19 +43,19 @@ Integration is the inverse of differentiation. In ML, we rarely compute integral
 
 ### 1. Riemann Integral
 
-**Definition:** The Riemann integral of \(f\) over \([a, b]\) is defined as:
+**Definition:** The Riemann integral of $f$ over $[a, b]$ is defined as:
 
 ```math
 \int_a^b f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x
 ```
 
-where \(\Delta x = \frac{b-a}{n}\) and \(x_i^* \in [x_{i-1}, x_i]\).
+where $\Delta x = \frac{b-a}{n}$ and $x_i^* \in [x_{i-1}, x_i]$.
 
 **Intuition:** We approximate the area under the curve by summing up rectangles, then take the limit as rectangles become infinitely thin.
 
 ### 2. Fundamental Theorem of Calculus
 
-**Theorem (Part 1):** If \(f\) is continuous on \([a, b]\), then:
+**Theorem (Part 1):** If $f$ is continuous on $[a, b]$, then:
 
 ```math
 F(x) = \int_a^x f(t) \, dt
@@ -78,7 +78,7 @@ So: F'(x) = lim_{h→0} f(c) · h / h = lim_{h→0} f(c)
 As h → 0, c → x, so by continuity: F'(x) = f(x) ✓
 ```
 
-**Theorem (Part 2):** If \(F\) is an antiderivative of \(f\) on \([a, b]\), then:
+**Theorem (Part 2):** If $F$ is an antiderivative of $f$ on $[a, b]$, then:
 
 ```math
 \int_a^b f(x) \, dx = F(b) - F(a)
@@ -107,7 +107,7 @@ Therefore: ∫_a^b f(x)dx = G(b) = F(b) - F(a) ✓
 
 ### 1. Substitution (Change of Variables)
 
-**Theorem:** If \(u = g(x)\) is differentiable and \(f\) is continuous, then:
+**Theorem:** If \(u = g(x)\) is differentiable and $f$ is continuous, then:
 
 ```math
 \int f(g(x)) \cdot g'(x) \, dx = \int f(u) \, du
@@ -150,6 +150,7 @@ This proves: ∫_{-∞}^{∞} e^{-x²/2} dx = √(2π) ✓
 ### 2. Integration by Parts
 
 **Theorem:** 
+
 ```math
 \int u \, dv = uv - \int v \, du
 ```
@@ -182,7 +183,7 @@ E[X] = [-xe^{-λx}]_0^∞ + ∫_0^∞ e^{-λx} dx
 
 ### 1. Expectation and Variance
 
-**Definition:** For a random variable \(X\) with PDF \(p(x)\):
+**Definition:** For a random variable $X$ with PDF \(p(x)\):
 
 ```math
 \mathbb{E}[f(X)] = \int_{-\infty}^{\infty} f(x) \cdot p(x) \, dx
@@ -271,6 +272,7 @@ The bound is tight when q(z|x) = p(z|x) (true posterior).
 **Solution:** Use random sampling to approximate.
 
 **Theorem (Monte Carlo Estimator):**
+
 ```math
 \mathbb{E}[f(X)] \approx \frac{1}{N} \sum_{i=1}^{N} f(x_i) \quad \text{where } x_i \sim p(x)
 ```
@@ -307,6 +309,7 @@ This shows convergence rate is O(1/√N).
 **Solution:** Sample from a proposal distribution \(q(x)\) and reweight.
 
 **Theorem:**
+
 ```math
 \mathbb{E}_p[f(X)] = \mathbb{E}_q\left[f(X) \cdot \frac{p(X)}{q(X)}\right] \approx \frac{1}{N} \sum_{i=1}^{N} f(x_i) \cdot \frac{p(x_i)}{q(x_i)}
 ```
@@ -330,13 +333,13 @@ In practice, choose q to have heavier tails than p.
 
 ### Jacobian Change of Variables
 
-**Theorem:** For transformation \(y = g(x)\) where \(x \in \mathbb{R}^n\):
+**Theorem:** For transformation \(y = g(x)\) where $x \in \mathbb{R}^n$:
 
 ```math
 \int f(y) \, dy = \int f(g(x)) \cdot |\det(J_g(x))| \, dx
 ```
 
-where \(J_g\) is the Jacobian matrix.
+where $J_g$ is the Jacobian matrix.
 
 **Proof sketch:**
 ```
@@ -402,6 +405,7 @@ def importance_sampling(f, p, q, n_samples=100000):
         p: target distribution (scipy.stats object)
         q: proposal distribution (scipy.stats object)
     """
+
     # Sample from proposal
     samples = q.rvs(n_samples)
     
@@ -484,6 +488,7 @@ def vae_loss(x, x_recon, mu, logvar):
     KL divergence (analytical for Gaussians):
     D_KL(N(μ, σ²) || N(0, 1)) = 0.5 * Σ(μ² + σ² - log(σ²) - 1)
     """
+
     # Reconstruction loss
     recon_loss = nn.functional.mse_loss(x_recon, x, reduction='sum')
     
@@ -538,7 +543,7 @@ print(f"∫e^(-x²)dx ≈ {result:.10f}, √π = {np.sqrt(np.pi):.10f}")
 | Application | Usage | Mathematical Form |
 |-------------|-------|-------------------|
 | **VAE** | ELBO optimization | \(\mathbb{E}_q[\log p(x|z)] - D_{KL}\) |
-| **Policy Gradient** | Expected reward | \(\nabla_\theta \mathbb{E}[\sum r_t]\) |
+| **Policy Gradient** | Expected reward | $\nabla_\theta \mathbb{E}[\sum r_t]$ |
 | **Bayesian Inference** | Posterior normalization | \(p(\theta|D) = \frac{p(D|\theta)p(\theta)}{\int p(D|\theta)p(\theta)d\theta}\) |
 | **Normalizing Flows** | Change of variables | \(\log p_x(x) = \log p_z(z) - \log|\det J|\) |
 | **Diffusion Models** | Denoising objective | \(\mathbb{E}_{t,\epsilon}[\|\epsilon - \epsilon_\theta(x_t, t)\|^2]\) |
@@ -550,8 +555,8 @@ print(f"∫e^(-x²)dx ≈ {result:.10f}, √π = {np.sqrt(np.pi):.10f}")
 | Theorem | Statement | ML Application |
 |---------|-----------|----------------|
 | **Fundamental Theorem** | \(\frac{d}{dx}\int_a^x f(t)dt = f(x)\) | Gradient computation |
-| **Jensen's Inequality** | \(\log \mathbb{E}[X] \geq \mathbb{E}[\log X]\) | ELBO derivation |
-| **Law of Large Numbers** | \(\bar{X}_n \to \mu\) as \(n \to \infty\) | Monte Carlo convergence |
+| **Jensen's Inequality** | $\log \mathbb{E}[X] \geq \mathbb{E}[\log X]$ | ELBO derivation |
+| **Law of Large Numbers** | $\bar{X}_n \to \mu$ as $n \to \infty$ | Monte Carlo convergence |
 | **CLT** | \(\sqrt{n}(\bar{X}_n - \mu) \to N(0, \sigma^2)\) | Error bounds |
 
 ---

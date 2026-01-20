@@ -32,6 +32,7 @@ Let $f(x; \theta)$ be a neural network with parameters $\theta\_0$ at initializa
 **Claim:** There exists a mask $m \in \{0,1\}^{|\theta|}$ such that:
 1. $\|m\|\_0 \ll |\theta|$ (high sparsity, e.g., 90%+)
 2. $f(x; m \odot \theta\_0)$ trained for $T$ iterations achieves:
+
 ```math
 \text{Acc}(f_{m \odot \theta_T}) \geq \text{Acc}(f_{\theta_T}) - \epsilon
 ```math
@@ -42,8 +43,8 @@ The sparse subnetwork $(m, \theta\_0)$ is called a **winning ticket**.
 ### 2. Iterative Magnitude Pruning (IMP)
 
 #### 2.1 Algorithm
-
 ```
+
 Input: Network f, initial weights θ₀, target sparsity s, prune rate p
 Output: Winning ticket (m, θ₀)
 
@@ -94,6 +95,7 @@ Sparse networks have lower capacity → better generalization.
 Two networks $\theta\_1, \theta\_2$ are linearly mode connected if:
 ```
 \mathcal{L}(\alpha\theta_1 + (1-\alpha)\theta_2) \leq \max(\mathcal{L}(\theta_1), \mathcal{L}(\theta_2)) \quad \forall \alpha \in [0,1]
+
 ```math
 **Finding:** Winning tickets found with late resetting are linearly connected to their dense counterparts.
 
@@ -103,11 +105,15 @@ This suggests winning tickets lie in the same "basin" of the loss landscape.
 
 **At initialization, network behaves linearly:**
 ```
+
 f(x; \theta) \approx f(x; \theta_0) + \nabla_\theta f(x; \theta_0)^T (\theta - \theta_0)
+
 ```math
 **Sparse subnetwork:**
 ```
+
 f_m(x; \theta) \approx f(x; \theta_0) + (m \odot \nabla_\theta f(x; \theta_0))^T (\theta - \theta_0)
+
 ```math
 **Key:** The masked gradient $m \odot \nabla\_\theta f$ must still span the function space.
 
@@ -124,8 +130,8 @@ f_m(x; \theta) \approx f(x; \theta_0) + (m \odot \nabla_\theta f(x; \theta_0))^T
 #### 4.2 Late Resetting Solution
 
 **Reset to $\theta\_k$ instead of $\theta\_0$:**
-
 ```
+
 Modified IMP:
 1. Train for k iterations: θ_k = train(θ₀, k iterations)
 2. Continue training: θ_T = train(θ_k, T-k iterations)
@@ -146,6 +152,7 @@ Modified IMP:
 **Mathematical view:**
 ```
 \theta_k = \theta_0 + \sum_{t=0}^{k-1} \eta \nabla\mathcal{L}(\theta_t)
+
 ```math
 The early gradient updates "prepare" the network.
 
@@ -167,7 +174,9 @@ Specifically, if $f$ has width $w$, then with high probability, a subnetwork can
 
 **SNIP (Lee et al., 2018):** Find tickets using gradient-based saliency at init:
 ```
+
 s_i = |w_i \cdot \nabla_{w_i}\mathcal{L}|
+
 ```math
 **GraSP (Wang et al., 2020):** Use Hessian-gradient product.
 
@@ -194,11 +203,15 @@ This proves IMP is finding something special, not just any sparse mask.
 
 2. **Probability of good neuron:** For random $v \sim \mathcal{N}(0, I)$ truncated to $\|v\| \leq B$:
 ```
+
 P(\|w - v\| < \epsilon) \geq \left(\frac{\epsilon}{2B}\right)^d
+
 ```math
 3. **Union bound:** With $m$ random neurons, probability of finding match for all $n$ targets:
 ```
+
 P(\text{all matched}) \geq 1 - n \cdot \left(1 - \left(\frac{\epsilon}{2B}\right)^d\right)^m
+
 ```math
 4. **Required width:** Setting $m = O(n \cdot (2B/\epsilon)^d \cdot \log(n/\delta))$ ensures success.
 
@@ -210,7 +223,9 @@ For ReLU networks with polynomial target, $d$ is effectively small due to low-ra
 
 **Formal statement:** Let $g\_{dense} = \nabla\_\theta \mathcal{L}|\_{\theta\_0}$ and $g\_{sparse} = m \odot g\_{dense}$. If:
 ```
+
 \cos(g_{dense}, g_{sparse}) = \frac{\langle g_{dense}, g_{sparse} \rangle}{\|g_{dense}\| \|g_{sparse}\|} \geq 1 - \epsilon
+
 ```math
 then the sparse network achieves similar convergence rate.
 
@@ -222,12 +237,16 @@ Gradient descent update:
 
 The loss decrease:
 ```
+
 \mathcal{L}(\theta_1) - \mathcal{L}(\theta_0) \approx -\eta \|g_{dense}\|^2
 \mathcal{L}(\theta_1^{(s)}) - \mathcal{L}(\theta_0) \approx -\eta \langle g_{dense}, g_{sparse} \rangle
+
 ```math
 Ratio of progress:
 ```
+
 \frac{\text{sparse progress}}{\text{dense progress}} = \frac{\langle g_{dense}, g_{sparse} \rangle}{\|g_{dense}\|^2} = \frac{\|g_{sparse}\|}{\|g_{dense}\|} \cos(\theta)
+
 ```math
 For high cosine similarity, sparse network makes nearly same progress. ∎
 
@@ -235,7 +254,9 @@ For high cosine similarity, sparse network makes nearly same progress. ∎
 
 **Theorem:** A sparse network with $k$ non-zero weights has generalization bound:
 ```
+
 \mathcal{L}_{test} - \mathcal{L}_{train} \leq O\left(\sqrt{\frac{k \log(n/k)}{m}}\right)
+
 ```math
 where $n$ = total parameters, $m$ = training samples.
 
@@ -245,7 +266,9 @@ The effective complexity of a $k$-sparse network is $\binom{n}{k} \cdot \mathbb{
 
 By Rademacher complexity:
 ```
+
 \mathcal{R}_m(\mathcal{F}_{sparse}) \leq O\left(\sqrt{\frac{k}{m}}\right)
+
 ```math
 The $\log(n/k)$ factor comes from the combinatorial choice of sparse pattern. ∎
 
@@ -259,20 +282,27 @@ The $\log(n/k)$ factor comes from the combinatorial choice of sparse pattern. �
 
 After $t$ iterations, fraction of weights remaining:
 ```
+
 r_t = (1-p)^t
+
 ```math
 Sparsity after $t$ iterations:
 ```
+
 s_t = 1 - r_t = 1 - (1-p)^t
+
 ```math
 To achieve target $s$:
 ```
+
 1 - (1-p)^t \geq s
 (1-p)^t \leq 1-s
 t \geq \frac{\log(1-s)}{\log(1-p)}
+
 ```math
 For $p = 0.2$ and $s = 0.9$:
 ```
+
 t \geq \frac{\log(0.1)}{\log(0.8)} = \frac{-2.30}{-0.22} \approx 10.3
 ```
 
@@ -363,12 +393,14 @@ class LotteryTicketFinder:
     
     def prune_iteration(self):
         """Perform one pruning iteration."""
+
         # Collect all weights with their masks
         all_weights = []
         weight_info = []
         
         for name, param in self.model.named_parameters():
             if name in self.masks:
+
                 # Only consider currently unpruned weights
                 w = param.data.abs()
                 m = self.masks[name]
@@ -389,6 +421,7 @@ class LotteryTicketFinder:
         # Update masks
         for name, param in self.model.named_parameters():
             if name in self.masks:
+
                 # Prune weights below threshold that are currently unpruned
                 new_prune = (param.data.abs() < threshold) & self.masks[name]
                 self.masks[name] = self.masks[name] & ~new_prune
@@ -404,10 +437,12 @@ class LotteryTicketFinder:
         Returns:
             Dictionary with ticket mask and initial weights
         """
+
         # Initialize
         self.initialize_masks()
         
         for iteration in range(num_iterations):
+
             # Check if reached target sparsity
             current_sparsity = self.compute_current_sparsity()
             if current_sparsity >= self.target_sparsity:
@@ -419,6 +454,7 @@ class LotteryTicketFinder:
             
             # Train
             if self.late_reset_iter > 0 and iteration == 0:
+
                 # First iteration: train for late_reset_iter, then save
                 print(f"Late reset: training for {self.late_reset_iter} iterations")
                 train_fn(self.model, max_iter=self.late_reset_iter)
@@ -439,6 +475,7 @@ class LotteryTicketFinder:
     
     def verify_ticket(self, train_fn) -> float:
         """Verify the found ticket achieves good accuracy."""
+
         # Reset to initial with mask
         self.reset_to_initial()
         
@@ -473,6 +510,7 @@ class SNIPPruner:
             
             for name, param in self.model.named_parameters():
                 if name in saliency:
+
                     # SNIP: |weight * gradient|
                     saliency[name] += (param.data * param.grad).abs()
             
@@ -505,6 +543,7 @@ def compare_lottery_vs_random(model_fn, train_fn, sparsity=0.9, num_trials=5):
     results = {'lottery': [], 'random': []}
     
     for trial in range(num_trials):
+
         # Create fresh model
         model = model_fn()
         

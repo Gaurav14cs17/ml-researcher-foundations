@@ -512,9 +512,11 @@ def eigenanalysis(A):
     is_symmetric = np.allclose(A, A.T)
     
     if is_symmetric:
+
         # Use eigh for symmetric (faster, more stable, guaranteed real)
         eigenvalues, eigenvectors = np.linalg.eigh(A)
     else:
+
         # General case (may have complex eigenvalues)
         eigenvalues, eigenvectors = np.linalg.eig(A)
     
@@ -604,6 +606,7 @@ def matrix_function(A, f):
 
 # Example usage
 if __name__ == "__main__":
+
     # Symmetric matrix example
     A = np.array([[3, 1], [1, 3]])
     
@@ -638,6 +641,7 @@ import torch
 
 def eigen_torch(A_tensor):
     """Eigendecomposition with GPU support"""
+
     # For symmetric matrices
     if torch.allclose(A_tensor, A_tensor.T):
         eigenvalues, eigenvectors = torch.linalg.eigh(A_tensor)
@@ -665,6 +669,7 @@ def pca_via_eigen(X, n_components):
     PCA using eigendecomposition of covariance matrix.
     Principal components = eigenvectors with largest eigenvalues.
     """
+
     # Center the data
     X_centered = X - X.mean(axis=0)
     
@@ -757,6 +762,7 @@ def spectral_clustering(adjacency, n_clusters):
     """
     Spectral clustering using graph Laplacian eigenvectors.
     """
+
     # Degree matrix
     D = np.diag(adjacency.sum(axis=1))
     
@@ -788,10 +794,12 @@ def spectral_clustering(adjacency, n_clusters):
 ### ❌ Mistake 1: Confusing Eigenvalues with Singular Values
 
 ```python
+
 # Eigenvalues: only for SQUARE matrices
 # Singular values: for ANY matrix
 
 A = np.random.randn(5, 3)  # Rectangular
+
 # eigenvalues = np.linalg.eig(A)  # ERROR!
 U, singular_values, Vt = np.linalg.svd(A)  # Correct
 
@@ -801,6 +809,7 @@ U, singular_values, Vt = np.linalg.svd(A)  # Correct
 ### ❌ Mistake 2: Expecting Real Eigenvalues for Non-Symmetric Matrices
 
 ```python
+
 # Non-symmetric matrices can have complex eigenvalues
 A = np.array([[0, -1], [1, 0]])  # 90° rotation
 eigenvalues = np.linalg.eigvals(A)
@@ -810,9 +819,11 @@ print(eigenvalues)  # [0+1j, 0-1j] - complex!
 ### ❌ Mistake 3: Not Checking for Defective Matrices
 
 ```python
+
 # Not all matrices are diagonalizable!
 A = np.array([[1, 1], [0, 1]])  # Jordan block
 eigenvalues, eigenvectors = np.linalg.eig(A)
+
 # Only ONE eigenvector exists, but we get two (numerically corrupted)
 ```
 

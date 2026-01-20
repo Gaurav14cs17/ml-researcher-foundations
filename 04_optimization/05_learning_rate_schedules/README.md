@@ -306,9 +306,11 @@ def get_lr(step, total_steps, warmup_steps, max_lr, min_lr=0):
     Linear warmup + cosine decay schedule
     """
     if step < warmup_steps:
+
         # Linear warmup
         return max_lr * step / warmup_steps
     else:
+
         # Cosine decay
         progress = (step - warmup_steps) / (total_steps - warmup_steps)
         return min_lr + (max_lr - min_lr) * 0.5 * (1 + math.cos(math.pi * progress))
@@ -439,6 +441,7 @@ def lr_range_test(model, train_loader, start_lr=1e-7, end_lr=10, num_iters=100):
 ### Layer-wise Learning Rates
 
 ```python
+
 # Different LR for different parts of model
 optimizer = optim.Adam([
     {'params': model.backbone.parameters(), 'lr': 1e-5},  # Pre-trained

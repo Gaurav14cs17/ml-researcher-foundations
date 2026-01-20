@@ -90,16 +90,19 @@ T=20: [0.4, 0.3, 0.3]    # Very soft
 ### Distillation Loss Function
 
 **Combined loss:**
+
 ```math
 \mathcal{L} = \alpha \cdot \mathcal{L}_{soft} + (1-\alpha) \cdot \mathcal{L}_{hard}
 ```
 
 **Hard target loss (standard cross-entropy):**
+
 ```math
 \mathcal{L}_{hard} = -\sum_i y_i \log(p_i^S)
 ```
 
 **Soft target loss (KL divergence):**
+
 ```math
 \mathcal{L}_{soft} = T^2 \cdot \text{KL}(p^T \| p^S)
 ```
@@ -107,36 +110,40 @@ T=20: [0.4, 0.3, 0.3]    # Very soft
 where:
 - \( p^T = \text{softmax}(z^T / T) \) = teacher's soft predictions
 - \( p^S = \text{softmax}(z^S / T) \) = student's soft predictions
-- \( T \) = temperature
+- $T$ = temperature
 
-**Why \( T^2 \) scaling?**
+**Why $T^2$ scaling?**
 
-The gradients of soft loss are scaled by \( 1/T^2 \) due to temperature. The \( T^2 \) factor compensates to maintain gradient magnitude.
+The gradients of soft loss are scaled by $1/T^2$ due to temperature. The $T^2$ factor compensates to maintain gradient magnitude.
 
 ---
 
 ### Temperature Effect on Softmax
 
-**Standard softmax (\( T=1 \)):**
+**Standard softmax ($T=1$):**
+
 ```math
 p_i = \frac{\exp(z_i)}{\sum_j \exp(z_j)}
 ```
 
 **Temperature-scaled softmax:**
+
 ```math
 p_i^{(T)} = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)}
 ```
 
 **Proof of softening effect:**
 
-As \( T \to \infty \):
+As $T \to \infty$:
+
 ```math
 \lim_{T \to \infty} p_i^{(T)} = \frac{1}{K}
 ```
 
 All classes become equally likely (maximum entropy).
 
-As \( T \to 0 \):
+As $T \to 0$:
+
 ```math
 \lim_{T \to 0} p_i^{(T)} = \mathbb{1}[i = \arg\max_j z_j]
 ```
@@ -162,6 +169,7 @@ The student learns:
 **Formal interpretation:**
 
 The soft labels encode **class similarities**:
+
 ```math
 \text{sim}(c_i, c_j) \propto \mathbb{E}_{x}[p^T_i(x) \cdot p^T_j(x)]
 ```
@@ -171,13 +179,14 @@ The soft labels encode **class similarities**:
 ### Gradient Analysis
 
 **Gradient of soft loss w.r.t. student logits:**
+
 ```math
 \frac{\partial \mathcal{L}_{soft}}{\partial z_i^S} = \frac{1}{T}(p_i^S - p_i^T)
 ```
 
 **Interpretation:**
-- If \( p_i^S > p_i^T \): Gradient is positive → decrease \( z_i^S \)
-- If \( p_i^S < p_i^T \): Gradient is negative → increase \( z_i^S \)
+- If $p_i^S > p_i^T$: Gradient is positive → decrease $z_i^S$
+- If $p_i^S < p_i^T$: Gradient is negative → increase $z_i^S$
 
 The student learns to match the teacher's full distribution, not just the correct class.
 
@@ -192,18 +201,19 @@ Match intermediate representations, not just outputs:
 ```
 
 where:
-- \( F_l^S \) = student feature at layer \( l \)
-- \( F_l^T \) = teacher feature at layer \( l \)
-- \( g_l \) = projection to match dimensions
+- $F_l^S$ = student feature at layer $l$
+- $F_l^T$ = teacher feature at layer $l$
+- $g_l$ = projection to match dimensions
 
-**FitNets:** Learn \( g_l \) as trainable projector.
+**FitNets:** Learn $g_l$ as trainable projector.
 
 **Attention transfer:**
+
 ```math
 \mathcal{L}_{AT} = \sum_l \left\| \frac{A_l^S}{\|A_l^S\|_2} - \frac{A_l^T}{\|A_l^T\|_2} \right\|_2^2
 ```
 
-where \( A_l = \sum_c |F_l^c|^2 \) is the spatial attention map.
+where $A_l = \sum_c |F_l^c|^2$ is the spatial attention map.
 
 ---
 
@@ -212,9 +222,9 @@ where \( A_l = \sum_c |F_l^c|^2 \) is the spatial attention map.
 **Observation:** A model can distill from itself!
 
 **Process:**
-1. Train model \( M_1 \)
-2. Use \( M_1 \) as teacher, train \( M_2 \) (same architecture)
-3. \( M_2 \) typically has 1-2% higher accuracy
+1. Train model $M_1$
+2. Use $M_1$ as teacher, train $M_2$ (same architecture)
+3. $M_2$ typically has 1-2% higher accuracy
 
 **Explanation:**
 - Training with soft labels provides richer supervision
@@ -222,6 +232,7 @@ where \( A_l = \sum_c |F_l^c|^2 \) is the spatial attention map.
 - Label smoothing is implicit
 
 **Born-Again Networks (BAN):**
+
 ```math
 \text{Acc}(M_{n+1}) > \text{Acc}(M_n)
 ```
@@ -233,6 +244,7 @@ for several generations of self-distillation.
 ### DistilBERT
 
 **Initialization:** Start from teacher weights (take every other layer):
+
 ```math
 W^S_l = W^T_{2l}
 ```
@@ -262,6 +274,7 @@ W^S_l = W^T_{2l}
 3. Student learns to mimic GPT-4's behavior
 
 **Mathematical formulation:**
+
 ```math
 \min_\theta \mathbb{E}_{(x,y) \sim \text{GPT-4}}[-\log p_\theta(y|x)]
 ```
@@ -274,14 +287,14 @@ This is maximum likelihood on teacher-generated data.
 
 ### Optimal Temperature
 
-**Empirical finding:** \( T = 4-8 \) works well for classification.
+**Empirical finding:** $T = 4-8$ works well for classification.
 
 **Intuition:**
-- \( T = 1 \): Hard labels, limited knowledge transfer
-- \( T = 20 \): Too soft, loses discriminative information
-- \( T \approx 4 \): Good balance
+- $T = 1$: Hard labels, limited knowledge transfer
+- $T = 20$: Too soft, loses discriminative information
+- $T \approx 4$: Good balance
 
-**Optimal \( T \) depends on:**
+**Optimal $T$ depends on:**
 - Number of classes
 - Teacher confidence
 - Task difficulty
@@ -293,15 +306,17 @@ This is maximum likelihood on teacher-generated data.
 **Problem:** If student is too small, it can't absorb teacher's knowledge.
 
 **Teacher-Student capacity ratio:**
+
 ```math
 r = \frac{|\theta_S|}{|\theta_T|}
 ```
 
 **Empirical observation:**
-- \( r > 0.1 \): Good distillation
-- \( r < 0.01 \): Capacity gap issues
+- $r > 0.1$: Good distillation
+- $r < 0.01$: Capacity gap issues
 
 **Solution: Teacher Assistant (TA):**
+
 ```math
 \text{Teacher} \to \text{TA} \to \text{Student}
 ```
@@ -313,16 +328,19 @@ Intermediate-sized model bridges the gap.
 ### Distillation vs Data Augmentation
 
 **Distillation:** Uses teacher to generate soft labels
+
 ```math
 \mathcal{L}_{dist} = \text{KL}(p^T(x) \| p^S(x))
 ```
 
 **Data augmentation:** Applies transformations to inputs
+
 ```math
 \mathcal{L}_{aug} = \text{CE}(y, p^S(t(x)))
 ```
 
 **Combination is best:**
+
 ```math
 \mathcal{L}_{total} = \mathcal{L}_{dist}(t(x)) + \mathcal{L}_{hard}(t(x))
 ```
@@ -347,6 +365,7 @@ Intermediate-sized model bridges the gap.
 | [← NAS II](../08_neural_architecture_search_2/README.md) | [Efficient ML](../README.md) | [MCUNet & TinyML →](../10_mcunet_tinyml/README.md) |
 
 ---
+
 ## 📚 References
 
 | Type | Resource | Link |

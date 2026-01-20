@@ -83,6 +83,7 @@ Savings: 99.5%+ parameter reduction
 ## 💻 Example
 
 ```python
+
 # Gradient Checkpointing
 from torch.utils.checkpoint import checkpoint
 output = checkpoint(model.layer, input)

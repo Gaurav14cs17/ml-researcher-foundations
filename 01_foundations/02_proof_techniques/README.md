@@ -203,6 +203,7 @@ By the end of this article, you will be able to:
 ### 📝 Example 3: Gradient Descent Convergence (Advanced)
 
 **Theorem:** If f is L-smooth and convex, gradient descent with step size α = 1/L satisfies:
+
 ```math
 f(x_k) - f(x^*) \leq \frac{2L\|x_0 - x^*\|^2}{k}
 ```
@@ -251,6 +252,7 @@ def direct_proof_gradient_descent():
     
     Theorem: GD with step size 1/L converges at O(1/k) for L-smooth convex f.
     """
+
     # L-smooth convex function: f(x) = (L/2) * x^2
     L = 2.0
     f = lambda x: (L/2) * x**2
@@ -275,6 +277,7 @@ def direct_proof_gradient_descent():
         gaps.append(gap)
         
         if k in [1, 5, 10, 50, 100]:
+
             # Theoretical bound: 2L||x_0 - x*||² / k
             theoretical_bound = 2 * L * (10 - x_star)**2 / k
             print(f"k={k:3d}: f(x_k) - f(x*) = {gap:.6f}, "
@@ -408,6 +411,7 @@ def proof_sqrt2_irrational():
     best_fraction = None
     
     for q in range(1, 10001):
+
         # Find p such that p/q is closest to √2
         p = round(q * np.sqrt(2))
         error = abs((p/q)**2 - 2)
@@ -1169,6 +1173,7 @@ class ProofTechniques:
         # Inductive step verification for many k
         inductive_holds = True
         for k in range(1, n_max):
+
             # Assume formula holds for k
             sum_k = k * (k + 1) // 2
             
@@ -1223,6 +1228,7 @@ class ProofTechniques:
         linear_layers = [l for l in layers if isinstance(l, nn.Linear)]
         
         for i, layer in enumerate(linear_layers):
+
             # Numerical gradient for one weight
             eps = 1e-5
             idx = (0, 0)

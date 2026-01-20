@@ -29,11 +29,13 @@
 ### Definition
 
 **Discrete:**
+
 ```math
 H(X) = -\sum_{x} p(x) \log_2 p(x) \quad \text{(bits)}
 ```
 
 **Continuous (Differential Entropy):**
+
 ```math
 h(X) = -\int f(x) \log f(x) \, dx
 ```
@@ -81,11 +83,13 @@ For true label $y$ (one-hot) and predicted distribution $\hat{p}$:
 ```
 
 **With softmax:**
+
 ```math
 \hat{p}_k = \frac{e^{z_k}}{\sum_j e^{z_j}}
 ```
 
 **Gradient (remarkably simple):**
+
 ```math
 \frac{\partial \mathcal{L}}{\partial z_k} = \hat{p}_k - y_k
 ```
@@ -116,6 +120,7 @@ D_{KL}(P \| Q) = E_p\left[\log\frac{p}{q}\right] = -E_p\left[\log\frac{q}{p}\rig
 ```
 
 Using Jensen's inequality ($\log$ is concave):
+
 ```math
 -E_p\left[\log\frac{q}{p}\right] \geq -\log E_p\left[\frac{q}{p}\right] = -\log\sum_x p(x)\frac{q(x)}{p(x)} = -\log 1 = 0 \quad \blacksquare
 ```
@@ -152,6 +157,7 @@ I(X; Y) = H(X) - H(X|Y) = H(Y) - H(Y|X)
 ```
 
 **As KL Divergence:**
+
 ```math
 I(X; Y) = D_{KL}(p(x, y) \| p(x)p(y))
 ```

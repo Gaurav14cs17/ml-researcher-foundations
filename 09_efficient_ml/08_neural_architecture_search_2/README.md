@@ -92,18 +92,21 @@ resolution = γ^φ
 ### Hardware-Aware Objective
 
 **Multi-objective NAS:**
+
 ```math
 \max_\alpha \text{Acc}(\alpha) \quad \text{s.t.} \quad \text{Latency}(\alpha) \leq T
 ```
 
 **Scalarized form:**
+
 ```math
 \max_\alpha \text{Acc}(\alpha) \times \left(\frac{\text{Latency}(\alpha)}{T}\right)^w
 ```
 
-where \( w < 0 \) penalizes exceeding target \( T \).
+where $w < 0$ penalizes exceeding target $T$.
 
 **Latency estimation:**
+
 ```math
 \text{Latency}(\alpha) = \sum_{l=1}^L \text{Lat}(o_l, h_l, w_l, c_l)
 ```
@@ -117,6 +120,7 @@ Use **lookup tables** for per-operation latency on target hardware.
 Make latency differentiable for gradient-based search:
 
 **Expected latency:**
+
 ```math
 \mathbb{E}[\text{Lat}] = \sum_{o \in \mathcal{O}} p(o) \cdot \text{Lat}(o)
 ```
@@ -124,11 +128,13 @@ Make latency differentiable for gradient-based search:
 where \( p(o) = \text{softmax}(\alpha)_o \).
 
 **Gradient:**
+
 ```math
 \frac{\partial \mathbb{E}[\text{Lat}]}{\partial \alpha_i} = \sum_{o} \text{Lat}(o) \cdot \frac{\partial p(o)}{\partial \alpha_i}
 ```
 
 Using softmax derivative:
+
 ```math
 \frac{\partial p(o)}{\partial \alpha_i} = p(o)(\mathbb{1}[o=i] - p(i))
 ```
@@ -140,25 +146,29 @@ Using softmax derivative:
 **Hypothesis:** Depth, width, and resolution should scale together.
 
 **Formulation:**
+
 ```math
 d = \alpha^\phi, \quad w = \beta^\phi, \quad r = \gamma^\phi
 ```
 
 **Constraint:** FLOPs scale as:
+
 ```math
 \text{FLOPs} \propto d \cdot w^2 \cdot r^2
 ```
 
-For constant FLOPs increase of \( 2^\phi \):
+For constant FLOPs increase of $2^\phi$:
+
 ```math
 \alpha \cdot \beta^2 \cdot \gamma^2 \approx 2
 ```
 
-**Grid search** finds \( \alpha = 1.2, \beta = 1.1, \gamma = 1.15 \).
+**Grid search** finds $\alpha = 1.2, \beta = 1.1, \gamma = 1.15$.
 
 **Proof of optimality:**
 
 For a given compute budget, jointly scaling all dimensions outperforms scaling any single dimension:
+
 ```math
 \text{Acc}(\alpha^\phi d_0, \beta^\phi w_0, \gamma^\phi r_0) > \text{Acc}(2^\phi d_0, w_0, r_0)
 ```
@@ -172,16 +182,19 @@ This is empirically validated across multiple architectures.
 **Progressive shrinking:**
 
 1. **Phase 1:** Train largest network
+
 ```math
 \min_W \mathcal{L}(f_{max}(x; W))
 ```
 
 2. **Phase 2:** Support elastic depth (sample random depths)
+
 ```math
 \min_W \mathbb{E}_{d \sim \mathcal{D}}[\mathcal{L}(f_d(x; W))]
 ```
 
 3. **Phase 3:** Support elastic width (sample random widths)
+
 ```math
 \min_W \mathbb{E}_{d,w \sim \mathcal{D} \times \mathcal{W}}[\mathcal{L}(f_{d,w}(x; W))]
 ```
@@ -189,6 +202,7 @@ This is empirically validated across multiple architectures.
 4. **Phase 4:** Support elastic resolution
 
 **Knowledge distillation during training:**
+
 ```math
 \mathcal{L}_{KD} = \text{KL}(f_{small}(x) \| f_{large}(x))
 ```
@@ -199,20 +213,22 @@ Larger sub-networks teach smaller ones.
 
 ### Elastic Dimensions
 
-**Elastic depth:** Sample \( d \in \{d_{min}, ..., d_{max}\} \) layers.
+**Elastic depth:** Sample $d \in \{d_{min}, ..., d_{max}\}$ layers.
 
-**Elastic width:** Sample channels \( c \in \{c_{min}, ..., c_{max}\} \).
+**Elastic width:** Sample channels $c \in \{c_{min}, ..., c_{max}\}$.
 
-**Elastic kernel:** Sample kernel size \( k \in \{3, 5, 7\} \).
+**Elastic kernel:** Sample kernel size $k \in \{3, 5, 7\}$.
 
 **Weight reuse for elastic width:**
+
 ```math
 W_{small}[:c, :c'] = W_{full}[:c, :c']
 ```
 
-Take the first \( c \) output channels and \( c' \) input channels.
+Take the first $c$ output channels and $c'$ input channels.
 
 **Weight transformation for elastic kernel:**
+
 ```math
 W_{3\times3} = \text{CenterCrop}(W_{5\times5})
 ```
@@ -226,6 +242,7 @@ or use learnable transformation matrices.
 After OFA training, find optimal subnet for target device:
 
 **Search problem:**
+
 ```math
 \max_{d,w,k,r} \text{Acc}(d,w,k,r; W_{OFA})
 \text{s.t.} \quad \text{Latency}(d,w,k,r) \leq T
@@ -244,11 +261,13 @@ After OFA training, find optimal subnet for target device:
 ### MnasNet Reward Function
 
 **Multi-objective reward:**
+
 ```math
 R(\alpha) = \text{Acc}(\alpha) \times \left[\frac{\text{Lat}(\alpha)}{T}\right]^w
 ```
 
 where:
+
 ```math
 w = \begin{cases} 
 \beta & \text{if } \text{Lat}(\alpha) \leq T \\
@@ -256,7 +275,7 @@ w = \begin{cases}
 \end{cases}
 ```
 
-Typically \( \alpha = \beta = -0.07 \).
+Typically $\alpha = \beta = -0.07$.
 
 **Pareto frontier:** The set of architectures where no architecture dominates another in both accuracy and latency.
 
@@ -266,7 +285,8 @@ Typically \( \alpha = \beta = -0.07 \).
 
 **Lookup table approach:**
 
-For each operation type \( o \) and configuration \( (c_{in}, c_{out}, k, H, W) \):
+For each operation type $o$ and configuration \( (c_{in}, c_{out}, k, H, W) \):
+
 ```math
 \text{Lat}(o, c_{in}, c_{out}, k, H, W) = \text{LUT}[o, c_{in}, c_{out}, k, H, W]
 ```
@@ -274,6 +294,7 @@ For each operation type \( o \) and configuration \( (c_{in}, c_{out}, k, H, W) 
 **Neural predictor approach:**
 
 Train a small MLP to predict latency:
+
 ```math
 \hat{\text{Lat}}(\alpha) = g(\alpha; \theta)
 ```
@@ -287,6 +308,7 @@ More flexible, handles unseen configurations.
 ### Cost of OFA vs Individual Training
 
 **Individual training:**
+
 ```math
 \text{Cost}_{ind} = N_{devices} \times \text{Cost}_{single}
 ```
@@ -294,11 +316,13 @@ More flexible, handles unseen configurations.
 For 10 devices: 10× training cost.
 
 **OFA training:**
+
 ```math
 \text{Cost}_{OFA} = 1 \times \text{Cost}_{supernet} + N_{devices} \times \text{Cost}_{search}
 ```
 
-Since \( \text{Cost}_{search} \ll \text{Cost}_{single} \):
+Since $\text{Cost}_{search} \ll \text{Cost}_{single}$:
+
 ```math
 \text{Cost}_{OFA} \approx 1.2 \times \text{Cost}_{single}
 ```
@@ -316,6 +340,7 @@ OFA network with:
 - 5 resolution choices
 
 **Total sub-networks:**
+
 ```math
 |\mathcal{A}| = 5 \times 4^{20} \times 3^{20} \times 5 \approx 10^{19}
 ```
@@ -342,6 +367,7 @@ All accessible with single training!
 | [← NAS I](../07_neural_architecture_search_1/README.md) | [Efficient ML](../README.md) | [Knowledge Distillation →](../09_knowledge_distillation/README.md) |
 
 ---
+
 ## 📚 References
 
 | Type | Resource | Link |

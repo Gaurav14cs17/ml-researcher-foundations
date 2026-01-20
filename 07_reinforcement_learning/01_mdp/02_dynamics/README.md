@@ -218,6 +218,7 @@ Loss function:
 ## 💻 Code
 
 ```python
+
 # Deterministic dynamics (simple example)
 def transition_deterministic(state, action):
     if action == "right":

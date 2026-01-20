@@ -181,6 +181,7 @@ ABSTRACTION = Focus on WHAT, not HOW
 | **Abstract** | Vector space V with axioms | Addition, scalar multiplication |
 
 ```python
+
 # Concrete: ℝ³
 v = np.array([1, 2, 3])
 w = np.array([4, 5, 6])
@@ -200,6 +201,7 @@ result = v + w  # [5, 7, 9]
 | **Level 3** | `Y = f ∘ g (X)` | Theoretical analysis |
 
 ```python
+
 # Level 0: Computational
 def matmul_naive(X, W):
     batch, in_dim = X.shape
@@ -589,6 +591,7 @@ class NecessarySufficientDemo:
         """
         Convexity is SUFFICIENT but not NECESSARY for local=global.
         """
+
         # Convex: f(x) = x²
         f1 = lambda x: x[0]**2
         
@@ -867,6 +870,7 @@ print(f"sin(x) is convex: {DefinitionsDemo.definition_convexity(f_nonconvex, 0, 
 | "Single-layer perceptrons can learn any function" | XOR is not linearly separable |
 
 ```python
+
 # XOR cannot be learned by single perceptron
 X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
 y = np.array([0, 1, 1, 0])
@@ -882,8 +886,10 @@ y = np.array([0, 1, 1, 0])
 | "Deep nets are robust to small perturbations" | Adversarial examples exist |
 
 ```python
+
 # Add tiny noise, completely fool classifier
 x_adv = x + epsilon * sign(gradient_wrt_input)
+
 # Prediction changes from "panda" to "gibbon" with high confidence!
 ```
 

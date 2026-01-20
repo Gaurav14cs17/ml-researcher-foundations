@@ -15,7 +15,7 @@
 
 ## 📂 Overview
 
-Dropout is a powerful regularization technique that prevents overfitting by randomly "dropping" (zeroing out) neurons during training. It can be interpreted as training an ensemble of \(2^n\) subnetworks and approximating Bayesian inference.
+Dropout is a powerful regularization technique that prevents overfitting by randomly "dropping" (zeroing out) neurons during training. It can be interpreted as training an ensemble of $2^n$ subnetworks and approximating Bayesian inference.
 
 ---
 
@@ -23,21 +23,23 @@ Dropout is a powerful regularization technique that prevents overfitting by rand
 
 ### Training Phase
 
-For a layer with activations \(h \in \mathbb{R}^d\):
+For a layer with activations $h \in \mathbb{R}^d$:
 
 **Step 1: Sample binary mask**
+
 ```math
 m_i \sim \text{Bernoulli}(1-p) \quad \text{for } i = 1, \ldots, d
 ```
 
-where \(p\) is the dropout probability (typically 0.5 for hidden layers, 0.2 for input).
+where $p$ is the dropout probability (typically 0.5 for hidden layers, 0.2 for input).
 
 **Step 2: Apply mask with scaling**
+
 ```math
 \tilde{h} = \frac{1}{1-p} \cdot (h \odot m)
 ```
 
-The scaling factor \(\frac{1}{1-p}\) ensures expected value is preserved:
+The scaling factor $\frac{1}{1-p}$ ensures expected value is preserved:
 ```
 E[h̃ᵢ] = E[(1/(1-p)) · hᵢ · mᵢ]
        = (1/(1-p)) · hᵢ · E[mᵢ]
@@ -48,6 +50,7 @@ E[h̃ᵢ] = E[(1/(1-p)) · hᵢ · mᵢ]
 ### Inference Phase
 
 At inference, use all neurons without dropout:
+
 ```math
 \tilde{h} = h
 ```
@@ -60,7 +63,7 @@ This is equivalent to computing the expected output over all possible masks.
 
 ### 1. Ensemble Interpretation
 
-**Key insight:** A network with \(n\) droppable units represents \(2^n\) different subnetworks.
+**Key insight:** A network with $n$ droppable units represents $2^n$ different subnetworks.
 
 ```
 With n=1000 hidden units:
@@ -86,16 +89,18 @@ This is called "weight scaling inference rule"
 Dropout approximates Bayesian inference over network weights:
 
 **Variational distribution:**
+
 ```math
 q(W) = \prod_{ij} q(w_{ij}) = \prod_{ij} [(1-p)\delta(w_{ij} - \hat{w}_{ij}) + p\delta(w_{ij})]
 ```
 
 **Predictive distribution:**
+
 ```math
 p(y|x, D) \approx \int p(y|x, W) q(W) dW \approx \frac{1}{T} \sum_{t=1}^{T} f(x; W_t)
 ```
 
-where \(W_t\) are sampled using dropout masks.
+where $W_t$ are sampled using dropout masks.
 
 ### 3. Noise Injection Perspective
 
@@ -118,9 +123,10 @@ This noise acts as regularization, similar to:
 
 ### Gradient with Dropout
 
-For a simple linear layer \(y = Wx\) with dropout:
+For a simple linear layer $y = Wx$ with dropout:
 
 **Forward:**
+
 ```math
 \tilde{x} = \frac{1}{1-p} (x \odot m)
 y = W\tilde{x}
@@ -165,6 +171,7 @@ This shows dropout ≈ L2 regularization with λ ∝ p/(1-p)
 
 Scale during training, no scaling at inference:
 ```python
+
 # Training
 mask = (torch.rand(h.shape) > p).float()
 h_dropped = h * mask / (1 - p)
@@ -177,6 +184,7 @@ h_out = h  # No change
 
 No scaling during training, scale at inference:
 ```python
+
 # Training
 mask = (torch.rand(h.shape) > p).float()
 h_dropped = h * mask
@@ -188,6 +196,7 @@ h_out = h * (1 - p)  # Scale down
 ### 3. DropConnect
 
 Drop individual weights instead of activations:
+
 ```math
 \tilde{W} = W \odot M \quad \text{where } M_{ij} \sim \text{Bernoulli}(1-p)
 ```
@@ -196,6 +205,7 @@ Drop individual weights instead of activations:
 
 For CNNs, drop entire feature maps:
 ```python
+
 # Shape: (batch, channels, height, width)
 mask = (torch.rand(batch, channels, 1, 1) > p).float()
 h_dropped = h * mask / (1 - p)
@@ -204,6 +214,7 @@ h_dropped = h * mask / (1 - p)
 ### 5. DropPath (Stochastic Depth)
 
 For residual networks, drop entire residual branches:
+
 ```math
 y = x + \text{drop}(f(x))
 ```
@@ -386,6 +397,7 @@ class DropPath(nn.Module):
             return x
         
         keep_prob = 1 - self.drop_prob
+
         # Shape: (batch_size, 1, 1, ..., 1)
         shape = (x.shape[0],) + (1,) * (x.ndim - 1)
         random_tensor = keep_prob + torch.rand(shape, dtype=x.dtype, device=x.device)

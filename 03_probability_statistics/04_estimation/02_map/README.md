@@ -114,6 +114,7 @@ P(\theta) = \frac{1}{2b} \exp\left(-\frac{|\theta|}{b}\right)
 For scalar $\theta$, consider MAP gradient at $\theta = 0$:
 
 **L2 (Ridge):**
+
 ```math
 \frac{\partial}{\partial\theta}(\lambda\theta^2) = 2\lambda\theta
 ```
@@ -121,6 +122,7 @@ For scalar $\theta$, consider MAP gradient at $\theta = 0$:
 At $\theta = 0$: gradient = 0. No force pushing to exactly 0.
 
 **L1 (Lasso):**
+
 ```math
 \frac{\partial}{\partial\theta}(\lambda|\theta|) = \lambda \cdot \text{sign}(\theta)
 ```
@@ -234,6 +236,7 @@ def map_ridge_gradient(X, y, lambda_reg=1.0):
     lr = 0.01
     
     for _ in range(1000):
+
         # Gradient of negative log-posterior
         grad_nll = -X.T @ (y - X @ theta)  # ∂(-log likelihood)/∂θ
         grad_prior = lambda_reg * theta     # ∂(-log prior)/∂θ = λθ
@@ -276,6 +279,7 @@ def map_lasso_ista(X, y, lambda_reg=1.0, lr=0.01, n_iter=1000):
     theta = np.zeros(d)
     
     for _ in range(n_iter):
+
         # Gradient step (likelihood)
         grad = -X.T @ (y - X @ theta) / n
         theta = theta - lr * grad
@@ -294,6 +298,7 @@ def map_lasso_cd(X, y, lambda_reg=1.0, n_iter=100):
     
     for _ in range(n_iter):
         for j in range(d):
+
             # Compute residual without feature j
             residual = y - X @ theta + X[:, j] * theta[j]
             
@@ -391,6 +396,7 @@ ridge_paths = []
 lasso_paths = []
 
 for lam in lambda_vals:
+
     # Ridge
     theta_ridge = np.linalg.solve(X.T @ X + lam * np.eye(2), X.T @ y)
     ridge_paths.append(theta_ridge)

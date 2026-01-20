@@ -160,6 +160,7 @@ class SACAgent:
 # Domain randomization
 class RandomizedEnv(gym.Wrapper):
     def reset(self):
+
         # Randomize physics
         self.env.model.body_mass *= np.random.uniform(0.8, 1.2)
         self.env.model.dof_damping *= np.random.uniform(0.5, 2.0)
@@ -167,6 +168,7 @@ class RandomizedEnv(gym.Wrapper):
 
 # Sim-to-real training
 def train_sim2real(agent, sim_env, real_env):
+
     # Train in randomized sim
     for _ in range(1000000):
         sim_step(agent, RandomizedEnv(sim_env))

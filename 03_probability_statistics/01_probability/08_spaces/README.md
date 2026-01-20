@@ -89,17 +89,20 @@ A **σ-algebra** $\mathcal{F}$ on $\Omega$ is a collection of subsets satisfying
 A **probability measure** $P$ on $(\Omega, \mathcal{F})$ satisfies:
 
 **Axiom 1 (Non-negativity):**
+
 ```math
 P(A) \geq 0 \quad \forall A \in \mathcal{F}
 ```
 
 **Axiom 2 (Normalization):**
+
 ```math
 P(\Omega) = 1
 ```
 
 **Axiom 3 (Countable Additivity):**
 For disjoint events $A\_1, A\_2, \ldots$:
+
 ```math
 P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)
 ```
@@ -115,36 +118,43 @@ A **probability space** is the triple $(\Omega, \mathcal{F}, P)$.
 ### Theorem: Properties from Axioms
 
 **1. Empty set:**
+
 ```math
 P(\emptyset) = 0
 ```
 
 **Proof:** $\Omega$ and $\emptyset$ are disjoint, $\Omega = \Omega \cup \emptyset$.
+
 ```math
 P(\Omega) = P(\Omega) + P(\emptyset) \Rightarrow P(\emptyset) = 0 \quad \blacksquare
 ```
 
 **2. Complement:**
+
 ```math
 P(A^c) = 1 - P(A)
 ```
 
 **Proof:** $A$ and $A^c$ are disjoint, $A \cup A^c = \Omega$.
+
 ```math
 1 = P(\Omega) = P(A) + P(A^c) \Rightarrow P(A^c) = 1 - P(A) \quad \blacksquare
 ```
 
 **3. Monotonicity:**
+
 ```math
 A \subseteq B \Rightarrow P(A) \leq P(B)
 ```
 
 **Proof:** $B = A \cup (B \setminus A)$ where the union is disjoint.
+
 ```math
 P(B) = P(A) + P(B \setminus A) \geq P(A) \quad \blacksquare
 ```
 
 **4. Inclusion-Exclusion:**
+
 ```math
 P(A \cup B) = P(A) + P(B) - P(A \cap B)
 ```
@@ -152,6 +162,7 @@ P(A \cup B) = P(A) + P(B) - P(A \cap B)
 **Proof:** Write $A \cup B$ as disjoint union and use additivity. $\quad \blacksquare$
 
 **5. Union Bound (Boole's Inequality):**
+
 ```math
 P\left(\bigcup_{i=1}^{n} A_i\right) \leq \sum_{i=1}^{n} P(A_i)
 ```
@@ -182,11 +193,13 @@ P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad P(B) > 0
 ### Definition
 
 Events $A$ and $B$ are **independent** if:
+
 ```math
 P(A \cap B) = P(A) \cdot P(B)
 ```
 
 **Equivalent condition:**
+
 ```math
 P(A|B) = P(A) \quad \text{and} \quad P(B|A) = P(B)
 ```
@@ -194,6 +207,7 @@ P(A|B) = P(A) \quad \text{and} \quad P(B|A) = P(B)
 ### Mutual Independence
 
 Events $A\_1, \ldots, A\_n$ are **mutually independent** if for every subset $S \subseteq \{1, \ldots, n\}$:
+
 ```math
 P\left(\bigcap_{i \in S} A_i\right) = \prod_{i \in S} P(A_i)
 ```
@@ -213,11 +227,13 @@ P(A) = \sum_{i=1}^{n} P(A|B_i) P(B_i)
 ```
 
 **Proof:**
+
 ```math
 A = A \cap \Omega = A \cap \left(\bigcup_i B_i\right) = \bigcup_i (A \cap B_i)
 ```
 
 Since $A \cap B\_i$ are disjoint:
+
 ```math
 P(A) = \sum_i P(A \cap B_i) = \sum_i P(A|B_i) P(B_i) \quad \blacksquare
 ```
@@ -229,6 +245,7 @@ P(A) = \sum_i P(A \cap B_i) = \sum_i P(A|B_i) P(B_i) \quad \blacksquare
 A **random variable** is a measurable function $X: \Omega \to \mathbb{R}$.
 
 "Measurable" means: for any Borel set $B \subseteq \mathbb{R}$:
+
 ```math
 \{ω \in \Omega : X(\omega) \in B\} \in \mathcal{F}
 ```
@@ -297,6 +314,7 @@ print(f"P(X² + Y² < 1) ≈ {prob:.4f}")  # ≈ 0.393
 # Conditional probability example
 # P(sum = 7 | first die = 4)
 def conditional_sum_7_given_first_4():
+
     # Sample space conditioned on first die = 4
     second_die = np.array([1, 2, 3, 4, 5, 6])
     sums = 4 + second_die

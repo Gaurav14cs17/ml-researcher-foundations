@@ -524,6 +524,7 @@ def verify_transpose_product(A, B):
 
 def efficient_trace_product(A, B):
     """Compute tr(AB) without forming AB"""
+
     # tr(AB) = Σᵢⱼ AᵢⱼBⱼᵢ = Σᵢⱼ AᵢⱼBᵀᵢⱼ
     return np.sum(A * B.T)  # O(n²) instead of O(n³)
 
@@ -544,6 +545,7 @@ def is_positive_definite(A, tol=1e-10):
 # =============================================================================
 
 if __name__ == "__main__":
+
     # Vector examples
     x = np.array([1.0, 2.0, 3.0])
     y = np.array([4.0, 5.0, 6.0])
@@ -645,6 +647,7 @@ def layer_norm(x, gamma, beta, eps=1e-5):
     x: [B, T, D] input
     gamma, beta: [D] learnable parameters
     """
+
     # Compute mean and variance over last dimension
     mean = x.mean(dim=-1, keepdim=True)
     var = x.var(dim=-1, keepdim=True, unbiased=False)
@@ -666,6 +669,7 @@ def cosine_similarity_search(query, database):
     query: [D] single query vector
     database: [N, D] database of N vectors
     """
+
     # Normalize
     query_norm = query / torch.norm(query)
     db_norm = database / torch.norm(database, dim=1, keepdim=True)

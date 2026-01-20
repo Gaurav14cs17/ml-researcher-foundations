@@ -54,7 +54,7 @@ with increasing complexity: \(\text{VC}(\mathcal{H}_1) < \text{VC}(\mathcal{H}_2
 \hat{h} = \arg\min_{k} \left[\min_{h \in \mathcal{H}_k} \hat{R}(h) + \Phi(k, n, \delta)\right]
 ```
 
-where \(\Phi(k, n, \delta)\) is the complexity penalty depending on VC dimension of \(\mathcal{H}_k\).
+where \(\Phi(k, n, \delta)\) is the complexity penalty depending on VC dimension of $\mathcal{H}_k$.
 
 ---
 
@@ -62,7 +62,7 @@ where \(\Phi(k, n, \delta)\) is the complexity penalty depending on VC dimension
 
 ### Vapnik's SRM Bound
 
-**Theorem:** With probability \(\geq 1 - \delta\), for all \(h \in \mathcal{H}\):
+**Theorem:** With probability $\geq 1 - \delta$, for all $h \in \mathcal{H}$:
 
 ```math
 R(h) \leq \hat{R}(h) + \sqrt{\frac{d(\ln(2n/d) + 1) + \ln(4/\delta)}{n}}
@@ -82,9 +82,9 @@ SRM is equivalent to regularized ERM:
 
 | Regularizer | \(\Omega(h)\) | Effect |
 |-------------|---------------|--------|
-| L2 (Ridge) | \(\|w\|_2^2\) | Small weights |
-| L1 (Lasso) | \(\|w\|_1\) | Sparse weights |
-| RKHS Norm | \(\|h\|_{\mathcal{H}}^2\) | Smooth functions |
+| L2 (Ridge) | $\|w\|_2^2$ | Small weights |
+| L1 (Lasso) | $\|w\|_1$ | Sparse weights |
+| RKHS Norm | $\|h\|_{\mathcal{H}}^2$ | Smooth functions |
 | Spectral Norm | \(\sigma_{\max}(W)\) | Lipschitz constraint |
 
 ---
@@ -118,15 +118,15 @@ Taking negative log:
 
 ### Implicit Regularization
 
-**Theorem (Ali Rahimi et al.):** For gradient descent on linear regression with step size \(\eta\):
+**Theorem (Ali Rahimi et al.):** For gradient descent on linear regression with step size $\eta$:
 
 ```math
 w^{(t)} = \sum_{i=1}^n \alpha_i^{(t)} x_i
 ```
 
-where after \(t\) steps, this approximates ridge regression with \(\lambda = 1/(\eta t)\).
+where after $t$ steps, this approximates ridge regression with \(\lambda = 1/(\eta t)\).
 
-**Proof Sketch:** The gradient descent iterates stay in the span of training data. Early stopping limits the effective complexity of the learned function. \(\blacksquare\)
+**Proof Sketch:** The gradient descent iterates stay in the span of training data. Early stopping limits the effective complexity of the learned function. $\blacksquare$
 
 ---
 
@@ -226,6 +226,7 @@ class EarlyStoppingRegularizer:
         val_losses = []
         
         for epoch in range(self.max_epochs):
+
             # Training step
             self.model.train()
             optimizer.zero_grad()
@@ -326,7 +327,7 @@ if __name__ == "__main__":
 | Objective | \(\min \hat{R}(h)\) | \(\min \hat{R}(h) + \lambda\Omega(h)\) |
 | Overfitting | Prone | Controlled |
 | Generalization | No guarantee | Provable bounds |
-| Computation | Simple | Requires tuning \(\lambda\) |
+| Computation | Simple | Requires tuning $\lambda$ |
 
 ---
 

@@ -66,46 +66,53 @@ n qubits: 2^n states simultaneously
 ### Qubit State Space
 
 **Single qubit:**
+
 ```math
 |\psi\rangle = \alpha|0\rangle + \beta|1\rangle
 ```
 
-where \( \alpha, \beta \in \mathbb{C} \) and \( |\alpha|^2 + |\beta|^2 = 1 \).
+where $\alpha, \beta \in \mathbb{C}$ and $|\alpha|^2 + |\beta|^2 = 1$.
 
 **Bloch sphere representation:**
+
 ```math
 |\psi\rangle = \cos\frac{\theta}{2}|0\rangle + e^{i\phi}\sin\frac{\theta}{2}|1\rangle
 ```
 
 **n-qubit state:**
+
 ```math
 |\psi\rangle = \sum_{i=0}^{2^n-1} \alpha_i |i\rangle
 ```
 
-\( 2^n \) complex amplitudes — exponential state space!
+$2^n$ complex amplitudes — exponential state space!
 
 ---
 
 ### Quantum Gates
 
 **Pauli-X (NOT):**
+
 ```math
 X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
 X|0\rangle = |1\rangle, \quad X|1\rangle = |0\rangle
 ```
 
 **Hadamard (superposition):**
+
 ```math
 H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}
 H|0\rangle = \frac{|0\rangle + |1\rangle}{\sqrt{2}}
 ```
 
 **Rotation gates:**
+
 ```math
 R_Y(\theta) = \begin{pmatrix} \cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\ \sin\frac{\theta}{2} & \cos\frac{\theta}{2} \end{pmatrix}
 ```
 
 **CNOT (entanglement):**
+
 ```math
 \text{CNOT}|00\rangle = |00\rangle, \quad \text{CNOT}|10\rangle = |11\rangle
 ```
@@ -115,33 +122,38 @@ R_Y(\theta) = \begin{pmatrix} \cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\ \s
 ### Variational Quantum Circuit (VQC)
 
 **Quantum neural network:**
+
 ```math
 |\psi_{out}\rangle = U(\theta) |0\rangle^{\otimes n}
 ```
 
 where \( U(\theta) \) is a parameterized unitary:
+
 ```math
 U(\theta) = \prod_{l=1}^{L} \left( \prod_{i=1}^{n} R_Y(\theta_{l,i}) \cdot \text{Entangle} \right)
 ```
 
 **Measurement:**
+
 ```math
 \langle O \rangle = \langle\psi_{out}| O |\psi_{out}\rangle
 ```
 
-Expectation value of observable \( O \).
+Expectation value of observable $O$.
 
 ---
 
 ### Quantum Gradient (Parameter Shift Rule)
 
 **Gradient of expectation:**
+
 ```math
 \frac{\partial \langle O \rangle}{\partial \theta} = \frac{\langle O \rangle_{\theta+\pi/2} - \langle O \rangle_{\theta-\pi/2}}{2}
 ```
 
 **Proof:**
 For \( R_Y(\theta) \) rotation:
+
 ```math
 \frac{\partial}{\partial \theta} e^{-i\theta Y/2} = \frac{e^{-i(\theta+\pi/2)Y/2} - e^{-i(\theta-\pi/2)Y/2}}{2}
 ```
@@ -153,23 +165,25 @@ Allows exact gradients via circuit evaluation!
 ### Quantum Kernels
 
 **Classical kernel:**
+
 ```math
 k(x, y) = \phi(x)^T \phi(y)
 ```
 
 **Quantum kernel:**
+
 ```math
 k(x, y) = |\langle\phi(x)|\phi(y)\rangle|^2
 ```
 
 where \( |\phi(x)\rangle = U(x)|0\rangle^{\otimes n} \).
 
-**Potential advantage:** \( |\phi\rangle \) can represent exponentially complex features.
+**Potential advantage:** $|\phi\rangle$ can represent exponentially complex features.
 
 **Computation:**
 1. Prepare \( |\phi(x)\rangle \)
 2. Apply \( U^\dagger(y) \)
-3. Measure probability of \( |0\rangle^{\otimes n} \)
+3. Measure probability of $|0\rangle^{\otimes n}$
 
 ```math
 k(x,y) = |\langle 0^n | U^\dagger(y) U(x) | 0^n \rangle|^2
@@ -182,7 +196,8 @@ k(x,y) = |\langle 0^n | U^\dagger(y) U(x) | 0^n \rangle|^2
 **Problem:** Random VQCs have vanishing gradients.
 
 **Theorem (McClean et al., 2018):**
-For random circuit \( U \) with \( n \) qubits:
+For random circuit $U$ with $n$ qubits:
+
 ```math
 \text{Var}\left[\frac{\partial \langle O \rangle}{\partial \theta}\right] \leq O(2^{-n})
 ```
@@ -218,6 +233,7 @@ For quantum speedup:
 - Harder to train (barren plateaus)
 
 **Trade-off:**
+
 ```math
 \text{Expressibility} \times \text{Trainability} \leq \text{constant}
 ```
@@ -273,6 +289,7 @@ Quantum computer handles expensive subroutine; classical handles rest.
 | [← Efficient Diffusion](../17_efficient_diffusion_models/README.md) | [Efficient ML](../README.md) | [🎉 Course Complete!](../README.md) |
 
 ---
+
 ## 📚 References
 
 | Type | Resource | Link |

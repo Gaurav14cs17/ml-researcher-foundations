@@ -227,6 +227,7 @@ def train(env: Environment, agent: Agent, n_episodes: int) -> list:
         done = False
         
         while not done:
+
             # Agent selects action
             action = agent.select_action(state)
             

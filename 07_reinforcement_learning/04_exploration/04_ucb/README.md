@@ -333,6 +333,7 @@ def simulate_bandit(bandit, true_means: List[float], n_rounds: int) -> Tuple[Lis
 
 # Example usage
 if __name__ == "__main__":
+
     # Multi-armed bandit example
     true_means = [0.2, 0.5, 0.3, 0.8, 0.4]  # Arm 3 is best
     n_rounds = 10000

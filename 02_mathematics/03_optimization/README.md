@@ -140,6 +140,7 @@ Steps k | O(1/k²) | O((1-1/κ)^k) | O(1/k) | O(1/√k)
 ## 💻 Core Algorithms
 
 ```python
+
 # Gradient Descent
 def gradient_descent(f, grad_f, x0, lr=0.01, n_steps=100):
     x = x0

@@ -57,6 +57,7 @@ x_{new} \sim p_\theta(x) \approx p_{data}(x)
 ```
 
 For Gaussian decoder:
+
 ```math
 = \frac{1}{2}\|x - \hat{x}\|^2 + \frac{1}{2}\sum_j\left(\mu_j^2 + \sigma_j^2 - 1 - \log\sigma_j^2\right)
 ```
@@ -66,6 +67,7 @@ For Gaussian decoder:
 **Problem:** Can't backprop through sampling $z \sim q\_\phi(z|x)$.
 
 **Solution:** 
+
 ```math
 z = \mu_\phi(x) + \sigma_\phi(x) \odot \epsilon, \quad \epsilon \sim \mathcal{N}(0, I)
 ```
@@ -106,16 +108,19 @@ D^*(x) = \frac{1}{2} \quad \forall x
 ### Training Dynamics
 
 **Discriminator update:**
+
 ```math
 \nabla_{\theta_D} \frac{1}{m}\sum_{i=1}^m \left[\log D(x^{(i)}) + \log(1 - D(G(z^{(i)})))\right]
 ```
 
 **Generator update:**
+
 ```math
 \nabla_{\theta_G} \frac{1}{m}\sum_{i=1}^m \log(1 - D(G(z^{(i)})))
 ```
 
 Or non-saturating loss:
+
 ```math
 \nabla_{\theta_G} \frac{1}{m}\sum_{i=1}^m -\log D(G(z^{(i)}))
 ```
@@ -153,6 +158,7 @@ Subject to $D$ being 1-Lipschitz.
 **Weight Clipping (WGAN):** $w \leftarrow \text{clip}(w, -c, c)$
 
 **Gradient Penalty (WGAN-GP):**
+
 ```math
 \mathcal{L}_{GP} = \lambda \mathbb{E}_{\hat{x}}\left[(\|\nabla_{\hat{x}} D(\hat{x})\| - 1)^2\right]
 ```
@@ -253,6 +259,7 @@ class VAE(nn.Module):
         return recon, mu, logvar
     
     def loss(self, x, recon, mu, logvar):
+
         # Reconstruction loss (BCE for binary data)
         recon_loss = F.binary_cross_entropy(recon, x, reduction='sum')
         

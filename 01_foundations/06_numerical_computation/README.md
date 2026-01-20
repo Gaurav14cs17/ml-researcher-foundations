@@ -112,6 +112,7 @@ FP16 often needs loss scaling to avoid underflow.
 ### 🔥 Issue 1: Overflow in Softmax
 
 ```python
+
 # ❌ BAD: exp(1000) = inf
 x = np.array([1000, 1001, 1002])
 softmax = np.exp(x) / np.sum(np.exp(x))  # [nan, nan, nan]
@@ -126,6 +127,7 @@ softmax = np.exp(x_shifted) / np.sum(np.exp(x_shifted))  # Works!
 ### 🔥 Issue 2: Underflow in Log-Sum-Exp
 
 ```python
+
 # ❌ BAD: exp(-1000) = 0, log(0) = -inf
 x = np.array([-1000, -1001, -1002])
 logsumexp = np.log(np.sum(np.exp(x)))  # -inf (wrong!)
@@ -138,6 +140,7 @@ logsumexp = c + np.log(np.sum(np.exp(x - c)))  # -999.59 (correct!)
 ### 🔥 Issue 3: Catastrophic Cancellation
 
 ```python
+
 # ❌ BAD: Subtracting nearly equal numbers
 a = 1.0000001
 b = 1.0000000
@@ -177,6 +180,7 @@ def stable_logsumexp(x):
 ```python
 def stable_cross_entropy(logits, labels):
     """Stable cross-entropy from logits (not probabilities)."""
+
     # Don't do: -log(softmax(logits))
     # Do: Use log_softmax directly
     log_probs = logits - stable_logsumexp(logits)

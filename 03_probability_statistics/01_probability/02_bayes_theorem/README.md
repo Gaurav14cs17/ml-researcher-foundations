@@ -43,6 +43,7 @@ P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}
 | $P(D)$ | **Evidence** | Marginal likelihood (normalizing constant) |
 
 **Simplified (unnormalized) form:**
+
 ```math
 \text{Posterior} \propto \text{Likelihood} \times \text{Prior}
 ```
@@ -61,6 +62,7 @@ P(B|A) = \frac{P(A \cap B)}{P(A)}
 ### Step 2: Express Joint Probability Two Ways
 
 From the above equations:
+
 ```math
 P(A \cap B) = P(A|B) \cdot P(B) = P(B|A) \cdot P(A)
 ```
@@ -79,11 +81,13 @@ P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} \quad \blacksquare
 The evidence $P(D)$ is computed using the **Law of Total Probability**:
 
 **Discrete:**
+
 ```math
 P(D) = \sum_{\theta} P(D|\theta) P(\theta)
 ```
 
 **Continuous:**
+
 ```math
 P(D) = \int P(D|\theta) P(\theta) \, d\theta
 ```
@@ -100,16 +104,19 @@ This integral is often **intractable** → need approximations:
 **Key Property:** Posterior becomes prior for next observation.
 
 After observing $D\_1$:
+
 ```math
 P(\theta|D_1) \propto P(D_1|\theta) P(\theta)
 ```
 
 After observing $D\_2$:
+
 ```math
 P(\theta|D_1, D_2) \propto P(D_2|\theta) P(\theta|D_1)
 ```
 
 **For i.i.d. data:**
+
 ```math
 P(\theta|D_1, \ldots, D_n) \propto P(\theta) \prod_{i=1}^{n} P(D_i|\theta)
 ```
@@ -153,6 +160,7 @@ Ignores prior → can overfit with limited data.
 ```
 
 If $P(\theta) = \mathcal{N}(0, \sigma^2)$:
+
 ```math
 \log P(\theta) = -\frac{\theta^2}{2\sigma^2} + \text{const} = -\lambda\|\theta\|^2
 ```
@@ -173,6 +181,7 @@ def bayesian_diagnosis(prior_disease, sensitivity, specificity):
     sensitivity = P(positive | disease) = True Positive Rate
     specificity = P(negative | no disease) = True Negative Rate
     """
+
     # P(positive | no disease) = 1 - specificity (False Positive Rate)
     false_positive_rate = 1 - specificity
     

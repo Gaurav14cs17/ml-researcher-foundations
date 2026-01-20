@@ -42,6 +42,7 @@ P(\theta|D) \propto P(D|\theta) P(\theta)
 ```
 
 **Evidence (marginal likelihood):**
+
 ```math
 P(D) = \int P(D|\theta) P(\theta) \, d\theta
 ```
@@ -60,11 +61,13 @@ P(B|A) = \frac{P(A \cap B)}{P(A)}
 ```
 
 **From the second equation:**
+
 ```math
 P(A \cap B) = P(B|A) \cdot P(A)
 ```
 
 **Substituting into the first:**
+
 ```math
 P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
 ```
@@ -78,12 +81,14 @@ This is **Bayes' Theorem**. $\quad \blacksquare$
 ### Beta-Bernoulli Conjugacy
 
 **Prior:**
+
 ```math
 \theta \sim \text{Beta}(\alpha, \beta)
 p(\theta) = \frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha, \beta)}
 ```
 
 **Likelihood:**
+
 ```math
 X|\theta \sim \text{Bernoulli}(\theta)
 P(D|\theta) = \theta^k (1-\theta)^{n-k}
@@ -92,6 +97,7 @@ P(D|\theta) = \theta^k (1-\theta)^{n-k}
 where $k = \sum\_{i=1}^n x\_i$ is the number of successes.
 
 **Posterior:**
+
 ```math
 p(\theta|D) \propto \theta^k (1-\theta)^{n-k} \cdot \theta^{\alpha-1}(1-\theta)^{\beta-1}
 = \theta^{\alpha + k - 1}(1-\theta)^{\beta + n - k - 1}
@@ -114,6 +120,7 @@ p(\theta|D) \propto \theta^k (1-\theta)^{n-k} \cdot \theta^{\alpha-1}(1-\theta)^
 **Posterior:** $\mu|D \sim \mathcal{N}(\mu\_n, \sigma\_n^2)$
 
 where:
+
 ```math
 \sigma_n^2 = \frac{1}{\frac{1}{\sigma_0^2} + \frac{n}{\sigma^2}}
 \mu_n = \sigma_n^2 \left(\frac{\mu_0}{\sigma_0^2} + \frac{n\bar{x}}{\sigma^2}\right)
@@ -146,6 +153,7 @@ p(x^*|D) = \int p(x^*|\theta) p(\theta|D) \, d\theta
 This integrates out uncertainty about parameters!
 
 **For Gaussian:**
+
 ```math
 p(x^*|D) = \mathcal{N}(\mu_n, \sigma^2 + \sigma_n^2)
 ```
@@ -200,6 +208,7 @@ q^* = \arg\min_q D_{KL}(q(\theta) \| p(\theta|D))
 ```
 
 **ELBO:**
+
 ```math
 \mathcal{L}(q) = \mathbb{E}_q[\log p(D|\theta)] - D_{KL}(q(\theta) \| p(\theta))
 ```

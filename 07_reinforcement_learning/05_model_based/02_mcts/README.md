@@ -405,9 +405,11 @@ class AlphaZeroMCTS:
         ])
         
         if temperature == 0:
+
             # Deterministic: pick most visited
             action = np.argmax(visit_counts)
         else:
+
             # Stochastic selection
             probs = visit_counts ** (1 / temperature)
             probs = probs / probs.sum()
@@ -423,6 +425,7 @@ class AlphaZeroMCTS:
         move_count = 0
         
         while not state.is_terminal():
+
             # Use temperature 1 early, 0 late
             temperature = 1.0 if move_count < temp_threshold else 0.0
             action, search_probs = self.search(state, temperature)
@@ -439,6 +442,7 @@ class AlphaZeroMCTS:
         # Assign game result to all positions
         result = state.get_result()
         for data in game_data:
+
             # Result from perspective of player who made the move
             data['value'] = result if data['player'] == 0 else -result
         

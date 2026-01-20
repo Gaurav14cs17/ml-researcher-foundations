@@ -83,6 +83,7 @@ Given centered data $X \in \mathbb{R}^{n \times d}$ (n samples, d features):
 ```
 
 **Goal**: Find projection $W \in \mathbb{R}^{d \times k}$ that maximizes:
+
 ```math
 \text{Var}(XW) = W^T \Sigma W
 ```
@@ -201,6 +202,7 @@ def pca_from_scratch(X, n_components):
     3. Eigendecomposition
     4. Project onto top eigenvectors
     """
+
     # Center
     X_centered = X - X.mean(axis=0)
     

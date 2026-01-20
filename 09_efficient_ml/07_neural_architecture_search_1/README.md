@@ -99,6 +99,7 @@ How do we evaluate architectures?
 Make architecture search differentiable!
 
 ```python
+
 # Instead of discrete choice:
 output = op_1(x)  # or op_2(x) or op_3(x)
 
@@ -117,19 +118,21 @@ output = α_1 * op_1(x) + α_2 * op_2(x) + α_3 * op_3(x)
 ### NAS as Optimization Problem
 
 **Objective:**
+
 ```math
 \alpha^* = \arg\max_{\alpha \in \mathcal{A}} \text{Val-Acc}(w^*(\alpha), \alpha)
 ```
 
 subject to:
+
 ```math
 w^*(\alpha) = \arg\min_w \mathcal{L}_{train}(w, \alpha)
 ```
 
 where:
-- \( \alpha \) = architecture parameters
-- \( w \) = network weights
-- \( \mathcal{A} \) = search space
+- $\alpha$ = architecture parameters
+- $w$ = network weights
+- $\mathcal{A}$ = search space
 
 This is a **bi-level optimization** problem.
 
@@ -138,11 +141,13 @@ This is a **bi-level optimization** problem.
 ### DARTS Continuous Relaxation
 
 **Discrete search space:**
+
 ```math
 \bar{o}^{(i,j)}(x) = \sum_{o \in \mathcal{O}} \mathbb{1}[\alpha^{(i,j)} = o] \cdot o(x)
 ```
 
 **Continuous relaxation:**
+
 ```math
 \bar{o}^{(i,j)}(x) = \sum_{o \in \mathcal{O}} \frac{\exp(\alpha_o^{(i,j)})}{\sum_{o'} \exp(\alpha_{o'}^{(i,j)})} \cdot o(x)
 ```
@@ -150,6 +155,7 @@ This is a **bi-level optimization** problem.
 This is a **softmax-weighted mixture** of all operations.
 
 **After training:** Discretize by selecting highest-weight operation:
+
 ```math
 o^* = \arg\max_o \alpha_o^{(i,j)}
 ```
@@ -159,11 +165,13 @@ o^* = \arg\max_o \alpha_o^{(i,j)}
 ### DARTS Bi-Level Optimization
 
 **Outer loop (architecture):**
+
 ```math
 \min_\alpha \mathcal{L}_{val}(w^*(\alpha), \alpha)
 ```
 
 **Inner loop (weights):**
+
 ```math
 w^*(\alpha) = \arg\min_w \mathcal{L}_{train}(w, \alpha)
 ```
@@ -171,11 +179,13 @@ w^*(\alpha) = \arg\min_w \mathcal{L}_{train}(w, \alpha)
 **Approximation (for tractability):**
 
 Instead of fully solving inner loop, take one gradient step:
+
 ```math
 w' = w - \xi \nabla_w \mathcal{L}_{train}(w, \alpha)
 ```
 
 Then update architecture:
+
 ```math
 \alpha' = \alpha - \eta \nabla_\alpha \mathcal{L}_{val}(w', \alpha)
 ```
@@ -185,11 +195,13 @@ Then update architecture:
 ### Architecture Gradient Derivation
 
 The gradient of validation loss w.r.t. architecture:
+
 ```math
 \nabla_\alpha \mathcal{L}_{val}(w^*(\alpha), \alpha) = \nabla_\alpha \mathcal{L}_{val} - \xi \nabla_\alpha \nabla_w \mathcal{L}_{train} \cdot \nabla_{w'} \mathcal{L}_{val}
 ```
 
 **First-order approximation (faster):**
+
 ```math
 \nabla_\alpha \mathcal{L}_{val}(w^*(\alpha), \alpha) \approx \nabla_\alpha \mathcal{L}_{val}(w, \alpha)
 ```
@@ -199,29 +211,33 @@ Ignores the second term (Hessian-vector product).
 **Second-order approximation (more accurate):**
 
 Using finite differences:
+
 ```math
 \nabla_\alpha^2 \mathcal{L}_{val} \approx \frac{\nabla_\alpha \mathcal{L}_{val}(w^+) - \nabla_\alpha \mathcal{L}_{val}(w^-)}{2\epsilon}
 ```
 
-where \( w^\pm = w \pm \epsilon \nabla_{w'} \mathcal{L}_{val} \).
+where $w^\pm = w \pm \epsilon \nabla_{w'} \mathcal{L}_{val}$.
 
 ---
 
 ### Search Space Size
 
-For a cell with \( N \) nodes and \( K \) operations:
+For a cell with $N$ nodes and $K$ operations:
 
 **Number of possible cells:**
+
 ```math
 |\mathcal{A}_{cell}| = K^{\binom{N}{2}} = K^{N(N-1)/2}
 ```
 
-**Example:** \( N=4 \), \( K=8 \):
+**Example:** $N=4$, $K=8$:
+
 ```math
 |\mathcal{A}_{cell}| = 8^6 = 262,144 \text{ cells}
 ```
 
 With normal + reduction cells:
+
 ```math
 |\mathcal{A}_{total}| = |\mathcal{A}_{cell}|^2 \approx 10^{10}
 ```
@@ -240,7 +256,8 @@ With normal + reduction cells:
 \mathcal{M}_{super}(x; W) = \sum_{\alpha \in \mathcal{A}} p(\alpha) \cdot f(x; W, \alpha)
 ```
 
-**Path sampling:** At each step, sample an architecture \( \alpha \) and train:
+**Path sampling:** At each step, sample an architecture $\alpha$ and train:
+
 ```math
 W \leftarrow W - \eta \nabla_W \mathcal{L}(W, \alpha)
 ```
@@ -248,6 +265,7 @@ W \leftarrow W - \eta \nabla_W \mathcal{L}(W, \alpha)
 **Evaluation:** Use shared weights without retraining.
 
 **Approximation quality:**
+
 ```math
 \text{Acc}_{shared}(\alpha) \approx \text{Acc}_{scratch}(\alpha)
 ```
@@ -265,16 +283,18 @@ Correlation: ~0.8-0.9 (good enough for ranking).
 - **Reward:** Validation accuracy of complete architecture
 
 **Policy gradient update:**
+
 ```math
 \nabla_\theta J(\theta) = \mathbb{E}_{a \sim \pi_\theta}[R(a) \nabla_\theta \log \pi_\theta(a)]
 ```
 
 **REINFORCE with baseline:**
+
 ```math
 \nabla_\theta J(\theta) = \mathbb{E}[(R - b) \nabla_\theta \log \pi_\theta(a)]
 ```
 
-where \( b \) is the moving average of rewards (baseline).
+where $b$ is the moving average of rewards (baseline).
 
 **Problem:** High variance, needs many samples (expensive).
 
@@ -305,22 +325,25 @@ where \( b \) is the moving average of rewards (baseline).
 ### Memory Cost of DARTS
 
 DARTS maintains all operations simultaneously:
+
 ```math
 \text{Memory} = \sum_{o \in \mathcal{O}} \text{Memory}(o)
 ```
 
-For \( K \) operations: \( K \times \) memory of single-path model.
+For $K$ operations: $K \times$ memory of single-path model.
 
 **Solution:** Partial channel connections (PC-DARTS).
 
 ### FLOPs of Searched Architecture
 
-For found architecture with operations \( \{o_1, ..., o_L\} \):
+For found architecture with operations $\{o_1, ..., o_L\}$:
+
 ```math
 \text{FLOPs} = \sum_{l=1}^L \text{FLOPs}(o_l)
 ```
 
 Can add FLOPs constraint to search:
+
 ```math
 \min_\alpha \mathcal{L}_{val} + \lambda \cdot \text{FLOPs}(\alpha)
 ```
@@ -345,6 +368,7 @@ Can add FLOPs constraint to search:
 | [← Quantization II](../06_quantization_2/README.md) | [Efficient ML](../README.md) | [NAS II →](../08_neural_architecture_search_2/README.md) |
 
 ---
+
 ## 📚 References
 
 | Type | Resource | Link |

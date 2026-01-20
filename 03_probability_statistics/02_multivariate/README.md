@@ -82,11 +82,13 @@ Distribution of $\mathbf{x}$ given that we know $\mathbf{y}$.
 **2. Positive Semi-definite:** $\mathbf{v}^\top \boldsymbol{\Sigma} \mathbf{v} \geq 0$ for all $\mathbf{v}$
 
 **Proof of PSD:**
+
 ```math
 \mathbf{v}^\top \boldsymbol{\Sigma} \mathbf{v} = E[(\mathbf{v}^\top(\mathbf{X} - \boldsymbol{\mu}))^2] = E[Z^2] \geq 0 \quad \blacksquare
 ```
 
 **3. Linear Transformation:**
+
 ```math
 \mathbf{Y} = \mathbf{A}\mathbf{X} + \mathbf{b} \implies \text{Cov}(\mathbf{Y}) = \mathbf{A}\boldsymbol{\Sigma}\mathbf{A}^\top
 ```
@@ -117,22 +119,26 @@ p(\mathbf{x}) = (2\pi)^{-d/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2
 ### Key Properties
 
 **Marginal:** Any subset is also Gaussian
+
 ```math
 \mathbf{x}_1 \sim \mathcal{N}(\boldsymbol{\mu}_1, \boldsymbol{\Sigma}_{11})
 ```
 
 **Conditional:** Conditioning preserves Gaussianity
+
 ```math
 \mathbf{x}_1 | \mathbf{x}_2 \sim \mathcal{N}(\boldsymbol{\mu}_{1|2}, \boldsymbol{\Sigma}_{1|2})
 ```
 
 where:
+
 ```math
 \boldsymbol{\mu}_{1|2} = \boldsymbol{\mu}_1 + \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}(\mathbf{x}_2 - \boldsymbol{\mu}_2)
 \boldsymbol{\Sigma}_{1|2} = \boldsymbol{\Sigma}_{11} - \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}\boldsymbol{\Sigma}_{21}
 ```
 
 **Linear Transform:**
+
 ```math
 \mathbf{A}\mathbf{X} + \mathbf{b} \sim \mathcal{N}(\mathbf{A}\boldsymbol{\mu} + \mathbf{b}, \mathbf{A}\boldsymbol{\Sigma}\mathbf{A}^\top)
 ```

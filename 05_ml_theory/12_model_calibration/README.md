@@ -132,6 +132,7 @@ def expected_calibration_error(probs, labels, n_bins=10):
     ece = 0
     
     for i in range(n_bins):
+
         # Get samples in this bin
         in_bin = (probs > bin_boundaries[i]) & (probs <= bin_boundaries[i + 1])
         

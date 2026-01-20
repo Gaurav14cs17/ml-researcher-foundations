@@ -252,11 +252,13 @@ Interpretation:
 For linear transformation $T: V \to W$:
 
 **Kernel (Null Space)**:
+
 ```math
 \ker(T) = \{\mathbf{v} \in V : T(\mathbf{v}) = \mathbf{0}\}
 ```
 
 **Image (Range)**:
+
 ```math
 \text{Im}(T) = \{T(\mathbf{v}) : \mathbf{v} \in V\}
 ```
@@ -406,6 +408,7 @@ def verify_linearity(T, x, y, alpha=2.0, beta=3.0, tol=1e-10):
 
 def change_of_basis(A, P):
     """Compute matrix representation in new basis defined by P"""
+
     # B = P⁻¹ A P
     return np.linalg.inv(P) @ A @ P
 
@@ -474,6 +477,7 @@ print(f"Top singular values: {analysis.singular_values()[:5]}")
 ### 🤖 Application 1: Dense/Linear Layers
 
 ```python
+
 # Dense layer: y = Wx + b
 # 
 # The W matrix IS a linear transformation from ℝⁿ → ℝᵐ
@@ -486,6 +490,7 @@ class DenseLayer(nn.Module):
         self.b = nn.Parameter(torch.zeros(out_features))
     
     def forward(self, x):
+
         # Linear transformation + translation
         return x @ self.W.T + self.b
 ```
@@ -516,16 +521,19 @@ class AttentionProjections(nn.Module):
 ### 🤖 Application 3: Embedding Lookup as Linear Transformation
 
 ```python
+
 # Embedding lookup is a linear transformation!
 # One-hot × Embedding matrix = Embedding vector
 
 class EmbeddingAsLinear(nn.Module):
     def __init__(self, vocab_size, embed_dim):
         super().__init__()
+
         # Embedding matrix: vocab_size × embed_dim
         self.E = nn.Parameter(torch.randn(vocab_size, embed_dim))
     
     def forward(self, indices):
+
         # One-hot encoding
         one_hot = torch.zeros(len(indices), self.E.shape[0])
         one_hot.scatter_(1, indices.unsqueeze(1), 1)

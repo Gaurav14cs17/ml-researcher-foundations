@@ -26,6 +26,7 @@
 #### 1.1 Definition
 
 **Tensor $\mathcal{T} \in \mathbb{R}^{I\_1 \times I\_2 \times ... \times I\_N}$:**
+
 ```math
 \mathcal{T} \approx \sum_{r=1}^{R} \lambda_r \cdot a_r^{(1)} \otimes a_r^{(2)} \otimes ... \otimes a_r^{(N)}
 ```
@@ -108,6 +109,7 @@ Each core $G\_k \in \mathbb{R}^{r\_{k-1} \times I\_k \times r\_k}$ is a 3D tenso
 ```
 
 For constant rank $r$:
+
 ```math
 \text{Params} = O(N \cdot I \cdot r^2)
 ```
@@ -123,6 +125,7 @@ vs. original $O(I^N)$ - exponential reduction!
 **4D Conv weight:** $W \in \mathbb{R}^{C\_{out} \times C\_{in} \times H \times W}$
 
 **Tucker decomposition:**
+
 ```math
 W \approx G \times_1 A_{out} \times_2 A_{in} \times_3 A_H \times_4 A_W
 ```
@@ -198,6 +201,7 @@ class TuckerDecomposition:
             factors: list of factor matrices
         """
         if self.ranks is None:
+
             # HOSVD with truncation
             core, factors = tucker(tensor, rank='same')
         else:
@@ -273,6 +277,7 @@ class TensorTrainLayer(nn.Module):
     
     def _reconstruct_weight(self) -> torch.Tensor:
         """Reconstruct full weight matrix from TT cores."""
+
         # Start with first core
         result = self.cores[0].squeeze(0)  # [I_0 * O_0, r_1]
         
@@ -351,6 +356,7 @@ def estimate_tt_ranks(tensor: torch.Tensor, energy_threshold: float = 0.95) -> l
     tensor_copy = tensor.clone()
     
     for k in range(n_dims - 1):
+
         # Reshape to matrix
         left_size = int(np.prod(shape[:k+1]))
         right_size = int(np.prod(shape[k+1:]))

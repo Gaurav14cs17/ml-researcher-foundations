@@ -39,7 +39,7 @@
 
 ### Core Principle
 
-Given unlabeled data \(\mathcal{D} = \{x_i\}_{i=1}^N\), create pseudo-labels from the data itself:
+Given unlabeled data $\mathcal{D} = \{x_i\}_{i=1}^N$, create pseudo-labels from the data itself:
 
 ```math
 \mathcal{L}_{\text{SSL}} = \mathbb{E}_{x \sim \mathcal{D}}[\ell(f_\theta(x), \text{pretext}(x))]
@@ -60,7 +60,7 @@ For positive pair \((x_i, x_j)\) (two augmentations of same image):
 where:
 - \(z_i = g(f(x_i))\) is the projection of encoded representation
 - \(\text{sim}(u, v) = \frac{u^\top v}{\|u\| \|v\|}\) is cosine similarity
-- \(\tau\) is temperature parameter
+- $\tau$ is temperature parameter
 
 ### Theoretical Justification
 
@@ -71,7 +71,7 @@ I(X; Y) \geq \log(N) - \mathcal{L}_{\text{NCE}}
 ```
 
 **Proof Sketch:**
-The optimal critic \(f^*(x, y) = \frac{p(y|x)}{p(y)} + c\). InfoNCE with this critic recovers mutual information. Finite samples give a lower bound. \(\blacksquare\)
+The optimal critic \(f^*(x, y) = \frac{p(y|x)}{p(y)} + c\). InfoNCE with this critic recovers mutual information. Finite samples give a lower bound. $\blacksquare$
 
 ---
 
@@ -85,7 +85,7 @@ Mask ~15% of tokens and predict them:
 \mathcal{L}_{\text{MLM}} = -\mathbb{E}_{x \sim \mathcal{D}} \left[\sum_{i \in \mathcal{M}} \log P(x_i | x_{\backslash \mathcal{M}}; \theta)\right]
 ```
 
-where \(\mathcal{M}\) = set of masked positions.
+where $\mathcal{M}$ = set of masked positions.
 
 ### Masked Autoencoding (MAE)
 
@@ -246,6 +246,7 @@ class AutoregressiveLM(nn.Module):
 
 # Example usage
 if __name__ == "__main__":
+
     # Contrastive learning
     batch_size, dim = 32, 128
     z_i = torch.randn(batch_size, dim)

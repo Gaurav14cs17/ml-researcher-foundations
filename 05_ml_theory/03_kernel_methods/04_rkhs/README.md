@@ -40,17 +40,17 @@
 
 ### Definition: Hilbert Space
 
-A **Hilbert space** \(\mathcal{H}\) is a complete inner product space:
+A **Hilbert space** $\mathcal{H}$ is a complete inner product space:
 
-1. **Inner product:** \(\langle \cdot, \cdot \rangle_\mathcal{H}: \mathcal{H} \times \mathcal{H} \to \mathbb{R}\)
-2. **Norm induced by inner product:** \(\|f\|_\mathcal{H} = \sqrt{\langle f, f \rangle_\mathcal{H}}\)
-3. **Complete:** Every Cauchy sequence converges in \(\mathcal{H}\)
+1. **Inner product:** $\langle \cdot, \cdot \rangle_\mathcal{H}: \mathcal{H} \times \mathcal{H} \to \mathbb{R}$
+2. **Norm induced by inner product:** $\|f\|_\mathcal{H} = \sqrt{\langle f, f \rangle_\mathcal{H}}$
+3. **Complete:** Every Cauchy sequence converges in $\mathcal{H}$
 
 ### Properties
 
-- **Cauchy-Schwarz:** \(|\langle f, g \rangle| \leq \|f\| \cdot \|g\|\)
-- **Parallelogram law:** \(\|f + g\|^2 + \|f - g\|^2 = 2\|f\|^2 + 2\|g\|^2\)
-- **Riesz representation:** Every continuous linear functional has form \(\ell(f) = \langle f, g \rangle\) for unique \(g\)
+- **Cauchy-Schwarz:** $|\langle f, g \rangle| \leq \|f\| \cdot \|g\|$
+- **Parallelogram law:** $\|f + g\|^2 + \|f - g\|^2 = 2\|f\|^2 + 2\|g\|^2$
+- **Riesz representation:** Every continuous linear functional has form \(\ell(f) = \langle f, g \rangle\) for unique $g$
 
 ---
 
@@ -58,11 +58,12 @@ A **Hilbert space** \(\mathcal{H}\) is a complete inner product space:
 
 ### Definition
 
-A Hilbert space \(\mathcal{H}\) of functions \(f: \mathcal{X} \to \mathbb{R}\) is an **RKHS** if there exists a kernel \(k: \mathcal{X} \times \mathcal{X} \to \mathbb{R}\) such that:
+A Hilbert space $\mathcal{H}$ of functions $f: \mathcal{X} \to \mathbb{R}$ is an **RKHS** if there exists a kernel $k: \mathcal{X} \times \mathcal{X} \to \mathbb{R}$ such that:
 
 1. **Kernel function in space:** \(\forall x \in \mathcal{X}: k(\cdot, x) \in \mathcal{H}\)
 
 2. **Reproducing property:**
+
 ```math
 \forall f \in \mathcal{H}, \forall x \in \mathcal{X}: f(x) = \langle f, k(\cdot, x) \rangle_\mathcal{H}
 ```
@@ -70,11 +71,13 @@ A Hilbert space \(\mathcal{H}\) of functions \(f: \mathcal{X} \to \mathbb{R}\) i
 ### Consequence of Reproducing Property
 
 The kernel computes inner products:
+
 ```math
 k(x, x') = \langle k(\cdot, x), k(\cdot, x') \rangle_\mathcal{H}
 ```
 
 **Proof:**
+
 ```math
 k(x, x') = \langle k(\cdot, x'), k(\cdot, x) \rangle_\mathcal{H} \quad \text{(reproducing property with } f = k(\cdot, x') \text{)} \quad \blacksquare
 ```
@@ -85,27 +88,30 @@ k(x, x') = \langle k(\cdot, x'), k(\cdot, x) \rangle_\mathcal{H} \quad \text{(re
 
 ### Statement
 
-**Theorem:** For every positive semi-definite kernel \(k\), there exists a **unique** RKHS \(\mathcal{H}_k\) with \(k\) as its reproducing kernel.
+**Theorem:** For every positive semi-definite kernel $k$, there exists a **unique** RKHS $\mathcal{H}_k$ with $k$ as its reproducing kernel.
 
 ### Construction (Proof Sketch)
 
 1. **Define feature map:** \(\phi(x) = k(\cdot, x)\)
 
 2. **Define pre-Hilbert space:**
+
 ```math
 \mathcal{H}_0 = \left\{ f = \sum_{i=1}^n \alpha_i k(\cdot, x_i) : n \in \mathbb{N}, \alpha_i \in \mathbb{R}, x_i \in \mathcal{X} \right\}
 ```
 
 3. **Define inner product:**
+
 ```math
 \left\langle \sum_i \alpha_i k(\cdot, x_i), \sum_j \beta_j k(\cdot, y_j) \right\rangle = \sum_{i,j} \alpha_i \beta_j k(x_i, y_j)
 ```
 
-4. **Verify well-defined:** Uses positive semi-definiteness of \(k\)
+4. **Verify well-defined:** Uses positive semi-definiteness of $k$
 
-5. **Complete the space:** \(\mathcal{H}_k\) is the completion of \(\mathcal{H}_0\)
+5. **Complete the space:** $\mathcal{H}_k$ is the completion of $\mathcal{H}_0$
 
 6. **Verify reproducing property:**
+
 ```math
 \langle f, k(\cdot, x) \rangle = \left\langle \sum_i \alpha_i k(\cdot, x_i), k(\cdot, x) \right\rangle = \sum_i \alpha_i k(x_i, x) = f(x) \quad \blacksquare
 ```
@@ -124,7 +130,7 @@ Consider the regularized empirical risk minimization:
 \min_{f \in \mathcal{H}_k} \left[ \sum_{i=1}^n L(y_i, f(x_i)) + \lambda \|f\|_{\mathcal{H}_k}^2 \right]
 ```
 
-where \(L\) is any loss function and \(\lambda > 0\).
+where $L$ is any loss function and $\lambda > 0$.
 
 **Then the minimizer has the form:**
 
@@ -132,39 +138,42 @@ where \(L\) is any loss function and \(\lambda > 0\).
 f^*(x) = \sum_{i=1}^n \alpha_i k(x, x_i)
 ```
 
-for some \(\alpha_1, \ldots, \alpha_n \in \mathbb{R}\).
+for some $\alpha_1, \ldots, \alpha_n \in \mathbb{R}$.
 
 ### Proof
 
-**Step 1:** Decompose any \(f \in \mathcal{H}_k\):
+**Step 1:** Decompose any $f \in \mathcal{H}_k$:
 
 Let \(\mathcal{S} = \text{span}\{k(\cdot, x_1), \ldots, k(\cdot, x_n)\}\).
 
-For any \(f \in \mathcal{H}_k\), write \(f = f_\mathcal{S} + f_\perp\) where:
-- \(f_\mathcal{S} \in \mathcal{S}\)
-- \(f_\perp \perp \mathcal{S}\)
+For any $f \in \mathcal{H}_k$, write $f = f_\mathcal{S} + f_\perp$ where:
+- $f_\mathcal{S} \in \mathcal{S}$
+- $f_\perp \perp \mathcal{S}$
 
-**Step 2:** Show \(f_\perp\) doesn't affect data fit:
+**Step 2:** Show $f_\perp$ doesn't affect data fit:
 
-For training point \(x_i\), using reproducing property:
+For training point $x_i$, using reproducing property:
+
 ```math
 f(x_i) = \langle f, k(\cdot, x_i) \rangle = \langle f_\mathcal{S} + f_\perp, k(\cdot, x_i) \rangle = \langle f_\mathcal{S}, k(\cdot, x_i) \rangle = f_\mathcal{S}(x_i)
 ```
 
 since \(\langle f_\perp, k(\cdot, x_i) \rangle = 0\) by orthogonality.
 
-**Step 3:** Show \(f_\perp\) only increases regularization:
+**Step 3:** Show $f_\perp$ only increases regularization:
 
 By Pythagorean theorem:
+
 ```math
 \|f\|^2 = \|f_\mathcal{S}\|^2 + \|f_\perp\|^2 \geq \|f_\mathcal{S}\|^2
 ```
 
 **Step 4:** Conclude:
 
-The loss term depends only on \(f_\mathcal{S}\), and the regularizer is minimized when \(f_\perp = 0\).
+The loss term depends only on $f_\mathcal{S}$, and the regularizer is minimized when $f_\perp = 0$.
 
-Therefore, optimal \(f^* = f_\mathcal{S}^* \in \mathcal{S}\), which has form:
+Therefore, optimal $f^* = f_\mathcal{S}^* \in \mathcal{S}$, which has form:
+
 ```math
 f^*(x) = \sum_{i=1}^n \alpha_i k(x, x_i) \quad \blacksquare
 ```
@@ -173,9 +182,9 @@ f^*(x) = \sum_{i=1}^n \alpha_i k(x, x_i) \quad \blacksquare
 
 The Representer Theorem reduces infinite-dimensional optimization to finite-dimensional:
 
-**Before:** Optimize over all functions in \(\mathcal{H}_k\) (infinite-dimensional)
+**Before:** Optimize over all functions in $\mathcal{H}_k$ (infinite-dimensional)
 
-**After:** Optimize over \(n\) coefficients \(\alpha \in \mathbb{R}^n\)
+**After:** Optimize over $n$ coefficients $\alpha \in \mathbb{R}^n$
 
 ---
 
@@ -195,8 +204,8 @@ where \(K_{ij} = k(x_i, x_j)\) is the Gram matrix.
 
 The RKHS norm controls smoothness of the function:
 
-- **Small \(\|f\|_{\mathcal{H}}\):** Smooth, slowly varying function
-- **Large \(\|f\|_{\mathcal{H}}\):** Can be wiggly, rapidly changing
+- **Small $\|f\|_{\mathcal{H}}$:** Smooth, slowly varying function
+- **Large $\|f\|_{\mathcal{H}}$:** Can be wiggly, rapidly changing
 
 **For RBF kernel** \(k(x, x') = \exp(-\gamma\|x-x'\|^2)\):
 
@@ -204,7 +213,7 @@ The RKHS norm controls smoothness of the function:
 \|f\|_{\mathcal{H}}^2 = \int \int f(x) k^{-1}(x, x') f(x') dx dx'
 ```
 
-where \(k^{-1}\) penalizes high-frequency components.
+where $k^{-1}$ penalizes high-frequency components.
 
 ---
 
@@ -222,14 +231,16 @@ Given data \(\{(x_i, y_i)\}_{i=1}^n\), solve:
 
 By representer theorem, \(f^*(x) = \sum_i \alpha_i k(x, x_i)\).
 
-Let \(K\) be the Gram matrix and \(\mathbf{f} = K\alpha\).
+Let $K$ be the Gram matrix and $\mathbf{f} = K\alpha$.
 
 Objective becomes:
+
 ```math
 \frac{1}{n}\|K\alpha - y\|^2 + \lambda \alpha^\top K \alpha
 ```
 
 Taking derivative and setting to zero:
+
 ```math
 \frac{2}{n} K(K\alpha - y) + 2\lambda K\alpha = 0
 K\alpha + n\lambda\alpha = y
@@ -237,11 +248,13 @@ K\alpha + n\lambda\alpha = y
 ```
 
 **Solution:**
+
 ```math
 \boxed{\alpha^* = (K + n\lambda I)^{-1} y}
 ```
 
 **Prediction:**
+
 ```math
 f^*(x) = k_x^\top (K + n\lambda I)^{-1} y
 ```
@@ -336,10 +349,12 @@ class KernelRidgeRegression:
         A = K + n * self.alpha * np.eye(n)
         
         try:
+
             # Cholesky: A = LLᵀ, solve Lz = y, then Lᵀα = z
             c, lower = cho_factor(A)
             self.alpha_coef = cho_solve((c, lower), y)
         except np.linalg.LinAlgError:
+
             # Fall back to direct solve if not positive definite
             self.alpha_coef = np.linalg.solve(A, y)
         

@@ -50,16 +50,19 @@ Taking negative log:
 **Model:** $p(y=1|x) = \sigma(f\_\theta(x))$ where $\sigma(z) = \frac{1}{1+e^{-z}}$
 
 **Loss:**
+
 ```math
 \mathcal{L}_{BCE} = -\frac{1}{n}\sum_{i=1}^n \left[y_i \log(p_i) + (1-y_i) \log(1-p_i)\right]
 ```
 
 **Gradient (w.r.t. logit $z$):**
+
 ```math
 \frac{\partial \mathcal{L}}{\partial z} = \sigma(z) - y = p - y
 ```
 
 **Proof:**
+
 ```math
 \frac{\partial}{\partial z}[-y\log\sigma(z) - (1-y)\log(1-\sigma(z))]
 = -\frac{y}{\sigma(z)}\sigma'(z) + \frac{1-y}{1-\sigma(z)}\sigma'(z)
@@ -72,16 +75,19 @@ Taking negative log:
 **Model:** $p(y=c|x) = \text{softmax}(f\_\theta(x))\_c = \frac{e^{z\_c}}{\sum\_j e^{z\_j}}$
 
 **Loss:**
+
 ```math
 \mathcal{L}_{CE} = -\frac{1}{n}\sum_{i=1}^n \sum_{c=1}^C y_{ic} \log(p_{ic})
 ```
 
 For one-hot labels (only true class $c^*$ has $y\_{c^*}=1$):
+
 ```math
 \mathcal{L}_{CE} = -\frac{1}{n}\sum_{i=1}^n \log(p_{i,c^*_i})
 ```
 
 **Gradient (w.r.t. logit $z\_c$):**
+
 ```math
 \frac{\partial \mathcal{L}}{\partial z_c} = p_c - y_c = \text{softmax}(z)_c - y_c
 ```
@@ -123,11 +129,13 @@ y_{smooth} = (1-\epsilon)y + \frac{\epsilon}{C}
 ```
 
 **Connection to MLE:** Assumes Gaussian noise
+
 ```math
 y = f_\theta(x) + \epsilon, \quad \epsilon \sim \mathcal{N}(0, \sigma^2)
 ```
 
 **Gradient:**
+
 ```math
 \frac{\partial \mathcal{L}}{\partial \hat{y}} = \frac{2}{n}(\hat{y} - y)
 ```
@@ -143,11 +151,13 @@ y = f_\theta(x) + \epsilon, \quad \epsilon \sim \mathcal{N}(0, \sigma^2)
 ```
 
 **Connection to MLE:** Assumes Laplace noise
+
 ```math
 p(y|x) \propto \exp\left(-\frac{|y - f_\theta(x)|}{b}\right)
 ```
 
 **Gradient:**
+
 ```math
 \frac{\partial \mathcal{L}}{\partial \hat{y}} = \text{sign}(\hat{y} - y)
 ```
@@ -220,6 +230,7 @@ Where:
 ```
 
 For Gaussian decoder and prior:
+
 ```math
 = -\frac{1}{2}\|x - \hat{x}\|^2 - \frac{1}{2}\sum_j \left(1 + \log\sigma_j^2 - \mu_j^2 - \sigma_j^2\right)
 ```
@@ -227,11 +238,13 @@ For Gaussian decoder and prior:
 ### GAN Losses
 
 **Vanilla GAN:**
+
 ```math
 \min_G \max_D \mathbb{E}_{x \sim p_{data}}[\log D(x)] + \mathbb{E}_{z \sim p_z}[\log(1 - D(G(z)))]
 ```
 
 **WGAN (Wasserstein):**
+
 ```math
 \min_G \max_{D \in \mathcal{D}} \mathbb{E}_{x \sim p_{data}}[D(x)] - \mathbb{E}_{z \sim p_z}[D(G(z))]
 ```
@@ -350,6 +363,7 @@ def vae_loss(recon_x, x, mu, log_var):
     """
     VAE loss = Reconstruction + KL divergence
     """
+
     # Reconstruction loss (BCE for binary, MSE for continuous)
     recon_loss = F.binary_cross_entropy(recon_x, x, reduction='sum')
     

@@ -28,6 +28,7 @@
 **Self-Distillation:** Student has same architecture as teacher.
 
 **Born-Again Networks (Furlanello et al., 2018):**
+
 ```math
 \text{Student}^{(k+1)} \leftarrow \text{Distill}(\text{Student}^{(k)})
 ```
@@ -78,6 +79,7 @@ Both networks learn from ground truth AND each other.
 #### 2.2 Extension to Multiple Networks
 
 **Multi-network DML:**
+
 ```math
 \mathcal{L}_i = \mathcal{L}_{CE}(p_i, y) + \frac{1}{N-1}\sum_{j \neq i} D_{KL}(p_j \| p_i)
 ```
@@ -109,6 +111,7 @@ Later classifiers teach earlier ones.
 #### 3.2 Feature Aggregation
 
 **Combine features from multiple depths:**
+
 ```math
 F_{aggregated} = \sum_l \alpha_l \cdot r_l(F^l)
 ```
@@ -122,6 +125,7 @@ Learn $\alpha\_l$ to weight contributions.
 #### 4.1 ONE: Online Network Ensembling
 
 **Gate module selects teacher:**
+
 ```math
 p_{teacher} = \sum_i g_i \cdot p_i
 ```
@@ -131,6 +135,7 @@ where $g = \text{softmax}(W\_g \cdot h)$ is a learned gate.
 #### 4.2 Collaborative Learning
 
 **All branches updated simultaneously:**
+
 ```math
 \mathcal{L}_i = \mathcal{L}_{task}(p_i, y) + \lambda D_{KL}(p_{ensemble} \| p_i)
 ```
@@ -144,6 +149,7 @@ where $p\_{ensemble} = \frac{1}{N}\sum\_j p\_j$ (or weighted).
 #### 5.1 Regularization Perspective
 
 **Self-distillation as regularization:**
+
 ```math
 \mathcal{L}_{SD} = \mathcal{L}_{CE}(p, y) + \lambda D_{KL}(p_{teacher} \| p)
 ```
@@ -156,11 +162,13 @@ The KL term acts as a regularizer:
 #### 5.2 Connection to Label Smoothing
 
 **Label smoothing:**
+
 ```math
 y_{smooth} = (1-\epsilon)y + \frac{\epsilon}{K}
 ```
 
 **Self-distillation (high T):**
+
 ```math
 p_{soft} \approx \frac{1}{K} + \frac{z - \bar{z}}{KT}
 ```
@@ -172,6 +180,7 @@ Both add uniform noise to hard labels.
 **Theorem (informal):** Self-distillation approximates ensemble distillation.
 
 Multiple generations explore different local minima:
+
 ```math
 \theta_k \sim p(\theta | \text{data}, \theta_{k-1})
 ```
@@ -211,9 +220,11 @@ class BornAgainTrainer:
             student = self.model_fn()
             
             if teacher is None:
+
                 # First generation: train on ground truth only
                 accuracy = self._train_base(student, train_loader, val_loader, epochs_per_gen)
             else:
+
                 # Later generations: distill from previous
                 accuracy = self._train_distill(student, teacher, train_loader, 
                                                val_loader, epochs_per_gen)
@@ -307,6 +318,7 @@ class DeepMutualLearning:
         total_losses = [0] * len(self.models)
         
         for inputs, labels in train_loader:
+
             # Get all predictions
             logits = [model(inputs) for model in self.models]
             
@@ -349,6 +361,7 @@ class SelfDistillationNetwork(nn.Module):
         # Extract layer dimensions (implementation-specific)
         # For simplicity, assume we know them
         self.aux_classifiers = nn.ModuleList()
+
         # Would need to define based on backbone architecture
         
         self.main_classifier = nn.Linear(512, num_classes)  # Example
@@ -375,6 +388,7 @@ class SelfDistillationNetwork(nn.Module):
     
     def compute_loss(self, main_out, aux_outs, labels, temperature=4.0):
         """Compute self-distillation loss."""
+
         # Main CE loss
         main_loss = F.cross_entropy(main_out, labels)
         

@@ -333,6 +333,7 @@ def compute_mahalanobis(x, y, data):
 
 # Example: Correlated data
 np.random.seed(42)
+
 # Generate correlated 2D data
 mean = [0, 0]
 cov = [[1, 0.8], [0.8, 1]]

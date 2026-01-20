@@ -87,7 +87,7 @@ The gradient is a vector of all partial derivatives. It points in the direction 
 
 ### Formal Definition
 
-For a scalar-valued function \( f: \mathbb{R}^n \to \mathbb{R} \), the gradient is defined as:
+For a scalar-valued function $f: \mathbb{R}^n \to \mathbb{R}$, the gradient is defined as:
 
 \[
 \nabla f(\mathbf{x}) = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix}
@@ -95,15 +95,15 @@ For a scalar-valued function \( f: \mathbb{R}^n \to \mathbb{R} \), the gradient 
 
 ### Directional Derivative
 
-The directional derivative of \( f \) at \( \mathbf{x} \) in direction \( \mathbf{d} \) (unit vector):
+The directional derivative of $f$ at $\mathbf{x}$ in direction $\mathbf{d}$ (unit vector):
 
 \[
 D_\mathbf{d} f(\mathbf{x}) = \nabla f(\mathbf{x})^\top \mathbf{d} = \|\nabla f(\mathbf{x})\| \cos\theta
 \]
 
-where \( \theta \) is the angle between \( \nabla f \) and \( \mathbf{d} \).
+where $\theta$ is the angle between $\nabla f$ and $\mathbf{d}$.
 
-**Key Insight:** Maximum increase occurs when \( \theta = 0 \), i.e., moving in the direction of the gradient.
+**Key Insight:** Maximum increase occurs when $\theta = 0$, i.e., moving in the direction of the gradient.
 
 ### Gradient Properties
 
@@ -148,7 +148,7 @@ where \( \theta \) is the angle between \( \nabla f \) and \( \mathbf{d} \).
 
 ## 📐 Proof: Gradient Points in Direction of Steepest Ascent
 
-**Theorem:** For a differentiable function \( f \), the gradient \( \nabla f(\mathbf{x}) \) points in the direction of steepest increase at \( \mathbf{x} \).
+**Theorem:** For a differentiable function $f$, the gradient \( \nabla f(\mathbf{x}) \) points in the direction of steepest increase at $\mathbf{x}$.
 
 **Proof:**
 
@@ -287,7 +287,7 @@ Hessian tells us the SHAPE of the bowl:
 
 ## 📐 Mathematical Definition
 
-For \( f: \mathbb{R}^n \to \mathbb{R} \), the Hessian matrix is:
+For $f: \mathbb{R}^n \to \mathbb{R}$, the Hessian matrix is:
 
 \[
 H(f) = \nabla^2 f = \begin{bmatrix} 
@@ -298,7 +298,7 @@ H(f) = \nabla^2 f = \begin{bmatrix}
 \end{bmatrix}
 \]
 
-**Schwarz's Theorem:** If \( f \) has continuous second derivatives, then \( H \) is symmetric:
+**Schwarz's Theorem:** If $f$ has continuous second derivatives, then $H$ is symmetric:
 \[
 \frac{\partial^2 f}{\partial x_i \partial x_j} = \frac{\partial^2 f}{\partial x_j \partial x_i}
 \]
@@ -343,10 +343,10 @@ Both positive → MINIMUM at (0,0) ✓
 
 ### Second Derivative Test (Proof)
 
-**Theorem:** Let \( \mathbf{x}^* \) be a critical point where \( \nabla f(\mathbf{x}^*) = \mathbf{0} \). Then:
-- If \( H(\mathbf{x}^*) \succ 0 \) (positive definite), \( \mathbf{x}^* \) is a local minimum
-- If \( H(\mathbf{x}^*) \prec 0 \) (negative definite), \( \mathbf{x}^* \) is a local maximum  
-- If \( H(\mathbf{x}^*) \) has both positive and negative eigenvalues, \( \mathbf{x}^* \) is a saddle point
+**Theorem:** Let $\mathbf{x}^*$ be a critical point where \( \nabla f(\mathbf{x}^*) = \mathbf{0} \). Then:
+- If \( H(\mathbf{x}^*) \succ 0 \) (positive definite), $\mathbf{x}^*$ is a local minimum
+- If \( H(\mathbf{x}^*) \prec 0 \) (negative definite), $\mathbf{x}^*$ is a local maximum  
+- If \( H(\mathbf{x}^*) \) has both positive and negative eigenvalues, $\mathbf{x}^*$ is a saddle point
 
 **Proof:**
 
@@ -431,6 +431,7 @@ def f(x):
 x = torch.tensor([1.0, 1.0])
 H = hessian(f, x)
 print(f"Hessian:\n{H}")
+
 # [[2., 0.],
 #  [0., 6.]]
 ```

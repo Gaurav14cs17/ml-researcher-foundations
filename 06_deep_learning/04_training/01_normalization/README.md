@@ -82,6 +82,7 @@ Normalize over $(B, H, W)$ for each channel $c$:
 ### Gradient Derivation
 
 **Forward:**
+
 ```math
 \hat{x} = \frac{x - \mu}{\sigma}, \quad y = \gamma \hat{x} + \beta
 ```
@@ -306,6 +307,7 @@ class BatchNorm1d(nn.Module):
     
     def forward(self, x):
         if self.training:
+
             # Compute batch statistics
             mean = x.mean(dim=0)
             var = x.var(dim=0, unbiased=False)
@@ -331,6 +333,7 @@ class LayerNorm(nn.Module):
         self.beta = nn.Parameter(torch.zeros(normalized_shape))
     
     def forward(self, x):
+
         # Normalize over last dimension(s)
         mean = x.mean(dim=-1, keepdim=True)
         var = x.var(dim=-1, unbiased=False, keepdim=True)
@@ -346,6 +349,7 @@ class RMSNorm(nn.Module):
         self.weight = nn.Parameter(torch.ones(dim))
     
     def forward(self, x):
+
         # RMS = sqrt(mean(x^2))
         rms = torch.sqrt(torch.mean(x ** 2, dim=-1, keepdim=True) + self.eps)
         return x / rms * self.weight
@@ -366,6 +370,7 @@ class PreLNTransformerBlock(nn.Module):
         )
     
     def forward(self, x):
+
         # Pre-LN: LayerNorm BEFORE attention/FFN
         x = x + self.attn(self.ln1(x), self.ln1(x), self.ln1(x))[0]
         x = x + self.ffn(self.ln2(x))
@@ -386,6 +391,7 @@ class PostLNTransformerBlock(nn.Module):
         )
     
     def forward(self, x):
+
         # Post-LN: LayerNorm AFTER residual
         x = self.ln1(x + self.attn(x, x, x)[0])
         x = self.ln2(x + self.ffn(x))
@@ -406,21 +412,26 @@ instance_norm = nn.InstanceNorm2d(64)  # For style transfer
 
 **Without Normalization:**
 Layer inputs have distributions that change during training:
+
 ```math
 x^{(l)} \sim p_t(x^{(l)})
 ```
+
 where $p\_t$ depends on all previous layer parameters at step $t$.
 
 **With Normalization:**
+
 ```math
 \hat{x}^{(l)} \sim \mathcal{N}(\beta, \gamma^2) \quad \text{(approximately)}
 ```
+
 Distribution controlled by learnable $\beta, \gamma$.
 
 ### 2. Gradient Flow
 
 **Theorem (Gradient Magnitude):**
 For normalized activations:
+
 ```math
 \left\|\frac{\partial L}{\partial W^{(l)}}\right\| \approx O\left(\frac{1}{\sqrt{d}}\right) \left\|\frac{\partial L}{\partial a^{(l)}}\right\|
 ```
@@ -431,6 +442,7 @@ Gradients don't explode or vanish as quickly.
 
 **Theorem (Santurkar et al., 2018):**
 BatchNorm makes the loss landscape more Lipschitz-smooth:
+
 ```math
 \|\nabla L(w_1) - \nabla L(w_2)\| \leq \beta \|w_1 - w_2\|
 ```

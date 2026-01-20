@@ -202,8 +202,10 @@ Gradually shift to exploitation (small β)
 ```python
 class IntrinsicReward:
     def __init__(self, state_dim, hidden_dim=64):
+
         # Target network (random, fixed)
         self.target = RandomNetwork(state_dim, hidden_dim)
+
         # Predictor network (learned)
         self.predictor = RandomNetwork(state_dim, hidden_dim)
         self.optimizer = torch.optim.Adam(self.predictor.parameters())

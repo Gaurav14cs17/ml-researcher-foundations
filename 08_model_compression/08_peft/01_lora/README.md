@@ -24,6 +24,7 @@
 #### 1.1 LoRA Decomposition
 
 **Standard weight update during fine-tuning:**
+
 ```math
 W' = W_0 + \Delta W
 ```
@@ -31,6 +32,7 @@ W' = W_0 + \Delta W
 **LoRA hypothesis:** $\Delta W$ has low intrinsic rank.
 
 **LoRA parameterization:**
+
 ```math
 \Delta W = BA
 ```
@@ -48,6 +50,7 @@ h = W'x = (W_0 + BA)x = W_0 x + BAx
 ```
 
 **With scaling:**
+
 ```math
 h = W_0 x + \frac{\alpha}{r} BAx
 ```
@@ -61,16 +64,19 @@ where $\alpha$ is a scaling hyperparameter.
 #### 2.1 Parameter Comparison
 
 **Full fine-tuning parameters:**
+
 ```math
 |\theta_{full}| = d \times k
 ```
 
 **LoRA parameters:**
+
 ```math
 |\theta_{LoRA}| = d \times r + r \times k = r(d + k)
 ```
 
 **Reduction factor:**
+
 ```math
 \frac{|\theta_{full}|}{|\theta_{LoRA}|} = \frac{dk}{r(d+k)} = \frac{dk}{rd + rk}
 ```
@@ -82,6 +88,7 @@ where $\alpha$ is a scaling hyperparameter.
 ```
 
 **Example:** $d = 4096$, $r = 16$:
+
 ```math
 \text{Reduction} = \frac{4096}{32} = 128\times
 ```
@@ -93,6 +100,7 @@ where $\alpha$ is a scaling hyperparameter.
 ```
 
 For $d = k = 4096$, $r = 16$:
+
 ```math
 \frac{16}{4096} + \frac{16}{4096} = 0.78\%
 ```
@@ -104,6 +112,7 @@ For $d = k = 4096$, $r = 16$:
 #### 3.1 Purpose of α/r Scaling
 
 **Forward pass:**
+
 ```math
 h = W_0 x + \frac{\alpha}{r} BAx
 ```
@@ -119,16 +128,19 @@ When increasing rank $r$:
 #### 3.2 Gradient Analysis
 
 **Gradient w.r.t. A:**
+
 ```math
 \frac{\partial \mathcal{L}}{\partial A} = \frac{\alpha}{r} B^T \frac{\partial \mathcal{L}}{\partial h} x^T
 ```
 
 **Gradient w.r.t. B:**
+
 ```math
 \frac{\partial \mathcal{L}}{\partial B} = \frac{\alpha}{r} \frac{\partial \mathcal{L}}{\partial h} (Ax)^T
 ```
 
 **Key property:** Setting $\alpha = r$ makes gradients invariant to rank choice:
+
 ```math
 \frac{\alpha}{r} = 1 \Rightarrow \text{gradients don't depend on } r
 ```
@@ -144,6 +156,7 @@ When increasing rank $r$:
 - $B = 0$
 
 **Result at initialization:**
+
 ```math
 \Delta W = BA = 0
 ```
@@ -153,11 +166,13 @@ When increasing rank $r$:
 #### 4.2 Kaiming-style Analysis
 
 **For $A$ initialization:**
+
 ```math
 \text{Var}(A_{ij}) = \frac{1}{r}
 ```
 
 **After multiplication $BA$:**
+
 ```math
 \text{Var}((BA)_{ij}) = r \cdot \text{Var}(B) \cdot \text{Var}(A) \cdot \mathbb{E}[x^2]
 ```
@@ -193,6 +208,7 @@ With $B = 0$ at init, this is 0 as desired.
 #### 6.1 Weight Merging
 
 **After training, merge LoRA into base weights:**
+
 ```math
 W_{merged} = W_0 + \frac{\alpha}{r} BA
 ```
@@ -205,6 +221,7 @@ W_{merged} = W_0 + \frac{\alpha}{r} BA
 #### 6.2 Multiple Adapters
 
 **For different tasks:**
+
 ```math
 W_{task1} = W_0 + \Delta W_1
 W_{task2} = W_0 + \Delta W_2
@@ -226,6 +243,7 @@ d_{intrinsic} \ll d_{total}
 ```
 
 **Experiment:** Random projection to $d$ dimensions:
+
 ```math
 \theta' = \theta_0 + P_d \cdot \delta
 ```
@@ -266,11 +284,13 @@ Let $\Delta W^* = U\Sigma V^T$ be the SVD.
 The optimal $B = U\_r \Sigma\_r^{1/2}$ and $A = \Sigma\_r^{1/2} V\_r^T$ where subscript $r$ denotes first $r$ components.
 
 Then:
+
 ```math
 BA = U_r \Sigma_r V_r^T
 ```
 
 The Frobenius norm error:
+
 ```math
 \|\Delta W^* - BA\|_F^2 = \|U\Sigma V^T - U_r\Sigma_r V_r^T\|_F^2 = \sum_{i=r+1}^{\min(d,k)} \sigma_i^2
 ```
@@ -292,16 +312,19 @@ independent of the choice of rank $r$.
 **Proof:**
 
 The forward pass with LoRA:
+
 ```math
 h = W_0 x + \frac{\alpha}{r} BAx
 ```
 
 With $\alpha = r$:
+
 ```math
 h = W_0 x + BAx
 ```
 
 The gradient w.r.t. implicit $\Delta W = BA$:
+
 ```math
 \frac{\partial \mathcal{L}}{\partial \Delta W} = \frac{\partial \mathcal{L}}{\partial h} x^T
 ```
@@ -323,6 +346,7 @@ This is independent of how we factor $\Delta W$. The LoRA decomposition only aff
 ```
 
 At initialization, $B = 0$, so:
+
 ```math
 \frac{\partial \mathcal{L}}{\partial A}\bigg|_{t=0} = 0
 ```
@@ -388,6 +412,7 @@ class LoRALayer(nn.Module):
         nn.init.zeros_(self.lora_B)
     
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+
         # Original computation
         result = self.original(x)
         
@@ -445,12 +470,14 @@ def apply_lora_to_model(model: nn.Module, r: int = 16, alpha: int = 32,
     
     for name, module in model.named_modules():
         if isinstance(module, nn.Linear):
+
             # Check if this module should have LoRA
             if any(target in name for target in target_modules):
                 lora_layers[name] = LoRALayer(module, r=r, alpha=alpha)
     
     # Replace modules
     for name, lora_layer in lora_layers.items():
+
         # Navigate to parent and replace
         parts = name.split('.')
         parent = model
@@ -492,6 +519,7 @@ class SimpleTransformer(nn.Module):
         self.ffn_down = nn.Linear(4 * d_model, d_model)
     
     def forward(self, x):
+
         # Attention
         q = self.q_proj(x)
         k = self.k_proj(x)
@@ -511,6 +539,7 @@ class SimpleTransformer(nn.Module):
 
 # Demo
 if __name__ == "__main__":
+
     # Create model
     model = SimpleTransformer(d_model=512)
     print("Before LoRA:")

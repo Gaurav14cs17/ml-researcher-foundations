@@ -51,16 +51,19 @@ For a probability measure $P$ on sample space $\Omega$:
 ### Derived Properties
 
 **Complement:**
+
 ```math
 P(A^c) = 1 - P(A)
 ```
 
 **Inclusion-Exclusion:**
+
 ```math
 P(A \cup B) = P(A) + P(B) - P(A \cap B)
 ```
 
 **Union Bound:**
+
 ```math
 P\left(\bigcup_{i=1}^{n} A_i\right) \leq \sum_{i=1}^{n} P(A_i)
 ```
@@ -81,6 +84,7 @@ P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}
 | $P(D)$ | **Evidence** | Normalizing constant |
 
 **Simplified:**
+
 ```math
 \text{Posterior} \propto \text{Likelihood} \times \text{Prior}
 ```

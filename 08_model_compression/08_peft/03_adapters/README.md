@@ -26,6 +26,7 @@
 #### 1.1 Architecture
 
 **Adapter module (Houlsby et al., 2019):**
+
 ```math
 \text{Adapter}(x) = x + f(x W_{down}) W_{up}
 ```
@@ -39,12 +40,14 @@ where:
 #### 1.2 Placement in Transformer
 
 **After attention:**
+
 ```math
 h = \text{LayerNorm}(x + \text{Attn}(x))
 h' = h + \text{Adapter}_{attn}(h)
 ```
 
 **After FFN:**
+
 ```math
 z = \text{LayerNorm}(h' + \text{FFN}(h'))
 z' = z + \text{Adapter}_{ffn}(z)
@@ -65,11 +68,13 @@ z' = z + \text{Adapter}_{ffn}(z)
 #### 2.2 Total for Transformer
 
 **Per layer:** 2 adapters (after attention, after FFN)
+
 ```math
 |\theta_{layer}| = 4dr
 ```
 
 **Full model (L layers):**
+
 ```math
 |\theta_{total}| = 4Ldr
 ```
@@ -77,6 +82,7 @@ z' = z + \text{Adapter}_{ffn}(z)
 #### 2.3 Efficiency
 
 **For BERT-Base ($d=768$, $L=12$, $r=64$):**
+
 ```math
 |\theta_{adapters}| = 4 \times 12 \times 768 \times 64 = 2.36M
 ```
@@ -92,11 +98,13 @@ vs. 110M for full BERT → **2.1%** of parameters!
 **Claim:** Adapters learn low-rank updates.
 
 **Analysis:**
+
 ```math
 \text{Adapter}(x) = x + \sigma(xW_{down})W_{up}
 ```
 
 If $\sigma$ is linear (or linearized):
+
 ```math
 \text{Adapter}(x) \approx x + x W_{down} W_{up} = x(I + W_{down}W_{up})
 ```
@@ -106,11 +114,13 @@ This is a rank-$r$ perturbation of identity!
 #### 3.2 Connection to LoRA
 
 **Adapter (without nonlinearity):**
+
 ```math
 h' = h + h W_{down} W_{up}
 ```
 
 **LoRA:**
+
 ```math
 h' = Wh + BAh
 ```
@@ -126,6 +136,7 @@ Both learn low-rank adaptations, but:
 #### 4.1 AdapterFusion
 
 **Learn to combine multiple task adapters:**
+
 ```math
 h' = h + \sum_i \alpha_i \text{Adapter}_i(h)
 ```
@@ -135,6 +146,7 @@ where $\alpha = \text{softmax}(W\_\alpha h)$ are learned attention weights.
 #### 4.2 Parallel Adapters (He et al.)
 
 **Insert parallel to attention, not after:**
+
 ```math
 \text{Attn}'(x) = \text{Attn}(x) + s \cdot \text{Adapter}(x)
 ```
@@ -144,6 +156,7 @@ where $s$ is a learned scaling factor.
 #### 4.3 Compacter
 
 **Use Kronecker products for more compression:**
+
 ```math
 W_{down} = A_1 \otimes A_2
 ```
@@ -226,6 +239,7 @@ class TransformerWithAdapters(nn.Module):
         self.adapter_ffn = BottleneckAdapter(d_model, adapter_dim)
     
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+
         # Self-attention with adapter
         attn_out, _ = self.self_attn(x, x, x)
         x = self.norm1(x + attn_out)
@@ -256,6 +270,7 @@ class AdapterFusion(nn.Module):
     
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Fuse adapter outputs using attention."""
+
         # Get all adapter outputs
         adapter_outputs = torch.stack([
             adapter(x) for adapter in self.adapters
@@ -282,6 +297,7 @@ def add_adapters_to_model(model: nn.Module, adapter_dim: int = 64):
     
     for name, module in model.named_modules():
         if isinstance(module, nn.MultiheadAttention):
+
             # Add adapter after attention
             adapters[name + '_adapter'] = BottleneckAdapter(
                 module.embed_dim, adapter_dim

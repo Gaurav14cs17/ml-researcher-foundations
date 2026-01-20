@@ -247,6 +247,7 @@ for episode in range(1000):
     while not done:
         q_values = model(state)
         action = epsilon_greedy(q_values, epsilon)
+
         # ... take action, train model ...
     
     scheduler.update(decay_param=0.995)
@@ -273,6 +274,7 @@ def q_learning_with_epsilon_greedy(env, num_episodes,
         done = False
         
         while not done:
+
             # ε-greedy action selection
             if np.random.random() < epsilon:
                 action = env.action_space.sample()

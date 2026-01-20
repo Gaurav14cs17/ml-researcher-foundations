@@ -77,6 +77,7 @@
 ## 📐 The Algorithm
 
 ```python
+
 # Gradient Descent in 5 lines
 x = initial_guess
 for i in range(max_iterations):
@@ -254,7 +255,7 @@ GD with α = 1/L satisfies:
 
 where \(f_{inf} = \inf_x f(x)\)
 
-**Interpretation:** Find ε-stationary point (\(\|\nabla f\| \leq \epsilon\)) in O(1/ε²) iterations
+**Interpretation:** Find ε-stationary point ($\|\nabla f\| \leq \epsilon$) in O(1/ε²) iterations
 
 ---
 

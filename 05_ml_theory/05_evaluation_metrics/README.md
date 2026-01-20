@@ -48,11 +48,13 @@
 ### Primary Metrics
 
 **Accuracy:**
+
 ```math
 \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
 ```
 
 **Precision (Positive Predictive Value):**
+
 ```math
 \text{Precision} = \frac{TP}{TP + FP}
 ```
@@ -60,6 +62,7 @@
 *"Of all predicted positives, how many are correct?"*
 
 **Recall (Sensitivity, True Positive Rate):**
+
 ```math
 \text{Recall} = \frac{TP}{TP + FN}
 ```
@@ -67,22 +70,25 @@
 *"Of all actual positives, how many did we find?"*
 
 **Specificity (True Negative Rate):**
+
 ```math
 \text{Specificity} = \frac{TN}{TN + FP}
 ```
 
 **F1 Score (Harmonic Mean):**
+
 ```math
 F_1 = \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}} = \frac{2TP}{2TP + FP + FN}
 ```
 
 **F-beta Score (Weighted):**
+
 ```math
 F_\beta = (1 + \beta^2) \cdot \frac{\text{Precision} \cdot \text{Recall}}{\beta^2 \cdot \text{Precision} + \text{Recall}}
 ```
 
-- \(\beta > 1\): Emphasize recall
-- \(\beta < 1\): Emphasize precision
+- $\beta > 1$: Emphasize recall
+- $\beta < 1$: Emphasize precision
 
 ---
 
@@ -90,9 +96,9 @@ F_\beta = (1 + \beta^2) \cdot \frac{\text{Precision} \cdot \text{Recall}}{\beta^
 
 ### ROC Curve
 
-**True Positive Rate (TPR):** \(\frac{TP}{TP + FN}\)
+**True Positive Rate (TPR):** $\frac{TP}{TP + FN}$
 
-**False Positive Rate (FPR):** \(\frac{FP}{FP + TN}\)
+**False Positive Rate (FPR):** $\frac{FP}{FP + TN}$
 
 ROC curve plots TPR vs FPR at all classification thresholds.
 
@@ -103,6 +109,7 @@ ROC curve plots TPR vs FPR at all classification thresholds.
 ```
 
 **Interpretation:**
+
 ```math
 \text{AUC} = P(\text{score}(x^+) > \text{score}(x^-))
 ```
@@ -124,11 +131,12 @@ Probability that a random positive is ranked higher than a random negative.
 For imbalanced data, PR curve is more informative:
 
 **Average Precision (AP):**
+
 ```math
 \text{AP} = \sum_n (R_n - R_{n-1}) P_n
 ```
 
-where \(P_n\) and \(R_n\) are precision and recall at threshold \(n\).
+where $P_n$ and $R_n$ are precision and recall at threshold $n$.
 
 ### Why PR > ROC for Imbalanced Data
 
@@ -139,26 +147,31 @@ When negatives dominate, FPR stays low even with many false positives (denominat
 ## 📐 Regression Metrics
 
 **Mean Squared Error (MSE):**
+
 ```math
 \text{MSE} = \frac{1}{n}\sum_{i=1}^n (y_i - \hat{y}_i)^2
 ```
 
 **Root Mean Squared Error (RMSE):**
+
 ```math
 \text{RMSE} = \sqrt{\text{MSE}}
 ```
 
 **Mean Absolute Error (MAE):**
+
 ```math
 \text{MAE} = \frac{1}{n}\sum_{i=1}^n |y_i - \hat{y}_i|
 ```
 
 **R² (Coefficient of Determination):**
+
 ```math
 R^2 = 1 - \frac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i (y_i - \bar{y})^2} = 1 - \frac{\text{SS}_{\text{res}}}{\text{SS}_{\text{tot}}}
 ```
 
 **MAPE (Mean Absolute Percentage Error):**
+
 ```math
 \text{MAPE} = \frac{100\%}{n}\sum_{i=1}^n \left|\frac{y_i - \hat{y}_i}{y_i}\right|
 ```
@@ -324,6 +337,7 @@ def plot_roc_pr_curves(y_true, y_prob):
 
 # Example usage
 if __name__ == "__main__":
+
     # Binary classification example
     np.random.seed(42)
     y_true = np.array([1, 0, 1, 1, 0, 1, 0, 0, 1, 0])

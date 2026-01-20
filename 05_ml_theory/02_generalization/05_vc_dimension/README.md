@@ -40,75 +40,77 @@ The **Vapnik-Chervonenkis (VC) dimension** is a fundamental measure of the capac
 
 ### Shattering
 
-**Definition:** A hypothesis class \(\mathcal{H}\) **shatters** a set of points \(S = \{x_1, \ldots, x_n\}\) if for every possible labeling \((y_1, \ldots, y_n) \in \{-1, +1\}^n\), there exists \(h \in \mathcal{H}\) such that \(h(x_i) = y_i\) for all \(i\).
+**Definition:** A hypothesis class $\mathcal{H}$ **shatters** a set of points $S = \{x_1, \ldots, x_n\}$ if for every possible labeling \((y_1, \ldots, y_n) \in \{-1, +1\}^n\), there exists $h \in \mathcal{H}$ such that \(h(x_i) = y_i\) for all $i$.
 
-In other words, \(\mathcal{H}\) can achieve all \(2^n\) possible binary labelings of \(S\).
+In other words, $\mathcal{H}$ can achieve all $2^n$ possible binary labelings of $S$.
 
 ### VC Dimension
 
-**Definition:** The VC dimension of \(\mathcal{H}\), denoted \(\text{VC}(\mathcal{H})\), is:
+**Definition:** The VC dimension of $\mathcal{H}$, denoted \(\text{VC}(\mathcal{H})\), is:
 
 ```math
 \text{VC}(\mathcal{H}) = \max\{n : \exists S \text{ with } |S| = n \text{ that } \mathcal{H} \text{ shatters}\}
 ```
 
-If \(\mathcal{H}\) can shatter arbitrarily large sets, \(\text{VC}(\mathcal{H}) = \infty\).
+If $\mathcal{H}$ can shatter arbitrarily large sets, \(\text{VC}(\mathcal{H}) = \infty\).
 
 **Equivalently:**
-- \(\text{VC}(\mathcal{H}) \geq d\) if there exists **some** set of \(d\) points that \(\mathcal{H}\) shatters
-- \(\text{VC}(\mathcal{H}) < d\) if **no** set of \(d\) points can be shattered by \(\mathcal{H}\)
+- \(\text{VC}(\mathcal{H}) \geq d\) if there exists **some** set of $d$ points that $\mathcal{H}$ shatters
+- \(\text{VC}(\mathcal{H}) < d\) if **no** set of $d$ points can be shattered by $\mathcal{H}$
 
 ---
 
 ## 📊 Computing VC Dimension: Examples
 
-### Example 1: Linear Classifiers in \(\mathbb{R}^d\)
+### Example 1: Linear Classifiers in $\mathbb{R}^d$
 
 **Hypothesis class:** \(\mathcal{H} = \{x \mapsto \text{sign}(w^\top x + b) : w \in \mathbb{R}^d, b \in \mathbb{R}\}\)
 
 **Theorem:** \(\text{VC}(\mathcal{H}) = d + 1\)
 
-**Proof of lower bound (\(\geq d+1\)):**
+**Proof of lower bound ($\geq d+1$):**
 
-We need to show there exists a set of \(d+1\) points that can be shattered.
+We need to show there exists a set of $d+1$ points that can be shattered.
 
 Consider points in general position:
+
 ```math
 x_0 = 0, \quad x_i = e_i \text{ for } i = 1, \ldots, d
 ```
 
-where \(e_i\) is the \(i\)-th standard basis vector.
+where $e_i$ is the $i$-th standard basis vector.
 
 For any labeling \((y_0, y_1, \ldots, y_d)\), set:
+
 ```math
 w = \sum_{i=1}^d y_i e_i, \quad b = -\frac{1}{2}(1 + y_0)
 ```
 
 Then:
-- \(w^\top x_0 + b = b = -\frac{1}{2}(1 + y_0)\), which has sign \(y_0\)
-- \(w^\top x_i + b = y_i + b\), which has sign \(y_i\) for appropriate \(b\)
+- \(w^\top x_0 + b = b = -\frac{1}{2}(1 + y_0)\), which has sign $y_0$
+- $w^\top x_i + b = y_i + b$, which has sign $y_i$ for appropriate $b$
 
-**Proof of upper bound (\(\leq d+1\)):**
+**Proof of upper bound ($\leq d+1$):**
 
-For any \(d+2\) points in \(\mathbb{R}^d\), they are linearly dependent. By Radon's theorem, they can be partitioned into two sets whose convex hulls intersect. This partitioning cannot be achieved by any hyperplane.
+For any $d+2$ points in $\mathbb{R}^d$, they are linearly dependent. By Radon's theorem, they can be partitioned into two sets whose convex hulls intersect. This partitioning cannot be achieved by any hyperplane.
 
-### Example 2: Intervals on \(\mathbb{R}\)
+### Example 2: Intervals on $\mathbb{R}$
 
-**Hypothesis class:** \(\mathcal{H} = \{x \mapsto \mathbb{1}[a \leq x \leq b] : a, b \in \mathbb{R}\}\)
+**Hypothesis class:** $\mathcal{H} = \{x \mapsto \mathbb{1}[a \leq x \leq b] : a, b \in \mathbb{R}\}$
 
 **Theorem:** \(\text{VC}(\mathcal{H}) = 2\)
 
 **Proof:**
 
-*Lower bound:* Two points \(x_1 < x_2\) can be shattered:
-- \((+, +)\): interval \([x_1, x_2]\)
-- \((-, -)\): interval \([x_1 - 1, x_1 - 0.5]\) (excludes both)
+*Lower bound:* Two points $x_1 < x_2$ can be shattered:
+- \((+, +)\): interval $[x_1, x_2]$
+- \((-, -)\): interval $[x_1 - 1, x_1 - 0.5]$ (excludes both)
 - \((+, -)\): interval \([x_1 - 0.5, (x_1 + x_2)/2]\)
 - \((-, +)\): interval \([(x_1 + x_2)/2, x_2 + 0.5]\)
 
-*Upper bound:* For any three points \(x_1 < x_2 < x_3\), the labeling \((+, -, +)\) cannot be achieved by a single interval.
+*Upper bound:* For any three points $x_1 < x_2 < x_3$, the labeling \((+, -, +)\) cannot be achieved by a single interval.
 
-### Example 3: Axis-Aligned Rectangles in \(\mathbb{R}^2\)
+### Example 3: Axis-Aligned Rectangles in $\mathbb{R}^2$
 
 **Theorem:** \(\text{VC}(\mathcal{H}) = 4\)
 
@@ -122,7 +124,7 @@ For any \(d+2\) points in \(\mathbb{R}^d\), they are linearly dependent. By Rado
 
 **Theorem:** \(\text{VC}(\mathcal{H}_{k\text{-NN}}) = \infty\)
 
-**Proof:** For any \(n\) points and any labeling, 1-NN memorizes and achieves the labeling. Hence arbitrarily large sets can be shattered.
+**Proof:** For any $n$ points and any labeling, 1-NN memorizes and achieves the labeling. Hence arbitrarily large sets can be shattered.
 
 ---
 
@@ -130,18 +132,18 @@ For any \(d+2\) points in \(\mathbb{R}^d\), they are linearly dependent. By Rado
 
 ### Growth Function
 
-**Definition:** The growth function of \(\mathcal{H}\) is:
+**Definition:** The growth function of $\mathcal{H}$ is:
 
 ```math
 m_\mathcal{H}(n) = \max_{x_1, \ldots, x_n} |\{(h(x_1), \ldots, h(x_n)) : h \in \mathcal{H}\}|
 ```
 
-This counts the maximum number of distinct classifications on \(n\) points.
+This counts the maximum number of distinct classifications on $n$ points.
 
 **Properties:**
 - \(m_\mathcal{H}(n) \leq 2^n\) (at most all labelings)
 - If \(\text{VC}(\mathcal{H}) = d\), then \(m_\mathcal{H}(d) = 2^d\) (some set is shattered)
-- If \(\text{VC}(\mathcal{H}) = d\), then \(m_\mathcal{H}(n) < 2^n\) for \(n > d\)
+- If \(\text{VC}(\mathcal{H}) = d\), then \(m_\mathcal{H}(n) < 2^n\) for $n > d$
 
 ### Sauer-Shelah Lemma
 
@@ -153,9 +155,9 @@ m_\mathcal{H}(n) \leq \sum_{i=0}^{d} \binom{n}{i} \leq \left(\frac{en}{d}\right)
 
 **Proof Sketch:**
 
-By induction on \(n + d\). For the base case, if \(d = 0\), then \(m_\mathcal{H}(n) = 1\). For the induction step, partition hypotheses based on behavior on the \(n\)-th point and apply the inductive hypothesis to both subclasses.
+By induction on $n + d$. For the base case, if $d = 0$, then \(m_\mathcal{H}(n) = 1\). For the induction step, partition hypotheses based on behavior on the $n$-th point and apply the inductive hypothesis to both subclasses.
 
-**Implication:** For \(n > d\), the growth function is polynomial in \(n\), not exponential!
+**Implication:** For $n > d$, the growth function is polynomial in $n$, not exponential!
 
 ---
 
@@ -163,7 +165,7 @@ By induction on \(n + d\). For the base case, if \(d = 0\), then \(m_\mathcal{H}
 
 ### VC Generalization Theorem
 
-**Theorem:** Let \(\mathcal{H}\) have VC dimension \(d < \infty\). For any distribution \(P\) over \(\mathcal{X} \times \{0, 1\}\), with probability \(\geq 1 - \delta\) over training set \(S\) of size \(n\):
+**Theorem:** Let $\mathcal{H}$ have VC dimension $d < \infty$. For any distribution $P$ over $\mathcal{X} \times \{0, 1\}$, with probability $\geq 1 - \delta$ over training set $S$ of size $n$:
 
 ```math
 \forall h \in \mathcal{H}: \quad R(h) \leq \hat{R}(h) + \sqrt{\frac{8d \ln(en/d) + 8\ln(4/\delta)}{n}}
@@ -187,7 +189,7 @@ where \(\hat{R}'(h)\) is the empirical risk on an independent "ghost" sample.
 
 **Step 2: Finite Effective Hypothesis Class**
 
-On \(2n\) points, \(\mathcal{H}\) induces at most \(m_\mathcal{H}(2n)\) distinct behaviors.
+On $2n$ points, $\mathcal{H}$ induces at most \(m_\mathcal{H}(2n)\) distinct behaviors.
 
 **Step 3: Union Bound + Hoeffding**
 
@@ -203,11 +205,11 @@ Apply Hoeffding's inequality to each effective hypothesis, then union bound:
 \leq 2 \left(\frac{2en}{d}\right)^d e^{-n\epsilon^2/2}
 ```
 
-Setting this to \(\delta\) and solving for \(\epsilon\) gives the bound.
+Setting this to $\delta$ and solving for $\epsilon$ gives the bound.
 
 ### Sample Complexity
 
-**Corollary:** To achieve \(R(\hat{h}) - \hat{R}(\hat{h}) \leq \epsilon\) with probability \(\geq 1 - \delta\):
+**Corollary:** To achieve \(R(\hat{h}) - \hat{R}(\hat{h}) \leq \epsilon\) with probability $\geq 1 - \delta$:
 
 ```math
 n = O\left(\frac{d + \ln(1/\delta)}{\epsilon^2}\right)
@@ -215,8 +217,8 @@ n = O\left(\frac{d + \ln(1/\delta)}{\epsilon^2}\right)
 
 **Key insights:**
 - Sample complexity is **linear** in VC dimension
-- Sample complexity is **quadratic** in \(1/\epsilon\)
-- No dependence on the distribution \(P\) (distribution-free bound)
+- Sample complexity is **quadratic** in $1/\epsilon$
+- No dependence on the distribution $P$ (distribution-free bound)
 
 ---
 
@@ -224,16 +226,16 @@ n = O\left(\frac{d + \ln(1/\delta)}{\epsilon^2}\right)
 
 | Hypothesis Class | VC Dimension | Notes |
 |------------------|--------------|-------|
-| Linear classifiers in \(\mathbb{R}^d\) | \(d + 1\) | \(d\) weights + 1 bias |
-| Polynomial of degree \(k\) in \(\mathbb{R}^d\) | \(\binom{d+k}{k}\) | Number of monomials |
-| Axis-aligned rectangles in \(\mathbb{R}^d\) | \(2d\) | 2 boundaries per dimension |
-| Intervals on \(\mathbb{R}\) | 2 | 2 endpoints |
-| Half-spaces in \(\mathbb{R}^d\) | \(d + 1\) | Same as linear classifiers |
+| Linear classifiers in $\mathbb{R}^d$ | $d + 1$ | $d$ weights + 1 bias |
+| Polynomial of degree $k$ in $\mathbb{R}^d$ | $\binom{d+k}{k}$ | Number of monomials |
+| Axis-aligned rectangles in $\mathbb{R}^d$ | $2d$ | 2 boundaries per dimension |
+| Intervals on $\mathbb{R}$ | 2 | 2 endpoints |
+| Half-spaces in $\mathbb{R}^d$ | $d + 1$ | Same as linear classifiers |
 | Decision stumps | 2 | Single threshold |
-| Union of \(k\) intervals | \(2k\) | \(2k\) endpoints |
-| k-NN | \(\infty\) | Can memorize |
-| Neural network with \(W\) weights | \(O(W \log W)\) | Upper bound |
-| Neural network with ReLU | \(O(WL)\) | \(L\) = number of layers |
+| Union of $k$ intervals | $2k$ | $2k$ endpoints |
+| k-NN | $\infty$ | Can memorize |
+| Neural network with $W$ weights | \(O(W \log W)\) | Upper bound |
+| Neural network with ReLU | \(O(WL)\) | $L$ = number of layers |
 
 ---
 
@@ -270,6 +272,7 @@ def can_shatter(X, model_class, **model_params):
         y = np.array(y)
         
         try:
+
             # Try to fit the model
             model = model_class(**model_params)
             model.fit(X, y)
@@ -311,10 +314,12 @@ def estimate_vc_dimension(model_class, d, max_points=10, n_trials=100, **model_p
         shattered = False
         
         for trial in range(n_trials):
+
             # Generate random points
             if d == 1:
                 X = np.random.randn(n, 1)
             else:
+
                 # Use points in general position
                 X = np.random.randn(n, d)
             
@@ -454,6 +459,7 @@ def required_samples(d, epsilon, delta=0.05):
     
     n = O(d/ε² + ln(1/δ)/ε²)
     """
+
     # Solve: sqrt(8(d*ln(2n/d) + ln(4/δ))/n) ≤ ε
     # Approximate: n ≈ 8*(d*ln(2n/d) + ln(4/δ))/ε²
     
@@ -494,7 +500,7 @@ for d in [3, 10, 100, 1000]:
 
 Classical VC theory predicts:
 - High VC dimension → poor generalization
-- Neural networks have VC dim \(\approx O(WL)\) where \(W\) = parameters, \(L\) = layers
+- Neural networks have VC dim \(\approx O(WL)\) where $W$ = parameters, $L$ = layers
 
 **Reality:** Overparameterized networks generalize well despite huge VC dimension!
 
@@ -517,7 +523,7 @@ Classical VC theory predicts:
 \hat{\mathcal{R}}_S(\mathcal{H}) = \mathbb{E}_\sigma\left[\sup_{h \in \mathcal{H}} \frac{1}{n}\sum_{i=1}^n \sigma_i h(x_i)\right]
 ```
 
-where \(\sigma_i \in \{-1, +1\}\) are uniform random signs.
+where $\sigma_i \in \{-1, +1\}$ are uniform random signs.
 
 **Advantage:** Data-dependent, can be tighter than VC bounds.
 

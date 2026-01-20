@@ -54,6 +54,7 @@ Or regularizing the loss:
 ### Geometric Transformations
 
 **Random Crop:**
+
 ```math
 x_{crop} = x[i:i+h, j:j+w]
 ```
@@ -61,11 +62,13 @@ x_{crop} = x[i:i+h, j:j+w]
 Where $(i,j)$ is random position, $(h,w)$ is crop size.
 
 **Random Flip:**
+
 ```math
 x_{flip}[i,j] = x[i, W-1-j]
 ```
 
 **Rotation:**
+
 ```math
 \begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}
 ```
@@ -73,16 +76,19 @@ x_{flip}[i,j] = x[i, W-1-j]
 ### Color Transformations
 
 **Brightness:**
+
 ```math
 x_{bright} = x + \delta, \quad \delta \sim U(-\beta, \beta)
 ```
 
 **Contrast:**
+
 ```math
 x_{contrast} = \alpha(x - \mu) + \mu, \quad \alpha \sim U(1-\gamma, 1+\gamma)
 ```
 
 **Saturation (HSV):**
+
 ```math
 S' = S \cdot \alpha, \quad \alpha \sim U(1-\delta, 1+\delta)
 ```
@@ -123,11 +129,13 @@ Mixup encourages:
 
 1. Sample $\lambda \sim \text{Beta}(\alpha, \alpha)$
 2. Sample bounding box $B = (r\_x, r\_y, r\_w, r\_h)$ where:
+
 ```math
 r_w = W\sqrt{1-\lambda}, \quad r_h = H\sqrt{1-\lambda}
 ```math
 3. Combine:
 ```
+
 \tilde{x} = M \odot x_i + (1-M) \odot x_j
 ```
 
@@ -341,6 +349,7 @@ def eda_augment(sentence, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1):
     
     # Synonym replacement (using simple example)
     n_sr = max(1, int(alpha_sr * n))
+
     # ... (requires WordNet or similar)
     
     # Random insertion

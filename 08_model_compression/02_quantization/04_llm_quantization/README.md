@@ -35,6 +35,7 @@
 #### 2.1 Problem Formulation
 
 **Goal:** Minimize layer-wise reconstruction error:
+
 ```math
 \min_{\hat{W}} \|WX - \hat{W}X\|_F^2
 ```
@@ -46,6 +47,7 @@ where $X \in \mathbb{R}^{d\_{in} \times n}$ is calibration data.
 **Greedy approach:** Quantize one weight at a time, optimally adjusting others.
 
 **Hessian approximation:**
+
 ```math
 H = 2X X^T
 ```
@@ -55,22 +57,26 @@ H = 2X X^T
 The quantization error is $\delta\_q = \hat{w}\_q - w\_q$.
 
 **Optimal update to remaining weights:**
+
 ```math
 \delta_{-q} = -\frac{\delta_q}{[H^{-1}]_{qq}} \cdot H^{-1}_{:,q}
 ```
 
 **Proof:**
 We want to minimize the change in output:
+
 ```math
 \min_{\delta_{-q}} \|(w_q + \delta_q, w_{-q} + \delta_{-q}) X\|_2^2 - \|w X\|_2^2
 ```
 
 The second-order approximation gives:
+
 ```math
 \Delta = \delta_q^2 [H]_{qq} + 2\delta_q H_{q,-q} \delta_{-q} + \delta_{-q}^T H_{-q,-q} \delta_{-q}
 ```
 
 Taking derivative w.r.t. $\delta\_{-q}$:
+
 ```math
 \frac{\partial \Delta}{\partial \delta_{-q}} = 2\delta_q H_{-q,q} + 2H_{-q,-q}\delta_{-q} = 0
 ```
@@ -88,6 +94,7 @@ Process entire rows of $W$ together since they share the same Hessian.
 
 **Solution 2: Block updates**
 Update Hessian inverse in blocks:
+
 ```math
 H^{-1}_{new} = H^{-1} - \frac{H^{-1}_{:,B} (H^{-1}_{B,B})^{-1} H^{-1}_{B,:}}{1}
 ```
@@ -121,6 +128,7 @@ Output: Quantized W_q
 Weights connected to large activations matter more.
 
 **Importance metric:**
+
 ```math
 s_j = \mathbb{E}[|X_j|] = \frac{1}{n}\sum_{i=1}^{n} |x_{ij}|
 ```
@@ -130,6 +138,7 @@ s_j = \mathbb{E}[|X_j|] = \frac{1}{n}\sum_{i=1}^{n} |x_{ij}|
 **Idea:** Scale weights to protect important channels.
 
 **Transformation:**
+
 ```math
 Y = XW = (X \cdot \text{diag}(s)^{-1}) \cdot (\text{diag}(s) \cdot W) = \hat{X} \hat{W}
 ```
@@ -141,11 +150,13 @@ Y = XW = (X \cdot \text{diag}(s)^{-1}) \cdot (\text{diag}(s) \cdot W) = \hat{X} 
 #### 3.3 Optimal Scaling Factor
 
 **Goal:** Find $s$ that minimizes quantization error:
+
 ```math
 \min_s \|Q(\text{diag}(s) \cdot W) \cdot \text{diag}(s)^{-1} \cdot X - WX\|_F^2
 ```
 
 **Closed-form approximation:**
+
 ```math
 s_j^* = \left(\frac{\mathbb{E}[|X_j|]}{\mathbb{E}[|X|]}\right)^\alpha \cdot \left(\frac{\max|W_{:,j}|}{\max|W|}\right)^{1-\alpha}
 ```
@@ -191,6 +202,7 @@ Y = XW = (X \cdot \text{diag}(s)^{-1}) \cdot (\text{diag}(s) \cdot W)
 ```
 
 **Choose $s$ to balance difficulties:**
+
 ```math
 s_j = \frac{\max|X_{:,j}|^\alpha}{\max|W_{j,:}|^{1-\alpha}}
 ```
@@ -203,11 +215,13 @@ s_j = \frac{\max|X_{:,j}|^\alpha}{\max|W_{j,:}|^{1-\alpha}}
 #### 4.3 Mathematical Analysis
 
 **Quantization error for activations:**
+
 ```math
 \epsilon_X = \frac{\Delta_X}{2} = \frac{\max|X|}{2(2^b - 1)}
 ```
 
 **After smoothing:**
+
 ```math
 \epsilon_{\hat{X}} = \frac{\max|\hat{X}|}{2(2^b - 1)} = \frac{\max|X|/s}{2(2^b - 1)}
 ```
@@ -240,6 +254,7 @@ For each linear layer:
 **Observation:** ~0.1% of hidden dimensions cause 99% of outliers.
 
 **Detection criterion:**
+
 ```math
 O = \{j : \max_i |X_{ij}| > \tau\}
 ```
@@ -249,6 +264,7 @@ where $\tau = 6.0$ is typical threshold.
 #### 5.2 Mixed-Precision Computation
 
 **Decompose computation:**
+
 ```math
 Y = XW = X_{:,O}W_{O,:} + X_{:,\bar{O}}W_{\bar{O},:}
 ```
@@ -475,6 +491,7 @@ def quantize_llm(model, calibration_loader, method='gptq', bits=4):
         transform = SmoothQuantTransform(alpha=0.5)
         act_scales = transform.calibrate(model, calibration_loader)
         model = transform.apply_smoothing(model, act_scales)
+
         # Then apply standard INT8 quantization
     
     return model

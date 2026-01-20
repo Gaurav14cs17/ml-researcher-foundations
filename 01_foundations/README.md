@@ -167,6 +167,7 @@ def forward(x, W1, b1, W2, b2):
     return z2, z1, a1
 
 def backward(x, y, z2, z1, a1, W1, W2):
+
     # Softmax + cross-entropy gradient
     exp_z2 = np.exp(z2 - z2.max(axis=1, keepdims=True))
     softmax = exp_z2 / exp_z2.sum(axis=1, keepdims=True)
@@ -412,6 +413,7 @@ CONCLUSION: By induction, backprop is correct for all layers ∎
 **Code Pattern - Induction in Algorithms:**
 
 ```python
+
 # Recursive algorithms mirror induction proofs!
 
 def factorial(n: int) -> int:
@@ -510,6 +512,7 @@ import matplotlib.pyplot as plt
 # ===============================================================
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
+
 # Range is (0, 1), not all of ℝ
 # NOT injective on extended domain if we consider limits
 
@@ -518,6 +521,7 @@ def sigmoid(x):
 # ===============================================================
 def relu(x):
     return np.maximum(0, x)
+
 # f(-1) = f(-2) = f(-100) = 0
 # Many inputs map to same output!
 
@@ -526,6 +530,7 @@ def relu(x):
 # ===============================================================
 def leaky_relu(x, alpha=0.01):
     return np.where(x > 0, x, alpha * x)
+
 # Invertible: different inputs always give different outputs
 # Covers all of ℝ as output
 ```
@@ -795,6 +800,7 @@ print(softmax_stable(x))  # [0.09, 0.24, 0.67] - Correct!
 **Problem 2: Log-Sum-Exp Underflow**
 
 ```python
+
 # ===============================================================
 # PROBLEM: Underflow in naive log-sum-exp
 # ===============================================================
@@ -822,6 +828,7 @@ print(logsumexp_stable(x))  # -999.59 - Correct!
 **Problem 3: Catastrophic Cancellation**
 
 ```python
+
 # ===============================================================
 # PROBLEM: Loss of precision in variance calculation
 # ===============================================================

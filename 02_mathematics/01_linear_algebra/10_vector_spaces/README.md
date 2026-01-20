@@ -134,6 +134,7 @@ $W$ is a subspace iff:
 3. $\alpha \in \mathbb{F}, \mathbf{v} \in W \Rightarrow \alpha\mathbf{v} \in W$ (closed under scaling)
 
 Or equivalently (single condition):
+
 ```math
 \alpha\mathbf{u} + \beta\mathbf{v} \in W \text{ for all } \mathbf{u}, \mathbf{v} \in W, \alpha, \beta \in \mathbb{F}
 ```
@@ -461,6 +462,7 @@ print(f"Nullity: {subspaces['nullity']}")
 ### 🤖 Application 1: Feature Spaces
 
 ```python
+
 # Word embeddings live in a vector space
 # Similar words should be close in this space
 
@@ -497,6 +499,7 @@ def find_all_solutions(A, b):
     General solution = particular solution + null space
     x = x_particular + null(A)
     """
+
     # Particular solution (least-norm)
     x_particular = np.linalg.lstsq(A, b, rcond=None)[0]
     
