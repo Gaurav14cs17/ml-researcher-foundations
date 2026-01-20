@@ -83,7 +83,9 @@ where \( K \in \mathbb{R}^{C_{out} \times C_{in} \times k \times k} \).
 ```
 
 **Depthwise separable:**
+
 1. **Depthwise:** \( K_{dw} \in \mathbb{R}^{C_{in} \times 1 \times k \times k} \)
+
 2. **Pointwise:** \( K_{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 \times 1} \)
 
 ```math

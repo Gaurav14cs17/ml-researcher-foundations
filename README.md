@@ -67,8 +67,11 @@ Whether you're a **CS graduate**, **self-learner**, or **industry practitioner**
 *New to ML math*
 
 Start here 👇
+
 1. [Mathematical Thinking](./01_foundations/01_mathematical_thinking/README.md)
+
 2. [Linear Algebra Basics](./02_mathematics/01_linear_algebra/README.md)
+
 3. [Probability Fundamentals](./03_probability_statistics/01_probability/README.md)
 
 </td>
@@ -78,8 +81,11 @@ Start here 👇
 *Know basics, want depth*
 
 Jump to 👇
+
 1. [Backpropagation](./06_deep_learning/02_backpropagation/README.md)
+
 2. [Optimization Theory](./02_mathematics/03_optimization/README.md)
+
 3. [Transformers](./06_deep_learning/03_architectures/06_transformer/README.md)
 
 </td>
@@ -89,8 +95,11 @@ Jump to 👇
 *Prepping for research*
 
 Explore 👇
+
 1. [🔥 Flash Attention](./06_deep_learning/06_hot_topics/01_flash_attention/flash-attention.md)
+
 2. [🔥 RLHF & DPO](./07_reinforcement_learning/06_applications/02_rlhf/README.md)
+
 3. [🔥 LoRA](./06_deep_learning/06_hot_topics/02_lora/lora.md)
 
 </td>
@@ -205,26 +214,39 @@ This repository includes **detailed mathematical derivations** to help you read 
 These sections now include **complete mathematical derivations** with NO steps skipped:
 
 1. **[Gradient Descent](./04_optimization/02_basic_methods/01_gradient_descent/)** - Convergence proofs, momentum math, paper connections
+
 2. **[Backpropagation](./06_deep_learning/02_backpropagation/)** - Complete derivation, gradient flow, numerical checking
+
 3. **[KL Divergence](./03_probability_statistics/03_information_theory/03_kl_divergence/)** - Gibbs' inequality, VAE derivation, forward/reverse KL
+
 4. **[Lagrange Multipliers](./04_optimization/05_constrained_optimization/02_lagrange/)** - Complete proofs, SVM connection, modern ML
+
 5. **[Transformer Attention](./06_deep_learning/03_architectures/06_transformer/)** - Attention derivation, complexity analysis, Flash Attention
 
 ### 📚 **Recommended Paper Reading Order**
 
 **Beginner Papers:**
+
 1. LeNet (1998) - First CNN
+
 2. AlexNet (2012) - Modern deep learning
+
 3. ResNet (2015) - Skip connections
 
 **Intermediate Papers:**
+
 4. Adam (2014) - Optimization
+
 5. Attention Is All You Need (2017) - Transformers
+
 6. BERT (2018) - Bidirectional encoding
 
 **Advanced Papers:**
+
 7. GPT-2/3 (2019/2020) - Language modeling
+
 8. Flash Attention (2022) - Efficient attention
+
 9. LLaMA (2023) - Modern LLMs
 
 ---
@@ -256,9 +278,11 @@ These sections now include **complete mathematical derivations** with NO steps s
 
 Learning Path:
 --------------
+
 1. Foundations ➡️ 2. Linear Algebra ➡️ 3. Optimization ➡️ 4. Probability
                                                                      |
                                                                      ▼
+
 9. Effic-ML ⬅️ 8. Deployment ⬅️ 7. Compression ⬅️ 6. RL ⬅️ 5. Deep Learning ⬅️ ML Theory
 
 ```
@@ -268,6 +292,7 @@ Learning Path:
 ## 📚 All Sections
 
 ### 🔢 1. Foundations — *Build Your Base*
+
 > **Time: 2 weeks** | Prerequisites: High school math
 
 <details>
@@ -289,6 +314,7 @@ Learning Path:
 ---
 
 ### 📊 2. Mathematics — *The Language of ML*
+
 > **Time: 4 weeks** | Prerequisites: Foundations
 
 <details>
@@ -309,6 +335,7 @@ Learning Path:
 ---
 
 ### 📈 3. Probability & Statistics — *Embrace Uncertainty*
+
 > **Time: 2 weeks** | Prerequisites: Calculus
 
 <details>
@@ -329,6 +356,7 @@ Learning Path:
 ---
 
 ### 🎯 4. Optimization — *The Engine of Learning*
+
 > **Time: 3 weeks** | Prerequisites: Mathematics
 
 <details>
@@ -355,6 +383,7 @@ Learning Path:
 ---
 
 ### 🎯 5. ML Theory — *Understand Why Things Work*
+
 > **Time: 2 weeks** | Prerequisites: Probability, Optimization
 
 <details>
@@ -375,6 +404,7 @@ Learning Path:
 ---
 
 ### 🧬 6. Deep Learning — *The Modern Era*
+
 > **Time: 4 weeks** | Prerequisites: ML Theory, Optimization
 
 <details>
@@ -399,6 +429,7 @@ Learning Path:
 ---
 
 ### 🎮 7. Reinforcement Learning — *Learning from Interaction*
+
 > **Time: 4 weeks** | Prerequisites: Deep Learning
 
 <details>
@@ -422,6 +453,7 @@ Learning Path:
 ---
 
 ### 🗜️ 8. Model Compression — *Make Models Small & Fast*
+
 > **Time: 2 weeks** | Prerequisites: Deep Learning
 
 <details>
@@ -445,6 +477,7 @@ Learning Path:
 ---
 
 ### ⚡ 9. Efficient ML — *MIT 6.5940 Course*
+
 > **Time: 4 weeks** | Prerequisites: Deep Learning, Model Compression
 
 <details>
@@ -724,8 +757,11 @@ Learning alone is hard. Join these communities:
 If this repo helped you:
 
 1. **⭐ Star this repo** - It helps others find it!
+
 2. **🔄 Share** with colleagues and friends
+
 3. **🐛 Report issues** if you find errors
+
 4. **💡 Suggest topics** you want covered
 
 ---

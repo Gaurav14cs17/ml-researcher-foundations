@@ -134,7 +134,9 @@ h_v^{(l+1)} = \Big\|_{k=1}^{K} \sigma\left(\sum_{u \in \mathcal{N}(v)} \alpha_{v
 ### Sampling-Based Aggregation
 
 1. Sample fixed-size neighborhood
+
 2. Aggregate neighbor features
+
 3. Concatenate with self
 
 ```math
@@ -196,8 +198,11 @@ Where $\pi$ is related to node degrees.
 ### Solutions
 
 1. **Residual connections:** $h\_v^{(l+1)} = h\_v^{(l)} + \text{GNN}(h\_v^{(l)})$
+
 2. **JK-Net:** Concatenate features from all layers
+
 3. **DropEdge:** Randomly drop edges during training
+
 4. **PairNorm:** Normalize pairwise distances
 
 ---

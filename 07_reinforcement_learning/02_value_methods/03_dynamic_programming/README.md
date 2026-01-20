@@ -205,8 +205,11 @@ V^π(s) ≤ Q^π(s, π'(s))
 
 ```
 1. Policy space is finite (|A|^|S| policies)
+
 2. Each improvement step strictly improves V or policy is optimal
+
 3. No cycles possible (values strictly increase)
+
 4. Must terminate in ≤ |A|^|S| iterations
 
 In practice: Often converges in O(|S|²|A|) time

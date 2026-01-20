@@ -182,8 +182,11 @@ Bias correction helps, but initial steps are still noisy.
 ## 📊 OneCycle Policy
 
 **Three phases:**
+
 1. **Warmup:** LR increases from $\eta\_{low}$ to $\eta\_{max}$
+
 2. **Annealing:** LR decreases from $\eta\_{max}$ to $\eta\_{low}$
+
 3. **Fine-tune:** LR drops further to $\eta\_{low}/10$
 
 ```

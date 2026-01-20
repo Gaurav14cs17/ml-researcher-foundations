@@ -29,11 +29,17 @@
 ## 📑 Table of Contents
 
 1. [Definition and Intuition](#1-definition-and-intuition)
+
 2. [Differentiation Rules](#2-differentiation-rules)
+
 3. [Common Derivatives](#3-common-derivatives)
+
 4. [Activation Function Derivatives](#4-activation-function-derivatives)
+
 5. [Partial Derivatives](#5-partial-derivatives)
+
 6. [Code Implementation](#6-code-implementation)
+
 7. [Resources](#-resources)
 
 ---

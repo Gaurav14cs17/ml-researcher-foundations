@@ -31,14 +31,23 @@
 ## 📑 Table of Contents
 
 1. [Visual Overview](#-visual-overview)
+
 2. [Singular Value Decomposition (SVD)](#1-singular-value-decomposition-svd)
+
 3. [Eigendecomposition](#2-eigendecomposition)
+
 4. [QR Decomposition](#3-qr-decomposition)
+
 5. [Cholesky Decomposition](#4-cholesky-decomposition)
+
 6. [LU Decomposition](#5-lu-decomposition)
+
 7. [Comparison Table](#-comparison-which-decomposition-to-use)
+
 8. [Code Examples](#-complete-code-examples)
+
 9. [Common Mistakes](#-common-mistakes)
+
 10. [Resources](#-resources)
 
 ---
@@ -744,7 +753,9 @@ For k = 1 to n-1:
 Given PA = LU:
 
 1. Apply permutation: Pb = b'
+
 2. Forward substitution: Solve Ly = b' for y
+
 3. Back substitution: Solve Ux = y for x
 
 Total: O(n³/3) for factorization + O(n²) per solve

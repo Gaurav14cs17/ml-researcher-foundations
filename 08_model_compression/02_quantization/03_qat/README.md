@@ -187,9 +187,13 @@ The normalization $\frac{1}{\sqrt{n \cdot Q\_P}}$ balances gradient magnitudes.
 
 ```
 1. Start with pre-trained FP32 model
+
 2. Insert fake quantization nodes after weights and activations
+
 3. Initialize quantization parameters (scale, zero-point)
+
 4. Fine-tune with lower learning rate (10-100x lower)
+
 5. After training, convert to true quantized model
 
 ```
@@ -289,8 +293,11 @@ b_{folded} = \gamma \cdot \frac{-\mu}{\sqrt{\sigma^2 + \epsilon}} + \beta + \fra
 The fake quantization adds noise $\epsilon = Q(W) - W$.
 
 Similar to regularization, this:
+
 1. Prevents overfitting to precise weight values
+
 2. Finds flatter minima (more robust)
+
 3. Improves generalization
 
 #### 7.2 Convergence Analysis
@@ -298,8 +305,11 @@ Similar to regularization, this:
 **Theorem (Informal):** Under certain conditions, QAT with STE converges to a local minimum.
 
 **Key conditions:**
+
 1. Learning rate decays appropriately
+
 2. Gradient noise is bounded
+
 3. Loss is Lipschitz smooth
 
 **Bias-Variance Tradeoff:**

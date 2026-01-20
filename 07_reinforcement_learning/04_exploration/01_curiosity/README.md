@@ -37,13 +37,16 @@ Curiosity-driven exploration rewards the agent for encountering surprising outco
 
 ```
 Components:
+
 1. Feature Encoder: φ: S → ℝᵈ
    Maps raw states to learned feature space
    
+
 2. Forward Model: f: ℝᵈ × A → ℝᵈ
    φ̂(s_{t+1}) = f(φ(s_t), a_t)
    Predicts next state features
    
+
 3. Inverse Model: g: ℝᵈ × ℝᵈ → A
    â_t = g(φ(s_t), φ(s_{t+1}))
    Predicts action from state transitions

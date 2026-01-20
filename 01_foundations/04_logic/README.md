@@ -68,16 +68,27 @@ By the end of this article, you will be able to:
 ## 📑 Table of Contents
 
 1. [Visual Overview](#-visual-overview)
+
 2. [Propositional Logic](#1-propositional-logic)
+
 3. [Logical Equivalences](#2-logical-equivalences)
+
 4. [Predicate Logic](#3-predicate-logic)
+
 5. [Rules of Inference](#4-rules-of-inference)
+
 6. [Boolean Functions & Neural Networks](#5-boolean-functions--neural-networks)
+
 7. [Logic in ML Papers](#6-logic-in-ml-papers)
+
 8. [Key Formulas Summary](#-key-formulas-summary)
+
 9. [Common Mistakes & Pitfalls](#-common-mistakes--pitfalls)
+
 10. [Code Implementations](#-code-implementations)
+
 11. [Resources](#-resources)
+
 12. [Navigation](#-navigation)
 
 ---

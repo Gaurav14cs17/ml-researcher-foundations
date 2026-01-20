@@ -56,12 +56,15 @@ Problems with naive Q-learning + neural nets:
    Sequential (s, a, r, s') are highly correlated
    → Gradient updates biased
    
+
 2. Non-stationary targets:
    Target y = r + γ max Q(s'; θ) changes as θ updates
    → "Chasing a moving target"
    
 Solutions:
+
 1. Experience Replay → Break correlation
+
 2. Target Network → Stabilize targets
 
 ```

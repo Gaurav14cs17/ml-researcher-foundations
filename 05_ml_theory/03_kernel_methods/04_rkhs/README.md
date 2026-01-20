@@ -43,7 +43,9 @@
 A **Hilbert space** \(\mathcal{H}\) is a complete inner product space:
 
 1. **Inner product:** \(\langle \cdot, \cdot \rangle_\mathcal{H}: \mathcal{H} \times \mathcal{H} \to \mathbb{R}\)
+
 2. **Norm induced by inner product:** \(\|f\|_\mathcal{H} = \sqrt{\langle f, f \rangle_\mathcal{H}}\)
+
 3. **Complete:** Every Cauchy sequence converges in \(\mathcal{H}\)
 
 ### Properties

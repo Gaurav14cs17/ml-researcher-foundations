@@ -262,8 +262,11 @@ def td_lambda(env, policy, num_episodes, alpha=0.1, gamma=0.99, lam=0.9):
 
 ```
 TD(0) converges to true V^π if:
+
 1. Policy is fixed
+
 2. Step size satisfies: Σₜ αₜ = ∞, Σₜ αₜ² < ∞
+
 3. All states visited infinitely often
 
 In practice: α = 0.01 to 0.1 works well

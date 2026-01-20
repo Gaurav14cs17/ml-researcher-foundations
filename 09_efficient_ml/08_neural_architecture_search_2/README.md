@@ -277,9 +277,13 @@ After OFA training, find optimal subnet for target device:
 ```
 
 **Evolutionary search:**
+
 1. Initialize population of random configurations
+
 2. Evaluate accuracy using trained OFA weights (no retraining!)
+
 3. Mutate top-k configurations
+
 4. Repeat until convergence
 
 **Search time:** ~3 hours on CPU (vs. days for traditional NAS).

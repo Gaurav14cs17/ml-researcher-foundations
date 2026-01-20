@@ -205,8 +205,11 @@ where \( |\phi(x)\rangle = U(x)|0\rangle^{\otimes n} \).
 **Potential advantage:** \( |\phi\rangle \) can represent exponentially complex features.
 
 **Computation:**
+
 1. Prepare \( |\phi(x)\rangle \)
+
 2. Apply \( U^\dagger(y) \)
+
 3. Measure probability of \( |0\rangle^{\otimes n} \)
 
 ```math
@@ -242,8 +245,11 @@ For random circuit \( U \) with \( n \) qubits:
 ### Quantum Advantage Conditions
 
 For quantum speedup:
+
 1. **Problem structure:** Must exploit quantum parallelism
+
 2. **Data loading:** Encoding classical data is expensive \( O(N) \)
+
 3. **Readout:** Need efficient way to extract answer
 
 **Current status:**

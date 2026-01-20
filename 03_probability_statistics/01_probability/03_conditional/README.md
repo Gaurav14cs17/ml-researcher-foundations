@@ -34,7 +34,9 @@ P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad \text{for } P(B) > 0
 ### Properties
 
 1. $P(A|B) \in [0, 1]$
+
 2. $P(\Omega|B) = 1$
+
 3. $P(A \cup C|B) = P(A|B) + P(C|B)$ if $A \cap C = \emptyset$
 
 ### Chain Rule

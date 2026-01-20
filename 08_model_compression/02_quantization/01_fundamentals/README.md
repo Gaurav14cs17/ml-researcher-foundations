@@ -293,9 +293,11 @@ Solving: $q\_i = \frac{\int\_{d\_{i-1}}^{d\_i} x \cdot p(x) dx}{\int\_{d\_{i-1}}
 
 ```
 1. Initialize quantization levels {q_i}
+
 2. Repeat until convergence:
    a. Update boundaries: d_i = (q_i + q_{i+1})/2
    b. Update levels: q_i = E[X | d_{i-1} < X ≤ d_i]
+
 3. Return {q_i}, {d_i}
 
 ```

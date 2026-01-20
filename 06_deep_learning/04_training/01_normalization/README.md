@@ -180,8 +180,11 @@ Normalize over $D$ for each token $(b, l)$:
 ### Why LayerNorm for Transformers?
 
 1. **Variable sequence lengths:** Can't compute batch statistics when sequences differ
+
 2. **Batch size = 1:** Common in inference
+
 3. **Consistent behavior:** Same normalization at train and test
+
 4. **Works with attention:** No coupling between sequences
 
 ---
@@ -227,7 +230,9 @@ Speedup: ~10-15% faster
 **Theoretical Justification:**
 
 The re-centering (subtracting mean) in LayerNorm can be redundant because:
+
 1. The subsequent linear layer can learn a bias
+
 2. Many activations are already approximately zero-centered
 
 **Used in:** LLaMA, Mistral, Gemma, and most modern LLMs

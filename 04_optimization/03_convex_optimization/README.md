@@ -292,8 +292,10 @@ subject to  λ ≥ 0
 
 ```
 d* = p* when:
+
 1. Slater's condition: ∃x strictly feasible
    (fᵢ(x) < 0 for all i, hⱼ(x) = 0)
+
 2. Problem is convex
 
 Applications:
@@ -331,9 +333,13 @@ x*, λ*, ν* optimal iff:
 
 ```
 Strategy:
+
 1. Write down KKT conditions
+
 2. Consider cases (which constraints active?)
+
 3. Solve resulting system of equations
+
 4. Verify solution satisfies all conditions
 
 ```

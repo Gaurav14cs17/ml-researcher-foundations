@@ -39,8 +39,11 @@ Where:
 - $K$ = number of clusters
 
 **Lloyd's Algorithm:**
+
 1. **Assignment:** $a\_i = \arg\min\_j \|w\_i - c\_j\|^2$
+
 2. **Update:** $c\_j = \frac{1}{|S\_j|}\sum\_{i \in S\_j} w\_i$ where $S\_j = \{i : a\_i = j\}$
+
 3. Repeat until convergence
 
 ### 2. Compression Analysis

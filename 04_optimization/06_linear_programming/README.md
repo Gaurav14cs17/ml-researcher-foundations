@@ -523,8 +523,11 @@ Conditions for strong duality:
 
 Proof outline (via complementary slackness):
 At optimum, KKT conditions hold:
+
 1. ∇L = 0 (stationarity)
+
 2. Primal and dual feasibility
+
 3. μᵢgᵢ(x) = 0 (complementarity)
 
 These imply strong duality through Lagrangian saddle point. ∎

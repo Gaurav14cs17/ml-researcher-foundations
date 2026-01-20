@@ -55,7 +55,9 @@ p_X(x) = P(X = x)
 ```
 
 **Requirements:**
+
 1. $p\_X(x) \geq 0$ for all $x$
+
 2. $\sum\_x p\_X(x) = 1$
 
 ### Examples
@@ -136,8 +138,11 @@ F_X(x) = P(X \leq x)
 ### Properties
 
 1. $F(-\infty) = 0, \quad F(\infty) = 1$
+
 2. $F$ is non-decreasing
+
 3. $F$ is right-continuous
+
 4. $P(a < X \leq b) = F(b) - F(a)$
 
 ### Relation to PMF/PDF
@@ -253,7 +258,9 @@ M_X(t) = E[e^{tX}]
 ### Properties
 
 1. $M\_X(0) = 1$
+
 2. $\frac{d^n M\_X}{dt^n}\bigg|\_{t=0} = E[X^n]$
+
 3. If $M\_X(t) = M\_Y(t)$ for all $t$, then $X \stackrel{d}{=} Y$
 
 ### Example: Gaussian MGF

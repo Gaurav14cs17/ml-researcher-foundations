@@ -27,12 +27,19 @@
 ## 📑 Table of Contents
 
 1. [Gradient](#1-gradient)
+
 2. [Jacobian Matrix](#2-jacobian-matrix)
+
 3. [Hessian Matrix](#3-hessian-matrix)
+
 4. [Relationships](#4-relationships-between-them)
+
 5. [Matrix Calculus Identities](#5-matrix-calculus-identities)
+
 6. [Code Implementation](#6-code-implementation)
+
 7. [ML Applications](#7-ml-applications)
+
 8. [Resources](#-resources)
 
 ---

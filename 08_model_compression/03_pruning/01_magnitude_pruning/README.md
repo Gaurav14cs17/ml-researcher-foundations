@@ -224,7 +224,9 @@ e_q^T \delta w = -w_q
 
 ```
 1. Train network to convergence: θ_T = train(θ_0)
+
 2. Prune p% of smallest magnitude weights
+
 3. Reset remaining weights to initial values: θ_0' = mask ⊙ θ_0
 4. Repeat from step 1 until target sparsity
 
@@ -235,8 +237,11 @@ e_q^T \delta w = -w_q
 **Lottery Ticket Hypothesis:** The initial weights contain "winning tickets" - sparse subnetworks that can train to full accuracy.
 
 **IMP finds these tickets** by:
+
 1. Training reveals which weights become important
+
 2. Pruning removes unimportant ones
+
 3. Resetting to initialization preserves the "ticket"
 
 #### 5.3 Late Resetting Variant
@@ -275,8 +280,11 @@ where:
 #### 6.2 Why Gradual Works
 
 **Advantages:**
+
 1. Network adapts to sparsity gradually
+
 2. Remaining weights can compensate
+
 3. Better final accuracy than one-shot
 
 **Mathematical intuition:**

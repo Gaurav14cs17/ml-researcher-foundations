@@ -173,9 +173,13 @@ Global Network: θ_global, ω_global
 Workers: N parallel threads, each with local θ_i, ω_i
 
 Worker i:
+
 1. Copy global params: θ_i ← θ_global
+
 2. Collect trajectory in local environment
+
 3. Compute gradients on local network
+
 4. Apply gradients to global network (asynchronous!)
 
 ```

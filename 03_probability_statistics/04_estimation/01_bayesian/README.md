@@ -195,7 +195,9 @@ This is the **ELBO** (Evidence Lower Bound).
 ```
 
 Since $D\_{KL} \geq 0$, ELBO ≤ log P(D). Maximizing ELBO:
+
 1. Maximizes lower bound on evidence
+
 2. Minimizes KL to true posterior
 
 ---

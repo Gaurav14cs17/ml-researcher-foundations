@@ -207,11 +207,13 @@ Simplified version with 2 gates instead of 3:
 
 ```math
 z_t = \sigma(W_z \cdot [h_{t-1}, x_t])
+
 $$ (update gate)
 
 ```
 
 r_t = \sigma(W_r \cdot [h_{t-1}, x_t])
+
 $$ (reset gate)
 
 ```math

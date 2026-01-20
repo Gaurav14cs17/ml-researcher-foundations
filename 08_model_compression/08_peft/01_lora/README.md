@@ -377,7 +377,9 @@ This is independent of how we factor $\Delta W$. The LoRA decomposition only aff
 **Lemma:** With initialization $A \sim \mathcal{N}(0, 1/r)$ and $B = 0$:
 
 1. $\Delta W = 0$ at initialization
+
 2. $\text{Var}(\frac{\partial \mathcal{L}}{\partial A\_{ij}}) = O(1)$ (bounded variance)
+
 3. Training starts from pre-trained model behavior
 
 **Proof of (2):**

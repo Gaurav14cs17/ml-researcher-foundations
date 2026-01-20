@@ -95,7 +95,9 @@ For $b$-bit quantization over range $[-1, 1]$:
 ```
 
 **Lloyd-Max Conditions:**
+
 1. Decision boundaries: $d\_i = \frac{c\_i + c\_{i+1}}{2}$
+
 2. Centroids: $c\_i = \frac{\int\_{d\_{i-1}}^{d\_i} x \cdot p(x) dx}{\int\_{d\_{i-1}}^{d\_i} p(x) dx}$
 
 **For Gaussian distribution:** Non-uniform quantization achieves lower MSE.
@@ -103,9 +105,13 @@ For $b$-bit quantization over range $[-1, 1]$:
 ### 4. Post-Training Quantization (PTQ)
 
 **Algorithm:**
+
 1. Run calibration data through network
+
 2. Collect activation statistics ($x\_{min}$, $x\_{max}$, or histogram)
+
 3. Compute optimal scale and zero-point
+
 4. Quantize weights and set up activation quantization
 
 **Optimal Scale (Min-Max):**

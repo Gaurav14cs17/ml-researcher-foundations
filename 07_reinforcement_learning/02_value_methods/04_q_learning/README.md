@@ -111,6 +111,7 @@ Q-Learning learns optimal policy even with random exploration!
 Q-Learning converges to Q* if:
 
 1. All state-action pairs visited infinitely often
+
 2. Learning rate satisfies:
    Σₜ αₜ = ∞   and   Σₜ αₜ² < ∞
    (e.g., αₜ = 1/t works)

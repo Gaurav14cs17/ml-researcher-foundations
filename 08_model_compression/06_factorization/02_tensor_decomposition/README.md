@@ -149,8 +149,11 @@ W \approx G \times_1 A_{out} \times_2 A_{in} \times_3 A_H \times_4 A_W
 ```
 
 **Implementation as 4 convolutions:**
+
 1. 1×1 conv: $C\_{in} \to R\_2$
+
 2. $R\_3 \times R\_4$ conv: $R\_2 \to R\_1$
+
 3. 1×1 conv: $R\_1 \to C\_{out}$
 
 #### 4.2 Embedding Matrix

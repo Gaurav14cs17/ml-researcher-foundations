@@ -27,10 +27,15 @@
 ## 📑 Table of Contents
 
 1. [Overview](#1-overview)
+
 2. [Low-Rank Matrix Factorization](#2-low-rank-matrix-factorization)
+
 3. [Non-Negative Matrix Factorization](#3-non-negative-matrix-factorization-nmf)
+
 4. [Recommender Systems](#4-recommender-systems)
+
 5. [Code Implementation](#5-code-implementation)
+
 6. [Resources](#-resources)
 
 ---
@@ -182,8 +187,11 @@ Repeat until convergence:
     Vⱼₖ ← Vⱼₖ × (R^TU)ⱼₖ / (VU^TU)ⱼₖ
 
 These updates:
+
 1. Keep values non-negative (positive × positive)
+
 2. Decrease the objective function
+
 3. Converge to a local minimum
 
 ```

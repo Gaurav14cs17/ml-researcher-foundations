@@ -61,7 +61,9 @@ If models are independent with equal variance \(\sigma^2\):
 ### Algorithm
 
 1. Generate \(B\) bootstrap samples \(\mathcal{D}_1, \ldots, \mathcal{D}_B\)
+
 2. Train model \(f_b\) on each \(\mathcal{D}_b\)
+
 3. Aggregate:
    - Regression: \(\hat{f}(x) = \frac{1}{B}\sum_{b=1}^B f_b(x)\)
    - Classification: \(\hat{f}(x) = \text{mode}(\{f_b(x)\}_{b=1}^B)\)
@@ -105,6 +107,7 @@ Adds feature randomization to reduce \(\rho\):
 **For \(t = 1, \ldots, T\):**
 
 1. Train weak learner \(h_t\) on weighted data
+
 2. Compute weighted error:
 
 ```math

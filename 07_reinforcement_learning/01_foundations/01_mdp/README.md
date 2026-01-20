@@ -146,8 +146,11 @@ Q*(s,a) = R(s,a) + γ Σ_{s'} P(s'|s,a) max_{a'} Q*(s',a')
 ### Statement
 
 For any MDP, there exists an optimal policy π* that is:
+
 1. **Deterministic**: π*(s) = argmax_a Q*(s,a)
+
 2. **Stationary**: Does not depend on time
+
 3. **Unique value**: V^{π*}(s) = V*(s) for all s
 
 ### Proof Sketch
@@ -199,7 +202,9 @@ Since γ < 1, T is a contraction.
 
 ```
 1. Q* is the unique fixed point: TQ* = Q*
+
 2. Value iteration converges: Q_{n+1} = TQ_n → Q*
+
 3. Convergence rate: ||Q_n - Q*||_∞ ≤ γⁿ ||Q₀ - Q*||_∞
 
 ```

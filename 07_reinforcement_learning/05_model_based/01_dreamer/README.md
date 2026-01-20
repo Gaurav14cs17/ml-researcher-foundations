@@ -126,9 +126,13 @@ Why both?
 
 ```
 1. Collect experience in real environment (small amount)
+
 2. Train world model on real data
+
 3. Imagine trajectories starting from real states
+
 4. Train actor-critic on imagined trajectories
+
 5. Repeat
 
 Key insight: Backprop through differentiable world model!

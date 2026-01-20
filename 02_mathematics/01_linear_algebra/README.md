@@ -36,19 +36,33 @@
 <summary><strong>Click to expand/collapse</strong></summary>
 
 1. [Visual Overview](#-visual-overview)
+
 2. [Vectors and Basic Operations](#1-vectors-and-basic-operations)
+
 3. [Matrix Operations](#2-matrix-operations)
+
 4. [Vector Norms](#3-vector-norms-complete-theory)
+
 5. [Matrix Norms](#4-matrix-norms)
+
 6. [Eigenvalues and Eigenvectors](#5-eigenvalues-and-eigenvectors)
+
 7. [Spectral Theorem](#6-spectral-theorem-with-proof)
+
 8. [Singular Value Decomposition](#7-singular-value-decomposition-svd)
+
 9. [Low-Rank Approximation](#8-low-rank-approximation-eckart-young-theorem)
+
 10. [Positive Definite Matrices](#9-positive-definite-matrices)
+
 11. [QR Decomposition](#10-qr-decomposition)
+
 12. [Key Formulas Summary](#-key-formulas-summary)
+
 13. [Common Mistakes](#-common-mistakes--pitfalls)
+
 14. [Resources](#-resources)
+
 15. [Subtopics](#-subtopics-in-this-section)
 
 </details>
@@ -414,8 +428,11 @@ A **norm** $\|\cdot\|$ is a function that assigns a non-negative length to vecto
 ### 📐 Norm Axioms
 
 For any norm $\|\cdot\|$:
+
 1. **Non-negativity**: $\|\mathbf{x}\| \geq 0$, with equality iff $\mathbf{x} = \mathbf{0}$
+
 2. **Homogeneity**: $\|\alpha\mathbf{x}\| = |\alpha| \|\mathbf{x}\|$
+
 3. **Triangle Inequality**: $\|\mathbf{x} + \mathbf{y}\| \leq \|\mathbf{x}\| + \|\mathbf{y}\|$
 
 ### 📊 Common Norms
@@ -825,8 +842,11 @@ def pca_eigen(X, n_components):
 ### 📌 Theorem Statement
 
 **Spectral Theorem**: If $A \in \mathbb{R}^{n \times n}$ is symmetric ($A = A^T$), then:
+
 1. All eigenvalues are **real**
+
 2. Eigenvectors can be chosen to be **orthonormal**
+
 3. $A = Q\Lambda Q^T$ where $Q$ is orthogonal
 
 ### 🔍 Complete Proof
@@ -1239,9 +1259,13 @@ A symmetric matrix $A \in \mathbb{R}^{n \times n}$ is:
 **Theorem**: For symmetric $A$, the following are equivalent:
 
 1. $A \succ 0$ (positive definite)
+
 2. All eigenvalues $\lambda\_i > 0$
+
 3. All leading principal minors $> 0$ (Sylvester's criterion)
+
 4. $A = B^T B$ for some invertible $B$
+
 5. Cholesky decomposition $A = LL^T$ exists with $L$ having positive diagonal
 
 ### 🔍 Proof: (1) ⟺ (2)

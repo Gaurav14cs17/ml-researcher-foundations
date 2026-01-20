@@ -117,8 +117,11 @@ m \geq \frac{1}{\varepsilon}\left(d\ln\frac{2}{\varepsilon} + \ln\frac{1}{\delta
 ### Fundamental Theorem of PAC Learning
 
 **Theorem:** The following are equivalent for a hypothesis class \(\mathcal{H}\):
+
 1. \(\mathcal{H}\) is PAC-learnable
+
 2. \(\mathcal{H}\) has finite VC dimension
+
 3. \(\mathcal{H}\) is uniformly learnable (ERM works)
 
 ### Occam's Razor Bound
@@ -137,7 +140,9 @@ m \geq \frac{1}{\varepsilon}\left(d\ln\frac{2}{\varepsilon} + \ln\frac{1}{\delta
 **Theorem:** For any learning algorithm \(\mathcal{A}\) and sample size \(m < |\mathcal{X}|/2\):
 
 There exists a distribution \(\mathcal{D}\) and labeling such that:
+
 1. There exists a perfect classifier in \(\mathcal{H}\)
+
 2. \(\mathcal{A}\)'s expected error \(\geq 1/4\)
 
 **Implication:** No universal best algorithm. Prior assumptions are necessary.

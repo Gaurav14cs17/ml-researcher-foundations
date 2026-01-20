@@ -319,9 +319,13 @@ Test Error
 ```
 
 **Why Double Descent?**
+
 1. **Implicit regularization** from SGD
+
 2. **Flat minima** have better generalization
+
 3. **Lottery ticket hypothesis** - sparse subnetworks generalize
+
 4. **Neural tangent kernel** regime in wide networks
 
 ---

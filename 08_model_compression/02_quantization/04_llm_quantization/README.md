@@ -24,8 +24,11 @@
 ### 1. Challenges in LLM Quantization
 
 **Key Issues:**
+
 1. **Outlier activations:** LLMs have extreme activation values
+
 2. **Scale:** Billions of parameters, can't do full QAT
+
 3. **Sensitivity:** Small errors accumulate over many layers
 
 ---
@@ -116,12 +119,14 @@ Input: Weight matrix W, Hessian H = 2XX^T
 Output: Quantized W_q
 
 1. H_inv = (H + λI)^{-1}  # Damping for stability
+
 2. For each column group B:
    a. For q in B:
       - Quantize: w_q → ŵ_q
       - Error: δ_q = ŵ_q - w_q
       - Update remaining: W[:,q:] -= δ_q / [H_inv]_{qq} · H_inv[q,q:]
    b. Update H_inv using block formula
+
 3. Return W_q
 
 ```
@@ -185,10 +190,15 @@ Input: Weight W, Calibration X
 Output: Quantized W_q, Scales s
 
 1. Compute activation importance: s_act[j] = mean(|X[:,j]|)
+
 2. Compute weight ranges: s_weight[j] = max(|W[:,j]|)
+
 3. Compute optimal scales: s = (s_act / mean(s_act))^α * (s_weight / max(s_weight))^(1-α)
+
 4. Scale weights: W_scaled = W * s
+
 5. Quantize: W_q = Quantize(W_scaled)
+
 6. Store s for inference rescaling
 
 ```
@@ -258,11 +268,17 @@ Input: Model with linear layers Y = XW
 Output: Smoothed model ready for W8A8 quantization
 
 For each linear layer:
+
 1. Collect activation statistics on calibration data
+
 2. Compute per-channel max: max_X[j] = max|X[:,j]|
+
 3. Compute per-channel max: max_W[j] = max|W[j,:]|
+
 4. Compute smoothing factor: s[j] = (max_X[j])^α / (max_W[j])^(1-α)
+
 5. Apply to preceding LayerNorm: γ_new = γ / s
+
 6. Apply to weights: W_new = W * s
 
 ```

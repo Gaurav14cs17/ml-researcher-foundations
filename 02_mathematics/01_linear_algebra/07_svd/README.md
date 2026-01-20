@@ -29,11 +29,17 @@
 ## 📑 Table of Contents
 
 1. [Complete Theory](#1-complete-theory)
+
 2. [Existence Proof](#2-existence-proof)
+
 3. [Eckart-Young Theorem](#3-eckart-young-theorem)
+
 4. [Computing SVD](#4-computing-svd)
+
 5. [Applications](#5-applications)
+
 6. [Code Implementation](#6-code-implementation)
+
 7. [Resources](#-resources)
 
 ---
@@ -278,8 +284,11 @@ Therefore Aₖ is optimal.  ∎
 
 ```
 1. Form AᵀA (n×n, symmetric)
+
 2. Compute eigendecomposition: AᵀA = VΛVᵀ
+
 3. Singular values: σᵢ = √λᵢ
+
 4. Left singular vectors: uᵢ = Avᵢ/σᵢ
 
 Complexity: O(mn² + n³)
@@ -291,7 +300,9 @@ Issue: Forms AᵀA explicitly → numerical issues
 
 ```
 1. Reduce A to bidiagonal form B via orthogonal transforms
+
 2. Apply implicit QR to B to diagonalize
+
 3. Accumulate transforms into U and V
 
 Complexity: O(mn²) for m ≥ n

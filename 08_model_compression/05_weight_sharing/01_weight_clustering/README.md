@@ -44,9 +44,11 @@ where:
 
 ```
 1. Initialize centroids c₁, ..., c_K
+
 2. Repeat until convergence:
    a. Assignment: aᵢ = argmin_j ‖wᵢ - cⱼ‖²
    b. Update: cⱼ = (1/|Sⱼ|) Σᵢ∈Sⱼ wᵢ
+
 3. Return centroids {cⱼ} and assignments {aᵢ}
 
 ```
@@ -184,8 +186,11 @@ c_j \leftarrow c_j - \eta \sum_{i: a_i = j} \frac{\partial \mathcal{L}}{\partial
 #### 5.2 Cluster Re-assignment
 
 **Periodically re-cluster to adapt:**
+
 1. Train for N epochs
+
 2. Re-run K-means on current weights
+
 3. Repeat
 
 ---
@@ -397,9 +402,13 @@ def deep_compression_pipeline(model: nn.Module, n_clusters: int = 16):
 
 ```
 1. Train network normally
+
 2. Prune (remove small weights)
+
 3. Cluster remaining weights
+
 4. Apply Huffman coding
+
 5. Fine-tune centroids
 
 Result: 10-50× compression with minimal accuracy loss

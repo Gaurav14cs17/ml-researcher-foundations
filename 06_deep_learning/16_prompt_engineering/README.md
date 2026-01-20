@@ -31,9 +31,13 @@ ReAct: Reasoning + Acting
 Self-Consistency: Sample multiple times, vote
 
 Prompt Structure:
+
 1. System instruction
+
 2. Context/examples
+
 3. User query
+
 4. Output format specification
 
 ```

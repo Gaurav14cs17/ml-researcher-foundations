@@ -29,14 +29,23 @@
 ## 📑 Table of Contents
 
 1. [Vectors: Definition and Operations](#1-vectors-definition-and-operations)
+
 2. [Dot Product](#2-dot-product-complete-theory)
+
 3. [Vector Norms](#3-vector-norms)
+
 4. [Matrix Operations](#4-matrix-operations)
+
 5. [Matrix Norms](#5-matrix-norms)
+
 6. [Special Matrices](#6-special-matrices)
+
 7. [Trace and Determinant](#7-trace-and-determinant)
+
 8. [Code Implementation](#8-code-implementation)
+
 9. [ML Applications](#9-ml-applications)
+
 10. [Resources](#-resources)
 
 ---
@@ -203,7 +212,9 @@ cos(θ) = (x·y) / (‖x‖‖y‖)
 A **norm** $\|\cdot\|$ is a function satisfying:
 
 1. **Non-negativity**: $\|\mathbf{x}\| \geq 0$, with $\|\mathbf{x}\| = 0 \Leftrightarrow \mathbf{x} = \mathbf{0}$
+
 2. **Homogeneity**: $\|\alpha\mathbf{x}\| = |\alpha| \|\mathbf{x}\|$
+
 3. **Triangle inequality**: $\|\mathbf{x} + \mathbf{y}\| \leq \|\mathbf{x}\| + \|\mathbf{y}\|$
 
 ### 📊 Common Norms

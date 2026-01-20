@@ -228,10 +228,15 @@ Step 6: Simplify to noise prediction
 Mathematical Chain:
 
 1. Want: max log p(x_0)
+
 2. Use: ELBO as lower bound
+
 3. Decompose: into KL terms per timestep
+
 4. Each KL: between Gaussians
+
 5. Simplify: to MSE loss on noise
+
 6. Train: with SGD/Adam
 
 The "score" ε_θ approximates:

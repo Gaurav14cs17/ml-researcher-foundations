@@ -69,8 +69,11 @@ Proof sketch:
 
 ```
 1. Sample trajectory τ = (s₀, a₀, r₀, ..., s_T) using π_θ
+
 2. Compute returns Gₜ = Σₖ₌ₜ^T γᵏ⁻ᵗ rₖ
+
 3. Update: θ ← θ + α Σₜ ∇_θ log π_θ(aₜ|sₜ) · Gₜ
+
 4. Repeat
 
 ```
@@ -96,12 +99,15 @@ High Variance Problem:
     G varies a lot → noisy gradients → slow learning
 
 Solutions:
+
 1. Baseline: Use V(s) as baseline (doesn't change expectation)
     ∇_θ J = E[∇_θ log π(a|s) · (G - V(s))]
     
+
 2. Advantage: A(s,a) = Q(s,a) - V(s)
     ∇_θ J = E[∇_θ log π(a|s) · A(s,a)]
     
+
 3. GAE: λ-weighted combination of n-step advantages
     Â_t^GAE = Σₗ₌₀^∞ (γλ)ˡ δₜ₊ₗ
     where δₜ = rₜ + γV(sₜ₊₁) - V(sₜ)

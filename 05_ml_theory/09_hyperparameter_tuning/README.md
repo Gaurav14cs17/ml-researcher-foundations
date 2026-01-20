@@ -67,10 +67,15 @@ Exhaustive search over a discretized grid:
 **Objective:** Find \(\lambda^* = \arg\min_\lambda f(\lambda)\) where \(f\) is expensive to evaluate.
 
 **Algorithm:**
+
 1. Model \(f(\lambda)\) with surrogate (GP or TPE)
+
 2. Select next \(\lambda\) using acquisition function
+
 3. Evaluate \(f(\lambda)\)
+
 4. Update surrogate
+
 5. Repeat
 
 ---
@@ -120,8 +125,11 @@ where \(\kappa\) controls exploration vs exploitation.
 ### Successive Halving
 
 Given budget \(B\) and \(n\) configurations:
+
 1. Allocate \(B/n\) resources to each configuration
+
 2. Evaluate and keep top \(1/\eta\) fraction
+
 3. Repeat with increased budget
 
 **Theorem:** Successive halving finds the best arm with at most \(O(\frac{B}{\log(n)})\) additional evaluations compared to optimal.

@@ -124,11 +124,14 @@ Solution approaches:
 MBPO (Model-Based Policy Optimization):
 
 1. Collect real data: D_real ← {(s,a,r,s')}
+
 2. Train dynamics ensemble: {f_θ₁, ..., f_θ_K}
+
 3. Generate synthetic data:
    For k = 1 to K_rollouts:
      Sample model f ~ {f_θ₁, ..., f_θ_K}
      Rollout H steps: D_model ← trajectory
+
 4. Train policy on D_real ∪ D_model using SAC
 
 Rollout horizon H matters:

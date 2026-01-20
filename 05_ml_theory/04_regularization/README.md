@@ -154,6 +154,7 @@ Use all neurons with scaled weights:
 
 ```math
 h_i = h_i
+
 $$  (no dropout, weights already scaled during training)
 
 **Theorem (Approximate Bayesian Interpretation):** Dropout approximates Bayesian model averaging.

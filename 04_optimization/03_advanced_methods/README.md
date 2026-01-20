@@ -116,14 +116,19 @@ Memory: O(mn) instead of O(n²)
 Compute H_k · g via two-loop recursion:
 
 Algorithm (Two-Loop Recursion):
+
 1. q = ∇f_k
+
 2. for i = k-1, ..., k-m:
       α_i = ρ_i s_iᵀ q
       q = q - α_i y_i
+
 3. r = H_0 · q   (H_0 = γI, γ = s_{k-1}ᵀy_{k-1}/y_{k-1}ᵀy_{k-1})
+
 4. for i = k-m, ..., k-1:
       β = ρ_i y_iᵀ r
       r = r + (α_i - β) s_i
+
 5. return r = H_k ∇f_k
 
 ```

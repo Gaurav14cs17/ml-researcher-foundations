@@ -48,9 +48,13 @@ L(\theta) = P(D|\theta) = \prod_{i=1}^{n} P(x_i|\theta)
 ```
 
 **Why log?**
+
 1. Products → Sums (numerical stability)
+
 2. Avoids underflow for large n
+
 3. Same argmax (log is monotonic)
+
 4. Simpler gradients
 
 ---

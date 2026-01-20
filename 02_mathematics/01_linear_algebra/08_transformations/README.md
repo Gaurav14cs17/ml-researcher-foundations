@@ -29,13 +29,21 @@
 ## 📑 Table of Contents
 
 1. [Definition and Properties](#1-definition-and-properties)
+
 2. [Matrix Representation](#2-matrix-representation-theorem)
+
 3. [Common Transformations](#3-common-linear-transformations)
+
 4. [Change of Basis](#4-change-of-basis)
+
 5. [Kernel and Image](#5-kernel-and-image)
+
 6. [Rank-Nullity Theorem](#6-rank-nullity-theorem)
+
 7. [Code Implementation](#7-code-implementation)
+
 8. [ML Applications](#8-ml-applications)
+
 9. [Resources](#-resources)
 
 ---
@@ -59,9 +67,11 @@ for all vectors $\mathbf{u}, \mathbf{v} \in V$ and scalars $\alpha, \beta$.
 T is linear if and only if:
 
 1. T(u + v) = T(u) + T(v)     (Additivity)
+
 2. T(αv) = αT(v)              (Homogeneity)
 
 Or equivalently (single condition):
+
 3. T(αu + βv) = αT(u) + βT(v) (Linearity)
 
 ```

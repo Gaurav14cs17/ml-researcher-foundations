@@ -25,7 +25,9 @@
 Adam = **Ada**ptive **M**oment Estimation
 
 It combines:
+
 1. **Momentum** (first moment) - Smooth out gradients
+
 2. **RMSprop** (second moment) - Adaptive learning rate
 
 ```

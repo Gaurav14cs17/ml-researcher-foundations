@@ -49,19 +49,24 @@ where:
 - Teacher: $F\_t^{l'} \in \mathbb{R}^{B \times C\_t \times H' \times W'}$
 
 **Regressor options:**
+
 1. 1×1 convolution: $r(F\_s) = \text{Conv}\_{1\times1}(F\_s)$
+
 2. Linear projection: $r(F\_s) = F\_s W\_r$
+
 3. MLP: $r(F\_s) = \text{MLP}(F\_s)$
 
 #### 1.3 Training Procedure
 
 **Two-stage training:**
+
 1. **Stage 1:** Train hint layers only
 
 ```math
 \min_{\theta_s^{1:l}, W_r} \|r(F_s^l) - F_t^{l'}\|_2^2
 
 ```math
+
 2. **Stage 2:** Train full network with KD
 
 ```

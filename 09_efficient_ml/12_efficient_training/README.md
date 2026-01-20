@@ -76,7 +76,9 @@ w \leftarrow w - \eta \nabla_w \mathcal{L}
 ```
 
 **Mixed precision:**
+
 1. Weights stored in FP32 (master copy)
+
 2. Forward/backward in FP16
 3. Update in FP32
 

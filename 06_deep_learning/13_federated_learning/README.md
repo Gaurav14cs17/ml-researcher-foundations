@@ -207,6 +207,7 @@ Clients share secret keys to mask updates:
 ```
 1. Client k generates random mask r_k such that Σ_k r_k = 0
 2. Client sends masked update: Δw_k + r_k
+
 3. Server computes: Σ_k (Δw_k + r_k) = Σ_k Δw_k
 
 ```

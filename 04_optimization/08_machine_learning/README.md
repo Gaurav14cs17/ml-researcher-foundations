@@ -95,7 +95,9 @@ Properties:
 
 ```
 1. L-smoothness: ||∇f(x) - ∇f(y)|| ≤ L||x - y||
+
 2. Bounded variance: E[||∇fᵢ(θ) - ∇f(θ)||²] ≤ σ²
+
 3. (Optional) μ-strong convexity: f(y) ≥ f(x) + ∇f(x)ᵀ(y-x) + (μ/2)||y-x||²
 
 ```

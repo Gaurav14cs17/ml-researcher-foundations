@@ -47,8 +47,11 @@ Continuous:
 
 ```
 1. Non-negativity: D_KL(P || Q) ≥ 0  (Gibbs' inequality)
+
 2. Zero iff equal: D_KL(P || Q) = 0 ⟺ P = Q
+
 3. Non-symmetric: D_KL(P || Q) ≠ D_KL(Q || P) generally
+
 4. Not a metric: Doesn't satisfy triangle inequality
 
 ```

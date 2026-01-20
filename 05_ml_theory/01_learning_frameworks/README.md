@@ -182,8 +182,11 @@ R(\hat{h}) \leq \hat{R}(\hat{h}) + \sqrt{\frac{2d \log(en/d) + 2\log(2/\delta)}{
 ```
 
 **Proof Sketch:**
+
 1. Apply Hoeffding's inequality to bound deviation for single \(h\)
+
 2. Use union bound over effective hypotheses (bounded by growth function)
+
 3. Apply Sauer's lemma: \(m_{\mathcal{H}}(n) \leq \left(\frac{en}{d}\right)^d\)
 
 ### The Overfitting Problem
@@ -389,6 +392,7 @@ class AutoregressiveLM(nn.Module):
    +-- Vision: MAE (masked autoencoding), SimCLR (contrastive)
    +-- Multi-modal: CLIP (image-text contrastive)
    
+
 2. Supervised fine-tuning (small labeled data)
    +-- Task-specific adaptation (classification, QA, etc.)
 

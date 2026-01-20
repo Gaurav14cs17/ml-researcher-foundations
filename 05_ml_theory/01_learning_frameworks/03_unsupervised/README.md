@@ -48,7 +48,9 @@
 ```
 
 **Algorithm:**
+
 1. **Assign:** \(z_i = \arg\min_k \|x_i - \mu_k\|^2\)
+
 2. **Update:** \(\mu_k = \frac{1}{|C_k|}\sum_{i \in C_k} x_i\)
 
 **Theorem:** K-means converges to a local minimum.
@@ -114,7 +116,9 @@ where \(\Sigma = \frac{1}{n}\sum_i (x_i - \bar{x})(x_i - \bar{x})^\top\) is the 
 For non-linear dimensionality reduction:
 
 1. Compute kernel matrix \(K_{ij} = k(x_i, x_j)\)
+
 2. Center: \(\tilde{K} = K - \frac{1}{n}\mathbf{1}\mathbf{1}^\top K - K\frac{1}{n}\mathbf{1}\mathbf{1}^\top + \frac{1}{n^2}\mathbf{1}\mathbf{1}^\top K \mathbf{1}\mathbf{1}^\top\)
+
 3. Eigendecompose \(\tilde{K}\) and project
 
 ---

@@ -68,17 +68,29 @@ By the end of this article, you will be able to:
 ## 📑 Table of Contents
 
 1. [Visual Overview](#-visual-overview)
+
 2. [Basic Set Operations](#1-basic-set-operations)
+
 3. [Set Laws and Identities](#2-set-laws-and-identities)
+
 4. [Functions](#3-functions)
+
 5. [Relations](#4-relations)
+
 6. [Cardinality](#5-cardinality)
+
 7. [σ-Algebras and Probability Spaces](#6-σ-algebras-and-probability-spaces)
+
 8. [Key Formulas Summary](#-key-formulas-summary)
+
 9. [Common Mistakes & Pitfalls](#-common-mistakes--pitfalls)
+
 10. [Code Implementations](#-code-implementations)
+
 11. [ML Applications](#-ml-applications)
+
 12. [Resources](#-resources)
+
 13. [Navigation](#-navigation)
 
 ---
@@ -634,8 +646,11 @@ F = {∅, {H}, {T}, {H,T}} = P(Ω)     (σ-algebra: all subsets)
 P({H}) = 0.5, P({T}) = 0.5          (Fair coin)
 
 Verify F is σ-algebra:
+
 1. Ω = {H,T} ∈ F  ✓
+
 2. {H}ᶜ = {T} ∈ F, {T}ᶜ = {H} ∈ F, etc.  ✓
+
 3. {H} ∪ {T} = {H,T} ∈ F  ✓
 
 ```

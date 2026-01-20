@@ -75,7 +75,9 @@ An **event** $A$ is a subset of the sample space: $A \subseteq \Omega$
 A **σ-algebra** $\mathcal{F}$ on $\Omega$ is a collection of subsets satisfying:
 
 1. $\Omega \in \mathcal{F}$
+
 2. $A \in \mathcal{F} \Rightarrow A^c \in \mathcal{F}$ (closed under complements)
+
 3. $A\_1, A\_2, \ldots \in \mathcal{F} \Rightarrow \bigcup\_{i=1}^{\infty} A\_i \in \mathcal{F}$ (closed under countable unions)
 
 ### Why σ-Algebras?
@@ -202,8 +204,11 @@ P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad P(B) > 0
 **Theorem:** $P(\cdot|B)$ is a valid probability measure on $(\Omega, \mathcal{F})$.
 
 **Proof:** Verify the three axioms:
+
 1. $P(A|B) = P(A \cap B)/P(B) \geq 0$ ✓
+
 2. $P(\Omega|B) = P(\Omega \cap B)/P(B) = P(B)/P(B) = 1$ ✓
+
 3. Additivity follows from additivity of $P$. $\quad \blacksquare$
 
 ---

@@ -29,12 +29,19 @@
 ## 📑 Table of Contents
 
 1. [Gradient Descent](#1-gradient-descent)
+
 2. [Convergence Analysis](#2-convergence-analysis)
+
 3. [Momentum](#3-momentum)
+
 4. [Nesterov Accelerated Gradient](#4-nesterov-accelerated-gradient)
+
 5. [Learning Rate Selection](#5-learning-rate-selection)
+
 6. [Proximal Methods](#6-proximal-methods)
+
 7. [Code Implementation](#7-code-implementation)
+
 8. [Resources](#-resources)
 
 ---
@@ -210,8 +217,11 @@ Physical analogy:
   • β = friction (1-β = damping)
 
 The ball:
+
 1. Builds up speed in consistent gradient directions
+
 2. Averages out oscillations
+
 3. Can "roll through" small local minima
 
 Effect on ill-conditioned problems:

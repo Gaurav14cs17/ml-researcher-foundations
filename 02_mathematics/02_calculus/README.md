@@ -649,8 +649,11 @@ This explains exploding/vanishing gradients!
 Training a Neural Network:
 
 1. Forward pass: compute ŷ = f(x; θ)
+
 2. Loss: L = loss(ŷ, y)
+
 3. Backward pass: ∂L/∂θ = ???    ← Need calculus!
+
 4. Update: θ ← θ - α · ∂L/∂θ    ← Gradient descent!
 
 The entire deep learning revolution is built on:

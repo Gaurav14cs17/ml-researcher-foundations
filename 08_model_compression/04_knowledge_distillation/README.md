@@ -216,8 +216,11 @@ Teacher (Large):                     Student (Small):
 +----------------+                   +----------------+
 
 Student learns:
+
 1. Hard labels (ground truth)          → What's correct
+
 2. Soft labels (teacher probs)         → Class relationships
+
 3. Intermediate features (optional)    → Internal representations
 
 ```

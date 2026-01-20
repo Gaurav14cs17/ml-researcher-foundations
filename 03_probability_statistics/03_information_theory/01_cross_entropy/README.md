@@ -98,7 +98,9 @@ where H(P) is the entropy of P.
 ```
 1. Non-negative: H(P, Q) ≥ 0
 2. Minimum at equality: H(P, Q) ≥ H(P), with equality iff P = Q
+
 3. Not symmetric: H(P, Q) ≠ H(Q, P) in general
+
 4. Lower bounded by entropy: H(P, Q) ≥ H(P)
 
 ```

@@ -99,9 +99,13 @@ V: Vertices (operations + values)
 E: Directed edges (data flow)
 
 Properties:
+
 1. Acyclic (no loops)
+
 2. Sources = inputs/parameters
+
 3. Sinks = outputs
+
 4. Topological order for forward/backward
 
 ```
@@ -816,12 +820,15 @@ PyTorch:
 1. Newton's Method:
    θ_new = θ - H⁻¹·g
    
+
 2. Hessian-free optimization:
    Compute H·v without full H
    
+
 3. Adversarial training:
    Regularize by gradient penalty
    
+
 4. Meta-learning:
    MAML requires second-order gradients
 
@@ -835,8 +842,11 @@ PyTorch:
 
 ```
 1. Operation not in PyTorch/TensorFlow
+
 2. Need custom backward pass for efficiency
+
 3. Want to stop gradients in specific way
+
 4. Implement non-differentiable operations with surrogate gradients
 
 ```

@@ -117,8 +117,11 @@ N_k = \sum_i \gamma_{ik}
 ### Algorithm
 
 1. Construct similarity graph with adjacency \(W\)
+
 2. Compute normalized Laplacian \(L = I - D^{-1/2}WD^{-1/2}\)
+
 3. Find \(k\) smallest eigenvectors of \(L\)
+
 4. Run k-means on eigenvector embeddings
 
 ### Graph Laplacian
@@ -144,8 +147,11 @@ N_k = \sum_i \gamma_{ik}
 ### Algorithm
 
 1. Find all core points
+
 2. Connect core points within \(\epsilon\) distance
+
 3. Assign border points to clusters
+
 4. Mark remaining as noise
 
 **Advantage:** Finds arbitrary-shaped clusters, identifies outliers.

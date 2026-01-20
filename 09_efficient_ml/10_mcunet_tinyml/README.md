@@ -69,8 +69,11 @@ Running machine learning on **microcontrollers** (MCUs):
 ## TinyML Challenges
 
 1. **Memory** — Model + activations must fit in KB
+
 2. **No OS** — Direct hardware access
+
 3. **No floating point** — Many MCUs only support INT
+
 4. **Limited compute** — 100MHz vs 3GHz
 
 ---
@@ -241,8 +244,11 @@ M_{peak} = C \times H \times W + C' \times H \times W
 ### Im2col-Free Convolution
 
 **Standard im2col:**
+
 1. Reshape input to matrix: \( M_{im2col} = C_{in} \times k^2 \times H' \times W' \)
+
 2. Matrix multiply with reshaped kernel
+
 3. Memory: \( O(C_{in} \cdot k^2 \cdot H' \cdot W') \)
 
 **Im2col-free:**
@@ -259,8 +265,11 @@ M_{peak} = C \times H \times W + C' \times H \times W
 ### Quantization for MCUs
 
 **INT8 quantization benefits:**
+
 1. **Memory:** 4× reduction (FP32 → INT8)
+
 2. **Compute:** Use SIMD instructions (4 ops per cycle)
+
 3. **No FPU:** Many MCUs lack floating-point unit
 
 **Per-layer quantization:**

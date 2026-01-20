@@ -29,13 +29,21 @@
 ## 📑 Table of Contents
 
 1. [SGD Fundamentals](#1-sgd-fundamentals)
+
 2. [Momentum](#2-momentum)
+
 3. [Adam Optimizer](#3-adam-optimizer)
+
 4. [AdamW](#4-adamw)
+
 5. [Convergence Theory](#5-convergence-theory)
+
 6. [Learning Rate Schedules](#6-learning-rate-schedules)
+
 7. [Code Implementation](#7-code-implementation)
+
 8. [Which Optimizer to Use](#8-which-optimizer-to-use)
+
 9. [Resources](#-resources)
 
 ---
@@ -185,8 +193,11 @@ PHYSICAL ANALOGY:
   β = friction coefficient
 
 The ball:
+
 1. Accelerates along consistent gradient directions
+
 2. Dampens oscillations in inconsistent directions
+
 3. Builds up speed going downhill
 
 WHY IT HELPS:
@@ -590,6 +601,7 @@ opt_adamw = optim.AdamW(model.parameters(), lr=1e-4, weight_decay=0.01)
    Larger batch = more stable but may need larger lr
    Linear scaling: double batch → double lr (up to a point)
    
+
 5. WEIGHT DECAY:
    Transformers: 0.01 - 0.1
    CNNs: 1e-4 - 1e-3

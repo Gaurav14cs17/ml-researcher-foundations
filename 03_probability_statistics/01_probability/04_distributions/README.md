@@ -193,8 +193,11 @@ H(X) = -\int p(x)\log p(x) \, dx
 ```
 
 Subject to:
+
 1. $\int p(x) dx = 1$ (normalization)
+
 2. $\int x \cdot p(x) dx = \mu$ (fixed mean)
+
 3. $\int (x-\mu)^2 \cdot p(x) dx = \sigma^2$ (fixed variance)
 
 **Lagrangian:**

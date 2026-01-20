@@ -285,6 +285,7 @@ y_{\text{smooth}} = [0.02, 0.02, 0.92, 0.02, 0.02]
 
 1. **Prevents overconfidence:** Model doesn't try to output probability 1
 2. **Softens gradients:** Reduces magnitude of gradients near convergence
+
 3. **Improves calibration:** Better probability estimates
 
 ---

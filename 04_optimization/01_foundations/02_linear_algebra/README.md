@@ -152,7 +152,9 @@ Av = λv
 For symmetric A = Aᵀ:
 
 1. All eigenvalues are real
+
 2. Eigenvectors are orthogonal
+
 3. A = QΛQᵀ (spectral decomposition)
    where:
    Q = [v₁, v₂, ..., vₙ]  (orthonormal eigenvectors)
@@ -290,6 +292,7 @@ where:
 
 2. PCA: Principal components are right singular vectors
    
+
 3. Least squares: x = A⁺b when A is rank-deficient
 
 4. Conditioning: κ(A) = σ_max/σ_min

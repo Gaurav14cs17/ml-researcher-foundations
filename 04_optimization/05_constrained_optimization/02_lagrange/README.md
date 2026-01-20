@@ -264,6 +264,7 @@ to decrease f → not optimal!
 ### 2. Second-Order Sufficient Conditions
 
 **Theorem:** If at (x*, λ*):
+
 1. First-order conditions hold: ∇L = 0
 2. LICQ holds: ∇g(x*) ≠ 0
 3. ∇²ₓₓL(x*, λ*) is positive definite on T

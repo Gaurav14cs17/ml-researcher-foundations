@@ -30,7 +30,9 @@
 Let $f(x; \theta)$ be a neural network with parameters $\theta\_0$ at initialization.
 
 **Claim:** There exists a mask $m \in \{0,1\}^{|\theta|}$ such that:
+
 1. $\|m\|\_0 \ll |\theta|$ (high sparsity, e.g., 90%+)
+
 2. $f(x; m \odot \theta\_0)$ trained for $T$ iterations achieves:
 
 ```math
@@ -51,12 +53,14 @@ Input: Network f, initial weights θ₀, target sparsity s, prune rate p
 Output: Winning ticket (m, θ₀)
 
 1. Initialize: m = 1 (all ones)
+
 2. While sparsity(m) < s:
    a. Train: θ_T = train(m ⊙ θ₀, T iterations)
    b. Prune: Remove p% of smallest |m ⊙ θ_T| weights
    c. Update mask: m' = m ⊙ (|θ_T| > threshold)
    d. Reset: θ ← θ₀
    e. m ← m'
+
 3. Return (m, θ₀)
 
 ```
@@ -143,10 +147,15 @@ f_m(x; \theta) \approx f(x; \theta_0) + (m \odot \nabla_\theta f(x; \theta_0))^T
 ```
 
 Modified IMP:
+
 1. Train for k iterations: θ_k = train(θ₀, k iterations)
+
 2. Continue training: θ_T = train(θ_k, T-k iterations)
+
 3. Prune based on |θ_T|
+
 4. Reset to θ_k (not θ₀)
+
 5. Repeat
 
 ```
@@ -225,6 +234,7 @@ This proves IMP is finding something special, not just any sparse mask.
 P(\|w - v\| < \epsilon) \geq \left(\frac{\epsilon}{2B}\right)^d
 
 ```math
+
 3. **Union bound:** With $m$ random neurons, probability of finding match for all $n$ targets:
 
 ```
@@ -232,6 +242,7 @@ P(\|w - v\| < \epsilon) \geq \left(\frac{\epsilon}{2B}\right)^d
 P(\text{all matched}) \geq 1 - n \cdot \left(1 - \left(\frac{\epsilon}{2B}\right)^d\right)^m
 
 ```math
+
 4. **Required width:** Setting $m = O(n \cdot (2B/\epsilon)^d \cdot \log(n/\delta))$ ensures success.
 
 For ReLU networks with polynomial target, $d$ is effectively small due to low-rank structure. ∎

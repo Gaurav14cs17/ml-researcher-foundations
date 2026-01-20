@@ -29,12 +29,19 @@
 ## 📑 Table of Contents
 
 1. [Single Variable Chain Rule](#1-single-variable-chain-rule)
+
 2. [Multivariate Chain Rule](#2-multivariate-chain-rule)
+
 3. [Proof of Chain Rule](#3-proof-of-chain-rule)
+
 4. [Backpropagation](#4-backpropagation)
+
 5. [Forward vs Backward Mode](#5-forward-vs-backward-mode)
+
 6. [Computational Graphs](#6-computational-graphs)
+
 7. [Code Implementation](#7-code-implementation)
+
 8. [Resources](#-resources)
 
 ---

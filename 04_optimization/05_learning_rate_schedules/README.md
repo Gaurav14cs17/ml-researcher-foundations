@@ -46,6 +46,7 @@
 For stochastic approximation to converge:
 
 1. Σₜ αₜ = ∞        (step sizes sum to infinity)
+
 2. Σₜ αₜ² < ∞       (step sizes are square-summable)
 
 Interpretation:

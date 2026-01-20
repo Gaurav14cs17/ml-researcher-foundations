@@ -58,14 +58,20 @@ This lecture covers **advanced pruning topics** and the famous Lottery Ticket Hy
 ### Key Findings
 
 1. Random init → Train → Prune → **Reset to original init** → Retrain
+
 2. The "winning ticket" trains just as well as the original!
+
 3. But random reinitialization doesn't work
 
 ```
 Finding Winning Tickets:
+
 1. Train network to completion
+
 2. Prune smallest weights
+
 3. Reset remaining weights to ORIGINAL initialization
+
 4. Retrain from scratch → Same accuracy!
 
 ```
@@ -133,7 +139,9 @@ Every 4 consecutive elements, exactly 2 must be zero:
 Instead of fixed sparsity patterns, let them change during training:
 
 1. **RigL** - Periodic weight regrowth
+
 2. **SET** - Sparse evolutionary training
+
 3. **SNIP** - Prune at initialization
 
 ```python
@@ -296,8 +304,11 @@ For weights \( W = [w_1, w_2, w_3, w_4] \), the 2:4 approximation keeps the 2 la
 **Algorithm:**
 
 At each update step:
+
 1. **Drop:** Remove fraction \( \alpha \) of weights with smallest magnitude
+
 2. **Grow:** Add same number of weights with largest gradient magnitude
+
 3. **Train:** Update remaining weights
 
 **Drop criterion:**

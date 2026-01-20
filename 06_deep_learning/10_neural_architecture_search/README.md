@@ -25,11 +25,13 @@
 
 ```
 1. Search Space: Possible operations and connections
+
 2. Search Strategy: How to explore the space
    • Random search
    • Evolutionary algorithms
    • Reinforcement learning
    • Differentiable (DARTS)
+
 3. Performance Estimation: Evaluate candidate architectures
 
 ```

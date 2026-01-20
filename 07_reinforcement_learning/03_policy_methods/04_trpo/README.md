@@ -165,8 +165,11 @@ This is the expected outer product of the score function.
 
 ```
 1. F is positive semi-definite
+
 2. F measures the curvature of the KL divergence
+
 3. F^{-1} transforms gradients to natural gradient space
+
 4. Natural gradients are invariant to parameterization
 
 ```
@@ -209,7 +212,9 @@ The key is that F p_k (Fisher-vector product) can be computed efficiently!
 ## 📐 Line Search for Constraint Satisfaction
 
 After finding the search direction, perform line search to ensure:
+
 1. The constraint is satisfied
+
 2. The objective actually improves
 
 ```
@@ -416,10 +421,15 @@ PPO approximates TRPO's trust region with clipping:
 L_PPO(θ) = E[min(ρ(θ)A, clip(ρ(θ), 1-ε, 1+ε)A)]
 
 Benefits:
+
 1. No conjugate gradient needed
+
 2. No Fisher information matrix
+
 3. Works with standard SGD
+
 4. Easier to implement and tune
+
 5. Comparable or better performance
 
 ```

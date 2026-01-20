@@ -106,6 +106,7 @@ This means LP-based approximations can be at most
 
 ```
 Algorithm:
+
 1. INITIALIZE: 
    - Solve LP relaxation → z_LP, x_LP
    - Best integer solution z* = ∞
@@ -284,6 +285,7 @@ Combine branch & bound with cutting planes:
    - Generate violated cuts
    - Add cuts and re-solve
    
+
 2. Branch when no more cuts found
 
 Most successful approach for modern MIP solvers
@@ -549,6 +551,7 @@ For NP-hard problems, sometimes approximations are sufficient:
 Technique for deriving integer solutions from LP:
 
 1. Solve LP relaxation → fractional x*
+
 2. Round to integers (various strategies):
    - Randomized rounding: round x_i to 1 with probability x*_i
    - Deterministic rounding: threshold at 1/2

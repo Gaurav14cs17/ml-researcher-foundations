@@ -27,7 +27,9 @@ Standard attention has a memory bottleneck:
 
 ```
 1. S = QK^T           → n × n matrix (materialize!)
+
 2. A = softmax(S)     → n × n matrix (materialize!)  
+
 3. O = AV             → n × d matrix
 
 Memory: O(n²) - prohibitive for long sequences!
@@ -167,7 +169,9 @@ This is $O(n^2)$ memory!
 ### Flash Attention Solution: Recomputation
 
 Instead of storing $A$:
+
 1. Store only $O$, $L$ (row sums), $M$ (row maxes)
+
 2. Recompute $A$ during backward pass in tiled fashion
 
 **Memory:** $O(n)$ instead of $O(n^2)$  
@@ -331,8 +335,11 @@ for seq_len in [1024, 4096, 8192, 16384]:
 ### Applications Enabled
 
 1. **Long Document QA:** Process full papers, books
+
 2. **Code Understanding:** Analyze entire repositories  
+
 3. **Long-form Generation:** Write coherent long articles
+
 4. **Conversation History:** Remember full chat context
 
 ---

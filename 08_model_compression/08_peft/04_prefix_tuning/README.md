@@ -140,8 +140,11 @@ where:
 - MLP: $\mathbb{R}^{d'} \to \mathbb{R}^d$
 
 **Benefits:**
+
 1. Lower-dimensional optimization
+
 2. More stable training
+
 3. Regularization effect
 
 #### 4.3 After Training

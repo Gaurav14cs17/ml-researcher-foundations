@@ -44,7 +44,9 @@ Kernels enable working in high-dimensional feature spaces efficiently. They're t
 Kernel k(x, x') = ⟨φ(x), φ(x')⟩
 
 Instead of:
+
 1. Map x → φ(x) in high-D space
+
 2. Compute inner product
 
 Just compute:

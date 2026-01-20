@@ -174,8 +174,11 @@ LoRA learns $B$ and $A$ such that $BA \approx \Delta W\_r$.
 **Hypothesis:** Fine-tuning adjusts weights in a low-dimensional subspace.
 
 **Evidence:**
+
 1. Top $r=8$ singular values capture most variance of $\Delta W$
+
 2. Downstream tasks are "nearby" in parameter space
+
 3. Empirical: $r=8-16$ matches full fine-tuning performance
 
 ---

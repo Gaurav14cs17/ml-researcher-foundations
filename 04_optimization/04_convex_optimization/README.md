@@ -24,7 +24,9 @@
 ## 🎯 What is Convex Optimization?
 
 A convex optimization problem has:
+
 1. **Convex objective** function (bowl-shaped)
+
 2. **Convex constraint** set (no holes, connected)
 
 ```

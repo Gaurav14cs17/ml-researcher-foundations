@@ -180,8 +180,11 @@ For a cat image, the teacher might output:
 - P(car) = 0.05
 
 The student learns:
+
 1. This is a cat
+
 2. Cats look somewhat like dogs (both are animals)
+
 3. Cats don't look like cars
 
 **Formal interpretation:**
@@ -248,8 +251,11 @@ where \( A_l = \sum_c |F_l^c|^2 \) is the spatial attention map.
 **Observation:** A model can distill from itself!
 
 **Process:**
+
 1. Train model \( M_1 \)
+
 2. Use \( M_1 \) as teacher, train \( M_2 \) (same architecture)
+
 3. \( M_2 \) typically has 1-2% higher accuracy
 
 **Explanation:**
@@ -280,8 +286,11 @@ W^S_l = W^T_{2l}
 ```
 
 **Training objectives:**
+
 1. **MLM loss:** Standard masked language modeling
+
 2. **Distillation loss:** Match teacher's soft predictions
+
 3. **Cosine embedding loss:** Match hidden states
 
 ```math
@@ -300,8 +309,10 @@ W^S_l = W^T_{2l}
 **Solution:** Distill from outputs only.
 
 **Alpaca approach:**
+
 1. Generate (instruction, response) pairs using GPT-4
 2. Fine-tune LLaMA on these pairs
+
 3. Student learns to mimic GPT-4's behavior
 
 **Mathematical formulation:**

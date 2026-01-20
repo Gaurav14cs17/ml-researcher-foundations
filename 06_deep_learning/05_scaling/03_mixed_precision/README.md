@@ -46,9 +46,13 @@ Same range as FP32, less precision
 Problem: Small gradients underflow in FP16
 
 Solution:
+
 1. Scale loss: L_scaled = L × scale_factor (e.g., 1024)
+
 2. Backward: gradients are scaled
+
 3. Unscale: gradient = scaled_gradient / scale_factor
+
 4. Update: θ ← θ - α × gradient
 
 Dynamic scaling: Adjust scale_factor based on overflow detection
@@ -85,7 +89,9 @@ sum = Σᵢ xᵢ  (computed in FP32 to avoid error accumulation)
 
 ```
 1. Forward/Backward in FP16 (fast!)
+
 2. Master weights in FP32 (accurate updates)
+
 3. Loss scaling (prevent underflow)
 
 ```

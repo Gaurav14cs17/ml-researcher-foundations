@@ -115,7 +115,9 @@ This is asymptotically optimal! No algorithm can do better than O(ln T).
 Key insight: An arm a with Δ_a > 0 can only be pulled if either:
 
 1. The estimate Q̂(a) is too optimistic (concentration failure)
+
 2. The estimate Q̂(*) for the best arm is too pessimistic
+
 3. The exploration bonus is still large
 
 The probability of (1) and (2) decreases with t.

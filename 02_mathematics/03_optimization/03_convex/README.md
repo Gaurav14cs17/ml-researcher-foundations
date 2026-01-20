@@ -29,12 +29,19 @@
 ## 📑 Table of Contents
 
 1. [Convex Sets](#1-convex-sets)
+
 2. [Convex Functions](#2-convex-functions)
+
 3. [Conditions for Convexity](#3-conditions-for-convexity)
+
 4. [Operations Preserving Convexity](#4-operations-preserving-convexity)
+
 5. [Strong Convexity](#5-strong-convexity)
+
 6. [Convex Optimization Problems](#6-convex-optimization-problems)
+
 7. [Code Examples](#7-code-examples)
+
 8. [Resources](#-resources)
 
 ---

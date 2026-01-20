@@ -144,8 +144,11 @@ Return x_k
 **Theorem 1: Sublinear Convergence**
 
 **Assumptions:**
+
 1. f is convex
+
 2. f is L-smooth: \(\|\nabla f(x) - \nabla f(y)\| \leq L\|x - y\|\)
+
 3. Step size: α = 1/L
 
 **Conclusion:** \(f(x_k) - f(x^*) \leq \frac{2L\|x_0 - x^*\|^2}{k}\)
@@ -612,8 +615,11 @@ def backtracking_line_search(f, x, g, d, alpha=1.0, beta=0.5, c=0.1):
 
 ```
 1. Hessian computation: O(n²) storage, O(n³) solve
+
 2. Non-positive definite H: Direction may not be descent
+
 3. Far from optimum: May diverge without damping
+
 4. Saddle points: H singular or indefinite
 
 Solutions:

@@ -496,6 +496,7 @@ Explanations:
    Small batch: More noise, better generalization
    Large batch: Faster convergence, may overfit
    
+
 4. Learning rate most critical
    Too high: Divergence or oscillation
    Too low: Slow convergence
@@ -674,8 +675,11 @@ print(f"Optimal: {x.data}")  # Close to [0, 0]
 
 ```
 Assumptions:
+
 1. f is μ-strongly convex: f(y) ≥ f(x) + ∇f(x)ᵀ(y-x) + (μ/2)||y-x||²
+
 2. ∇f is L-Lipschitz: ||∇f(x) - ∇f(y)|| ≤ L||x-y||
+
 3. Step size: α = 1/L
 
 ```

@@ -180,8 +180,11 @@ Output (narrow) + Skip
 where $t \in \{1, 6\}$ is expansion factor.
 
 **Total operations:**
+
 1. Expand: $C\_{in} \times t \cdot C\_{in} = t \cdot C\_{in}^2$
+
 2. Depthwise: $t \cdot C\_{in} \times K^2$
+
 3. Project: $t \cdot C\_{in} \times C\_{out}$
 
 ---

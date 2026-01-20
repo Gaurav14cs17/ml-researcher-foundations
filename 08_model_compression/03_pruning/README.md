@@ -109,15 +109,20 @@ If $s\_i < 0$: weight is moving toward zero (can prune)
 Let $f(x; \theta)$ be a dense neural network. There exists a sparse mask $m \in \{0,1\}^{|\theta|}$ such that:
 
 1. $\|m\|\_0 \ll |\theta|$ (high sparsity)
+
 2. $f(x; m \odot \theta\_0)$ trained for $T$ iterations achieves accuracy $\geq f(x; \theta\_T) - \epsilon$
 
 **IMP Algorithm:**
 
 ```
 1. θ₀ ~ init()
+
 2. θ_T = train(θ₀, T iterations)
+
 3. m = magnitude_prune(θ_T, keep p%)
+
 4. θ₀' = m ⊙ θ₀  (reset to init with mask)
+
 5. Repeat from step 2 with θ₀'
 
 ```

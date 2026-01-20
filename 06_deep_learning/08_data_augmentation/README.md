@@ -121,8 +121,11 @@ Where $\lambda \sim \text{Beta}(\alpha, \alpha)$ (typically $\alpha=0.2$).
 ### Why It Works
 
 Mixup encourages:
+
 1. **Linear behavior between samples:** Smoother decision boundaries
+
 2. **Regularization:** Reduces overconfidence
+
 3. **Data efficiency:** Creates infinite virtual samples
 
 ### Loss with Mixup
@@ -139,12 +142,14 @@ Mixup encourages:
 ### Algorithm
 
 1. Sample $\lambda \sim \text{Beta}(\alpha, \alpha)$
+
 2. Sample bounding box $B = (r\_x, r\_y, r\_w, r\_h)$ where:
 
 ```math
 r_w = W\sqrt{1-\lambda}, \quad r_h = H\sqrt{1-\lambda}
 
 ```math
+
 3. Combine:
 
 ```
@@ -188,6 +193,7 @@ Use reinforcement learning to find optimal policy:
 No search required:
 
 1. Sample $N$ random transforms
+
 2. Apply with magnitude $M$
 
 ```math
@@ -218,8 +224,11 @@ x \xrightarrow{\text{translate}} x_{foreign} \xrightarrow{\text{translate back}}
 ### EDA (Easy Data Augmentation)
 
 1. Synonym replacement
+
 2. Random insertion
+
 3. Random swap
+
 4. Random deletion
 
 ---

@@ -203,8 +203,11 @@ where $h(V) \in [0,1]$ is a learned soft indicator and $V$ is optimized.
 ```
 
 **Algorithm:**
+
 1. Quantize first block, minimize reconstruction error
+
 2. Use quantized output as input to next block
+
 3. Repeat for all blocks
 
 ---

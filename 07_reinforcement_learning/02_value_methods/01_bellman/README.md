@@ -123,7 +123,9 @@ V_{k+1}(s) = maxₐ [R(s,a) + γ Σₛ' P(s'|s,a) Vₖ(s')]
 Repeat until convergence.
 
 Policy Iteration:
+
 1. Policy Evaluation: Compute Vπ (solve linear system)
+
 2. Policy Improvement: π'(s) = argmaxₐ Qπ(s,a)
 Repeat until policy doesn't change.
 

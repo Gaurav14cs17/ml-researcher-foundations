@@ -131,8 +131,11 @@ For 7B model: $7B \times 8 = 56$ GB just for optimizer!
 #### 4.2 Paged Solution
 
 **Use CPU RAM when GPU runs out:**
+
 1. Keep frequently accessed states on GPU
+
 2. Page out less-used states to CPU
+
 3. Automatic transfer via NVIDIA unified memory
 
 **Implementation:** Use `bitsandbytes` paged optimizers.
@@ -190,7 +193,9 @@ h = Q_{NF4}(W_0) \cdot x + \frac{\alpha}{r} BA \cdot x
 #### 6.2 Dequantization for Compute
 
 **During forward pass:**
+
 1. Dequantize block of weights to FP16: $W\_{fp16} = s \cdot W\_q$
+
 2. Compute matmul in FP16
 3. Add LoRA contribution
 

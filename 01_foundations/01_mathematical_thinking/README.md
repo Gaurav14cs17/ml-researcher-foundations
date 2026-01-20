@@ -66,16 +66,27 @@ By the end of this article, you will be able to:
 ## 📑 Table of Contents
 
 1. [Visual Overview](#-visual-overview)
+
 2. [Abstraction in Mathematics](#1-abstraction-in-mathematics)
+
 3. [Necessary vs Sufficient Conditions](#2-necessary-vs-sufficient-conditions)
+
 4. [Definitions vs Theorems](#3-definitions-vs-theorems)
+
 5. [Counterexamples](#4-counterexamples)
+
 6. [Logical Quantifiers](#5-logical-quantifiers)
+
 7. [Key Formulas Summary](#-key-formulas-summary)
+
 8. [Common Mistakes & Pitfalls](#-common-mistakes--pitfalls)
+
 9. [Code Implementations](#-code-implementations)
+
 10. [ML Applications](#-ml-applications)
+
 11. [Resources](#-resources)
+
 12. [Navigation](#-navigation)
 
 ---
@@ -1162,10 +1173,15 @@ Mathematical Thinking in ML: Complete Implementation
 =====================================================
 
 This module demonstrates key concepts in mathematical thinking:
+
 1. Abstraction levels
+
 2. Necessary vs Sufficient conditions
+
 3. Definitions vs Theorems
+
 4. Counterexamples
+
 5. Logical quantifiers
 """
 

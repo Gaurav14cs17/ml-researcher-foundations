@@ -362,9 +362,13 @@ d_M(\mathbf{x}, \boldsymbol{\mu}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \
 **Principal Component Analysis:**
 
 1. Center data: $\tilde{\mathbf{X}}\_i = \mathbf{X}\_i - \bar{\mathbf{X}}$
+
 2. Compute sample covariance: $\hat{\boldsymbol{\Sigma}} = \frac{1}{n-1}\sum\_i \tilde{\mathbf{X}}\_i \tilde{\mathbf{X}}\_i^\top$
+
 3. Eigendecomposition: $\hat{\boldsymbol{\Sigma}} = \mathbf{U}\boldsymbol{\Lambda}\mathbf{U}^\top$
+
 4. Principal components: columns of $\mathbf{U}$ (eigenvectors)
+
 5. Explained variance: eigenvalues $\lambda\_i$
 
 **Projection onto k principal components:**

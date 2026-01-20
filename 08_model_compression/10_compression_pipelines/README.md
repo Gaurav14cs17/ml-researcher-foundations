@@ -82,6 +82,7 @@ M_{compressed} = \text{Huffman}(\text{Quantize}(\text{Prune}(M)))
 W_{pruned} = W \odot \mathbf{1}_{|W| > \tau}
 
 ```math
+
 2. **Quantize:** Cluster remaining weights
 
 ```

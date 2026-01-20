@@ -188,7 +188,9 @@ Y = W * X, \quad W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
 ```
 
 **Depthwise Separable:**
+
 1. **Depthwise:** $H = W\_{dw} * X$ where $W\_{dw} \in \mathbb{R}^{C\_{in} \times 1 \times K \times K}$
+
 2. **Pointwise:** $Y = W\_{pw} \cdot H$ where $W\_{pw} \in \mathbb{R}^{C\_{out} \times C\_{in} \times 1 \times 1}$
 
 ```math

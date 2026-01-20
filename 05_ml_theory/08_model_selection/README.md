@@ -36,10 +36,13 @@
 
 ```
 k-Fold Cross-Validation:
+
 1. Split data into k equal folds
+
 2. For each fold i:
    • Train on all folds except i
    • Evaluate on fold i
+
 3. Average scores across all folds
 
 CV Score = (1/k) Σᵢ Score(foldᵢ)

@@ -42,9 +42,12 @@ Minimize: L = E[||ŝ' - s'||² + (r̂ - r)²]
 
 ```
 At each step:
+
 1. Plan: πₜ = argmax E[Σᵢ₌₀ᴴ γⁱ r̂(sₜ₊ᵢ, aₜ₊ᵢ)]
    using model p̂(s'|s,a)
+
 2. Execute: Take action aₜ
+
 3. Re-plan with new observation
 
 ```

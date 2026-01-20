@@ -29,15 +29,25 @@
 ## 📑 Table of Contents
 
 1. [Visual Overview](#-visual-overview)
+
 2. [Definition and Intuition](#1-definition-and-intuition)
+
 3. [Finding Eigenvalues](#2-finding-eigenvalues-characteristic-polynomial)
+
 4. [The Spectral Theorem](#3-the-spectral-theorem-complete-proof)
+
 5. [Power Iteration Algorithm](#4-power-iteration-algorithm)
+
 6. [Properties and Theorems](#5-key-properties-and-theorems)
+
 7. [Examples](#6-worked-examples)
+
 8. [Code Implementation](#7-code-implementation)
+
 9. [ML Applications](#8-ml-applications)
+
 10. [Common Mistakes](#-common-mistakes)
+
 11. [Resources](#-resources)
 
 ---
@@ -179,7 +189,9 @@ Quadratic formula:
 **Spectral Theorem**: For a real symmetric matrix $A = A^T$:
 
 1. **All eigenvalues are real**
+
 2. **Eigenvectors can be chosen orthonormal**
+
 3. **$A = Q\Lambda Q^T$** where $Q$ is orthogonal
 
 ### 🔍 Complete Proof

@@ -25,10 +25,13 @@
 
 ```
 1. Query: User question
+
 2. Retrieve: Find relevant documents from knowledge base
    • Embed query and documents
    • Vector similarity search
+
 3. Augment: Add retrieved context to prompt
+
 4. Generate: LLM generates answer using context
 
 Key components:

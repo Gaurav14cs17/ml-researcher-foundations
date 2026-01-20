@@ -27,7 +27,9 @@ x_{new} \sim p_\theta(x) \approx p_{data}(x)
 ### Taxonomy
 
 1. **Explicit Density:** Model $p\_\theta(x)$ directly (VAE, Flow)
+
 2. **Implicit Density:** Learn to sample without explicit density (GAN)
+
 3. **Score-Based:** Learn $\nabla\_x \log p(x)$ (Diffusion, Score Matching)
 
 ---

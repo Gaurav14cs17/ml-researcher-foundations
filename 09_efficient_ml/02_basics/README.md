@@ -128,9 +128,13 @@ Arithmetic Intensity (FLOPS/Byte)
 ## Efficiency Metrics
 
 1. **Latency** - Time for single inference
+
 2. **Throughput** - Inferences per second
+
 3. **Energy** - Joules per inference
+
 4. **Model size** - Parameters × bytes per param
+
 5. **Peak memory** - Max RAM during inference
 
 ---
@@ -164,7 +168,9 @@ where:
 **Proof of Roofline Bound:**
 
 1. Performance cannot exceed peak compute: \( P \leq \pi \)
+
 2. Performance limited by data delivery rate: \( P \leq I \times \beta \)
+
 3. Therefore: \( P = \min(\pi, I \times \beta) \)
 
 **Ridge Point:** The intensity where compute and memory bounds meet:

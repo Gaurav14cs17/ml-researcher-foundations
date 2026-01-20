@@ -80,6 +80,7 @@ Arithmetic Intensity = FLOPs / Bytes loaded < 1
 \text{FLOPs}_{prefill} = 2 \times N_{prompt} \times N_{params}
 
 ```math
+
 2. **Decode (subsequent tokens):** Generate one token at a time
 
 ```
@@ -134,8 +135,11 @@ M_{KV} = 2 \times L \times N \times d \times b
 ### Speculative Decoding
 
 **Algorithm:**
+
 1. Draft model generates K tokens quickly
+
 2. Target model verifies all K in parallel
+
 3. Accept matching prefix, resample from target if mismatch
 
 **Acceptance probability:**

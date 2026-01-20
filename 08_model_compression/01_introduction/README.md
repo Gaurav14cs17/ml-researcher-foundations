@@ -58,7 +58,9 @@ Where:
 
 **Theorem (Pareto Optimality):**
 The set of optimal compressions forms a Pareto frontier. A model $M\_c^*$ is Pareto optimal if there exists no $M\_c$ such that:
+
 1. $\text{Size}(M\_c) \leq \text{Size}(M\_c^*)$ AND
+
 2. $\mathcal{L}(M\_c) \leq \mathcal{L}(M\_c^*)$
 with at least one strict inequality.
 

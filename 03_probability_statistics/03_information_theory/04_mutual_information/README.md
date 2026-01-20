@@ -42,8 +42,11 @@ I(X; Y) = H(X) - H(X|Y) = H(Y) - H(Y|X)
 ### Properties
 
 1. **Non-negativity:** $I(X; Y) \geq 0$
+
 2. **Zero iff independent:** $I(X; Y) = 0 \iff X \perp Y$
+
 3. **Symmetry:** $I(X; Y) = I(Y; X)$
+
 4. **Self-information:** $I(X; X) = H(X)$
 
 ---

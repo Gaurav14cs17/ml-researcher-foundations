@@ -284,9 +284,13 @@ Cross-entropy loss:
 L = -log P(y=true|x)
 
 Why this works:
+
 1. Minimizing L = maximizing log P(y|x) = MLE!
+
 2. L = H(p_true, p_model) where p_true is one-hot
+
 3. Gradients are simple: ∂L/∂logit = p_model - p_true
+
 4. Well-calibrated probabilities (not just rankings)
 
 Compare to MSE for classification:

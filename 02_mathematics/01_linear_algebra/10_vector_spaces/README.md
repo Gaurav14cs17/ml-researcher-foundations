@@ -29,13 +29,21 @@
 ## 📑 Table of Contents
 
 1. [Definition and Axioms](#1-definition-and-axioms)
+
 2. [Subspaces](#2-subspaces)
+
 3. [Linear Independence](#3-linear-independence)
+
 4. [Span and Basis](#4-span-and-basis)
+
 5. [Dimension Theorem](#5-dimension-theorem)
+
 6. [Four Fundamental Subspaces](#6-four-fundamental-subspaces)
+
 7. [Code Implementation](#7-code-implementation)
+
 8. [ML Applications](#8-ml-applications)
+
 9. [Resources](#-resources)
 
 ---
@@ -136,8 +144,11 @@ A subset $W \subseteq V$ is a **subspace** if $W$ is itself a vector space under
 ### 📐 Subspace Test
 
 $W$ is a subspace iff:
+
 1. $\mathbf{0} \in W$ (contains zero)
+
 2. $\mathbf{u}, \mathbf{v} \in W \Rightarrow \mathbf{u} + \mathbf{v} \in W$ (closed under addition)
+
 3. $\alpha \in \mathbb{F}, \mathbf{v} \in W \Rightarrow \alpha\mathbf{v} \in W$ (closed under scaling)
 
 Or equivalently (single condition):
@@ -155,9 +166,12 @@ Or equivalently (single condition):
 W = {(x, y, z) : x + y + z = 0}  (plane through origin)
 
 Check:
+
 1. (0,0,0) ∈ W  ✓  (0+0+0=0)
+
 2. (a,b,c) + (d,e,f) = (a+d, b+e, c+f)
    (a+d)+(b+e)+(c+f) = (a+b+c)+(d+e+f) = 0+0 = 0  ✓
+
 3. α(a,b,c) = (αa,αb,αc)
    αa+αb+αc = α(a+b+c) = α·0 = 0  ✓
 
@@ -264,7 +278,9 @@ The **span** of vectors $\mathbf{v}\_1, \ldots, \mathbf{v}\_k$ is all linear com
 ### 📌 Basis
 
 A **basis** for $V$ is a set of vectors that:
+
 1. **Spans** $V$: Every vector in $V$ can be written as their linear combination
+
 2. Is **linearly independent**: No redundant vectors
 
 ### 🔍 Theorem: Basis Representation is Unique

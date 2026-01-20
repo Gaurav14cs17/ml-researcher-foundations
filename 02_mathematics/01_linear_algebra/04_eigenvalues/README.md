@@ -29,11 +29,17 @@
 ## 📑 Table of Contents
 
 1. [Spectral Properties](#1-spectral-properties)
+
 2. [Gershgorin Circle Theorem](#2-gershgorin-circle-theorem)
+
 3. [PageRank Algorithm](#3-pagerank-algorithm)
+
 4. [RNN Gradient Stability](#4-rnn-gradient-stability)
+
 5. [Spectral Graph Theory](#5-spectral-graph-theory)
+
 6. [Code Implementation](#6-code-implementation)
+
 7. [Resources](#-resources)
 
 ---
@@ -83,7 +89,9 @@
 
 ```
 1. ρ(A) ≤ ‖A‖ for any matrix norm
+
 2. For normal matrices: ρ(A) = ‖A‖₂ (spectral norm)
+
 3. limₖ→∞ Aᵏ = 0 iff ρ(A) < 1
 4. Aᵏ bounded iff ρ(A) ≤ 1 (with equality only for semisimple λ)
 

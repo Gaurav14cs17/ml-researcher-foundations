@@ -99,6 +99,7 @@ Where $M\_{2:4}$ satisfies the 2:4 constraint and minimizes $\|W - W\_{2:4}\|\_F
 Let $f(x; \theta\_0)$ be a randomly-initialized neural network. There exists a mask $m \in \{0,1\}^{|\theta|}$ such that:
 
 1. **Sparsity:** $\|m\|\_0 \ll |\theta|$
+
 2. **Trainability:** $f(x; m \odot \theta\_0)$ trained for $T$ iterations achieves test accuracy $\geq f(x; \theta\_T) - \epsilon$
 
 **Iterative Magnitude Pruning (IMP):**

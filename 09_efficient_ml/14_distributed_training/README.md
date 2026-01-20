@@ -308,7 +308,9 @@ For fixed compute \( C = 6ND \), minimize loss:
 **Ring AllReduce:** \( O(1) \) with respect to N.
 
 Algorithm:
+
 1. Reduce-scatter: Each GPU sends/receives \( M/N \) data \( N-1 \) times
+
 2. All-gather: Each GPU sends/receives \( M/N \) data \( N-1 \) times
 
 Total: \( 2(N-1) \times M/N \approx 2M \) data transferred.

@@ -392,13 +392,17 @@ def compress_model(model: nn.Module, energy_threshold: float = 0.95,
 #### 7.1 SVD + Fine-tuning
 
 1. Apply SVD compression
+
 2. Fine-tune factorized layers
+
 3. Recover accuracy loss
 
 #### 7.2 SVD + Quantization
 
 1. Apply SVD to reduce rank
+
 2. Quantize factor matrices
+
 3. Multiplicative compression!
 
 ---

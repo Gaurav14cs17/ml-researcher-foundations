@@ -342,10 +342,15 @@ where \( b \) is the moving average of rewards (baseline).
 ### Evolutionary NAS
 
 **Algorithm:**
+
 1. Initialize population of random architectures
+
 2. Evaluate fitness (accuracy) of each
+
 3. Select top-k (elitism)
+
 4. Mutate/crossover to create offspring
+
 5. Repeat
 
 **Mutation operators:**

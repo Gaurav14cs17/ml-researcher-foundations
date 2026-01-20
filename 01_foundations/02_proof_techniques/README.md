@@ -68,18 +68,31 @@ By the end of this article, you will be able to:
 ## 📑 Table of Contents
 
 1. [Visual Overview](#-visual-overview)
+
 2. [Decision Tree: Which Technique?](#-decision-tree-which-technique)
+
 3. [Direct Proof](#1-direct-proof)
+
 4. [Proof by Contradiction](#2-proof-by-contradiction)
+
 5. [Mathematical Induction](#3-mathematical-induction)
+
 6. [Contrapositive Proof](#4-contrapositive-proof)
+
 7. [Proof by Cases](#5-proof-by-cases)
+
 8. [Existence and Uniqueness Proofs](#6-existence-and-uniqueness-proofs)
+
 9. [Common Proof Patterns in ML](#7-common-proof-patterns-in-ml)
+
 10. [Key Formulas Summary](#-key-formulas-summary)
+
 11. [Common Mistakes & Pitfalls](#-common-mistakes--pitfalls)
+
 12. [Code Implementations](#-code-implementations)
+
 13. [Resources](#-resources)
+
 14. [Navigation](#-navigation)
 
 ---
@@ -893,7 +906,9 @@ verify_backprop_induction()
 ### 📖 Existence Proofs
 
 Two types:
+
 1. **Constructive:** Build the object explicitly
+
 2. **Non-constructive:** Prove existence without construction
 
 ### 📐 Existence Template

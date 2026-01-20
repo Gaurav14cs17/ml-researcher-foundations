@@ -100,8 +100,11 @@ LLM activations:    [-1, 0.5, 50.0, 1.2, -0.3]  # Outlier!
 ### Solutions
 
 1. **LLM.int8()** - Mixed precision for outlier channels
+
 2. **SmoothQuant** - Migrate difficulty from activations to weights
+
 3. **GPTQ** - Second-order weight quantization
+
 4. **AWQ** - Activation-aware weight quantization
 
 ---
@@ -268,8 +271,11 @@ H = 2X X^T
 **Per-column quantization with error compensation:**
 
 For column \( j \):
+
 1. Quantize: \( \hat{w}_j = Q(w_j) \)
+
 2. Error: \( \delta_j = w_j - \hat{w}_j \)
+
 3. Compensate remaining columns:
 
 ```math

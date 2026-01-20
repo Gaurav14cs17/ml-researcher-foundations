@@ -79,7 +79,9 @@ where \(\sigma_i \in \{-1, +1\}\) are i.i.d. Rademacher random variables.
 ### Properties
 
 1. **Data-dependent** (unlike VC dimension)
+
 2. **Tighter bounds** in practice
+
 3. **Composition-friendly:** Can bound complex function classes
 
 ### Rademacher Complexity Examples
@@ -104,8 +106,11 @@ R(h) \leq \hat{R}(h) + \sqrt{\frac{d(\log(2n/d) + 1) + \log(4/\delta)}{n}}
 ```
 
 **Proof Sketch:**
+
 1. Use growth function \(\Pi_\mathcal{H}(n) \leq (en/d)^d\) (Sauer's lemma)
+
 2. Apply union bound over effective hypotheses
+
 3. Use Hoeffding's inequality \(\blacksquare\)
 
 ### Rademacher Bound

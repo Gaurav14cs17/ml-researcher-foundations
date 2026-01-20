@@ -223,8 +223,11 @@ For orthogonal $W$: $W^\top W = I$
 - Gradients neither vanish nor explode
 
 **Algorithm:**
+
 1. Generate random matrix $A$
+
 2. Compute QR decomposition: $A = QR$
+
 3. Use $Q$ as weight matrix
 
 ---

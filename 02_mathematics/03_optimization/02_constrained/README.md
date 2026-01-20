@@ -29,11 +29,17 @@
 ## 📑 Table of Contents
 
 1. [Problem Formulation](#1-problem-formulation)
+
 2. [Lagrange Multipliers](#2-lagrange-multipliers)
+
 3. [KKT Conditions](#3-kkt-conditions-complete-theory)
+
 4. [Duality](#4-duality)
+
 5. [SVM Derivation](#5-svm-derivation-via-lagrangian)
+
 6. [Code Implementation](#6-code-implementation)
+
 7. [Resources](#-resources)
 
 ---
@@ -254,6 +260,7 @@ Subject to: x ≥ 1  (equivalently: g(x) = 1 - x ≤ 0)
 Lagrangian: L = (x - 2)² + μ(1 - x)
 
 KKT conditions:
+
 1. Stationarity: ∂L/∂x = 2(x-2) - μ = 0
 2. Primal feasibility: 1 - x ≤ 0  →  x ≥ 1
 3. Dual feasibility: μ ≥ 0
@@ -336,7 +343,9 @@ Lagrangian:
   L(w, b, α) = ½‖w‖² - Σᵢ αᵢ[yᵢ(w·xᵢ + b) - 1]
 
 KKT conditions:
+
 1. ∂L/∂w = w - Σᵢ αᵢyᵢxᵢ = 0  →  w = Σᵢ αᵢyᵢxᵢ
+
 2. ∂L/∂b = -Σᵢ αᵢyᵢ = 0
 3. αᵢ ≥ 0
 4. αᵢ[yᵢ(w·xᵢ + b) - 1] = 0

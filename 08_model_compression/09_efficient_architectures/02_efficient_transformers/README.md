@@ -118,8 +118,11 @@ Compute $\phi(K)^T V$ first: $O(md)$ per position → $O(nmd)$ total
 - SRAM (on-chip): Small (20MB), fast (19TB/s)
 
 **Standard Attention Memory Access:**
+
 1. Load $Q, K$ from HBM → Compute $QK^T$ → Store to HBM: $O(n^2)$
+
 2. Load $QK^T$ → Softmax → Store: $O(n^2)$
+
 3. Load softmax, $V$ → Output: $O(n^2)$
 
 **Flash Attention Algorithm:**

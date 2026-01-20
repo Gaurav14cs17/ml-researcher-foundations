@@ -29,12 +29,19 @@
 ## 📑 Table of Contents
 
 1. [Metric Space Properties](#1-metric-space-properties)
+
 2. [Lp Norms and Distances](#2-lp-norms-and-distances)
+
 3. [Cosine Similarity](#3-cosine-similarity)
+
 4. [Mahalanobis Distance](#4-mahalanobis-distance)
+
 5. [Probabilistic Distances](#5-probabilistic-distances)
+
 6. [Code Implementation](#6-code-implementation)
+
 7. [Choosing the Right Metric](#7-choosing-the-right-metric)
+
 8. [Resources](#-resources)
 
 ---
@@ -458,9 +465,13 @@ Problem: All points become "equally far" apart!
 max_distance / min_distance → 1 as d → ∞
 
 Solutions:
+
 1. Use cosine similarity (only cares about direction)
+
 2. Reduce dimensionality first (PCA, t-SNE)
+
 3. Learn the metric (Siamese networks, triplet loss)
+
 4. Use approximate methods (LSH, FAISS)
 
 ```

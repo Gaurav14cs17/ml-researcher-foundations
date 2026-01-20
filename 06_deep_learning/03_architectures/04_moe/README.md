@@ -111,9 +111,13 @@ Input: Token embedding x ∈ ℝ^d
 Router weights: W_g ∈ ℝ^(N×d)
 
 Algorithm:
+
 1. Compute logits: h = W_g · x           # ℝ^N
+
 2. Select top-K: indices = TopK(h, K)    # K indices
+
 3. Compute weights: w = softmax(h[indices])  # ℝ^K
+
 4. Compute output: y = Σ_{i∈indices} w_i · E_i(x)
 
 Output: y ∈ ℝ^d
@@ -193,8 +197,11 @@ To prevent expert overload:
 Where $c \in [1.0, 2.0]$ is the capacity factor.
 
 Tokens exceeding capacity are either:
+
 1. Dropped (Switch Transformer)
+
 2. Sent to overflow expert
+
 3. Processed by next-best expert
 
 ---
@@ -359,8 +366,11 @@ class MoETransformerBlock(nn.Module):
 ### Why MoE for LLMs?
 
 1. **Scaling Law:** More parameters → better performance
+
 2. **Compute Efficiency:** Only K experts active per token
+
 3. **Specialization:** Different experts for different domains
+
 4. **Inference Speed:** Same as smaller dense model
 
 ---

@@ -193,8 +193,10 @@ Params: K² × C_in × C_out
 FLOPs: H × W × K² × C_in × C_out
 
 Depthwise Separable (MobileNet):
+
 1. Depthwise: H×W×C_in → H×W×C_in (one filter per channel)
    Params: K² × C_in
+
 2. Pointwise: H×W×C_in → H×W×C_out (1×1 conv)
    Params: C_in × C_out
 

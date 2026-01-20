@@ -30,8 +30,11 @@ Pretrained model: f(x; θ_pretrained)
 New task: Learn f(x; θ_new) using θ_pretrained
 
 Strategies:
+
 1. Feature Extraction: Freeze θ_pretrained, train new head
+
 2. Fine-tuning: Update all or part of θ_pretrained
+
 3. Adapter methods: Add small trainable modules
 
 ```

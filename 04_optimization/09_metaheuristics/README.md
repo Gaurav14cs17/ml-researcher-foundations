@@ -148,6 +148,7 @@ Gradient-based:               Metaheuristic:
 
 ```
 1. Initialize: x₀, T₀ (high temperature)
+
 2. For t = 0, 1, 2, ...:
    a. Generate neighbor: x' ∈ N(xₜ)
    b. Compute: Δ = f(x') - f(xₜ)

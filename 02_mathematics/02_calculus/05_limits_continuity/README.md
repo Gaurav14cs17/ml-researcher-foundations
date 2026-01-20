@@ -52,8 +52,11 @@ lim [f(x)/g(x)] = lim f(x) / lim g(x)  (if lim g(x) ≠ 0)
 
 ```
 f is continuous at a if:
+
 1. f(a) is defined
+
 2. lim_{x→a} f(x) exists
+
 3. lim_{x→a} f(x) = f(a)
 
 Continuous functions: polynomials, exp, log, sin, cos

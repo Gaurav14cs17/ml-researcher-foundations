@@ -39,10 +39,15 @@ Agent-Environment Interaction Loop:
 
 ```
 At each timestep t:
+
 1. Agent observes state s_t ∈ S
+
 2. Agent selects action a_t ∈ A according to policy π(a|s)
+
 3. Environment transitions: s_{t+1} ~ P(·|s_t, a_t)
+
 4. Agent receives reward: r_t = R(s_t, a_t, s_{t+1})
+
 5. Repeat until termination
 
 Goal: Find policy π* that maximizes expected cumulative reward
@@ -148,8 +153,11 @@ The Bellman operator T is a γ-contraction:
 ||T Q_1 - T Q_2||_∞ ≤ γ ||Q_1 - Q_2||_∞
 
 This guarantees:
+
 1. Value iteration converges
+
 2. Q* is the unique fixed point
+
 3. Convergence rate is O(γ^n)
 
 ```

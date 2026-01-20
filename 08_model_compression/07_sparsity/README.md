@@ -186,7 +186,9 @@ A = A_{local} + A_{global} + A_{random}
 
 **Lottery Ticket Hypothesis (Formal):**
 Let $f(x; \theta\_0)$ be initialized network. $\exists$ mask $m$ s.t.:
+
 1. $\|m\|\_0 \ll |\theta\_0|$ (sparse)
+
 2. $f(x; m \odot \theta\_0)$ achieves comparable accuracy to $f(x; \theta\_T)$
 
 **Sparse Training Methods:**

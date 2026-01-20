@@ -29,11 +29,17 @@
 ## 📑 Table of Contents
 
 1. [Rank](#1-rank)
+
 2. [Determinant](#2-determinant)
+
 3. [Trace](#3-trace)
+
 4. [Condition Number](#4-condition-number)
+
 5. [Positive Definiteness](#5-positive-definiteness)
+
 6. [Code Implementation](#6-code-implementation)
+
 7. [Resources](#-resources)
 
 ---
@@ -129,8 +135,11 @@ Only 4 degrees of freedom for update! (vs 589K for full W)
 ### 📌 Definition
 
 The determinant is the unique function $\det: \mathbb{R}^{n \times n} \to \mathbb{R}$ satisfying:
+
 1. Multilinear in columns
+
 2. Alternating (swapping columns negates)
+
 3. $\det(I) = 1$
 
 ### 📐 Key Properties

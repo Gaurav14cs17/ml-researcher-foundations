@@ -59,8 +59,11 @@ Vertices: Finite number
 Edges: Connect adjacent vertices
 
 Simplex:
+
 1. Start at a vertex
+
 2. Move to adjacent vertex with better objective
+
 3. Repeat until no improvement possible
 
 ```
@@ -73,11 +76,13 @@ Simplex:
 
 ```
 1. Find initial basic feasible solution (vertex)
+
 2. While exists improving direction:
    a. Choose entering variable (pivot column)
    b. Choose leaving variable (pivot row)
    c. Perform pivot operation
    d. Update tableau
+
 3. Return optimal solution
 
 ```

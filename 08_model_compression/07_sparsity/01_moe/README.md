@@ -261,8 +261,11 @@ Higher $H(g)$ correlates with lower generalization gap.
 **Proof Sketch:**
 
 1. Low entropy routing (few experts used) = less model capacity utilized
+
 2. Equivalent to implicit L0 regularization on expert usage
+
 3. By PAC-Bayes bounds, effective parameter count $\approx N\_{active} \cdot p$
+
 4. With high entropy, $N\_{active} \approx N$, utilizing full capacity
 
 **Formal bound:**
@@ -312,7 +315,9 @@ Combining:
 **Proof:**
 
 1. Each expert $E\_i$ with width $w \to \infty$ is a universal approximator (by Cybenko's theorem)
+
 2. The gating network partitions input space
+
 3. By Stone-Weierstrass, sum of localized approximators spans continuous functions
 
 For any $\epsilon > 0$, there exists $N, w$ such that:

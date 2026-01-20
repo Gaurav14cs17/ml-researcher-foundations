@@ -55,7 +55,9 @@ Units:
 ```
 1. Non-negativity: H(X) ≥ 0
 2. Maximum: H(X) ≤ log|X|  (uniform distribution)
+
 3. Concavity: H(λp₁ + (1-λ)p₂) ≥ λH(p₁) + (1-λ)H(p₂)
+
 4. Chain rule: H(X,Y) = H(X) + H(Y|X)
 
 ```

@@ -150,6 +150,7 @@ I_l = \left\| \frac{\partial \mathcal{L}}{\partial W_l} \right\|_F
 **FedAvg algorithm:**
 
 1. Server broadcasts global model \( w_t \)
+
 2. Each client \( k \) trains locally:
 
 ```math

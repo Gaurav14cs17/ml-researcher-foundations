@@ -29,11 +29,17 @@
 ## 📑 Table of Contents
 
 1. [Visual Overview](#-visual-overview)
+
 2. [PCA: Complete Theory](#1-pca-principal-component-analysis)
+
 3. [t-SNE](#2-t-sne)
+
 4. [UMAP](#3-umap)
+
 5. [Comparison](#4-comparison)
+
 6. [Code Implementation](#5-code-implementation)
+
 7. [Resources](#-resources)
 
 ---

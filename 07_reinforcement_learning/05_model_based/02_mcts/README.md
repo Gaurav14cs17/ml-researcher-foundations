@@ -37,8 +37,11 @@ MCTS repeats four phases for each simulation:
 
 ```
 1. SELECTION:    Traverse tree using UCT until reaching a leaf
+
 2. EXPANSION:    Add one or more child nodes to the leaf
+
 3. SIMULATION:   Random rollout from new node to terminal state
+
 4. BACKPROPAGATION: Update statistics along the path
 
 ```
@@ -78,8 +81,11 @@ UCT = Exploitation + Exploration
 Theorem: UCT converges to minimax-optimal play as N → ∞
 
 The exploration term ensures:
+
 1. Every action is tried infinitely often
+
 2. Best actions are tried exponentially more often
+
 3. Regret is O(√N log N)
 
 ```
@@ -146,8 +152,11 @@ Modified UCT (PUCT - Polynomial UCT):
 PUCT(s, a) = Q(s, a) + c_puct · p(a|s) · √N(s) / (1 + N(s, a))
 
 Key differences from vanilla UCT:
+
 1. Policy prior p(a|s) guides exploration toward good moves
+
 2. Value network v(s) replaces random rollouts
+
 3. No simulation phase needed!
 
 ```
@@ -196,13 +205,19 @@ function AlphaGoMCTS(root_state, n_simulations):
 
 ```
 1. No human expert data: Learns entirely from self-play
+
 2. Single neural network: Combined policy + value head
+
 3. No handcrafted features: Raw board as input
+
 4. Simpler search: No random rollouts, pure PUCT
 
 Training loop:
+
 1. Self-play: Generate games using MCTS
+
 2. Train network: Minimize loss on (state, policy, value) tuples
+
 3. Repeat
 
 ```
@@ -229,8 +244,11 @@ Where:
 
 ```
 Theorem: As N → ∞, MCTS with UCT:
+
 1. Visits each action infinitely often
+
 2. Converges to optimal minimax value
+
 3. Selects optimal action with probability → 1
 
 Proof sketch:

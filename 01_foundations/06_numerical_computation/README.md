@@ -63,12 +63,19 @@ Understanding floating-point math **prevents mysterious training failures**:
 ## 📑 Table of Contents
 
 1. [IEEE 754 Representation](#1-ieee-754-floating-point)
+
 2. [Common Numerical Issues](#2-common-numerical-issues)
+
 3. [Stable Algorithms](#3-stable-algorithms)
+
 4. [Mixed Precision Training](#4-mixed-precision-training)
+
 5. [Debugging NaN/Inf](#5-debugging-naninf)
+
 6. [Key Numbers](#-key-numbers-to-remember)
+
 7. [Code Implementations](#-code-implementations)
+
 8. [Resources](#-resources)
 
 ---

@@ -183,7 +183,9 @@ where:
 ### Key Insights
 
 1. **Conditional mean is linear in the condition** - This is the regression formula!
+
 2. **Conditional covariance is independent of the observed value** - It only depends on which variables are observed, not their values
+
 3. **Schur complement** appears naturally: $\boldsymbol{\Sigma}\_{1|2} = \boldsymbol{\Sigma}\_{11} - \boldsymbol{\Sigma}\_{12}\boldsymbol{\Sigma}\_{22}^{-1}\boldsymbol{\Sigma}\_{21}$
 
 ---
@@ -305,7 +307,9 @@ For diagonal $\boldsymbol{\Sigma} = \text{diag}(\sigma\_1^2, \ldots, \sigma\_d^2
 To sample $\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$:
 
 1. Compute Cholesky: $\boldsymbol{\Sigma} = \mathbf{L}\mathbf{L}^\top$ (L lower triangular)
+
 2. Sample $\mathbf{Z} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$
+
 3. Set $\mathbf{X} = \boldsymbol{\mu} + \mathbf{L}\mathbf{Z}$
 
 **Why it works:**

@@ -58,14 +58,23 @@ Asymptotic analysis tells you **how algorithms scale**. Essential for ML model s
 ## 📑 Table of Contents
 
 1. [Complexity Hierarchy](#-complexity-hierarchy)
+
 2. [Big-O Notation](#1-big-o-notation)
+
 3. [Big-Omega and Big-Theta](#2-big-omega-and-big-theta)
+
 4. [Little-o and Little-omega](#3-little-o-and-little-omega)
+
 5. [ML Model Complexities](#4-ml-model-complexities)
+
 6. [Master Theorem](#5-master-theorem)
+
 7. [Key Formulas Summary](#-key-formulas-summary)
+
 8. [Common Mistakes](#-common-mistakes--pitfalls)
+
 9. [Code Implementations](#-code-implementations)
+
 10. [Resources](#-resources)
 
 ---
@@ -110,7 +119,9 @@ lookup  search   scan     sort       (naive)    (naive)  force
 ### 📐 Formal Proof Template
 
 To prove f(n) = O(g(n)):
+
 1. Find constants c > 0 and n₀
+
 2. Show f(n) ≤ c·g(n) for all n ≥ n₀
 
 ### 📝 Example 1: Prove 3n² + 5n + 2 = O(n²)
