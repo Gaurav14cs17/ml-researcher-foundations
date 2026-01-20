@@ -49,9 +49,9 @@ or
 
 **1. Forget Gate:** What information to discard from cell state
 
-```math
+$$
 f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)
-```
+$$
 
 ```
 Intuition: f_t ∈ (0, 1)ʰ controls what fraction of old information to keep
@@ -61,10 +61,10 @@ Intuition: f_t ∈ (0, 1)ʰ controls what fraction of old information to keep
 
 **2. Input Gate:** What new information to store
 
-```math
+$$
 i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)
 \tilde{c}_t = \tanh(W_c \cdot [h_{t-1}, x_t] + b_c)
-```
+$$
 
 ```
 Intuition:
@@ -74,9 +74,9 @@ Intuition:
 
 **3. Cell State Update:** The key to long-term memory
 
-```math
+$$
 c_t = f_t \odot c_{t-1} + i_t \odot \tilde{c}_t
-```
+$$
 
 ```
 Intuition: Linear combination of old and new information
@@ -89,10 +89,10 @@ Gradient flows easily through c_t → c_{t-1}
 
 **4. Output Gate:** What to output from cell state
 
-```math
+$$
 o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)
 h_t = o_t \odot \tanh(c_t)
-```
+$$
 
 ```
 Intuition:
@@ -167,11 +167,11 @@ error signals can flow through time without decay.
 
 Add cell state to gate computations:
 
-```math
+$$
 f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + W_{cf} \cdot c_{t-1} + b_f)
 i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + W_{ci} \cdot c_{t-1} + b_i)
 o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + W_{co} \cdot c_t + b_o)
-```
+$$
 
 **Benefit:** Gates can observe cell state directly.
 
@@ -179,18 +179,18 @@ o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + W_{co} \cdot c_t + b_o)
 
 Simplified version with 2 gates instead of 3:
 
-```math
+$$
 z_t = \sigma(W_z \cdot [h_{t-1}, x_t])
 $$ (update gate)
-```
+$$
 
 r_t = \sigma(W_r \cdot [h_{t-1}, x_t])
 $$ (reset gate)
 
-```math
+$$
 \tilde{h}_t = \tanh(W \cdot [r_t \odot h_{t-1}, x_t])
 h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t
-```
+$$
 
 **Key difference:** No separate cell state; fewer parameters.
 
@@ -198,9 +198,9 @@ h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t
 
 Force $i_t = 1 - f_t$:
 
-```math
+$$
 c_t = f_t \odot c_{t-1} + (1 - f_t) \odot \tilde{c}_t
-```
+$$
 
 **Benefit:** Reduces parameters, enforces conservation of information.
 

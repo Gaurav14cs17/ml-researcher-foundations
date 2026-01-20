@@ -25,21 +25,21 @@ Convolutional Neural Networks (CNNs) are specialized neural networks for process
 
 For input $I$ and kernel $K$:
 
-```math
+$$
 (I * K)[i,j] = \sum_{m=0}^{k_h-1} \sum_{n=0}^{k_w-1} I[i+m, j+n] \cdot K[m, n]
-```
+$$
 
 **With multiple channels (cross-correlation):**
 
-```math
+$$
 Y[c_{out}, i, j] = \sum_{c_{in}=0}^{C_{in}-1} \sum_{m=0}^{k_h-1} \sum_{n=0}^{k_w-1} X[c_{in}, i+m, j+n] \cdot W[c_{out}, c_{in}, m, n] + b[c_{out}]
-```
+$$
 
 ### Output Size Formula
 
-```math
+$$
 H_{out} = \left\lfloor \frac{H_{in} + 2P - K}{S} \right\rfloor + 1
-```
+$$
 
 where:
 - $H_{in}$: input height
@@ -51,9 +51,9 @@ where:
 
 For Conv2d(C_in, C_out, K×K):
 
-```math
+$$
 \text{Parameters} = C_{out} \times (C_{in} \times K \times K + 1)
-```
+$$
 
 The "+1" is for the bias per output channel.
 
@@ -96,9 +96,9 @@ Benefits:
 
 If input shifts, output shifts by the same amount:
 
-```math
+$$
 f(T_x \cdot I) = T_x \cdot f(I)
-```
+$$
 
 **Proof:**
 ```
@@ -124,9 +124,9 @@ The receptive field is the region of input that affects a single output neuron.
 
 For a stack of convolutions:
 
-```math
+$$
 R_{out} = R_{in} + (K - 1) \times \prod_{i=1}^{l-1} S_i
-```
+$$
 
 **Example (VGG-style):**
 ```
@@ -156,21 +156,21 @@ Same receptive field, fewer parameters, more nonlinearity!
 
 **Max Pooling:**
 
-```math
+$$
 Y[i,j] = \max_{m,n \in \text{window}} X[i \cdot s + m, j \cdot s + n]
-```
+$$
 
 **Average Pooling:**
 
-```math
+$$
 Y[i,j] = \frac{1}{k^2} \sum_{m,n \in \text{window}} X[i \cdot s + m, j \cdot s + n]
-```
+$$
 
 **Global Average Pooling (GAP):**
 
-```math
+$$
 Y[c] = \frac{1}{H \times W} \sum_{i,j} X[c, i, j]
-```
+$$
 
 ### 2. Strided Convolution
 
@@ -186,9 +186,9 @@ Benefits:
 
 Insert zeros between kernel elements:
 
-```math
+$$
 Y[i,j] = \sum_{m,n} X[i + r \cdot m, j + r \cdot n] \cdot K[m,n]
-```
+$$
 
 where $r$ is the dilation rate.
 

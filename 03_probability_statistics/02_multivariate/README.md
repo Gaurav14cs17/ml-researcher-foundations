@@ -36,33 +36,33 @@
 
 ### Joint Distribution
 
-```math
+$$
 p(\mathbf{x}, \mathbf{y})
-```
+$$
 
 Contains all information about the relationship between $\mathbf{x}$ and $\mathbf{y}$.
 
 ### Marginal Distribution
 
-```math
+$$
 p(\mathbf{x}) = \int p(\mathbf{x}, \mathbf{y}) \, d\mathbf{y}
-```
+$$
 
 "Integrate out" other variables to get distribution of $\mathbf{x}$ alone.
 
 ### Conditional Distribution
 
-```math
+$$
 p(\mathbf{x}|\mathbf{y}) = \frac{p(\mathbf{x}, \mathbf{y})}{p(\mathbf{y})}
-```
+$$
 
 Distribution of $\mathbf{x}$ given that we know $\mathbf{y}$.
 
 ### Independence
 
-```math
+$$
 \mathbf{X} \perp \mathbf{Y} \iff p(\mathbf{x}, \mathbf{y}) = p(\mathbf{x}) \cdot p(\mathbf{y})
-```
+$$
 
 ---
 
@@ -70,10 +70,10 @@ Distribution of $\mathbf{x}$ given that we know $\mathbf{y}$.
 
 ### Definition
 
-```math
+$$
 \boldsymbol{\Sigma} = E[(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})^\top]
 \Sigma_{ij} = \text{Cov}(X_i, X_j) = E[(X_i - \mu_i)(X_j - \mu_j)]
-```
+$$
 
 ### Properties
 
@@ -83,21 +83,21 @@ Distribution of $\mathbf{x}$ given that we know $\mathbf{y}$.
 
 **Proof of PSD:**
 
-```math
+$$
 \mathbf{v}^\top \boldsymbol{\Sigma} \mathbf{v} = E[(\mathbf{v}^\top(\mathbf{X} - \boldsymbol{\mu}))^2] = E[Z^2] \geq 0 \quad \blacksquare
-```
+$$
 
 **3. Linear Transformation:**
 
-```math
+$$
 \mathbf{Y} = \mathbf{A}\mathbf{X} + \mathbf{b} \implies \text{Cov}(\mathbf{Y}) = \mathbf{A}\boldsymbol{\Sigma}\mathbf{A}^\top
-```
+$$
 
 ### Correlation Matrix
 
-```math
+$$
 \mathbf{R}_{ij} = \frac{\Sigma_{ij}}{\sqrt{\Sigma_{ii}\Sigma_{jj}}} = \frac{\text{Cov}(X_i, X_j)}{\sigma_i \sigma_j}
-```
+$$
 
 - Diagonal entries = 1
 - Off-diagonal $\in [-1, 1]$
@@ -106,56 +106,56 @@ Distribution of $\mathbf{x}$ given that we know $\mathbf{y}$.
 
 ## 📐 Multivariate Gaussian
 
-```math
+$$
 \mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})
-```
+$$
 
 ### PDF
 
-```math
+$$
 p(\mathbf{x}) = (2\pi)^{-d/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^\top\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)
-```
+$$
 
 ### Key Properties
 
 **Marginal:** Any subset is also Gaussian
 
-```math
+$$
 \mathbf{x}_1 \sim \mathcal{N}(\boldsymbol{\mu}_1, \boldsymbol{\Sigma}_{11})
-```
+$$
 
 **Conditional:** Conditioning preserves Gaussianity
 
-```math
+$$
 \mathbf{x}_1 | \mathbf{x}_2 \sim \mathcal{N}(\boldsymbol{\mu}_{1|2}, \boldsymbol{\Sigma}_{1|2})
-```
+$$
 
 where:
 
-```math
+$$
 \boldsymbol{\mu}_{1|2} = \boldsymbol{\mu}_1 + \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}(\mathbf{x}_2 - \boldsymbol{\mu}_2)
 \boldsymbol{\Sigma}_{1|2} = \boldsymbol{\Sigma}_{11} - \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}\boldsymbol{\Sigma}_{21}
-```
+$$
 
 **Linear Transform:**
 
-```math
+$$
 \mathbf{A}\mathbf{X} + \mathbf{b} \sim \mathcal{N}(\mathbf{A}\boldsymbol{\mu} + \mathbf{b}, \mathbf{A}\boldsymbol{\Sigma}\mathbf{A}^\top)
-```
+$$
 
 ---
 
 ## 📐 KL Divergence for Gaussians
 
-```math
+$$
 D_{KL}(\mathcal{N}_1 \| \mathcal{N}_2) = \frac{1}{2}\left[\text{tr}(\boldsymbol{\Sigma}_2^{-1}\boldsymbol{\Sigma}_1) + (\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)^\top\boldsymbol{\Sigma}_2^{-1}(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1) - d + \log\frac{|\boldsymbol{\Sigma}_2|}{|\boldsymbol{\Sigma}_1|}\right]
-```
+$$
 
 **VAE Loss (KL to standard normal):**
 
-```math
+$$
 D_{KL}(\mathcal{N}(\boldsymbol{\mu}, \text{diag}(\boldsymbol{\sigma}^2)) \| \mathcal{N}(\mathbf{0}, \mathbf{I})) = \frac{1}{2}\sum_{i=1}^{d}\left(\mu_i^2 + \sigma_i^2 - 1 - \log\sigma_i^2\right)
-```
+$$
 
 ---
 

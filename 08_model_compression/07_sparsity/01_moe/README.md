@@ -19,9 +19,9 @@
 
 **General MoE Output:**
 
-```math
+$$
 y = \sum_{i=1}^{N} g_i(x) \cdot E_i(x)
-```
+$$
 
 Where:
 - $N$ = number of experts
@@ -30,18 +30,18 @@ Where:
 
 **Gating Function:**
 
-```math
+$$
 g(x) = \text{softmax}(W_g \cdot x)
 g_i(x) = \frac{\exp(W_g^{(i)} \cdot x)}{\sum_j \exp(W_g^{(j)} \cdot x)}
-```
+$$
 
 ### 2. Top-K Sparse Routing
 
 **Sparse Gating (Top-K):**
 
-```math
+$$
 g(x) = \text{TopK}(\text{softmax}(W_g \cdot x + \epsilon))
-```
+$$
 
 Where:
 - $\epsilon \sim \text{Gumbel}(0, 1)$ (optional exploration noise)
@@ -49,35 +49,35 @@ Where:
 
 **Normalization after Top-K:**
 
-```math
+$$
 \hat{g}_i(x) = \frac{g_i(x)}{\sum_{j \in \text{TopK}} g_j(x)}
-```
+$$
 
 **Sparse Output:**
 
-```math
+$$
 y = \sum_{i \in \text{TopK}(g)} \hat{g}_i(x) \cdot E_i(x)
-```
+$$
 
 ### 3. Computational Efficiency
 
 **Dense Model FLOPs:**
 
-```math
+$$
 \text{FLOPs}_{dense} = \text{FLOPs}_{attention} + \text{FLOPs}_{FFN}
-```
+$$
 
 **MoE Model FLOPs:**
 
-```math
+$$
 \text{FLOPs}_{MoE} = \text{FLOPs}_{attention} + K \cdot \text{FLOPs}_{expert}
-```
+$$
 
 **Efficiency Gain:**
 
-```math
+$$
 \text{Speedup} = \frac{N \cdot \text{FLOPs}_{expert}}{K \cdot \text{FLOPs}_{expert}} = \frac{N}{K}
-```
+$$
 
 For Mixtral (N=8, K=2): $4\times$ fewer FLOPs in FFN layers!
 
@@ -87,9 +87,9 @@ For Mixtral (N=8, K=2): $4\times$ fewer FLOPs in FFN layers!
 
 **Auxiliary Loss (Switch Transformer):**
 
-```math
+$$
 \mathcal{L}_{balance} = \alpha \cdot N \cdot \sum_{i=1}^{N} f_i \cdot P_i
-```
+$$
 
 Where:
 - $f\_i = \frac{\text{tokens routed to expert } i}{\text{total tokens}}$ (actual fraction)
@@ -99,9 +99,9 @@ Where:
 
 **Proof of Effectiveness:**
 
-```math
+$$
 \sum_i f_i P_i \geq \sum_i f_i^2 \geq \frac{1}{N}
-```
+$$
 
 Equality holds when $f\_i = 1/N$ (perfectly balanced).
 
@@ -109,9 +109,9 @@ Equality holds when $f\_i = 1/N$ (perfectly balanced).
 
 **Capacity Factor $C$:**
 
-```math
+$$
 \text{Capacity} = C \cdot \frac{B \times L}{N}
-```
+$$
 
 Tokens beyond capacity are dropped or sent to secondary expert.
 
@@ -125,9 +125,9 @@ If expert $i$ receives more than capacity tokens:
 **Standard:** Tokens choose experts
 **Expert Choice:** Experts choose tokens
 
-```math
+$$
 \text{TopK}_{tokens}(\text{softmax}(E_i^T X))
-```
+$$
 
 Each expert selects its top-$K$ tokens to process.
 
@@ -140,9 +140,9 @@ Each expert selects its top-$K$ tokens to process.
 
 **Capacity vs Quality Trade-off:**
 
-```math
+$$
 \mathcal{L}_{total} = \mathcal{L}_{task} + \alpha \mathcal{L}_{balance}
-```
+$$
 
 ---
 
@@ -156,29 +156,29 @@ Each expert selects its top-$K$ tokens to process.
 
 By Cauchy-Schwarz inequality:
 
-```math
+$$
 \left(\sum_i f_i P_i\right) \geq \frac{\left(\sum_i \sqrt{f_i P_i}\right)^2}{N}
-```
+$$
 
 Since $\sum\_i f\_i = 1$ and $\sum\_i P\_i = 1$ (probability constraints):
 
 Using AM-GM on each term:
 
-```math
+$$
 f_i P_i \geq 0 \text{ with equality when } f_i = P_i
-```
+$$
 
 The minimum of $\sum\_i f\_i P\_i$ subject to $\sum\_i f\_i = 1$ and $\sum\_i P\_i = 1$ occurs when:
 
-```math
+$$
 f_i = P_i = \frac{1}{N} \quad \forall i
-```
+$$
 
 At minimum:
 
-```math
+$$
 \mathcal{L}_{aux}^{min} = N \cdot N \cdot \frac{1}{N} \cdot \frac{1}{N} = 1
-```
+$$
 
 **Corollary:** $\mathcal{L}\_{aux} \geq 1$ with equality iff perfect balance. ∎
 
@@ -186,9 +186,9 @@ At minimum:
 
 **Theorem:** For a fixed parameter budget $P$ and compute budget $C$, the optimal number of experts $N^*$ satisfies:
 
-```math
+$$
 N^* = \sqrt{\frac{P \cdot K}{C}}
-```
+$$
 
 where $K$ is the top-K routing parameter.
 
@@ -210,10 +210,10 @@ Total compute: $C\_{total} = K \cdot (P/N) + N \cdot d$
 
 Minimizing w.r.t. $N$:
 
-```math
+$$
 \frac{dC_{total}}{dN} = -\frac{KP}{N^2} + d = 0
 N^* = \sqrt{\frac{KP}{d}} \propto \sqrt{\frac{P \cdot K}{C}}
-```
+$$
 
 ∎
 
@@ -221,9 +221,9 @@ N^* = \sqrt{\frac{KP}{d}} \propto \sqrt{\frac{P \cdot K}{C}}
 
 **Theorem:** Higher routing entropy leads to better generalization:
 
-```math
+$$
 H(g) = -\sum_i P_i \log P_i
-```
+$$
 
 Higher $H(g)$ correlates with lower generalization gap.
 
@@ -236,9 +236,9 @@ Higher $H(g)$ correlates with lower generalization gap.
 
 **Formal bound:**
 
-```math
+$$
 \text{Generalization gap} \leq O\left(\sqrt{\frac{N_{active} \cdot p}{m}}\right)
-```
+$$
 
 where $m$ = training samples. ∎
 
@@ -246,9 +246,9 @@ where $m$ = training samples. ∎
 
 **Lemma:** The gradient of task loss w.r.t. router parameters is:
 
-```math
+$$
 \frac{\partial \mathcal{L}}{\partial W_g} = \sum_{i \in \text{TopK}} \frac{\partial \mathcal{L}}{\partial y} \cdot E_i(x) \cdot \frac{\partial g_i}{\partial W_g}
-```
+$$
 
 **Proof:**
 
@@ -256,17 +256,17 @@ Forward: $y = \sum\_{i \in \text{TopK}} g\_i(x) E\_i(x)$
 
 By chain rule:
 
-```math
+$$
 \frac{\partial \mathcal{L}}{\partial W_g} = \frac{\partial \mathcal{L}}{\partial y} \cdot \frac{\partial y}{\partial g} \cdot \frac{\partial g}{\partial W_g}
 \frac{\partial y}{\partial g_i} = E_i(x)
 \frac{\partial g_i}{\partial W_g^{(j)}} = g_i(\delta_{ij} - g_j) \cdot x^T
-```
+$$
 
 Combining:
 
-```math
+$$
 \frac{\partial \mathcal{L}}{\partial W_g^{(j)}} = \sum_i \frac{\partial \mathcal{L}}{\partial y} E_i(x) g_i(\delta_{ij} - g_j) x^T
-```
+$$
 
 **Note:** The top-K operation has zero gradient for non-selected experts, requiring straight-through estimators or auxiliary losses for training. ∎
 
@@ -282,9 +282,9 @@ Combining:
 
 For any $\epsilon > 0$, there exists $N, w$ such that:
 
-```math
+$$
 \sup_{x \in \mathcal{X}} |f(x) - \text{MoE}(x)| < \epsilon
-```
+$$
 
 MoE is strictly more expressive than single FFN of same compute budget. ∎
 

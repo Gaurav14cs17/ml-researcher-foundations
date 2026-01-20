@@ -25,9 +25,9 @@
 
 **QLoRA = 4-bit Quantized Base Model + LoRA Adapters**
 
-```math
+$$
 W' = Q_{NF4}(W_0) + \frac{\alpha}{r} BA
-```
+$$
 
 where:
 - $Q\_{NF4}(W\_0)$ = 4-bit NormalFloat quantized weights
@@ -49,9 +49,9 @@ where:
 
 **Construction:** Place 16 levels to minimize MSE for Gaussian:
 
-```math
+$$
 q_i = \Phi^{-1}\left(\frac{2i + 1}{32}\right), \quad i \in \{0, 1, ..., 15\}
-```
+$$
 
 where $\Phi^{-1}$ is the inverse normal CDF (quantile function).
 
@@ -78,15 +78,15 @@ NF4 is optimal for normally distributed weights.
 
 **Quantization requires scales:**
 
-```math
+$$
 W_q = \text{round}(W / s), \quad s \in \mathbb{R}
-```
+$$
 
 For block-wise quantization (e.g., 64 weights per block):
 
-```math
+$$
 \text{Scale memory} = \frac{|\theta|}{64} \times 32 \text{ bits} = 0.5 \text{ bits/weight}
-```
+$$
 
 This is significant overhead!
 
@@ -94,18 +94,18 @@ This is significant overhead!
 
 **Quantize the scales themselves:**
 
-```math
+$$
 s_q = \text{round}(s / s_s)
-```
+$$
 
 where $s\_s$ is a "scale of scales" (per 256 blocks).
 
 **Memory:**
 
-```math
+$$
 \text{Scale memory} = \frac{|\theta|}{64} \times 8 + \frac{|\theta|}{64 \times 256} \times 32
 = 0.127 \text{ bits/weight}
-```
+$$
 
 **Savings:** From 0.5 to 0.127 bits per weight.
 
@@ -147,10 +147,10 @@ For 7B model: $7B \times 8 = 56$ GB just for optimizer!
 
 #### 5.2 Bits per Parameter
 
-```math
+$$
 \text{BPP} = 4 + 0.127 + \frac{16 \times r(d+k)}{dk}
 \approx 4.13 + 0.01 = 4.14 \text{ bits/param}
-```
+$$
 
 vs. 16 bits for FP16.
 
@@ -162,15 +162,15 @@ vs. 16 bits for FP16.
 
 **Forward:**
 
-```math
+$$
 h = Q_{NF4}(W_0) \cdot x + \frac{\alpha}{r} BA \cdot x
-```
+$$
 
 **Backward:**
 
-```math
+$$
 \frac{\partial \mathcal{L}}{\partial A} = \frac{\alpha}{r} B^T \frac{\partial \mathcal{L}}{\partial h} x^T
-```
+$$
 
 **Note:** Gradients only flow through LoRA (B, A), not base weights.
 

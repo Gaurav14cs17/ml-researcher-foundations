@@ -42,9 +42,9 @@
 
 **Objective:**
 
-```math
+$$
 \min_{\mu_1,...,\mu_K} \sum_{i=1}^n \min_{k=1,...,K} \|x_i - \mu_k\|^2
-```
+$$
 
 **Algorithm:**
 1. **Assign:** $z_i = \arg\min_k \|x_i - \mu_k\|^2$
@@ -58,9 +58,9 @@
 
 **Model:**
 
-```math
+$$
 p(x) = \sum_{k=1}^K \pi_k \mathcal{N}(x | \mu_k, \Sigma_k)
-```
+$$
 
 where $\sum_k \pi_k = 1$ and $\pi_k \geq 0$.
 
@@ -68,16 +68,16 @@ where $\sum_k \pi_k = 1$ and $\pi_k \geq 0$.
 
 **E-step:** Compute responsibilities:
 
-```math
+$$
 \gamma_{ik} = \frac{\pi_k \mathcal{N}(x_i | \mu_k, \Sigma_k)}{\sum_j \pi_j \mathcal{N}(x_i | \mu_j, \Sigma_j)}
-```
+$$
 
 **M-step:** Update parameters:
 
-```math
+$$
 \mu_k = \frac{\sum_i \gamma_{ik} x_i}{\sum_i \gamma_{ik}}, \quad \Sigma_k = \frac{\sum_i \gamma_{ik}(x_i - \mu_k)(x_i - \mu_k)^\top}{\sum_i \gamma_{ik}}
 \pi_k = \frac{1}{n}\sum_i \gamma_{ik}
-```
+$$
 
 ---
 
@@ -87,9 +87,9 @@ where $\sum_k \pi_k = 1$ and $\pi_k \geq 0$.
 
 **Objective:** Find directions of maximum variance.
 
-```math
+$$
 \max_{w: \|w\|=1} w^\top \Sigma w
-```
+$$
 
 where $\Sigma = \frac{1}{n}\sum_i (x_i - \bar{x})(x_i - \bar{x})^\top$ is the covariance matrix.
 
@@ -97,9 +97,9 @@ where $\Sigma = \frac{1}{n}\sum_i (x_i - \bar{x})(x_i - \bar{x})^\top$ is the co
 
 **Theorem:** The first $k$ principal components minimize reconstruction error:
 
-```math
+$$
 \min_{W \in \mathbb{R}^{d \times k}} \sum_{i=1}^n \|x_i - WW^\top x_i\|^2
-```
+$$
 
 **Proof:** Using SVD of centered data matrix $X = U\Sigma V^\top$, optimal $W$ is first $k$ columns of $V$. $\blacksquare$
 
@@ -117,35 +117,35 @@ For non-linear dimensionality reduction:
 
 ### Evidence Lower Bound (ELBO)
 
-```math
+$$
 \log p(x) \geq \mathbb{E}_{q(z|x)}[\log p(x|z)] - D_{\text{KL}}(q(z|x) \| p(z)) = \mathcal{L}_{\text{ELBO}}
-```
+$$
 
 **Proof:**
 
-```math
+$$
 \log p(x) = \log \int p(x, z) dz = \log \int \frac{p(x, z)}{q(z|x)} q(z|x) dz
-```
+$$
 
 By Jensen's inequality:
 
-```math
+$$
 \geq \int q(z|x) \log \frac{p(x, z)}{q(z|x)} dz = \mathbb{E}_q[\log p(x|z)] - D_{\text{KL}}(q \| p(z)) \quad \blacksquare
-```
+$$
 
 ### Reparameterization Trick
 
 To enable backpropagation through sampling:
 
-```math
+$$
 z = \mu_\phi(x) + \sigma_\phi(x) \odot \epsilon, \quad \epsilon \sim \mathcal{N}(0, I)
-```
+$$
 
 ### KL Divergence (Gaussian)
 
-```math
+$$
 D_{\text{KL}}(\mathcal{N}(\mu, \sigma^2) \| \mathcal{N}(0, 1)) = \frac{1}{2}\sum_j (\mu_j^2 + \sigma_j^2 - \log \sigma_j^2 - 1)
-```
+$$
 
 ---
 

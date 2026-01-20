@@ -48,35 +48,35 @@ An MDP is defined by $(\mathcal{S}, \mathcal{A}, P, R, \gamma)$:
 
 **State Value Function:**
 
-```math
+$$
 V^\pi(s) = \mathbb{E}_\pi\left[\sum_{t=0}^\infty \gamma^t R_t | S_0 = s\right]
-```
+$$
 
 **Bellman Expectation Equation:**
 
-```math
+$$
 V^\pi(s) = \sum_a \pi(a|s) \sum_{s'} P(s'|s,a) \left[R(s,a,s') + \gamma V^\pi(s')\right]
-```
+$$
 
 **Action Value Function:**
 
-```math
+$$
 Q^\pi(s,a) = \sum_{s'} P(s'|s,a) \left[R(s,a,s') + \gamma \sum_{a'} \pi(a'|s') Q^\pi(s',a')\right]
-```
+$$
 
 ### Bellman Optimality Equations
 
 **Optimal State Value:**
 
-```math
+$$
 V^*(s) = \max_a \sum_{s'} P(s'|s,a) \left[R(s,a,s') + \gamma V^*(s')\right]
-```
+$$
 
 **Optimal Action Value:**
 
-```math
+$$
 Q^*(s,a) = \sum_{s'} P(s'|s,a) \left[R(s,a,s') + \gamma \max_{a'} Q^*(s',a')\right]
-```
+$$
 
 ---
 
@@ -122,9 +122,9 @@ V_k → V^π as k → ∞  ✓
 
 **Convergence rate:**
 
-```math
+$$
 \|V_k - V^\pi\|_\infty \leq \gamma^k \|V_0 - V^\pi\|_\infty
-```
+$$
 
 ---
 

@@ -39,9 +39,9 @@
 
 ### True (Population) Risk
 
-```math
+$$
 R(h) = \mathbb{E}_{(x,y) \sim \mathcal{D}}[\ell(h(x), y)] = \int \ell(h(x), y) \, dP(x, y)
-```
+$$
 
 where:
 - $h: \mathcal{X} \to \mathcal{Y}$ is a hypothesis
@@ -54,17 +54,17 @@ where:
 
 Given training set $S = \{(x_i, y_i)\}_{i=1}^n$ sampled i.i.d. from $\mathcal{D}$:
 
-```math
+$$
 \hat{R}_S(h) = \frac{1}{n} \sum_{i=1}^{n} \ell(h(x_i), y_i)
-```
+$$
 
 This is the average loss over training data—computable!
 
 ### ERM Principle
 
-```math
+$$
 \hat{h}_{\text{ERM}} = \arg\min_{h \in \mathcal{H}} \hat{R}_S(h)
-```
+$$
 
 Find the hypothesis in class $\mathcal{H}$ that minimizes training loss.
 
@@ -76,43 +76,43 @@ Find the hypothesis in class $\mathcal{H}$ that minimizes training loss.
 
 **Theorem:** For fixed $h$, as $n \to \infty$:
 
-```math
+$$
 \hat{R}_S(h) \xrightarrow{p} R(h)
-```
+$$
 
 **Proof:** By LLN, since $\ell(h(x_i), y_i)$ are i.i.d.:
 
-```math
+$$
 \frac{1}{n}\sum_{i=1}^n \ell(h(x_i), y_i) \xrightarrow{p} \mathbb{E}[\ell(h(x), y)] = R(h) \quad \blacksquare
-```
+$$
 
 ### Hoeffding's Inequality (Concentration)
 
 **Theorem:** For bounded loss $\ell \in [0, 1]$, for any fixed $h$:
 
-```math
+$$
 \Pr\left[|R(h) - \hat{R}_S(h)| > \epsilon\right] \leq 2\exp(-2n\epsilon^2)
-```
+$$
 
 **Corollary:** With probability $\geq 1 - \delta$:
 
-```math
+$$
 |R(h) - \hat{R}_S(h)| \leq \sqrt{\frac{\ln(2/\delta)}{2n}}
-```
+$$
 
 ### Uniform Convergence
 
 **Theorem (Finite Hypothesis Class):** For $|\mathcal{H}| < \infty$, with probability $\geq 1 - \delta$:
 
-```math
+$$
 \sup_{h \in \mathcal{H}} |R(h) - \hat{R}_S(h)| \leq \sqrt{\frac{\ln(2|\mathcal{H}|/\delta)}{2n}}
-```
+$$
 
 **Proof:** Apply union bound:
 
-```math
+$$
 \Pr\left[\exists h: |R(h) - \hat{R}_S(h)| > \epsilon\right] \leq \sum_{h \in \mathcal{H}} \Pr\left[|R(h) - \hat{R}_S(h)| > \epsilon\right] \leq |\mathcal{H}| \cdot 2e^{-2n\epsilon^2}
-```
+$$
 
 Setting this to $\delta$ and solving for $\epsilon$. $\blacksquare$
 
@@ -124,15 +124,15 @@ Setting this to $\delta$ and solving for $\epsilon$. $\blacksquare$
 
 **Theorem:** Let $\mathcal{H}$ be a hypothesis class with VC dimension $d$. With probability $\geq 1 - \delta$:
 
-```math
+$$
 R(\hat{h}_{\text{ERM}}) \leq \hat{R}_S(\hat{h}_{\text{ERM}}) + \sqrt{\frac{8d\ln(en/d) + 8\ln(4/\delta)}{n}}
-```
+$$
 
 ### Decomposition of Excess Risk
 
-```math
+$$
 R(\hat{h}_{\text{ERM}}) - R(h^*) = \underbrace{R(\hat{h}_{\text{ERM}}) - \hat{R}_S(\hat{h}_{\text{ERM}})}_{\text{generalization gap}} + \underbrace{\hat{R}_S(\hat{h}_{\text{ERM}}) - \hat{R}_S(h^*)}_{\leq 0 \text{ by ERM}} + \underbrace{\hat{R}_S(h^*) - R(h^*)}_{\text{approximation}}
-```
+$$
 
 where $h^* = \arg\min_{h \in \mathcal{H}} R(h)$.
 
@@ -144,9 +144,9 @@ where $h^* = \arg\min_{h \in \mathcal{H}} R(h)$.
 
 ERM minimizes $\hat{R}_S(h)$, not $R(h)$. The gap:
 
-```math
+$$
 R(\hat{h}) = \underbrace{\hat{R}_S(\hat{h})}_{\text{training error}} + \underbrace{(R(\hat{h}) - \hat{R}_S(\hat{h}))}_{\text{generalization gap}}
-```
+$$
 
 ### When ERM Overfits
 

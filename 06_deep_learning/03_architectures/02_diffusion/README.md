@@ -27,9 +27,9 @@
 
 **Definition:** Gradually add Gaussian noise over $T$ timesteps.
 
-```math
+$$
 q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t} x_{t-1}, \beta_t I)
-```
+$$
 
 Where $\beta\_t$ is the noise schedule (variance at step $t$).
 
@@ -37,36 +37,36 @@ Where $\beta\_t$ is the noise schedule (variance at step $t$).
 
 Define $\alpha\_t = 1 - \beta\_t$ and $\bar{\alpha}\_t = \prod\_{s=1}^{t} \alpha\_s$
 
-```math
+$$
 q(x_t | x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0, (1-\bar{\alpha}_t) I)
-```
+$$
 
 **Reparameterization:**
 
-```math
+$$
 x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1-\bar{\alpha}_t} \epsilon, \quad \epsilon \sim \mathcal{N}(0, I)
-```
+$$
 
 ### Reverse Diffusion Process
 
 **Goal:** Learn to reverse the forward process.
 
-```math
+$$
 p_\theta(x_{t-1} | x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
-```
+$$
 
 **Posterior (tractable when conditioned on $x\_0$):**
 
-```math
+$$
 q(x_{t-1} | x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t, x_0), \tilde{\beta}_t I)
-```
+$$
 
 Where:
 
-```math
+$$
 \tilde{\mu}_t = \frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1-\bar{\alpha}_t} x_0 + \frac{\sqrt{\alpha_t}(1-\bar{\alpha}_{t-1})}{1-\bar{\alpha}_t} x_t
 \tilde{\beta}_t = \frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t} \beta_t
-```
+$$
 
 ---
 
@@ -74,31 +74,31 @@ Where:
 
 ### Variational Lower Bound (ELBO)
 
-```math
+$$
 \log p(x_0) \geq \mathbb{E}_q\left[\log \frac{p(x_{0:T})}{q(x_{1:T}|x_0)}\right] = -L_{VLB}
-```
+$$
 
 **Simplified Loss (DDPM):**
 
 Instead of predicting $\mu$, predict the noise $\epsilon$:
 
-```math
+$$
 L_{simple} = \mathbb{E}_{t, x_0, \epsilon}\left[\|\epsilon - \epsilon_\theta(x_t, t)\|^2\right]
-```
+$$
 
 **Proof of equivalence:**
 
 From $x\_t = \sqrt{\bar{\alpha}\_t} x\_0 + \sqrt{1-\bar{\alpha}\_t} \epsilon$:
 
-```math
+$$
 x_0 = \frac{x_t - \sqrt{1-\bar{\alpha}_t} \epsilon}{\sqrt{\bar{\alpha}_t}}
-```
+$$
 
 Substituting into $\tilde{\mu}\_t$:
 
-```math
+$$
 \tilde{\mu}_t = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon\right)
-```
+$$
 
 So predicting $\epsilon$ is equivalent to predicting $\mu$!
 
@@ -134,17 +134,17 @@ def train_step(model, x0):
 
 Starting from $x\_T \sim \mathcal{N}(0, I)$:
 
-```math
+$$
 x_{t-1} = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{1-\alpha_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon_\theta(x_t, t)\right) + \sigma_t z
-```
+$$
 
 Where $z \sim \mathcal{N}(0, I)$ and $\sigma\_t = \sqrt{\beta\_t}$ or $\sigma\_t = \sqrt{\tilde{\beta}\_t}$.
 
 ### DDIM Sampling (Deterministic)
 
-```math
+$$
 x_{t-1} = \sqrt{\bar{\alpha}_{t-1}} \underbrace{\left(\frac{x_t - \sqrt{1-\bar{\alpha}_t} \epsilon_\theta}{\sqrt{\bar{\alpha}_t}}\right)}_{\text{predicted } x_0} + \sqrt{1-\bar{\alpha}_{t-1}} \epsilon_\theta
-```
+$$
 
 **Advantage:** Can skip steps (e.g., 1000 → 50 steps) for faster generation.
 
@@ -160,11 +160,11 @@ x_{t-1} = \sqrt{\bar{\alpha}_{t-1}} \underbrace{\left(\frac{x_t - \sqrt{1-\bar{\
 
 ### Cosine Schedule Derivation
 
-```math
+$$
 f(t) = \cos^2\left(\frac{t/T + s}{1+s} \cdot \frac{\pi}{2}\right)
 \bar{\alpha}_t = \frac{f(t)}{f(0)}
 \beta_t = 1 - \frac{\bar{\alpha}_t}{\bar{\alpha}_{t-1}} = 1 - \frac{f(t)}{f(t-1)}
-```
+$$
 
 ---
 
@@ -172,9 +172,9 @@ f(t) = \cos^2\left(\frac{t/T + s}{1+s} \cdot \frac{\pi}{2}\right)
 
 **Conditional Generation:**
 
-```math
+$$
 \tilde{\epsilon}_\theta(x_t, t, c) = \epsilon_\theta(x_t, t, \varnothing) + w \cdot (\epsilon_\theta(x_t, t, c) - \epsilon_\theta(x_t, t, \varnothing))
-```
+$$
 
 Where:
 - $c$ = conditioning (e.g., text prompt)
@@ -191,9 +191,9 @@ Where:
 
 **Solution:** Diffuse in latent space of a pretrained VAE.
 
-```math
+$$
 z = \text{Encoder}(x), \quad \hat{x} = \text{Decoder}(\hat{z})
-```
+$$
 
 **Compression:** $256 \times 256 \times 3 \rightarrow 32 \times 32 \times 4$ (64× reduction!)
 

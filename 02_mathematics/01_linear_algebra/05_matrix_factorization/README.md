@@ -71,9 +71,9 @@
 
 Given matrix $R \in \mathbb{R}^{m \times n}$, find factors:
 
-```math
+$$
 R \approx UV^T
-```
+$$
 
 where $U \in \mathbb{R}^{m \times k}$ and $V \in \mathbb{R}^{n \times k}$ with $k \ll \min(m, n)$.
 
@@ -81,9 +81,9 @@ where $U \in \mathbb{R}^{m \times k}$ and $V \in \mathbb{R}^{n \times k}$ with $
 
 SVD gives the optimal low-rank approximation:
 
-```math
+$$
 A = U\Sigma V^T \approx U_k \Sigma_k V_k^T
-```
+$$
 
 But SVD requires:
 - Complete matrix (no missing entries)
@@ -97,9 +97,9 @@ Matrix factorization methods relax these.
 
 ### 📌 Problem Formulation
 
-```math
+$$
 \min_{U, V} \|R - UV^T\|_F^2 + \lambda(\|U\|_F^2 + \|V\|_F^2)
-```
+$$
 
 - Frobenius norm: $\|A\|\_F = \sqrt{\sum\_{ij} A\_{ij}^2}$
 - Regularization $\lambda$ prevents overfitting
@@ -133,9 +133,9 @@ Repeat until convergence:
 
 ### 📌 Problem
 
-```math
+$$
 \min_{U \geq 0, V \geq 0} \|R - UV^T\|_F^2
-```
+$$
 
 subject to $U\_{ij} \geq 0$ and $V\_{ij} \geq 0$.
 
@@ -204,9 +204,9 @@ Therefore objective decreases (or stays same) at each step.  ∎
 
 ### 📐 Matrix Factorization Model
 
-```math
+$$
 \hat{r}_{ij} = b + b_i + b_j + \mathbf{u}_i^T \mathbf{v}_j
-```
+$$
 
 where:
 - $b$: global bias
@@ -219,9 +219,9 @@ where:
 
 Minimize over observed ratings $\Omega$:
 
-```math
+$$
 \min \sum_{(i,j) \in \Omega} (r_{ij} - \hat{r}_{ij})^2 + \lambda(\|U\|_F^2 + \|V\|_F^2 + \sum_i b_i^2 + \sum_j b_j^2)
-```
+$$
 
 ### 💡 Example: Netflix
 

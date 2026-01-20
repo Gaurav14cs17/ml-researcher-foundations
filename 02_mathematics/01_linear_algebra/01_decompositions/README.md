@@ -92,9 +92,9 @@
 
 **For ANY matrix** $A \in \mathbb{R}^{m \times n}$:
 
-```math
+$$
 A = U\Sigma V^T
-```
+$$
 
 where:
 - $U \in \mathbb{R}^{m \times m}$: orthogonal matrix (left singular vectors)
@@ -175,9 +175,9 @@ In matrix form:
 
 **Theorem**: The best rank-$k$ approximation to $A$ (in Frobenius norm) is:
 
-```math
+$$
 A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T
-```
+$$
 
 **Error**: $\|A - A\_k\|\_F^2 = \sum\_{i=k+1}^{r} \sigma\_i^2$
 
@@ -287,15 +287,15 @@ class LoRALinear(nn.Module):
 
 For a **square matrix** $A \in \mathbb{R}^{n \times n}$:
 
-```math
+$$
 A\mathbf{v} = \lambda\mathbf{v}
-```
+$$
 
 If $A$ has $n$ linearly independent eigenvectors:
 
-```math
+$$
 A = Q\Lambda Q^{-1}
-```
+$$
 
 For **symmetric** $A$: $A = Q\Lambda Q^T$ (orthogonal $Q$)
 
@@ -425,9 +425,9 @@ For such matrices, use:
 
 For any matrix $A \in \mathbb{R}^{m \times n}$ with $m \geq n$:
 
-```math
+$$
 A = QR
-```
+$$
 
 where:
 - $Q \in \mathbb{R}^{m \times n}$: orthonormal columns ($Q^TQ = I$)
@@ -545,9 +545,9 @@ As k → ∞: Aₖ → upper triangular (eigenvalues on diagonal)
 
 For a **symmetric positive definite** matrix $A$:
 
-```math
+$$
 A = LL^T
-```
+$$
 
 where $L$ is lower triangular with positive diagonal entries.
 
@@ -653,9 +653,9 @@ log_det = 2 * np.sum(np.log(np.diag(L)))
 
 For a square matrix $A$ (with partial pivoting):
 
-```math
+$$
 PA = LU
-```
+$$
 
 where:
 - $P$: permutation matrix

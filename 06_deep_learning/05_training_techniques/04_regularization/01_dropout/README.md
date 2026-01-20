@@ -27,17 +27,17 @@ For a layer with activations $h \in \mathbb{R}^d$:
 
 **Step 1: Sample binary mask**
 
-```math
+$$
 m_i \sim \text{Bernoulli}(1-p) \quad \text{for } i = 1, \ldots, d
-```
+$$
 
 where $p$ is the dropout probability (typically 0.5 for hidden layers, 0.2 for input).
 
 **Step 2: Apply mask with scaling**
 
-```math
+$$
 \tilde{h} = \frac{1}{1-p} \cdot (h \odot m)
-```
+$$
 
 The scaling factor $\frac{1}{1-p}$ ensures expected value is preserved:
 ```
@@ -51,9 +51,9 @@ E[h̃ᵢ] = E[(1/(1-p)) · hᵢ · mᵢ]
 
 At inference, use all neurons without dropout:
 
-```math
+$$
 \tilde{h} = h
-```
+$$
 
 This is equivalent to computing the expected output over all possible masks.
 
@@ -90,15 +90,15 @@ Dropout approximates Bayesian inference over network weights:
 
 **Variational distribution:**
 
-```math
+$$
 q(W) = \prod_{ij} q(w_{ij}) = \prod_{ij} [(1-p)\delta(w_{ij} - \hat{w}_{ij}) + p\delta(w_{ij})]
-```
+$$
 
 **Predictive distribution:**
 
-```math
+$$
 p(y|x, D) \approx \int p(y|x, W) q(W) dW \approx \frac{1}{T} \sum_{t=1}^{T} f(x; W_t)
-```
+$$
 
 where $W_t$ are sampled using dropout masks.
 
@@ -127,10 +127,10 @@ For a simple linear layer $y = Wx$ with dropout:
 
 **Forward:**
 
-```math
+$$
 \tilde{x} = \frac{1}{1-p} (x \odot m)
 y = W\tilde{x}
-```
+$$
 
 **Backward:**
 ```
@@ -145,9 +145,9 @@ Key: Gradients only flow through non-dropped units!
 
 For linear regression with dropout, the expected loss:
 
-```math
+$$
 \mathbb{E}[\|y - W\tilde{x}\|^2] = \|y - Wx\|^2 + \frac{p}{1-p}\|W\|_F^2 \cdot \mathbb{E}[\|x\|^2]
-```
+$$
 
 **Proof:**
 ```
@@ -197,9 +197,9 @@ h_out = h * (1 - p)  # Scale down
 
 Drop individual weights instead of activations:
 
-```math
+$$
 \tilde{W} = W \odot M \quad \text{where } M_{ij} \sim \text{Bernoulli}(1-p)
-```
+$$
 
 ### 4. Spatial Dropout (Dropout2D)
 
@@ -215,9 +215,9 @@ h_dropped = h * mask / (1 - p)
 
 For residual networks, drop entire residual branches:
 
-```math
+$$
 y = x + \text{drop}(f(x))
-```
+$$
 
 ### 6. Alpha Dropout
 

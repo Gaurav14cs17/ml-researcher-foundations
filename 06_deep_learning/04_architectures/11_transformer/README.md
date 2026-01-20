@@ -25,9 +25,9 @@ The Transformer architecture, introduced in "Attention Is All You Need" (2017), 
 
 **Input:** Query $Q$, Key $K$, Value $V$ matrices
 
-```math
+$$
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V
-```
+$$
 
 **Dimensions:**
 - $Q \in \mathbb{R}^{n \times d_k}$
@@ -75,15 +75,15 @@ Output is weighted combination of values
 
 ### Formulation
 
-```math
+$$
 \text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) W^O
-```
+$$
 
 where each head:
 
-```math
+$$
 \text{head}_i = \text{Attention}(Q W_i^Q, K W_i^K, V W_i^V)
-```
+$$
 
 **Projections:**
 - $W_i^Q \in \mathbb{R}^{d_{model} \times d_k}$
@@ -115,10 +115,10 @@ Each head learns different relationship types!
 
 ### Sinusoidal Encoding
 
-```math
+$$
 PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
-```
+$$
 
 ### Why Sinusoidal?
 
@@ -147,16 +147,16 @@ Model can learn to attend to relative positions.
 
 Modern alternative used in LLaMA, GPT-NeoX:
 
-```math
+$$
 f_q(x_m, m) = (W_q x_m) e^{im\theta}
 f_k(x_n, n) = (W_k x_n) e^{in\theta}
-```
+$$
 
 **Key property:** Attention only depends on relative position $m - n$:
 
-```math
+$$
 \langle f_q(x_m, m), f_k(x_n, n) \rangle = \text{Re}[(W_q x_m)(W_k x_n)^* e^{i(m-n)\theta}]
-```
+$$
 
 ---
 
@@ -192,24 +192,24 @@ Output
 
 **Post-LN (Original):**
 
-```math
+$$
 x = x + \text{Attn}(x)
 x = \text{LN}(x)
-```
+$$
 
 **Pre-LN (Modern):**
 
-```math
+$$
 x = x + \text{Attn}(\text{LN}(x))
-```
+$$
 
 Pre-LN is more stable for deep networks (gradient scale is bounded).
 
 ### Feed-Forward Network
 
-```math
+$$
 \text{FFN}(x) = W_2 \cdot \text{activation}(W_1 x + b_1) + b_2
-```
+$$
 
 **Dimensions:**
 - $W_1 \in \mathbb{R}^{d_{model} \times d_{ff}}$
@@ -229,9 +229,9 @@ Pre-LN is more stable for deep networks (gradient scale is bounded).
 
 For autoregressive generation, prevent attending to future:
 
-```math
+$$
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} + M\right) V
-```
+$$
 
 where mask $M_{ij} = -\infty$ if $j > i$, else 0.
 
@@ -241,9 +241,9 @@ Encoder-decoder models:
 - Q from decoder
 - K, V from encoder
 
-```math
+$$
 \text{CrossAttn}(Q_{dec}, K_{enc}, V_{enc})
-```
+$$
 
 ### Efficient Attention Variants
 

@@ -48,9 +48,9 @@ In other words, $\mathcal{H}$ can achieve all $2^n$ possible binary labelings of
 
 **Definition:** The VC dimension of $\mathcal{H}$, denoted $\text{VC}(\mathcal{H})$, is:
 
-```math
+$$
 \text{VC}(\mathcal{H}) = \max\{n : \exists S \text{ with } |S| = n \text{ that } \mathcal{H} \text{ shatters}\}
-```
+$$
 
 If $\mathcal{H}$ can shatter arbitrarily large sets, $\text{VC}(\mathcal{H}) = \infty$.
 
@@ -74,17 +74,17 @@ We need to show there exists a set of $d+1$ points that can be shattered.
 
 Consider points in general position:
 
-```math
+$$
 x_0 = 0, \quad x_i = e_i \text{ for } i = 1, \ldots, d
-```
+$$
 
 where $e_i$ is the $i$-th standard basis vector.
 
 For any labeling $(y_0, y_1, \ldots, y_d)$, set:
 
-```math
+$$
 w = \sum_{i=1}^d y_i e_i, \quad b = -\frac{1}{2}(1 + y_0)
-```
+$$
 
 Then:
 - $w^\top x_0 + b = b = -\frac{1}{2}(1 + y_0)$, which has sign $y_0$
@@ -134,9 +134,9 @@ For any $d+2$ points in $\mathbb{R}^d$, they are linearly dependent. By Radon's 
 
 **Definition:** The growth function of $\mathcal{H}$ is:
 
-```math
+$$
 m_\mathcal{H}(n) = \max_{x_1, \ldots, x_n} |\{(h(x_1), \ldots, h(x_n)) : h \in \mathcal{H}\}|
-```
+$$
 
 This counts the maximum number of distinct classifications on $n$ points.
 
@@ -149,9 +149,9 @@ This counts the maximum number of distinct classifications on $n$ points.
 
 **Theorem (Sauer, 1972; Shelah, 1972):** If $\text{VC}(\mathcal{H}) = d$, then:
 
-```math
+$$
 m_\mathcal{H}(n) \leq \sum_{i=0}^{d} \binom{n}{i} \leq \left(\frac{en}{d}\right)^d
-```
+$$
 
 **Proof Sketch:**
 
@@ -167,9 +167,9 @@ By induction on $n + d$. For the base case, if $d = 0$, then $m_\mathcal{H}(n) =
 
 **Theorem:** Let $\mathcal{H}$ have VC dimension $d < \infty$. For any distribution $P$ over $\mathcal{X} \times \{0, 1\}$, with probability $\geq 1 - \delta$ over training set $S$ of size $n$:
 
-```math
+$$
 \forall h \in \mathcal{H}: \quad R(h) \leq \hat{R}(h) + \sqrt{\frac{8d \ln(en/d) + 8\ln(4/\delta)}{n}}
-```
+$$
 
 where:
 - $R(h) = \mathbb{E}_{(x,y) \sim P}[\mathbb{1}[h(x) \neq y]]$ is the true risk
@@ -181,9 +181,9 @@ where:
 
 The key insight is to relate uniform deviations to the growth function using a "ghost sample" technique.
 
-```math
+$$
 \Pr\left[\sup_{h \in \mathcal{H}} |R(h) - \hat{R}(h)| > \epsilon\right] \leq 2\Pr\left[\sup_{h \in \mathcal{H}} |\hat{R}(h) - \hat{R}'(h)| > \epsilon/2\right]
-```
+$$
 
 where $\hat{R}'(h)$ is the empirical risk on an independent "ghost" sample.
 
@@ -195,15 +195,15 @@ On $2n$ points, $\mathcal{H}$ induces at most $m_\mathcal{H}(2n)$ distinct behav
 
 Apply Hoeffding's inequality to each effective hypothesis, then union bound:
 
-```math
+$$
 \Pr\left[\sup_{h \in \mathcal{H}} |R(h) - \hat{R}(h)| > \epsilon\right] \leq 2 m_\mathcal{H}(2n) \cdot e^{-n\epsilon^2/2}
-```
+$$
 
 **Step 4: Apply Sauer's Lemma**
 
-```math
+$$
 \leq 2 \left(\frac{2en}{d}\right)^d e^{-n\epsilon^2/2}
-```
+$$
 
 Setting this to $\delta$ and solving for $\epsilon$ gives the bound.
 
@@ -211,9 +211,9 @@ Setting this to $\delta$ and solving for $\epsilon$ gives the bound.
 
 **Corollary:** To achieve $R(\hat{h}) - \hat{R}(\hat{h}) \leq \epsilon$ with probability $\geq 1 - \delta$:
 
-```math
+$$
 n = O\left(\frac{d + \ln(1/\delta)}{\epsilon^2}\right)
-```
+$$
 
 **Key insights:**
 - Sample complexity is **linear** in VC dimension
@@ -519,9 +519,9 @@ Classical VC theory predicts:
 
 **Definition:** The empirical Rademacher complexity is:
 
-```math
+$$
 \hat{\mathcal{R}}_S(\mathcal{H}) = \mathbb{E}_\sigma\left[\sup_{h \in \mathcal{H}} \frac{1}{n}\sum_{i=1}^n \sigma_i h(x_i)\right]
-```
+$$
 
 where $\sigma_i \in \{-1, +1\}$ are uniform random signs.
 

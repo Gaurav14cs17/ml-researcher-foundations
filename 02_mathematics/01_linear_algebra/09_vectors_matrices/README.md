@@ -73,9 +73,9 @@
 
 A **vector** $\mathbf{x} \in \mathbb{R}^n$ is an ordered list of $n$ real numbers:
 
-```math
+$$
 \mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix}
-```
+$$
 
 ### 📐 Vector Operations
 
@@ -93,9 +93,9 @@ A **vector** $\mathbf{x} \in \mathbb{R}^n$ is an ordered list of $n$ real number
 
 ### 📌 Definition
 
-```math
+$$
 \mathbf{x} \cdot \mathbf{y} = \mathbf{x}^T\mathbf{y} = \sum_{i=1}^{n} x_i y_i = \|\mathbf{x}\| \|\mathbf{y}\| \cos\theta
-```
+$$
 
 ### 🔍 Proof: Geometric Formula
 
@@ -257,9 +257,9 @@ L2 Regularization (Ridge/Weight Decay):
 
 **Definition**: For $A \in \mathbb{R}^{m \times n}$ and $B \in \mathbb{R}^{n \times p}$:
 
-```math
+$$
 (AB)_{ij} = \sum_{k=1}^{n} A_{ik}B_{kj}
-```
+$$
 
 **Dimensions**: $(m \times n) \cdot (n \times p) = (m \times p)$
 
@@ -402,9 +402,9 @@ Examples: Rotation matrices, reflection matrices, permutation matrices
 
 ### 📌 Trace
 
-```math
+$$
 \text{tr}(A) = \sum_{i=1}^{n} A_{ii}
-```
+$$
 
 ### Key Properties
 
@@ -432,9 +432,9 @@ tr(ABC) = tr((AB)C) = tr(C(AB)) = tr(CAB)  ∎
 
 ### 📌 Determinant
 
-```math
+$$
 \det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^{n} A_{i,\sigma(i)}
-```
+$$
 
 ### Key Properties
 

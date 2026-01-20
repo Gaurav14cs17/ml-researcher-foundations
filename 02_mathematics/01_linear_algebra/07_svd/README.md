@@ -77,9 +77,9 @@
 
 For **any** matrix $A \in \mathbb{R}^{m \times n}$, there exist:
 
-```math
+$$
 A = U\Sigma V^T
-```
+$$
 
 where:
 - $U \in \mathbb{R}^{m \times m}$: orthogonal ($U^TU = UU^T = I$)
@@ -197,9 +197,9 @@ In matrix form:
 
 The best rank-$k$ approximation to $A$ (in Frobenius or spectral norm) is:
 
-```math
+$$
 A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T
-```
+$$
 
 **Error**: $\|A - A\_k\|\_F^2 = \sum\_{i=k+1}^{r} \sigma\_i^2$
 

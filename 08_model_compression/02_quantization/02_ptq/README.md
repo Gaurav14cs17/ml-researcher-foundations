@@ -27,9 +27,9 @@
 
 Given trained weights $W$ and activations $X$, find quantized weights $\hat{W}$ that minimize output error:
 
-```math
+$$
 \min_{\hat{W}} \|WX - \hat{W}X\|_F^2
-```
+$$
 
 ---
 
@@ -39,42 +39,42 @@ Given trained weights $W$ and activations $X$, find quantized weights $\hat{W}$ 
 
 **Single scale for entire tensor:**
 
-```math
+$$
 W_q = \text{round}\left(\frac{W}{s}\right), \quad s = \frac{\max(|W|)}{2^{b-1}-1}
-```
+$$
 
 **Reconstruction:**
 
-```math
+$$
 \hat{W} = s \cdot W_q
-```
+$$
 
 **Error:**
 
-```math
+$$
 \|W - \hat{W}\|_F^2 = \sum_{i,j} (w_{ij} - \hat{w}_{ij})^2
-```
+$$
 
 #### 2.2 Per-Channel Quantization
 
 **Separate scale per output channel:**
 
-```math
+$$
 W_q[c,:] = \text{round}\left(\frac{W[c,:]}{s_c}\right), \quad s_c = \frac{\max(|W[c,:]|)}{2^{b-1}-1}
-```
+$$
 
 **Theorem:** Per-channel achieves lower or equal MSE:
 
-```math
+$$
 \text{MSE}_{per-channel} \leq \text{MSE}_{per-tensor}
-```
+$$
 
 **Proof:**
 Per-channel optimizes each $s\_c$ independently:
 
-```math
+$$
 s_c^* = \arg\min_{s_c} \sum_j (w_{cj} - s_c \cdot \text{round}(w_{cj}/s_c))^2
-```
+$$
 
 The per-tensor solution is a constraint of this: $s\_c = s \, \forall c$.
 Removing constraints cannot increase the minimum.
@@ -87,9 +87,9 @@ Removing constraints cannot increase the minimum.
 
 **Compute scale at runtime per batch/token:**
 
-```math
+$$
 s_{act} = \frac{\max(|X|)}{2^{b-1}-1}
-```
+$$
 
 **Pros:** Adapts to input distribution
 **Cons:** Runtime overhead
@@ -98,9 +98,9 @@ s_{act} = \frac{\max(|X|)}{2^{b-1}-1}
 
 **Pre-compute scale from calibration data:**
 
-```math
+$$
 s_{act} = \frac{1}{N}\sum_{i=1}^{N} \frac{\max(|X_i|)}{2^{b-1}-1}
-```
+$$
 
 **Calibration strategies:**
 - Moving average of max values
@@ -117,16 +117,16 @@ s_{act} = \frac{1}{N}\sum_{i=1}^{N} \frac{\max(|X_i|)}{2^{b-1}-1}
 
 **Quantized:**
 
-```math
+$$
 X = s_x(X_q - z_x), \quad W = s_w(W_q - z_w)
 Y = XW^T = s_x s_w (X_q - z_x)(W_q - z_w)^T
-```
+$$
 
 **Expanding:**
 
-```math
+$$
 Y = s_x s_w \left[X_q W_q^T - z_w X_q \mathbf{1}^T - z_x \mathbf{1} W_q^T + z_x z_w n\right]
-```
+$$
 
 where $n$ is the inner dimension.
 
@@ -138,9 +138,9 @@ where $n$ is the inner dimension.
 
 With symmetric quantization ($z\_x = z\_w = 0$):
 
-```math
+$$
 Y = s_x s_w \cdot X_q W_q^T
-```
+$$
 
 Much simpler - only one rescaling operation!
 
@@ -156,31 +156,31 @@ Much simpler - only one rescaling operation!
 
 **Formulation:**
 
-```math
+$$
 \hat{W} = s \cdot \left(\lfloor W/s \rfloor + h(V)\right)
-```
+$$
 
 where $h(V) \in [0,1]$ is a learned soft indicator and $V$ is optimized.
 
 **Objective:**
 
-```math
+$$
 \min_V \|WX - \hat{W}X\|_F^2 + \lambda \cdot \text{Reg}(h(V))
-```
+$$
 
 **Regularization:** Encourage $h(V) \to \{0, 1\}$:
 
-```math
+$$
 \text{Reg}(h) = \sum_{i,j} (1 - |2h_{ij} - 1|^\beta)
-```
+$$
 
 #### 5.2 BRECQ (Block Reconstruction)
 
 **Process blocks of layers jointly:**
 
-```math
+$$
 \min_{\hat{W}_1, ..., \hat{W}_k} \|f_{1:k}(X; W) - f_{1:k}(X; \hat{W})\|_F^2
-```
+$$
 
 **Algorithm:**
 1. Quantize first block, minimize reconstruction error
@@ -195,15 +195,15 @@ where $h(V) \in [0,1]$ is a learned soft indicator and $V$ is optimized.
 
 **Taylor expansion of loss around optimal weights:**
 
-```math
+$$
 \mathcal{L}(W + \Delta W) \approx \mathcal{L}(W) + \nabla \mathcal{L}^T \Delta W + \frac{1}{2}\Delta W^T H \Delta W
-```
+$$
 
 At optimum, $\nabla \mathcal{L} \approx 0$, so:
 
-```math
+$$
 \Delta \mathcal{L} \approx \frac{1}{2}\Delta W^T H \Delta W
-```
+$$
 
 #### 6.2 Optimal Weight Update (OBQ)
 
@@ -213,23 +213,23 @@ The quantization introduces error $\delta\_q = \hat{w}\_q - w\_q$.
 
 **Optimal correction to remaining weights:**
 
-```math
+$$
 \delta_{-q} = -\frac{\delta_q}{[H^{-1}]_{qq}} H^{-1}_{:,q}
-```
+$$
 
 **Proof:**
 We minimize:
 
-```math
+$$
 \min_{\delta_{-q}} (\delta_q, \delta_{-q})^T H (\delta_q, \delta_{-q})
-```
+$$
 
 Taking derivative w.r.t. $\delta\_{-q}$ and setting to zero:
 
-```math
+$$
 H_{-q,-q} \delta_{-q} + H_{-q,q} \delta_q = 0
 \delta_{-q} = -H_{-q,-q}^{-1} H_{-q,q} \delta_q
-```
+$$
 
 Using block matrix inversion, this simplifies to the formula above.
 
@@ -237,9 +237,9 @@ Using block matrix inversion, this simplifies to the formula above.
 
 **Quantize weights with lowest saliency first:**
 
-```math
+$$
 \text{saliency}_q = \frac{(\hat{w}_q - w_q)^2}{2[H^{-1}]_{qq}}
-```
+$$
 
 ---
 

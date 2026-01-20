@@ -29,15 +29,15 @@ Most loss functions arise from Maximum Likelihood Estimation (MLE).
 
 Given data $\{(x\_i, y\_i)\}\_{i=1}^n$ and model $p\_\theta(y|x)$:
 
-```math
+$$
 \theta^* = \arg\max_\theta \prod_{i=1}^n p_\theta(y_i|x_i)
-```
+$$
 
 Taking negative log:
 
-```math
+$$
 \theta^* = \arg\min_\theta -\sum_{i=1}^n \log p_\theta(y_i|x_i)
-```
+$$
 
 **This is the Negative Log-Likelihood (NLL) loss!**
 
@@ -51,24 +51,24 @@ Taking negative log:
 
 **Loss:**
 
-```math
+$$
 \mathcal{L}_{BCE} = -\frac{1}{n}\sum_{i=1}^n \left[y_i \log(p_i) + (1-y_i) \log(1-p_i)\right]
-```
+$$
 
 **Gradient (w.r.t. logit $z$):**
 
-```math
+$$
 \frac{\partial \mathcal{L}}{\partial z} = \sigma(z) - y = p - y
-```
+$$
 
 **Proof:**
 
-```math
+$$
 \frac{\partial}{\partial z}[-y\log\sigma(z) - (1-y)\log(1-\sigma(z))]
 = -\frac{y}{\sigma(z)}\sigma'(z) + \frac{1-y}{1-\sigma(z)}\sigma'(z)
 = -\frac{y}{\sigma(z)}\sigma(z)(1-\sigma(z)) + \frac{1-y}{1-\sigma(z)}\sigma(z)(1-\sigma(z))
 = -y(1-\sigma(z)) + (1-y)\sigma(z) = \sigma(z) - y \quad \checkmark
-```
+$$
 
 ### Multi-class Cross-Entropy
 
@@ -76,27 +76,27 @@ Taking negative log:
 
 **Loss:**
 
-```math
+$$
 \mathcal{L}_{CE} = -\frac{1}{n}\sum_{i=1}^n \sum_{c=1}^C y_{ic} \log(p_{ic})
-```
+$$
 
 For one-hot labels (only true class $c^*$ has $y\_{c^*}=1$):
 
-```math
+$$
 \mathcal{L}_{CE} = -\frac{1}{n}\sum_{i=1}^n \log(p_{i,c^*_i})
-```
+$$
 
 **Gradient (w.r.t. logit $z\_c$):**
 
-```math
+$$
 \frac{\partial \mathcal{L}}{\partial z_c} = p_c - y_c = \text{softmax}(z)_c - y_c
-```
+$$
 
 ### Focal Loss (for Imbalanced Data)
 
-```math
+$$
 \mathcal{L}_{focal} = -\alpha_t (1-p_t)^\gamma \log(p_t)
-```
+$$
 
 Where:
 - $p\_t = p$ if $y=1$, else $1-p$
@@ -112,9 +112,9 @@ When $\gamma>0$: Easy examples ($p\_t \approx 1$) contribute less
 
 Instead of hard labels $y \in \{0, 1\}$:
 
-```math
+$$
 y_{smooth} = (1-\epsilon)y + \frac{\epsilon}{C}
-```
+$$
 
 **Effect:** Prevents overconfident predictions, improves calibration.
 
@@ -124,21 +124,21 @@ y_{smooth} = (1-\epsilon)y + \frac{\epsilon}{C}
 
 ### Mean Squared Error (MSE / L2)
 
-```math
+$$
 \mathcal{L}_{MSE} = \frac{1}{n}\sum_{i=1}^n (y_i - \hat{y}_i)^2
-```
+$$
 
 **Connection to MLE:** Assumes Gaussian noise
 
-```math
+$$
 y = f_\theta(x) + \epsilon, \quad \epsilon \sim \mathcal{N}(0, \sigma^2)
-```
+$$
 
 **Gradient:**
 
-```math
+$$
 \frac{\partial \mathcal{L}}{\partial \hat{y}} = \frac{2}{n}(\hat{y} - y)
-```
+$$
 
 **Properties:**
 - Penalizes large errors heavily (quadratic)
@@ -146,21 +146,21 @@ y = f_\theta(x) + \epsilon, \quad \epsilon \sim \mathcal{N}(0, \sigma^2)
 
 ### Mean Absolute Error (MAE / L1)
 
-```math
+$$
 \mathcal{L}_{MAE} = \frac{1}{n}\sum_{i=1}^n |y_i - \hat{y}_i|
-```
+$$
 
 **Connection to MLE:** Assumes Laplace noise
 
-```math
+$$
 p(y|x) \propto \exp\left(-\frac{|y - f_\theta(x)|}{b}\right)
-```
+$$
 
 **Gradient:**
 
-```math
+$$
 \frac{\partial \mathcal{L}}{\partial \hat{y}} = \text{sign}(\hat{y} - y)
-```
+$$
 
 **Properties:**
 - Constant gradient magnitude
@@ -168,12 +168,12 @@ p(y|x) \propto \exp\left(-\frac{|y - f_\theta(x)|}{b}\right)
 
 ### Huber Loss (Smooth L1)
 
-```math
+$$
 \mathcal{L}_{Huber} = \begin{cases}
 \frac{1}{2}(y-\hat{y})^2 & \text{if } |y-\hat{y}| < \delta \\
 \delta |y-\hat{y}| - \frac{1}{2}\delta^2 & \text{otherwise}
 \end{cases}
-```
+$$
 
 **Properties:**
 - MSE for small errors (smooth)
@@ -188,9 +188,9 @@ p(y|x) \propto \exp\left(-\frac{|y - f_\theta(x)|}{b}\right)
 
 Given anchor $a$, positive $p$, negative $n$:
 
-```math
+$$
 \mathcal{L}_{triplet} = \max(0, d(a,p) - d(a,n) + \text{margin})
-```
+$$
 
 Where $d(\cdot, \cdot)$ is a distance function (e.g., L2).
 
@@ -198,9 +198,9 @@ Where $d(\cdot, \cdot)$ is a distance function (e.g., L2).
 
 ### Contrastive Loss (Siamese)
 
-```math
+$$
 \mathcal{L}_{contrastive} = y \cdot d^2 + (1-y) \cdot \max(0, m - d)^2
-```
+$$
 
 Where:
 - $y=1$ for similar pairs, $y=0$ for dissimilar
@@ -208,9 +208,9 @@ Where:
 
 ### InfoNCE (NT-Xent) Loss
 
-```math
+$$
 \mathcal{L}_{InfoNCE} = -\log \frac{\exp(\text{sim}(z_i, z_j)/\tau)}{\sum_{k=1}^{2N} \mathbf{1}_{k \neq i} \exp(\text{sim}(z_i, z_k)/\tau)}
-```
+$$
 
 Where:
 - $(z\_i, z\_j)$ = positive pair
@@ -225,29 +225,29 @@ Where:
 
 ### VAE Loss (ELBO)
 
-```math
+$$
 \mathcal{L}_{VAE} = \underbrace{\mathbb{E}_{q(z|x)}[\log p(x|z)]}_{\text{Reconstruction}} - \underbrace{D_{KL}(q(z|x) \| p(z))}_{\text{KL Regularization}}
-```
+$$
 
 For Gaussian decoder and prior:
 
-```math
+$$
 = -\frac{1}{2}\|x - \hat{x}\|^2 - \frac{1}{2}\sum_j \left(1 + \log\sigma_j^2 - \mu_j^2 - \sigma_j^2\right)
-```
+$$
 
 ### GAN Losses
 
 **Vanilla GAN:**
 
-```math
+$$
 \min_G \max_D \mathbb{E}_{x \sim p_{data}}[\log D(x)] + \mathbb{E}_{z \sim p_z}[\log(1 - D(G(z)))]
-```
+$$
 
 **WGAN (Wasserstein):**
 
-```math
+$$
 \min_G \max_{D \in \mathcal{D}} \mathbb{E}_{x \sim p_{data}}[D(x)] - \mathbb{E}_{z \sim p_z}[D(G(z))]
-```
+$$
 
 Where $\mathcal{D}$ is the set of 1-Lipschitz functions.
 

@@ -50,9 +50,9 @@ For all:
 
 Given $m \geq p(1/\varepsilon, 1/\delta, n, \text{size}(c))$ samples drawn i.i.d. from $\mathcal{D}$:
 
-```math
+$$
 \Pr[R(h) \leq \varepsilon] \geq 1 - \delta
-```
+$$
 
 where $R(h) = \Pr_{x \sim \mathcal{D}}[h(x) \neq c(x)]$ is the true error.
 
@@ -64,9 +64,9 @@ where $R(h) = \Pr_{x \sim \mathcal{D}}[h(x) \neq c(x)]$ is the true error.
 
 **Theorem:** For a finite hypothesis class $\mathcal{H}$, the sample complexity is:
 
-```math
+$$
 m \geq \frac{1}{\varepsilon}\left(\ln|\mathcal{H}| + \ln\frac{1}{\delta}\right)
-```
+$$
 
 **Proof:**
 
@@ -74,21 +74,21 @@ Let $h^* \in \mathcal{H}$ be a hypothesis with $R(h^*) > \varepsilon$.
 
 For each training example:
 
-```math
+$$
 \Pr_{(x,y) \sim \mathcal{D}}[h^*(x) = c(x)] \leq 1 - \varepsilon
-```
+$$
 
 For $m$ independent samples:
 
-```math
+$$
 \Pr[\text{all samples labeled correctly by } h^*] \leq (1-\varepsilon)^m \leq e^{-\varepsilon m}
-```
+$$
 
 By union bound over all "bad" hypotheses:
 
-```math
+$$
 \Pr[\exists h \in \mathcal{H}: R(h) > \varepsilon \text{ and } \hat{R}(h) = 0] \leq |\mathcal{H}| \cdot e^{-\varepsilon m}
-```
+$$
 
 Setting this $\leq \delta$ and solving for $m$. $\blacksquare$
 
@@ -96,9 +96,9 @@ Setting this $\leq \delta$ and solving for $m$. $\blacksquare$
 
 For hypothesis class with VC dimension $d$:
 
-```math
+$$
 m \geq \frac{1}{\varepsilon}\left(d\ln\frac{2}{\varepsilon} + \ln\frac{1}{\delta}\right) = O\left(\frac{d + \ln(1/\delta)}{\varepsilon}\right)
-```
+$$
 
 ---
 
@@ -115,9 +115,9 @@ m \geq \frac{1}{\varepsilon}\left(d\ln\frac{2}{\varepsilon} + \ln\frac{1}{\delta
 
 **Theorem:** For a hypothesis $h \in \mathcal{H}$ with description length $|h|$ bits:
 
-```math
+$$
 \Pr[R(h) \leq \hat{R}(h) + \sqrt{\frac{|h|\ln 2 + \ln(1/\delta)}{2m}}] \geq 1 - \delta
-```
+$$
 
 **Implication:** Shorter (simpler) hypotheses generalize better.
 

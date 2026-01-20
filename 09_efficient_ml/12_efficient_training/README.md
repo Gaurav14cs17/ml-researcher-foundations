@@ -65,9 +65,9 @@ This lecture covers **efficient training techniques**:
 
 **Standard FP32 training:**
 
-```math
+$$
 w \leftarrow w - \eta \nabla_w \mathcal{L}
-```
+$$
 
 **Mixed precision:**
 1. Weights stored in FP32 (master copy)
@@ -76,10 +76,10 @@ w \leftarrow w - \eta \nabla_w \mathcal{L}
 
 **Loss scaling (prevent underflow):**
 
-```math
+$$
 \mathcal{L}_{scaled} = s \cdot \mathcal{L}
 g_{unscaled} = g_{scaled} / s
-```
+$$
 
 **Why it works:**
 
@@ -107,9 +107,9 @@ Gradients can underflow (become 0) if too small. Scaling by $s$ (e.g., 1024) shi
 
 **Standard backprop memory:**
 
-```math
+$$
 M_{act} = \sum_{l=1}^L |a_l|
-```
+$$
 
 For L layers, store all L activations.
 
@@ -117,25 +117,25 @@ For L layers, store all L activations.
 
 Divide network into $K$ segments. Only store activations at segment boundaries.
 
-```math
+$$
 M_{checkpoint} = K \cdot |a_{segment}| + \max_l |a_l|
-```
+$$
 
 **Optimal K:**
 
-```math
+$$
 K^* = \sqrt{L}
 M_{optimal} = O(\sqrt{L})
-```
+$$
 
 **Proof:**
 Total memory = $K \cdot |a| + L/K \cdot |a|$
 
 Taking derivative w.r.t. K and setting to 0:
 
-```math
+$$
 \frac{d}{dK}(K + L/K) = 1 - L/K^2 = 0 \implies K = \sqrt{L}
-```
+$$
 
 **Trade-off:** ~33% more compute (recompute $L - K$ activations).
 
@@ -152,9 +152,9 @@ Taking derivative w.r.t. K and setting to 0:
 
 Block-wise quantization:
 
-```math
+$$
 m_t^{int8} = \text{round}\left(\frac{m_t}{s_m}\right), \quad s_m = \max(|m_t|) / 127
-```
+$$
 
 **Memory:** 2 bytes (int8) + 2 bytes (scale) per block ≈ 2 bytes per parameter.
 
@@ -166,25 +166,25 @@ m_t^{int8} = \text{round}\left(\frac{m_t}{s_m}\right), \quad s_m = \max(|m_t|) /
 
 **Full fine-tuning:**
 
-```math
+$$
 W_{new} = W_0 + \Delta W
-```
+$$
 
 $\Delta W$ is full rank: $d \times d$ parameters.
 
 **LoRA:**
 
-```math
+$$
 W_{new} = W_0 + BA
-```
+$$
 
 where $B \in \mathbb{R}^{d \times r}, A \in \mathbb{R}^{r \times d}, r \ll d$.
 
 **Parameter reduction:**
 
-```math
+$$
 \frac{|LoRA|}{|Full|} = \frac{2dr}{d^2} = \frac{2r}{d}
-```
+$$
 
 For $d = 4096, r = 16$: 0.8% of full fine-tuning parameters!
 
@@ -192,9 +192,9 @@ For $d = 4096, r = 16$: 0.8% of full fine-tuning parameters!
 
 Pre-trained weights occupy a low-rank subspace. Fine-tuning for a specific task adds a low-rank perturbation:
 
-```math
+$$
 \Delta W \approx \sum_{i=1}^r \sigma_i u_i v_i^T
-```
+$$
 
 LoRA directly parameterizes this low-rank structure.
 
@@ -204,9 +204,9 @@ LoRA directly parameterizes this low-rank structure.
 
 **Effective batch size:**
 
-```math
+$$
 B_{eff} = B_{micro} \times K_{accum}
-```
+$$
 
 **Update rule:**
 ```python
@@ -230,17 +230,17 @@ for step in range(steps):
 
 Need to store $Q, K, V, A$ (attention matrix) for backward pass.
 
-```math
+$$
 M_{attn} = O(N^2)
-```
+$$
 
 **FlashAttention backward:**
 
 Recompute attention during backward pass.
 
-```math
+$$
 M_{attn} = O(N)
-```
+$$
 
 **Trade-off:** ~2× compute, but fits longer sequences.
 
@@ -252,10 +252,10 @@ M_{attn} = O(N)
 
 For model with $N$ parameters, batch size $B$, sequence length $L$:
 
-```math
+$$
 M_{total} = M_{model} + M_{grad} + M_{opt} + M_{act}
 M_{total} = N \cdot b_{weight} + N \cdot b_{grad} + N \cdot b_{opt} + B \cdot L \cdot d \cdot b_{act}
-```
+$$
 
 For FP32 Adam:
 - $b_{weight} = 4$
@@ -277,9 +277,9 @@ For mixed precision with 8-bit Adam:
 
 **Operator fusion:**
 
-```math
+$$
 y = \text{gelu}(\text{dropout}(\text{linear}(x)))
-```
+$$
 
 Fused into single kernel: 1 memory read/write instead of 3.
 

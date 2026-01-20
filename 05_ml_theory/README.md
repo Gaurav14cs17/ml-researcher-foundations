@@ -59,33 +59,33 @@ flowchart LR
 
 ### Empirical Risk Minimization
 
-```math
+$$
 \hat{h} = \arg\min_{h \in \mathcal{H}} \frac{1}{n}\sum_{i=1}^n \ell(h(x_i), y_i)
-```
+$$
 
 ### Generalization Bound (VC Theory)
 
 With probability ≥ 1 - δ:
 
-```math
+$$
 R(h) \leq \hat{R}(h) + \sqrt{\frac{d(\log(2n/d) + 1) + \log(4/\delta)}{n}}
-```
+$$
 
 where d is the VC dimension.
 
 ### Bias-Variance Decomposition
 
-```math
+$$
 \mathbb{E}[(y - \hat{f}(x))^2] = \text{Bias}^2 + \text{Variance} + \sigma^2
-```
+$$
 
 ### PAC Learning
 
 A concept class is PAC-learnable if with m ≥ poly(1/ε, 1/δ) samples:
 
-```math
+$$
 \Pr[R(h) \leq \varepsilon] \geq 1 - \delta
-```
+$$
 
 ---
 

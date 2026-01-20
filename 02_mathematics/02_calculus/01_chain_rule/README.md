@@ -71,9 +71,9 @@
 
 If $y = f(u)$ and $u = g(x)$, then:
 
-```math
+$$
 \frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx} = f'(g(x)) \cdot g'(x)
-```
+$$
 
 ### 💡 Examples
 
@@ -113,23 +113,23 @@ dy/dx = dy/du · du/dv · dv/dx
 
 If $z = f(u, v)$ where $u = u(x, y)$ and $v = v(x, y)$:
 
-```math
+$$
 \frac{\partial z}{\partial x} = \frac{\partial z}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial z}{\partial v}\frac{\partial v}{\partial x}
-```
+$$
 
 ### 📐 General Form
 
 For $L = L(y\_1, y\_2, \ldots, y\_m)$ where each $y\_i = y\_i(x\_1, \ldots, x\_n)$:
 
-```math
+$$
 \frac{\partial L}{\partial x_j} = \sum_{i=1}^{m} \frac{\partial L}{\partial y_i} \cdot \frac{\partial y_i}{\partial x_j}
-```
+$$
 
 **Matrix Form** (using Jacobians):
 
-```math
+$$
 \frac{\partial L}{\partial \mathbf{x}} = J_\mathbf{y}^T \frac{\partial L}{\partial \mathbf{y}}
-```
+$$
 
 ### 💡 Example
 

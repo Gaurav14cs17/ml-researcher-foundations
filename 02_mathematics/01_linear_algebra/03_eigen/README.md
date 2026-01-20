@@ -83,9 +83,9 @@
 
 For a square matrix $A \in \mathbb{R}^{n \times n}$:
 
-```math
+$$
 A\mathbf{v} = \lambda\mathbf{v}
-```
+$$
 
 where:
 - $\lambda \in \mathbb{C}$ is an **eigenvalue**
@@ -132,15 +132,15 @@ This is the CHARACTERISTIC POLYNOMIAL
 
 ### The Characteristic Polynomial
 
-```math
+$$
 p(\lambda) = \det(A - \lambda I)
-```
+$$
 
 This is a polynomial of degree $n$ in $\lambda$:
 
-```math
+$$
 p(\lambda) = (-1)^n \lambda^n + (-1)^{n-1}\text{tr}(A)\lambda^{n-1} + \cdots + \det(A)
-```
+$$
 
 ### 💡 Example: 2×2 Matrix
 
@@ -248,9 +248,9 @@ Step 4: Since Q is orthogonal (QᵀQ = I):
 
 ### 📐 Corollary: Spectral Decomposition
 
-```math
+$$
 A = \sum_{i=1}^{n} \lambda_i \mathbf{v}_i \mathbf{v}_i^T
-```
+$$
 
 Each term $\lambda\_i \mathbf{v}\_i \mathbf{v}\_i^T$ is a rank-1 projection matrix!
 
@@ -360,9 +360,9 @@ Comparing coefficients of λⁿ⁻¹:
 
 **Theorem**: Every matrix satisfies its own characteristic polynomial.
 
-```math
+$$
 p(A) = A^n - \text{tr}(A)A^{n-1} + \cdots + (-1)^n\det(A)I = 0
-```
+$$
 
 **Application**: Express $A^{-1}$ as polynomial in $A$:
 ```

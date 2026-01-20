@@ -78,9 +78,9 @@
 
 The **compression ratio (CR)** quantifies the reduction in model size:
 
-```math
+$$
 CR = \frac{\text{Original Size}}{\text{Compressed Size}} = \frac{|M|}{|M_c|}
-```
+$$
 
 **Example Calculation:**
 - Original (FP32): $340M \times 4 \text{ bytes} = 1.36 \text{ GB}$
@@ -91,17 +91,17 @@ CR = \frac{\text{Original Size}}{\text{Compressed Size}} = \frac{|M|}{|M_c|}
 
 **Optimization Objective:**
 
-```math
+$$
 \min_{M_c} \text{Size}(M_c) \quad \text{subject to} \quad |\text{Acc}(M_c) - \text{Acc}(M)| \leq \epsilon
-```
+$$
 
 **Theorem (Pareto Frontier):** For a given compression technique, there exists a Pareto frontier where no compression can simultaneously improve both model size and accuracy. Any point on this frontier represents an optimal trade-off.
 
 **Rate-Distortion Theory Connection:**
 
-```math
+$$
 R(D) = \min_{p(\hat{W}|W)} I(W; \hat{W}) \quad \text{s.t.} \quad \mathbb{E}[d(W, \hat{W})] \leq D
-```
+$$
 
 Where:
 - $R(D)$ = minimum bits needed for distortion $D$
@@ -112,17 +112,17 @@ Where:
 
 **Memory Complexity:**
 
-```math
+$$
 \text{Memory} = O(P \times b)
-```
+$$
 
 Where $P$ = parameters, $b$ = bytes per parameter
 
 **Compute Complexity:**
 
-```math
+$$
 \text{FLOPs} = O(\text{ops} \times \text{precision-factor})
-```
+$$
 
 | Format | Size | Compute Speed | Memory Bandwidth |
 |--------|------|---------------|------------------|
@@ -135,17 +135,17 @@ Where $P$ = parameters, $b$ = bytes per parameter
 
 **Shannon's Source Coding Theorem:**
 
-```math
+$$
 H(W) \leq R \leq H(W) + 1
-```
+$$
 
 The minimum average bits per weight is bounded by the entropy $H(W)$ of the weight distribution.
 
 **For Gaussian-distributed weights:**
 
-```math
+$$
 H(W) = \frac{1}{2}\log_2(2\pi e \sigma^2) \approx 4-5 \text{ bits}
-```
+$$
 
 This explains why INT4 quantization often works well!
 
@@ -157,9 +157,9 @@ This explains why INT4 quantization often works well!
 
 <img src="https://img.shields.io/badge/Time-6_hours-blue?style=flat-square"/> <img src="https://img.shields.io/badge/🔥_MOST_PRACTICAL-critical?style=flat-square"/>
 
-```math
+$$
 x_q = \text{round}\left(\frac{x - z}{s}\right), \quad \hat{x} = s \cdot x_q + z
-```
+$$
 
 > ⭐ **4x memory reduction with <1% accuracy loss**
 
@@ -171,9 +171,9 @@ x_q = \text{round}\left(\frac{x - z}{s}\right), \quad \hat{x} = s \cdot x_q + z
 
 <img src="https://img.shields.io/badge/Time-6_hours-blue?style=flat-square"/> <img src="https://img.shields.io/badge/🔥_HOTTEST_2024-critical?style=flat-square"/>
 
-```math
+$$
 W' = W_0 + \Delta W = W_0 + BA
-```
+$$
 
 **Parameter Reduction:** For $d=4096$, $r=16$: $\frac{4096}{32} = 128\times$ fewer parameters!
 
@@ -187,9 +187,9 @@ W' = W_0 + \Delta W = W_0 + BA
 
 <img src="https://img.shields.io/badge/Time-4_hours-blue?style=flat-square"/>
 
-```math
+$$
 \mathcal{L} = \alpha \cdot \mathcal{L}_{CE}(y, p_s) + (1-\alpha) \cdot T^2 \cdot D_{KL}(p_t^T \| p_s^T)
-```
+$$
 
 **Example:** BERT → DistilBERT (40% smaller, 97% accuracy)
 
@@ -203,9 +203,9 @@ W' = W_0 + \Delta W = W_0 + BA
 
 **Lottery Ticket Hypothesis:** A sparse subnetwork at initialization can match dense network accuracy.
 
-```math
+$$
 \text{Saliency}(w) = \frac{\partial^2 \mathcal{L}}{\partial w^2} \cdot w^2
-```
+$$
 
 <a href="./03_pruning/README.md"><img src="https://img.shields.io/badge/📖_Dive_In-607D8B?style=for-the-badge" alt="Learn"/></a>
 
@@ -215,9 +215,9 @@ W' = W_0 + \Delta W = W_0 + BA
 
 <img src="https://img.shields.io/badge/Time-4_hours-blue?style=flat-square"/>
 
-```math
+$$
 y = \sum_{i=1}^{N} g_i(x) \cdot E_i(x)
-```
+$$
 
 For Mixtral 8×7B: 46B total params, ~12B active per token
 

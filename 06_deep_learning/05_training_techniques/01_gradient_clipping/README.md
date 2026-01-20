@@ -19,9 +19,9 @@
 
 For RNNs/deep networks, gradients can grow exponentially:
 
-```math
+$$
 \frac{\partial \mathcal{L}}{\partial \theta} = \frac{\partial \mathcal{L}}{\partial h_T} \prod_{t=1}^{T} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_1}{\partial \theta}
-```
+$$
 
 If $\left\|\frac{\partial h\_t}{\partial h\_{t-1}}\right\| > 1$, gradient grows as $O(c^T)$.
 
@@ -36,13 +36,13 @@ If $\left\|\frac{\partial h\_t}{\partial h\_{t-1}}\right\| > 1$, gradient grows 
 
 ### 1. Clip by Value (Element-wise)
 
-```math
+$$
 \tilde{g}_i = \text{clip}(g_i, -\tau, \tau) = \begin{cases}
 \tau & \text{if } g_i > \tau \\
 -\tau & \text{if } g_i < -\tau \\
 g_i & \text{otherwise}
 \end{cases}
-```
+$$
 
 **Properties:**
 - Simple and fast
@@ -51,18 +51,18 @@ g_i & \text{otherwise}
 
 ### 2. Clip by Norm (Global) ⭐ Most Common
 
-```math
+$$
 \tilde{g} = \begin{cases}
 g & \text{if } \|g\| \leq \tau \\
 \frac{\tau g}{\|g\|} & \text{if } \|g\| > \tau
 \end{cases}
-```
+$$
 
 Equivalently:
 
-```math
+$$
 \tilde{g} = \min\left(1, \frac{\tau}{\|g\|}\right) g
-```
+$$
 
 **Properties:**
 - Preserves gradient direction
@@ -73,9 +73,9 @@ Equivalently:
 
 Apply clip by norm to each layer's gradient separately:
 
-```math
+$$
 \tilde{g}_l = \min\left(1, \frac{\tau}{\|g_l\|}\right) g_l
-```
+$$
 
 **Use case:** When layers have very different gradient scales.
 
@@ -87,17 +87,17 @@ Apply clip by norm to each layer's gradient separately:
 
 With clipping threshold $\tau$:
 
-```math
+$$
 \|\tilde{g}\| \leq \tau
-```
+$$
 
 ### Effect on Learning Rate
 
 Effective learning rate with clipping:
 
-```math
+$$
 \eta_{eff} = \eta \cdot \min\left(1, \frac{\tau}{\|g\|}\right)
-```
+$$
 
 When $\|g\| > \tau$: learning rate is adaptively reduced.
 
@@ -234,9 +234,9 @@ plt.show()
 
 Adjust threshold based on gradient history:
 
-```math
+$$
 \tau_t = \alpha \cdot \text{EMA}(\|g\|)
-```
+$$
 
 Where EMA is exponential moving average.
 
@@ -244,9 +244,9 @@ Where EMA is exponential moving average.
 
 Instead of hard clipping, add penalty:
 
-```math
+$$
 \mathcal{L}_{total} = \mathcal{L} + \lambda \max(0, \|g\| - \tau)
-```
+$$
 
 ---
 

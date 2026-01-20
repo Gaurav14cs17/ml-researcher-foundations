@@ -77,9 +77,9 @@
 
 ### 📌 Algorithm
 
-```math
+$$
 \theta_{k+1} = \theta_k - \eta \nabla f(\theta_k)
-```
+$$
 
 where:
 - $\eta$ = learning rate (step size)
@@ -174,12 +174,12 @@ Example: f(x,y) = x² + 100y²
 
 ### 📌 Algorithm
 
-```math
+$$
 \begin{align}
 v_{k+1} &= \beta v_k + \nabla f(\theta_k) \\
 \theta_{k+1} &= \theta_k - \eta v_{k+1}
 \end{align}
-```
+$$
 
 where $\beta \in [0, 1)$ is the momentum coefficient (typically 0.9).
 
@@ -228,21 +228,21 @@ All equivalent with rescaling of η and β
 
 ### 📌 Algorithm
 
-```math
+$$
 \begin{align}
 v_{k+1} &= \beta v_k + \nabla f(\theta_k - \eta \beta v_k) \quad \text{(gradient at lookahead)} \\
 \theta_{k+1} &= \theta_k - \eta v_{k+1}
 \end{align}
-```
+$$
 
 Alternative form:
 
-```math
+$$
 \begin{align}
 y_k &= \theta_k + \beta(\theta_k - \theta_{k-1}) \\
 \theta_{k+1} &= y_k - \eta \nabla f(y_k)
 \end{align}
-```
+$$
 
 ### 💡 Intuition: "Look Ahead"
 
@@ -283,15 +283,15 @@ Nesterov achieves **optimal** rate for first-order methods!
 
 For L-smooth functions, convergence guaranteed if:
 
-```math
+$$
 \eta \leq \frac{1}{L}
-```
+$$
 
 For optimal convergence in strongly convex case:
 
-```math
+$$
 \eta = \frac{1}{L}
-```
+$$
 
 ### 📊 Practical Guidelines
 
@@ -332,15 +332,15 @@ For $f(\theta) = g(\theta) + h(\theta)$ where $g$ is smooth and $h$ is non-smoot
 
 ### 📐 Proximal Gradient Descent
 
-```math
+$$
 \theta_{k+1} = \text{prox}_{\eta h}(\theta_k - \eta \nabla g(\theta_k))
-```
+$$
 
 where the proximal operator is:
 
-```math
+$$
 \text{prox}_{\eta h}(x) = \arg\min_z \left( h(z) + \frac{1}{2\eta}\|z - x\|^2 \right)
-```
+$$
 
 ### 💡 Example: LASSO (L1 Regularization)
 

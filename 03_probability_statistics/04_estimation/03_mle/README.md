@@ -27,22 +27,22 @@
 
 Given data $D = \{x\_1, x\_2, \ldots, x\_n\}$ and model $P(x|\theta)$:
 
-```math
+$$
 L(\theta) = P(D|\theta) = \prod_{i=1}^{n} P(x_i|\theta)
-```
+$$
 
 ### Maximum Likelihood Estimator
 
-```math
+$$
 \theta_{MLE} = \arg\max_\theta L(\theta) = \arg\max_\theta P(D|\theta)
-```
+$$
 
 ### Log-Likelihood (More Practical)
 
-```math
+$$
 \ell(\theta) = \log L(\theta) = \sum_{i=1}^{n} \log P(x_i|\theta)
 \theta_{MLE} = \arg\max_\theta \ell(\theta)
-```
+$$
 
 **Why log?**
 1. Products → Sums (numerical stability)
@@ -60,24 +60,24 @@ L(\theta) = P(D|\theta) = \prod_{i=1}^{n} P(x_i|\theta)
 
 **Log-likelihood:**
 
-```math
+$$
 \ell(\mu, \sigma^2) = -\frac{n}{2}\log(2\pi) - \frac{n}{2}\log(\sigma^2) - \frac{1}{2\sigma^2}\sum_{i=1}^n (x_i - \mu)^2
-```
+$$
 
 **Finding $\mu\_{MLE}$:**
 
-```math
+$$
 \frac{\partial \ell}{\partial \mu} = \frac{1}{\sigma^2}\sum_{i=1}^n (x_i - \mu) = 0
 \sum_{i=1}^n x_i = n\mu
 \boxed{\mu_{MLE} = \frac{1}{n}\sum_{i=1}^n x_i = \bar{x}} \quad \blacksquare
-```
+$$
 
 **Finding $\sigma^2\_{MLE}$:**
 
-```math
+$$
 \frac{\partial \ell}{\partial \sigma^2} = -\frac{n}{2\sigma^2} + \frac{1}{2(\sigma^2)^2}\sum_{i=1}^n (x_i - \mu)^2 = 0
 \boxed{\sigma^2_{MLE} = \frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^2} \quad \blacksquare
-```
+$$
 
 **Note:** This is the biased estimator. Unbiased: divide by $(n-1)$.
 
@@ -91,24 +91,24 @@ Let $k = \sum\_{i=1}^n x\_i$ (number of successes)
 
 **Likelihood:**
 
-```math
+$$
 L(p) = \prod_{i=1}^n p^{x_i}(1-p)^{1-x_i} = p^k(1-p)^{n-k}
-```
+$$
 
 **Log-likelihood:**
 
-```math
+$$
 \ell(p) = k\log p + (n-k)\log(1-p)
-```
+$$
 
 **Finding $p\_{MLE}$:**
 
-```math
+$$
 \frac{d\ell}{dp} = \frac{k}{p} - \frac{n-k}{1-p} = 0
 k(1-p) = (n-k)p
 k = np
 \boxed{p_{MLE} = \frac{k}{n} = \frac{\sum_i x_i}{n}} \quad \blacksquare
-```
+$$
 
 ---
 
@@ -118,28 +118,28 @@ k = np
 
 **Likelihood:**
 
-```math
+$$
 P(y_i|\mathbf{x}_i, \mathbf{w}, \sigma^2) = \mathcal{N}(y_i; \mathbf{w}^T\mathbf{x}_i, \sigma^2)
-```
+$$
 
 **Log-likelihood:**
 
-```math
+$$
 \ell(\mathbf{w}) = -\frac{n}{2}\log(2\pi\sigma^2) - \frac{1}{2\sigma^2}\sum_{i=1}^n (y_i - \mathbf{w}^T\mathbf{x}_i)^2
-```
+$$
 
 **MLE:**
 
-```math
+$$
 \mathbf{w}_{MLE} = \arg\max_\mathbf{w} \ell(\mathbf{w}) = \arg\min_\mathbf{w} \sum_{i=1}^n (y_i - \mathbf{w}^T\mathbf{x}_i)^2
 \boxed{\text{Maximum Likelihood} = \text{Least Squares!}} \quad \blacksquare
-```
+$$
 
 **Closed form:**
 
-```math
+$$
 \mathbf{w}_{MLE} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}
-```
+$$
 
 ---
 
@@ -149,11 +149,11 @@ P(y_i|\mathbf{x}_i, \mathbf{w}, \sigma^2) = \mathcal{N}(y_i; \mathbf{w}^T\mathbf
 
 **Log-likelihood:**
 
-```math
+$$
 \ell(\mathbf{w}) = \sum_{i=1}^n \left[y_i \log \sigma(\mathbf{w}^T\mathbf{x}_i) + (1-y_i)\log(1-\sigma(\mathbf{w}^T\mathbf{x}_i))\right]
 = -\sum_{i=1}^n \text{BCE}(y_i, \hat{y}_i)
 \boxed{\text{Maximizing Log-Likelihood} = \text{Minimizing Cross-Entropy!}} \quad \blacksquare
-```
+$$
 
 ---
 
@@ -161,17 +161,17 @@ P(y_i|\mathbf{x}_i, \mathbf{w}, \sigma^2) = \mathcal{N}(y_i; \mathbf{w}^T\mathbf
 
 ### 1. Consistency
 
-```math
+$$
 \hat{\theta}_{MLE} \xrightarrow{p} \theta_{true} \quad \text{as } n \to \infty
-```
+$$
 
 **MLE converges to the true parameter as we get more data.**
 
 ### 2. Asymptotic Normality
 
-```math
+$$
 \sqrt{n}(\hat{\theta}_{MLE} - \theta_{true}) \xrightarrow{d} \mathcal{N}(0, I(\theta)^{-1})
-```
+$$
 
 **MLE is approximately Gaussian for large n, with variance determined by Fisher Information.**
 
@@ -179,9 +179,9 @@ P(y_i|\mathbf{x}_i, \mathbf{w}, \sigma^2) = \mathcal{N}(y_i; \mathbf{w}^T\mathbf
 
 For any unbiased estimator $\hat{\theta}$:
 
-```math
+$$
 \text{Var}(\hat{\theta}) \geq \frac{1}{I(\theta)}
-```
+$$
 
 **MLE achieves this lower bound asymptotically → most efficient!**
 
@@ -197,9 +197,9 @@ If $\hat{\theta}$ is MLE of $\theta$, then $g(\hat{\theta})$ is MLE of $g(\theta
 
 ### Definition
 
-```math
+$$
 I(\theta) = -E\left[\frac{\partial^2 \log P(X|\theta)}{\partial\theta^2}\right] = E\left[\left(\frac{\partial \log P(X|\theta)}{\partial\theta}\right)^2\right]
-```
+$$
 
 ### Interpretation
 
@@ -218,13 +218,13 @@ I(\theta) = -E\left[\frac{\partial^2 \log P(X|\theta)}{\partial\theta^2}\right] 
 
 ### Example: Bernoulli Fisher Information (Proof)
 
-```math
+$$
 \log P(x|\theta) = x\log\theta + (1-x)\log(1-\theta)
 \frac{\partial \log P}{\partial\theta} = \frac{x}{\theta} - \frac{1-x}{1-\theta}
 \frac{\partial^2 \log P}{\partial\theta^2} = -\frac{x}{\theta^2} - \frac{1-x}{(1-\theta)^2}
 I(\theta) = -E\left[-\frac{x}{\theta^2} - \frac{1-x}{(1-\theta)^2}\right] = \frac{\theta}{\theta^2} + \frac{1-\theta}{(1-\theta)^2}
 = \frac{1}{\theta} + \frac{1}{1-\theta} = \frac{1}{\theta(1-\theta)} \quad \blacksquare
-```
+$$
 
 ---
 
@@ -232,15 +232,15 @@ I(\theta) = -E\left[-\frac{x}{\theta^2} - \frac{1-x}{(1-\theta)^2}\right] = \fra
 
 ### Cross-Entropy Loss = Negative Log-Likelihood
 
-```math
+$$
 \mathcal{L}_{CE} = -\sum_{i=1}^n \log P(y_i|x_i; \theta)
-```
+$$
 
 ### Training = MLE
 
-```math
+$$
 \theta^* = \arg\min_\theta \mathcal{L}_{CE} = \arg\max_\theta \sum_i \log P(y_i|x_i; \theta)
-```
+$$
 
 | Loss Function | Assumed Distribution | MLE Connection |
 |---------------|---------------------|----------------|

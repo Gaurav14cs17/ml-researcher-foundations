@@ -17,10 +17,10 @@
 
 Standard attention has a memory bottleneck:
 
-```math
+$$
 \text{Given: } Q, K, V \in \mathbb{R}^{n \times d}
 \text{Compute: } O = \text{softmax}\left(\frac{QK^\top}{\sqrt{d}}\right) V
-```
+$$
 
 ### Standard Algorithm:
 
@@ -68,9 +68,9 @@ Memory: O(n²) - prohibitive for long sequences!
 
 Standard softmax:
 
-```math
+$$
 \text{softmax}(x)_i = \frac{e^{x_i}}{\sum_j e^{x_j}}
-```
+$$
 
 Needs global sum → can't compute in blocks!
 
@@ -80,12 +80,12 @@ Needs global sum → can't compute in blocks!
 
 For vectors $x^{(1)}$ and $x^{(2)}$:
 
-```math
+$$
 m^{(1)} = \max(x^{(1)}), \quad m^{(2)} = \max(x^{(2)})
 m^{\text{new}} = \max(m^{(1)}, m^{(2)})
 \ell^{(1)} = \sum_i e^{x^{(1)}_i - m^{(1)}}, \quad \ell^{(2)} = \sum_i e^{x^{(2)}_i - m^{(2)}}
 \ell^{\text{new}} = e^{m^{(1)} - m^{\text{new}}} \ell^{(1)} + e^{m^{(2)} - m^{\text{new}}} \ell^{(2)}
-```
+$$
 
 This allows processing in blocks while maintaining numerical stability!
 
@@ -168,18 +168,18 @@ Instead of storing $A$:
 
 Given $\frac{\partial L}{\partial O}$:
 
-```math
+$$
 \frac{\partial L}{\partial V} = A^\top \frac{\partial L}{\partial O}
 \frac{\partial L}{\partial A} = \frac{\partial L}{\partial O} V^\top
-```
+$$
 
 For softmax gradient (let $P = \frac{\partial L}{\partial A}$):
 
-```math
+$$
 \frac{\partial L}{\partial S} = A \odot (P - \text{rowsum}(A \odot P))
 \frac{\partial L}{\partial Q} = \frac{1}{\sqrt{d}} \frac{\partial L}{\partial S} K
 \frac{\partial L}{\partial K} = \frac{1}{\sqrt{d}} \left(\frac{\partial L}{\partial S}\right)^\top Q
-```
+$$
 
 ---
 

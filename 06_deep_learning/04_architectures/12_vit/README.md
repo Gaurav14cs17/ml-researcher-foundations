@@ -21,9 +21,9 @@ Treat image as sequence of patches, apply standard Transformer.
 
 **Key Equation:**
 
-```math
+$$
 \text{Image} \in \mathbb{R}^{H \times W \times C} \rightarrow \text{Patches} \in \mathbb{R}^{N \times (P^2 \cdot C)}
-```
+$$
 
 Where $N = \frac{H \cdot W}{P^2}$ is the number of patches.
 
@@ -35,21 +35,21 @@ Where $N = \frac{H \cdot W}{P^2}$ is the number of patches.
 
 Split image into $P \times P$ patches:
 
-```math
+$$
 x_p^{(i)} = \text{Flatten}(\text{Patch}_i) \in \mathbb{R}^{P^2 \cdot C}
-```
+$$
 
 Project to $D$ dimensions:
 
-```math
+$$
 z_0^{(i)} = x_p^{(i)} E + e_{pos}^{(i)}, \quad E \in \mathbb{R}^{(P^2 \cdot C) \times D}
-```
+$$
 
 ### 2. Prepend [CLS] Token
 
-```math
+$$
 z_0 = [x_{class}; z_0^{(1)}; z_0^{(2)}; ...; z_0^{(N)}] + E_{pos}
-```
+$$
 
 Where:
 - $x\_{class} \in \mathbb{R}^D$ is learnable
@@ -57,24 +57,24 @@ Where:
 
 ### 3. Transformer Encoder
 
-```math
+$$
 z'_l = \text{MSA}(\text{LN}(z_{l-1})) + z_{l-1}
 z_l = \text{MLP}(\text{LN}(z'_l)) + z'_l
-```
+$$
 
 **Multi-Head Self-Attention (MSA):**
 
-```math
+$$
 \text{MSA}(z) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
-```
+$$
 
 ### 4. Classification Head
 
 Use [CLS] token for classification:
 
-```math
+$$
 y = \text{MLP}(z_L^{(0)})
-```
+$$
 
 ---
 
@@ -82,9 +82,9 @@ y = \text{MLP}(z_L^{(0)})
 
 ### Learnable 1D Positional Embeddings
 
-```math
+$$
 E_{pos} \in \mathbb{R}^{(N+1) \times D}
-```
+$$
 
 Simply added to patch embeddings.
 
@@ -92,9 +92,9 @@ Simply added to patch embeddings.
 
 Separate embeddings for row and column positions:
 
-```math
+$$
 e_{pos}(i, j) = e_{row}(i) + e_{col}(j)
-```
+$$
 
 ### Relative Position (Swin)
 
@@ -106,9 +106,9 @@ Position relative to other tokens in attention.
 
 ### Self-Attention Complexity
 
-```math
+$$
 O(N^2 \cdot D) = O\left(\left(\frac{HW}{P^2}\right)^2 \cdot D\right)
-```
+$$
 
 **Comparison:**
 - CNN: $O(H \cdot W \cdot k^2 \cdot C^2)$

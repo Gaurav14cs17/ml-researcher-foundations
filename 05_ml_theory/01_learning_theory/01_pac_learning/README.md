@@ -47,9 +47,9 @@ For all:
 
 When given $m \geq p(1/\epsilon, 1/\delta, n, \text{size}(c))$ i.i.d. samples from $\mathcal{D}$:
 
-```math
+$$
 \Pr_{S \sim \mathcal{D}^m}\left[\text{error}_{\mathcal{D}}(h_S) \leq \epsilon\right] \geq 1 - \delta
-```
+$$
 
 where:
 - $h_S = \mathcal{A}(S)$ is the hypothesis output by algorithm
@@ -65,9 +65,9 @@ where:
 
 **Theorem:** For a finite hypothesis class $|\mathcal{H}| < \infty$, the sample complexity is:
 
-```math
+$$
 m \geq \frac{1}{\epsilon}\left(\ln|\mathcal{H}| + \ln\frac{1}{\delta}\right)
-```
+$$
 
 **Proof:**
 
@@ -75,42 +75,42 @@ Let $h$ be a "bad" hypothesis with $\text{error}_{\mathcal{D}}(h) > \epsilon$.
 
 For any single training example $(x, y)$:
 
-```math
+$$
 \Pr[(x, y) \text{ consistent with } h] = 1 - \text{error}_{\mathcal{D}}(h) < 1 - \epsilon
-```
+$$
 
 For $m$ i.i.d. examples, probability $h$ is consistent with all:
 
-```math
+$$
 \Pr[h \text{ consistent with } S] < (1 - \epsilon)^m \leq e^{-\epsilon m}
-```
+$$
 
 By union bound over all bad hypotheses:
 
-```math
+$$
 \Pr[\exists \text{ bad } h \text{ consistent with } S] \leq |\mathcal{H}| \cdot e^{-\epsilon m}
-```
+$$
 
 Setting this $\leq \delta$:
 
-```math
+$$
 |\mathcal{H}| \cdot e^{-\epsilon m} \leq \delta
 m \geq \frac{1}{\epsilon}\left(\ln|\mathcal{H}| + \ln\frac{1}{\delta}\right) \quad \blacksquare
-```
+$$
 
 ### VC Dimension Bound
 
 **Theorem (Fundamental Theorem of PAC Learning):** For hypothesis class $\mathcal{H}$ with VC dimension $d < \infty$:
 
-```math
+$$
 m = O\left(\frac{d + \ln(1/\delta)}{\epsilon^2}\right)
-```
+$$
 
 More precisely:
 
-```math
+$$
 m \geq \frac{c}{\epsilon^2}\left(d \ln\frac{1}{\epsilon} + \ln\frac{1}{\delta}\right)
-```
+$$
 
 for some constant $c$.
 
@@ -122,9 +122,9 @@ for some constant $c$.
 
 **Assumption:** There exists $c^* \in \mathcal{H}$ with zero error.
 
-```math
+$$
 \min_{h \in \mathcal{H}} \text{error}_{\mathcal{D}}(h) = 0
-```
+$$
 
 **Goal:** Find $h$ with $\text{error}_{\mathcal{D}}(h) \leq \epsilon$.
 
@@ -132,27 +132,27 @@ for some constant $c$.
 
 **No assumption** about whether true concept is in $\mathcal{H}$.
 
-```math
+$$
 \text{OPT} = \min_{h \in \mathcal{H}} \text{error}_{\mathcal{D}}(h) \geq 0
-```
+$$
 
 **Goal:** Find $h$ with:
 
-```math
+$$
 \text{error}_{\mathcal{D}}(h) \leq \text{OPT} + \epsilon
-```
+$$
 
 **Theorem (Agnostic PAC):** For $\mathcal{H}$ with VC dimension $d$:
 
-```math
+$$
 m = O\left(\frac{d + \ln(1/\delta)}{\epsilon^2}\right)
-```
+$$
 
 guarantees with probability $\geq 1 - \delta$:
 
-```math
+$$
 \text{error}_{\mathcal{D}}(h_S) \leq \min_{h \in \mathcal{H}} \text{error}_{\mathcal{D}}(h) + \epsilon
-```
+$$
 
 ---
 
@@ -162,17 +162,17 @@ guarantees with probability $\geq 1 - \delta$:
 
 **Theorem:** Let $X_1, \ldots, X_m$ be i.i.d. bounded random variables with $X_i \in [a, b]$. Then:
 
-```math
+$$
 \Pr\left[\left|\frac{1}{m}\sum_{i=1}^m X_i - \mathbb{E}[X_1]\right| > \epsilon\right] \leq 2\exp\left(-\frac{2m\epsilon^2}{(b-a)^2}\right)
-```
+$$
 
 ### Generalization Bound (Single Hypothesis)
 
 For fixed hypothesis $h$, with probability $\geq 1 - \delta$:
 
-```math
+$$
 \left|\hat{\text{error}}_S(h) - \text{error}_{\mathcal{D}}(h)\right| \leq \sqrt{\frac{\ln(2/\delta)}{2m}}
-```
+$$
 
 where $\hat{\text{error}}_S(h) = \frac{1}{m}\sum_{i=1}^m \mathbb{1}[h(x_i) \neq y_i]$.
 
@@ -182,15 +182,15 @@ where $\hat{\text{error}}_S(h) = \frac{1}{m}\sum_{i=1}^m \mathbb{1}[h(x_i) \neq 
 
 **Theorem:** For finite $\mathcal{H}$, with probability $\geq 1 - \delta$:
 
-```math
+$$
 \forall h \in \mathcal{H}: \left|\hat{\text{error}}_S(h) - \text{error}_{\mathcal{D}}(h)\right| \leq \sqrt{\frac{\ln(2|\mathcal{H}|/\delta)}{2m}}
-```
+$$
 
 **Proof:** Apply union bound over all $h \in \mathcal{H}$:
 
-```math
+$$
 \Pr[\exists h: |\hat{\text{error}} - \text{error}| > \epsilon] \leq \sum_{h \in \mathcal{H}} \Pr[|\hat{\text{error}}_h - \text{error}_h| > \epsilon] \leq |\mathcal{H}| \cdot 2e^{-2m\epsilon^2}
-```
+$$
 
 Setting this to $\delta$ and solving for $\epsilon$. $\blacksquare$
 

@@ -33,39 +33,39 @@ Taylor series represent smooth functions as infinite polynomials. The first few 
 
 **Taylor Series:** If $f$ is infinitely differentiable at $a$, its Taylor series is:
 
-```math
+$$
 f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f'''(a)}{3!}(x-a)^3 + \cdots
-```
+$$
 
 **Maclaurin Series:** Taylor series centered at $a = 0$:
 
-```math
+$$
 f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!}x^n
-```
+$$
 
 ### Taylor's Theorem with Remainder
 
 **Theorem:** If $f$ has $n+1$ continuous derivatives on $[a, x]$, then:
 
-```math
+$$
 f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k + R_n(x)
-```
+$$
 
 where the remainder $R_n(x)$ can be expressed as:
 
 **Lagrange Form:**
 
-```math
+$$
 R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}
-```
+$$
 
 for some $c$ between $a$ and $x$.
 
 **Integral Form:**
 
-```math
+$$
 R_n(x) = \frac{1}{n!}\int_a^x (x-t)^n f^{(n+1)}(t) \, dt
-```
+$$
 
 ---
 
@@ -75,9 +75,9 @@ R_n(x) = \frac{1}{n!}\int_a^x (x-t)^n f^{(n+1)}(t) \, dt
 
 **Key Insight:** We want to find coefficients $c_0, c_1, c_2, \ldots$ such that:
 
-```math
+$$
 f(x) = c_0 + c_1(x-a) + c_2(x-a)^2 + c_3(x-a)^3 + \cdots
-```
+$$
 
 **Derivation:**
 ```
@@ -129,9 +129,9 @@ where Rₙ(x) = (1/n!) ∫ₐˣ f⁽ⁿ⁺¹⁾(t)(x-t)ⁿ dt ✓
 
 ### Exponential Function
 
-```math
+$$
 e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
-```
+$$
 
 **Proof:**
 ```
@@ -149,10 +149,10 @@ Radius of convergence: ∞ (converges for all x)
 
 ### Sine and Cosine
 
-```math
+$$
 \sin(x) = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots
 \cos(x) = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots
-```
+$$
 
 **Proof for sin(x):**
 ```
@@ -171,17 +171,17 @@ sin(x) = x - x³/3! + x⁵/5! - x⁷/7! + ... ✓
 
 ### Natural Logarithm
 
-```math
+$$
 \ln(1+x) = \sum_{n=1}^{\infty} \frac{(-1)^{n+1} x^n}{n} = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots
-```
+$$
 
 **Radius of convergence:** $-1 < x \leq 1$
 
 ### Geometric Series
 
-```math
+$$
 \frac{1}{1-x} = \sum_{n=0}^{\infty} x^n = 1 + x + x^2 + x^3 + \cdots
-```
+$$
 
 **Radius of convergence:** $|x| < 1$
 
@@ -193,9 +193,9 @@ sin(x) = x - x³/3! + x⁵/5! - x⁷/7! + ... ✓
 
 For $f: \mathbb{R}^n \to \mathbb{R}$, the Taylor expansion around $a$ is:
 
-```math
+$$
 f(x) = f(a) + \nabla f(a)^T (x-a) + \frac{1}{2}(x-a)^T H_f(a) (x-a) + O(\|x-a\|^3)
-```
+$$
 
 where:
 - $\nabla f(a)$ is the gradient (vector of first derivatives)
@@ -315,9 +315,9 @@ This explains temperature in knowledge distillation!
 
 **Ratio Test:**
 
-```math
+$$
 R = \lim_{n \to \infty} \left| \frac{a_n}{a_{n+1}} \right|
-```
+$$
 
 **Examples:**
 ```

@@ -33,9 +33,9 @@ Random variables transform abstract outcomes into numerical values we can work w
 
 **Definition:** A random variable $X$ is a measurable function from a sample space to the real numbers:
 
-```math
+$$
 X: \Omega \to \mathbb{R}
-```
+$$
 
 **Example: Coin Flip**
 - Sample space: $\Omega = \{\text{heads}, \text{tails}\}$
@@ -47,9 +47,9 @@ X: \Omega \to \mathbb{R}
 
 ### Probability Mass Function (PMF)
 
-```math
+$$
 p_X(x) = P(X = x)
-```
+$$
 
 **Requirements:**
 1. $p\_X(x) \geq 0$ for all $x$
@@ -59,21 +59,21 @@ p_X(x) = P(X = x)
 
 **Bernoulli:**
 
-```math
+$$
 P(X = 1) = p, \quad P(X = 0) = 1 - p
-```
+$$
 
 **Binomial:**
 
-```math
+$$
 P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}
-```
+$$
 
 **Poisson:**
 
-```math
+$$
 P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
-```
+$$
 
 ---
 
@@ -81,35 +81,35 @@ P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
 
 ### Probability Density Function (PDF)
 
-```math
+$$
 f_X(x) \geq 0, \quad \int_{-\infty}^{\infty} f_X(x) \, dx = 1
-```
+$$
 
 **Note:** $f(x)$ is NOT a probability! It can be > 1.
 
-```math
+$$
 P(a \leq X \leq b) = \int_a^b f_X(x) \, dx
-```
+$$
 
 ### Examples
 
 **Uniform:**
 
-```math
+$$
 f(x) = \frac{1}{b-a}, \quad x \in [a, b]
-```
+$$
 
 **Exponential:**
 
-```math
+$$
 f(x) = \lambda e^{-\lambda x}, \quad x \geq 0
-```
+$$
 
 **Gaussian:**
 
-```math
+$$
 f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
-```
+$$
 
 ---
 
@@ -117,9 +117,9 @@ f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\righ
 
 ### Definition
 
-```math
+$$
 F_X(x) = P(X \leq x)
-```
+$$
 
 ### Properties
 
@@ -132,16 +132,16 @@ F_X(x) = P(X \leq x)
 
 **Discrete:**
 
-```math
+$$
 F(x) = \sum_{x_i \leq x} p(x_i)
-```
+$$
 
 **Continuous:**
 
-```math
+$$
 F(x) = \int_{-\infty}^{x} f(t) \, dt
 f(x) = \frac{dF}{dx}
-```
+$$
 
 ---
 
@@ -151,29 +151,29 @@ f(x) = \frac{dF}{dx}
 
 If $Y = g(X)$ where $g$ is monotonic:
 
-```math
+$$
 f_Y(y) = f_X(g^{-1}(y)) \cdot \left|\frac{d}{dy}g^{-1}(y)\right|
-```
+$$
 
 **Proof:**
 
 For increasing $g$:
 
-```math
+$$
 F_Y(y) = P(Y \leq y) = P(g(X) \leq y) = P(X \leq g^{-1}(y)) = F_X(g^{-1}(y))
-```
+$$
 
 Differentiating:
 
-```math
+$$
 f_Y(y) = f_X(g^{-1}(y)) \cdot \frac{d}{dy}g^{-1}(y) \quad \blacksquare
-```
+$$
 
 ### Example: $Y = X^2$ for $X \sim \mathcal{N}(0, 1)$
 
-```math
+$$
 f_Y(y) = \frac{1}{2\sqrt{y}} \cdot \frac{1}{\sqrt{2\pi}} e^{-y/2}, \quad y > 0
-```
+$$
 
 This is the chi-squared distribution with 1 degree of freedom!
 
@@ -185,36 +185,36 @@ This is the chi-squared distribution with 1 degree of freedom!
 
 **Discrete:**
 
-```math
+$$
 E[X] = \sum_x x \cdot P(X = x)
-```
+$$
 
 **Continuous:**
 
-```math
+$$
 E[X] = \int_{-\infty}^{\infty} x \cdot f(x) \, dx
-```
+$$
 
 ### LOTUS (Law of the Unconscious Statistician)
 
-```math
+$$
 E[g(X)] = \sum_x g(x) \cdot P(X = x)
 E[g(X)] = \int_{-\infty}^{\infty} g(x) \cdot f(x) \, dx
-```
+$$
 
 **Key:** No need to find distribution of $g(X)$!
 
 ### Variance
 
-```math
+$$
 \text{Var}(X) = E[(X - \mu)^2] = E[X^2] - (E[X])^2
-```
+$$
 
 **Proof of alternative form:**
 
-```math
+$$
 \text{Var}(X) = E[X^2 - 2\mu X + \mu^2] = E[X^2] - 2\mu^2 + \mu^2 = E[X^2] - \mu^2 \quad \blacksquare
-```
+$$
 
 ---
 
@@ -222,9 +222,9 @@ E[g(X)] = \int_{-\infty}^{\infty} g(x) \cdot f(x) \, dx
 
 ### Definition
 
-```math
+$$
 M_X(t) = E[e^{tX}]
-```
+$$
 
 ### Properties
 
@@ -236,15 +236,15 @@ M_X(t) = E[e^{tX}]
 
 For $X \sim \mathcal{N}(\mu, \sigma^2)$:
 
-```math
+$$
 M_X(t) = \exp\left(\mu t + \frac{\sigma^2 t^2}{2}\right)
-```
+$$
 
 **Proof:**
 
-```math
+$$
 M_X(t) = E[e^{tX}] = \int \frac{1}{\sqrt{2\pi\sigma^2}} e^{tx} e^{-\frac{(x-\mu)^2}{2\sigma^2}} dx
-```
+$$
 
 Complete the square and integrate. $\quad \blacksquare$
 
@@ -254,9 +254,9 @@ Complete the square and integrate. $\quad \blacksquare$
 
 ### Definition
 
-```math
+$$
 \phi_X(t) = E[e^{itX}]
-```
+$$
 
 **Advantages over MGF:**
 - Always exists (bounded)
@@ -264,9 +264,9 @@ Complete the square and integrate. $\quad \blacksquare$
 
 ### Gaussian Characteristic Function
 
-```math
+$$
 \phi_X(t) = \exp\left(i\mu t - \frac{\sigma^2 t^2}{2}\right)
-```
+$$
 
 ---
 

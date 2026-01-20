@@ -19,9 +19,9 @@
 
 Learn to sample from data distribution $p\_{data}(x)$:
 
-```math
+$$
 x_{new} \sim p_\theta(x) \approx p_{data}(x)
-```
+$$
 
 ### Taxonomy
 
@@ -35,16 +35,16 @@ x_{new} \sim p_\theta(x) \approx p_{data}(x)
 
 ### Architecture
 
-```math
+$$
 \text{Encoder: } q_\phi(z|x) = \mathcal{N}(\mu_\phi(x), \sigma^2_\phi(x))
 \text{Decoder: } p_\theta(x|z) = \mathcal{N}(\mu_\theta(z), \sigma^2)
-```
+$$
 
 ### Evidence Lower Bound (ELBO)
 
-```math
+$$
 \log p_\theta(x) \geq \mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)] - D_{KL}(q_\phi(z|x) \| p(z))
-```
+$$
 
 **Reconstruction term:** How well decoder reconstructs input.
 
@@ -52,15 +52,15 @@ x_{new} \sim p_\theta(x) \approx p_{data}(x)
 
 ### Loss Function
 
-```math
+$$
 \mathcal{L}_{VAE} = -\mathbb{E}_{q_\phi}[\log p_\theta(x|z)] + D_{KL}(q_\phi(z|x) \| p(z))
-```
+$$
 
 For Gaussian decoder:
 
-```math
+$$
 = \frac{1}{2}\|x - \hat{x}\|^2 + \frac{1}{2}\sum_j\left(\mu_j^2 + \sigma_j^2 - 1 - \log\sigma_j^2\right)
-```
+$$
 
 ### Reparameterization Trick
 
@@ -68,9 +68,9 @@ For Gaussian decoder:
 
 **Solution:** 
 
-```math
+$$
 z = \mu_\phi(x) + \sigma_\phi(x) \odot \epsilon, \quad \epsilon \sim \mathcal{N}(0, I)
-```
+$$
 
 Now $z$ is differentiable w.r.t. $\phi$!
 
@@ -80,9 +80,9 @@ Now $z$ is differentiable w.r.t. $\phi$!
 
 ### Minimax Game
 
-```math
+$$
 \min_G \max_D V(D, G) = \mathbb{E}_{x \sim p_{data}}[\log D(x)] + \mathbb{E}_{z \sim p_z}[\log(1 - D(G(z)))]
-```
+$$
 
 **Discriminator $D$:** Maximizes ability to distinguish real from fake.
 
@@ -92,38 +92,38 @@ Now $z$ is differentiable w.r.t. $\phi$!
 
 Given fixed $G$, optimal discriminator:
 
-```math
+$$
 D^*(x) = \frac{p_{data}(x)}{p_{data}(x) + p_g(x)}
-```
+$$
 
 ### Global Optimum
 
 At optimum, $p\_g = p\_{data}$ and:
 
-```math
+$$
 V(D^*, G^*) = -\log 4
 D^*(x) = \frac{1}{2} \quad \forall x
-```
+$$
 
 ### Training Dynamics
 
 **Discriminator update:**
 
-```math
+$$
 \nabla_{\theta_D} \frac{1}{m}\sum_{i=1}^m \left[\log D(x^{(i)}) + \log(1 - D(G(z^{(i)})))\right]
-```
+$$
 
 **Generator update:**
 
-```math
+$$
 \nabla_{\theta_G} \frac{1}{m}\sum_{i=1}^m \log(1 - D(G(z^{(i)})))
-```
+$$
 
 Or non-saturating loss:
 
-```math
+$$
 \nabla_{\theta_G} \frac{1}{m}\sum_{i=1}^m -\log D(G(z^{(i)}))
-```
+$$
 
 ---
 
@@ -135,21 +135,21 @@ Original GAN loss can have vanishing gradients when $D$ is too good.
 
 ### Wasserstein Distance
 
-```math
+$$
 W(p_r, p_g) = \inf_{\gamma \in \Pi(p_r, p_g)} \mathbb{E}_{(x,y) \sim \gamma}[\|x - y\|]
-```
+$$
 
 ### Kantorovich-Rubinstein Duality
 
-```math
+$$
 W(p_r, p_g) = \sup_{\|f\|_L \leq 1} \mathbb{E}_{x \sim p_r}[f(x)] - \mathbb{E}_{x \sim p_g}[f(x)]
-```
+$$
 
 ### WGAN Objective
 
-```math
+$$
 \min_G \max_D \mathbb{E}_{x \sim p_{data}}[D(x)] - \mathbb{E}_{z \sim p_z}[D(G(z))]
-```
+$$
 
 Subject to $D$ being 1-Lipschitz.
 
@@ -159,9 +159,9 @@ Subject to $D$ being 1-Lipschitz.
 
 **Gradient Penalty (WGAN-GP):**
 
-```math
+$$
 \mathcal{L}_{GP} = \lambda \mathbb{E}_{\hat{x}}\left[(\|\nabla_{\hat{x}} D(\hat{x})\| - 1)^2\right]
-```
+$$
 
 Where $\hat{x} = \epsilon x + (1-\epsilon) G(z)$, $\epsilon \sim U(0,1)$.
 
@@ -173,15 +173,15 @@ Where $\hat{x} = \epsilon x + (1-\epsilon) G(z)$, $\epsilon \sim U(0,1)$.
 
 Learn invertible transformations from simple distribution.
 
-```math
+$$
 z_K = f_K \circ f_{K-1} \circ ... \circ f_1(z_0), \quad z_0 \sim \mathcal{N}(0, I)
-```
+$$
 
 ### Change of Variables
 
-```math
+$$
 \log p(x) = \log p(z_0) - \sum_{k=1}^K \log\left|\det\frac{\partial f_k}{\partial z_{k-1}}\right|
-```
+$$
 
 ### Requirements
 

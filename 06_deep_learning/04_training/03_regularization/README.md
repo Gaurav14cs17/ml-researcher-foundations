@@ -33,9 +33,9 @@ Regularization adds constraints or penalties to prevent models from fitting nois
 
 **Bias-Variance Decomposition:**
 
-```math
+$$
 \mathbb{E}[(y - \hat{f}(x))^2] = \underbrace{\text{Bias}^2(\hat{f})}_{\text{underfitting}} + \underbrace{\text{Var}(\hat{f})}_{\text{overfitting}} + \underbrace{\sigma^2}_{\text{irreducible}}
-```
+$$
 
 Regularization reduces variance at the cost of slightly increased bias.
 
@@ -45,21 +45,21 @@ Regularization reduces variance at the cost of slightly increased bias.
 
 ### Formulation
 
-```math
+$$
 L_{\text{total}} = L_{\text{data}} + \frac{\lambda}{2} \sum_i w_i^2 = L_{\text{data}} + \frac{\lambda}{2} \|w\|_2^2
-```
+$$
 
 **Gradient:**
 
-```math
+$$
 \frac{\partial L_{\text{total}}}{\partial w} = \frac{\partial L_{\text{data}}}{\partial w} + \lambda w
-```
+$$
 
 **Update Rule:**
 
-```math
+$$
 w_{t+1} = w_t - \alpha \left(\frac{\partial L_{\text{data}}}{\partial w} + \lambda w_t\right) = (1 - \alpha\lambda) w_t - \alpha \frac{\partial L_{\text{data}}}{\partial w}
-```
+$$
 
 **Interpretation:** Each step, weights shrink by factor $(1 - \alpha\lambda)$ — hence "weight decay."
 
@@ -69,21 +69,21 @@ w_{t+1} = w_t - \alpha \left(\frac{\partial L_{\text{data}}}{\partial w} + \lamb
 
 **Proof:**
 
-```math
+$$
 p(w|D) \propto p(D|w) \cdot p(w)
-```
+$$
 
 With Gaussian prior $p(w) = \mathcal{N}(0, \sigma^2 I)$:
 
-```math
+$$
 \log p(w|D) = \log p(D|w) - \frac{1}{2\sigma^2} \|w\|_2^2 + \text{const}
-```
+$$
 
 Maximizing this equals minimizing:
 
-```math
+$$
 L_{\text{data}} + \frac{1}{2\sigma^2} \|w\|_2^2
-```
+$$
 
 where $\lambda = 1/\sigma^2$. ∎
 
@@ -93,15 +93,15 @@ where $\lambda = 1/\sigma^2$. ∎
 
 ### Formulation
 
-```math
+$$
 L_{\text{total}} = L_{\text{data}} + \lambda \sum_i |w_i| = L_{\text{data}} + \lambda \|w\|_1
-```
+$$
 
 **Subgradient:**
 
-```math
+$$
 \frac{\partial L_{\text{total}}}{\partial w_i} = \frac{\partial L_{\text{data}}}{\partial w_i} + \lambda \cdot \text{sign}(w_i)
-```
+$$
 
 ### Why L1 Creates Sparsity
 
@@ -120,15 +120,15 @@ Optimal point more likely to hit corner in L1 → exact zeros.
 
 For $L = (y - wx)^2 + \lambda|w|$:
 
-```math
+$$
 \frac{\partial L}{\partial w} = -2x(y-wx) + \lambda \cdot \text{sign}(w)
-```
+$$
 
 Setting to zero:
 
-```math
+$$
 w^* = \text{sign}(w^*) \cdot \max\left(0, |yx| - \frac{\lambda}{2x^2}\right)
-```
+$$
 
 If $|yx| < \frac{\lambda}{2x^2}$, then $w^* = 0$ exactly. ∎
 
@@ -154,9 +154,9 @@ h = h    # No dropout, no scaling (inverted dropout)
 
 **Expectation preservation:**
 
-```math
+$$
 \mathbb{E}[\text{dropout}(h)] = \mathbb{E}\left[\frac{m \odot h}{1-p}\right] = \frac{(1-p) h}{1-p} = h
-```
+$$
 
 ### Why Dropout Works
 
@@ -217,15 +217,15 @@ for epoch in range(max_epochs):
 
 For gradient descent on linear regression with learning rate $\alpha$:
 
-```math
+$$
 w_t = (I - (I - \alpha X^\top X)^t) w^*_{\text{OLS}}
-```
+$$
 
 This has similar effect to:
 
-```math
+$$
 w^*_{\lambda} = (X^\top X + \lambda I)^{-1} X^\top y
-```
+$$
 
 where $\lambda$ is determined by number of iterations $t$.
 
@@ -237,21 +237,21 @@ where $\lambda$ is determined by number of iterations $t$.
 
 Instead of one-hot labels:
 
-```math
+$$
 y_{\text{hard}} = [0, 0, 1, 0, 0]
-```
+$$
 
 Use smoothed labels:
 
-```math
+$$
 y_{\text{smooth}} = (1-\epsilon) \cdot y_{\text{hard}} + \frac{\epsilon}{K}
-```
+$$
 
 For $\epsilon = 0.1$, $K = 5$:
 
-```math
+$$
 y_{\text{smooth}} = [0.02, 0.02, 0.92, 0.02, 0.02]
-```
+$$
 
 ### Why It Helps
 

@@ -37,15 +37,15 @@ For 1000 tasks → 280 TB storage + $1M+ cost
 
 **Observation:** Weight updates during fine-tuning have low intrinsic rank!
 
-```math
+$$
 \text{Full fine-tuning: } W \rightarrow W + \Delta W
-```
+$$
 
 **Hypothesis:** $\Delta W$ can be approximated by low-rank matrices:
 
-```math
+$$
 \Delta W \approx BA
-```
+$$
 
 Where:
 - $B \in \mathbb{R}^{d \times r}$ (down-projection)
@@ -56,15 +56,15 @@ Where:
 
 **Original layer:**
 
-```math
+$$
 y = Wx
-```
+$$
 
 **With LoRA:**
 
-```math
+$$
 y = Wx + \frac{\alpha}{r} \cdot BAx
-```
+$$
 
 Where:
 - $W \in \mathbb{R}^{d \times k}$: Frozen pretrained weights
@@ -129,15 +129,15 @@ lora_params = 4 * r * (d_model + d_inner)  # 262K parameters
 
 Any matrix can be decomposed:
 
-```math
+$$
 W = U\Sigma V^\top \quad \text{(SVD)}
-```
+$$
 
 Low-rank approximation:
 
-```math
+$$
 W \approx U_r \Sigma_r V_r^\top = (U_r \Sigma_r) \cdot V_r^\top = B \cdot A
-```
+$$
 
 **Interpretation:** LoRA learns the "important directions" for adaptation.
 
@@ -145,9 +145,9 @@ W \approx U_r \Sigma_r V_r^\top = (U_r \Sigma_r) \cdot V_r^\top = B \cdot A
 
 The best rank-$r$ approximation of $\Delta W$ is:
 
-```math
+$$
 \Delta W_r = \sum_{i=1}^{r} \sigma_i u_i v_i^\top
-```
+$$
 
 LoRA learns $B$ and $A$ such that $BA \approx \Delta W\_r$.
 
@@ -168,23 +168,23 @@ LoRA learns $B$ and $A$ such that $BA \approx \Delta W\_r$.
 
 **For $A$:** Gaussian initialization
 
-```math
+$$
 A \sim \mathcal{N}(0, \sigma^2)
-```
+$$
 
 **For $B$:** Zero initialization
 
-```math
+$$
 B = 0
-```
+$$
 
 **Reason:** At initialization, $\Delta W = BA = 0$, so we start from the pretrained weights.
 
 ### Scaling Factor
 
-```math
+$$
 \text{scaling} = \frac{\alpha}{r}
-```
+$$
 
 **Intuition:**
 - $\alpha$ is the "learning rate multiplier" for LoRA
@@ -195,10 +195,10 @@ B = 0
 
 **Gradients w.r.t. LoRA parameters:**
 
-```math
+$$
 \frac{\partial L}{\partial A} = \frac{\alpha}{r} \cdot B^\top \frac{\partial L}{\partial y} x^\top
 \frac{\partial L}{\partial B} = \frac{\alpha}{r} \cdot \frac{\partial L}{\partial y} (Ax)^\top
-```
+$$
 
 The scaling ensures gradients are well-behaved regardless of rank.
 
@@ -380,9 +380,9 @@ model = get_peft_model(model, lora_config)
 ### DoRA (2024)
 - **Decomposed LoRA:** Separate magnitude and direction
 
-```math
+$$
 W + \Delta W = m \cdot \frac{W + BA}{\|W + BA\|}
-```
+$$
 
 - Learns magnitude $m$ and directional update $BA$
 - Often outperforms standard LoRA

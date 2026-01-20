@@ -17,9 +17,9 @@
 
 ### Scaled Dot-Product Attention
 
-```math
+$$
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
-```
+$$
 
 Where:
 - $Q \in \mathbb{R}^{n \times d\_k}$ (queries)
@@ -33,9 +33,9 @@ Where:
 
 If $q\_i, k\_j \sim \mathcal{N}(0, 1)$ independently:
 
-```math
+$$
 \text{Var}(q^\top k) = \text{Var}\left(\sum_{i=1}^{d_k} q_i k_i\right) = d_k
-```
+$$
 
 Large variance → softmax becomes very peaked → vanishing gradients.
 
@@ -47,9 +47,9 @@ Scaling by $\sqrt{d\_k}$: $\text{Var}\left(\frac{q^\top k}{\sqrt{d\_k}}\right) =
 
 ### As Weighted Average
 
-```math
+$$
 \text{output}_i = \sum_j \alpha_{ij} v_j
-```
+$$
 
 Where $\alpha\_{ij} = \text{softmax}\left(\frac{q\_i^\top k\_j}{\sqrt{d\_k}}\right)\_j$
 
@@ -60,9 +60,9 @@ Where $\alpha\_{ij} = \text{softmax}\left(\frac{q\_i^\top k\_j}{\sqrt{d\_k}}\rig
 
 ### As Soft Retrieval
 
-```math
+$$
 \text{score}(q, k) = q^\top k
-```
+$$
 
 High score = high relevance = more weight in output.
 
@@ -72,17 +72,17 @@ High score = high relevance = more weight in output.
 
 ### 1. Scaled Dot-Product (Transformer)
 
-```math
+$$
 \text{score}(q, k) = \frac{q^\top k}{\sqrt{d_k}}
-```
+$$
 
 **Complexity:** $O(n \cdot m \cdot d\_k)$
 
 ### 2. Additive/Bahdanau Attention
 
-```math
+$$
 \text{score}(q, k) = v^\top \tanh(W_q q + W_k k)
-```
+$$
 
 Where $W\_q, W\_k, v$ are learnable parameters.
 
@@ -90,17 +90,17 @@ Where $W\_q, W\_k, v$ are learnable parameters.
 
 ### 3. Multiplicative/Luong Attention
 
-```math
+$$
 \text{score}(q, k) = q^\top W k
-```
+$$
 
 Where $W$ is learnable.
 
 ### 4. Relative Position Attention
 
-```math
+$$
 \text{score}(q_i, k_j) = q_i^\top k_j + q_i^\top r_{i-j}
-```
+$$
 
 Where $r\_{i-j}$ is a learnable relative position embedding.
 
@@ -108,15 +108,15 @@ Where $r\_{i-j}$ is a learnable relative position embedding.
 
 ## 📐 Multi-Head Attention
 
-```math
+$$
 \text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, ..., \text{head}_h)W^O
-```
+$$
 
 Where each head:
 
-```math
+$$
 \text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)
-```
+$$
 
 ### Projections
 
@@ -127,15 +127,15 @@ Where each head:
 
 ### Parameters
 
-```math
+$$
 \text{Total params} = h(d_{model} \cdot d_k + d_{model} \cdot d_k + d_{model} \cdot d_v) + hd_v \cdot d_{model}
-```
+$$
 
 With $d\_k = d\_v = d\_{model}/h$:
 
-```math
+$$
 = 4 \cdot d_{model}^2
-```
+$$
 
 ### Why Multiple Heads?
 
@@ -153,9 +153,9 @@ Different heads can attend to different aspects:
 
 $Q, K, V$ all come from the same sequence $X$:
 
-```math
+$$
 Q = XW^Q, \quad K = XW^K, \quad V = XW^V
-```
+$$
 
 **Use:** Transformers encoder, GPT decoder
 
@@ -163,9 +163,9 @@ Q = XW^Q, \quad K = XW^K, \quad V = XW^V
 
 $Q$ from one sequence, $K, V$ from another:
 
-```math
+$$
 Q = XW^Q, \quad K = YW^K, \quad V = YW^V
-```
+$$
 
 **Use:** Encoder-decoder (translation), CLIP, Stable Diffusion
 
@@ -175,9 +175,9 @@ Q = XW^Q, \quad K = YW^K, \quad V = YW^V
 
 ### Causal Masking (Autoregressive)
 
-```math
+$$
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}} + M\right)V
-```
+$$
 
 Where $M\_{ij} = \begin{cases} 0 & i \geq j \\ -\infty & i < j \end{cases}$
 
@@ -193,32 +193,32 @@ Mask out padding tokens to prevent attention to them.
 
 ### Forward
 
-```math
+$$
 A = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)
 O = AV
-```
+$$
 
 ### Backward
 
 Given $\frac{\partial \mathcal{L}}{\partial O}$:
 
-```math
+$$
 \frac{\partial \mathcal{L}}{\partial V} = A^\top \frac{\partial \mathcal{L}}{\partial O}
 \frac{\partial \mathcal{L}}{\partial A} = \frac{\partial \mathcal{L}}{\partial O} V^\top
-```
+$$
 
 For softmax with scores $S = QK^\top / \sqrt{d\_k}$:
 
-```math
+$$
 \frac{\partial \mathcal{L}}{\partial S_{ij}} = A_{ij}\left(\frac{\partial \mathcal{L}}{\partial A_{ij}} - \sum_k A_{ik}\frac{\partial \mathcal{L}}{\partial A_{ik}}\right)
-```
+$$
 
 Then:
 
-```math
+$$
 \frac{\partial \mathcal{L}}{\partial Q} = \frac{1}{\sqrt{d_k}}\frac{\partial \mathcal{L}}{\partial S} K
 \frac{\partial \mathcal{L}}{\partial K} = \frac{1}{\sqrt{d_k}}\frac{\partial \mathcal{L}}{\partial S}^\top Q
-```
+$$
 
 ---
 

@@ -27,9 +27,9 @@
 
 Expand training set $\mathcal{D}$ with transformed samples:
 
-```math
+$$
 \mathcal{D}_{aug} = \{(T(x), y) : (x, y) \in \mathcal{D}, T \sim \mathcal{T}\}
-```
+$$
 
 Where $\mathcal{T}$ is a distribution over transformations.
 
@@ -37,15 +37,15 @@ Where $\mathcal{T}$ is a distribution over transformations.
 
 Data augmentation is equivalent to adding a prior:
 
-```math
+$$
 p_{aug}(x|y) = \int p(x|T)p(T|y) dT
-```
+$$
 
 Or regularizing the loss:
 
-```math
+$$
 \mathcal{L}_{aug} = \mathbb{E}_{T \sim \mathcal{T}}[\mathcal{L}(f(T(x)), y)]
-```
+$$
 
 ---
 
@@ -55,43 +55,43 @@ Or regularizing the loss:
 
 **Random Crop:**
 
-```math
+$$
 x_{crop} = x[i:i+h, j:j+w]
-```
+$$
 
 Where $(i,j)$ is random position, $(h,w)$ is crop size.
 
 **Random Flip:**
 
-```math
+$$
 x_{flip}[i,j] = x[i, W-1-j]
-```
+$$
 
 **Rotation:**
 
-```math
+$$
 \begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}
-```
+$$
 
 ### Color Transformations
 
 **Brightness:**
 
-```math
+$$
 x_{bright} = x + \delta, \quad \delta \sim U(-\beta, \beta)
-```
+$$
 
 **Contrast:**
 
-```math
+$$
 x_{contrast} = \alpha(x - \mu) + \mu, \quad \alpha \sim U(1-\gamma, 1+\gamma)
-```
+$$
 
 **Saturation (HSV):**
 
-```math
+$$
 S' = S \cdot \alpha, \quad \alpha \sim U(1-\delta, 1+\delta)
-```
+$$
 
 ---
 
@@ -101,10 +101,10 @@ S' = S \cdot \alpha, \quad \alpha \sim U(1-\delta, 1+\delta)
 
 For samples $(x\_i, y\_i)$ and $(x\_j, y\_j)$:
 
-```math
+$$
 \tilde{x} = \lambda x_i + (1-\lambda) x_j
 \tilde{y} = \lambda y_i + (1-\lambda) y_j
-```
+$$
 
 Where $\lambda \sim \text{Beta}(\alpha, \alpha)$ (typically $\alpha=0.2$).
 
@@ -117,9 +117,9 @@ Mixup encourages:
 
 ### Loss with Mixup
 
-```math
+$$
 \mathcal{L}_{mixup} = \lambda \mathcal{L}(f(\tilde{x}), y_i) + (1-\lambda) \mathcal{L}(f(\tilde{x}), y_j)
-```
+$$
 
 ---
 
@@ -130,9 +130,9 @@ Mixup encourages:
 1. Sample $\lambda \sim \text{Beta}(\alpha, \alpha)$
 2. Sample bounding box $B = (r\_x, r\_y, r\_w, r\_h)$ where:
 
-```math
+$$
 r_w = W\sqrt{1-\lambda}, \quad r_h = H\sqrt{1-\lambda}
-```math
+$$math
 3. Combine:
 ```
 
@@ -143,9 +143,9 @@ Where $M$ is binary mask (1 inside $B$, 0 outside).
 
 ### Label
 
-```math
+$$
 \tilde{y} = \lambda y_i + (1-\lambda) y_j
-```
+$$
 
 Where $\lambda = 1 - \frac{r\_w \cdot r\_h}{W \cdot H}$ (fraction of image from $x\_i$).
 
@@ -163,9 +163,9 @@ Operations: Rotate, Shear, TranslateX, Color, etc.
 
 Use reinforcement learning to find optimal policy:
 
-```math
+$$
 \pi^* = \arg\max_\pi \mathbb{E}_{T \sim \pi}[\text{Accuracy}(\mathcal{D}_{val})]
-```
+$$
 
 ### RandAugment (Simplified)
 
@@ -174,9 +174,9 @@ No search required:
 1. Sample $N$ random transforms
 2. Apply with magnitude $M$
 
-```math
+$$
 T = T_N \circ T_{N-1} \circ ... \circ T_1
-```
+$$
 
 ---
 
@@ -186,15 +186,15 @@ T = T_N \circ T_{N-1} \circ ... \circ T_1
 
 Replace random words with synonyms:
 
-```math
+$$
 x = [w_1, ..., w_i, ..., w_n] \rightarrow [w_1, ..., \text{syn}(w_i), ..., w_n]
-```
+$$
 
 ### Back-Translation
 
-```math
+$$
 x \xrightarrow{\text{translate}} x_{foreign} \xrightarrow{\text{translate back}} \tilde{x}
-```
+$$
 
 ### EDA (Easy Data Augmentation)
 

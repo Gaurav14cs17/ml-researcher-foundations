@@ -95,7 +95,7 @@ lookup  search   scan     sort       (naive)    (naive)  force
 > $$
 \forall n \geq n_0: f(n) \leq c \cdot g(n)
 
-```math
+$$
 > 
 > *"f grows at most as fast as g"*
 
@@ -143,7 +143,7 @@ To prove f(n) = O(g(n)):
 > **Big-Omega (Ω):** f(n) = Ω(g(n)) means there exist c > 0 and n₀ such that:
 > $$
 \forall n \geq n_0: f(n) \geq c \cdot g(n)
-```
+$$
 
 > *"f grows at least as fast as g"*
 
@@ -185,11 +185,11 @@ To prove f(n) = O(g(n)):
 > $$
 \lim_{n \to \infty} \frac{f(n)}{g(n)} = 0
 
-```math
+$$
 > *"f grows strictly slower than g"*
 
 ### 📝 Examples
-```
+$$
 
 n = o(n²)           # n grows slower than n²
 log n = o(n)        # log grows slower than linear

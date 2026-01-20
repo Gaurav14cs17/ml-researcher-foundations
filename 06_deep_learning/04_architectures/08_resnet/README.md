@@ -27,9 +27,9 @@ Even if a deeper network could learn identity mappings for extra layers, trainin
 
 **Residual Block:**
 
-```math
+$$
 y = F(x) + x
-```
+$$
 
 Where $F(x)$ is the residual function (typically 2-3 conv layers).
 
@@ -46,30 +46,30 @@ Where $F(x)$ is the residual function (typically 2-3 conv layers).
 
 For $L$ layers: $h\_L = f\_L(f\_{L-1}(...f\_1(x)))$
 
-```math
+$$
 \frac{\partial \mathcal{L}}{\partial h_1} = \frac{\partial \mathcal{L}}{\partial h_L} \prod_{l=2}^{L} \frac{\partial h_l}{\partial h_{l-1}}
-```
+$$
 
 If $\left|\frac{\partial h\_l}{\partial h\_{l-1}}\right| < 1$: vanishing gradients.
 
 ### With Skip Connections
 
-```math
+$$
 h_{l+1} = h_l + F(h_l; W_l)
 \frac{\partial h_{l+1}}{\partial h_l} = 1 + \frac{\partial F}{\partial h_l}
-```
+$$
 
 **Key:** The $+1$ ensures gradient of at least 1 flows backward!
 
-```math
+$$
 \frac{\partial h_L}{\partial h_1} = \prod_{l=1}^{L-1} \left(1 + \frac{\partial F_l}{\partial h_l}\right)
-```
+$$
 
 Expanding (ignoring higher-order terms):
 
-```math
+$$
 \approx 1 + \sum_l \frac{\partial F_l}{\partial h_l} + \text{higher order terms}
-```
+$$
 
 The $1$ provides a direct gradient path from loss to early layers!
 
@@ -79,9 +79,9 @@ The $1$ provides a direct gradient path from loss to early layers!
 
 ### Basic Block (ResNet-18/34)
 
-```math
+$$
 F(x) = W_2 \cdot \sigma(W_1 \cdot x)
-```
+$$
 
 ```
 x → Conv3×3 → BN → ReLU → Conv3×3 → BN → (+x) → ReLU → y
@@ -89,9 +89,9 @@ x → Conv3×3 → BN → ReLU → Conv3×3 → BN → (+x) → ReLU → y
 
 ### Bottleneck Block (ResNet-50/101/152)
 
-```math
+$$
 F(x) = W_3 \cdot \sigma(W_2 \cdot \sigma(W_1 \cdot x))
-```
+$$
 
 ```
 x → Conv1×1 → BN → ReLU → Conv3×3 → BN → ReLU → Conv1×1 → BN → (+x) → ReLU → y
@@ -105,9 +105,9 @@ For 256 channels:
 
 ### Pre-activation ResNet
 
-```math
+$$
 y = x + F(\text{BN}(\text{ReLU}(x)))
-```
+$$
 
 BN and ReLU before convolution. Slightly better gradient flow.
 
@@ -119,15 +119,15 @@ When input/output dimensions differ:
 
 **Option A: Zero Padding**
 
-```math
+$$
 y = F(x) + \text{pad}(x)
-```
+$$
 
 **Option B: Projection (1×1 Conv)**
 
-```math
+$$
 y = F(x) + W_s x
-```
+$$
 
 Where $W\_s$ is a 1×1 convolution matching dimensions.
 
@@ -298,9 +298,9 @@ model = models.resnet50(pretrained=True)
 
 Aggregated residual transformations:
 
-```math
+$$
 F(x) = \sum_{i=1}^{C} T_i(x)
-```
+$$
 
 Where $C$ is cardinality (number of parallel paths).
 
@@ -308,17 +308,17 @@ Where $C$ is cardinality (number of parallel paths).
 
 Dense connections: each layer receives all preceding features:
 
-```math
+$$
 x_l = H_l([x_0, x_1, ..., x_{l-1}])
-```
+$$
 
 ### SE-ResNet
 
 Squeeze-and-Excitation: channel attention:
 
-```math
+$$
 y = F(x) \cdot \sigma(W_2 \text{ReLU}(W_1 \text{GAP}(F(x))))
-```
+$$
 
 ---
 

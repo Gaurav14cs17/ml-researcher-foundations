@@ -25,10 +25,10 @@
 
 #### 1.1 Standard MHA
 
-```math
+$$
 \text{MHA}(Q, K, V) = \text{Concat}(\text{head}_1, ..., \text{head}_h)W^O
 \text{head}_i = \text{Attention}(QW_Q^i, KW_K^i, VW_V^i)
-```
+$$
 
 **Parameters per layer:**
 - Query: $h \times d \times d\_k$
@@ -46,9 +46,9 @@
 
 **Share K and V projections across all heads:**
 
-```math
+$$
 \text{head}_i = \text{Attention}(QW_Q^i, KW_K, VW_V)
-```
+$$
 
 - Each head has unique $W\_Q^i$
 - All heads share single $W\_K, W\_V$
@@ -73,9 +73,9 @@
 
 **GQA:** Use $g$ groups of K,V shared across $h/g$ heads each.
 
-```math
+$$
 \text{head}_i = \text{Attention}(QW_Q^i, KW_K^{g(i)}, VW_V^{g(i)})
-```
+$$
 
 where $g(i) = \lfloor i \cdot g / h \rfloor$.
 
@@ -96,21 +96,21 @@ where $g(i) = \lfloor i \cdot g / h \rfloor$.
 
 **Autoregressive generation requires caching K,V:**
 
-```math
+$$
 \text{Cache size} = B \times L \times N_L \times N_{kv} \times d_k
-```
+$$
 
 **MHA cache (LLaMA-7B, seq=2048):**
 
-```math
+$$
 1 \times 2048 \times 32 \times 32 \times 128 = 268M \text{ floats} = 1GB
-```
+$$
 
 **MQA cache (1 KV head per layer):**
 
-```math
+$$
 1 \times 2048 \times 32 \times 1 \times 128 = 8.4M \text{ floats} = 32MB
-```
+$$
 
 **32× reduction in KV cache!**
 
@@ -118,9 +118,9 @@ where $g(i) = \lfloor i \cdot g / h \rfloor$.
 
 **Memory bandwidth bound:**
 
-```math
+$$
 \text{Throughput} \propto \frac{\text{Compute}}{\text{Memory Access}}
-```
+$$
 
 Smaller KV cache → Less memory access → Higher throughput.
 

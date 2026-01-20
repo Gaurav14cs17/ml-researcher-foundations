@@ -41,9 +41,9 @@
 
 **Definition:** A Gaussian Process is a collection of random variables, any finite subset of which has a joint Gaussian distribution.
 
-```math
+$$
 f \sim \mathcal{GP}(m(x), k(x, x'))
-```
+$$
 
 where:
 - $m(x) = \mathbb{E}[f(x)]$ is the mean function (often $m(x) = 0$)
@@ -51,9 +51,9 @@ where:
 
 **Property:** For any finite set $\{x_1, \ldots, x_n\}$:
 
-```math
+$$
 \begin{bmatrix} f(x_1) \\ \vdots \\ f(x_n) \end{bmatrix} \sim \mathcal{N}\left(\begin{bmatrix} m(x_1) \\ \vdots \\ m(x_n) \end{bmatrix}, \begin{bmatrix} k(x_1, x_1) & \cdots & k(x_1, x_n) \\ \vdots & \ddots & \vdots \\ k(x_n, x_1) & \cdots & k(x_n, x_n) \end{bmatrix}\right)
-```
+$$
 
 ---
 
@@ -61,17 +61,17 @@ where:
 
 ### Model
 
-```math
+$$
 y = f(x) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma_n^2)
-```
+$$
 
 **Prior:** $f \sim \mathcal{GP}(0, k)$
 
 **Joint Distribution:**
 
-```math
+$$
 \begin{bmatrix} \mathbf{f} \\ \mathbf{f}_* \end{bmatrix} \sim \mathcal{N}\left(\mathbf{0}, \begin{bmatrix} K & K_* \\ K_*^\top & K_{**} \end{bmatrix}\right)
-```
+$$
 
 where $K = k(X, X)$, $K_* = k(X, X_*)$, $K_{**} = k(X_*, X_*)$.
 
@@ -79,19 +79,19 @@ where $K = k(X, X)$, $K_* = k(X, X_*)$, $K_{**} = k(X_*, X_*)$.
 
 **Theorem:** Given training data $(X, \mathbf{y})$ and test points $X_*$:
 
-```math
+$$
 \mathbf{f}_* | X_*, X, \mathbf{y} \sim \mathcal{N}(\boldsymbol{\mu}_*, \boldsymbol{\Sigma}_*)
 \boldsymbol{\mu}_* = K_*^\top (K + \sigma_n^2 I)^{-1} \mathbf{y}
 \boldsymbol{\Sigma}_* = K_{**} - K_*^\top (K + \sigma_n^2 I)^{-1} K_*
-```
+$$
 
 **Proof:** By properties of Gaussian conditionals:
 
 For $\begin{bmatrix} \mathbf{a} \\ \mathbf{b} \end{bmatrix} \sim \mathcal{N}\left(\begin{bmatrix} \boldsymbol{\mu}_a \\ \boldsymbol{\mu}_b \end{bmatrix}, \begin{bmatrix} A & C \\ C^\top & B \end{bmatrix}\right)$:
 
-```math
+$$
 \mathbf{a} | \mathbf{b} \sim \mathcal{N}(\boldsymbol{\mu}_a + CB^{-1}(\mathbf{b} - \boldsymbol{\mu}_b), A - CB^{-1}C^\top)
-```
+$$
 
 Applying with observation noise $\mathbf{y} = \mathbf{f} + \boldsymbol{\varepsilon}$. $\blacksquare$
 
@@ -101,9 +101,9 @@ Applying with observation noise $\mathbf{y} = \mathbf{f} + \boldsymbol{\varepsil
 
 ### Log Marginal Likelihood
 
-```math
+$$
 \log p(\mathbf{y}|X) = -\frac{1}{2}\mathbf{y}^\top(K + \sigma_n^2 I)^{-1}\mathbf{y} - \frac{1}{2}\log|K + \sigma_n^2 I| - \frac{n}{2}\log(2\pi)
-```
+$$
 
 **Interpretation:**
 - **Data fit:** $-\frac{1}{2}\mathbf{y}^\top(K + \sigma_n^2 I)^{-1}\mathbf{y}$
@@ -114,9 +114,9 @@ Applying with observation noise $\mathbf{y} = \mathbf{f} + \boldsymbol{\varepsil
 
 Optimize kernel hyperparameters $\boldsymbol{\theta}$ by maximizing log marginal likelihood:
 
-```math
+$$
 \frac{\partial \log p(\mathbf{y}|X, \boldsymbol{\theta})}{\partial \theta_j} = \frac{1}{2}\text{tr}\left((\boldsymbol{\alpha}\boldsymbol{\alpha}^\top - K^{-1})\frac{\partial K}{\partial \theta_j}\right)
-```
+$$
 
 where $\boldsymbol{\alpha} = (K + \sigma_n^2 I)^{-1}\mathbf{y}$.
 
@@ -126,18 +126,18 @@ where $\boldsymbol{\alpha} = (K + \sigma_n^2 I)^{-1}\mathbf{y}$.
 
 ### RBF (Squared Exponential)
 
-```math
+$$
 k(x, x') = \sigma_f^2 \exp\left(-\frac{\|x - x'\|^2}{2\ell^2}\right)
-```
+$$
 
 - $\sigma_f^2$: signal variance (output scale)
 - $\ell$: length scale (smoothness)
 
 ### Matérn
 
-```math
+$$
 k_\nu(r) = \sigma_f^2 \frac{2^{1-\nu}}{\Gamma(\nu)}\left(\frac{\sqrt{2\nu}r}{\ell}\right)^\nu K_\nu\left(\frac{\sqrt{2\nu}r}{\ell}\right)
-```
+$$
 
 Special cases:
 - $\nu = 1/2$: Exponential (Ornstein-Uhlenbeck)
@@ -147,9 +147,9 @@ Special cases:
 
 ### Periodic
 
-```math
+$$
 k(x, x') = \sigma_f^2 \exp\left(-\frac{2\sin^2(\pi|x-x'|/p)}{\ell^2}\right)
-```
+$$
 
 ---
 

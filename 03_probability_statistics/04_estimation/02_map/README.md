@@ -25,37 +25,37 @@
 
 ### MAP Objective
 
-```math
+$$
 \theta_{MAP} = \arg\max_\theta P(\theta|D)
-```
+$$
 
 Using Bayes' theorem:
 
-```math
+$$
 \theta_{MAP} = \arg\max_\theta \frac{P(D|\theta) \cdot P(\theta)}{P(D)}
-```
+$$
 
 Since $P(D)$ doesn't depend on $\theta$:
 
-```math
+$$
 \theta_{MAP} = \arg\max_\theta P(D|\theta) \cdot P(\theta)
-```
+$$
 
 **Log form (more practical):**
 
-```math
+$$
 \theta_{MAP} = \arg\max_\theta \left[\log P(D|\theta) + \log P(\theta)\right]
 = \arg\max_\theta \left[\underbrace{\sum_{i=1}^n \log P(x_i|\theta)}_{\text{log-likelihood}} + \underbrace{\log P(\theta)}_{\text{log-prior}}\right]
-```
+$$
 
 ---
 
 ## 📐 MAP vs MLE
 
-```math
+$$
 \theta_{MLE} = \arg\max_\theta P(D|\theta)
 \theta_{MAP} = \arg\max_\theta P(D|\theta) \cdot P(\theta)
-```
+$$
 
 | Condition | MAP Behavior |
 |-----------|--------------|
@@ -72,17 +72,17 @@ Since $P(D)$ doesn't depend on $\theta$:
 
 **Prior:** $\theta \sim \mathcal{N}(0, \sigma\_p^2 I)$
 
-```math
+$$
 P(\theta) = \frac{1}{(2\pi\sigma_p^2)^{d/2}} \exp\left(-\frac{\|\theta\|^2}{2\sigma_p^2}\right)
 \log P(\theta) = -\frac{\|\theta\|^2}{2\sigma_p^2} + \text{const}
-```
+$$
 
 **MAP objective:**
 
-```math
+$$
 \theta_{MAP} = \arg\max_\theta \left[\sum_i \log P(x_i|\theta) - \frac{\|\theta\|^2}{2\sigma_p^2}\right]
 = \arg\min_\theta \left[\underbrace{-\sum_i \log P(x_i|\theta)}_{\text{NLL}} + \underbrace{\frac{1}{2\sigma_p^2}\|\theta\|^2}_{\lambda\|\theta\|^2}\right]
-```
+$$
 
 **where $\lambda = \frac{1}{2\sigma\_p^2}$**
 
@@ -94,16 +94,16 @@ P(\theta) = \frac{1}{(2\pi\sigma_p^2)^{d/2}} \exp\left(-\frac{\|\theta\|^2}{2\si
 
 **Prior:** $\theta \sim \text{Laplace}(0, b)$
 
-```math
+$$
 P(\theta) = \frac{1}{2b} \exp\left(-\frac{|\theta|}{b}\right)
 \log P(\theta) = -\frac{|\theta|}{b} + \text{const}
-```
+$$
 
 **MAP objective:**
 
-```math
+$$
 \theta_{MAP} = \arg\min_\theta \left[-\sum_i \log P(x_i|\theta) + \frac{1}{b}\|\theta\|_1\right]
-```
+$$
 
 **This is exactly Lasso Regression!** $\quad \blacksquare$
 
@@ -115,17 +115,17 @@ For scalar $\theta$, consider MAP gradient at $\theta = 0$:
 
 **L2 (Ridge):**
 
-```math
+$$
 \frac{\partial}{\partial\theta}(\lambda\theta^2) = 2\lambda\theta
-```
+$$
 
 At $\theta = 0$: gradient = 0. No force pushing to exactly 0.
 
 **L1 (Lasso):**
 
-```math
+$$
 \frac{\partial}{\partial\theta}(\lambda|\theta|) = \lambda \cdot \text{sign}(\theta)
-```
+$$
 
 At $\theta = 0^+$: gradient = $\lambda > 0$ (pushes toward 0)  
 At $\theta = 0^-$: gradient = $-\lambda < 0$ (pushes toward 0)
@@ -169,24 +169,24 @@ Gaussian: Smooth curve → shrinks but rarely exactly 0
 
 ### Ridge Regression (L2)
 
-```math
+$$
 \theta_{MAP} = \arg\min_\theta \|y - X\theta\|^2 + \lambda\|\theta\|^2
-```
+$$
 
 **Solution:**
 
-```math
+$$
 \theta_{MAP} = (X^TX + \lambda I)^{-1}X^Ty
-```
+$$
 
 **Proof:**
 
-```math
+$$
 \nabla_\theta\left[\|y - X\theta\|^2 + \lambda\|\theta\|^2\right] = -2X^T(y - X\theta) + 2\lambda\theta = 0
 X^TX\theta + \lambda\theta = X^Ty
 (X^TX + \lambda I)\theta = X^Ty
 \theta = (X^TX + \lambda I)^{-1}X^Ty \quad \blacksquare
-```
+$$
 
 **Key insight:** Adding $\lambda I$ makes the matrix always invertible (regularization!).
 

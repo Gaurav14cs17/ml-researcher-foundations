@@ -140,23 +140,23 @@ For each column j:
 
 **Problem:** The round function has zero gradient almost everywhere:
 
-```math
+$$
 \frac{d \text{round}(x)}{dx} = 0 \text{ (a.e.)}
-```
+$$
 
 **Solution:** STE approximates the gradient as identity:
 
-```math
+$$
 \frac{\partial \mathcal{L}}{\partial x} \approx \frac{\partial \mathcal{L}}{\partial \text{round}(x)}
-```
+$$
 
 **Formal justification:**
 
 Define the quantization function with STE:
 
-```math
+$$
 y = x + \text{sg}(\text{round}(x) - x)
-```
+$$
 
 where $\text{sg}$ is stop-gradient operator.
 
@@ -171,17 +171,17 @@ Backward: $\frac{\partial y}{\partial x} = 1$
 
 QAT minimizes:
 
-```math
+$$
 \mathcal{L}_{QAT} = \mathcal{L}_{task}(Q(W), X, Y) + \lambda \mathcal{L}_{reg}
-```
+$$
 
 where $Q(W)$ denotes quantized weights.
 
 The network learns to produce weights that are quantization-friendly:
 
-```math
+$$
 W^* = \arg\min_W \mathcal{L}_{task}(Q(W), X, Y)
-```
+$$
 
 ---
 
@@ -189,29 +189,29 @@ W^* = \arg\min_W \mathcal{L}_{task}(Q(W), X, Y)
 
 **Original computation:**
 
-```math
+$$
 Y = XW
-```
+$$
 
 **Smoothed computation:**
 
-```math
+$$
 Y = (X \text{diag}(s)^{-1}) \cdot (\text{diag}(s) W) = \hat{X} \hat{W}
-```
+$$
 
 **Optimal smoothing factor:**
 
-```math
+$$
 s_j = \frac{\max_i |X_{ij}|^\alpha}{\max_k |W_{jk}|^{1-\alpha}}
-```
+$$
 
 where $\alpha \in [0, 1]$ controls the migration strength.
 
 **Proof of equivalence:**
 
-```math
+$$
 \hat{X}\hat{W} = X \cdot \text{diag}(s)^{-1} \cdot \text{diag}(s) \cdot W = X \cdot I \cdot W = XW
-```
+$$
 
 **Effect on quantization difficulty:**
 
@@ -231,15 +231,15 @@ Both are now within similar ranges → balanced quantization.
 
 **Problem:** Quantize weight matrix $W$ to minimize output error:
 
-```math
+$$
 \arg\min_{\hat{W}} \|WX - \hat{W}X\|_F^2
-```
+$$
 
 **Hessian approximation:**
 
-```math
+$$
 H = 2X X^T
-```
+$$
 
 **Per-column quantization with error compensation:**
 
@@ -248,29 +248,29 @@ For column $j$:
 2. Error: $\delta_j = w_j - \hat{w}_j$
 3. Compensate remaining columns:
 
-```math
+$$
 w_{j+1:} \leftarrow w_{j+1:} - \delta_j \cdot \frac{H^{-1}_{j+1:,j}}{H^{-1}_{jj}}
-```
+$$
 
 **Derivation of update rule:**
 
 The optimal update minimizes:
 
-```math
+$$
 \min_{\delta_{j+1:}} \|(\delta_j e_j + \delta_{j+1:}^T) X\|_F^2
-```
+$$
 
 Taking the gradient and setting to zero:
 
-```math
+$$
 \delta_{j+1:} = -\delta_j \cdot (X_{j+1:} X_{j+1:}^T)^{-1} X_{j+1:} X_j^T
-```
+$$
 
 Using block matrix inversion:
 
-```math
+$$
 \delta_{j+1:} = -\delta_j \cdot \frac{H^{-1}_{j+1:,j}}{H^{-1}_{jj}}
-```
+$$
 
 ---
 
@@ -280,23 +280,23 @@ Using block matrix inversion:
 
 **Importance metric:**
 
-```math
+$$
 \text{Importance}(w_j) = \mathbb{E}[|X_j|] \cdot |w_j|
-```
+$$
 
 **Salient weight protection:** Scale important weights before quantization:
 
-```math
+$$
 \hat{W}_j = s_j \cdot W_j, \quad \hat{X}_j = X_j / s_j
-```
+$$
 
 For important channels, use larger $s_j$ → more quantization levels for important weights.
 
 **Optimal scaling:**
 
-```math
+$$
 s_j^* = \arg\min_{s_j} \|Q(s_j W_j) - s_j W_j\|_2
-```
+$$
 
 ---
 
@@ -304,24 +304,24 @@ s_j^* = \arg\min_{s_j} \|Q(s_j W_j) - s_j W_j\|_2
 
 **Problem:** Find optimal bit-width per layer:
 
-```math
+$$
 \min_{b_1, ..., b_L} \mathcal{L}(Q_{b_1}(W_1), ..., Q_{b_L}(W_L))
 \text{s.t.} \sum_l \text{Size}(Q_{b_l}(W_l)) \leq B
-```
+$$
 
 **Sensitivity-based allocation:**
 
 Layer sensitivity:
 
-```math
+$$
 S_l = \frac{\partial \mathcal{L}}{\partial b_l} \approx \mathcal{L}(b_l = 4) - \mathcal{L}(b_l = 8)
-```
+$$
 
 Allocate more bits to sensitive layers:
 
-```math
+$$
 b_l = 8 \text{ if } S_l > \tau \text{ else } 4
-```
+$$
 
 ---
 
@@ -329,9 +329,9 @@ b_l = 8 \text{ if } S_l > \tau \text{ else } 4
 
 **Core idea:** Combine 4-bit quantization with LoRA:
 
-```math
+$$
 Y = X \cdot Q_4(W_0) + X \cdot BA
-```
+$$
 
 where:
 - $Q_4(W_0)$ = 4-bit quantized pretrained weights (frozen)
@@ -355,9 +355,9 @@ For 7B model with r=64: 3.5GB (4-bit) + ~100MB (LoRA) ≈ 3.6GB total!
 
 For network $f = f_L \circ ... \circ f_1$:
 
-```math
+$$
 \|\hat{f}(x) - f(x)\| \leq \sum_{l=1}^L \|\nabla f_{l+1:L}\| \cdot \|\epsilon_l\|
-```
+$$
 
 where $\epsilon_l$ is the quantization error at layer $l$.
 
@@ -386,9 +386,9 @@ Use Cholesky decomposition: $H = LL^T$, then solve triangular systems.
 
 **Rule:** Use FP16 for outlier dimensions, INT8 for rest.
 
-```math
+$$
 Y = X_{outlier} W_{outlier}^{FP16} + X_{normal} W_{normal}^{INT8}
-```
+$$
 
 Outlier detection: dimension $j$ is outlier if $\max_i |X_{ij}| > 6$
 

@@ -17,9 +17,9 @@
 
 ### Graph Notation
 
-```math
+$$
 G = (V, E, X)
-```
+$$
 
 Where:
 - $V = \{v\_1, ..., v\_n\}$: nodes
@@ -31,9 +31,9 @@ Where:
 
 GNNs follow the message passing paradigm:
 
-```math
+$$
 h_v^{(l+1)} = \text{UPDATE}\left(h_v^{(l)}, \text{AGGREGATE}\left(\{h_u^{(l)} : u \in \mathcal{N}(v)\}\right)\right)
-```
+$$
 
 Where $\mathcal{N}(v)$ are neighbors of node $v$.
 
@@ -45,17 +45,17 @@ Where $\mathcal{N}(v)$ are neighbors of node $v$.
 
 Graph Laplacian:
 
-```math
+$$
 L = D - A = U\Lambda U^T
-```
+$$
 
 Where $D$ is the degree matrix.
 
 Spectral convolution:
 
-```math
+$$
 g_\theta * x = Ug_\theta(\Lambda)U^T x
-```
+$$
 
 **Problem:** Computing eigenvectors is $O(n^3)$.
 
@@ -63,9 +63,9 @@ g_\theta * x = Ug_\theta(\Lambda)U^T x
 
 Using Chebyshev polynomial approximation:
 
-```math
+$$
 H^{(l+1)} = \sigma\left(\tilde{D}^{-\frac{1}{2}} \tilde{A} \tilde{D}^{-\frac{1}{2}} H^{(l)} W^{(l)}\right)
-```
+$$
 
 Where:
 - $\tilde{A} = A + I\_n$ (add self-loops)
@@ -74,9 +74,9 @@ Where:
 
 ### Per-Node Form
 
-```math
+$$
 h_v^{(l+1)} = \sigma\left(\sum_{u \in \mathcal{N}(v) \cup \{v\}} \frac{1}{\sqrt{\tilde{d}_u \tilde{d}_v}} h_u^{(l)} W^{(l)}\right)
-```
+$$
 
 The $\frac{1}{\sqrt{\tilde{d}\_u \tilde{d}\_v}}$ term normalizes by degrees.
 
@@ -88,27 +88,27 @@ The $\frac{1}{\sqrt{\tilde{d}\_u \tilde{d}\_v}}$ term normalizes by degrees.
 
 Compute attention coefficients:
 
-```math
+$$
 e_{vu} = \text{LeakyReLU}\left(a^T [Wh_v \| Wh_u]\right)
-```
+$$
 
 Normalize with softmax:
 
-```math
+$$
 \alpha_{vu} = \frac{\exp(e_{vu})}{\sum_{k \in \mathcal{N}(v)} \exp(e_{vk})}
-```
+$$
 
 ### GAT Layer
 
-```math
+$$
 h_v^{(l+1)} = \sigma\left(\sum_{u \in \mathcal{N}(v)} \alpha_{vu} W h_u^{(l)}\right)
-```
+$$
 
 ### Multi-Head Attention
 
-```math
+$$
 h_v^{(l+1)} = \Big\|_{k=1}^{K} \sigma\left(\sum_{u \in \mathcal{N}(v)} \alpha_{vu}^{(k)} W^{(k)} h_u^{(l)}\right)
-```
+$$
 
 ---
 
@@ -120,10 +120,10 @@ h_v^{(l+1)} = \Big\|_{k=1}^{K} \sigma\left(\sum_{u \in \mathcal{N}(v)} \alpha_{v
 2. Aggregate neighbor features
 3. Concatenate with self
 
-```math
+$$
 h_{\mathcal{N}(v)}^{(l)} = \text{AGGREGATE}^{(l)}\left(\{h_u^{(l-1)} : u \in \mathcal{N}(v)\}\right)
 h_v^{(l)} = \sigma\left(W^{(l)} \cdot [h_v^{(l-1)} \| h_{\mathcal{N}(v)}^{(l)}]\right)
-```
+$$
 
 ### Aggregation Functions
 
@@ -141,21 +141,21 @@ h_v^{(l)} = \sigma\left(W^{(l)} \cdot [h_v^{(l-1)} \| h_{\mathcal{N}(v)}^{(l)}]\
 
 **Message function:**
 
-```math
+$$
 m_v^{(l+1)} = \sum_{u \in \mathcal{N}(v)} M^{(l)}(h_v^{(l)}, h_u^{(l)}, e_{vu})
-```
+$$
 
 **Update function:**
 
-```math
+$$
 h_v^{(l+1)} = U^{(l)}(h_v^{(l)}, m_v^{(l+1)})
-```
+$$
 
 **Readout (graph-level):**
 
-```math
+$$
 \hat{y} = R(\{h_v^{(L)} : v \in V\})
-```
+$$
 
 ---
 
@@ -165,9 +165,9 @@ h_v^{(l+1)} = U^{(l)}(h_v^{(l)}, m_v^{(l+1)})
 
 As layers increase, node representations converge:
 
-```math
+$$
 \lim_{l \rightarrow \infty} H^{(l)} \rightarrow \mathbf{1}\pi^T
-```
+$$
 
 Where $\pi$ is related to node degrees.
 
