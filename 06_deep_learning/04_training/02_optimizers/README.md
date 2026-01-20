@@ -33,13 +33,18 @@
 ```
 
 Where:
+
 - $\alpha$: learning rate
+
 - $B\_t$: mini-batch at step $t$
+
 - $\nabla L$: gradient of loss
 
 **Properties:**
 - Simple, well-understood
+
 - Noisy gradients help escape local minima
+
 - Requires careful learning rate tuning
 
 **Convergence (Convex Case):**
@@ -67,7 +72,9 @@ Where $\beta \in [0.9, 0.99]$ is the momentum coefficient.
 
 **Intuition: Ball Rolling Down Hill**
 - Accumulates velocity in consistent gradient direction
+
 - Dampens oscillations in inconsistent directions
+
 - Escapes shallow local minima
 
 **Nesterov Momentum (Look-ahead):**
@@ -94,12 +101,16 @@ Momentum achieves the **optimal rate** for gradient descent!
 Consider loss: $L(\theta) = \frac{1}{2}(a\theta\_1^2 + b\theta\_2^2)$ with $a \gg b$ (ill-conditioned).
 
 **SGD:** 
+
 - Oscillates in $\theta\_1$ direction (high curvature)
+
 - Slow progress in $\theta\_2$ direction (low curvature)
 
 **Momentum:**
 - Velocity in $\theta\_1$ cancels (oscillating gradients)
+
 - Velocity in $\theta\_2$ accumulates (consistent gradients)
+
 - Result: faster convergence along ravine
 
 ---
@@ -115,13 +126,18 @@ s_{t+1} = \beta s_t + (1-\beta) (\nabla L)^2
 ```
 
 Where:
+
 - $s$: exponential moving average of squared gradients
+
 - $\beta \approx 0.9$: decay rate
+
 - $\epsilon \approx 10^{-8}$: numerical stability
 
 **Intuition: Adaptive Learning Rates**
 - Parameters with large gradients → smaller effective LR
+
 - Parameters with small gradients → larger effective LR
+
 - Normalizes gradient magnitude per parameter
 
 ---
@@ -205,7 +221,9 @@ Standard L2 regularization in Adam:
 
 **Why better?**
 - Weight decay independent of gradient magnitude
+
 - More consistent regularization across parameters
+
 - Better generalization, especially for Transformers
 
 ---

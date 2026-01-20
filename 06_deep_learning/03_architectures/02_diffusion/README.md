@@ -191,8 +191,11 @@ f(t) = \cos^2\left(\frac{t/T + s}{1+s} \cdot \frac{\pi}{2}\right)
 ```
 
 Where:
+
 - $c$ = conditioning (e.g., text prompt)
+
 - $\varnothing$ = unconditional (null prompt)
+
 - $w$ = guidance scale (typically 7.5)
 
 **Intuition:** Amplify the direction pointing from "unconditional" to "conditional".

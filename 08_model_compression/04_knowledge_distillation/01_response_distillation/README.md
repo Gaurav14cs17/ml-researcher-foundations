@@ -171,7 +171,9 @@ Now gradient is $O(T)$ for soft labels, comparable to hard loss.
 where $I$ is mutual information.
 
 **Intuition:** Soft labels encode class relationships.
+
 - "Dog" and "cat" should have higher probability than "car"
+
 - This structure helps student generalize
 
 #### 4.2 Entropy Analysis
@@ -491,6 +493,7 @@ def analyze_dark_knowledge(teacher: nn.Module, inputs: torch.Tensor,
 **Guidelines:**
 - Start with T=4, α=0.5
 - Increase T for small student
+
 - Increase α if ground truth is noisy
 
 ---

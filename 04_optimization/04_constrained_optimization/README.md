@@ -30,6 +30,7 @@
 This folder contains additional material on constrained optimization, specifically focusing on:
 
 - **Lagrange Multipliers**: Finding extrema subject to equality constraints
+
 - **KKT Conditions**: Generalization to inequality constraints
 
 ---

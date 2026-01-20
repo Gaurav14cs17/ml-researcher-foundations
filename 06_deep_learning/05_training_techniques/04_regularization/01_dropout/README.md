@@ -123,8 +123,11 @@ E[ε] = 1
 Var[ε] = p/(1-p)
 
 This noise acts as regularization, similar to:
+
 - Data augmentation
+
 - L2 regularization (for linear models)
+
 - Adds stochasticity to gradients
 
 ```

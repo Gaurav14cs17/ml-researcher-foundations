@@ -25,10 +25,15 @@ W' = W_0 + \Delta W = W_0 + \frac{\alpha}{r}BA
 ```
 
 Where:
+
 - $W\_0 \in \mathbb{R}^{d \times k}$: Pretrained weights (frozen)
+
 - $B \in \mathbb{R}^{d \times r}$: Down-projection (trainable)
+
 - $A \in \mathbb{R}^{r \times k}$: Up-projection (trainable)
+
 - $\alpha$: Scaling factor
+
 - $r$: Rank ($r \ll \min(d, k)$)
 
 **Parameter Efficiency:**
@@ -42,6 +47,7 @@ For $d = k = 4096$, $r = 16$: $\frac{32768}{16.8M} = 0.2\%$
 
 **Initialization (Critical for stability):**
 - $A \sim \mathcal{N}(0, \sigma^2)$ with $\sigma = 1/\sqrt{r}$
+
 - $B = 0$
 
 This ensures $\Delta W = BA = 0$ at initialization.
@@ -142,9 +148,13 @@ h' = h + f(h W_{down}) W_{up}
 ```
 
 Where:
+
 - $W\_{down} \in \mathbb{R}^{d \times r}$
+
 - $W\_{up} \in \mathbb{R}^{r \times d}$
+
 - $f$ = nonlinearity (GELU)
+
 - $r$ = bottleneck dimension
 
 **Placement:** After attention and after FFN in each layer.
@@ -169,7 +179,9 @@ Where $l \in \mathbb{R}^d$ is a learned rescaling vector.
 
 **Applied to:**
 - Keys: $K' = l\_K \odot K$
+
 - Values: $V' = l\_V \odot V$
+
 - FFN: $h' = l\_{ff} \odot f(hW\_1)$
 
 **Parameters:** Only $3d$ per layer (extremely efficient!)

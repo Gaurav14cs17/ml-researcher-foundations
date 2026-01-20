@@ -34,10 +34,15 @@
 This lecture covers **efficient training techniques**:
 
 - **Memory breakdown**: Where GPU memory goes during training
+
 - **Mixed precision**: Using FP16/BF16 for 2× speedup
+
 - **Gradient checkpointing**: Trading compute for memory
+
 - **8-bit optimizers**: Reducing optimizer state memory
+
 - **LoRA**: Parameter-efficient fine-tuning
+
 - **torch.compile()**: JIT compilation for faster training
 
 > 💡 *"Training uses 12-16× more memory than inference due to gradients and optimizer states—understanding this is key to efficiency."* — Prof. Song Han
@@ -94,11 +99,15 @@ Gradients can underflow (become 0) if too small. Scaling by \( s \) (e.g., 1024)
 ### BF16 vs FP16
 
 **FP16:** 5 exponent bits, 10 mantissa bits
+
 - Range: \( \pm 65504 \)
+
 - Precision: ~3.3 digits
 
 **BF16:** 8 exponent bits, 7 mantissa bits
+
 - Range: \( \pm 3.4 \times 10^{38} \) (same as FP32!)
+
 - Precision: ~2.4 digits
 
 **BF16 advantage:** No overflow issues, simpler training (no loss scaling needed).
@@ -151,7 +160,9 @@ Taking derivative w.r.t. K and setting to 0:
 
 **Adam state per parameter:**
 - First moment \( m_t \): FP32 (4 bytes)
+
 - Second moment \( v_t \): FP32 (4 bytes)
+
 - Total: 8 bytes per parameter
 
 **8-bit Adam:**
@@ -275,15 +286,22 @@ M_{total} = N \cdot b_{weight} + N \cdot b_{grad} + N \cdot b_{opt} + B \cdot L 
 ```
 
 For FP32 Adam:
+
 - \( b_{weight} = 4 \)
+
 - \( b_{grad} = 4 \)
+
 - \( b_{opt} = 8 \) (two FP32 moments)
+
 - Total: \( 16N + \text{activations} \)
 
 For mixed precision with 8-bit Adam:
+
 - \( b_{weight} = 2 \) (FP16) + 4 (FP32 master) = 6
 - \( b_{grad} = 2 \)
+
 - \( b_{opt} = 2 \)
+
 - Total: \( 10N + \text{activations} \)
 
 **40% memory reduction!**
@@ -305,7 +323,9 @@ Fused into single kernel: 1 memory read/write instead of 3.
 
 **Computation graph optimization:**
 - Dead code elimination
+
 - Common subexpression elimination
+
 - Layout optimization
 
 **Speedup:** 1.5-2× typical.

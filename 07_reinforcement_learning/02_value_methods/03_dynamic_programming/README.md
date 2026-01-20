@@ -38,10 +38,15 @@ Dynamic Programming (DP) computes optimal policies when the MDP model (transitio
 ### MDP Definition
 
 An MDP is defined by \((\mathcal{S}, \mathcal{A}, P, R, \gamma)\):
+
 - \(\mathcal{S}\): State space
+
 - \(\mathcal{A}\): Action space
+
 - \(P(s'|s,a)\): Transition probability
+
 - \(R(s,a,s')\): Reward function
+
 - \(\gamma \in [0,1)\): Discount factor
 
 ### Bellman Equations
@@ -264,8 +269,11 @@ Policy Iteration: Many evaluation sweeps, then improve
 Value Iteration: One "evaluation" sweep that also improves
 
 Trade-off:
+
 - PI: Fewer iterations, expensive per iteration
+
 - VI: More iterations, cheap per iteration
+
 - Often VI wins for large state spaces
 
 ```

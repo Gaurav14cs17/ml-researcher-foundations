@@ -34,10 +34,15 @@
 This lecture covers **efficient diffusion model inference**:
 
 - **Diffusion basics**: Forward and reverse processes
+
 - **Why diffusion is slow**: 50-1000 neural network passes
+
 - **Faster samplers**: DDIM, DPM-Solver for fewer steps
+
 - **Latent diffusion**: Working in compressed latent space
+
 - **Consistency models**: One-step generation
+
 - **Distillation**: LCM, SDXL Turbo for real-time generation
 
 > 💡 *"From 1000 steps to 1 step—that's the journey of diffusion model efficiency."* — Prof. Song Han
@@ -273,7 +278,9 @@ LCM learns to produce guided output directly.
 
 **U-Net inference:**
 - Model: ~3GB (SDXL)
+
 - Activations: ~1GB per step
+
 - VAE: ~0.5GB
 
 **Total for 50 steps:** ~5GB peak.

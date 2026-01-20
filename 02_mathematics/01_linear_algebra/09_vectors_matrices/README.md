@@ -17,8 +17,11 @@
 > **Vectors and matrices are the fundamental data structures of ML.** Every image is a matrix, every embedding is a vector, every batch is a tensor.
 
 - 🔢 **Vectors**: Ordered lists of numbers — embeddings, features, gradients
+
 - 📊 **Matrices**: 2D arrays — weight matrices, attention scores, images
+
 - 📏 **Norms**: Measure size — L1 (sparsity), L2 (Euclidean), Frobenius
+
 - 🔗 **Operations**: Dot product, matrix multiply, transpose, inverse
 
 ---

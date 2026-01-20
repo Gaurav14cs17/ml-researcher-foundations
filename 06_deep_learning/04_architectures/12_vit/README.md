@@ -56,7 +56,9 @@ z_0 = [x_{class}; z_0^{(1)}; z_0^{(2)}; ...; z_0^{(N)}] + E_{pos}
 ```
 
 Where:
+
 - $x\_{class} \in \mathbb{R}^D$ is learnable
+
 - $E\_{pos} \in \mathbb{R}^{(N+1) \times D}$ is positional embedding
 
 ### 3. Transformer Encoder
@@ -122,6 +124,7 @@ O(N^2 \cdot D) = O\left(\left(\frac{HW}{P^2}\right)^2 \cdot D\right)
 
 **Comparison:**
 - CNN: $O(H \cdot W \cdot k^2 \cdot C^2)$
+
 - ViT: $O\left(\frac{H^2 W^2}{P^4} \cdot D\right)$
 
 Smaller patch size → more patches → higher cost.
@@ -131,7 +134,9 @@ Smaller patch size → more patches → higher cost.
 Attention matrix: $O(N^2) = O\left(\frac{H^2 W^2}{P^4}\right)$
 
 For $224 \times 224$ image with $16 \times 16$ patches:
+
 - $N = 196$ patches
+
 - Attention matrix: $196 \times 196 \approx 38K$ elements
 
 ---
@@ -329,7 +334,9 @@ ViT requires more data to learn spatial structure!
 ### Scaling Properties
 
 - ViT benefits from larger datasets more than CNNs
+
 - At small scale: CNN > ViT
+
 - At large scale: ViT ≥ CNN
 
 ### Pretrain + Fine-tune

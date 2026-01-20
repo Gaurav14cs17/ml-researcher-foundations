@@ -261,7 +261,9 @@ I(\theta) = -E\left[\frac{\partial^2 \log P(X|\theta)}{\partial \theta^2}\right]
 
 **Properties:**
 - Measures "curvature" of log-likelihood
+
 - Higher $I(\theta)$ → more information about $\theta$
+
 - $\text{Var}(\hat{\theta}\_{MLE}) \approx \frac{1}{I(\theta)}$ (asymptotically)
 
 **Cramér-Rao Lower Bound:**

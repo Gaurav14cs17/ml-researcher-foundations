@@ -155,6 +155,7 @@ Y = XW = (X \cdot \text{diag}(s)^{-1}) \cdot (\text{diag}(s) \cdot W) = \hat{X} 
 
 **Effect:**
 - Important channels (large $s\_j$): weights scaled up → less relative quantization error
+
 - Unimportant channels: weights scaled down → more error but less impact
 
 #### 3.3 Optimal Scaling Factor
@@ -225,7 +226,9 @@ s_j = \frac{\max|X_{:,j}|^\alpha}{\max|W_{j,:}|^{1-\alpha}}
 
 **Effect:**
 - Dividing $X$ by $s$ reduces activation outliers
+
 - Multiplying $W$ by $s$ increases weight range
+
 - Choose $\alpha$ to balance
 
 #### 4.3 Mathematical Analysis
@@ -292,6 +295,7 @@ Y = XW = X_{:,O}W_{O,:} + X_{:,\bar{O}}W_{\bar{O},:}
 
 **Apply:**
 - Outlier part ($O$): FP16 precision
+
 - Normal part ($\bar{O}$): INT8 precision
 
 ```math
@@ -303,10 +307,12 @@ Y = \underbrace{X_{:,O}^{fp16} W_{O,:}^{fp16}}_{\text{~0.1% dims, FP16}} + \unde
 
 **Memory:**
 - Most weights in INT8: 4x compression
+
 - Small overhead for outlier indices
 
 **Compute:**
 - INT8 GEMM for most computation
+
 - Small FP16 GEMM for outliers
 
 ---

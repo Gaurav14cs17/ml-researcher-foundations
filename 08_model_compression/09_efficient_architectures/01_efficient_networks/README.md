@@ -100,7 +100,9 @@ Nonlinearity destroys information in low-dimensional space. Linear projection pr
 
 **Base Model (B0):**
 - Depth coefficient: $\alpha$
+
 - Width coefficient: $\beta$
+
 - Resolution coefficient: $\gamma$
 
 **Scaling Law:**
@@ -146,8 +148,11 @@ s = F_{ex}(z) = \sigma(W_2 \cdot \delta(W_1 \cdot z))
 ```
 
 Where:
+
 - $W\_1 \in \mathbb{R}^{C/r \times C}$ (reduction)
+
 - $W\_2 \in \mathbb{R}^{C \times C/r}$ (expansion)
+
 - $r$ = reduction ratio (typically 16)
 
 **Parameters Added:** $\frac{2C^2}{r}$ (negligible)
@@ -156,8 +161,11 @@ Where:
 
 **Search Space:**
 - Kernel sizes: $\{3, 5, 7\}$
+
 - Expansion ratios: $\{1, 3, 6\}$
+
 - SE ratio: $\{0, 0.25\}$
+
 - Number of layers per stage
 
 **Objective:**

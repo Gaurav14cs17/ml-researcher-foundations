@@ -28,7 +28,9 @@ Where $Q, K, V \in \mathbb{R}^{n \times d}$
 
 **Complexity Analysis:**
 - $QK^T$: $O(n^2 d)$ operations, $O(n^2)$ memory
+
 - Softmax: $O(n^2)$
+
 - $(\cdot)V$: $O(n^2 d)$
 
 **Total:** $O(n^2 d)$ compute, $O(n^2)$ memory
@@ -112,6 +114,7 @@ Compute $\phi(K)^T V$ first: $O(md)$ per position → $O(nmd)$ total
 
 **Memory Hierarchy:**
 - HBM (GPU memory): Large (40GB), slow (2TB/s)
+
 - SRAM (on-chip): Small (20MB), fast (19TB/s)
 
 **Standard Attention Memory Access:**
@@ -121,8 +124,11 @@ Compute $\phi(K)^T V$ first: $O(md)$ per position → $O(nmd)$ total
 
 **Flash Attention Algorithm:**
 - Tile $Q, K, V$ into blocks that fit in SRAM
+
 - Compute attention for each block pair
+
 - Use online softmax (track running max and sum)
+
 - Never materialize full $n \times n$ attention matrix
 
 **IO Complexity:**
@@ -191,7 +197,9 @@ A_{ij} = \begin{cases} \text{softmax}(\cdot) & |i-j| \leq w \\ 0 & \text{otherwi
 After $L$ layers: token can attend to $L \cdot w$ positions (linear growth)
 
 **Longformer:** Local + Global attention
+
 - Most tokens: Local window $w$
+
 - Special tokens (CLS): Global attention
 
 ---

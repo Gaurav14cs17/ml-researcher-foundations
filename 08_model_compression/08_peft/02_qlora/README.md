@@ -31,7 +31,9 @@ W' = Q_{NF4}(W_0) + \frac{\alpha}{r} BA
 ```
 
 where:
+
 - $Q\_{NF4}(W\_0)$ = 4-bit NormalFloat quantized weights
+
 - $BA$ = LoRA adaptation in FP16/BF16
 
 ---

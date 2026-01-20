@@ -217,7 +217,9 @@ f(x) = f(a) + \nabla f(a)^T (x-a) + \frac{1}{2}(x-a)^T H_f(a) (x-a) + O(\|x-a\|^
 ```
 
 where:
+
 - \(\nabla f(a)\) is the gradient (vector of first derivatives)
+
 - \(H_f(a)\) is the Hessian (matrix of second derivatives)
 
 **Component form:**
@@ -278,8 +280,11 @@ At a critical point x* where ∇f(x*) = 0:
 f(x* + Δx) ≈ f(x*) + (1/2) Δxᵀ H Δx
 
 The nature of x* depends on H:
+
 - All eigenvalues > 0 → Local minimum
+
 - All eigenvalues < 0 → Local maximum  
+
 - Mixed signs → Saddle point
 
 For neural networks, most critical points are saddle points!

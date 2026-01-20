@@ -17,8 +17,11 @@
 > **Every neural network layer is a linear transformation** (plus optional nonlinearity). Understanding linear maps reveals what layers actually do to your data.
 
 - 📐 **Definition**: $T(\alpha\mathbf{u} + \beta\mathbf{v}) = \alpha T(\mathbf{u}) + \beta T(\mathbf{v})$ (preserves linear combinations)
+
 - 🔗 **Matrix form**: Every linear map $T: \mathbb{R}^n \to \mathbb{R}^m$ is $T(\mathbf{x}) = A\mathbf{x}$
+
 - 🔄 **Change of basis**: Same transformation, different coordinates
+
 - 🤖 **In ML**: Dense layers, attention projections, convolutions
 
 ---

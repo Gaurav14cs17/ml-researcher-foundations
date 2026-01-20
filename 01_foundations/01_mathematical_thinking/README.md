@@ -33,8 +33,11 @@
 Mathematical thinking is the **foundation** for understanding ML research papers and developing intuition. This article covers:
 
 - **Abstraction Levels** — From concrete code to abstract theory; choosing the right level for the task
+
 - **Necessary vs Sufficient Conditions** — Understanding the difference between → and ↔ in theorems
+
 - **Definitions vs Theorems** — What's chosen vs what's proven; the building blocks of mathematics
+
 - **Counterexamples** — How one example disproves a universal claim; the power of ¬∀
 
 > [!NOTE]
@@ -47,10 +50,15 @@ Mathematical thinking is the **foundation** for understanding ML research papers
 By the end of this article, you will be able to:
 
 - [ ] Navigate different levels of abstraction in ML systems
+
 - [ ] Distinguish between necessary and sufficient conditions in theorems
+
 - [ ] Read and understand mathematical definitions in ML papers
+
 - [ ] Construct counterexamples to disprove universal claims
+
 - [ ] Apply logical reasoning to debug ML models
+
 - [ ] Identify common logical fallacies in ML arguments
 
 ---
@@ -139,8 +147,11 @@ By the end of this article, you will be able to:
 
 **Formal Definition:**
 An abstraction can be viewed as a **functor** F: C → D between categories:
+
 - **C**: Concrete category (detailed)
+
 - **D**: Abstract category (simplified)
+
 - **F**: Preserves structure while forgetting irrelevant details
 
 ### 💡 Intuition / Geometric Interpretation
@@ -688,7 +699,9 @@ NecessarySufficientDemo.check_convexity_vs_global_min()
 
 **Why this definition?**
 - Captures "arbitrarily close" precisely
+
 - Enables rigorous proofs
+
 - Alternative definitions are equivalent
 
 **Theorem (PROVEN):**

@@ -77,7 +77,9 @@ Terms:
 
 ```
 State = (h, z) where:
+
 - h ∈ ℝ^d: Deterministic recurrent state (GRU hidden)
+
 - z ∈ ℝ^k: Stochastic latent state (sampled)
 
 Transitions:
@@ -86,7 +88,9 @@ z_t ~ p(z_t | h_t)                       # Stochastic prior
 z_t ~ q(z_t | h_t, x_t)                  # Posterior (training)
 
 Why both?
+
 - Deterministic: Captures long-term dependencies
+
 - Stochastic: Models environment uncertainty
 
 ```

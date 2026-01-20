@@ -39,8 +39,11 @@ y = \sum_{i=1}^{N} G(x)_i \cdot E_i(x)
 ```
 
 Where:
+
 - $G(x) \in \mathbb{R}^N$ is the gating function output (routing weights)
+
 - $E\_i(x)$ is the output of expert $i$
+
 - Each expert is typically an FFN: $E\_i(x) = W\_2^{(i)} \cdot \text{ReLU}(W\_1^{(i)} x)$
 
 ### 2. Gating Function (Router)
@@ -90,8 +93,11 @@ Where $h = W\_g \cdot x$ and TopK selects indices with highest values.
 ```
 
 **Insight:** With $K=2$ and $N=8$:
+
 - 8x parameters
+
 - Same FLOPs as dense (2 experts active)
+
 - Effective capacity increase without compute increase
 
 ---
@@ -161,7 +167,9 @@ L_{\text{load}} = N \cdot \sum_{i=1}^{N} f_i \cdot P_i
 ```
 
 Where:
+
 - $f\_i = \frac{1}{|B|} \sum\_{x \in B} \mathbf{1}[i \in \text{TopK}(G(x))]$ (fraction of tokens to expert $i$)
+
 - $P\_i = \frac{1}{|B|} \sum\_{x \in B} G(x)\_i$ (average routing probability)
 
 **Combined Loss:**

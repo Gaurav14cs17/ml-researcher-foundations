@@ -54,7 +54,9 @@ s = \frac{\alpha}{2^{b-1} - 1}
 
 **Properties:**
 - Zero is exactly representable
+
 - Symmetric around zero
+
 - Range: $[-\alpha, \alpha]$
 
 #### 2.2 Asymmetric (Affine) Quantization
@@ -75,7 +77,9 @@ s = \frac{\alpha - \beta}{2^b - 1}, \quad z = \beta
 
 **Properties:**
 - Can represent asymmetric distributions
+
 - Zero-point $z$ may not be exactly representable
+
 - More complex computation
 
 ---

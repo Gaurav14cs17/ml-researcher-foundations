@@ -375,8 +375,11 @@ Both positive → MINIMUM at (0,0) ✓
 ### Second Derivative Test (Proof)
 
 **Theorem:** Let \( \mathbf{x}^* \) be a critical point where \( \nabla f(\mathbf{x}^*) = \mathbf{0} \). Then:
+
 - If \( H(\mathbf{x}^*) \succ 0 \) (positive definite), \( \mathbf{x}^* \) is a local minimum
+
 - If \( H(\mathbf{x}^*) \prec 0 \) (negative definite), \( \mathbf{x}^* \) is a local maximum  
+
 - If \( H(\mathbf{x}^*) \) has both positive and negative eigenvalues, \( \mathbf{x}^* \) is a saddle point
 
 **Proof:**

@@ -255,7 +255,9 @@ Invented by **George Dantzig** in 1947 while working for the U.S. Air Force. Nam
 
 **Impact:**
 - Enabled operations research as a field
+
 - Used in $100B+ decisions annually
+
 - Foundation for integer programming
 
 ---
@@ -263,18 +265,27 @@ Invented by **George Dantzig** in 1947 while working for the U.S. Air Force. Nam
 ## 📚 Resources
 
 ### Books
+
 - **Linear Programming** - Dantzig (1963) - The original!
+
 - **Introduction to Linear Optimization** - Bertsimas & Tsitsiklis
+
 - **Linear Programming and Network Flows** - Bazaraa et al.
 
 ### Software
+
 - **CPLEX** (IBM): Commercial, very fast
+
 - **Gurobi**: Commercial, industry standard
+
 - **GLPK**: Open-source
+
 - **SciPy**: `scipy.optimize.linprog`
 
 ### Papers
+
 - Dantzig (1951) - The simplex method
+
 - Klee & Minty (1972) - Exponential example
 
 ---

@@ -34,10 +34,15 @@
 This lecture establishes the **computational foundations** for understanding efficient ML:
 
 - **Roofline model**: Understanding compute-bound vs memory-bound operations
+
 - **FLOPs counting**: How to calculate computational cost of each layer type
+
 - **Memory hierarchy**: GPU memory architecture (SRAM, HBM, DRAM)
+
 - **Layer analysis**: Convolution, Linear, Attention complexity breakdowns
+
 - **Hardware considerations**: CPU vs GPU vs TPU vs MCU trade-offs
+
 - **Profiling tools**: PyTorch profiler, NVIDIA Nsight
 
 > 💡 *"Most deep learning operations today are memory-bound, not compute-bound. Understanding this is key to optimization."* — Prof. Song Han
@@ -63,7 +68,9 @@ Understanding efficiency requires knowing what's expensive:
 ## Roofline Model
 
 The **roofline model** helps understand whether your code is:
+
 - **Compute-bound**: Limited by FLOPS (matrix ops)
+
 - **Memory-bound**: Limited by memory bandwidth (element-wise ops)
 
 ```
@@ -147,8 +154,11 @@ P = \min\left(\pi, I \times \beta\right)
 ```
 
 where:
+
 - \( \pi \) = Peak compute (FLOPS)
+
 - \( \beta \) = Peak memory bandwidth (bytes/s)
+
 - \( I \) = Arithmetic intensity
 
 **Proof of Roofline Bound:**
@@ -194,7 +204,9 @@ For input \( X \in \mathbb{R}^{C_{in} \times H \times W} \), kernel \( K \in \ma
 
 **Proof:**
 Each output pixel requires:
+
 - \( C_{in} \times k^2 \) multiplications (convolve over input channels and kernel)
+
 - \( C_{in} \times k^2 - 1 \approx C_{in} \times k^2 \) additions
 
 Total output pixels: \( C_{out} \times H_{out} \times W_{out} \)
@@ -291,6 +303,7 @@ Goal: Achieve >80% bandwidth utilization for memory-bound ops.
 
 **BF16 vs FP16:**
 - BF16: 8 exponent bits, 7 mantissa bits (same range as FP32)
+
 - FP16: 5 exponent bits, 10 mantissa bits (more precision, less range)
 
 BF16 preferred for training (no overflow issues).

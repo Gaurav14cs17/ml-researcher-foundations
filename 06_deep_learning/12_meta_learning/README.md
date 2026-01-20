@@ -34,8 +34,11 @@ Meta-learning, or "learning to learn," trains models across many tasks so they c
 A meta-learning problem consists of:
 
 - **Task distribution:** \(p(\mathcal{T})\)
+
 - **Each task:** \(\mathcal{T}_i = \{D_i^{train}, D_i^{test}\}\)
+
 - **Support set:** \(D_i^{train}\) (few examples for adaptation)
+
 - **Query set:** \(D_i^{test}\) (for evaluation)
 
 **Meta-objective:**
@@ -159,7 +162,9 @@ The mean minimizes sum of squared distances.
 
 **Why it works for few-shot:**
 - Prototypes are robust to noise (averaging)
+
 - Simple, non-parametric classifier
+
 - Embedding network learns task-agnostic features
 
 ---
@@ -182,7 +187,9 @@ a(x, x_i) = \frac{\exp(c(f(x), g(x_i)))}{\sum_j \exp(c(f(x), g(x_j)))}
 
 **Key differences from Prototypical:**
 - Soft attention over all support examples
+
 - Separate embedding functions \(f\) (query) and \(g\) (support)
+
 - Uses cosine similarity instead of Euclidean distance
 
 ---

@@ -34,9 +34,13 @@
 This introductory lecture covers **why efficient machine learning matters** and provides an overview of the entire course. Key topics include:
 
 - **The efficiency crisis**: Model sizes have grown 10,000x in 5 years (GPT-2 to GPT-4)
+
 - **Real-world constraints**: Latency, throughput, energy consumption, memory limitations
+
 - **Course roadmap**: Pruning → Quantization → NAS → Distillation → Efficient Inference
+
 - **Case studies**: Deploying models on mobile, MCUs, and cloud at scale
+
 - **The efficiency-accuracy trade-off**: How to maximize performance within constraints
 
 > 💡 *"The goal is not just compression—it's achieving the same accuracy with fewer resources, or better accuracy with the same resources."* — Prof. Song Han
@@ -48,8 +52,11 @@ This introductory lecture covers **why efficient machine learning matters** and 
 ## Why Efficient ML Matters
 
 Machine learning models are getting bigger every year:
+
 - GPT-2 (2019): 1.5B parameters
+
 - GPT-3 (2020): 175B parameters
+
 - GPT-4 (2023): ~1.8T parameters (estimated)
 
 **The Problem:** Bigger models = more compute, more memory, more energy, more cost.
@@ -122,7 +129,9 @@ For a matrix multiplication \( Y = XW \) where \( X \in \mathbb{R}^{m \times n} 
 ```
 
 **Proof:** Each output element \( Y_{ij} = \sum_{k=1}^{n} X_{ik} W_{kj} \) requires:
+
 - \( n \) multiplications
+
 - \( n-1 \) additions ≈ \( n \) operations
 
 Total: \( m \times p \times 2n = 2mnp \) FLOPs.
@@ -155,7 +164,9 @@ where Cost can be FLOPs, latency, energy, or memory.
 ### Pareto Optimality
 
 A model \( \mathcal{M}^* \) is **Pareto optimal** if no other model achieves:
+
 - Higher accuracy with same or lower cost
+
 - Same accuracy with lower cost
 
 ```math
@@ -175,8 +186,11 @@ L(N, D) = \frac{A}{N^\alpha} + \frac{B}{D^\beta} + E
 ```
 
 where:
+
 - \( \alpha \approx 0.34 \), \( \beta \approx 0.28 \)
+
 - \( A, B, E \) are constants
+
 - Optimal allocation: \( D \approx 20N \) (tokens ≈ 20× parameters)
 
 ---

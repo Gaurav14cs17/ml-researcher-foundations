@@ -36,7 +36,9 @@ Where $F(x)$ is the residual function (typically 2-3 conv layers).
 
 **Why it works:**
 - If optimal $H(x) = x$ (identity), network only needs $F(x) = 0$
+
 - Learning to output zero is easier than learning identity through multiple nonlinear layers
+
 - Skip connection provides "information highway"
 
 ---
@@ -109,7 +111,9 @@ x → Conv1×1 → BN → ReLU → Conv3×3 → BN → ReLU → Conv1×1 → BN 
 **Bottleneck advantage:** 1×1 convs reduce/expand channels cheaply.
 
 For 256 channels:
+
 - Basic: $256 \cdot 3^2 \cdot 256 \times 2 = 1.2M$ params
+
 - Bottleneck (64 intermediate): $256 \cdot 64 + 64 \cdot 3^2 \cdot 64 + 64 \cdot 256 = 70K$ params
 
 ### Pre-activation ResNet

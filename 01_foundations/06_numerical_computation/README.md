@@ -27,8 +27,11 @@
 Understanding floating-point math **prevents mysterious training failures**:
 
 - **IEEE 754 Format** — How FP32, FP16, BF16 represent numbers
+
 - **Numerical Issues** — Overflow, underflow, catastrophic cancellation
+
 - **Stable Algorithms** — Log-sum-exp trick, stable softmax
+
 - **Mixed Precision** — Train 2× faster with FP16/BF16
 
 > [!CAUTION]
@@ -46,9 +49,13 @@ Understanding floating-point math **prevents mysterious training failures**:
 ## 📚 What You'll Learn
 
 - [ ] Understand IEEE 754 floating-point representation
+
 - [ ] Identify and fix numerical instability issues
+
 - [ ] Implement stable softmax and log-sum-exp
+
 - [ ] Use mixed precision training effectively
+
 - [ ] Debug NaN/Inf errors in training
 
 ---

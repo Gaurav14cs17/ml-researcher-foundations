@@ -42,8 +42,11 @@ Weight initialization determines the starting point of optimization. Bad initial
 Consider a linear layer: $y = Wx$ where $W \in \mathbb{R}^{n\_{out} \times n\_{in}}$
 
 Assuming:
+
 - $w\_{ij} \sim \mathcal{N}(0, \sigma\_w^2)$ independent
+
 - $x\_i \sim \mathcal{N}(0, \sigma\_x^2)$ independent
+
 - $w\_{ij}$ and $x\_i$ are independent
 
 Then:
@@ -216,6 +219,7 @@ For orthogonal $W$: $W^\top W = I$
 **Properties:**
 - All singular values = 1
 - Preserves vector norms: $\|Wx\| = \|x\|$
+
 - Gradients neither vanish nor explode
 
 **Algorithm:**

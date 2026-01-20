@@ -97,7 +97,9 @@ Still saturates at large $|x|$, causing vanishing gradients.
 **ReLU:** $\sigma'(x) = \mathbf{1}\_{x>0} \in \{0, 1\}$
 
 - No saturation for $x > 0$
+
 - Gradient is exactly 1 (no vanishing!)
+
 - But: "Dead ReLU" when $x < 0$
 
 ---
@@ -116,7 +118,9 @@ Still saturates at large $|x|$, causing vanishing gradients.
 ### Symptoms
 
 - Loss becomes NaN
+
 - Weights become very large
+
 - Training diverges
 
 ### Mathematical Example
@@ -249,6 +253,7 @@ For orthogonal $W$: $W^\top W = I$
 
 - All singular values = 1
 - $\kappa(W) = 1$
+
 - Gradient magnitude preserved: $\|Wg\| = \|g\|$
 
 ```python

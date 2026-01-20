@@ -55,8 +55,11 @@ A good representation \(z = f_\theta(x)\) should:
 ```
 
 where:
+
 - \(I(Z; Y)\): Information about labels (maximize)
+
 - \(I(Z; X)\): Information from input (compress)
+
 - \(\beta\): Trade-off parameter
 
 ---
@@ -85,8 +88,11 @@ Learn features jointly with task:
 ### Self-Supervised Learning
 
 Learn from data structure without labels:
+
 - **Contrastive:** SimCLR, MoCo, CLIP
+
 - **Masked:** BERT, MAE
+
 - **Autoregressive:** GPT
 
 ### Disentangled Representations

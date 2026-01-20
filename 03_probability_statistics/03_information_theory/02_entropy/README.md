@@ -35,12 +35,17 @@ Shannon entropy quantifies the average "surprise" or information content of a ra
 H(X) = -Σ p(x) log p(x) = E[-log p(X)]
 
 Interpretation:
+
 - Expected "surprise" of sampling from X
+
 - Minimum bits needed to encode outcomes
+
 - Measures uncertainty/randomness
 
 Units:
+
 - log₂: bits (most common in CS)
+
 - logₑ: nats (natural units)
 
 ```

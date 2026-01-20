@@ -209,7 +209,9 @@ For \(Q^TQ = I\):
 ||Qx||² = xᵀQᵀQx = xᵀx = ||x||²
 
 This means:
+
 - Forward pass: Activations don't explode/vanish
+
 - Backward pass: Gradients don't explode/vanish
 
 ```

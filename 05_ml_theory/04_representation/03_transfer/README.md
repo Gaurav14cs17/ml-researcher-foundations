@@ -88,8 +88,11 @@ starting from \(\theta = \theta^*\).
 ```
 
 where:
+
 - \(\epsilon_T, \epsilon_S\) are target/source errors
+
 - \(d_{\mathcal{H}}(S, T)\) is the \(\mathcal{H}\)-divergence between domains
+
 - \(\lambda\) is the optimal joint error
 
 ---

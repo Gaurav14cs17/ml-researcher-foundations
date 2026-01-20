@@ -196,7 +196,9 @@ If \(k_1, k_2\) are valid kernels, then so are:
 For Gram matrix \(K\) with \(K_{ij} = k(x_i, x_j)\):
 
 - \(K\) is symmetric: \(K = K^\top\)
+
 - \(K\) is PSD: all eigenvalues \(\geq 0\)
+
 - \(K\) determines the kernel (up to feature map choice)
 
 ---

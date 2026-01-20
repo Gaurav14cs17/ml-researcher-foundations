@@ -40,9 +40,13 @@ W' = W_0 + \Delta W
 ```
 
 where:
+
 - $W\_0 \in \mathbb{R}^{d \times k}$ (frozen pre-trained weights)
+
 - $B \in \mathbb{R}^{d \times r}$ (trainable)
+
 - $A \in \mathbb{R}^{r \times k}$ (trainable)
+
 - $r \ll \min(d, k)$ (low rank)
 
 #### 1.2 Forward Pass
@@ -133,7 +137,9 @@ h = W_0 x + \frac{\alpha}{r} BAx
 **Why scale by $\alpha/r$?**
 
 When increasing rank $r$:
+
 - More parameters → larger $BA$
+
 - To maintain consistent magnitude: divide by $r$
 
 **Standard practice:** Set $\alpha = 2r$, so scaling = 2.
@@ -169,6 +175,7 @@ When increasing rank $r$:
 
 **Initialize:**
 - $A \sim \mathcal{N}(0, \sigma^2)$ with $\sigma = 1/\sqrt{r}$
+
 - $B = 0$
 
 **Result at initialization:**
@@ -235,7 +242,9 @@ W_{merged} = W_0 + \frac{\alpha}{r} BA
 
 **Properties:**
 - No inference overhead
+
 - Single matrix multiplication
+
 - Can unmerge to swap adapters
 
 #### 6.2 Multiple Adapters
@@ -281,7 +290,9 @@ where $P\_d$ projects to $d$-dimensional subspace.
 
 **Intuition:**
 - Pre-trained models already capture general features
+
 - Task-specific adaptation requires minor adjustments
+
 - These adjustments lie in a low-dimensional subspace
 
 ---

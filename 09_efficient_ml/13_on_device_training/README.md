@@ -34,10 +34,15 @@
 This lecture covers **training on edge devices**:
 
 - **Why on-device training**: Privacy, personalization, offline adaptation
+
 - **Memory challenges**: Training needs 10-20× more memory than inference
+
 - **TinyTL**: Bias-only training for minimal memory overhead
+
 - **Sparse updates**: Only updating subset of parameters
+
 - **Federated learning**: Training across devices without sharing data
+
 - **Practical considerations**: Battery, thermal, and data challenges
 
 > 💡 *"On-device training enables privacy-preserving personalization—your model improves without your data leaving the device."* — Prof. Song Han
@@ -174,6 +179,7 @@ where \( n_k \) is samples on client \( k \), \( n = \sum_k n_k \).
 
 **Gradient compression:**
 - **Top-k sparsification:** Only send largest gradients
+
 - **Quantization:** Reduce precision of gradients
 
 **Error feedback:**

@@ -222,7 +222,9 @@ I(\theta) = -E\left[\frac{\partial^2 \log P(X|\theta)}{\partial\theta^2}\right] 
 ### Interpretation
 
 - **Curvature** of log-likelihood at maximum
+
 - High $I(\theta)$ → sharp peak → low variance of MLE
+
 - Low $I(\theta)$ → flat peak → high variance of MLE
 
 ### Fisher Information for Common Distributions

@@ -40,7 +40,9 @@ Where $\mathcal{L}\_{cos}$ is cosine embedding loss for hidden states.
 
 **Results:**
 - Size: 40% smaller (110M → 66M)
+
 - Speed: 60% faster
+
 - GLUE Score: 97% of BERT-Base
 
 ### 2. QLoRA Fine-tuning Analysis
@@ -55,14 +57,18 @@ Where $\mathcal{L}\_{cos}$ is cosine embedding loss for hidden states.
 
 **Accuracy (Alpaca benchmark):**
 - Full fine-tune: 88.2%
+
 - LoRA: 87.9%
+
 - QLoRA: 87.6%
 
 ### 3. Mixtral MoE Efficiency
 
 **Architecture:**
 - Total params: 46.7B
+
 - Active params: 12.9B (per token)
+
 - 8 experts, top-2 routing
 
 **Efficiency Analysis:**

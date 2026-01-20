@@ -101,6 +101,7 @@ For non-separable data, introduce slack variables \(\xi_i \geq 0\):
 
 **Interpretation of \(C\):**
 - Large \(C\): Small margin, fewer violations
+
 - Small \(C\): Large margin, more violations
 
 ---

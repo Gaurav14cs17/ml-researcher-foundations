@@ -23,9 +23,13 @@
 ```
 
 Where:
+
 - $Q \in \mathbb{R}^{n \times d\_k}$ (queries)
+
 - $K \in \mathbb{R}^{m \times d\_k}$ (keys)
+
 - $V \in \mathbb{R}^{m \times d\_v}$ (values)
+
 - Output: $\mathbb{R}^{n \times d\_v}$
 
 ### Why Scale by $\sqrt{d\_k}$?
@@ -58,7 +62,9 @@ Where $\alpha\_{ij} = \text{softmax}\left(\frac{q\_i^\top k\_j}{\sqrt{d\_k}}\rig
 
 **Properties:**
 - $\sum\_j \alpha\_{ij} = 1$ (weights sum to 1)
+
 - $\alpha\_{ij} \geq 0$ (non-negative weights)
+
 - Differentiable weighted average
 
 ### As Soft Retrieval
@@ -131,8 +137,11 @@ Where each head:
 ### Projections
 
 - $W\_i^Q \in \mathbb{R}^{d\_{model} \times d\_k}$
+
 - $W\_i^K \in \mathbb{R}^{d\_{model} \times d\_k}$
+
 - $W\_i^V \in \mathbb{R}^{d\_{model} \times d\_v}$
+
 - $W^O \in \mathbb{R}^{hd\_v \times d\_{model}}$
 
 ### Parameters
@@ -152,9 +161,13 @@ With $d\_k = d\_v = d\_{model}/h$:
 ### Why Multiple Heads?
 
 Different heads can attend to different aspects:
+
 - Position information
+
 - Syntactic relationships
+
 - Semantic similarity
+
 - Copy patterns
 
 ---
@@ -251,6 +264,7 @@ Then:
 | **Total** | **$O(n^2 d)$** | **$O(n^2)$** |
 
 For sequence length $n = 4096$, $d = 1024$:
+
 - Attention matrix: $4096^2 \times 4 \text{ bytes} = 64\text{ MB}$ per layer per head!
 
 ---

@@ -32,8 +32,11 @@ The Transformer architecture, introduced in "Attention Is All You Need" (2017), 
 
 **Dimensions:**
 - \(Q \in \mathbb{R}^{n \times d_k}\)
+
 - \(K \in \mathbb{R}^{m \times d_k}\)
+
 - \(V \in \mathbb{R}^{m \times d_v}\)
+
 - Output: \(\mathbb{R}^{n \times d_v}\)
 
 ### Why Scaling by \(\sqrt{d_k}\)?
@@ -63,8 +66,11 @@ Solution: Divide by √dₖ to get q·k/√dₖ ~ N(0, 1)
 
 ```
 Interpretation:
+
 - Keys K: What information is available at each position
+
 - Queries Q: What information does each position want
+
 - Values V: Actual content to retrieve
 
 q·kᵢ measures "relevance" of position i to query q
@@ -93,8 +99,11 @@ where each head:
 
 **Projections:**
 - \(W_i^Q \in \mathbb{R}^{d_{model} \times d_k}\)
+
 - \(W_i^K \in \mathbb{R}^{d_{model} \times d_k}\)
+
 - \(W_i^V \in \mathbb{R}^{d_{model} \times d_v}\)
+
 - \(W^O \in \mathbb{R}^{hd_v \times d_{model}}\)
 
 Typically: \(d_k = d_v = d_{model} / h\)
@@ -106,9 +115,13 @@ Single attention: One "query pattern" per position
 Multi-head: Multiple parallel attention patterns
 
 Example with h=8 heads:
+
 - Head 1: Attends to previous word
+
 - Head 2: Attends to subject
+
 - Head 3: Attends to verb
+
 - Head 4: Attends to syntactic structure
 ...
 
@@ -231,12 +244,16 @@ Pre-LN is more stable for deep networks (gradient scale is bounded).
 
 **Dimensions:**
 - \(W_1 \in \mathbb{R}^{d_{model} \times d_{ff}}\)
+
 - \(W_2 \in \mathbb{R}^{d_{ff} \times d_{model}}\)
+
 - Typical: \(d_{ff} = 4 \cdot d_{model}\)
 
 **Activation evolution:**
 - Original: ReLU
+
 - BERT: GELU
+
 - LLaMA: SwiGLU
 
 ---
@@ -257,7 +274,9 @@ where mask \(M_{ij} = -\infty\) if \(j > i\), else 0.
 ### Cross-Attention
 
 Encoder-decoder models:
+
 - Q from decoder
+
 - K, V from encoder
 
 ```math

@@ -34,10 +34,15 @@
 This lecture covers **efficient inference for large language models**:
 
 - **LLM inference characteristics**: Memory-bound, not compute-bound
+
 - **KV Cache optimization**: Essential for autoregressive generation
+
 - **Speculative decoding**: Using small model to accelerate large model
+
 - **PagedAttention**: vLLM's memory management innovation
+
 - **Continuous batching**: Maximizing throughput
+
 - **Serving optimization stack**: From hardware to algorithms
 
 > 💡 *"LLM inference is fundamentally memory-bound—optimizing memory access is more important than reducing FLOPs."* — Prof. Song Han
@@ -52,7 +57,9 @@ LLM inference is **memory-bound**, not compute-bound:
 
 ```
 Batch size 1, seq_len 2048:
+
 - Compute: Matrix ops (fast)
+
 - Memory: Load 7B weights from HBM (slow!)
 
 Arithmetic Intensity = FLOPs / Bytes loaded < 1
@@ -119,6 +126,7 @@ M_{KV} = 2 \times L \times N \times d \times b
 
 **Example (LLaMA-7B):**
 - L = 32 layers, N = 4096 context, d = 4096, b = 2 (FP16)
+
 - \( M_{KV} = 2 \times 32 \times 4096 \times 4096 \times 2 = 2.1 \text{ GB} \)
 
 ---
@@ -252,7 +260,9 @@ t_{token} = \max\left(\frac{\text{FLOPs}_{decode}}{\text{FLOPS}_{hardware}}, \fr
 ```
 
 For A100 (312 TFLOPS, 2TB/s BW), LLaMA-7B:
+
 - Compute: \( 2 \times 7B / 312T = 45\mu s \)
+
 - Memory: \( 14GB / 2TB/s = 7ms \)
 
 **Memory-bound by 150×!**

@@ -27,8 +27,11 @@
 Asymptotic analysis tells you **how algorithms scale**. Essential for ML model selection:
 
 - **Big-O (O)** — Upper bound on growth: "at most this fast"
+
 - **Big-Omega (Ω)** — Lower bound: "at least this fast"  
+
 - **Big-Theta (Θ)** — Tight bound: "exactly this fast"
+
 - **little-o (o)** — Strictly slower growth
 
 > [!IMPORTANT]
@@ -41,9 +44,13 @@ Asymptotic analysis tells you **how algorithms scale**. Essential for ML model s
 ## 📚 What You'll Learn
 
 - [ ] Define and prove Big-O, Big-Ω, Big-Θ bounds formally
+
 - [ ] Analyze time and space complexity of algorithms
+
 - [ ] Understand ML model complexities (Transformers, CNNs, RNNs)
+
 - [ ] Apply Master Theorem for recursive algorithms
+
 - [ ] Compare complexity classes and their implications
 
 ---

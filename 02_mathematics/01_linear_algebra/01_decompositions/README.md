@@ -17,9 +17,13 @@
 > **Matrix decompositions break complex matrices into simpler, structured components.** They are the computational backbone of ML - enabling PCA, LoRA, solving linear systems, and much more.
 
 - 🔥 **SVD** (`A = UΣVᵀ`): Works for ANY matrix, enables low-rank approximation (LoRA!)
+
 - 📐 **Eigendecomposition** (`A = QΛQ⁻¹`): Square matrices, powers, PCA
+
 - 🔄 **QR** (`A = QR`): Numerically stable least squares
+
 - 📊 **Cholesky** (`A = LLᵀ`): Fast for positive definite matrices
+
 - 🧮 **LU** (`A = LU`): General linear system solving
 
 ---
@@ -100,8 +104,11 @@ A = U\Sigma V^T
 ```
 
 where:
+
 - $U \in \mathbb{R}^{m \times m}$: orthogonal matrix (left singular vectors)
+
 - $\Sigma \in \mathbb{R}^{m \times n}$: diagonal with $\sigma\_1 \geq \sigma\_2 \geq \cdots \geq 0$
+
 - $V \in \mathbb{R}^{n \times n}$: orthogonal matrix (right singular vectors)
 
 ```
@@ -465,7 +472,9 @@ A = QR
 ```
 
 where:
+
 - $Q \in \mathbb{R}^{m \times n}$: orthonormal columns ($Q^TQ = I$)
+
 - $R \in \mathbb{R}^{n \times n}$: upper triangular
 
 ### 🔍 Gram-Schmidt Algorithm (Constructive Proof)
@@ -707,8 +716,11 @@ PA = LU
 ```
 
 where:
+
 - $P$: permutation matrix
+
 - $L$: lower triangular with 1s on diagonal
+
 - $U$: upper triangular
 
 ### 🔍 Algorithm (Gaussian Elimination)

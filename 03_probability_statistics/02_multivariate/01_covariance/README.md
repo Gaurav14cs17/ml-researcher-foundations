@@ -97,7 +97,9 @@ If X, Y independent: $E[XY] = E[X]E[Y]$
 **Warning:** The converse is FALSE! $\text{Cov}(X, Y) = 0$ does NOT imply independence.
 
 **Counter-example:** Let $X \sim \mathcal{N}(0, 1)$ and $Y = X^2$.
+
 - $\text{Cov}(X, Y) = E[X \cdot X^2] - E[X]E[X^2] = E[X^3] - 0 \cdot 1 = 0$ (odd moments of symmetric dist = 0)
+
 - But X and Y are clearly NOT independent!
 
 ---
@@ -190,6 +192,7 @@ For a random vector $\mathbf{X} = [X\_1, X\_2, \ldots, X\_n]^\top$:
 ```
 
 - **Diagonal entries:** Variances
+
 - **Off-diagonal entries:** Covariances
 
 ### Properties
@@ -222,7 +225,9 @@ Since $\boldsymbol{\Sigma}$ is symmetric positive semi-definite:
 ```
 
 where:
+
 - $\mathbf{U}$: orthogonal matrix of eigenvectors
+
 - $\boldsymbol{\Lambda}$: diagonal matrix of non-negative eigenvalues
 
 ---
@@ -343,8 +348,11 @@ d_M(\mathbf{x}, \boldsymbol{\mu}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \
 
 **Properties:**
 - Accounts for correlations between features
+
 - Scale-invariant
+
 - For spherical Gaussian: reduces to Euclidean distance
+
 - Used in outlier detection
 
 ---

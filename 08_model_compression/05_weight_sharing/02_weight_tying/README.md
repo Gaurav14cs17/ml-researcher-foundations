@@ -77,8 +77,11 @@ p(y_i|h) \propto \exp(e_i^T h)
 where $e\_i$ is the embedding of word $i$.
 
 **Interpretation:** 
+
 - Hidden state $h$ is "compared" to all word embeddings
+
 - Most similar embedding gets highest probability
+
 - Encourages semantic consistency
 
 #### 2.2 Low-Rank Approximation View
@@ -100,7 +103,9 @@ This is a rank-$d$ approximation of the full $V \times V$ word similarity matrix
 
 **For LLaMA-7B:**
 - Vocabulary: $V = 32,000$
+
 - Hidden dim: $d = 4,096$
+
 - Embedding parameters: $32,000 \times 4,096 = 131M$
 
 **With tying:** Save 131M parameters!
@@ -142,8 +147,11 @@ This is a rank-$d$ approximation of the full $V \times V$ word similarity matrix
 #### 4.2 Regularization Effect
 
 Weight tying provides implicit regularization:
+
 - Input and output representations must be consistent
+
 - Prevents overfitting in output layer
+
 - Similar to multi-task learning
 
 ---

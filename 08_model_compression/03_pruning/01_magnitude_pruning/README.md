@@ -147,7 +147,9 @@ Then OBD reduces to magnitude pruning!
 
 **When this holds:**
 - Well-conditioned loss landscape
+
 - Weights are at similar scale
+
 - Curvature is approximately uniform
 
 ---
@@ -259,10 +261,15 @@ s_t = s_f + (s_0 - s_f)\left(1 - \frac{t - t_0}{n\Delta t}\right)^3
 ```
 
 where:
+
 - $s\_t$ = sparsity at step $t$
+
 - $s\_0$ = initial sparsity (usually 0)
+
 - $s\_f$ = final target sparsity
+
 - $t\_0$ = pruning start step
+
 - $n\Delta t$ = total pruning duration
 
 #### 6.2 Why Gradual Works

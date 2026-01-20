@@ -33,9 +33,13 @@
 ```
 
 where:
+
 - $\otimes$ = outer product
+
 - $a\_r^{(n)} \in \mathbb{R}^{I\_n}$ = factor vectors
+
 - $\lambda\_r$ = scalar weights
+
 - $R$ = rank
 
 #### 1.2 Element-wise Form
@@ -68,8 +72,11 @@ where:
 ```
 
 where:
+
 - $\mathcal{G} \in \mathbb{R}^{R\_1 \times R\_2 \times ... \times R\_N}$ = core tensor
+
 - $A^{(n)} \in \mathbb{R}^{I\_n \times R\_n}$ = factor matrices
+
 - $\times\_n$ = n-mode product
 
 #### 2.2 N-Mode Product
@@ -99,8 +106,11 @@ where:
 ```
 
 where:
+
 - $G\_k[i\_k] \in \mathbb{R}^{r\_{k-1} \times r\_k}$ = matrix slice
+
 - $r\_0 = r\_N = 1$ (boundary conditions)
+
 - $r\_1, ..., r\_{N-1}$ = TT-ranks
 
 #### 3.2 Core Tensors

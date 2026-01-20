@@ -51,6 +51,7 @@ For strongly convex functions, SGD converges with rate:
 
 **Intuition:**
 - **Large LR early:** Explore broadly, escape saddle points
+
 - **Small LR late:** Fine-tune, converge precisely
 
 ---
@@ -76,8 +77,11 @@ For strongly convex functions, SGD converges with rate:
 Where $\gamma \in (0, 1)$ is the decay factor and $s$ is the step size.
 
 **Example:** $\eta\_0 = 0.1$, $\gamma = 0.1$, $s = 30$ epochs
+
 - Epochs 0-29: $\eta = 0.1$
+
 - Epochs 30-59: $\eta = 0.01$
+
 - Epochs 60-89: $\eta = 0.001$
 
 ### 3. Exponential Decay
@@ -112,7 +116,9 @@ Where $p$ controls decay speed (typically $p = 1$ for linear, $p = 2$ for quadra
 
 **Properties:**
 - Smooth decay from $\eta\_{max}$ to $\eta\_{min}$
+
 - Slower decay at start and end
+
 - Faster decay in the middle
 
 ### 6. Cosine Annealing with Warm Restarts
@@ -166,7 +172,9 @@ Bias correction helps, but initial steps are still noisy.
 ```math
 **Typical values for LLMs:**
 - $T\_w = 2000$ steps (warmup)
+
 - $\eta\_{max} = 3 \times 10^{-4}$
+
 - $\eta\_{min} = 3 \times 10^{-5}$ (10% of max)
 
 ---

@@ -70,8 +70,11 @@ Y = X + \text{Conv}_{1\times1}^{proj}(\text{DWConv}(\text{Conv}_{1\times1}^{expa
 
 **Expansion Factor $t$:**
 - Input: $d$ dimensions
+
 - Expanded: $td$ dimensions
+
 - Depthwise: $td$ dimensions
+
 - Output: $d'$ dimensions
 
 **Parameters:** $d \cdot td + K^2 \cdot td + td \cdot d' \approx td(d + K^2 + d')$
@@ -109,7 +112,9 @@ Where $\phi: \mathbb{R}^d \to \mathbb{R}^m$ is a feature map.
 
 **Scaling Dimensions:**
 - Depth: $d = \alpha^\phi$
+
 - Width: $w = \beta^\phi$
+
 - Resolution: $r = \gamma^\phi$
 
 **Constraint (FLOPS):**
@@ -147,6 +152,7 @@ d \cdot w^2 \cdot r^2 = \alpha \cdot \beta^2 \cdot \gamma^2 \approx 2
 
 **Memory Complexity:**
 - Standard: $O(n^2)$ (store attention matrix)
+
 - Flash: $O(n)$ (stream through tiles)
 
 **IO Complexity:**

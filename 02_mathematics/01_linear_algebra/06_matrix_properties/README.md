@@ -17,8 +17,11 @@
 > **Matrix properties reveal essential information for debugging and analysis.** Rank tells you about solvability, condition number about numerical stability.
 
 - 📊 **Rank**: Dimension of column/row space — is the system solvable?
+
 - 🔢 **Determinant**: Volume scaling — is the matrix invertible?
+
 - ➕ **Trace**: Sum of eigenvalues — quick diagnostic
+
 - ⚠️ **Condition Number**: Numerical stability — will my algorithm fail?
 
 ---
@@ -306,7 +309,9 @@ This is why QR decomposition is numerically stable!
 ### 📌 Definition
 
 A symmetric matrix $A$ is:
+
 - **Positive Definite** ($A \succ 0$) if $\mathbf{x}^TA\mathbf{x} > 0$ for all $\mathbf{x} \neq 0$
+
 - **Positive Semi-Definite** ($A \succeq 0$) if $\mathbf{x}^TA\mathbf{x} \geq 0$ for all $\mathbf{x}$
 
 ### 📐 Equivalent Conditions

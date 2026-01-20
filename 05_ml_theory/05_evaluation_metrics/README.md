@@ -94,6 +94,7 @@ F_\beta = (1 + \beta^2) \cdot \frac{\text{Precision} \cdot \text{Recall}}{\beta^
 ```
 
 - \(\beta > 1\): Emphasize recall
+
 - \(\beta < 1\): Emphasize precision
 
 ---

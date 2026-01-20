@@ -33,8 +33,11 @@
 ```
 
 where:
+
 - $w\_i$ = original weight value
+
 - $c\_j$ = cluster centroid (shared value)
+
 - $a\_i \in \{1, ..., K\}$ = cluster assignment for weight $i$
 
 #### 1.2 Lloyd's Algorithm
@@ -153,7 +156,9 @@ H \leq \text{bits/weight} \leq H + 1
 
 **Example:**
 - K = 16, equal frequencies: $H = 4$ bits
+
 - K = 16, skewed frequencies: $H \approx 2.5$ bits
+
 - Additional 1.6× compression!
 
 ---

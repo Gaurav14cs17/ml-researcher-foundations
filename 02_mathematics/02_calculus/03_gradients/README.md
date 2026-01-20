@@ -17,7 +17,9 @@
 > **These are the fundamental derivatives of multivariable calculus.** Gradients point to steepest ascent, Jacobians linearize vector functions, Hessians capture curvature.
 
 - 📐 **Gradient** ($\nabla f$): Direction of steepest increase for scalar functions
+
 - 📊 **Jacobian** ($J$): Matrix of all partial derivatives for vector functions
+
 - 🔄 **Hessian** ($H$): Matrix of second derivatives, captures curvature
 
 ---
@@ -230,7 +232,9 @@ For square Jacobian ($m = n$):
 ```
 
 **Applications**:
+
 - Normalizing flows: $p(x) = p(f^{-1}(x)) \cdot |\det(J\_{f^{-1}})|$
+
 - Change of variables in integration
 
 ---
@@ -319,7 +323,9 @@ H = [2    0 ]
 Condition number: κ = λ_max/λ_min = 200/2 = 100
 
 This means gradient descent will be slow!
+
 - Fast convergence along x (low curvature)
+
 - Slow convergence along y (high curvature)
 
 ```

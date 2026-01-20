@@ -33,9 +33,13 @@
 Logic is the **foundation of all mathematical reasoning** and computation. This article covers:
 
 - **Propositional Logic** — AND, OR, NOT, IMPLIES with truth tables
+
 - **Predicate Logic** — ∀ (for all) and ∃ (exists) quantifiers
+
 - **Rules of Inference** — Modus ponens, modus tollens, syllogisms
+
 - **Boolean Functions** — How neural networks compute logic
+
 - **De Morgan's Laws** — Negation rules for complex expressions
 
 > [!WARNING]
@@ -48,10 +52,15 @@ Logic is the **foundation of all mathematical reasoning** and computation. This 
 By the end of this article, you will be able to:
 
 - [ ] Read and construct truth tables
+
 - [ ] Understand quantifiers (∀, ∃) in ML theorems
+
 - [ ] Apply De Morgan's laws for negation
+
 - [ ] Use inference rules in proofs
+
 - [ ] Connect boolean logic to neural networks
+
 - [ ] Recognize logical patterns in ML papers
 
 ---
@@ -674,11 +683,15 @@ Then gradient descent with step size α ≤ 1/L satisfies:
     (∀α ≤ 1/L: Convergence(GD(f, α), O(1/T)))
 
 Assumptions (Antecedents):
+
 - f is L-Lipschitz
+
 - f is convex  
+
 - α ≤ 1/L
 
 Conclusion (Consequent):
+
 - f(x_T) - f(x*) ≤ O(1/T)
 
 ```

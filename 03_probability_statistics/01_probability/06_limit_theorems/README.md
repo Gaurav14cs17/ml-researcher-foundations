@@ -249,8 +249,11 @@ Error rate: $O(1/\sqrt{n})$ regardless of dimension!
 ### 4. Why Gaussians Appear Everywhere
 
 - **Sum of many small effects:** CLT applies
+
 - **Gradient noise in SGD:** Sum of per-sample gradients
+
 - **Measurement errors:** Sum of many error sources
+
 - **Neural network activations:** Sum of many weighted inputs
 
 ---

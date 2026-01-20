@@ -313,18 +313,27 @@ print(f"Best solution: {best}")
 ## 📚 Resources
 
 ### Books
+
 - **Introduction to Genetic Algorithms** - Sivanandam & Deepa
+
 - **Genetic Algorithms in Search** - Goldberg (1989)
+
 - **An Introduction to Evolutionary Algorithms** - Eiben & Smith
 
 ### Papers
+
 - Holland (1975) - Adaptation in Natural and Artificial Systems
+
 - Goldberg (1989) - Classic GA reference
+
 - Salimans et al. (2017) - Evolution Strategies as RL
 
 ### Software
+
 - **DEAP** (Python): Distributed EA framework
+
 - **PyGAD**: Simple GA library
+
 - **pymoo**: Multi-objective optimization
 
 ---

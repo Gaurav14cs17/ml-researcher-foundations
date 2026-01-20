@@ -136,7 +136,9 @@ s_{\max} = \lfloor \log_\eta(B) \rfloor
 ```
 
 For each \(s \in \{s_{\max}, \ldots, 0\}\):
+
 - \(n = \lceil \frac{B \eta^s}{(s+1)} \rceil\) initial configurations
+
 - \(r = B \eta^{-s}\) minimum budget per configuration
 
 ---

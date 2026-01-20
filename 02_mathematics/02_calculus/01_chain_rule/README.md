@@ -17,8 +17,11 @@
 > **The chain rule is why deep learning works.** It's how we compute gradients through millions of operations in neural networks, enabling training via backpropagation.
 
 - 🔗 **Single Variable**: $(f \circ g)'(x) = f'(g(x)) \cdot g'(x)$
+
 - 📊 **Multivariate**: $\frac{\partial L}{\partial x} = \sum\_i \frac{\partial L}{\partial y\_i} \cdot \frac{\partial y\_i}{\partial x}$ (sum over all paths)
+
 - 🔄 **Backprop**: Reverse-mode autodiff = efficient chain rule application
+
 - ⚡ **PyTorch**: `loss.backward()` applies chain rule millions of times
 
 ---

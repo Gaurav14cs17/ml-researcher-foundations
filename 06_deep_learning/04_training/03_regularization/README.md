@@ -116,6 +116,7 @@ L_{\text{total}} = L_{\text{data}} + \lambda \sum_i |w_i| = L_{\text{data}} + \l
 
 **Key difference from L2:**
 - L2: Push weights toward zero proportionally
+
 - L1: Constant push toward zero regardless of magnitude
 
 **Geometric intuition:**
@@ -178,11 +179,14 @@ h = h    # No dropout, no scaling (inverted dropout)
 
 **1. Prevents Co-adaptation:**
 - Neurons cannot rely on specific other neurons
+
 - Forces redundant representations
 
 **2. Implicit Ensemble:**
 - Each forward pass uses different "thinned" network
+
 - Exponentially many sub-networks: $2^n$ for $n$ units
+
 - At inference: geometric ensemble of all sub-networks
 
 **3. Bayesian Interpretation:**
@@ -190,7 +194,9 @@ h = h    # No dropout, no scaling (inverted dropout)
 **Theorem (Gal & Ghahramani, 2016):** Dropout is approximate variational inference in Bayesian neural networks.
 
 Training with dropout ≈ minimizing KL divergence between:
+
 - Approximate posterior $q(W)$
+
 - True posterior $p(W|D)$
 
 ### Dropout Variants

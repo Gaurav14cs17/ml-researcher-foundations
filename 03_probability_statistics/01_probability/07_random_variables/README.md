@@ -40,6 +40,7 @@ X: \Omega \to \mathbb{R}
 
 **Example: Coin Flip**
 - Sample space: $\Omega = \{\text{heads}, \text{tails}\}$
+
 - Random variable: $X(\text{heads}) = 1, \quad X(\text{tails}) = 0$
 
 ---
@@ -286,6 +287,7 @@ Complete the square and integrate. $\quad \blacksquare$
 
 **Advantages over MGF:**
 - Always exists (bounded)
+
 - Uniquely determines distribution
 
 ### Gaussian Characteristic Function

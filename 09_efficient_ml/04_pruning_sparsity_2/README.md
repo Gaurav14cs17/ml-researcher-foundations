@@ -34,10 +34,15 @@
 This lecture covers **advanced pruning topics** and the famous Lottery Ticket Hypothesis:
 
 - **Lottery Ticket Hypothesis**: Dense networks contain sparse "winning tickets" trainable in isolation
+
 - **Sparse formats**: COO, CSR, CSC for efficient sparse storage
+
 - **Hardware support**: NVIDIA 2:4 structured sparsity, AMD block sparsity
+
 - **Dynamic sparsity**: RigL, SET for sparse training from scratch
+
 - **LLM pruning**: SparseGPT and challenges with pruning large language models
+
 - **Practical speedups**: When sparsity translates to actual performance gains
 
 > 💡 *"The Lottery Ticket Hypothesis changed how we think about neural network training—winning tickets exist at initialization."* — Prof. Song Han
@@ -156,8 +161,11 @@ Pruning large language models is different:
 | Layer sensitivity | Some layers can't be pruned |
 
 ### SparseGPT
+
 - Prunes LLMs to 50%+ sparsity
+
 - Uses approximate second-order information
+
 - One-shot (no retraining needed)
 
 ---
@@ -165,7 +173,9 @@ Pruning large language models is different:
 ## Key Papers
 
 - 📄 [Lottery Ticket Hypothesis](https://arxiv.org/abs/1803.03635)
+
 - 📄 [RigL: Dynamic Sparsity](https://arxiv.org/abs/1911.11134)
+
 - 📄 [SparseGPT](https://arxiv.org/abs/2301.00774)
 
 ---
@@ -179,7 +189,9 @@ Let \( f(x; \theta) \) be a neural network with parameters \( \theta \in \mathbb
 **Lottery Ticket Conjecture:**
 
 For a dense network \( f(x; \theta_0) \) with random initialization \( \theta_0 \), there exists:
+
 - A sparse mask \( m \in \{0,1\}^d \) with \( \|m\|_0 \ll d \)
+
 - Such that training \( f(x; m \odot \theta_0) \) achieves comparable accuracy to training \( f(x; \theta_0) \)
 
 **Formal Statement:**
@@ -190,8 +202,11 @@ For a dense network \( f(x; \theta_0) \) with random initialization \( \theta_0 
 ```
 
 where:
+
 - \( \theta^*_{sparse} \) = trained from \( m \odot \theta_0 \)
+
 - \( \theta^*_{dense} \) = trained from \( \theta_0 \)
+
 - \( \|m\|_0 / d \) can be as low as 10-20%
 
 **Key Insight:** Initialization matters—random reinitialization fails.
@@ -362,7 +377,9 @@ where \( \Delta \mathcal{L} \) is loss increase when pruning layer \( l \) to sp
 
 **Proof sketch:**
 - First layer: Directly processes input features; losing weights loses input information
+
 - Last layer: Directly produces output; critical for final prediction
+
 - Middle layers: Redundant representations can compensate
 
 **Practical rule:** Keep first/last layers denser, prune middle layers more aggressively.
@@ -389,7 +406,9 @@ At 90% sparsity: theoretical 10× speedup.
 
 **Actual speedup is lower due to:**
 - Sparse format overhead
+
 - Irregular memory access
+
 - Poor cache utilization
 
 ---
@@ -404,8 +423,11 @@ I(X; \hat{Y}) \approx I(X; Y)
 ```
 
 where:
+
 - \( Y \) = dense network output
+
 - \( \hat{Y} \) = pruned network output
+
 - \( I(\cdot; \cdot) \) = mutual information
 
 **Data Processing Inequality:** \( I(X; \hat{Y}) \leq I(X; Y) \)

@@ -198,7 +198,9 @@ The normalization $\frac{1}{\sqrt{n \cdot Q\_P}}$ balances gradient magnitudes.
 
 **Progressive Quantization:**
 - Start with FP32 training
+
 - Gradually decrease bit-width
+
 - Or start with high precision, decrease during training
 
 **Temperature Annealing for Soft Quantization:**
@@ -270,7 +272,9 @@ b_{folded} = \gamma \cdot \frac{-\mu}{\sqrt{\sigma^2 + \epsilon}} + \beta + \fra
 
 **Why fold?**
 - Reduces operations at inference
+
 - Fewer tensors to quantize
+
 - Better accuracy
 
 ---
@@ -300,7 +304,9 @@ Similar to regularization, this:
 
 **Bias-Variance Tradeoff:**
 - STE introduces bias in gradients
+
 - But reduces variance compared to other estimators
+
 - Net effect: stable training
 
 ---

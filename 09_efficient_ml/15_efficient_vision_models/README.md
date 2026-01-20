@@ -34,10 +34,15 @@
 This lecture covers **efficient architectures for computer vision**:
 
 - **Depthwise separable convolutions**: The key to efficient CNNs
+
 - **MobileNet family**: V1, V2, V3 evolution
+
 - **EfficientNet**: Compound scaling of depth, width, resolution
+
 - **Vision Transformers**: ViT, Swin, and efficiency challenges
+
 - **ConvNeXt**: Modernizing CNNs to match ViT performance
+
 - **Mobile deployment**: Practical tips for edge vision
 
 > 💡 *"Depthwise separable convolution reduces FLOPs by 8-9× with minimal accuracy loss—it's the foundation of efficient CNNs."* — Prof. Song Han
@@ -182,7 +187,9 @@ where \( r \) is reduction ratio (typically 4-16).
 
 **Single-dimension scaling problems:**
 - Depth only: Vanishing gradients
+
 - Width only: Diminishing returns
+
 - Resolution only: Diminishing returns
 
 **Compound scaling:**

@@ -44,6 +44,7 @@ T_{memory} = \frac{\text{Model Parameters} \times \text{bytes/param}}{\text{Memo
 
 **Example (LLaMA-7B on A100):**
 - FP16: $7B \times 2 / 2\text{TB/s} = 7\text{ms/token}$
+
 - INT4: $7B \times 0.5 / 2\text{TB/s} = 1.75\text{ms/token}$
 
 ### 2. Throughput Analysis
@@ -63,9 +64,13 @@ T_{memory} = \frac{\text{Model Parameters} \times \text{bytes/param}}{\text{Memo
 ```
 
 Where:
+
 - $B$ = batch size
+
 - $L$ = sequence length
+
 - $T\_{prefill}$ = prompt processing time
+
 - $T\_{decode}$ = per-token generation time
 
 ### 3. Memory Requirements
@@ -85,11 +90,17 @@ M_{KV} = 2 \times L \times H \times d_k \times B \times S \times b_{kv}
 ```
 
 Where:
+
 - $L$ = layers
+
 - $H$ = heads (or KV heads for GQA)
+
 - $d\_k$ = head dimension
+
 - $B$ = batch size
+
 - $S$ = sequence length
+
 - $b\_{kv}$ = bytes per element
 
 **Example (LLaMA-7B, seq=4096, batch=1):**

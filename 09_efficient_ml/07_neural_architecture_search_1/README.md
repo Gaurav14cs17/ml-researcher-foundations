@@ -34,10 +34,15 @@
 This lecture introduces **Neural Architecture Search (NAS)** for automated model design:
 
 - **Why NAS**: Manual architecture design is time-consuming and suboptimal
+
 - **NAS components**: Search space, search strategy, performance estimation
+
 - **RL-based NAS**: Using reinforcement learning to sample architectures (NASNet)
+
 - **DARTS**: Differentiable architecture search with continuous relaxation
+
 - **Cell-based search**: Searching for repeatable building blocks
+
 - **Cost comparison**: From 2000 GPU-days to 1 GPU-day
 
 > 💡 *"NAS automates the tedious process of neural network design—let algorithms find the optimal architecture for your problem."* — Prof. Song Han
@@ -81,16 +86,22 @@ What architectures are possible?
 How do we explore the space?
 
 - Random search
+
 - Reinforcement learning
+
 - Evolutionary algorithms
+
 - Gradient-based (DARTS)
 
 ### 3. Performance Estimation
 How do we evaluate architectures?
 
 - Train to convergence (slow!)
+
 - Early stopping
+
 - Weight sharing
+
 - Predictor models
 
 ---
@@ -133,8 +144,11 @@ w^*(\alpha) = \arg\min_w \mathcal{L}_{train}(w, \alpha)
 ```
 
 where:
+
 - \( \alpha \) = architecture parameters
+
 - \( w \) = network weights
+
 - \( \mathcal{A} \) = search space
 
 This is a **bi-level optimization** problem.
@@ -300,7 +314,9 @@ Correlation: ~0.8-0.9 (good enough for ranking).
 **Formulation:** Architecture search as RL problem.
 
 - **State:** Current partial architecture
+
 - **Action:** Select next operation/connection
+
 - **Reward:** Validation accuracy of complete architecture
 
 **Policy gradient update:**
@@ -334,7 +350,9 @@ where \( b \) is the moving average of rewards (baseline).
 
 **Mutation operators:**
 - Change operation type
+
 - Add/remove layers
+
 - Modify connections
 
 **Crossover:** Combine cells from two parents

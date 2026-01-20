@@ -234,8 +234,11 @@ Theorem: As N → ∞, MCTS with UCT:
 3. Selects optimal action with probability → 1
 
 Proof sketch:
+
 - UCT ensures infinite exploration (log term)
+
 - Monte Carlo estimates converge (LLN)
+
 - Tree policy becomes optimal
 
 ```

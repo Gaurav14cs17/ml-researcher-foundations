@@ -47,7 +47,9 @@ f \sim \mathcal{GP}(m(x), k(x, x'))
 ```
 
 where:
+
 - \(m(x) = \mathbb{E}[f(x)]\) is the mean function (often \(m(x) = 0\))
+
 - \(k(x, x') = \text{Cov}(f(x), f(x'))\) is the covariance (kernel) function
 
 **Property:** For any finite set \(\{x_1, \ldots, x_n\}\):
@@ -114,7 +116,9 @@ Applying with observation noise \(\mathbf{y} = \mathbf{f} + \boldsymbol{\varepsi
 
 **Interpretation:**
 - **Data fit:** \(-\frac{1}{2}\mathbf{y}^\top(K + \sigma_n^2 I)^{-1}\mathbf{y}\)
+
 - **Complexity penalty:** \(-\frac{1}{2}\log|K + \sigma_n^2 I|\)
+
 - **Normalization:** \(-\frac{n}{2}\log(2\pi)\)
 
 ### Hyperparameter Optimization
@@ -140,6 +144,7 @@ k(x, x') = \sigma_f^2 \exp\left(-\frac{\|x - x'\|^2}{2\ell^2}\right)
 ```
 
 - \(\sigma_f^2\): signal variance (output scale)
+
 - \(\ell\): length scale (smoothness)
 
 ### Matérn
@@ -150,9 +155,13 @@ k_\nu(r) = \sigma_f^2 \frac{2^{1-\nu}}{\Gamma(\nu)}\left(\frac{\sqrt{2\nu}r}{\el
 ```
 
 Special cases:
+
 - \(\nu = 1/2\): Exponential (Ornstein-Uhlenbeck)
+
 - \(\nu = 3/2\): Once differentiable
+
 - \(\nu = 5/2\): Twice differentiable
+
 - \(\nu \to \infty\): RBF
 
 ### Periodic

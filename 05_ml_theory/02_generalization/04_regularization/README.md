@@ -46,8 +46,11 @@
 ```
 
 where:
+
 - \(\mathcal{L}_{\text{data}}\): Data fitting term (e.g., cross-entropy, MSE)
+
 - \(\Omega(\theta)\): Regularization function (complexity penalty)
+
 - \(\lambda > 0\): Regularization strength (hyperparameter)
 
 ---

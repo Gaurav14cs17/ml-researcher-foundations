@@ -45,9 +45,13 @@ H_{out} = \left\lfloor \frac{H_{in} + 2P - K}{S} \right\rfloor + 1
 ```
 
 where:
+
 - \(H_{in}\): input height
+
 - \(P\): padding
+
 - \(K\): kernel size
+
 - \(S\): stride
 
 ### Parameter Count
@@ -94,8 +98,11 @@ Traditional: Different weights for each position
 Conv: Same weights everywhere
 
 Benefits:
+
 - Fewer parameters
+
 - Translation equivariance
+
 - Better generalization
 
 ```
@@ -196,8 +203,11 @@ Alternative to pooling - use stride > 1:
 
 ```
 Benefits:
+
 - Learnable downsampling (vs fixed pooling)
+
 - More computation efficient
+
 - Used in ResNet (stride-2 conv instead of pool)
 
 ```

@@ -231,7 +231,9 @@ If X and Y are **independent**:
 ```
 
 - $\gamma\_1 = 0$: Symmetric distribution
+
 - $\gamma\_1 > 0$: Right tail longer (positive skew)
+
 - $\gamma\_1 < 0$: Left tail longer (negative skew)
 
 **Kurtosis (Tail Weight):**
@@ -244,7 +246,9 @@ If X and Y are **independent**:
 **Excess Kurtosis:** $\gamma\_2 - 3$ (Gaussian has excess kurtosis = 0)
 
 - $\gamma\_2 - 3 = 0$: Normal-like tails
+
 - $\gamma\_2 - 3 > 0$: Heavier tails than normal
+
 - $\gamma\_2 - 3 < 0$: Lighter tails than normal
 
 ---
@@ -318,7 +322,9 @@ M_X(t) = \exp\left(\mu t + \frac{\sigma^2 t^2}{2}\right)
 
 **Properties:**
 - $-1 \leq \rho \leq 1$
+
 - $|\rho| = 1$ ⟺ Perfect linear relationship
+
 - $\rho = 0$ ⟺ No linear relationship (uncorrelated)
 
 ---
@@ -341,7 +347,9 @@ g(E[X]) \geq E[g(X)]
 
 **Applications in ML:**
 - **Log-likelihood lower bound:** $E[\log p] \leq \log E[p]$ (log is concave)
+
 - **ELBO in VAE:** Uses Jensen's inequality
+
 - **KL divergence non-negativity:** Uses convexity of $-\log$
 
 ---

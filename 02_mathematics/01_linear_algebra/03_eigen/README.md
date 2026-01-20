@@ -17,8 +17,11 @@
 > **Eigenvalues and eigenvectors reveal the intrinsic behavior of linear transformations.** An eigenvector is a direction that only gets scaled (not rotated) when transformed.
 
 - 📐 **Definition**: $A\mathbf{v} = \lambda\mathbf{v}$ — eigenvector $\mathbf{v}$ only scales by factor $\lambda$
+
 - 🔍 **Finding them**: Solve $\det(A - \lambda I) = 0$ (characteristic polynomial)
+
 - 📊 **Key facts**: $\sum \lambda\_i = \text{tr}(A)$, $\prod \lambda\_i = \det(A)$
+
 - 🤖 **ML Uses**: PCA, PageRank, stability analysis, spectral clustering
 
 ---
@@ -92,6 +95,7 @@ A\mathbf{v} = \lambda\mathbf{v}
 ```
 
 where:
+
 - $\lambda \in \mathbb{C}$ is an **eigenvalue**
 - $\mathbf{v} \neq \mathbf{0}$ is the corresponding **eigenvector**
 

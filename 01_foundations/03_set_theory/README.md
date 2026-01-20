@@ -33,9 +33,13 @@
 Set theory is the **foundation of probability and ML**. This article covers:
 
 - **Set Operations** — Union, intersection, difference, complement (data operations)
+
 - **Functions** — Injective, surjective, bijective (normalizing flows, encoders)
+
 - **Relations** — Equivalence relations and partitions (clustering)
+
 - **Cardinality** — Finite, countable, uncountable (discrete vs continuous)
+
 - **σ-Algebra** — Foundation for probability spaces (measure theory)
 
 > [!NOTE]
@@ -48,10 +52,15 @@ Set theory is the **foundation of probability and ML**. This article covers:
 By the end of this article, you will be able to:
 
 - [ ] Perform set operations and apply De Morgan's laws
+
 - [ ] Classify functions (injective, surjective, bijective)
+
 - [ ] Understand equivalence relations and partitions
+
 - [ ] Distinguish countable from uncountable sets
+
 - [ ] Define and work with σ-algebras
+
 - [ ] Apply set theory to data operations (SQL, Pandas)
 
 ---

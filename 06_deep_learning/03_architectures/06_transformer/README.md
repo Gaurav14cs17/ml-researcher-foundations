@@ -72,13 +72,18 @@ Q = XW^Q, \quad K = XW^K, \quad V = XW^V
 ```
 
 Where:
+
 - $W^Q \in \mathbb{R}^{d \times d\_k}$ (query projection)
+
 - $W^K \in \mathbb{R}^{d \times d\_k}$ (key projection)
+
 - $W^V \in \mathbb{R}^{d \times d\_v}$ (value projection)
 
 **Interpretation:**
 - $Q$: "What am I looking for?"
+
 - $K$: "What do I contain?"
+
 - $V$: "What information do I carry?"
 
 #### Step 2: Compute Attention Scores
@@ -134,7 +139,9 @@ A_{ij} = \frac{\exp(S_{ij}/\sqrt{d_k})}{\sum_{l=1}^n \exp(S_{il}/\sqrt{d_k})}
 
 **Properties:**
 - $\sum\_j A\_{ij} = 1$ (rows sum to 1)
+
 - $A\_{ij} \geq 0$ (non-negative)
+
 - Interpretation: probability that token $i$ attends to token $j$
 
 #### Step 5: Weighted Aggregation
@@ -169,8 +176,11 @@ A_{ij} = \frac{\exp(S_{ij}/\sqrt{d_k})}{\sum_{l=1}^n \exp(S_{il}/\sqrt{d_k})}
 ```
 
 Where:
+
 - $W\_h^Q, W\_h^K \in \mathbb{R}^{d \times d\_k}$ with $d\_k = d/H$
+
 - $W\_h^V \in \mathbb{R}^{d \times d\_v}$ with $d\_v = d/H$
+
 - $W^O \in \mathbb{R}^{Hd\_v \times d}$ (output projection)
 
 **Parameter Count:**
@@ -181,9 +191,13 @@ Where:
 ```
 
 **Interpretation:** Different heads learn different relationship types:
+
 - Head 1: Syntactic relationships
+
 - Head 2: Semantic similarity
+
 - Head 3: Coreference
+
 - Head 4: Position-based patterns
 
 ---
@@ -276,6 +290,7 @@ A = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}} + \text{mask}\right)
 
 **Space Complexity:**
 - Attention matrix: $O(n^2)$
+
 - Dominates for long sequences
 
 **Bottleneck:** For $n > d$, the $O(n^2)$ term dominates → expensive for long sequences.

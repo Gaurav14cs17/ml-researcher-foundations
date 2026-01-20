@@ -45,7 +45,9 @@ For query $q$, positive key $k^+$, and negative keys $\{k^-\}$:
 ```
 
 Where:
+
 - $\text{sim}(u, v) = \frac{u^\top v}{\|u\| \|v\|}$ (cosine similarity)
+
 - $\tau$ = temperature parameter
 
 ### Temperature's Effect
@@ -56,7 +58,9 @@ Where:
 ```
 
 - $\tau \rightarrow 0$: Hard selection (argmax)
+
 - $\tau \rightarrow \infty$: Uniform distribution
+
 - $\tau \approx 0.07-0.5$: Typical range
 
 ### Gradient Analysis
@@ -112,9 +116,13 @@ Where:
 ### Augmentation Importance
 
 Effective augmentations:
+
 - Random crop + resize
+
 - Color distortion (jitter, grayscale)
+
 - Gaussian blur
+
 - Random flip
 
 **Key finding:** Strong augmentation crucial for good representations.
@@ -172,7 +180,9 @@ Where $q\_\theta$ is a predictor network.
 
 **Why doesn't it collapse?**
 - Asymmetry between online and target
+
 - Target provides stable targets
+
 - Predictor prevents trivial solutions
 
 ---
@@ -192,8 +202,11 @@ Where $\mathcal{M}$ is the set of masked positions.
 
 **Masking strategy:**
 - 15% of tokens selected
+
 - 80% → [MASK]
+
 - 10% → random token
+
 - 10% → unchanged
 
 ### MAE (Masked Autoencoder for Vision)
@@ -207,7 +220,9 @@ Where $\mathcal{M}$ is the set of masked positions.
 
 **Key design:**
 - High masking ratio (75%)
+
 - Asymmetric encoder-decoder
+
 - Encoder only sees unmasked patches
 
 ---

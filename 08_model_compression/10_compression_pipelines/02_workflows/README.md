@@ -78,7 +78,9 @@ M_{train} \approx 3.5\text{GB} + 8\text{MB} + 4\text{MB} + 8\text{MB} \approx 3.
 ```
 
 **Pareto Optimal:** A pipeline is Pareto optimal if no other pipeline achieves:
+
 - Same accuracy with lower latency, OR
+
 - Same latency with higher accuracy
 
 ---

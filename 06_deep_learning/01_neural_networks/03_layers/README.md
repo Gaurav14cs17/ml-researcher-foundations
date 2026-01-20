@@ -112,13 +112,17 @@ Where $p$ = padding, $s$ = stride, $k$ = kernel size.
 ```
 
 Where:
+
 - $Q = XW\_Q$ (queries)
+
 - $K = XW\_K$ (keys)
+
 - $V = XW\_V$ (values)
 
 ### Complexity
 
 - Time: $O(n^2 d)$ for sequence length $n$
+
 - Memory: $O(n^2)$ for attention matrix
 
 ### Parameters

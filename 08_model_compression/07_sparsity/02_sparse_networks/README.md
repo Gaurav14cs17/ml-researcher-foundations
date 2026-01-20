@@ -38,8 +38,11 @@ s = \frac{\|\mathbf{w}\|_0}{\text{total params}} = \frac{\#\text{zeros}}{\#\text
 ```
 
 Components:
+
 - `values`: Non-zero values $[v\_1, v\_2, ..., v\_{nnz}]$
+
 - `col_indices`: Column index for each value
+
 - `row_ptr`: Start of each row in values array
 
 **Coordinate Format (COO):**
@@ -116,11 +119,14 @@ return m, θ₀
 
 **Static Sparse Training:**
 - Fix mask at initialization
+
 - Train only non-zero weights
+
 - Example: SNIP, GraSP
 
 **Dynamic Sparse Training:**
 - Periodically update mask during training
+
 - Prune + Regrow based on importance
 
 **RigL (Rigged Lottery):**
@@ -153,6 +159,7 @@ A_{ij} = \begin{cases} \text{attention}(q_i, k_j) & |i-j| \leq w \\ 0 & \text{ot
 
 **Global + Local (Longformer):**
 - Select $g$ global tokens that attend to all
+
 - All other tokens use local window $w$
 
 ```math

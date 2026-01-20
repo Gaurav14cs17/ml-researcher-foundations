@@ -17,8 +17,11 @@
 > **SVD is the Swiss Army knife of linear algebra.** It works for ANY matrix, provides optimal low-rank approximation, and powers LoRA, PCA, recommendation systems, and pseudoinverse computation.
 
 - 📐 **Exists for any matrix**: $A = U\Sigma V^T$ (no restrictions!)
+
 - 🎯 **Eckart-Young**: $A\_k$ is the BEST rank-$k$ approximation
+
 - 🔧 **LoRA**: Low-rank fine-tuning uses SVD insight
+
 - 📊 **PCA**: Actually implemented via SVD (more stable)
 
 ---
@@ -85,9 +88,13 @@ A = U\Sigma V^T
 ```
 
 where:
+
 - $U \in \mathbb{R}^{m \times m}$: orthogonal ($U^TU = UU^T = I$)
+
 - $\Sigma \in \mathbb{R}^{m \times n}$: diagonal with $\sigma\_1 \geq \sigma\_2 \geq \cdots \geq \sigma\_r > 0$
+
 - $V \in \mathbb{R}^{n \times n}$: orthogonal ($V^TV = VV^T = I$)
+
 - $r = \text{rank}(A)$: number of non-zero singular values
 
 ### 📐 Relationship to Eigendecomposition

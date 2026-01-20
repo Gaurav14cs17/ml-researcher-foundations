@@ -45,8 +45,11 @@ R(h) = \mathbb{E}_{(x,y) \sim \mathcal{D}}[\ell(h(x), y)] = \int \ell(h(x), y) \
 ```
 
 where:
+
 - \(h: \mathcal{X} \to \mathcal{Y}\) is a hypothesis
+
 - \(\mathcal{D}\) is the unknown data distribution
+
 - \(\ell: \mathcal{Y} \times \mathcal{Y} \to \mathbb{R}_{\geq 0}\) is the loss function
 
 **Problem:** We cannot compute \(R(h)\) because \(\mathcal{D}\) is unknown!

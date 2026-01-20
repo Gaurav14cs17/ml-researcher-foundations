@@ -17,7 +17,9 @@
 > **Matrix factorization decomposes a matrix into simpler factors.** This is the foundation of recommender systems, topic modeling, and signal separation.
 
 - 🎬 **Recommenders**: User-item ratings ≈ User preferences × Item features
+
 - 📰 **Topic Modeling**: Document-word matrix ≈ Document-topic × Topic-word
+
 - ➕ **NMF**: Non-negative factorization for interpretable parts
 
 ---
@@ -90,7 +92,9 @@ A = U\Sigma V^T \approx U_k \Sigma_k V_k^T
 ```
 
 But SVD requires:
+
 - Complete matrix (no missing entries)
+
 - No constraints (allows negative values)
 
 Matrix factorization methods relax these.
@@ -107,6 +111,7 @@ Matrix factorization methods relax these.
 ```
 
 - Frobenius norm: $\|A\|\_F = \sqrt{\sum\_{ij} A\_{ij}^2}$
+
 - Regularization $\lambda$ prevents overfitting
 
 ### 🔍 Alternating Least Squares (ALS)
@@ -129,7 +134,9 @@ Repeat until convergence:
 
 **Why ALS?**
 - With one factor fixed, problem is convex (quadratic)
+
 - Each sub-problem has closed-form solution
+
 - Easily parallelizable across users/items
 
 ---
@@ -207,7 +214,9 @@ Therefore objective decreases (or stays same) at each step.  ∎
 ### 📌 Problem Setup
 
 - Users: $m$ users
+
 - Items: $n$ items
+
 - Ratings: $R\_{ij}$ = rating user $i$ gave item $j$ (only some known)
 
 ### 📐 Matrix Factorization Model
@@ -218,10 +227,15 @@ Therefore objective decreases (or stays same) at each step.  ∎
 ```
 
 where:
+
 - $b$: global bias
+
 - $b\_i$: user bias
+
 - $b\_j$: item bias
+
 - $\mathbf{u}\_i$: user latent factors
+
 - $\mathbf{v}\_j$: item latent factors
 
 ### 🔍 Optimization

@@ -109,18 +109,27 @@ This repository includes **detailed mathematical derivations** to help you read 
 <summary>📚 <b>Three-Pass Reading Strategy</b> (Click to expand)</summary>
 
 ### **Pass 1: The Quick Scan** (5-10 minutes)
+
 - ✅ Read: Title, Abstract, Introduction, Section headings, Conclusion
+
 - ❓ Ask: What problem? Is it novel? Is it relevant?
+
 - ⏭️ Skip: All math, experiments, proofs
 
 ### **Pass 2: The Core Understanding** (1-2 hours)
+
 - ✅ Read: Full introduction, Method section (focus on algorithms), Key figures
+
 - ❓ Ask: What's the innovation? What's the main algorithm?
+
 - ⏭️ Skip: Proofs (unless critical), Detailed experiments
 
 ### **Pass 3: The Deep Dive** (3-4 hours)
+
 - ✅ Read: Everything including appendix and code
+
 - ❓ Ask: Can I derive all equations? Can I reproduce this?
+
 - 🎯 Goal: Full understanding and reproduction
 
 </details>
@@ -145,22 +154,27 @@ This repository includes **detailed mathematical derivations** to help you read 
 <summary>📊 <b>Key Topics with Research Connections</b></summary>
 
 ### 🎯 **Optimization** → Adam, SGD papers
+
 - [Gradient Descent](./04_optimization/02_basic_methods/01_gradient_descent/) - **Complete convergence proof**
 - Connections: Adam (2014), ResNet (2015), GPT-3 (2020)
 
 ### 🔄 **Backpropagation** → All neural network papers
+
 - [Backpropagation](./06_deep_learning/02_backpropagation/) - **Step-by-step chain rule**
 - Connections: AlexNet (2012), Transformer (2017)
 
 ### 📊 **KL Divergence** → VAE, RLHF papers
+
 - [KL Divergence](./03_probability_statistics/03_information_theory/03_kl_divergence/) - **Complete proofs**
 - Connections: VAE (2013), TRPO (2015), RLHF (2022)
 
 ### 🎯 **Constrained Optimization** → SVM, PCA papers
+
 - [Lagrange Multipliers](./04_optimization/05_constrained_optimization/02_lagrange/) - **Why they work**
 - Connections: SVM, PCA, Max Entropy
 
 ### 🔥 **Attention Mechanism** → Transformer papers
+
 - [Transformer](./06_deep_learning/03_architectures/06_transformer/) - **Complete attention derivation**
 - Connections: BERT (2018), GPT series, LLaMA (2023)
 
@@ -171,11 +185,17 @@ This repository includes **detailed mathematical derivations** to help you read 
 
 **After reading a paper, you should be able to:**
 - [ ] Explain it to a colleague in 2 minutes
+
 - [ ] Draw the architecture from memory
+
 - [ ] List 3 strengths and 3 weaknesses
+
 - [ ] Describe when this method would/wouldn't work
+
 - [ ] Identify the key innovation vs prior work
+
 - [ ] Write pseudocode for the core algorithm
+
 - [ ] Reproduce at least the main result
 
 </details>
@@ -509,62 +529,103 @@ Learning Path:
 ## My ML Foundations Progress
 
 ### Foundations
+
 - [ ] Mathematical Thinking
+
 - [ ] Proof Techniques  
+
 - [ ] Asymptotic Analysis
+
 - [ ] Numerical Computation
 
 ### Mathematics
+
 - [ ] Linear Algebra
+
 - [ ] Calculus
+
 - [ ] Optimization Theory
 
 ### Optimization
+
 - [ ] Gradient Descent
+
 - [ ] SGD & Adam ⭐
+
 - [ ] Convex Optimization
+
 - [ ] Constrained Optimization
 
 ### Probability & Statistics
+
 - [ ] Probability Theory
+
 - [ ] Multivariate Statistics
+
 - [ ] Information Theory
 
 ### ML Theory
+
 - [ ] Learning Frameworks
+
 - [ ] Generalization
+
 - [ ] Kernel Methods
 
 ### Deep Learning
+
 - [ ] Neural Networks
+
 - [ ] Backpropagation
+
 - [ ] CNN
+
 - [ ] RNN/LSTM
+
 - [ ] Transformers ⭐
+
 - [ ] Diffusion
+
 - [ ] Training Techniques
 
 ### Reinforcement Learning
+
 - [ ] MDP
+
 - [ ] Value Methods
+
 - [ ] Policy Methods
+
 - [ ] RLHF ⭐
 
 ### Model Compression
+
 - [ ] Quantization (INT4/INT8)
+
 - [ ] LoRA / PEFT ⭐
+
 - [ ] Knowledge Distillation
+
 - [ ] Pruning
+
 - [ ] MoE
 
 ### Efficient ML (MIT 6.5940) ⭐
+
 - [ ] Pruning & Sparsity
+
 - [ ] Quantization (GPTQ, AWQ)
+
 - [ ] Neural Architecture Search
+
 - [ ] Knowledge Distillation
+
 - [ ] MCUNet & TinyML
+
 - [ ] Efficient Transformers
+
 - [ ] Distributed Training
+
 - [ ] Efficient LLMs & Diffusion
 
 ### 🏆 Production Ready!
@@ -582,9 +643,13 @@ Learning Path:
 ### ✅ Do This
 
 - 📝 **Take notes** in your own words
+
 - 💻 **Code every formula** you see
+
 - 🔁 **Revisit topics** - spaced repetition works
+
 - 🗣️ **Explain to others** (or rubber duck)
+
 - 📊 **Draw diagrams** by hand
 
 </td>
@@ -593,9 +658,13 @@ Learning Path:
 ### ❌ Avoid This
 
 - 🏃 **Rushing** through topics
+
 - 📺 **Passive reading** without practice
+
 - 🎯 **Perfectionism** - 80% is fine, move on
+
 - 🏝️ **Isolation** - join ML communities
+
 - 😰 **Imposter syndrome** - everyone starts somewhere
 
 </td>
@@ -619,13 +688,19 @@ Learning Path:
 ## 📖 Companion Resources
 
 ### Books (Free Online)
+
 - 📘 [Mathematics for Machine Learning](https://mml-book.github.io/) - Deisenroth et al.
+
 - 📗 [Deep Learning](https://www.deeplearningbook.org/) - Goodfellow et al.
+
 - 📙 [Reinforcement Learning: An Introduction](http://incompleteideas.net/book/the-book.html) - Sutton & Barto
 
 ### Courses
+
 - 🎓 [Stanford CS229](https://cs229.stanford.edu/) - Machine Learning
+
 - 🎓 [Stanford CS231n](http://cs231n.stanford.edu/) - CNNs
+
 - 🎓 [Stanford CS224n](https://web.stanford.edu/class/cs224n/) - NLP
 
 ---
@@ -635,8 +710,11 @@ Learning Path:
 Learning alone is hard. Join these communities:
 
 - 💬 [r/MachineLearning](https://reddit.com/r/MachineLearning)
+
 - 💬 [r/learnmachinelearning](https://reddit.com/r/learnmachinelearning)
+
 - 🐦 ML Twitter/X
+
 - 💼 LinkedIn ML groups
 
 ---

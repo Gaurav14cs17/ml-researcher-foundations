@@ -17,8 +17,11 @@
 > **First-order methods use only gradients (first derivatives) to optimize.** They're the workhorse of machine learning, from logistic regression to training GPT-4.
 
 - 📐 **Gradient Descent**: $\theta \leftarrow \theta - \eta \nabla f(\theta)$
+
 - 🚀 **Momentum**: Accelerate along consistent directions
+
 - ⚡ **Nesterov**: "Look ahead" for faster convergence
+
 - 📊 **Convergence**: $O(1/k)$ for convex, $O((1-\mu/L)^k)$ for strongly convex
 
 ---
@@ -85,7 +88,9 @@
 ```
 
 where:
+
 - $\eta$ = learning rate (step size)
+
 - $\nabla f(\theta\_k)$ = gradient at current point
 
 ### 🔍 Why It Works: Steepest Descent
@@ -112,10 +117,13 @@ So the direction of steepest descent is -∇f(x)!
 For convergence analysis, we typically assume:
 
 **L-smoothness**: $\|\nabla f(x) - \nabla f(y)\| \leq L\|x - y\|$
+
 - Gradient doesn't change too fast
+
 - Equivalent: Hessian eigenvalues bounded by $L$
 
 **μ-strong convexity** (optional): $f(y) \geq f(x) + \nabla f(x)^T(y-x) + \frac{\mu}{2}\|y-x\|^2$
+
 - Function curves upward at least as fast as $\frac{\mu}{2}\|x\|^2$
 
 ---

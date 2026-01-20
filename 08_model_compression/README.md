@@ -86,7 +86,9 @@ CR = \frac{\text{Original Size}}{\text{Compressed Size}} = \frac{|M|}{|M_c|}
 
 **Example Calculation:**
 - Original (FP32): $340M \times 4 \text{ bytes} = 1.36 \text{ GB}$
+
 - Compressed (INT8): $340M \times 1 \text{ byte} = 340 \text{ MB}$
+
 - $CR = \frac{1360}{340} = 4\times$
 
 ### 2. Compression-Accuracy Trade-off (Pareto Optimality)
@@ -108,8 +110,11 @@ R(D) = \min_{p(\hat{W}|W)} I(W; \hat{W}) \quad \text{s.t.} \quad \mathbb{E}[d(W,
 ```
 
 Where:
+
 - $R(D)$ = minimum bits needed for distortion $D$
+
 - $I(W; \hat{W})$ = mutual information between original and compressed weights
+
 - $d(W, \hat{W})$ = distortion measure (e.g., MSE)
 
 ### 3. Memory-Compute Relationship

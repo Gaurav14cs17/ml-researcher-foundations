@@ -17,8 +17,11 @@
 > **Distance metrics quantify similarity between data points.** The right metric depends on your data type and what notion of "similar" matters for your task.
 
 - 📏 **Euclidean (L2)**: Straight-line distance, most common
+
 - 🏙️ **Manhattan (L1)**: Grid distance, robust to outliers
+
 - 🧭 **Cosine**: Angle between vectors, scale-invariant
+
 - 📊 **Mahalanobis**: Accounts for feature correlations
 
 ---

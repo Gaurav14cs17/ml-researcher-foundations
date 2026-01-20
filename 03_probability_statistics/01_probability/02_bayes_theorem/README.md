@@ -101,8 +101,11 @@ P(D) = \int P(D|\theta) P(\theta) \, d\theta
 ```
 
 This integral is often **intractable** → need approximations:
+
 - MCMC (Markov Chain Monte Carlo)
+
 - Variational Inference
+
 - Laplace Approximation
 
 ---
@@ -166,6 +169,7 @@ Ignores prior → can overfit with limited data.
 
 **Equivalence to Regularization:**
 - Gaussian prior $\mathcal{N}(0, \sigma^2)$ → L2 regularization
+
 - Laplace prior → L1 regularization
 
 ```math

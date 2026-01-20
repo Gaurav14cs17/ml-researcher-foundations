@@ -29,8 +29,11 @@ Q(x) = \text{round}\left(\frac{x - z}{s}\right) \cdot s + z
 ```
 
 Where:
+
 - $s$ = scale (step size)
+
 - $z$ = zero-point (offset)
+
 - $\text{round}(\cdot)$ = rounding function
 
 **Asymmetric Quantization:**

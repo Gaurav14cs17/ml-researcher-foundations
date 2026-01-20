@@ -108,8 +108,11 @@ For one-hot labels (only true class $c^*$ has $y\_{c^*}=1$):
 ```
 
 Where:
+
 - $p\_t = p$ if $y=1$, else $1-p$
+
 - $\alpha\_t$ = class weight
+
 - $\gamma$ = focusing parameter (typically 2)
 
 **Intuition:** Down-weights easy examples, focuses on hard ones.
@@ -155,6 +158,7 @@ y = f_\theta(x) + \epsilon, \quad \epsilon \sim \mathcal{N}(0, \sigma^2)
 
 **Properties:**
 - Penalizes large errors heavily (quadratic)
+
 - Sensitive to outliers
 
 ### Mean Absolute Error (MAE / L1)
@@ -180,6 +184,7 @@ p(y|x) \propto \exp\left(-\frac{|y - f_\theta(x)|}{b}\right)
 
 **Properties:**
 - Constant gradient magnitude
+
 - More robust to outliers than MSE
 
 ### Huber Loss (Smooth L1)
@@ -194,7 +199,9 @@ p(y|x) \propto \exp\left(-\frac{|y - f_\theta(x)|}{b}\right)
 
 **Properties:**
 - MSE for small errors (smooth)
+
 - MAE for large errors (robust)
+
 - Continuous derivative everywhere
 
 ---
@@ -222,7 +229,9 @@ Where $d(\cdot, \cdot)$ is a distance function (e.g., L2).
 ```
 
 Where:
+
 - $y=1$ for similar pairs, $y=0$ for dissimilar
+
 - $m$ = margin
 
 ### InfoNCE (NT-Xent) Loss
@@ -233,8 +242,11 @@ Where:
 ```
 
 Where:
+
 - $(z\_i, z\_j)$ = positive pair
+
 - $\tau$ = temperature
+
 - $\text{sim}(u,v) = \frac{u^\top v}{\|u\| \|v\|}$ (cosine similarity)
 
 **Used in:** SimCLR, CLIP, contrastive learning

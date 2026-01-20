@@ -632,14 +632,19 @@ Developed by **Joseph-Louis Lagrange** (1736-1813) in his work on celestial mech
 ## 📚 Resources
 
 ### Books
+
 - **Convex Optimization** - Boyd & Vandenberghe (§5.1)
+
 - **Numerical Optimization** - Nocedal & Wright (Ch 12)
 
 ### Papers
+
 - Lagrange (1788) - Mécanique Analytique
 
 ### Online
+
 - 3Blue1Brown: Lagrange Multipliers
+
 - Khan Academy: Constrained Optimization
 
 ---

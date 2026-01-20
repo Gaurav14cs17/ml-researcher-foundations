@@ -40,7 +40,9 @@ q(x_t | x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0, (1-\bar{\alpha}_t) I)
 ```
 
 where:
+
 - \(\alpha_t = 1 - \beta_t\)
+
 - \(\bar{\alpha}_t = \prod_{s=1}^{t} \alpha_s\)
 
 **Proof:**
@@ -109,8 +111,11 @@ L_{VLB} = L_0 + L_1 + \cdots + L_{T-1} + L_T
 ```
 
 where:
+
 - \(L_0 = -\log p_\theta(x_0 | x_1)\) (reconstruction)
+
 - \(L_t = D_{KL}(q(x_{t-1}|x_t, x_0) \| p_\theta(x_{t-1}|x_t))\) (denoising)
+
 - \(L_T = D_{KL}(q(x_T|x_0) \| p(x_T))\) (prior, no learnable params)
 
 ### Simplified Training Loss (DDPM)

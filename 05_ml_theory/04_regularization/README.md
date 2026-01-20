@@ -46,8 +46,11 @@
 ```
 
 where:
+
 - \(\mathcal{L}(\theta; \mathcal{D})\): Data-dependent loss
+
 - \(\Omega(\theta)\): Regularization penalty
+
 - \(\lambda > 0\): Regularization strength
 
 ---
@@ -127,7 +130,9 @@ p(\theta) \propto \exp(-\lambda \|\theta\|_1) = \prod_j \frac{\lambda}{2}\exp(-\
 
 **Advantages:**
 - Combines sparsity (L1) with stability (L2)
+
 - Handles correlated features (L1 alone selects one arbitrarily)
+
 - Bounded selection: selects groups of correlated features
 
 ---

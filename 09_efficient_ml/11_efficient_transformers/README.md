@@ -34,10 +34,15 @@
 This lecture covers **efficient transformer architectures**:
 
 - **Attention complexity**: Understanding O(N²) bottleneck
+
 - **Sparse attention**: Local, strided, and dilated patterns
+
 - **Linear attention**: Reformulating attention to O(N)
+
 - **FlashAttention**: Memory-efficient exact attention through tiling
+
 - **KV Cache**: Essential optimization for autoregressive generation
+
 - **MQA/GQA**: Reducing KV cache memory with shared keys/values
 
 > 💡 *"FlashAttention achieves 5× speedup not by changing the math, but by optimizing memory access patterns."* — Prof. Song Han
@@ -73,8 +78,11 @@ Standard attention is O(N²) in sequence length:
 **Complexity analysis:**
 
 For \( Q, K, V \in \mathbb{R}^{N \times d} \):
+
 - \( QK^T \): \( O(N^2 d) \) FLOPs, \( O(N^2) \) memory
+
 - Softmax: \( O(N^2) \) FLOPs
+
 - Attention × V: \( O(N^2 d) \) FLOPs
 
 **Total:** \( O(N^2 d) \) time, \( O(N^2) \) memory
@@ -158,6 +166,7 @@ where \( \phi \) is a feature map.
 
 **Complexity:**
 - Compute \( \phi(K)^T V \): \( O(Nd^2) \)
+
 - Compute \( \phi(Q) \cdot (\phi(K)^T V) \): \( O(Nd^2) \)
 
 **Total:** \( O(Nd^2) \) — linear in \( N \)!
@@ -199,9 +208,13 @@ M_{KV} = 2 \times L \times N \times d \times b
 ```
 
 where:
+
 - \( L \) = number of layers
+
 - \( N \) = sequence length
+
 - \( d \) = head dimension
+
 - \( b \) = bytes per element
 
 **Example (LLaMA-7B, 2K context, FP16):**
@@ -280,7 +293,9 @@ A_{ij} = \begin{cases}
 
 **Fixed patterns:**
 - **Strided:** Attend to every \( k \)-th position
+
 - **Local + Global:** Local window + special tokens
+
 - **Axial:** Separate row and column attention
 
 **Longformer pattern:**
@@ -334,10 +349,12 @@ Actual speedup: 2-4× (compute still has overhead).
 
 **With KV cache:**
 - Memory: \( O(NLd) \)
+
 - Compute per token: \( O(Nd) \)
 
 **Without KV cache:**
 - Memory: \( O(Ld) \)
+
 - Compute per token: \( O(N^2d) \)
 
 **Break-even point:**

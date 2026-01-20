@@ -162,7 +162,9 @@ p(x, y | z) = p(x|z) \cdot p(y|z)
 ```
 
 **Important:** 
+
 - $X \perp Y | Z$ does NOT imply $X \perp Y$
+
 - $X \perp Y$ does NOT imply $X \perp Y | Z$
 
 ---
@@ -187,7 +189,9 @@ p(x, y | z) = p(x|z) \cdot p(y|z)
 ### Properties
 
 - Diagonal: $\Sigma\_{ii} = \text{Var}(X\_i)$
+
 - Symmetric: $\boldsymbol{\Sigma} = \boldsymbol{\Sigma}^\top$
+
 - Positive semi-definite: $\mathbf{v}^\top \boldsymbol{\Sigma} \mathbf{v} \geq 0$
 
 ---
@@ -229,6 +233,7 @@ E[\mathbf{Y}] = E[\mathbf{A}\mathbf{X} + \mathbf{b}] = \mathbf{A}E[\mathbf{X}] +
 
 - Diagonal entries = 1
 - Off-diagonal entries $\in [-1, 1]$
+
 - $\mathbf{R} = \mathbf{D}^{-1/2} \boldsymbol{\Sigma} \mathbf{D}^{-1/2}$ where $\mathbf{D} = \text{diag}(\boldsymbol{\Sigma})$
 
 ---
@@ -251,7 +256,9 @@ X | Y = y \sim \mathcal{N}\left(\mu_X + \rho\frac{\sigma_X}{\sigma_Y}(y - \mu_Y)
 
 **Key insights:**
 - Conditional mean is linear in $y$
+
 - Conditional variance is reduced by factor $(1 - \rho^2)$
+
 - Higher correlation → more variance reduction
 
 ---

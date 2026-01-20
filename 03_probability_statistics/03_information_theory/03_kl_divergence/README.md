@@ -378,9 +378,13 @@ Interpretation:
 For x ~ P, we expect log P(x) to be larger than log Q(x) by D_KL(P||Q).
 
 In coding theory:
+
 - Optimal code for P: uses -log P(x) bits
+
 - Using code for Q: uses -log Q(x) bits
+
 - Extra bits needed: log(P(x)/Q(x))
+
 - Expected extra bits: D_KL(P||Q)
 
 ```

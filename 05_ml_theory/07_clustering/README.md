@@ -136,7 +136,9 @@ N_k = \sum_i \gamma_{ik}
 ### Definitions
 
 - **Core point:** Has \(\geq\) minPts in \(\epsilon\)-neighborhood
+
 - **Border point:** In \(\epsilon\)-neighborhood of core point
+
 - **Noise:** Neither core nor border
 
 ### Algorithm

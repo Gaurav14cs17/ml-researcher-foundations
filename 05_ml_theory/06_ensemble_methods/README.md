@@ -87,7 +87,9 @@ As \(B \to \infty\): \(\text{Var}(\bar{f}) \to \rho\sigma^2\). \(\blacksquare\)
 ### Random Forest
 
 Adds feature randomization to reduce \(\rho\):
+
 - At each split, consider only \(\sqrt{d}\) random features
+
 - Reduces correlation between trees
 
 ---

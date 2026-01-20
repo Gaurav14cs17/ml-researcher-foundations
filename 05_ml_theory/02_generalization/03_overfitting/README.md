@@ -59,6 +59,7 @@ For squared error loss:
 ```
 
 - **Underfitting:** High bias (model too simple)
+
 - **Overfitting:** High variance (model too complex)
 
 ### VC Theory Bound

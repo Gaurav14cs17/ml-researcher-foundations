@@ -79,7 +79,9 @@ H(W) = \frac{1}{2}\log_2(2\pi e\sigma^2) \approx 4.13 \text{ bits (for } \sigma=
 
 **Implications:**
 - 4-bit is near theoretical limit for Gaussian weights
+
 - 1-bit requires different weight distributions
+
 - Training from scratch may achieve lower entropy
 
 ### 3. Scaling Laws for Compression
@@ -112,8 +114,11 @@ b_t = f(x_t, \text{context})
 ```
 
 Different tokens get different bit-widths based on:
+
 - Token importance (attention weight)
+
 - Layer position
+
 - Prediction confidence
 
 **Mixed-Precision MoE:**
@@ -226,22 +231,31 @@ Approaches:
 ### Near-term (2024-2025)
 
 - 1-bit training becomes mainstream
+
 - All LLMs ship with INT4 by default
+
 - Hardware support for 2:4 sparsity everywhere
+
 - MoE becomes standard for large models
 
 ### Medium-term (2025-2027)
 
 - On-device LLMs with 1B+ params
+
 - Dynamic precision becomes practical
+
 - Custom AI chips for specific models
+
 - Green AI compliance requirements
 
 ### Long-term (2028+)
 
 - Biological-inspired compression (sparse + analog)
+
 - Zero-cost compression (built into architecture)
+
 - Universal compression APIs
+
 - Democratized SOTA models on edge
 
 ---

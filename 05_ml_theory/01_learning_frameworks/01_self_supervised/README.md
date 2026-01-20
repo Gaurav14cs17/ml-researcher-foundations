@@ -60,8 +60,11 @@ For positive pair \((x_i, x_j)\) (two augmentations of same image):
 ```
 
 where:
+
 - \(z_i = g(f(x_i))\) is the projection of encoded representation
+
 - \(\text{sim}(u, v) = \frac{u^\top v}{\|u\| \|v\|}\) is cosine similarity
+
 - \(\tau\) is temperature parameter
 
 ### Theoretical Justification

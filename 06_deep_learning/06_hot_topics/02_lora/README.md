@@ -51,8 +51,11 @@ For 1000 tasks → 280 TB storage + $1M+ cost
 ```
 
 Where:
+
 - $B \in \mathbb{R}^{d \times r}$ (down-projection)
+
 - $A \in \mathbb{R}^{r \times k}$ (up-projection)
+
 - $r \ll \min(d, k)$ (typically $r = 1-64$)
 
 ### LoRA Formulation
@@ -72,10 +75,15 @@ y = Wx + \frac{\alpha}{r} \cdot BAx
 ```
 
 Where:
+
 - $W \in \mathbb{R}^{d \times k}$: Frozen pretrained weights
+
 - $B \in \mathbb{R}^{d \times r}$: Trainable down-projection
+
 - $A \in \mathbb{R}^{r \times k}$: Trainable up-projection
+
 - $\alpha$: Scaling hyperparameter
+
 - $r$: Rank (controls parameter count)
 
 ### Architecture Visualization
@@ -201,7 +209,9 @@ B = 0
 
 **Intuition:**
 - $\alpha$ is the "learning rate multiplier" for LoRA
+
 - Dividing by $r$ normalizes for different rank choices
+
 - Typical: $\alpha = 16$ or $\alpha = 2r$
 
 ### Gradient Analysis
@@ -385,11 +395,15 @@ model = get_peft_model(model, lora_config)
 ## 🌍 Variants and Extensions
 
 ### AdaLoRA (2023)
+
 - **Adaptive rank allocation:** Different ranks for different layers
+
 - Prunes less important singular values during training
+
 - Better performance with same parameter budget
 
 ### DoRA (2024)
+
 - **Decomposed LoRA:** Separate magnitude and direction
 
 ```math
@@ -398,15 +412,21 @@ W + \Delta W = m \cdot \frac{W + BA}{\|W + BA\|}
 ```
 
 - Learns magnitude $m$ and directional update $BA$
+
 - Often outperforms standard LoRA
 
 ### LoRA+ (2024)
+
 - Different learning rates for A and B matrices
+
 - Typically: $\text{lr}\_B = \lambda \cdot \text{lr}\_A$ with $\lambda \approx 16$
+
 - Faster convergence
 
 ### rsLoRA (2024)
+
 - Rank-stabilized scaling: $\alpha = r$ instead of constant
+
 - More stable across different rank choices
 
 ---
@@ -466,8 +486,11 @@ def inference(prompt, task):
 ### Efficient Batching
 
 With base model shared:
+
 - Different requests can use different adapters
+
 - Batch together requests with same adapter
+
 - Base model weights shared across all
 
 ---

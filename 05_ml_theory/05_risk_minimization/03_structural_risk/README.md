@@ -112,10 +112,12 @@ Taking negative log:
 ```
 
 - \(-\log p(\mathcal{D}|h)\): Likelihood → Empirical risk
+
 - \(-\log p(h)\): Prior → Regularization
 
 **Specific Priors:**
 - Gaussian prior \(p(w) \propto e^{-\lambda \|w\|^2}\) → L2 regularization
+
 - Laplace prior \(p(w) \propto e^{-\lambda \|w\|_1}\) → L1 regularization
 
 ---

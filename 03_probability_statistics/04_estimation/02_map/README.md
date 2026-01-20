@@ -210,7 +210,9 @@ X^TX\theta + \lambda\theta = X^Ty
 ### Bayesian Interpretation of Ridge Solution
 
 The Ridge solution is the **posterior mean** for:
+
 - Prior: $\theta \sim \mathcal{N}(0, \sigma\_p^2 I)$
+
 - Likelihood: $y|X,\theta \sim \mathcal{N}(X\theta, \sigma^2 I)$
 
 where $\lambda = \sigma^2/\sigma\_p^2$.

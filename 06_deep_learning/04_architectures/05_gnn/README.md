@@ -23,9 +23,13 @@ G = (V, E, X)
 ```
 
 Where:
+
 - $V = \{v\_1, ..., v\_n\}$: nodes
+
 - $E \subseteq V \times V$: edges
+
 - $X \in \mathbb{R}^{n \times d}$: node features
+
 - $A \in \{0,1\}^{n \times n}$: adjacency matrix
 
 ### Message Passing Framework
@@ -73,8 +77,11 @@ H^{(l+1)} = \sigma\left(\tilde{D}^{-\frac{1}{2}} \tilde{A} \tilde{D}^{-\frac{1}{
 ```
 
 Where:
+
 - $\tilde{A} = A + I\_n$ (add self-loops)
+
 - $\tilde{D}\_{ii} = \sum\_j \tilde{A}\_{ij}$ (degree matrix)
+
 - $W^{(l)} \in \mathbb{R}^{d\_l \times d\_{l+1}}$
 
 ### Per-Node Form

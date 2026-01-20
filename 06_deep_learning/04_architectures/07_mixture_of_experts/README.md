@@ -29,8 +29,11 @@ y = \sum_{i=1}^{N} G(x)_i \cdot E_i(x)
 ```
 
 where:
+
 - \(N\): number of experts
+
 - \(E_i(x)\): output of expert \(i\)
+
 - \(G(x)_i\): gating weight for expert \(i\)
 
 ### Gating Function
@@ -88,8 +91,11 @@ L_{aux} = \alpha \cdot N \cdot \sum_{i=1}^{N} f_i \cdot P_i
 ```
 
 where:
+
 - \(f_i\): fraction of tokens routed to expert \(i\)
+
 - \(P_i\): average routing probability for expert \(i\)
+
 - \(\alpha\): balancing coefficient (typically 0.01)
 
 **Derivation:**
@@ -163,7 +169,9 @@ G(x) = \text{onehot}(\arg\max_i (W_g x)_i)
 
 **Benefits:**
 - Simpler implementation
+
 - Better hardware efficiency
+
 - Works well in practice
 
 ### 2. Expert Choice Routing
@@ -179,7 +187,9 @@ Each expert selects top-k tokens from the batch.
 
 **Benefits:**
 - Guarantees perfect load balance
+
 - Avoids token dropping
+
 - Better gradient flow
 
 ### 3. Soft MoE

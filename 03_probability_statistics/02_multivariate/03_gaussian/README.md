@@ -37,8 +37,11 @@ p(\mathbf{x}) = (2\pi)^{-d/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2
 
 **Parameters:**
 - $\boldsymbol{\mu} \in \mathbb{R}^d$: mean vector
+
 - $\boldsymbol{\Sigma} \in \mathbb{R}^{d \times d}$: covariance matrix (symmetric, positive definite)
+
 - $|\boldsymbol{\Sigma}|$: determinant of covariance
+
 - $\boldsymbol{\Sigma}^{-1}$: precision matrix
 
 ---

@@ -34,10 +34,15 @@
 This lecture covers **knowledge distillation** for model compression:
 
 - **Core idea**: Transfer knowledge from large "teacher" to small "student"
+
 - **Soft labels**: Why teacher probabilities contain more information than hard labels
+
 - **Temperature scaling**: Making probability distributions softer for better knowledge transfer
+
 - **Feature distillation**: Matching intermediate representations, not just outputs
+
 - **Self-distillation**: Using a model as its own teacher
+
 - **LLM distillation**: Creating Alpaca/Vicuna from GPT-4
 
 > 💡 *"Soft labels from the teacher encode dark knowledge—relationships between classes that hard labels don't capture."* — Prof. Song Han
@@ -113,8 +118,11 @@ T=20: [0.4, 0.3, 0.3]    # Very soft
 ```
 
 where:
+
 - \( p^T = \text{softmax}(z^T / T) \) = teacher's soft predictions
+
 - \( p^S = \text{softmax}(z^S / T) \) = student's soft predictions
+
 - \( T \) = temperature
 
 **Why \( T^2 \) scaling?**
@@ -166,6 +174,7 @@ Becomes hard one-hot (minimum entropy).
 **Observation:** Even incorrect class probabilities contain useful information.
 
 For a cat image, the teacher might output:
+
 - P(cat) = 0.80
 - P(dog) = 0.15
 - P(car) = 0.05
@@ -197,6 +206,7 @@ The soft labels encode **class similarities**:
 
 **Interpretation:**
 - If \( p_i^S > p_i^T \): Gradient is positive → decrease \( z_i^S \)
+
 - If \( p_i^S < p_i^T \): Gradient is negative → increase \( z_i^S \)
 
 The student learns to match the teacher's full distribution, not just the correct class.
@@ -213,8 +223,11 @@ Match intermediate representations, not just outputs:
 ```
 
 where:
+
 - \( F_l^S \) = student feature at layer \( l \)
+
 - \( F_l^T \) = teacher feature at layer \( l \)
+
 - \( g_l \) = projection to match dimensions
 
 **FitNets:** Learn \( g_l \) as trainable projector.
@@ -241,7 +254,9 @@ where \( A_l = \sum_c |F_l^c|^2 \) is the spatial attention map.
 
 **Explanation:**
 - Training with soft labels provides richer supervision
+
 - Regularization effect prevents overfitting
+
 - Label smoothing is implicit
 
 **Born-Again Networks (BAN):**
@@ -308,12 +323,16 @@ This is maximum likelihood on teacher-generated data.
 
 **Intuition:**
 - \( T = 1 \): Hard labels, limited knowledge transfer
+
 - \( T = 20 \): Too soft, loses discriminative information
+
 - \( T \approx 4 \): Good balance
 
 **Optimal \( T \) depends on:**
 - Number of classes
+
 - Teacher confidence
+
 - Task difficulty
 
 ---
@@ -331,6 +350,7 @@ r = \frac{|\theta_S|}{|\theta_T|}
 
 **Empirical observation:**
 - \( r > 0.1 \): Good distillation
+
 - \( r < 0.01 \): Capacity gap issues
 
 **Solution: Teacher Assistant (TA):**

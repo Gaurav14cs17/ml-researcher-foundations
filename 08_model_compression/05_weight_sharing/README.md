@@ -29,9 +29,13 @@
 ```
 
 Where:
+
 - $w\_i$ = original weight value
+
 - $c\_j$ = cluster centroid ($j \in \{1,...,K\}$)
+
 - $a\_i$ = cluster assignment for weight $i$
+
 - $K$ = number of clusters
 
 **Lloyd's Algorithm:**
@@ -169,7 +173,9 @@ E = E_1 \times E_2
 ```
 
 Where:
+
 - $E\_1 \in \mathbb{R}^{V \times E}$ (vocabulary to low-dim)
+
 - $E\_2 \in \mathbb{R}^{E \times H}$ (low-dim to hidden)
 
 **Parameter Reduction:**

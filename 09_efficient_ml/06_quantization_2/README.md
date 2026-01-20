@@ -34,10 +34,15 @@
 This lecture covers **advanced quantization techniques**, especially for LLMs:
 
 - **Quantization-Aware Training (QAT)**: Training with simulated quantization
+
 - **Straight-Through Estimator (STE)**: Backpropagating through non-differentiable rounding
+
 - **LLM quantization challenges**: Activation outliers that break standard methods
+
 - **SmoothQuant**: Migrating quantization difficulty from activations to weights
+
 - **GPTQ**: Second-order weight quantization for one-shot LLM compression
+
 - **AWQ**: Activation-aware weight quantization preserving important weights
 
 > 💡 *"QLoRA enables training a 65B parameter model on a single GPU—a game-changer for accessibility."* — Prof. Song Han
@@ -229,11 +234,15 @@ where \( \alpha \in [0, 1] \) controls the migration strength.
 **Effect on quantization difficulty:**
 
 Before smoothing:
+
 - Activation range: \( [0, 100] \) (hard to quantize, outliers)
+
 - Weight range: \( [-1, 1] \) (easy)
 
 After smoothing with \( s = 10 \):
+
 - Activation range: \( [0, 10] \) (easier)
+
 - Weight range: \( [-10, 10] \) (still manageable)
 
 Both are now within similar ranges → balanced quantization.
@@ -360,7 +369,9 @@ Y = X \cdot Q_4(W_0) + X \cdot BA
 ```
 
 where:
+
 - \( Q_4(W_0) \) = 4-bit quantized pretrained weights (frozen)
+
 - \( B \in \mathbb{R}^{d \times r}, A \in \mathbb{R}^{r \times d} \) = trainable LoRA adapters (FP16)
 
 **Memory savings:**

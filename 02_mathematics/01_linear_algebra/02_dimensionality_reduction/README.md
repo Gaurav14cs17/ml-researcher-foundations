@@ -17,8 +17,11 @@
 > **Dimensionality reduction compresses high-dimensional data while preserving important structure.** Essential for visualization, noise reduction, and computational efficiency.
 
 - 📊 **PCA**: Linear, preserves variance, fast, interpretable
+
 - 🌀 **t-SNE**: Non-linear, preserves local structure, for visualization
+
 - 🗺️ **UMAP**: Non-linear, preserves global+local structure, faster than t-SNE
+
 - 🧠 **Autoencoders**: Neural network-based, learns nonlinear manifolds
 
 ---

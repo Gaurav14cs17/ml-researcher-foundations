@@ -34,10 +34,15 @@
 This lecture introduces **neural network pruning** as a fundamental compression technique:
 
 - **Why pruning works**: Neural networks are over-parameterized; many weights are redundant
+
 - **Pruning pipeline**: Train → Prune → Fine-tune → Deploy
+
 - **Pruning criteria**: Magnitude-based, gradient-based, and Taylor expansion methods
+
 - **Structured vs Unstructured**: Trade-offs between compression ratio and hardware efficiency
+
 - **Iterative pruning**: Why gradual pruning outperforms one-shot approaches
+
 - **Seminal results**: 90%+ sparsity with <1% accuracy drop on ImageNet
 
 > 💡 *"Not all weights are created equal—many can be removed with minimal impact on accuracy."* — Prof. Song Han
@@ -314,8 +319,11 @@ Empirical observation follows a characteristic curve:
 ```
 
 where:
+
 - \( s \) = sparsity level
+
 - \( s_0 \) = critical sparsity (where accuracy starts dropping)
+
 - \( \alpha, \beta \) = model-specific constants
 
 **Key insight:** Accuracy is relatively stable until critical sparsity, then drops rapidly.
@@ -332,10 +340,15 @@ s_t = s_f + (s_0 - s_f)\left(1 - \frac{t - t_0}{n\Delta t}\right)^3
 ```
 
 where:
+
 - \( s_0 \) = initial sparsity (usually 0)
+
 - \( s_f \) = final target sparsity
+
 - \( t_0 \) = start step
+
 - \( n \) = number of pruning steps
+
 - \( \Delta t \) = pruning interval
 
 **Why cubic?** Removes more weights early (when easier to recover) and fewer later (when more critical).

@@ -170,13 +170,18 @@ Expected Error
 
 **Symptoms:**
 - High training error
+
 - High test error  
+
 - Training error ≈ Test error
+
 - Learning curve plateaus early
 
 **Examples:**
 - Linear model for quadratic data
+
 - Shallow network for complex patterns
+
 - Insufficient features
 
 **Mathematical Example:**
@@ -205,13 +210,18 @@ Best linear fit minimizes \(\int (x^2 - ax - b)^2 dx\), but cannot represent cur
 
 **Symptoms:**
 - Low training error
+
 - High test error
+
 - Training error << Test error
+
 - Large gap between train/test curves
 
 **Examples:**
 - High-degree polynomial
+
 - Deep network without regularization
+
 - k-NN with k=1
 - Decision tree with no pruning
 

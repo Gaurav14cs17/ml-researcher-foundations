@@ -137,7 +137,9 @@ Classical theory predicts: more parameters → more overfitting
 ### Theoretical Explanation
 
 In the overparameterized regime:
+
 - **Minimum-norm interpolation:** Among all interpolating solutions, SGD finds the one with minimum norm
+
 - **Implicit regularization:** Simple structure despite high capacity
 
 ---

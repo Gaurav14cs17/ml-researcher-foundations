@@ -40,9 +40,13 @@
 **Definition:** A concept class \(\mathcal{C}\) is **PAC-learnable** if there exists an algorithm \(\mathcal{A}\) and a polynomial \(p(\cdot, \cdot, \cdot, \cdot)\) such that:
 
 For all:
+
 - Target concept \(c \in \mathcal{C}\)
+
 - Distribution \(\mathcal{D}\) over input space \(\mathcal{X}\)
+
 - Accuracy parameter \(\epsilon > 0\)
+
 - Confidence parameter \(\delta > 0\)
 
 When given \(m \geq p(1/\epsilon, 1/\delta, n, \text{size}(c))\) i.i.d. samples from \(\mathcal{D}\):
@@ -53,7 +57,9 @@ When given \(m \geq p(1/\epsilon, 1/\delta, n, \text{size}(c))\) i.i.d. samples 
 ```
 
 where:
+
 - \(h_S = \mathcal{A}(S)\) is the hypothesis output by algorithm
+
 - \(\text{error}_{\mathcal{D}}(h) = \Pr_{x \sim \mathcal{D}}[h(x) \neq c(x)]\)
 
 **In plain English:** "With high probability (\(1-\delta\)), the learned hypothesis is approximately correct (error \(\leq \epsilon\))."

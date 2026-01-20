@@ -16,9 +16,13 @@
 ## 📂 Suggested Images
 
 Add SVG diagrams for:
+
 - Key concepts
+
 - Mathematical visualizations
+
 - Algorithm flowcharts
+
 - Architecture diagrams
 
 ---

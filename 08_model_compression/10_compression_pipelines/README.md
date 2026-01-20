@@ -98,6 +98,7 @@ W_{quant} = \arg\min_C \sum_i \min_j \|w_i - c_j\|^2
 ```math
 **Achieved Compression:**
 - AlexNet: 35× (240MB → 6.9MB)
+
 - VGG-16: 49× (552MB → 11.3MB)
 
 ### 4. QLoRA Memory Model
@@ -132,7 +133,9 @@ M_{optimizer} = 2 \times |\theta_{LoRA}| \times 1 \text{ byte}
 ```math
 **Example (LLaMA-7B, r=16):**
 - Base: $7B \times 0.5 = 3.5$GB
+
 - LoRA: $\sim 4M \times 2 = 8$MB
+
 - Total: $\sim 4$GB (fits 8GB GPU!)
 
 ### 5. Accuracy-Compression Pareto Frontier
@@ -145,8 +148,11 @@ M_{optimizer} = 2 \times |\theta_{LoRA}| \times 1 \text{ byte}
 
 ```math
 Where:
+
 - $A\_0$ = original accuracy
+
 - $\alpha, \beta$ = method-dependent constants
+
 - $CR$ = compression ratio
 
 **Optimal Pipeline Selection:**

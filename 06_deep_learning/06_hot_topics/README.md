@@ -25,16 +25,22 @@ This section covers the latest breakthroughs and innovations that are reshaping 
 IO-aware exact attention algorithm that enables long-context models
 
 **Key Innovation:** Never materialize the full n² attention matrix
+
 - Memory: O(n²) → O(n)
+
 - Speed: 2-7x faster
+
 - Enables: 100K+ token sequences
 
 ### 2. **[LoRA (Low-Rank Adaptation)](./lora/)**
 Efficient fine-tuning via low-rank decomposition
 
 **Key Innovation:** ΔW = BA where r << d
+
 - Parameters: 250x reduction
+
 - Quality: Matches full fine-tuning
+
 - Enables: Personal LLM adapters
 
 ---
@@ -138,13 +144,19 @@ model = get_peft_model(base_model, config)
 ## 🚀 Recent Extensions
 
 ### Flash Attention Family
+
 - **Flash Attention 2** (2023): 5-7x faster
+
 - **Flash Attention 3** (2024): Multi-query, sparse patterns
+
 - **PagedAttention** (vLLM): KV cache optimization
 
 ### LoRA Family
+
 - **QLoRA** (2023): 4-bit quantization + LoRA
+
 - **AdaLoRA** (2023): Adaptive rank allocation
+
 - **DoRA** (2024): Decomposed magnitude + direction
 
 ---
@@ -163,14 +175,21 @@ model = get_peft_model(base_model, config)
 ## 📚 Resources
 
 ### Papers
+
 - **Flash Attention** (Dao et al., 2022)
+
 - **Flash Attention 2** (Dao, 2023)
+
 - **LoRA** (Hu et al., 2021)
+
 - **QLoRA** (Dettmers et al., 2023)
 
 ### Libraries
+
 - `flash-attn`: Official Flash Attention
+
 - `peft`: Hugging Face Parameter-Efficient Fine-Tuning
+
 - `bitsandbytes`: Quantization for QLoRA
 
 ---

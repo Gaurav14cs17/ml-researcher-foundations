@@ -25,8 +25,11 @@ y = \sum_{i=1}^{N} g_i(x) \cdot E_i(x)
 ```
 
 Where:
+
 - $N$ = number of experts
+
 - $g\_i(x)$ = gating weight for expert $i$ (routing)
+
 - $E\_i(x)$ = output of expert $i$
 
 **Gating Function:**
@@ -47,7 +50,9 @@ g(x) = \text{TopK}(\text{softmax}(W_g \cdot x + \epsilon))
 ```
 
 Where:
+
 - $\epsilon \sim \text{Gumbel}(0, 1)$ (optional exploration noise)
+
 - Only top-$K$ values are non-zero
 
 **Normalization after Top-K:**
@@ -101,7 +106,9 @@ For Mixtral (N=8, K=2): $4\times$ fewer FLOPs in FFN layers!
 ```
 
 Where:
+
 - $f\_i = \frac{\text{tokens routed to expert } i}{\text{total tokens}}$ (actual fraction)
+
 - $P\_i = \frac{1}{T}\sum\_{t=1}^{T} g\_i(x\_t)$ (average routing probability)
 
 **Intuition:** Minimizing $\sum f\_i P\_i$ encourages uniform distribution.
@@ -128,7 +135,9 @@ Tokens beyond capacity are dropped or sent to secondary expert.
 
 **Token Dropping:**
 If expert $i$ receives more than capacity tokens:
+
 - Drop excess tokens (use identity residual)
+
 - Or route to second-choice expert
 
 ### 6. Expert Choice Routing (Reverse Routing)
@@ -145,7 +154,9 @@ Each expert selects its top-$K$ tokens to process.
 
 **Benefits:**
 - Perfect load balance (each expert processes exactly $K$ tokens)
+
 - No dropping
+
 - Better gradient flow
 
 ### 7. Theoretical Analysis

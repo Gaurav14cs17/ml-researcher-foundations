@@ -168,8 +168,11 @@ p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\righ
 
 **ML Uses:**
 - Regression targets (MSE loss)
+
 - Latent space in VAE
+
 - Weight initialization
+
 - Gaussian noise in diffusion
 
 ---
@@ -212,7 +215,9 @@ p(x) = \exp\left(-1 + \lambda_0 + \lambda_1 x + \lambda_2(x-\mu)^2\right)
 
 **Imposing constraints:**
 - From fixed mean: $\lambda\_1 = 0$
+
 - From fixed variance: $\lambda\_2 = -\frac{1}{2\sigma^2}$
+
 - From normalization: $\lambda\_0 = 1 - \frac{1}{2}\log(2\pi\sigma^2)$
 
 ```math
@@ -329,7 +334,9 @@ p(\mathbf{x}) = (2\pi)^{-n/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2
 
 **Key Properties:**
 - Marginals are Gaussian
+
 - Conditionals are Gaussian
+
 - Linear transforms are Gaussian: $A\mathbf{X} + \mathbf{b} \sim \mathcal{N}(A\boldsymbol{\mu}+\mathbf{b}, A\boldsymbol{\Sigma}A^\top)$
 
 ---
@@ -470,8 +477,11 @@ p(x|\boldsymbol{\theta}) = h(x) \exp\left(\boldsymbol{\eta}(\boldsymbol{\theta})
 
 **Why it matters in ML:**
 - Conjugate priors exist
+
 - Maximum entropy distributions
+
 - Natural gradients
+
 - Generalized Linear Models (GLMs)
 
 ---

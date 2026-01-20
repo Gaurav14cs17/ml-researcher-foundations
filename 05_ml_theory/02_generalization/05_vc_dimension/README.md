@@ -57,6 +57,7 @@ If \(\mathcal{H}\) can shatter arbitrarily large sets, \(\text{VC}(\mathcal{H}) 
 
 **Equivalently:**
 - \(\text{VC}(\mathcal{H}) \geq d\) if there exists **some** set of \(d\) points that \(\mathcal{H}\) shatters
+
 - \(\text{VC}(\mathcal{H}) < d\) if **no** set of \(d\) points can be shattered by \(\mathcal{H}\)
 
 ---
@@ -90,7 +91,9 @@ w = \sum_{i=1}^d y_i e_i, \quad b = -\frac{1}{2}(1 + y_0)
 ```
 
 Then:
+
 - \(w^\top x_0 + b = b = -\frac{1}{2}(1 + y_0)\), which has sign \(y_0\)
+
 - \(w^\top x_i + b = y_i + b\), which has sign \(y_i\) for appropriate \(b\)
 
 **Proof of upper bound (\(\leq d+1\)):**
@@ -106,9 +109,13 @@ For any \(d+2\) points in \(\mathbb{R}^d\), they are linearly dependent. By Rado
 **Proof:**
 
 *Lower bound:* Two points \(x_1 < x_2\) can be shattered:
+
 - \((+, +)\): interval \([x_1, x_2]\)
+
 - \((-, -)\): interval \([x_1 - 1, x_1 - 0.5]\) (excludes both)
+
 - \((+, -)\): interval \([x_1 - 0.5, (x_1 + x_2)/2]\)
+
 - \((-, +)\): interval \([(x_1 + x_2)/2, x_2 + 0.5]\)
 
 *Upper bound:* For any three points \(x_1 < x_2 < x_3\), the labeling \((+, -, +)\) cannot be achieved by a single interval.
@@ -146,7 +153,9 @@ This counts the maximum number of distinct classifications on \(n\) points.
 
 **Properties:**
 - \(m_\mathcal{H}(n) \leq 2^n\) (at most all labelings)
+
 - If \(\text{VC}(\mathcal{H}) = d\), then \(m_\mathcal{H}(d) = 2^d\) (some set is shattered)
+
 - If \(\text{VC}(\mathcal{H}) = d\), then \(m_\mathcal{H}(n) < 2^n\) for \(n > d\)
 
 ### Sauer-Shelah Lemma
@@ -178,7 +187,9 @@ By induction on \(n + d\). For the base case, if \(d = 0\), then \(m_\mathcal{H}
 ```
 
 where:
+
 - \(R(h) = \mathbb{E}_{(x,y) \sim P}[\mathbb{1}[h(x) \neq y]]\) is the true risk
+
 - \(\hat{R}(h) = \frac{1}{n}\sum_{i=1}^n \mathbb{1}[h(x_i) \neq y_i]\) is the empirical risk
 
 ### Proof Outline
@@ -227,7 +238,9 @@ n = O\left(\frac{d + \ln(1/\delta)}{\epsilon^2}\right)
 
 **Key insights:**
 - Sample complexity is **linear** in VC dimension
+
 - Sample complexity is **quadratic** in \(1/\epsilon\)
+
 - No dependence on the distribution \(P\) (distribution-free bound)
 
 ---
@@ -508,7 +521,9 @@ for d in [3, 10, 100, 1000]:
 ### The Deep Learning Paradox
 
 Classical VC theory predicts:
+
 - High VC dimension → poor generalization
+
 - Neural networks have VC dim \(\approx O(WL)\) where \(W\) = parameters, \(L\) = layers
 
 **Reality:** Overparameterized networks generalize well despite huge VC dimension!

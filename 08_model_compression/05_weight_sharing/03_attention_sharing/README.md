@@ -33,8 +33,11 @@
 
 **Parameters per layer:**
 - Query: $h \times d \times d\_k$
+
 - Key: $h \times d \times d\_k$
+
 - Value: $h \times d \times d\_v$
+
 - Output: $h \times d\_v \times d$
 
 **Total:** $4 \times h \times d \times d\_k = 4d^2$ (assuming $d\_k = d/h$)
@@ -53,6 +56,7 @@
 ```
 
 - Each head has unique $W\_Q^i$
+
 - All heads share single $W\_K, W\_V$
 
 #### 2.2 Parameter Reduction
@@ -65,6 +69,7 @@
 
 **Example (h=8):**
 - MHA: Q, K, V each have 8 heads → 24 projection matrices
+
 - MQA: 8 Q heads, 1 K, 1 V → 10 projection matrices
 
 ---

@@ -40,7 +40,9 @@ In practice for images (cross-correlation, which deep learning calls "convolutio
 ```
 
 Where:
+
 - $(k\_h, k\_w)$ = kernel height and width
+
 - $b$ = bias term
 
 ### 2. Output Dimensions Formula
@@ -73,8 +75,11 @@ Number of valid positions with stride s: floor((remaining)/s) + 1
 ### 3. Parameter Count Analysis
 
 For a convolutional layer with:
+
 - $C\_{in}$ input channels
+
 - $C\_{out}$ output channels (number of filters)
+
 - Kernel size $(k\_h \times k\_w)$
 
 ```math
@@ -103,8 +108,11 @@ RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i
 ```
 
 Where:
+
 - $RF\_l$ = receptive field at layer $l$
+
 - $k\_l$ = kernel size at layer $l$
+
 - $s\_i$ = stride at layer $i$
 
 **Proof by Induction:**
@@ -171,8 +179,11 @@ Reduction: 10^7 times fewer parameters!
 **Statement:** Each output depends only on a local region of input.
 
 This enables:
+
 - Computational efficiency
+
 - Spatial structure exploitation
+
 - Hierarchical feature learning
 
 ---

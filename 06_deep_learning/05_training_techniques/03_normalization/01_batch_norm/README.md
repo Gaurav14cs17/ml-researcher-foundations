@@ -48,8 +48,11 @@ y_i = \gamma \hat{x}_i + \beta
 ```
 
 where:
+
 - \(\gamma\): learnable scale parameter (initialized to 1)
+
 - \(\beta\): learnable shift parameter (initialized to 0)
+
 - \(\epsilon\): small constant for numerical stability (typically \(10^{-5}\))
 
 ---
@@ -77,7 +80,9 @@ Layer 2 always sees normalized inputs (μ≈0, σ≈1)
 
 **Recent research suggests BatchNorm works by:**
 - Making the loss landscape smoother (smaller Lipschitz constant)
+
 - Reducing gradient variance
+
 - Allowing larger learning rates without divergence
 
 ```
@@ -94,11 +99,15 @@ BatchNorm adds noise during training (batch statistics vary):
 
 ```
 Training: Use batch statistics (noisy)
+
 - μ_B varies between batches
+
 - Acts like data augmentation
 
 Inference: Use running averages (stable)
+
 - μ_running = α · μ_running + (1-α) · μ_B
+
 - σ²_running = α · σ²_running + (1-α) · σ²_B
 
 ```

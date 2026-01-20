@@ -34,10 +34,15 @@
 This lecture covers **hardware-aware NAS** and efficient deployment:
 
 - **Hardware-aware NAS**: Optimizing for actual device latency, not just FLOPs
+
 - **ProxylessNAS**: Train directly on target hardware metrics
+
 - **Once-for-All (OFA)**: Train one network containing many sub-networks
+
 - **EfficientNet**: Compound scaling of depth, width, and resolution
+
 - **MnasNet**: Multi-objective optimization for mobile deployment
+
 - **Practical deployment**: From search to real-world deployment
 
 > 💡 *"FLOPs don't equal speed—you must optimize for the actual target hardware."* — Prof. Song Han
@@ -67,8 +72,11 @@ Train ONE network that contains MANY sub-networks:
 Full Network: depth=20, width=1.0, resolution=224
 
 Sub-networks:
+
 - depth=12, width=0.5, resolution=160 (mobile)
+
 - depth=16, width=0.75, resolution=192 (tablet)
+
 - depth=20, width=1.0, resolution=224 (server)
 
 ```
@@ -361,9 +369,13 @@ Since \( \text{Cost}_{search} \ll \text{Cost}_{single} \):
 ### Architecture Space Coverage
 
 OFA network with:
+
 - 5 depth choices
+
 - 4 width choices per layer
+
 - 3 kernel choices per layer
+
 - 5 resolution choices
 
 **Total sub-networks:**

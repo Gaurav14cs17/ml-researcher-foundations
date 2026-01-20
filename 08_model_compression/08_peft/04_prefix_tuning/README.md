@@ -32,8 +32,11 @@ Prepend learnable "virtual tokens" to keys and values.
 ```
 
 where:
+
 - $P\_K, P\_V \in \mathbb{R}^{l \times d}$ are learnable prefix matrices
+
 - $l$ = prefix length
+
 - $K, V$ = actual keys and values from input
 
 ---
@@ -117,6 +120,7 @@ vs. 345M for full model → **1.4%**
 
 **Direct optimization of $P\_K, P\_V$ is unstable:**
 - High-dimensional
+
 - Lies in unusual parameter space
 
 #### 4.2 MLP Reparameterization
@@ -130,7 +134,9 @@ P_V = \text{MLP}(E_V)
 ```
 
 where:
+
 - $E\_K, E\_V \in \mathbb{R}^{l \times d'}$ with $d' < d$
+
 - MLP: $\mathbb{R}^{d'} \to \mathbb{R}^d$
 
 **Benefits:**
@@ -142,7 +148,9 @@ where:
 
 **Discard MLP, keep only $P\_K, P\_V$:**
 - Compute final prefix values
+
 - Use directly for inference
+
 - No MLP overhead
 
 ---
@@ -162,6 +170,7 @@ where $P \in \mathbb{R}^{l \times d}$ is learned.
 
 **Simpler but less expressive:**
 - Only affects input layer
+
 - Prefix tuning affects all layers
 
 #### 5.2 Comparison

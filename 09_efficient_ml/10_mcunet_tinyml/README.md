@@ -34,10 +34,15 @@
 This lecture covers **TinyML** for deploying ML on microcontrollers:
 
 - **TinyML constraints**: Running ML on 256KB SRAM, 1MB Flash
+
 - **MCUNet**: Co-design of network architecture and inference engine
+
 - **TinyNAS**: Architecture search under extreme memory constraints
+
 - **TinyEngine**: Memory-efficient inference engine for MCUs
+
 - **Peak memory optimization**: Scheduling to minimize memory footprint
+
 - **Applications**: Wake word detection, visual wake words, anomaly detection
 
 > 💡 *"MCUNet brings ImageNet-level accuracy to microcontrollers with only 320KB of SRAM—a 1000× improvement."* — Prof. Song Han
@@ -104,8 +109,11 @@ For STM32F746: \( \text{SRAM} = 320\text{KB} \)
 ```
 
 where:
+
 - \( S_{max} \) = SRAM constraint
+
 - \( F_{max} \) = Flash constraint
+
 - \( \alpha \) = architecture parameters
 
 ---
@@ -216,11 +224,14 @@ M_{peak} = C \times H \times W + C' \times H \times W
 
 **Standard depthwise conv:**
 - Read input: \( C \times H \times W \)
+
 - Write output: \( C \times H' \times W' \)
+
 - Memory: \( C(HW + H'W') \)
 
 **In-place (when stride=1, padding=same):**
 - Overwrite input with output
+
 - Memory: \( C \times H \times W \)
 
 **Constraint:** Can only use when output fits in input's memory.
@@ -236,7 +247,9 @@ M_{peak} = C \times H \times W + C' \times H \times W
 
 **Im2col-free:**
 - Direct loop-based computation
+
 - No intermediate buffer needed
+
 - Memory: \( O(1) \) extra
 
 **Trade-off:** Slower but much less memory.

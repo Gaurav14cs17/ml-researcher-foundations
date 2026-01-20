@@ -34,10 +34,15 @@
 This lecture provides an **introduction to quantum machine learning**:
 
 - **Quantum basics**: Qubits, superposition, entanglement
+
 - **Quantum gates**: Building blocks of quantum computation
+
 - **Variational quantum circuits**: The quantum analog of neural networks
+
 - **Quantum kernels**: Potentially powerful feature spaces
+
 - **Current limitations**: NISQ devices and their constraints
+
 - **Future outlook**: When might quantum ML become practical?
 
 > 💡 *"Quantum computing offers exponential state space—but translating that into practical ML speedups remains an open challenge."* — Prof. Song Han
@@ -227,7 +232,9 @@ For random circuit \( U \) with \( n \) qubits:
 
 **Mitigation:**
 - Shallow circuits
+
 - Problem-specific ansätze
+
 - Layer-wise training
 
 ---
@@ -241,6 +248,7 @@ For quantum speedup:
 
 **Current status:**
 - Theoretical speedups: Yes (some problems)
+
 - Practical ML advantage: Not yet demonstrated
 
 ---
@@ -251,6 +259,7 @@ For quantum speedup:
 
 **More expressive circuit:**
 - Can represent more functions
+
 - Harder to train (barren plateaus)
 
 **Trade-off:**
@@ -268,12 +277,16 @@ For practical QML, need structured circuits matched to problem.
 
 **Current devices (NISQ = Noisy Intermediate-Scale Quantum):**
 - 50-1000 qubits
+
 - ~0.1-1% error per gate
+
 - ~100-1000 gate depth before decoherence
 
 **Implications:**
 - Can't run deep circuits
+
 - Error correction not yet available
+
 - Limited to variational algorithms
 
 ---
@@ -291,6 +304,7 @@ Quantum computer handles expensive subroutine; classical handles rest.
 
 **Examples:**
 - VQE: Quantum evaluates energy, classical optimizes
+
 - QAOA: Quantum samples, classical analyzes
 
 ---

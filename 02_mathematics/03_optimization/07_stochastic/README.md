@@ -17,8 +17,11 @@
 > **SGD and its variants power ALL of deep learning.** The noise from mini-batches provides implicit regularization and enables training on massive datasets.
 
 - 🎲 **SGD**: Use random mini-batches for unbiased gradient estimates
+
 - 🚀 **Momentum**: Accelerate along consistent gradient directions
+
 - 🧠 **Adam**: Adaptive learning rates per parameter
+
 - 🏆 **AdamW**: Adam + proper weight decay (best for transformers)
 
 ---
@@ -355,8 +358,11 @@ For convergence guarantees, need:
 ```
 
 Examples:
+
 - $\eta\_t = \eta\_0 / \sqrt{t}$ ✓
+
 - $\eta\_t = \eta\_0 / t$ ✓
+
 - $\eta\_t = \eta\_0$ (constant) ✗ (doesn't converge exactly)
 
 ---

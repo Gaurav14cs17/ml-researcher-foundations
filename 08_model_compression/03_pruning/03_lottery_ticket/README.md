@@ -70,8 +70,11 @@ The winning ticket isn't just the mask $m$ - it's the combination $(m, \theta\_0
 Different random initializations give different tickets!
 
 **Experiment:** 
+
 - Take mask $m$ from one initialization
+
 - Apply to different random initialization $\theta\_0'$
+
 - Result: Much worse accuracy!
 
 This suggests the specific initial values matter.
@@ -154,7 +157,9 @@ Modified IMP:
 
 **Instability at initialization:**
 - Very deep networks have unstable gradients initially
+
 - First few iterations stabilize training dynamics
+
 - Resetting before stabilization fails
 
 **Mathematical view:**
@@ -194,7 +199,9 @@ s_i = |w_i \cdot \nabla_{w_i}\mathcal{L}|
 
 **Random pruning baseline:**
 - Randomly prune to same sparsity as winning ticket
+
 - Train from same initialization
+
 - Result: Much worse than winning ticket
 
 This proves IMP is finding something special, not just any sparse mask.
@@ -245,7 +252,9 @@ then the sparse network achieves similar convergence rate.
 **Proof:**
 
 Gradient descent update:
+
 - Dense: $\theta\_1 = \theta\_0 - \eta g\_{dense}$
+
 - Sparse: $\theta\_1^{(s)} = \theta\_0 - \eta g\_{sparse}$
 
 The loss decrease:
@@ -340,14 +349,18 @@ So 11 iterations needed. ∎
 
 **Findings:**
 - Tickets transfer well to similar tasks
+
 - Universal tickets exist for some domains
+
 - Task-specific fine-tuning may be needed
 
 #### 6.2 Lottery Tickets in NLP
 
 **BERT Lottery Tickets (Chen et al., 2020):**
 - Found at 40-90% sparsity
+
 - Transfer across NLP tasks
+
 - Pre-training helps find tickets
 
 #### 6.3 Multi-Prize Lottery Ticket

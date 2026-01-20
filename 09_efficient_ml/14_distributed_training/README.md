@@ -34,10 +34,15 @@
 This lecture covers **distributed training** for large models:
 
 - **Why distributed**: Models too large for single GPU
+
 - **Data parallelism**: Same model, different data batches
+
 - **ZeRO**: Partitioning optimizer states, gradients, parameters
+
 - **Tensor parallelism**: Splitting matrices across GPUs
+
 - **Pipeline parallelism**: Splitting layers across GPUs
+
 - **3D parallelism**: Combining all three for maximum scale
 
 > 💡 *"Training GPT-3 required 175B parameters across thousands of GPUs—distributed training is essential for frontier models."* — Prof. Song Han
@@ -200,7 +205,9 @@ where P = pipeline stages.
 **Combining all three:**
 
 - **Data parallel:** Across nodes (slow network)
+
 - **Tensor parallel:** Within node (fast NVLink)
+
 - **Pipeline parallel:** Across nodes (overlaps communication)
 
 **Total parallelism:**
@@ -260,8 +267,11 @@ C = 6ND
 ```
 
 where:
+
 - \( C \) = compute (FLOP)
+
 - \( N \) = parameters
+
 - \( D \) = training tokens
 
 **Optimal ratio:**

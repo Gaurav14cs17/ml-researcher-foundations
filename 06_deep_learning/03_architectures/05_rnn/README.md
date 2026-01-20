@@ -40,11 +40,17 @@ y_t = W_{hy} h_t + b_y
 ```
 
 Where:
+
 - $x\_t \in \mathbb{R}^d$ = input at time $t$
+
 - $h\_t \in \mathbb{R}^n$ = hidden state at time $t$
+
 - $y\_t \in \mathbb{R}^k$ = output at time $t$
+
 - $W\_{xh} \in \mathbb{R}^{n \times d}$ = input-to-hidden weights
+
 - $W\_{hh} \in \mathbb{R}^{n \times n}$ = hidden-to-hidden weights
+
 - $W\_{hy} \in \mathbb{R}^{k \times n}$ = hidden-to-output weights
 
 ### 2. Backpropagation Through Time (BPTT)

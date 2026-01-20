@@ -37,9 +37,13 @@ y = \gamma \cdot \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} + \beta
 ```
 
 Where:
+
 - $\mu$: Mean over normalization dimension
+
 - $\sigma^2$: Variance over normalization dimension
+
 - $\gamma, \beta$: Learned scale and shift parameters
+
 - $\epsilon$: Small constant for numerical stability (e.g., $10^{-5}$)
 
 ---
@@ -143,7 +147,9 @@ y_i = \gamma_i \hat{x}_i + \beta_i
 
 **Key difference from BatchNorm:**
 - Normalize over features, not batch
+
 - Same statistics at train and test time
+
 - Works with batch size = 1
 
 ### For Transformers

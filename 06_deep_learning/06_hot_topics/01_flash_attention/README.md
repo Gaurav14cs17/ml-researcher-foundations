@@ -36,7 +36,9 @@ Memory: O(n²) - prohibitive for long sequences!
 
 **Real-world impact:**
 - GPT-2/3: Limited to 2K-4K tokens
+
 - Cannot process long documents, codebases, conversations
+
 - Memory becomes bottleneck before computation
 
 ---
@@ -338,11 +340,14 @@ for seq_len in [1024, 4096, 8192, 16384]:
 ## 🔄 Variants and Extensions
 
 ### Flash Attention 2 (2023)
+
 - 2x faster than Flash 1
 - Better parallelization across sequence length
+
 - Tuned for A100/H100 architecture
 
 ### Flash Attention 3 (2024)
+
 - Support for:
   - Multi-query attention (MQA)
   - Grouped-query attention (GQA)  
@@ -350,13 +355,19 @@ for seq_len in [1024, 4096, 8192, 16384]:
   - Block-diagonal masks
 
 ### PagedAttention (vLLM)
+
 - Complementary technique
+
 - Optimizes KV cache management for inference
+
 - Combined with Flash for efficient serving
 
 ### Ring Attention
+
 - Extends Flash Attention across multiple GPUs
+
 - Enables million-token contexts
+
 - Overlaps communication with computation
 
 ---

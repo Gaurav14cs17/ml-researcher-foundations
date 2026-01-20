@@ -113,7 +113,9 @@ s_{act} = \frac{1}{N}\sum_{i=1}^{N} \frac{\max(|X_i|)}{2^{b-1}-1}
 
 **Calibration strategies:**
 - Moving average of max values
+
 - Histogram-based methods
+
 - MSE minimization
 
 ---
@@ -142,7 +144,9 @@ Y = s_x s_w \left[X_q W_q^T - z_w X_q \mathbf{1}^T - z_x \mathbf{1} W_q^T + z_x 
 where $n$ is the inner dimension.
 
 **Optimization:** Pre-compute bias terms:
+
 - $z\_w X\_q \mathbf{1}^T = z\_w \cdot \text{rowsum}(X\_q)$
+
 - $z\_x \mathbf{1} W\_q^T = z\_x \cdot \text{colsum}(W\_q)$
 
 #### 4.2 Symmetric Simplification

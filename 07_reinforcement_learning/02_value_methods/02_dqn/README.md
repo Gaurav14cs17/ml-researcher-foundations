@@ -90,8 +90,11 @@ During training:
     Update Q on mini-batch
     
 Benefits:
+
 - Breaks temporal correlation
+
 - Each experience used many times (data efficiency)
+
 - More stable gradients
 
 ```

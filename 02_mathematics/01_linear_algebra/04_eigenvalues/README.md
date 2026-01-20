@@ -17,8 +17,11 @@
 > **Advanced eigenvalue theory powers algorithms from PageRank to neural network stability analysis.** The spectral properties of matrices reveal deep structural information.
 
 - 📐 **Gershgorin Discs**: Locate eigenvalues without computing them
+
 - 🌐 **PageRank**: Dominant eigenvector of web graph
+
 - 🧠 **RNN Stability**: Eigenvalues determine gradient flow
+
 - 📊 **Spectral Clustering**: Graph Laplacian eigenvalues
 
 ---

@@ -17,8 +17,11 @@
 > **Convexity is the dividing line between easy and hard optimization.** Convex problems have global guarantees; non-convex problems (like deep learning) do not—but often work anyway.
 
 - 📐 **Convex Set**: Line segment between any two points stays inside
+
 - 📈 **Convex Function**: Lies below any chord; local min = global min
+
 - ✅ **Why It Matters**: Gradient descent finds global optimum for convex problems
+
 - 🧠 **Deep Learning**: Non-convex, but landscape is "benign" in practice
 
 ---

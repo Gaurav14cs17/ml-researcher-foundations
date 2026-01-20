@@ -66,7 +66,9 @@ Any element can be zero. Maximum flexibility but requires sparse hardware.
 
 **2:4 Sparsity (NVIDIA Ampere):**
 - 2 zeros per 4 consecutive elements
+
 - 50% sparsity with hardware acceleration
+
 - 2× speedup on Tensor Cores
 
 **Mathematical Constraint:**
@@ -87,7 +89,9 @@ W = \begin{bmatrix} W_{11} & \mathbf{0} \\ \mathbf{0} & W_{22} \end{bmatrix}
 
 **Benefits:**
 - Better hardware utilization
+
 - Efficient memory access patterns
+
 - Used in block-sparse attention
 
 ### 4. Mixture of Experts (MoE) - Activation Sparsity
@@ -134,8 +138,11 @@ y = \sum_{i \in \text{TopK}} g_i(x) \cdot E_i(x)
 ```
 
 Where:
+
 - $f\_i = \frac{1}{T}\sum\_t \mathbf{1}[\text{token } t \to \text{expert } i]$ (fraction of tokens)
+
 - $P\_i = \frac{1}{T}\sum\_t p\_i(x\_t)$ (average routing probability)
+
 - $\alpha$ = balancing coefficient
 
 **Goal:** Make $f\_i \approx 1/N$ (uniform distribution).

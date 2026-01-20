@@ -33,8 +33,11 @@ W = U \Sigma V^T
 ```
 
 where:
+
 - $U \in \mathbb{R}^{m \times m}$ - left singular vectors (orthogonal)
+
 - $\Sigma \in \mathbb{R}^{m \times n}$ - diagonal matrix of singular values
+
 - $V \in \mathbb{R}^{n \times n}$ - right singular vectors (orthogonal)
 
 #### 1.2 Thin SVD
@@ -62,8 +65,11 @@ W_k = U_k \Sigma_k V_k^T
 ```
 
 where:
+
 - $U\_k \in \mathbb{R}^{m \times k}$ (first $k$ columns)
+
 - $\Sigma\_k \in \mathbb{R}^{k \times k}$
+
 - $V\_k \in \mathbb{R}^{n \times k}$
 
 #### 2.2 Eckart-Young-Mirsky Theorem

@@ -619,7 +619,9 @@ A\mathbf{v} = \lambda\mathbf{v}
 ```
 
 where:
+
 - $\lambda$ is an **eigenvalue** (scalar)
+
 - $\mathbf{v} \neq \mathbf{0}$ is the corresponding **eigenvector**
 
 ### 📐 Geometric Intuition
@@ -635,9 +637,13 @@ Before transformation (v):          After transformation (Av):
         v                                   λv
         
 The eigenvector v only gets SCALED by λ, not rotated.
+
 - λ > 1: stretched
+
 - 0 < λ < 1: compressed  
+
 - λ < 0: flipped and scaled
+
 - λ = 0: collapsed to zero (singular)
 
 ```
@@ -920,8 +926,11 @@ A = U\Sigma V^T
 ```
 
 where:
+
 - $U \in \mathbb{R}^{m \times m}$: orthogonal (left singular vectors)
+
 - $\Sigma \in \mathbb{R}^{m \times n}$: diagonal with $\sigma\_1 \geq \sigma\_2 \geq \cdots \geq 0$
+
 - $V \in \mathbb{R}^{n \times n}$: orthogonal (right singular vectors)
 
 ```
@@ -1364,7 +1373,9 @@ A = QR
 ```
 
 where:
+
 - $Q \in \mathbb{R}^{m \times n}$: columns are orthonormal
+
 - $R \in \mathbb{R}^{n \times n}$: upper triangular
 
 ### 📐 Gram-Schmidt Process

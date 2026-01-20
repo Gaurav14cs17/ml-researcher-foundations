@@ -35,9 +35,13 @@ This lecture introduces **quantization fundamentals** for neural network compres
 
 - **What is quantization**: Reducing precision from FP32 to INT8/INT4
 - **Quantization formula**: Scale, zero-point, and the quantization function
+
 - **Symmetric vs Asymmetric**: Trade-offs in quantization schemes
+
 - **Granularity levels**: Per-tensor, per-channel, per-group quantization
+
 - **Post-Training Quantization (PTQ)**: Quantizing pre-trained models
+
 - **Calibration methods**: Min-Max, percentile, MSE, KL-divergence
 
 > 💡 *"Quantization provides a 4× memory reduction with INT8 and 8× with INT4—often with minimal accuracy loss."* — Prof. Song Han
@@ -96,8 +100,10 @@ x_approx = (q - zero_point) * scale
 ## Symmetric vs Asymmetric
 
 ### Symmetric Quantization
+
 - Zero point = 0
 - Range: [-α, α]
+
 - Simpler computation
 
 ```
@@ -106,8 +112,10 @@ q = round(x / scale)
 ```
 
 ### Asymmetric Quantization
+
 - Zero point ≠ 0
 - Range: [β, α] (not centered)
+
 - Better for ReLU outputs
 
 ```
@@ -236,6 +244,7 @@ q = \text{round}\left(\frac{x}{s}\right) + z, \quad s = \frac{x_{max} - x_{min}}
 
 **Trade-off:**
 - Symmetric: Simpler hardware (no zero-point addition), but wastes range if data is skewed
+
 - Asymmetric: Full range utilization, better for ReLU activations (all positive)
 
 ---
@@ -346,7 +355,9 @@ Much simpler! Just integer matmul + single scaling.
 ### Clipping and Optimal Range
 
 **Problem:** Choosing \( [x_{min}, x_{max}] \) involves trade-off:
+
 - Wide range → large quantization step → large quantization error
+
 - Narrow range → clipping outliers → clipping error
 
 **Total error:**

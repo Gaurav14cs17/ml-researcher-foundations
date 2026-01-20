@@ -25,7 +25,9 @@ CR = \frac{|M_{original}|}{|M_{compressed}|} = \frac{\sum_{l} |W_l| \cdot b_{ori
 ```
 
 Where:
+
 - $|W\_l|$ = number of weights in layer $l$
+
 - $b$ = bits per weight
 
 **Example:**
@@ -47,8 +49,11 @@ CR = 1360 / 340 = 4×
 ```
 
 Where:
+
 - $\mathcal{M}$ = space of compressed models
+
 - $\mathcal{L}$ = loss function (lower is better)
+
 - $\epsilon$ = acceptable accuracy degradation
 
 **Theorem (Pareto Optimality):**
@@ -202,8 +207,11 @@ M_{compressed} = Q(P(D(M_{original})))
 ```
 
 Where:
+
 - $D$ = Distillation (architecture change)
+
 - $P$ = Pruning (remove weights)
+
 - $Q$ = Quantization (reduce precision)
 
 ---
@@ -220,7 +228,9 @@ Where:
 ```
 
 Where:
+
 - $\alpha, \beta$ depend on method and model
+
 - Typical: $\beta \in [0.5, 2]$
 
 ---

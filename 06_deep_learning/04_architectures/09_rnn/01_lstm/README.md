@@ -58,7 +58,9 @@ f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)
 
 ```
 Intuition: f_t ∈ (0, 1)ʰ controls what fraction of old information to keep
+
 - f_t ≈ 1: Keep everything
+
 - f_t ≈ 0: Forget everything
 
 ```
@@ -73,7 +75,9 @@ i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)
 
 ```
 Intuition:
+
 - i_t ∈ (0, 1)ʰ: How much of new info to write
+
 - c̃_t ∈ (-1, 1)ʰ: New candidate values
 
 ```
@@ -87,7 +91,9 @@ c_t = f_t \odot c_{t-1} + i_t \odot \tilde{c}_t
 
 ```
 Intuition: Linear combination of old and new information
+
 - f_t ⊙ c_{t-1}: Retained old information
+
 - i_t ⊙ c̃_t: New information to add
 
 Key insight: This is nearly a linear operation!
@@ -105,7 +111,9 @@ h_t = o_t \odot \tanh(c_t)
 
 ```
 Intuition:
+
 - o_t ∈ (0, 1)ʰ: What parts of cell state to expose
+
 - h_t: Filtered version of cell state
 
 ```
@@ -121,6 +129,7 @@ Intuition:
 | **Total** | | \(4h(h+d) + 4h = 4h(h+d+1)\) |
 
 **Example:** For \(h = 512\), \(d = 256\):
+
 - Total parameters per layer: \(4 \times 512 \times (512 + 256 + 1) \approx 1.57M\)
 
 ---

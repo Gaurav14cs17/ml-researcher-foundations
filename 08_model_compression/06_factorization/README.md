@@ -25,14 +25,20 @@ W = U \Sigma V^T
 ```
 
 Where:
+
 - $U \in \mathbb{R}^{m \times m}$: Left singular vectors (orthogonal)
+
 - $\Sigma \in \mathbb{R}^{m \times n}$: Diagonal matrix of singular values
+
 - $V \in \mathbb{R}^{n \times n}$: Right singular vectors (orthogonal)
+
 - $\sigma\_1 \geq \sigma\_2 \geq ... \geq \sigma\_r > 0$: Singular values (non-negative, ordered)
 
 **Properties:**
 - $U^T U = I$ (orthonormality)
+
 - $V^T V = I$
+
 - $\text{rank}(W) = r$ (number of non-zero singular values)
 
 ### 2. Low-Rank Approximation
@@ -122,7 +128,9 @@ CR = \frac{4096}{128} = 32\times
 ```
 
 Where:
+
 - $B \in \mathbb{R}^{m \times r}$
+
 - $A \in \mathbb{R}^{r \times n}$
 
 **Connection to SVD:**
@@ -164,7 +172,9 @@ Where $\mathcal{G}$ is a smaller core tensor.
 
 **Compression for Convolutions:**
 - Original: $C\_{out} \times C\_{in} \times k \times k$
+
 - CP: $R \times (C\_{out} + C\_{in} + k + k)$
+
 - Tucker: $(R\_1 \times R\_2 \times R\_3 \times R\_4) + R\_1 C\_{out} + R\_2 C\_{in} + ...$
 
 ### 7. Depthwise Separable Convolution (Factorized Conv)

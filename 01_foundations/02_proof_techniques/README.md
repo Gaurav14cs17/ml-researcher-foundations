@@ -33,9 +33,13 @@
 Every ML paper contains proofs. This article teaches you the **essential proof techniques**:
 
 - **Direct Proof** — Show A → B by logical chain (convexity proofs, gradient bounds)
+
 - **Proof by Contradiction** — Assume opposite, find impossibility (uniqueness proofs)
+
 - **Mathematical Induction** — Base case + inductive step (backprop correctness, recursion)
+
 - **Contrapositive** — Prove ¬Q → ¬P instead of P → Q (often easier)
+
 - **Proof by Cases** — Split into exhaustive cases (ReLU analysis)
 
 > [!TIP]
@@ -48,10 +52,15 @@ Every ML paper contains proofs. This article teaches you the **essential proof t
 By the end of this article, you will be able to:
 
 - [ ] Write direct proofs for ML theorems (convergence, bounds)
+
 - [ ] Use contradiction to prove impossibility and uniqueness results
+
 - [ ] Apply induction for recursive/layered structures (neural networks)
+
 - [ ] Recognize and use the contrapositive effectively
+
 - [ ] Split complex proofs into manageable cases
+
 - [ ] Identify proof patterns in ML research papers
 
 ---
@@ -548,6 +557,7 @@ This is exactly the formula with n = k+1. ✅
 
 **Setup:**
 - Layer l: z^(l) = W^(l) a^(l-1) + b^(l), a^(l) = σ(z^(l))
+
 - Loss: L = L(a^(L), y)
 
 **Proof (Reverse Induction from L to 1):**

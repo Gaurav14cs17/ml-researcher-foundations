@@ -39,9 +39,13 @@ Federated Learning (FL) enables training ML models across decentralized data sou
 ```
 
 where:
+
 - \(K\): number of clients
+
 - \(n_k\): number of samples on client \(k\)
+
 - \(n = \sum_k n_k\): total samples
+
 - \(F_k(w) = \frac{1}{n_k} \sum_{i \in \mathcal{D}_k} \ell(w; x_i, y_i)\): local objective
 
 ### Comparison to Centralized Learning
@@ -97,7 +101,9 @@ For round t = 0, 1, ..., T-1:
 ```
 
 where:
+
 - \(\sigma^2\): variance of stochastic gradients
+
 - \(\Gamma = F^* - \sum_k \frac{n_k}{n} F_k^*\): degree of non-IID-ness
 
 **Key insight:** Non-IID data (\(\Gamma > 0\)) causes additional error!
@@ -148,7 +154,9 @@ w_k^{e+1} = w_k^e - \eta(\nabla F_k(w_k^e) - c_k + c)
 ```
 
 where:
+
 - \(c_k\): client control variate (tracks \(\nabla F_k\))
+
 - \(c\): server control variate (tracks \(\nabla F\))
 
 **Update rule:**

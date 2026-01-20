@@ -17,8 +17,11 @@
 > **Vector spaces are the abstract foundation of linear algebra.** They generalize ℝⁿ to any set where you can add elements and scale them.
 
 - 📐 **Vector Space**: Set with addition (+) and scalar multiplication (·)
+
 - 📏 **Basis**: Minimal set of vectors that span the space
+
 - 🔢 **Dimension**: Number of vectors in any basis
+
 - 🎯 **Subspace**: A vector space inside another vector space
 
 ---
@@ -80,6 +83,7 @@
 A **vector space** $V$ over a field $\mathbb{F}$ (usually $\mathbb{R}$ or $\mathbb{C}$) is a set with two operations:
 
 - **Vector addition**: $+: V \times V \to V$
+
 - **Scalar multiplication**: $\cdot: \mathbb{F} \times V \to V$
 
 ### 📐 Vector Space Axioms

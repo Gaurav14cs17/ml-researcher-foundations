@@ -24,8 +24,11 @@
 ## 📂 Overview
 
 A computational graph is a directed acyclic graph (DAG) where nodes represent operations and edges represent data dependencies. Understanding this is essential for:
+
 - How PyTorch/TensorFlow compute gradients
+
 - Memory optimization (gradient checkpointing)
+
 - Custom autograd functions
 
 ---

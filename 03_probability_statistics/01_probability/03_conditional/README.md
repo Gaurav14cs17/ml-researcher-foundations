@@ -26,7 +26,9 @@ P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad \text{for } P(B) > 0
 
 **Example:**
 - A = "patient has disease"
+
 - B = "test is positive"
+
 - P(A|B) = "probability of disease given positive test"
 
 ### Properties
@@ -133,6 +135,7 @@ P(A \cap B) = P(A) \cdot P(B)
 
 **Equivalently:**
 - $P(A|B) = P(A)$ → B doesn't change A's probability
+
 - $P(B|A) = P(B)$ → A doesn't change B's probability
 
 ### Conditional Independence
@@ -147,7 +150,9 @@ P(A \cap B|C) = P(A|C) \cdot P(B|C)
 "A and B are independent **GIVEN** C"
 
 **Important:** 
+
 - $A \perp B \mid C$ does **NOT** imply $A \perp B$
+
 - $A \perp B$ does **NOT** imply $A \perp B \mid C$
 
 ---
@@ -160,7 +165,9 @@ For continuous random variables X (prior) and Y (observation):
 
 **Given:**
 - Prior density: $p(x)$
+
 - Likelihood: $p(y|x)$
+
 - Marginal: $p(y) = \int p(y|x)p(x)dx$
 
 **Posterior density:**
@@ -280,6 +287,7 @@ Therefore:
 
 **Setup:**
 - Prior: $\theta \sim \text{Beta}(\alpha, \beta)$
+
 - Likelihood: $X|\theta \sim \text{Binomial}(n, \theta)$
 
 **Theorem:** Posterior is $\theta|X \sim \text{Beta}(\alpha + x, \beta + n - x)$
@@ -313,7 +321,9 @@ This is the kernel of $\text{Beta}(\alpha+x, \beta+n-x)$. $\quad \blacksquare$
 
 **Interpretation:**
 - $\alpha$: "prior successes"
+
 - $\beta$: "prior failures"  
+
 - After observing x successes in n trials: add x to α, add (n-x) to β
 
 ---
@@ -324,7 +334,9 @@ This is the kernel of $\text{Beta}(\alpha+x, \beta+n-x)$. $\quad \blacksquare$
 
 **Training:**
 - Prior: $P(\theta)$ ← Initial belief about parameters
+
 - Likelihood: $P(D|\theta)$ ← How well does θ explain data
+
 - Posterior: $P(\theta|D) \propto P(D|\theta)P(\theta)$
 
 **Prediction:**
@@ -365,6 +377,7 @@ P(C|x_1,\ldots,x_n) \propto P(C) \cdot \prod_i P(x_i|C)
 
 **Connection to Regularization:**
 - **L2 regularization** = Gaussian prior on θ
+
 - **L1 regularization** = Laplace prior on θ
 
 ---

@@ -115,7 +115,9 @@ p(\theta|D) \propto \theta^k (1-\theta)^{n-k} \cdot \theta^{\alpha-1}(1-\theta)^
 
 **Interpretation:**
 - $\alpha$: "prior successes" (pseudo-counts)
+
 - $\beta$: "prior failures" (pseudo-counts)
+
 - After observing $k$ successes in $n$ trials: add $k$ to $\alpha$, add $(n-k)$ to $\beta$
 
 ---
@@ -212,7 +214,9 @@ The ratio $\frac{P(D|M\_1)}{P(D|M\_2)}$ is called the **Bayes Factor**.
 When posterior is intractable, sample from it:
 
 - Metropolis-Hastings
+
 - Gibbs Sampling  
+
 - Hamiltonian Monte Carlo (HMC)
 
 ### 2. Variational Inference

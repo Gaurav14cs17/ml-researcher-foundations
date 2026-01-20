@@ -142,7 +142,9 @@ where spatial ($c\_r$) and channel ($a\_r, b\_r$) are separated.
 
 **Works well when:**
 - Edge detectors are universal
+
 - Texture patterns are channel-independent
+
 - High-level features are composable
 
 ---

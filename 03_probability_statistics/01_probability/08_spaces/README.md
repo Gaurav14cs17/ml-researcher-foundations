@@ -35,8 +35,11 @@ Sample spaces and events are the building blocks of probability theory. Understa
 
 **Examples:**
 - Coin flip: $\Omega = \{\text{H}, \text{T}\}$
+
 - Die roll: $\Omega = \{1, 2, 3, 4, 5, 6\}$
+
 - Real-valued measurement: $\Omega = \mathbb{R}$
+
 - Image: $\Omega = [0, 255]^{H \times W \times 3}$
 
 ---
@@ -49,7 +52,9 @@ An **event** $A$ is a subset of the sample space: $A \subseteq \Omega$
 
 **Examples:**
 - "Heads": $A = \{\text{H}\}$
+
 - "Even number": $A = \{2, 4, 6\}$
+
 - "Pixel > 128": $A = \{x \in [0, 255] : x > 128\}$
 
 ### Event Operations
@@ -76,8 +81,11 @@ A **σ-algebra** $\mathcal{F}$ on $\Omega$ is a collection of subsets satisfying
 ### Why σ-Algebras?
 
 - Define which subsets can have probability assigned
+
 - Required for measure theory foundations
+
 - For finite $\Omega$, typically $\mathcal{F} = 2^\Omega$ (all subsets)
+
 - For $\mathbb{R}$, use the **Borel σ-algebra** (contains all intervals)
 
 ---

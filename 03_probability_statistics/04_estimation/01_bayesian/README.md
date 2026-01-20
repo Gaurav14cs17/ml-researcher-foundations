@@ -59,7 +59,9 @@ P(x^*|D) = \int P(x^*|\theta) \cdot P(\theta|D) \, d\theta
 
 **This is the key advantage of Bayesian inference:**
 - Averages predictions over all possible θ
+
 - Automatically includes parameter uncertainty
+
 - More robust than point estimates
 
 ---
@@ -105,7 +107,9 @@ P(\theta|D) \propto P(D|\theta) \cdot P(\theta)
 
 **Interpretation:**
 - $\alpha$ = "pseudo-observations" of success
+
 - $\beta$ = "pseudo-observations" of failure
+
 - Data simply adds to these counts!
 
 ---

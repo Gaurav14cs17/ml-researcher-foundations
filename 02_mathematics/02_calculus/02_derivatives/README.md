@@ -17,8 +17,11 @@
 > **Derivatives measure instantaneous rate of change.** Every neural network parameter update uses derivatives computed via the chain rule (backpropagation).
 
 - 📐 **Definition**: $f'(x) = \lim\_{h \to 0} \frac{f(x+h) - f(x)}{h}$
+
 - 📊 **Interpretation**: Slope of tangent line, sensitivity of output to input
+
 - 🔗 **Chain Rule**: $(f \circ g)' = f'(g(x)) \cdot g'(x)$ — the backbone of backprop
+
 - 🧠 **In DL**: Every `loss.backward()` computes derivatives of loss w.r.t. all parameters
 
 ---

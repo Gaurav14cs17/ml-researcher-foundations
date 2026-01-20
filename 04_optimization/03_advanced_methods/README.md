@@ -24,9 +24,13 @@
 ## 📂 Overview
 
 Advanced methods go beyond basic gradient descent by:
+
 - Using curvature information (Quasi-Newton)
+
 - Exploiting conjugate directions (CG)
+
 - Handling non-smooth objectives (Proximal)
+
 - Achieving scale invariance (Natural Gradient)
 
 ---

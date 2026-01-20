@@ -16,7 +16,9 @@
 ## 🎯 Overview
 
 This section covers the two fundamental tools for constrained optimization:
+
 - **Lagrange Multipliers**: For equality constraints
+
 - **KKT Conditions**: For equality AND inequality constraints
 
 ---

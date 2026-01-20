@@ -249,7 +249,9 @@ y = \gamma \cdot \hat{x} + \beta
 
 **When pruning filter $f$ in layer $l$:**
 - Output channels of layer $l$ decrease
+
 - Input channels of layer $l+1$ must also decrease
+
 - Skip connections complicate matters
 
 #### 6.2 Dependency Graph
@@ -499,7 +501,9 @@ class AttentionHeadPruner:
 
 **2:4 Sparsity (NVIDIA Ampere):**
 - 2 zeros per 4 weights
+
 - 50% sparsity with hardware acceleration
+
 - 2× speedup on Tensor Cores
 
 #### 8.2 Mathematical Constraint

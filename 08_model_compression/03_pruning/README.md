@@ -158,9 +158,13 @@ s_t = s_f + (s_i - s_f)\left(1 - \frac{t - t_0}{n\Delta t}\right)^3
 ```
 
 Where:
+
 - $s\_t$ = sparsity at step $t$
+
 - $s\_i, s\_f$ = initial and final sparsity
+
 - $t\_0$ = pruning start step
+
 - $n\Delta t$ = pruning frequency
 
 ### 8. N:M Structured Sparsity
@@ -169,7 +173,9 @@ Where:
 
 **2:4 Sparsity (NVIDIA Ampere):**
 - 2 zeros per 4 elements
+
 - 50% sparsity
+
 - Hardware acceleration: 2× speedup
 
 **Mathematical Constraint:**

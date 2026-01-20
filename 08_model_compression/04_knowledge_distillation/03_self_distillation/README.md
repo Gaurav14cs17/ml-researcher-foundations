@@ -61,7 +61,9 @@ Generation k: Distill from Generation k-1
 
 **Why?**
 - Soft labels provide regularization
+
 - "Dark knowledge" helps find better minima
+
 - Label smoothing effect
 
 ---
@@ -95,7 +97,9 @@ Each network distills from all others.
 
 **Ensemble effect without ensemble cost:**
 - During training: Ensemble of N networks
+
 - At inference: Single network
+
 - Knowledge from ensemble is "baked in"
 
 ---
@@ -165,8 +169,11 @@ where $p\_{ensemble} = \frac{1}{N}\sum\_j p\_j$ (or weighted).
 ```
 
 The KL term acts as a regularizer:
+
 - Prevents overconfident predictions
+
 - Encourages smooth decision boundaries
+
 - Similar to label smoothing
 
 #### 5.2 Connection to Label Smoothing

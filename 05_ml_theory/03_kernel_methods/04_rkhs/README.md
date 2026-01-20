@@ -49,7 +49,9 @@ A **Hilbert space** \(\mathcal{H}\) is a complete inner product space:
 ### Properties
 
 - **Cauchy-Schwarz:** \(|\langle f, g \rangle| \leq \|f\| \cdot \|g\|\)
+
 - **Parallelogram law:** \(\|f + g\|^2 + \|f - g\|^2 = 2\|f\|^2 + 2\|g\|^2\)
+
 - **Riesz representation:** Every continuous linear functional has form \(\ell(f) = \langle f, g \rangle\) for unique \(g\)
 
 ---
@@ -155,7 +157,9 @@ for some \(\alpha_1, \ldots, \alpha_n \in \mathbb{R}\).
 Let \(\mathcal{S} = \text{span}\{k(\cdot, x_1), \ldots, k(\cdot, x_n)\}\).
 
 For any \(f \in \mathcal{H}_k\), write \(f = f_\mathcal{S} + f_\perp\) where:
+
 - \(f_\mathcal{S} \in \mathcal{S}\)
+
 - \(f_\perp \perp \mathcal{S}\)
 
 **Step 2:** Show \(f_\perp\) doesn't affect data fit:
@@ -217,6 +221,7 @@ where \(K_{ij} = k(x_i, x_j)\) is the Gram matrix.
 The RKHS norm controls smoothness of the function:
 
 - **Small \(\|f\|_{\mathcal{H}}\):** Smooth, slowly varying function
+
 - **Large \(\|f\|_{\mathcal{H}}\):** Can be wiggly, rapidly changing
 
 **For RBF kernel** \(k(x, x') = \exp(-\gamma\|x-x'\|^2)\):

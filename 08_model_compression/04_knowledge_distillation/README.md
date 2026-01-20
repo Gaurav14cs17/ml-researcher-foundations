@@ -68,7 +68,9 @@ p_i^T = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)} \approx \frac{1 + z_i/T}{n + \sum
 
 **Interpretation:**
 - $T \to \infty$: Uniform distribution (no information)
+
 - $T = 1$: Standard softmax (hard labels)
+
 - Optimal $T$: Balances information and noise
 
 ### 3. Gradient Analysis
@@ -132,7 +134,9 @@ H(p^t_T) > H(y) \text{ (soft labels have higher entropy)}
 ```
 
 Where:
+
 - $F\_s^l, F\_t^l$: Features at layer $l$ (student, teacher)
+
 - $r(\cdot)$: Regressor to match dimensions
 
 **Attention Transfer (Zagoruyko & Komodakis, 2016):**
@@ -176,8 +180,11 @@ Where $\psi\_A$ computes angle between vectors.
 ```
 
 Where:
+
 - $y^+$: Positive sample (same class)
+
 - $y^-$: Negative samples
+
 - $h$: Critic function
 
 ### 8. Self-Distillation

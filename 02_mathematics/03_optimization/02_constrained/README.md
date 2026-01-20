@@ -17,8 +17,11 @@
 > **Constrained optimization is essential for SVMs, max-entropy models, and safe RL.** The KKT conditions are necessary (and often sufficient) for optimality.
 
 - 📐 **Lagrange Multipliers**: Handle equality constraints $h(x) = 0$
+
 - 🔒 **KKT Conditions**: Handle inequality constraints $g(x) \leq 0$
+
 - ⚖️ **Duality**: Convert hard primal problems to easier dual problems
+
 - 🤖 **Applications**: SVM, constrained RL, portfolio optimization
 
 ---
@@ -91,7 +94,9 @@
 ```
 
 where:
+
 - $\mu\_i \geq 0$: multipliers for inequality constraints
+
 - $\lambda\_j$: multipliers for equality constraints (can be any sign)
 
 ---
@@ -233,8 +238,11 @@ Intuition:
 KKT conditions are **necessary** for local optimality (under constraint qualification).
 
 They are **sufficient** for global optimality when:
+
 - $f$ is convex
+
 - $g\_i$ are convex
+
 - $h\_j$ are affine
 
 ### 💡 Example: KKT Step by Step

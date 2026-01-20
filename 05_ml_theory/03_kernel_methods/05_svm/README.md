@@ -142,7 +142,9 @@ Real data is rarely linearly separable. Allow some misclassifications with slack
 
 **Interpretation:**
 - \(C\) = regularization parameter (trade-off between margin and violations)
+
 - \(\xi_i > 0\): point is within margin or misclassified
+
 - \(\xi_i > 1\): point is misclassified
 
 ### Dual Formulation
@@ -154,7 +156,9 @@ Real data is rarely linearly separable. Allow some misclassifications with slack
 ```
 
 **Support Vectors:** Points with \(\alpha_i > 0\):
+
 - \(0 < \alpha_i < C\): On margin boundary
+
 - \(\alpha_i = C\): Inside margin or misclassified
 
 ---
@@ -203,8 +207,11 @@ R(h) \leq \hat{R}_\gamma(h) + \sqrt{\frac{c_1}{n}\left(\frac{R^2 \|w\|^2}{\gamma
 ```
 
 where:
+
 - \(\hat{R}_\gamma(h)\) = fraction of points with margin \(< \gamma\)
+
 - \(R\) = radius of data
+
 - Bound is independent of dimension!
 
 ### Structural Risk Minimization

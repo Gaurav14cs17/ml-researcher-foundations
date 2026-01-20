@@ -204,12 +204,15 @@ z_K = f_K \circ f_{K-1} \circ ... \circ f_1(z_0), \quad z_0 \sim \mathcal{N}(0, 
 ### Requirements
 
 - Each $f\_k$ must be invertible
+
 - Jacobian determinant must be tractable
 
 ### Examples
 
 - **RealNVP:** Affine coupling layers
+
 - **Glow:** 1×1 convolutions + coupling
+
 - **MAF:** Masked autoregressive flows
 
 ---

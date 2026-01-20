@@ -43,9 +43,13 @@
 A concept class \(\mathcal{C}\) is **PAC-learnable** if there exists an algorithm \(\mathcal{A}\) and a polynomial \(p(\cdot, \cdot, \cdot, \cdot)\) such that:
 
 For all:
+
 - Concepts \(c \in \mathcal{C}\)
+
 - Distributions \(\mathcal{D}\) over \(\mathcal{X}\)
+
 - Accuracy parameter \(\varepsilon > 0\)
+
 - Confidence parameter \(\delta > 0\)
 
 Given \(m \geq p(1/\varepsilon, 1/\delta, n, \text{size}(c))\) samples drawn i.i.d. from \(\mathcal{D}\):

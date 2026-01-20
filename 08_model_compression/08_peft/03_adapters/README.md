@@ -33,9 +33,13 @@
 ```
 
 where:
+
 - $W\_{down} \in \mathbb{R}^{d \times r}$ (down-projection)
+
 - $W\_{up} \in \mathbb{R}^{r \times d}$ (up-projection)
+
 - $f$ = nonlinearity (GELU, ReLU)
+
 - $r \ll d$ (bottleneck dimension)
 
 #### 1.2 Placement in Transformer
@@ -139,7 +143,9 @@ h' = Wh + BAh
 ```
 
 Both learn low-rank adaptations, but:
+
 - LoRA: Modifies the weight matrix
+
 - Adapter: Adds a parallel residual
 
 ---

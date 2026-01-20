@@ -254,6 +254,7 @@ Consider f(x) = x³
 ∇f(0) = 0 ✓ (satisfies necessary condition)
 
 But f(x) = x³ has:
+
 - f(-ε) < 0 = f(0) for ε > 0
 - f(+ε) > 0 = f(0) for ε > 0
 
@@ -1068,11 +1069,17 @@ for batch_idx, (data, target) in enumerate(dataloader):
 ## ✅ Learning Checklist
 
 - [ ] Can identify necessary vs sufficient conditions in ML contexts
+
 - [ ] Can construct direct proofs, proofs by contradiction, and induction
+
 - [ ] Understand set operations and their notation
+
 - [ ] Can negate quantified statements correctly
+
 - [ ] Can analyze algorithm complexity using Big-O notation
+
 - [ ] Understand floating-point representation and common pitfalls
+
 - [ ] Can implement numerically stable versions of common operations
 
 ---

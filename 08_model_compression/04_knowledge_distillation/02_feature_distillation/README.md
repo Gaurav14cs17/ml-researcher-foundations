@@ -34,14 +34,18 @@ Transfer intermediate representations, not just outputs.
 ```
 
 where:
+
 - $F\_s^l$ = student features at layer $l$
+
 - $F\_t^{l'}$ = teacher features at layer $l'$ (hint layer)
+
 - $r(\cdot)$ = regressor to match dimensions
 
 #### 1.2 Regressor Design
 
 **When dimensions differ:**
 - Student: $F\_s^l \in \mathbb{R}^{B \times C\_s \times H \times W}$
+
 - Teacher: $F\_t^{l'} \in \mathbb{R}^{B \times C\_t \times H' \times W'}$
 
 **Regressor options:**
@@ -137,8 +141,11 @@ where $\phi$ is a kernel feature map.
 **Which layers to match?**
 
 **Principle:** Match layers with similar abstraction level:
+
 - Early layers: Low-level features (edges, textures)
+
 - Middle layers: Mid-level features (parts, shapes)
+
 - Late layers: High-level semantics
 
 #### 4.2 Multi-layer Distillation

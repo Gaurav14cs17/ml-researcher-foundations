@@ -28,7 +28,9 @@ If $\left\|\frac{\partial h\_t}{\partial h\_{t-1}}\right\| > 1$, gradient grows 
 
 **Symptoms:**
 - Loss becomes NaN
+
 - Weights diverge
+
 - Training becomes unstable
 
 ---
@@ -48,7 +50,9 @@ g_i & \text{otherwise}
 
 **Properties:**
 - Simple and fast
+
 - Changes gradient direction
+
 - Can distort optimization
 
 ### 2. Clip by Norm (Global) ⭐ Most Common
@@ -70,7 +74,9 @@ Equivalently:
 
 **Properties:**
 - Preserves gradient direction
+
 - Only scales magnitude
+
 - Preferred for most applications
 
 ### 3. Clip by Norm (Per-layer)

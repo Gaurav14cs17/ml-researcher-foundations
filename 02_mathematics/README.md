@@ -82,10 +82,15 @@ Vectors --→ Matrices --→ Multiplication --→ Eigen --→ SVD --→ PCA
 <summary><b>🔍 Core Concepts</b></summary>
 
 - Vectors & Vector Spaces
+
 - Matrix Operations & Properties
+
 - Linear Transformations
+
 - Eigenvalues & Eigenvectors
+
 - Singular Value Decomposition (SVD)
+
 - Principal Component Analysis (PCA)
 
 </details>
@@ -94,8 +99,11 @@ Vectors --→ Matrices --→ Multiplication --→ Eigen --→ SVD --→ PCA
 <summary><b>🎯 Why It Matters</b></summary>
 
 - Neural networks are matrix multiplications
+
 - PCA for dimensionality reduction
+
 - SVD for recommender systems
+
 - Eigenvalues for stability analysis
 
 </details>
@@ -117,10 +125,15 @@ Limits --→ Derivatives --→ Partial --→ Gradient --→ Chain Rule --→ Jac
 <summary><b>🔍 Core Concepts</b></summary>
 
 - Derivatives & Partial Derivatives
+
 - Gradient Vectors
+
 - Chain Rule (backbone of backpropagation)
+
 - Jacobian Matrices
+
 - Hessian Matrices
+
 - Taylor Series Approximation
 
 </details>
@@ -129,8 +142,11 @@ Limits --→ Derivatives --→ Partial --→ Gradient --→ Chain Rule --→ Jac
 <summary><b>🎯 Why It Matters</b></summary>
 
 - Gradients are how neural networks learn
+
 - Chain rule enables backpropagation
+
 - Hessian for second-order optimization
+
 - Taylor series for function approximation
 
 </details>
@@ -152,9 +168,13 @@ Convex --→ GD --→ SGD --→ Momentum --→ Adam --→ Convergence
 <summary><b>🔍 Core Concepts</b></summary>
 
 - Convex vs Non-Convex Functions
+
 - Gradient Descent Variants
+
 - First-Order Methods
+
 - Second-Order Methods (Newton)
+
 - Convergence Guarantees
 
 </details>
@@ -163,8 +183,11 @@ Convex --→ GD --→ SGD --→ Momentum --→ Adam --→ Convergence
 <summary><b>🎯 Why It Matters</b></summary>
 
 - Training = Optimization
+
 - Understand SGD, Adam, AdamW
+
 - Know when optimization will work
+
 - Debug training issues
 
 </details>

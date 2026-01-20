@@ -210,7 +210,9 @@ Theoretical basis: Upper Confidence Bound
 Problem: Agent finds unintended ways to maximize reward
 
 Example: Racing game with reward for speed
+
 - Agent learns to go in circles (high speed, no progress)
+
 - Agent finds walls that give infinite speed glitch
 
 Solution: Careful reward design, human oversight, RLHF
