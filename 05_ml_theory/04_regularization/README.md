@@ -271,13 +271,13 @@ class DropoutLayer(nn.Module):
 class RegularizedNetwork(nn.Module):
     """Neural network with various regularization techniques."""
     
-    def __init__(self, input_dim, hidden_dim, output_dim, dropout_p=0.5):
+    def __init__(self, input_dim, `hidden_dim`, output_dim, dropout_p=0.5):
         super().__init__()
-        self.fc1 = nn.Linear(input_dim, hidden_dim)
+        self.fc1 = nn.Linear(input_dim, `hidden_dim`)
         self.dropout1 = nn.Dropout(p=dropout_p)
-        self.fc2 = nn.Linear(hidden_dim, hidden_dim)
+        self.fc2 = nn.Linear(`hidden_dim`, `hidden_dim`)
         self.dropout2 = nn.Dropout(p=dropout_p)
-        self.fc3 = nn.Linear(hidden_dim, output_dim)
+        self.fc3 = nn.Linear(`hidden_dim`, output_dim)
     
     def forward(self, x):
         x = F.relu(self.fc1(x))

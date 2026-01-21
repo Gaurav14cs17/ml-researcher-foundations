@@ -235,7 +235,7 @@ def rlhf_ppo_loss(policy, ref_policy, states, actions, rewards, beta=0.1):
 | gamma (γ) | 0.99 | Discount factor |
 | gae_lambda (λ) | 0.95 | Bias-variance tradeoff |
 | epochs | 3-10 | Updates per batch |
-| batch_size | 64-256 | Samples per update |
+| `batch_size` | 64-256 | Samples per update |
 | lr | 3e-4 | Learning rate |
 | entropy_coef | 0.01 | Exploration bonus |
 | value_coef | 0.5 | Value loss weight |
