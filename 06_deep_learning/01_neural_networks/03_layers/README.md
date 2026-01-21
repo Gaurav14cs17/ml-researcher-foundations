@@ -76,7 +76,7 @@ $$\text{Parameters} = C_{out} \times (C_{in} \times k^2 + 1)$$
 
 ### Backward Pass
 
-$$\frac{\partial \mathcal{L}}{\partial X} = \text{full_conv}\left(\frac{\partial \mathcal{L}}{\partial Y}, \text{flip}(K)\right)
+$$\frac{\partial \mathcal{L}}{\partial X} = \text{full\_conv}\left(\frac{\partial \mathcal{L}}{\partial Y}, \text{flip}(K)\right)
 \frac{\partial \mathcal{L}}{\partial K} = \text{conv}\left(X, \frac{\partial \mathcal{L}}{\partial Y}\right)$$
 
 ---

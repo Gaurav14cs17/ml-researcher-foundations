@@ -196,7 +196,7 @@ $$\frac{M_{act}^{bias}}{M_{act}^{full}} = \frac{1}{d_{in}}$$
 
 **Training energy:**
 
-$$E_{train} = P \times t = P \times \frac{B \times \text{epochs} \times \text{FLOPs_per_sample}}{\text{FLOPS}}$$
+$$E_{train} = P \times t = P \times \frac{B \times \text{epochs} \times \text{FLOPs\_per\_sample}}{\text{FLOPS}}$$
 
 **Battery constraint:**
 

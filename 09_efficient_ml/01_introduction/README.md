@@ -183,15 +183,15 @@ where:
 
 For transformer inference, the compute-to-memory ratio:
 
-$$\text{Arithmetic Intensity} = \frac{\text{FLOPs}}{\text{Bytes}} = \frac{2 \times \text{batch} \times \text{seq} \times d^2}{d^2 \times \text{bytes_per_param}}$$
+$$\text{Arithmetic Intensity} = \frac{\text{FLOPs}}{\text{Bytes}} = \frac{2 \times \text{batch} \times \text{seq} \times d^2}{d^2 \times \text{bytes\_per\_param}}$$
 
 **Insight:** At batch size 1, arithmetic intensity is low → memory-bound.
 
 ### Energy Consumption Model
 
 $$E_{\text{total}} = E_{\text{compute}} + E_{\text{memory}}
-E_{\text{compute}} = \text{FLOPs} \times E_{\text{per_FLOP}}
-E_{\text{memory}} = \text{Data_moved} \times E_{\text{per_byte}}$$
+E_{\text{compute}} = \text{FLOPs} \times E_{\text{per\_FLOP}}
+E_{\text{memory}} = \text{Data\_moved} \times E_{\text{per\_byte}}$$
 
 For modern hardware: \( E_{\text{memory}} \gg E_{\text{compute}} \)
 

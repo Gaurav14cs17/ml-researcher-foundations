@@ -313,11 +313,11 @@ At 90% sparsity: CR = 10×
 
 **With sparse storage (CSR format):**
 
-$$\text{Memory} = \text{nnz} \times (\text{value_size} + \text{index_size})$$
+$$\text{Memory} = \text{nnz} \times (\text{value\_size} + \text{index\_size})$$
 
 Actual compression:
 
-$$\text{CR}_{actual} = \frac{n \times \text{value_size}}{\text{nnz} \times (\text{value_size} + \text{index_size})}$$
+$$\text{CR}_{actual} = \frac{n \times \text{value\_size}}{\text{nnz} \times (\text{value\_size} + \text{index\_size})}$$
 
 For 90% sparsity with FP32 values and INT32 indices:
 
