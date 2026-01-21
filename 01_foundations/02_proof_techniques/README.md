@@ -229,10 +229,7 @@ By the end of this article, you will be able to:
 
 **Theorem:** If f is L-smooth and convex, gradient descent with step size α = 1/L satisfies:
 
-```math
-f(x_k) - f(x^*) \leq \frac{2L\|x_0 - x^*\|^2}{k}
-
-```
+$$f(x_k) - f(x^*) \leq \frac{2L\|x_0 - x^*\|^2}{k}$$
 
 **Proof:**
 

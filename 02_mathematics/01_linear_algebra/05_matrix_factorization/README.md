@@ -79,10 +79,7 @@
 
 Given matrix $R \in \mathbb{R}^{m \times n}$, find factors:
 
-```math
-R \approx UV^T
-
-```
+$$R \approx UV^T$$
 
 where $U \in \mathbb{R}^{m \times k}$ and $V \in \mathbb{R}^{n \times k}$ with $k \ll \min(m, n)$.
 
@@ -90,10 +87,7 @@ where $U \in \mathbb{R}^{m \times k}$ and $V \in \mathbb{R}^{n \times k}$ with $
 
 SVD gives the optimal low-rank approximation:
 
-```math
-A = U\Sigma V^T \approx U_k \Sigma_k V_k^T
-
-```
+$$A = U\Sigma V^T \approx U_k \Sigma_k V_k^T$$
 
 But SVD requires:
 
@@ -109,10 +103,7 @@ Matrix factorization methods relax these.
 
 ### 📌 Problem Formulation
 
-```math
-\min_{U, V} \|R - UV^T\|_F^2 + \lambda(\|U\|_F^2 + \|V\|_F^2)
-
-```
+$$\min_{U, V} \|R - UV^T\|_F^2 + \lambda(\|U\|_F^2 + \|V\|_F^2)$$
 
 - Frobenius norm: $\|A\|_F = \sqrt{\sum_{ij} A_{ij}^2}$
 
@@ -149,10 +140,7 @@ Repeat until convergence:
 
 ### 📌 Problem
 
-```math
-\min_{U \geq 0, V \geq 0} \|R - UV^T\|_F^2
-
-```
+$$\min_{U \geq 0, V \geq 0} \|R - UV^T\|_F^2$$
 
 subject to $U_{ij} \geq 0$ and $V_{ij} \geq 0$.
 
@@ -228,10 +216,7 @@ Therefore objective decreases (or stays same) at each step.  ∎
 
 ### 📐 Matrix Factorization Model
 
-```math
-\hat{r}_{ij} = b + b_i + b_j + \mathbf{u}_i^T \mathbf{v}_j
-
-```
+$$\hat{r}_{ij} = b + b_i + b_j + \mathbf{u}_i^T \mathbf{v}_j$$
 
 where:
 
@@ -249,10 +234,7 @@ where:
 
 Minimize over observed ratings $\Omega$:
 
-```math
-\min \sum_{(i,j) \in \Omega} (r_{ij} - \hat{r}_{ij})^2 + \lambda(\|U\|_F^2 + \|V\|_F^2 + \sum_i b_i^2 + \sum_j b_j^2)
-
-```
+$$\min \sum_{(i,j) \in \Omega} (r_{ij} - \hat{r}_{ij})^2 + \lambda(\|U\|_F^2 + \|V\|_F^2 + \sum_i b_i^2 + \sum_j b_j^2)$$
 
 ### 💡 Example: Netflix
 

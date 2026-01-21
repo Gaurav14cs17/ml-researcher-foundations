@@ -44,36 +44,24 @@ For linearly separable data with labels \(y_i \in \{-1, +1\}\):
 
 **Primal Problem:**
 
-```math
-\min_{w, b} \frac{1}{2}\|w\|^2
-\text{s.t. } y_i(w^\top x_i + b) \geq 1, \quad \forall i
-
-```
+$$\min_{w, b} \frac{1}{2}\|w\|^2
+\text{s.t. } y_i(w^\top x_i + b) \geq 1, \quad \forall i$$
 
 **Margin:** The geometric margin is \(\gamma = \frac{2}{\|w\|}\).
 
 ### Lagrangian
 
-```math
-\mathcal{L}(w, b, \alpha) = \frac{1}{2}\|w\|^2 - \sum_{i=1}^n \alpha_i[y_i(w^\top x_i + b) - 1]
-
-```
+$$\mathcal{L}(w, b, \alpha) = \frac{1}{2}\|w\|^2 - \sum_{i=1}^n \alpha_i[y_i(w^\top x_i + b) - 1]$$
 
 **KKT Conditions:**
 
-```math
-\nabla_w \mathcal{L} = 0 \Rightarrow w = \sum_i \alpha_i y_i x_i
-\nabla_b \mathcal{L} = 0 \Rightarrow \sum_i \alpha_i y_i = 0
-
-```
+$$\nabla_w \mathcal{L} = 0 \Rightarrow w = \sum_i \alpha_i y_i x_i
+\nabla_b \mathcal{L} = 0 \Rightarrow \sum_i \alpha_i y_i = 0$$
 
 ### Dual Problem
 
-```math
-\max_\alpha \sum_{i=1}^n \alpha_i - \frac{1}{2}\sum_{i,j} \alpha_i \alpha_j y_i y_j x_i^\top x_j
-\text{s.t. } \alpha_i \geq 0, \quad \sum_i \alpha_i y_i = 0
-
-```
+$$\max_\alpha \sum_{i=1}^n \alpha_i - \frac{1}{2}\sum_{i,j} \alpha_i \alpha_j y_i y_j x_i^\top x_j
+\text{s.t. } \alpha_i \geq 0, \quad \sum_i \alpha_i y_i = 0$$
 
 **Key insight:** Only inner products \(x_i^\top x_j\) appear → kernel trick!
 
@@ -85,19 +73,13 @@ For non-separable data, introduce slack variables \(\xi_i \geq 0\):
 
 **Primal Problem:**
 
-```math
-\min_{w, b, \xi} \frac{1}{2}\|w\|^2 + C\sum_{i=1}^n \xi_i
-\text{s.t. } y_i(w^\top x_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0
-
-```
+$$\min_{w, b, \xi} \frac{1}{2}\|w\|^2 + C\sum_{i=1}^n \xi_i
+\text{s.t. } y_i(w^\top x_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0$$
 
 **Dual Problem:**
 
-```math
-\max_\alpha \sum_{i=1}^n \alpha_i - \frac{1}{2}\sum_{i,j} \alpha_i \alpha_j y_i y_j x_i^\top x_j
-\text{s.t. } 0 \leq \alpha_i \leq C, \quad \sum_i \alpha_i y_i = 0
-
-```
+$$\max_\alpha \sum_{i=1}^n \alpha_i - \frac{1}{2}\sum_{i,j} \alpha_i \alpha_j y_i y_j x_i^\top x_j
+\text{s.t. } 0 \leq \alpha_i \leq C, \quad \sum_i \alpha_i y_i = 0$$
 
 **Interpretation of \(C\):**
 - Large \(C\): Small margin, fewer violations
@@ -112,17 +94,11 @@ For non-separable data, introduce slack variables \(\xi_i \geq 0\):
 
 Replace inner product with kernel function:
 
-```math
-x_i^\top x_j \to k(x_i, x_j) = \phi(x_i)^\top \phi(x_j)
-
-```
+$$x_i^\top x_j \to k(x_i, x_j) = \phi(x_i)^\top \phi(x_j)$$
 
 **Decision Function:**
 
-```math
-f(x) = \text{sign}\left(\sum_{i=1}^n \alpha_i y_i k(x_i, x) + b\right)
-
-```
+$$f(x) = \text{sign}\left(\sum_{i=1}^n \alpha_i y_i k(x_i, x) + b\right)$$
 
 ### Common Kernels
 
@@ -134,10 +110,7 @@ f(x) = \text{sign}\left(\sum_{i=1}^n \alpha_i y_i k(x_i, x) + b\right)
 
 ### RBF Kernel Properties
 
-```math
-k(x, x') = \exp\left(-\frac{\|x - x'\|^2}{2\sigma^2}\right)
-
-```
+$$k(x, x') = \exp\left(-\frac{\|x - x'\|^2}{2\sigma^2}\right)$$
 
 **Theorem:** The RBF kernel corresponds to an infinite-dimensional feature space. It is a universal approximator.
 
@@ -149,10 +122,7 @@ k(x, x') = \exp\left(-\frac{\|x - x'\|^2}{2\sigma^2}\right)
 
 **Theorem:** For SVM with margin \(\gamma\) on data with radius \(R\):
 
-```math
-R(f) \leq \hat{R}(f) + O\left(\frac{R^2/\gamma^2}{n}\right)
-
-```
+$$R(f) \leq \hat{R}(f) + O\left(\frac{R^2/\gamma^2}{n}\right)$$
 
 **Implication:** Larger margin → better generalization.
 

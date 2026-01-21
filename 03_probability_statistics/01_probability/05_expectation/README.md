@@ -31,17 +31,11 @@ Expected value is the most important summary statistic of a random variable. In 
 
 ### Discrete Random Variable
 
-```math
-E[X] = \sum_{x} x \cdot P(X = x)
-
-```
+$$E[X] = \sum_{x} x \cdot P(X = x)$$
 
 ### Continuous Random Variable
 
-```math
-E[X] = \int_{-\infty}^{\infty} x \cdot f(x) \, dx
-
-```
+$$E[X] = \int_{-\infty}^{\infty} x \cdot f(x) \, dx$$
 
 ---
 
@@ -51,19 +45,13 @@ E[X] = \int_{-\infty}^{\infty} x \cdot f(x) \, dx
 
 **Theorem:**
 
-```math
-E[aX + b] = a \cdot E[X] + b
-
-```
+$$E[aX + b] = a \cdot E[X] + b$$
 
 **Proof (Discrete case):**
 
-```math
-E[aX + b] = \sum_x (ax + b) \cdot P(X = x)
+$$E[aX + b] = \sum_x (ax + b) \cdot P(X = x)
 = a \sum_x x \cdot P(X = x) + b \sum_x P(X = x)
-= a \cdot E[X] + b \cdot 1 = a \cdot E[X] + b \quad \blacksquare
-
-```
+= a \cdot E[X] + b \cdot 1 = a \cdot E[X] + b \quad \blacksquare$$
 
 ---
 
@@ -71,21 +59,15 @@ E[aX + b] = \sum_x (ax + b) \cdot P(X = x)
 
 **Theorem:**
 
-```math
-E[X + Y] = E[X] + E[Y] \quad \text{(ALWAYS, even if X, Y are dependent!)}
-
-```
+$$E[X + Y] = E[X] + E[Y] \quad \text{(ALWAYS, even if X, Y are dependent!)}$$
 
 **Proof (Discrete case):**
 
-```math
-E[X + Y] = \sum_x \sum_y (x + y) \cdot P(X = x, Y = y)
+$$E[X + Y] = \sum_x \sum_y (x + y) \cdot P(X = x, Y = y)
 = \sum_x \sum_y x \cdot P(X = x, Y = y) + \sum_x \sum_y y \cdot P(X = x, Y = y)
 = \sum_x x \sum_y P(X = x, Y = y) + \sum_y y \sum_x P(X = x, Y = y)
 = \sum_x x \cdot P(X = x) + \sum_y y \cdot P(Y = y)
-= E[X] + E[Y] \quad \blacksquare
-
-```
+= E[X] + E[Y] \quad \blacksquare$$
 
 ---
 
@@ -93,22 +75,16 @@ E[X + Y] = \sum_x \sum_y (x + y) \cdot P(X = x, Y = y)
 
 **Theorem:** If X and Y are **independent**:
 
-```math
-E[XY] = E[X] \cdot E[Y]
-
-```
+$$E[XY] = E[X] \cdot E[Y]$$
 
 **Proof:**
 
 For independent random variables, $P(X=x, Y=y) = P(X=x) \cdot P(Y=y)$
 
-```math
-E[XY] = \sum_x \sum_y xy \cdot P(X = x, Y = y)
+$$E[XY] = \sum_x \sum_y xy \cdot P(X = x, Y = y)
 = \sum_x \sum_y xy \cdot P(X = x) \cdot P(Y = y)
 = \left(\sum_x x \cdot P(X = x)\right) \left(\sum_y y \cdot P(Y = y)\right)
-= E[X] \cdot E[Y] \quad \blacksquare
-
-```
+= E[X] \cdot E[Y] \quad \blacksquare$$
 
 ---
 
@@ -118,26 +94,17 @@ E[XY] = \sum_x \sum_y xy \cdot P(X = x, Y = y)
 
 **Discrete:**
 
-```math
-E[g(X)] = \sum_x g(x) \cdot P(X = x)
-
-```
+$$E[g(X)] = \sum_x g(x) \cdot P(X = x)$$
 
 **Continuous:**
 
-```math
-E[g(X)] = \int_{-\infty}^{\infty} g(x) \cdot f(x) \, dx
-
-```
+$$E[g(X)] = \int_{-\infty}^{\infty} g(x) \cdot f(x) \, dx$$
 
 **Why "unconscious"?** We compute E[g(X)] without needing to find the distribution of g(X)!
 
 **Example:** Computing $E[X^2]$ without finding the distribution of $X^2$:
 
-```math
-E[X^2] = \sum_x x^2 \cdot P(X = x)
-
-```
+$$E[X^2] = \sum_x x^2 \cdot P(X = x)$$
 
 ---
 
@@ -145,66 +112,45 @@ E[X^2] = \sum_x x^2 \cdot P(X = x)
 
 ### Definition
 
-```math
-\text{Var}(X) = E[(X - \mu)^2] = E[X^2] - (E[X])^2
-
-```
+$$\text{Var}(X) = E[(X - \mu)^2] = E[X^2] - (E[X])^2$$
 
 **Proof of alternative form:**
 
-```math
-\text{Var}(X) = E[(X - \mu)^2]
+$$\text{Var}(X) = E[(X - \mu)^2]
 = E[X^2 - 2\mu X + \mu^2]
 = E[X^2] - 2\mu E[X] + \mu^2
 = E[X^2] - 2\mu^2 + \mu^2
-= E[X^2] - \mu^2 = E[X^2] - (E[X])^2 \quad \blacksquare
-
-```
+= E[X^2] - \mu^2 = E[X^2] - (E[X])^2 \quad \blacksquare$$
 
 ### Variance Properties
 
 **Theorem:**
 
-```math
-\text{Var}(aX + b) = a^2 \text{Var}(X)
-
-```
+$$\text{Var}(aX + b) = a^2 \text{Var}(X)$$
 
 **Proof:**
 
-```math
-\text{Var}(aX + b) = E[(aX + b - E[aX + b])^2]
+$$\text{Var}(aX + b) = E[(aX + b - E[aX + b])^2]
 = E[(aX + b - aE[X] - b)^2]
 = E[(a(X - E[X]))^2]
-= a^2 E[(X - E[X])^2] = a^2 \text{Var}(X) \quad \blacksquare
-
-```
+= a^2 E[(X - E[X])^2] = a^2 \text{Var}(X) \quad \blacksquare$$
 
 ---
 
 **Theorem (Variance of Sum):**
 
-```math
-\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y) + 2\text{Cov}(X,Y)
-
-```
+$$\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y) + 2\text{Cov}(X,Y)$$
 
 If X and Y are **independent**:
 
-```math
-\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)
-
-```
+$$\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$$
 
 **Proof:**
 
-```math
-\text{Var}(X + Y) = E[(X + Y - E[X + Y])^2]
+$$\text{Var}(X + Y) = E[(X + Y - E[X + Y])^2]
 = E[((X - \mu_X) + (Y - \mu_Y))^2]
 = E[(X - \mu_X)^2] + E[(Y - \mu_Y)^2] + 2E[(X - \mu_X)(Y - \mu_Y)]
-= \text{Var}(X) + \text{Var}(Y) + 2\text{Cov}(X,Y) \quad \blacksquare
-
-```
+= \text{Var}(X) + \text{Var}(Y) + 2\text{Cov}(X,Y) \quad \blacksquare$$
 
 ---
 
@@ -225,10 +171,7 @@ If X and Y are **independent**:
 
 **Skewness (Asymmetry):**
 
-```math
-\gamma_1 = \frac{E[(X-\mu)^3]}{\sigma^3}
-
-```
+$$\gamma_1 = \frac{E[(X-\mu)^3]}{\sigma^3}$$
 
 - $\gamma_1 = 0$: Symmetric distribution
 
@@ -238,10 +181,7 @@ If X and Y are **independent**:
 
 **Kurtosis (Tail Weight):**
 
-```math
-\gamma_2 = \frac{E[(X-\mu)^4]}{\sigma^4}
-
-```
+$$\gamma_2 = \frac{E[(X-\mu)^4]}{\sigma^4}$$
 
 **Excess Kurtosis:** $\gamma_2 - 3$ (Gaussian has excess kurtosis = 0)
 
@@ -257,40 +197,25 @@ If X and Y are **independent**:
 
 **Definition:**
 
-```math
-M_X(t) = E[e^{tX}]
-
-```
+$$M_X(t) = E[e^{tX}]$$
 
 **Why useful?**
 
-```math
-\frac{d^n M_X}{dt^n}\bigg|_{t=0} = E[X^n]
-
-```
+$$\frac{d^n M_X}{dt^n}\bigg|_{t=0} = E[X^n]$$
 
 **Proof:**
 
-```math
-M_X(t) = E[e^{tX}] = E\left[\sum_{n=0}^{\infty} \frac{(tX)^n}{n!}\right] = \sum_{n=0}^{\infty} \frac{t^n E[X^n]}{n!}
-
-```
+$$M_X(t) = E[e^{tX}] = E\left[\sum_{n=0}^{\infty} \frac{(tX)^n}{n!}\right] = \sum_{n=0}^{\infty} \frac{t^n E[X^n]}{n!}$$
 
 Taking the n-th derivative and evaluating at t=0:
 
-```math
-\frac{d^n M_X}{dt^n}\bigg|_{t=0} = E[X^n] \quad \blacksquare
-
-```
+$$\frac{d^n M_X}{dt^n}\bigg|_{t=0} = E[X^n] \quad \blacksquare$$
 
 **Example: Gaussian MGF**
 
 For $X \sim \mathcal{N}(\mu, \sigma^2)$:
 
-```math
-M_X(t) = \exp\left(\mu t + \frac{\sigma^2 t^2}{2}\right)
-
-```
+$$M_X(t) = \exp\left(\mu t + \frac{\sigma^2 t^2}{2}\right)$$
 
 ---
 
@@ -298,27 +223,18 @@ M_X(t) = \exp\left(\mu t + \frac{\sigma^2 t^2}{2}\right)
 
 ### Definition
 
-```math
-\text{Cov}(X, Y) = E[(X - \mu_X)(Y - \mu_Y)] = E[XY] - E[X]E[Y]
-
-```
+$$\text{Cov}(X, Y) = E[(X - \mu_X)(Y - \mu_Y)] = E[XY] - E[X]E[Y]$$
 
 **Proof of alternative form:**
 
-```math
-\text{Cov}(X, Y) = E[(X - \mu_X)(Y - \mu_Y)]
+$$\text{Cov}(X, Y) = E[(X - \mu_X)(Y - \mu_Y)]
 = E[XY - X\mu_Y - Y\mu_X + \mu_X\mu_Y]
 = E[XY] - \mu_Y E[X] - \mu_X E[Y] + \mu_X\mu_Y
-= E[XY] - \mu_X\mu_Y = E[XY] - E[X]E[Y] \quad \blacksquare
-
-```
+= E[XY] - \mu_X\mu_Y = E[XY] - E[X]E[Y] \quad \blacksquare$$
 
 ### Correlation
 
-```math
-\rho(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma_X \cdot \sigma_Y}
-
-```
+$$\rho(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma_X \cdot \sigma_Y}$$
 
 **Properties:**
 - $-1 \leq \rho \leq 1$
@@ -333,17 +249,11 @@ M_X(t) = \exp\left(\mu t + \frac{\sigma^2 t^2}{2}\right)
 
 **Theorem:** For a convex function $g$:
 
-```math
-g(E[X]) \leq E[g(X)]
-
-```
+$$g(E[X]) \leq E[g(X)]$$
 
 For a concave function $g$:
 
-```math
-g(E[X]) \geq E[g(X)]
-
-```
+$$g(E[X]) \geq E[g(X)]$$
 
 **Applications in ML:**
 - **Log-likelihood lower bound:** $E[\log p] \leq \log E[p]$ (log is concave)

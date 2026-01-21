@@ -34,10 +34,7 @@
 
 **Hyperparameter tuning** is the process of finding optimal hyperparameters \(\lambda\) that minimize validation error:
 
-```math
-\lambda^* = \arg\min_{\lambda \in \Lambda} \mathcal{L}_{\text{val}}(h_{\lambda})
-
-```
+$$\lambda^* = \arg\min_{\lambda \in \Lambda} \mathcal{L}_{\text{val}}(h_{\lambda})$$
 
 where \(h_\lambda\) is the model trained with hyperparameters \(\lambda\).
 
@@ -49,10 +46,7 @@ where \(h_\lambda\) is the model trained with hyperparameters \(\lambda\).
 
 Exhaustive search over a discretized grid:
 
-```math
-\Lambda_{\text{grid}} = \{\lambda_1^{(1)}, \ldots, \lambda_1^{(k_1)}\} \times \cdots \times \{\lambda_d^{(1)}, \ldots, \lambda_d^{(k_d)}\}
-
-```
+$$\Lambda_{\text{grid}} = \{\lambda_1^{(1)}, \ldots, \lambda_1^{(k_1)}\} \times \cdots \times \{\lambda_d^{(1)}, \ldots, \lambda_d^{(k_d)}\}$$
 
 **Complexity:** \(O(\prod_{i=1}^d k_i)\)
 
@@ -84,37 +78,25 @@ Exhaustive search over a discretized grid:
 
 ### GP Prior
 
-```math
-f(\lambda) \sim \mathcal{GP}(m(\lambda), k(\lambda, \lambda'))
-
-```
+$$f(\lambda) \sim \mathcal{GP}(m(\lambda), k(\lambda, \lambda'))$$
 
 ### Acquisition Functions
 
 **Expected Improvement (EI):**
 
-```math
-\text{EI}(\lambda) = \mathbb{E}[\max(f^+ - f(\lambda), 0)]
-
-```
+$$\text{EI}(\lambda) = \mathbb{E}[\max(f^+ - f(\lambda), 0)]$$
 
 where \(f^+ = \min_i f(\lambda_i)\) is the best observed value.
 
 **Closed form for GP:**
 
-```math
-\text{EI}(\lambda) = (f^+ - \mu(\lambda))\Phi(Z) + \sigma(\lambda)\phi(Z)
-
-```
+$$\text{EI}(\lambda) = (f^+ - \mu(\lambda))\Phi(Z) + \sigma(\lambda)\phi(Z)$$
 
 where \(Z = \frac{f^+ - \mu(\lambda)}{\sigma(\lambda)}\).
 
 **Upper Confidence Bound (UCB):**
 
-```math
-\text{UCB}(\lambda) = \mu(\lambda) - \kappa \sigma(\lambda)
-
-```
+$$\text{UCB}(\lambda) = \mu(\lambda) - \kappa \sigma(\lambda)$$
 
 where \(\kappa\) controls exploration vs exploitation.
 
@@ -138,10 +120,7 @@ Given budget \(B\) and \(n\) configurations:
 
 Run successive halving with different \((n, B/n)\) trade-offs:
 
-```math
-s_{\max} = \lfloor \log_\eta(B) \rfloor
-
-```
+$$s_{\max} = \lfloor \log_\eta(B) \rfloor$$
 
 For each \(s \in \{s_{\max}, \ldots, 0\}\):
 

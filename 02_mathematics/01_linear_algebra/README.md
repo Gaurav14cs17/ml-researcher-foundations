@@ -118,10 +118,7 @@
 
 A **vector** is an ordered list of numbers representing a point or direction in space.
 
-```math
-\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix} \in \mathbb{R}^n
-
-```
+$$\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix} \in \mathbb{R}^n$$
 
 ### 📐 Vector Operations
 
@@ -629,10 +626,7 @@ def spectral_norm(W, num_iters=1):
 
 For a square matrix $A \in \mathbb{R}^{n \times n}$:
 
-```math
-A\mathbf{v} = \lambda\mathbf{v}
-
-```
+$$A\mathbf{v} = \lambda\mathbf{v}$$
 
 where:
 
@@ -939,10 +933,7 @@ A = QΛQᵀ  ∎
 
 **SVD Existence**: For ANY matrix $A \in \mathbb{R}^{m \times n}$:
 
-```math
-A = U\Sigma V^T
-
-```
+$$A = U\Sigma V^T$$
 
 where:
 
@@ -1087,17 +1078,11 @@ def svd_torch(A_tensor):
 
 The best rank-$k$ approximation to $A$ (in Frobenius norm) is:
 
-```math
-A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T = U_k \Sigma_k V_k^T
-
-```
+$$A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T = U_k \Sigma_k V_k^T$$
 
 with approximation error:
 
-```math
-\|A - A_k\|_F^2 = \sum_{i=k+1}^{r} \sigma_i^2
-
-```
+$$\|A - A_k\|_F^2 = \sum_{i=k+1}^{r} \sigma_i^2$$
 
 ### 🔍 Proof (Eckart-Young)
 
@@ -1390,10 +1375,7 @@ def compute_covariance(X):
 
 For any matrix $A \in \mathbb{R}^{m \times n}$ with $m \geq n$:
 
-```math
-A = QR
-
-```
+$$A = QR$$
 
 where:
 

@@ -17,10 +17,7 @@
 
 ### Definition
 
-```math
-P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad \text{for } P(B) > 0
-
-```
+$$P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad \text{for } P(B) > 0$$
 
 **Interpretation:** "Probability of A given that B occurred"
 
@@ -41,18 +38,12 @@ P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad \text{for } P(B) > 0
 
 ### Chain Rule
 
-```math
-P(A \cap B) = P(A|B) \cdot P(B)
-P(A \cap B \cap C) = P(A|B,C) \cdot P(B|C) \cdot P(C)
-
-```
+$$P(A \cap B) = P(A|B) \cdot P(B)
+P(A \cap B \cap C) = P(A|B,C) \cdot P(B|C) \cdot P(C)$$
 
 **General Form:**
 
-```math
-P(A_1 \cap \ldots \cap A_n) = P(A_1) \cdot P(A_2|A_1) \cdot P(A_3|A_1,A_2) \cdots P(A_n|A_1,\ldots,A_{n-1})
-
-```
+$$P(A_1 \cap \ldots \cap A_n) = P(A_1) \cdot P(A_2|A_1) \cdot P(A_3|A_1,A_2) \cdots P(A_n|A_1,\ldots,A_{n-1})$$
 
 ---
 
@@ -60,10 +51,7 @@ P(A_1 \cap \ldots \cap A_n) = P(A_1) \cdot P(A_2|A_1) \cdot P(A_3|A_1,A_2) \cdot
 
 ### The Formula
 
-```math
-P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}
-
-```
+$$P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}$$
 
 | Term | Name | Interpretation |
 |------|------|----------------|
@@ -74,51 +62,33 @@ P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}
 
 **Simplified form:**
 
-```math
-\text{Posterior} \propto \text{Likelihood} \times \text{Prior}
-P(\theta|D) \propto P(D|\theta) \cdot P(\theta)
-
-```
+$$\text{Posterior} \propto \text{Likelihood} \times \text{Prior}
+P(\theta|D) \propto P(D|\theta) \cdot P(\theta)$$
 
 ### Derivation and Proof
 
 **Step 1:** Start from conditional probability definition:
 
-```math
-P(A|B) = \frac{P(A \cap B)}{P(B)}
-P(B|A) = \frac{P(A \cap B)}{P(A)}
-
-```
+$$P(A|B) = \frac{P(A \cap B)}{P(B)}
+P(B|A) = \frac{P(A \cap B)}{P(A)}$$
 
 **Step 2:** Express joint probability two ways:
 
-```math
-P(A \cap B) = P(A|B) \cdot P(B) = P(B|A) \cdot P(A)
-
-```
+$$P(A \cap B) = P(A|B) \cdot P(B) = P(B|A) \cdot P(A)$$
 
 **Step 3:** Rearrange to get Bayes' Theorem:
 
-```math
-P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} \quad \blacksquare
-
-```
+$$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} \quad \blacksquare$$
 
 ### Law of Total Probability
 
 For a partition $\{A_i\}$ of the sample space:
 
-```math
-P(B) = \sum_i P(B|A_i) \cdot P(A_i)
-
-```
+$$P(B) = \sum_i P(B|A_i) \cdot P(A_i)$$
 
 **Continuous case:**
 
-```math
-P(D) = \int P(D|\theta) \cdot P(\theta) \, d\theta
-
-```
+$$P(D) = \int P(D|\theta) \cdot P(\theta) \, d\theta$$
 
 *Note: This integral is often intractable → need approximations (MCMC, Variational Inference)*
 
@@ -130,10 +100,7 @@ P(D) = \int P(D|\theta) \cdot P(\theta) \, d\theta
 
 Events A and B are **independent** if:
 
-```math
-P(A \cap B) = P(A) \cdot P(B)
-
-```
+$$P(A \cap B) = P(A) \cdot P(B)$$
 
 **Equivalently:**
 - $P(A|B) = P(A)$ → B doesn't change A's probability
@@ -144,10 +111,7 @@ P(A \cap B) = P(A) \cdot P(B)
 
 $A \perp B \mid C$ means:
 
-```math
-P(A \cap B|C) = P(A|C) \cdot P(B|C)
-
-```
+$$P(A \cap B|C) = P(A|C) \cdot P(B|C)$$
 
 "A and B are independent **GIVEN** C"
 
@@ -174,80 +138,50 @@ For continuous random variables X (prior) and Y (observation):
 
 **Posterior density:**
 
-```math
-p(x|y) = \frac{p(y|x)p(x)}{p(y)} = \frac{p(y|x)p(x)}{\int p(y|x')p(x')dx'}
-
-```
+$$p(x|y) = \frac{p(y|x)p(x)}{p(y)} = \frac{p(y|x)p(x)}{\int p(y|x')p(x')dx'}$$
 
 **Proof:**
 
 Starting from the definition of conditional density:
 
-```math
-p(x|y) = \frac{p(x,y)}{p(y)}
-
-```
+$$p(x|y) = \frac{p(x,y)}{p(y)}$$
 
 By the chain rule for densities:
 
-```math
-p(x,y) = p(y|x)p(x)
-
-```
+$$p(x,y) = p(y|x)p(x)$$
 
 Substituting:
 
-```math
-p(x|y) = \frac{p(y|x)p(x)}{p(y)}
-
-```
+$$p(x|y) = \frac{p(y|x)p(x)}{p(y)}$$
 
 And $p(y)$ by marginalization:
 
-```math
-p(y) = \int_{-\infty}^{\infty} p(y|x)p(x)dx \quad \blacksquare
-
-```
+$$p(y) = \int_{-\infty}^{\infty} p(y|x)p(x)dx \quad \blacksquare$$
 
 ### Proof: Chain Rule for Probability
 
 **Theorem:** For events $A_1, A_2, \ldots, A_n$:
 
-```math
-P(A_1 \cap A_2 \cap \cdots \cap A_n) = P(A_1) \prod_{k=2}^{n} P(A_k | A_1 \cap \cdots \cap A_{k-1})
-
-```
+$$P(A_1 \cap A_2 \cap \cdots \cap A_n) = P(A_1) \prod_{k=2}^{n} P(A_k | A_1 \cap \cdots \cap A_{k-1})$$
 
 **Proof by Induction:**
 
 *Base case (n=2):*
 
-```math
-P(A_1 \cap A_2) = P(A_2|A_1)P(A_1) \quad \checkmark
-
-```
+$$P(A_1 \cap A_2) = P(A_2|A_1)P(A_1) \quad \checkmark$$
 
 *Inductive step:*
 Assume true for n-1. Define $B = A_1 \cap \cdots \cap A_{n-1}$.
 
-```math
-P(A_1 \cap \cdots \cap A_n) = P(B \cap A_n) = P(A_n|B) \cdot P(B)
-
-```
+$$P(A_1 \cap \cdots \cap A_n) = P(B \cap A_n) = P(A_n|B) \cdot P(B)$$
 
 By induction hypothesis:
 
-```math
-P(B) = P(A_1) \prod_{k=2}^{n-1} P(A_k | A_1 \cap \cdots \cap A_{k-1})
-
-```
+$$P(B) = P(A_1) \prod_{k=2}^{n-1} P(A_k | A_1 \cap \cdots \cap A_{k-1})$$
 
 Therefore:
 
-```math
-P(A_1 \cap \cdots \cap A_n) = P(A_1) \prod_{k=2}^{n} P(A_k | A_1 \cap \cdots \cap A_{k-1}) \quad \blacksquare
-
-```
+$$P(A_1 \cap \cdots \cap A_n) = P(A_1) \prod_{k=2}^{n} P(A_k | A_1 \cap \cdots \cap A_{k-1}) \quad \blacksquare$$
 
 ### Proof: Independence Implies Zero Covariance
 
@@ -255,31 +189,19 @@ P(A_1 \cap \cdots \cap A_n) = P(A_1) \prod_{k=2}^{n} P(A_k | A_1 \cap \cdots \ca
 
 **Proof:**
 
-```math
-\text{Cov}(X,Y) = E[XY] - E[X]E[Y]
-
-```
+$$\text{Cov}(X,Y) = E[XY] - E[X]E[Y]$$
 
 For independent random variables:
 
-```math
-E[XY] = \int\int xy \cdot p(x,y) \, dx\,dy
-
-```
+$$E[XY] = \int\int xy \cdot p(x,y) \, dx\,dy$$
 
 Since $p(x,y) = p(x)p(y)$ for independent variables:
 
-```math
-E[XY] = \int\int xy \cdot p(x)p(y) \, dx\,dy = \left(\int x \cdot p(x)dx\right)\left(\int y \cdot p(y)dy\right) = E[X]E[Y]
-
-```
+$$E[XY] = \int\int xy \cdot p(x)p(y) \, dx\,dy = \left(\int x \cdot p(x)dx\right)\left(\int y \cdot p(y)dy\right) = E[X]E[Y]$$
 
 Therefore:
 
-```math
-\text{Cov}(X,Y) = E[X]E[Y] - E[X]E[Y] = 0 \quad \blacksquare
-
-```
+$$\text{Cov}(X,Y) = E[X]E[Y] - E[X]E[Y] = 0 \quad \blacksquare$$
 
 *Note: The converse is **NOT** true! Zero covariance does not imply independence.*
 
@@ -298,26 +220,17 @@ Therefore:
 
 Prior density:
 
-```math
-p(\theta) = \frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha,\beta)}
-
-```
+$$p(\theta) = \frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha,\beta)}$$
 
 Likelihood:
 
-```math
-P(X=x|\theta) = \binom{n}{x}\theta^x(1-\theta)^{n-x}
-
-```
+$$P(X=x|\theta) = \binom{n}{x}\theta^x(1-\theta)^{n-x}$$
 
 Posterior (using Bayes):
 
-```math
-p(\theta|X=x) \propto p(X=x|\theta) \cdot p(\theta)
+$$p(\theta|X=x) \propto p(X=x|\theta) \cdot p(\theta)
 \propto \theta^x(1-\theta)^{n-x} \cdot \theta^{\alpha-1}(1-\theta)^{\beta-1}
-= \theta^{\alpha+x-1}(1-\theta)^{\beta+n-x-1}
-
-```
+= \theta^{\alpha+x-1}(1-\theta)^{\beta+n-x-1}$$
 
 This is the kernel of $\text{Beta}(\alpha+x, \beta+n-x)$. $\quad \blacksquare$
 
@@ -343,10 +256,7 @@ This is the kernel of $\text{Beta}(\alpha+x, \beta+n-x)$. $\quad \blacksquare$
 
 **Prediction:**
 
-```math
-P(y^*|x^*, D) = \int P(y^*|x^*, \theta) P(\theta|D) d\theta
-
-```
+$$P(y^*|x^*, D) = \int P(y^*|x^*, \theta) P(\theta|D) d\theta$$
 
 *We integrate out the uncertainty in parameters!*
 
@@ -354,10 +264,7 @@ P(y^*|x^*, D) = \int P(y^*|x^*, \theta) P(\theta|D) d\theta
 
 **Assumption:** Features are conditionally independent given class
 
-```math
-P(C|x_1,\ldots,x_n) \propto P(C) \cdot \prod_i P(x_i|C)
-
-```
+$$P(C|x_1,\ldots,x_n) \propto P(C) \cdot \prod_i P(x_i|C)$$
 
 **Why "naive"?** Features are rarely truly independent, but it works well in practice!
 
@@ -365,17 +272,11 @@ P(C|x_1,\ldots,x_n) \propto P(C) \cdot \prod_i P(x_i|C)
 
 **Maximum Likelihood Estimation (MLE):**
 
-```math
-\theta_{\text{MLE}} = \arg\max_\theta P(D|\theta) = \arg\max_\theta \log P(D|\theta)
-
-```
+$$\theta_{\text{MLE}} = \arg\max_\theta P(D|\theta) = \arg\max_\theta \log P(D|\theta)$$
 
 **Maximum A Posteriori (MAP):**
 
-```math
-\theta_{\text{MAP}} = \arg\max_\theta P(\theta|D) = \arg\max_\theta \left[\log P(D|\theta) + \log P(\theta)\right]
-
-```
+$$\theta_{\text{MAP}} = \arg\max_\theta P(\theta|D) = \arg\max_\theta \left[\log P(D|\theta) + \log P(\theta)\right]$$
 
 **Connection to Regularization:**
 - **L2 regularization** = Gaussian prior on θ

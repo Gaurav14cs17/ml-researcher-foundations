@@ -19,31 +19,19 @@
 
 **Complete Loss Function:**
 
-```math
-\mathcal{L}_{KD} = \alpha \cdot \mathcal{L}_{hard} + (1-\alpha) \cdot T^2 \cdot \mathcal{L}_{soft}
-
-```
+$$\mathcal{L}_{KD} = \alpha \cdot \mathcal{L}_{hard} + (1-\alpha) \cdot T^2 \cdot \mathcal{L}_{soft}$$
 
 **Hard Loss (Ground Truth):**
 
-```math
-\mathcal{L}_{hard} = -\sum_i y_i \log p_i^s = H(y, p^s)
-
-```
+$$\mathcal{L}_{hard} = -\sum_i y_i \log p_i^s = H(y, p^s)$$
 
 **Soft Loss (Teacher Knowledge):**
 
-```math
-\mathcal{L}_{soft} = D_{KL}(p^t_T \| p^s_T) = \sum_i p_i^{t,T} \log \frac{p_i^{t,T}}{p_i^{s,T}}
-
-```
+$$\mathcal{L}_{soft} = D_{KL}(p^t_T \| p^s_T) = \sum_i p_i^{t,T} \log \frac{p_i^{t,T}}{p_i^{s,T}}$$
 
 Where temperature-scaled softmax:
 
-```math
-p_i^T = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)}
-
-```
+$$p_i^T = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)}$$
 
 ### 2. Temperature Analysis (Mathematical Proof)
 
@@ -53,18 +41,12 @@ p_i^T = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)}
 
 Let $z_i$ be logits and $\bar{z} = \frac{1}{n}\sum_i z_i$
 
-```math
-\exp(z_i/T) \approx 1 + z_i/T + O(1/T^2)
-
-```
+$$\exp(z_i/T) \approx 1 + z_i/T + O(1/T^2)$$
 
 Therefore:
 
-```math
-p_i^T = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)} \approx \frac{1 + z_i/T}{n + \sum_j z_j/T}
-\approx \frac{1}{n} + \frac{z_i - \bar{z}}{nT} + O(1/T^2)
-
-```
+$$p_i^T = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)} \approx \frac{1 + z_i/T}{n + \sum_j z_j/T}
+\approx \frac{1}{n} + \frac{z_i - \bar{z}}{nT} + O(1/T^2)$$
 
 **Interpretation:**
 - $T \to \infty$: Uniform distribution (no information)
@@ -77,19 +59,13 @@ p_i^T = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)} \approx \frac{1 + z_i/T}{n + \sum
 
 **Gradient w.r.t. student logits $z_s$:**
 
-```math
-\frac{\partial \mathcal{L}_{soft}}{\partial z_s^{(i)}} = \frac{1}{T}\left(p_i^{s,T} - p_i^{t,T}\right)
-
-```
+$$\frac{\partial \mathcal{L}_{soft}}{\partial z_s^{(i)}} = \frac{1}{T}\left(p_i^{s,T} - p_i^{t,T}\right)$$
 
 **Why $T^2$ scaling?**
 
 The gradient scales as $1/T$, and we want gradients comparable to hard loss:
 
-```math
-\frac{\partial (T^2 \mathcal{L}_{soft})}{\partial z_s^{(i)}} = T\left(p_i^{s,T} - p_i^{t,T}\right)
-
-```
+$$\frac{\partial (T^2 \mathcal{L}_{soft})}{\partial z_s^{(i)}} = T\left(p_i^{s,T} - p_i^{t,T}\right)$$
 
 This makes the soft loss contribution independent of temperature choice.
 
@@ -97,41 +73,26 @@ This makes the soft loss contribution independent of temperature choice.
 
 **Mutual Information:**
 
-```math
-I(X; Y) = H(Y) - H(Y|X)
-
-```
+$$I(X; Y) = H(Y) - H(Y|X)$$
 
 **Knowledge in Soft Labels:**
 The soft labels contain more information than hard labels:
 
-```math
-I(X; p^t_T) > I(X; y)
-
-```
+$$I(X; p^t_T) > I(X; y)$$
 
 Because:
 
-```math
-H(p^t_T) > H(y) \text{ (soft labels have higher entropy)}
-
-```
+$$H(p^t_T) > H(y) \text{ (soft labels have higher entropy)}$$
 
 **Dark Knowledge:** Information in $p^t_T$ beyond $y$:
 
-```math
-\text{Dark Knowledge} = I(X; p^t_T) - I(X; y)
-
-```
+$$\text{Dark Knowledge} = I(X; p^t_T) - I(X; y)$$
 
 ### 5. Feature-Based Distillation
 
 **FitNets (Romero et al., 2015):**
 
-```math
-\mathcal{L}_{hint} = \|r(F_s^l) - F_t^l\|_2^2
-
-```
+$$\mathcal{L}_{hint} = \|r(F_s^l) - F_t^l\|_2^2$$
 
 Where:
 
@@ -141,10 +102,7 @@ Where:
 
 **Attention Transfer (Zagoruyko & Komodakis, 2016):**
 
-```math
-\mathcal{L}_{AT} = \sum_l \left\|\frac{Q_s^l}{\|Q_s^l\|_2} - \frac{Q_t^l}{\|Q_t^l\|_2}\right\|_p
-
-```
+$$\mathcal{L}_{AT} = \sum_l \left\|\frac{Q_s^l}{\|Q_s^l\|_2} - \frac{Q_t^l}{\|Q_t^l\|_2}\right\|_p$$
 
 Where attention maps: $Q^l = \sum_c |F^l_c|^2$ (sum over channels)
 
@@ -154,19 +112,13 @@ Where attention maps: $Q^l = \sum_c |F^l_c|^2$ (sum over channels)
 
 *Distance-wise:*
 
-```math
-\mathcal{L}_{RKD-D} = \sum_{(i,j)} l_\delta(\psi_D(t_i, t_j), \psi_D(s_i, s_j))
-
-```
+$$\mathcal{L}_{RKD-D} = \sum_{(i,j)} l_\delta(\psi_D(t_i, t_j), \psi_D(s_i, s_j))$$
 
 Where $\psi_D(x_i, x_j) = \frac{1}{\mu}\|x_i - x_j\|_2$ (normalized distance)
 
 *Angle-wise:*
 
-```math
-\mathcal{L}_{RKD-A} = \sum_{(i,j,k)} l_\delta(\psi_A(t_i, t_j, t_k), \psi_A(s_i, s_j, s_k))
-
-```
+$$\mathcal{L}_{RKD-A} = \sum_{(i,j,k)} l_\delta(\psi_A(t_i, t_j, t_k), \psi_A(s_i, s_j, s_k))$$
 
 Where $\psi_A$ computes angle between vectors.
 
@@ -174,10 +126,7 @@ Where $\psi_A$ computes angle between vectors.
 
 **CRD (Contrastive Representation Distillation):**
 
-```math
-\mathcal{L}_{CRD} = -\mathbb{E}_{(x,y^+)} \log \frac{h(T(x), S(y^+))}{h(T(x), S(y^+)) + \sum_{y^-} h(T(x), S(y^-))}
-
-```
+$$\mathcal{L}_{CRD} = -\mathbb{E}_{(x,y^+)} \log \frac{h(T(x), S(y^+))}{h(T(x), S(y^+)) + \sum_{y^-} h(T(x), S(y^-))}$$
 
 Where:
 
@@ -191,10 +140,7 @@ Where:
 
 **Born-Again Networks:**
 
-```math
-S^{(k+1)} \leftarrow \text{train}(S^{(k)}, D_{KL}(p^{(k)} \| p^{(k+1)}))
-
-```
+$$S^{(k+1)} \leftarrow \text{train}(S^{(k)}, D_{KL}(p^{(k)} \| p^{(k+1)}))$$
 
 Generation $k+1$ learns from generation $k$ with same architecture.
 

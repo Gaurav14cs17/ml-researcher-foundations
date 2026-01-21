@@ -145,17 +145,11 @@ Arithmetic Intensity (FLOPS/Byte)
 
 #### Arithmetic Intensity Definition
 
-```math
-I = \frac{\text{FLOPs}}{\text{Bytes accessed}}
-
-```
+$$I = \frac{\text{FLOPs}}{\text{Bytes accessed}}$$
 
 #### Attainable Performance
 
-```math
-P = \min\left(\pi, I \times \beta\right)
-
-```
+$$P = \min\left(\pi, I \times \beta\right)$$
 
 where:
 
@@ -175,10 +169,7 @@ where:
 
 **Ridge Point:** The intensity where compute and memory bounds meet:
 
-```math
-I_{\text{ridge}} = \frac{\pi}{\beta}
-
-```
+$$I_{\text{ridge}} = \frac{\pi}{\beta}$$
 
 For NVIDIA A100: \( I_{\text{ridge}} = \frac{312 \text{ TFLOPS}}{2 \text{ TB/s}} = 156 \text{ FLOPs/byte} \)
 
@@ -190,12 +181,9 @@ For NVIDIA A100: \( I_{\text{ridge}} = \frac{312 \text{ TFLOPS}}{2 \text{ TB/s}}
 
 For input \( x \in \mathbb{R}^{n} \), weight \( W \in \mathbb{R}^{m \times n} \):
 
-```math
-\text{FLOPs} = 2mn
+$$\text{FLOPs} = 2mn
 \text{Memory (weights)} = mn \times b
-\text{Arithmetic Intensity} = \frac{2mn}{mn \times b} = \frac{2}{b}
-
-```
+\text{Arithmetic Intensity} = \frac{2mn}{mn \times b} = \frac{2}{b}$$
 
 For FP16 (b=2): \( I = 1 \) → **Memory-bound!**
 
@@ -203,10 +191,7 @@ For FP16 (b=2): \( I = 1 \) → **Memory-bound!**
 
 For input \( X \in \mathbb{R}^{C_{in} \times H \times W} \), kernel \( K \in \mathbb{R}^{C_{out} \times C_{in} \times k \times k} \):
 
-```math
-\text{FLOPs} = 2 \times C_{in} \times C_{out} \times k^2 \times H_{out} \times W_{out}
-
-```
+$$\text{FLOPs} = 2 \times C_{in} \times C_{out} \times k^2 \times H_{out} \times W_{out}$$
 
 **Proof:**
 Each output pixel requires:
@@ -217,10 +202,7 @@ Each output pixel requires:
 
 Total output pixels: \( C_{out} \times H_{out} \times W_{out} \)
 
-```math
-\text{FLOPs} = C_{out} \times H_{out} \times W_{out} \times 2 \times C_{in} \times k^2
-
-```
+$$\text{FLOPs} = C_{out} \times H_{out} \times W_{out} \times 2 \times C_{in} \times k^2$$
 
 #### Self-Attention Complexity
 
@@ -228,38 +210,23 @@ For sequence length \( N \), hidden dimension \( d \):
 
 **Step 1: QKV Projections**
 
-```math
-\text{FLOPs}_{QKV} = 3 \times 2Nd^2 = 6Nd^2
-
-```
+$$\text{FLOPs}_{QKV} = 3 \times 2Nd^2 = 6Nd^2$$
 
 **Step 2: Attention Scores** \( A = QK^T \)
 
-```math
-\text{FLOPs}_{scores} = 2N^2d
-
-```
+$$\text{FLOPs}_{scores} = 2N^2d$$
 
 **Step 3: Attention × Values** \( O = \text{softmax}(A)V \)
 
-```math
-\text{FLOPs}_{output} = 2N^2d
-
-```
+$$\text{FLOPs}_{output} = 2N^2d$$
 
 **Step 4: Output Projection**
 
-```math
-\text{FLOPs}_{proj} = 2Nd^2
-
-```
+$$\text{FLOPs}_{proj} = 2Nd^2$$
 
 **Total:**
 
-```math
-\text{FLOPs}_{attention} = 8Nd^2 + 4N^2d = 4Nd(2d + N)
-
-```
+$$\text{FLOPs}_{attention} = 8Nd^2 + 4N^2d = 4Nd(2d + N)$$
 
 For \( N \gg d \): **O(N²)** dominates (quadratic in sequence length)
 
@@ -271,28 +238,19 @@ For \( N \gg d \): **O(N²)** dominates (quadratic in sequence length)
 
 For a matrix multiplication \( C = AB \) with tiling:
 
-```math
-\text{Cache misses} = O\left(\frac{mn + nk + mk}{B}\right)
-
-```
+$$\text{Cache misses} = O\left(\frac{mn + nk + mk}{B}\right)$$
 
 where B is the cache block size.
 
 With optimal tiling (block size \( b \)):
 
-```math
-\text{Cache misses} = O\left(\frac{mnk}{b\sqrt{M}}\right)
-
-```
+$$\text{Cache misses} = O\left(\frac{mnk}{b\sqrt{M}}\right)$$
 
 where M is cache size. This is the **I/O complexity lower bound** (Hong & Kung, 1981).
 
 #### Memory Bandwidth Utilization
 
-```math
-\text{Utilization} = \frac{\text{Actual Bandwidth}}{\text{Peak Bandwidth}} = \frac{\text{Data Accessed} / \text{Time}}{\beta}
-
-```
+$$\text{Utilization} = \frac{\text{Actual Bandwidth}}{\text{Peak Bandwidth}} = \frac{\text{Data Accessed} / \text{Time}}{\beta}$$
 
 Goal: Achieve >80% bandwidth utilization for memory-bound ops.
 
@@ -322,26 +280,17 @@ BF16 preferred for training (no overflow issues).
 
 An operation is **compute-bound** if:
 
-```math
-I > I_{\text{ridge}} = \frac{\pi}{\beta}
-
-```
+$$I > I_{\text{ridge}} = \frac{\pi}{\beta}$$
 
 An operation is **memory-bound** if:
 
-```math
-I < I_{\text{ridge}}
-
-```
+$$I < I_{\text{ridge}}$$
 
 **Example: Batch Size Effect on Linear Layer**
 
 For batch size B, input dim n, output dim m:
 
-```math
-I = \frac{2Bmn}{(Bn + mn + Bm) \times b} \approx \frac{2Bmn}{mn \times b} = \frac{2B}{b}
-
-```
+$$I = \frac{2Bmn}{(Bn + mn + Bm) \times b} \approx \frac{2Bmn}{mn \times b} = \frac{2B}{b}$$
 
 For B=1 with FP16: I = 1 (memory-bound)
 For B=128 with FP16: I = 128 (compute-bound)

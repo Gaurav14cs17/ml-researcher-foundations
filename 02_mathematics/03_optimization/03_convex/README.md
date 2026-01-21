@@ -87,10 +87,7 @@
 
 A set $C$ is **convex** if for all $\mathbf{x}, \mathbf{y} \in C$ and $\lambda \in [0, 1]$:
 
-```math
-\lambda \mathbf{x} + (1 - \lambda) \mathbf{y} \in C
-
-```
+$$\lambda \mathbf{x} + (1 - \lambda) \mathbf{y} \in C$$
 
 *The line segment between any two points in $C$ lies entirely within $C$.*
 
@@ -122,10 +119,7 @@ A set $C$ is **convex** if for all $\mathbf{x}, \mathbf{y} \in C$ and $\lambda \
 
 A function $f: \mathbb{R}^n \to \mathbb{R}$ is **convex** if its domain is convex and for all $\mathbf{x}, \mathbf{y}$ in the domain and $\lambda \in [0, 1]$:
 
-```math
-f(\lambda \mathbf{x} + (1 - \lambda) \mathbf{y}) \leq \lambda f(\mathbf{x}) + (1 - \lambda) f(\mathbf{y})
-
-```
+$$f(\lambda \mathbf{x} + (1 - \lambda) \mathbf{y}) \leq \lambda f(\mathbf{x}) + (1 - \lambda) f(\mathbf{y})$$
 
 *The function lies below (or on) the chord between any two points.*
 
@@ -168,10 +162,7 @@ Convex: function ≤ chord everywhere
 
 For differentiable $f$, convexity is equivalent to:
 
-```math
-f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f(\mathbf{x})^T (\mathbf{y} - \mathbf{x}) \quad \forall \mathbf{x}, \mathbf{y}
-
-```
+$$f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f(\mathbf{x})^T (\mathbf{y} - \mathbf{x}) \quad \forall \mathbf{x}, \mathbf{y}$$
 
 *The function lies above all its tangent planes.*
 
@@ -179,10 +170,7 @@ f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f(\mathbf{x})^T (\mathbf{y} - \mathbf{
 
 For twice-differentiable $f$, convexity is equivalent to:
 
-```math
-\nabla^2 f(\mathbf{x}) \succeq 0 \quad \forall \mathbf{x}
-
-```
+$$\nabla^2 f(\mathbf{x}) \succeq 0 \quad \forall \mathbf{x}$$
 
 *The Hessian is positive semidefinite everywhere.*
 
@@ -263,10 +251,7 @@ That's why logistic regression is a convex problem.
 
 $f$ is **$\mu$-strongly convex** if:
 
-```math
-f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f(\mathbf{x})^T(\mathbf{y} - \mathbf{x}) + \frac{\mu}{2}\|\mathbf{y} - \mathbf{x}\|^2
-
-```
+$$f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f(\mathbf{x})^T(\mathbf{y} - \mathbf{x}) + \frac{\mu}{2}\|\mathbf{y} - \mathbf{x}\|^2$$
 
 Equivalently: $\nabla^2 f \succeq \mu I$ (Hessian has minimum eigenvalue $\geq \mu$)
 
@@ -296,14 +281,11 @@ f(x) = |x| is convex but NOT strongly convex
 
 ### 📌 Standard Form
 
-```math
-\begin{align}
+$$\begin{align}
 \min_{\mathbf{x}} \quad & f(\mathbf{x}) \\
 \text{s.t.} \quad & g_i(\mathbf{x}) \leq 0, \quad i = 1, \ldots, m \\
 & A\mathbf{x} = \mathbf{b}
-\end{align}
-
-```
+\end{align}$$
 
 where $f$ and all $g_i$ are convex.
 

@@ -33,11 +33,8 @@ RNNs are designed for sequential data (text, time series, audio) where the order
 
 **Forward Pass:**
 
-```math
-h_t = \tanh(W_{xh} x_t + W_{hh} h_{t-1} + b_h)
-y_t = W_{hy} h_t + b_y
-
-```
+$$h_t = \tanh(W_{xh} x_t + W_{hh} h_{t-1} + b_h)
+y_t = W_{hy} h_t + b_y$$
 
 Where:
 
@@ -57,33 +54,21 @@ Where:
 
 **Loss:**
 
-```math
-L = \sum_{t=1}^{T} L_t(y_t, \hat{y}_t)
-
-```
+$$L = \sum_{t=1}^{T} L_t(y_t, \hat{y}_t)$$
 
 **Gradient w.r.t. $W_{hh}$:**
 
-```math
-\frac{\partial L}{\partial W_{hh}} = \sum_{t=1}^{T} \sum_{k=1}^{t} \frac{\partial L_t}{\partial h_t} \cdot \frac{\partial h_t}{\partial h_k} \cdot \frac{\partial h_k}{\partial W_{hh}}
-
-```
+$$\frac{\partial L}{\partial W_{hh}} = \sum_{t=1}^{T} \sum_{k=1}^{t} \frac{\partial L_t}{\partial h_t} \cdot \frac{\partial h_t}{\partial h_k} \cdot \frac{\partial h_k}{\partial W_{hh}}$$
 
 **Chain rule for hidden states:**
 
-```math
-\frac{\partial h_t}{\partial h_k} = \prod_{i=k+1}^{t} \frac{\partial h_i}{\partial h_{i-1}} = \prod_{i=k+1}^{t} W_{hh}^\top \cdot \text{diag}(\tanh'(z_i))
-
-```
+$$\frac{\partial h_t}{\partial h_k} = \prod_{i=k+1}^{t} \frac{\partial h_i}{\partial h_{i-1}} = \prod_{i=k+1}^{t} W_{hh}^\top \cdot \text{diag}(\tanh'(z_i))$$
 
 ### 3. Vanishing/Exploding Gradient Problem
 
 **Theorem:** For vanilla RNN, gradients satisfy:
 
-```math
-\left\| \frac{\partial h_t}{\partial h_k} \right\| \leq (\sigma_{\max}(W_{hh}))^{t-k} \cdot \gamma^{t-k}
-
-```
+$$\left\| \frac{\partial h_t}{\partial h_k} \right\| \leq (\sigma_{\max}(W_{hh}))^{t-k} \cdot \gamma^{t-k}$$
 
 Where $\gamma = \max_i |\tanh'(z_i)| \leq 1$ and $\sigma_{\max}$ is the largest singular value.
 
@@ -111,45 +96,27 @@ If σ_max > 1: gradients explode exponentially
 
 **Forget Gate** (what to discard):
 
-```math
-f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)
-
-```
+$$f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)$$
 
 **Input Gate** (what to add):
 
-```math
-i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)
-
-```
+$$i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)$$
 
 **Candidate Cell State:**
 
-```math
-\tilde{C}_t = \tanh(W_C \cdot [h_{t-1}, x_t] + b_C)
-
-```
+$$\tilde{C}_t = \tanh(W_C \cdot [h_{t-1}, x_t] + b_C)$$
 
 **Cell State Update:**
 
-```math
-C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t
-
-```
+$$C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t$$
 
 **Output Gate:**
 
-```math
-o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)
-
-```
+$$o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)$$
 
 **Hidden State:**
 
-```math
-h_t = o_t \odot \tanh(C_t)
-
-```
+$$h_t = o_t \odot \tanh(C_t)$$
 
 Where $\odot$ denotes element-wise multiplication.
 
@@ -157,10 +124,7 @@ Where $\odot$ denotes element-wise multiplication.
 
 **Key Insight:** Cell state provides a "gradient highway":
 
-```math
-\frac{\partial C_t}{\partial C_{t-1}} = f_t
-
-```
+$$\frac{\partial C_t}{\partial C_{t-1}} = f_t$$
 
 **Proof that gradients can flow:**
 
@@ -181,10 +145,7 @@ LSTM cell state has additive updates, not multiplicative!
 
 For LSTM with input size $d$ and hidden size $n$:
 
-```math
-\text{Parameters} = 4 \times (n \times (d + n) + n) = 4n(d + n + 1)
-
-```
+$$\text{Parameters} = 4 \times (n \times (d + n) + n) = 4n(d + n + 1)$$
 
 The factor of 4 comes from: forget, input, candidate, output gates.
 
@@ -196,31 +157,19 @@ The factor of 4 comes from: forget, input, candidate, output gates.
 
 **Reset Gate:**
 
-```math
-r_t = \sigma(W_r \cdot [h_{t-1}, x_t] + b_r)
-
-```
+$$r_t = \sigma(W_r \cdot [h_{t-1}, x_t] + b_r)$$
 
 **Update Gate:**
 
-```math
-z_t = \sigma(W_z \cdot [h_{t-1}, x_t] + b_z)
-
-```
+$$z_t = \sigma(W_z \cdot [h_{t-1}, x_t] + b_z)$$
 
 **Candidate Hidden:**
 
-```math
-\tilde{h}_t = \tanh(W_h \cdot [r_t \odot h_{t-1}, x_t] + b_h)
-
-```
+$$\tilde{h}_t = \tanh(W_h \cdot [r_t \odot h_{t-1}, x_t] + b_h)$$
 
 **Hidden State Update:**
 
-```math
-h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t
-
-```
+$$h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t$$
 
 ### GRU vs LSTM Comparison
 
@@ -239,13 +188,10 @@ h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t
 
 **Algorithm:**
 
-```math
-\hat{g} = \begin{cases}
+$$\hat{g} = \begin{cases}
 g & \text{if } \|g\| \leq \tau \\
 \frac{\tau g}{\|g\|} & \text{if } \|g\| > \tau
-\end{cases}
-
-```
+\end{cases}$$
 
 Where $\tau$ is the threshold (typically 1.0 or 5.0).
 
@@ -255,19 +201,13 @@ Where $\tau$ is the threshold (typically 1.0 or 5.0).
 
 **Method:** Initialize $W_{hh}$ as orthogonal matrix:
 
-```math
-W_{hh}^\top W_{hh} = I \implies \sigma_{\max}(W_{hh}) = 1
-
-```
+$$W_{hh}^\top W_{hh} = I \implies \sigma_{\max}(W_{hh}) = 1$$
 
 ### Hidden State Dynamics
 
 **Theorem:** For sufficiently long sequences, vanilla RNN hidden states converge to:
 
-```math
-\lim_{t \to \infty} h_t = (I - W_{hh})^{-1} W_{xh} x_\infty
-
-```
+$$\lim_{t \to \infty} h_t = (I - W_{hh})^{-1} W_{xh} x_\infty$$
 
 If $\|W_{hh}\| < 1$ (contractive mapping).
 

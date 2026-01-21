@@ -19,10 +19,7 @@
 
 **Theorem (SVD):** Any matrix $W \in \mathbb{R}^{m \times n}$ can be decomposed as:
 
-```math
-W = U \Sigma V^T
-
-```
+$$W = U \Sigma V^T$$
 
 Where:
 
@@ -45,28 +42,19 @@ Where:
 
 **Truncated SVD (Rank-$k$ Approximation):**
 
-```math
-W_k = U_k \Sigma_k V_k^T = \sum_{i=1}^{k} \sigma_i u_i v_i^T
-
-```
+$$W_k = U_k \Sigma_k V_k^T = \sum_{i=1}^{k} \sigma_i u_i v_i^T$$
 
 Where $U_k, V_k$ contain only the first $k$ columns.
 
 **Eckart-Young-Mirsky Theorem:**
 The truncated SVD gives the optimal rank-$k$ approximation:
 
-```math
-W_k = \arg\min_{\text{rank}(A) \leq k} \|W - A\|_F
-
-```
+$$W_k = \arg\min_{\text{rank}(A) \leq k} \|W - A\|_F$$
 
 **Proof Sketch:**
 For any rank-$k$ matrix $A$:
 
-```math
-\|W - A\|_F^2 \geq \sum_{i=k+1}^{r} \sigma_i^2 = \|W - W_k\|_F^2
-
-```
+$$\|W - A\|_F^2 \geq \sum_{i=k+1}^{r} \sigma_i^2 = \|W - W_k\|_F^2$$
 
 ### 3. Compression Analysis
 
@@ -76,56 +64,35 @@ For any rank-$k$ matrix $A$:
 
 **Compression Ratio:**
 
-```math
-CR = \frac{mn}{k(m+n)}
-
-```
+$$CR = \frac{mn}{k(m+n)}$$
 
 **For square matrices ($m = n$):**
 
-```math
-CR = \frac{n^2}{2kn} = \frac{n}{2k}
-
-```
+$$CR = \frac{n^2}{2kn} = \frac{n}{2k}$$
 
 **Example:** $n = 4096$, $k = 64$:
 
-```math
-CR = \frac{4096}{128} = 32\times
-
-```
+$$CR = \frac{4096}{128} = 32\times$$
 
 ### 4. Error Analysis
 
 **Frobenius Norm Error:**
 
-```math
-\|W - W_k\|_F = \sqrt{\sum_{i=k+1}^{r} \sigma_i^2}
-
-```
+$$\|W - W_k\|_F = \sqrt{\sum_{i=k+1}^{r} \sigma_i^2}$$
 
 **Relative Error:**
 
-```math
-\frac{\|W - W_k\|_F}{\|W\|_F} = \sqrt{\frac{\sum_{i=k+1}^{r} \sigma_i^2}{\sum_{i=1}^{r} \sigma_i^2}}
-
-```
+$$\frac{\|W - W_k\|_F}{\|W\|_F} = \sqrt{\frac{\sum_{i=k+1}^{r} \sigma_i^2}{\sum_{i=1}^{r} \sigma_i^2}}$$
 
 **Spectral Norm Error:**
 
-```math
-\|W - W_k\|_2 = \sigma_{k+1}
-
-```
+$$\|W - W_k\|_2 = \sigma_{k+1}$$
 
 ### 5. LoRA as Implicit Low-Rank Factorization
 
 **LoRA learns:**
 
-```math
-\Delta W = BA
-
-```
+$$\Delta W = BA$$
 
 Where:
 
@@ -136,17 +103,11 @@ Where:
 **Connection to SVD:**
 The learned $\Delta W$ is implicitly low-rank:
 
-```math
-\text{rank}(\Delta W) = \text{rank}(BA) \leq r
-
-```
+$$\text{rank}(\Delta W) = \text{rank}(BA) \leq r$$
 
 **During training, LoRA learns:**
 
-```math
-BA \approx U_r \Sigma_r V_r^T
-
-```
+$$BA \approx U_r \Sigma_r V_r^T$$
 
 Where $U_r \Sigma_r V_r^T$ is the optimal rank-$r$ approximation to the true weight update.
 
@@ -154,19 +115,13 @@ Where $U_r \Sigma_r V_r^T$ is the optimal rank-$r$ approximation to the true wei
 
 **CP Decomposition (CANDECOMP/PARAFAC):**
 
-```math
-\mathcal{W} \approx \sum_{r=1}^{R} \lambda_r \cdot a_r \otimes b_r \otimes c_r
-
-```
+$$\mathcal{W} \approx \sum_{r=1}^{R} \lambda_r \cdot a_r \otimes b_r \otimes c_r$$
 
 For a 4D convolution kernel $\mathcal{W} \in \mathbb{R}^{C_{out} \times C_{in} \times H \times W}$.
 
 **Tucker Decomposition:**
 
-```math
-\mathcal{W} \approx \mathcal{G} \times_1 U_1 \times_2 U_2 \times_3 U_3 \times_4 U_4
-
-```
+$$\mathcal{W} \approx \mathcal{G} \times_1 U_1 \times_2 U_2 \times_3 U_3 \times_4 U_4$$
 
 Where $\mathcal{G}$ is a smaller core tensor.
 
@@ -181,11 +136,8 @@ Where $\mathcal{G}$ is a smaller core tensor.
 
 **Standard Convolution:**
 
-```math
-Y = W * X, \quad W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
-\text{Params: } C_{out} \times C_{in} \times K^2
-
-```
+$$Y = W * X, \quad W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
+\text{Params: } C_{out} \times C_{in} \times K^2$$
 
 **Depthwise Separable:**
 
@@ -193,17 +145,11 @@ Y = W * X, \quad W \in \mathbb{R}^{C_{out} \times C_{in} \times K \times K}
 
 2. **Pointwise:** $Y = W_{pw} \cdot H$ where $W_{pw} \in \mathbb{R}^{C_{out} \times C_{in} \times 1 \times 1}$
 
-```math
-\text{Params: } C_{in} \times K^2 + C_{out} \times C_{in}
-
-```
+$$\text{Params: } C_{in} \times K^2 + C_{out} \times C_{in}$$
 
 **Compression Ratio:**
 
-```math
-CR = \frac{C_{out} \times C_{in} \times K^2}{C_{in} \times K^2 + C_{out} \times C_{in}} = \frac{C_{out} K^2}{K^2 + C_{out}}
-
-```
+$$CR = \frac{C_{out} \times C_{in} \times K^2}{C_{in} \times K^2 + C_{out} \times C_{in}} = \frac{C_{out} K^2}{K^2 + C_{out}}$$
 
 For $K=3$, $C_{out}=256$: $CR \approx 8-9\times$
 

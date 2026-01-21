@@ -65,10 +65,7 @@
 
 #### Step 1: Linear Projections
 
-```math
-Q = XW^Q, \quad K = XW^K, \quad V = XW^V
-
-```
+$$Q = XW^Q, \quad K = XW^K, \quad V = XW^V$$
 
 Where:
 
@@ -87,29 +84,20 @@ Where:
 
 #### Step 2: Compute Attention Scores
 
-```math
-S = QK^\top \in \mathbb{R}^{n \times n}
-S_{ij} = \sum_{k=1}^{d_k} Q_{ik} \cdot K_{jk} = \langle q_i, k_j \rangle
-
-```
+$$S = QK^\top \in \mathbb{R}^{n \times n}
+S_{ij} = \sum_{k=1}^{d_k} Q_{ik} \cdot K_{jk} = \langle q_i, k_j \rangle$$
 
 **Interpretation:** $S_{ij}$ measures similarity between query at position $i$ and key at position $j$.
 
 #### Step 3: Scaling
 
-```math
-\text{ScaledScores} = \frac{QK^\top}{\sqrt{d_k}}
-
-```
+$$\text{ScaledScores} = \frac{QK^\top}{\sqrt{d_k}}$$
 
 **Why scale by $\sqrt{d_k}$?**
 
 **Theorem:** If $q, k \sim \mathcal{N}(0, 1)$ are independent, then:
 
-```math
-\text{Var}(q \cdot k) = d_k
-
-```
+$$\text{Var}(q \cdot k) = d_k$$
 
 **Proof:**
 
@@ -130,11 +118,8 @@ Scaling by √d_k normalizes variance to 1.
 
 #### Step 4: Softmax Normalization
 
-```math
-A = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right) \in \mathbb{R}^{n \times n}
-A_{ij} = \frac{\exp(S_{ij}/\sqrt{d_k})}{\sum_{l=1}^n \exp(S_{il}/\sqrt{d_k})}
-
-```
+$$A = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right) \in \mathbb{R}^{n \times n}
+A_{ij} = \frac{\exp(S_{ij}/\sqrt{d_k})}{\sum_{l=1}^n \exp(S_{il}/\sqrt{d_k})}$$
 
 **Properties:**
 - $\sum_j A_{ij} = 1$ (rows sum to 1)
@@ -145,20 +130,14 @@ A_{ij} = \frac{\exp(S_{ij}/\sqrt{d_k})}{\sum_{l=1}^n \exp(S_{il}/\sqrt{d_k})}
 
 #### Step 5: Weighted Aggregation
 
-```math
-\text{Output} = AV \in \mathbb{R}^{n \times d_v}
-\text{Output}_i = \sum_{j=1}^n A_{ij} \cdot V_j
-
-```
+$$\text{Output} = AV \in \mathbb{R}^{n \times d_v}
+\text{Output}_i = \sum_{j=1}^n A_{ij} \cdot V_j$$
 
 **Interpretation:** Each output is a weighted average of all values.
 
 #### Complete Formula
 
-```math
-\boxed{\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right) V}
-
-```
+$$\boxed{\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right) V}$$
 
 ---
 
@@ -168,11 +147,8 @@ A_{ij} = \frac{\exp(S_{ij}/\sqrt{d_k})}{\sum_{l=1}^n \exp(S_{il}/\sqrt{d_k})}
 
 **Solution:** $H$ parallel attention heads:
 
-```math
-\text{MultiHead}(X) = \text{Concat}(\text{head}_1, ..., \text{head}_H) W^O
-\text{head}_h = \text{Attention}(XW_h^Q, XW_h^K, XW_h^V)
-
-```
+$$\text{MultiHead}(X) = \text{Concat}(\text{head}_1, ..., \text{head}_H) W^O
+\text{head}_h = \text{Attention}(XW_h^Q, XW_h^K, XW_h^V)$$
 
 Where:
 
@@ -184,10 +160,7 @@ Where:
 
 **Parameter Count:**
 
-```math
-\text{Params} = 3 \cdot H \cdot d \cdot \frac{d}{H} + d^2 = 3d^2 + d^2 = 4d^2
-
-```
+$$\text{Params} = 3 \cdot H \cdot d \cdot \frac{d}{H} + d^2 = 3d^2 + d^2 = 4d^2$$
 
 **Interpretation:** Different heads learn different relationship types:
 
@@ -205,20 +178,14 @@ Where:
 
 **Problem:** Attention is permutation-equivariant!
 
-```math
-\text{Attention}(\pi(X)) = \pi(\text{Attention}(X))
-
-```
+$$\text{Attention}(\pi(X)) = \pi(\text{Attention}(X))$$
 
 Where $\pi$ is any permutation. This means "dog bites man" = "man bites dog" without positions!
 
 #### Sinusoidal Positional Encoding
 
-```math
-PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d}}\right)
-PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d}}\right)
-
-```
+$$PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d}}\right)
+PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d}}\right)$$
 
 **Why This Formula?**
 
@@ -262,14 +229,11 @@ This is a linear combination with coefficients depending only on k!
 
 **Solution:** Add causal mask before softmax.
 
-```math
-\text{mask}_{ij} = \begin{cases}
+$$\text{mask}_{ij} = \begin{cases}
 0 & \text{if } j \leq i \\
 -\infty & \text{if } j > i
 \end{cases}
-A = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}} + \text{mask}\right)
-
-```
+A = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}} + \text{mask}\right)$$
 
 **Effect:** $\exp(-\infty) = 0$, so future tokens get zero attention weight.
 
@@ -300,37 +264,25 @@ A = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}} + \text{mask}\right)
 
 **Forward:**
 
-```math
-A = \text{softmax}(S), \quad O = AV
-
-```
+$$A = \text{softmax}(S), \quad O = AV$$
 
 **Backward (Gradient of softmax):**
 
 For softmax row $a = \text{softmax}(s)$:
 
-```math
-\frac{\partial a_i}{\partial s_j} = a_i(\delta_{ij} - a_j)
-
-```
+$$\frac{\partial a_i}{\partial s_j} = a_i(\delta_{ij} - a_j)$$
 
 **Jacobian:**
 
-```math
-\frac{\partial a}{\partial s} = \text{diag}(a) - aa^\top
-
-```
+$$\frac{\partial a}{\partial s} = \text{diag}(a) - aa^\top$$
 
 **Gradient of attention output:**
 
-```math
-\frac{\partial L}{\partial V} = A^\top \frac{\partial L}{\partial O}
+$$\frac{\partial L}{\partial V} = A^\top \frac{\partial L}{\partial O}
 \frac{\partial L}{\partial A} = \frac{\partial L}{\partial O} V^\top
 \frac{\partial L}{\partial S} = A \odot \left(\frac{\partial L}{\partial A} - \mathbf{1}\left(A \odot \frac{\partial L}{\partial A}\right)^\top\right)
 \frac{\partial L}{\partial Q} = \frac{1}{\sqrt{d_k}} \frac{\partial L}{\partial S} K
-\frac{\partial L}{\partial K} = \frac{1}{\sqrt{d_k}} \left(\frac{\partial L}{\partial S}\right)^\top Q
-
-```
+\frac{\partial L}{\partial K} = \frac{1}{\sqrt{d_k}} \left(\frac{\partial L}{\partial S}\right)^\top Q$$
 
 ---
 

@@ -23,10 +23,7 @@
 
 **Definition:** Uniform quantization maps continuous values to discrete levels uniformly spaced:
 
-```math
-Q(x) = \text{round}\left(\frac{x - z}{s}\right) \cdot s + z
-
-```
+$$Q(x) = \text{round}\left(\frac{x - z}{s}\right) \cdot s + z$$
 
 Where:
 
@@ -38,19 +35,13 @@ Where:
 
 **Asymmetric Quantization:**
 
-```math
-s = \frac{x_{max} - x_{min}}{2^b - 1}, \quad z = x_{min}
-q = \text{clamp}\left(\text{round}\left(\frac{x - z}{s}\right), 0, 2^b - 1\right)
-
-```
+$$s = \frac{x_{max} - x_{min}}{2^b - 1}, \quad z = x_{min}
+q = \text{clamp}\left(\text{round}\left(\frac{x - z}{s}\right), 0, 2^b - 1\right)$$
 
 **Symmetric Quantization:**
 
-```math
-s = \frac{\max(|x_{max}|, |x_{min}|)}{2^{b-1} - 1}, \quad z = 0
-q = \text{clamp}\left(\text{round}\left(\frac{x}{s}\right), -2^{b-1}, 2^{b-1} - 1\right)
-
-```
+$$s = \frac{\max(|x_{max}|, |x_{min}|)}{2^{b-1} - 1}, \quad z = 0
+q = \text{clamp}\left(\text{round}\left(\frac{x}{s}\right), -2^{b-1}, 2^{b-1} - 1\right)$$
 
 ### 2. Quantization Error Analysis
 
@@ -59,40 +50,25 @@ For uniform quantization with step size $s$, the quantization error $e = x - \ha
 
 **Mean Squared Error:**
 
-```math
-\text{MSE} = \mathbb{E}[(x - \hat{x})^2] = \frac{s^2}{12}
-
-```
+$$\text{MSE} = \mathbb{E}[(x - \hat{x})^2] = \frac{s^2}{12}$$
 
 **Proof:**
 
-```math
-\text{MSE} = \int_{-s/2}^{s/2} e^2 \cdot \frac{1}{s} de = \frac{1}{s} \cdot \frac{e^3}{3}\Big|_{-s/2}^{s/2} = \frac{1}{s} \cdot \frac{s^3}{12} = \frac{s^2}{12}
-
-```
+$$\text{MSE} = \int_{-s/2}^{s/2} e^2 \cdot \frac{1}{s} de = \frac{1}{s} \cdot \frac{e^3}{3}\Big|_{-s/2}^{s/2} = \frac{1}{s} \cdot \frac{s^3}{12} = \frac{s^2}{12}$$
 
 **Signal-to-Quantization-Noise Ratio (SQNR):**
 
-```math
-\text{SQNR} = 10 \log_{10}\left(\frac{\sigma_x^2}{\sigma_e^2}\right) = 10 \log_{10}\left(\frac{12\sigma_x^2}{s^2}\right)
-
-```
+$$\text{SQNR} = 10 \log_{10}\left(\frac{\sigma_x^2}{\sigma_e^2}\right) = 10 \log_{10}\left(\frac{12\sigma_x^2}{s^2}\right)$$
 
 For $b$-bit quantization over range $[-1, 1]$:
 
-```math
-\text{SQNR} \approx 6.02b + 4.77 \text{ dB}
-
-```
+$$\text{SQNR} \approx 6.02b + 4.77 \text{ dB}$$
 
 ### 3. Optimal Quantization (Lloyd-Max)
 
 **Objective:** Minimize MSE for non-uniform quantization
 
-```math
-\min_{\{c_i\}, \{d_i\}} \int (x - Q(x))^2 p(x) dx
-
-```
+$$\min_{\{c_i\}, \{d_i\}} \int (x - Q(x))^2 p(x) dx$$
 
 **Lloyd-Max Conditions:**
 
@@ -116,17 +92,11 @@ For $b$-bit quantization over range $[-1, 1]$:
 
 **Optimal Scale (Min-Max):**
 
-```math
-s^* = \frac{x_{max} - x_{min}}{2^b - 1}
-
-```
+$$s^* = \frac{x_{max} - x_{min}}{2^b - 1}$$
 
 **Optimal Scale (MSE Minimization):**
 
-```math
-s^* = \arg\min_s \mathbb{E}[(x - Q_s(x))^2]
-
-```
+$$s^* = \arg\min_s \mathbb{E}[(x - Q_s(x))^2]$$
 
 ### 5. Quantization-Aware Training (QAT)
 
@@ -138,17 +108,11 @@ During backward pass: $\frac{\partial \mathcal{L}}{\partial x} = \frac{\partial 
 
 **Mathematical Justification:**
 
-```math
-\frac{\partial Q(x)}{\partial x} \approx \mathbf{1}_{x \in [x_{min}, x_{max}]}
-
-```
+$$\frac{\partial Q(x)}{\partial x} \approx \mathbf{1}_{x \in [x_{min}, x_{max}]}$$
 
 **QAT Loss Function:**
 
-```math
-\mathcal{L}_{QAT} = \mathcal{L}_{task}(f_Q(x; W_Q), y)
-
-```
+$$\mathcal{L}_{QAT} = \mathcal{L}_{task}(f_Q(x; W_Q), y)$$
 
 Where $W_Q$ are fake-quantized weights.
 
@@ -156,28 +120,19 @@ Where $W_Q$ are fake-quantized weights.
 
 **Per-Tensor:**
 
-```math
-W_q[i,j] = \text{round}(W[i,j] / s)
-
-```
+$$W_q[i,j] = \text{round}(W[i,j] / s)$$
 
 Single scale for entire weight matrix.
 
 **Per-Channel (Output):**
 
-```math
-W_q[c,i] = \text{round}(W[c,i] / s_c)
-
-```
+$$W_q[c,i] = \text{round}(W[c,i] / s_c)$$
 
 Each output channel has its own scale.
 
 **Error Analysis:**
 
-```math
-\text{MSE}_{per-channel} \leq \text{MSE}_{per-tensor}
-
-```
+$$\text{MSE}_{per-channel} \leq \text{MSE}_{per-tensor}$$
 
 Per-channel is always equal or better because each $s_c$ can be optimized independently.
 
@@ -187,18 +142,12 @@ Per-channel is always equal or better because each $s_c$ can be optimized indepe
 
 **Quantized GEMM:**
 
-```math
-Y \approx s_x \cdot s_w \cdot (\bar{X}_{int} \cdot \bar{W}_{int})
-
-```
+$$Y \approx s_x \cdot s_w \cdot (\bar{X}_{int} \cdot \bar{W}_{int})$$
 
 **With zero-points:**
 
-```math
-Y = s_x s_w \left[(X_q - z_x)(W_q - z_w)\right]
-= s_x s_w \left[X_q W_q - z_w \sum X_q - z_x \sum W_q + z_x z_w nm\right]
-
-```
+$$Y = s_x s_w \left[(X_q - z_x)(W_q - z_w)\right]
+= s_x s_w \left[X_q W_q - z_w \sum X_q - z_x \sum W_q + z_x z_w nm\right]$$
 
 **Optimization:** Pre-compute $z_w \sum X_q$ terms.
 
@@ -210,25 +159,16 @@ Y = s_x s_w \left[(X_q - z_x)(W_q - z_w)\right]
 
 **Objective:** Minimize layer-wise reconstruction error:
 
-```math
-\arg\min_{\hat{W}} \|WX - \hat{W}X\|_2^2
-
-```
+$$\arg\min_{\hat{W}} \|WX - \hat{W}X\|_2^2$$
 
 **Optimal Brain Quantization (OBQ):**
 Quantize one weight at a time, adjusting remaining weights:
 
-```math
-\delta_{F_q} = \arg\min_{\delta} \|(\hat{w}_q - w_q + \delta_{-q}) X\|_2^2
-
-```
+$$\delta_{F_q} = \arg\min_{\delta} \|(\hat{w}_q - w_q + \delta_{-q}) X\|_2^2$$
 
 **Solution:**
 
-```math
-\delta_{-q} = -\frac{w_q - \hat{w}_q}{[H^{-1}]_{qq}} H^{-1}_{:,q}
-
-```
+$$\delta_{-q} = -\frac{w_q - \hat{w}_q}{[H^{-1}]_{qq}} H^{-1}_{:,q}$$
 
 Where $H = XX^T$ is the Hessian.
 
@@ -240,17 +180,11 @@ Where $H = XX^T$ is the Hessian.
 
 **Importance Score:**
 
-```math
-s_j = \mathbb{E}[|X_j|]
-
-```
+$$s_j = \mathbb{E}[|X_j|]$$
 
 **Per-channel scaling:**
 
-```math
-\hat{W}[:,j] = W[:,j] \cdot s_j, \quad \hat{X}[j] = X[j] / s_j
-
-```
+$$\hat{W}[:,j] = W[:,j] \cdot s_j, \quad \hat{X}[j] = X[j] / s_j$$
 
 This redistributes quantization error to less important channels.
 
@@ -260,17 +194,11 @@ This redistributes quantization error to less important channels.
 
 **Solution:** Migrate quantization difficulty from activations to weights:
 
-```math
-Y = X W = (X \cdot \text{diag}(s)^{-1}) \cdot (\text{diag}(s) \cdot W) = \hat{X} \hat{W}
-
-```
+$$Y = X W = (X \cdot \text{diag}(s)^{-1}) \cdot (\text{diag}(s) \cdot W) = \hat{X} \hat{W}$$
 
 **Optimal smoothing factor:**
 
-```math
-s_j = \frac{\max(|X_j|)^\alpha}{\max(|W_j|)^{1-\alpha}}
-
-```
+$$s_j = \frac{\max(|X_j|)^\alpha}{\max(|W_j|)^{1-\alpha}}$$
 
 Where $\alpha \in [0, 1]$ balances difficulty.
 
@@ -300,10 +228,7 @@ Where $\alpha \in [0, 1]$ balances difficulty.
 
 **Memory Savings Formula:**
 
-```math
-\text{Compression Ratio} = \frac{32}{b} = \{4\times \text{ (INT8)}, 8\times \text{ (INT4)}\}
-
-```
+$$\text{Compression Ratio} = \frac{32}{b} = \{4\times \text{ (INT8)}, 8\times \text{ (INT4)}\}$$
 
 ---
 

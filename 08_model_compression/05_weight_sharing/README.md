@@ -23,10 +23,7 @@
 
 **Objective Function:**
 
-```math
-\min_{\{c_j\}, \{a_i\}} \sum_{i=1}^{n} \|w_i - c_{a_i}\|^2
-
-```
+$$\min_{\{c_j\}, \{a_i\}} \sum_{i=1}^{n} \|w_i - c_{a_i}\|^2$$
 
 Where:
 
@@ -50,34 +47,22 @@ Where:
 
 **Original Storage:**
 
-```math
-\text{Bits}_{original} = n \times 32 \text{ bits}
-
-```
+$$\text{Bits}_{original} = n \times 32 \text{ bits}$$
 
 **Clustered Storage:**
 
-```math
-\text{Bits}_{clustered} = K \times 32 + n \times \lceil\log_2(K)\rceil \text{ bits}
-
-```
+$$\text{Bits}_{clustered} = K \times 32 + n \times \lceil\log_2(K)\rceil \text{ bits}$$
 
 - $K \times 32$: Store $K$ centroids in FP32
 - $n \times \lceil\log_2(K)\rceil$: Store indices
 
 **Compression Ratio:**
 
-```math
-CR = \frac{32n}{32K + n\lceil\log_2(K)\rceil}
-
-```
+$$CR = \frac{32n}{32K + n\lceil\log_2(K)\rceil}$$
 
 **For $n \gg K$:**
 
-```math
-CR \approx \frac{32}{\lceil\log_2(K)\rceil}
-
-```
+$$CR \approx \frac{32}{\lceil\log_2(K)\rceil}$$
 
 | K | Bits/Index | CR |
 |---|-----------|-----|
@@ -90,19 +75,13 @@ CR \approx \frac{32}{\lceil\log_2(K)\rceil}
 
 **Shannon Entropy:**
 
-```math
-H = -\sum_{j=1}^{K} p_j \log_2(p_j)
-
-```
+$$H = -\sum_{j=1}^{K} p_j \log_2(p_j)$$
 
 Where $p_j = \frac{|S_j|}{n}$ is the fraction of weights in cluster $j$.
 
 **Huffman Coding Guarantee:**
 
-```math
-H \leq \mathbb{E}[\text{bits per weight}] \leq H + 1
-
-```
+$$H \leq \mathbb{E}[\text{bits per weight}] \leq H + 1$$
 
 ---
 
@@ -112,55 +91,34 @@ H \leq \mathbb{E}[\text{bits per weight}] \leq H + 1
 
 **Standard Transformer Embeddings:**
 
-```math
-\text{Input embedding: } E_{in} \in \mathbb{R}^{V \times d}
-\text{Output projection: } W_{out} \in \mathbb{R}^{d \times V}
-
-```
+$$\text{Input embedding: } E_{in} \in \mathbb{R}^{V \times d}
+\text{Output projection: } W_{out} \in \mathbb{R}^{d \times V}$$
 
 **With Weight Tying:**
 
-```math
-W_{out} = E_{in}^T
-
-```
+$$W_{out} = E_{in}^T$$
 
 **Parameter Savings:**
 
-```math
-\Delta P = V \times d
-
-```
+$$\Delta P = V \times d$$
 
 For LLaMA-7B ($V=32000$, $d=4096$):
 
-```math
-\Delta P = 32000 \times 4096 = 131M \text{ parameters} \approx 500 \text{ MB}
-
-```
+$$\Delta P = 32000 \times 4096 = 131M \text{ parameters} \approx 500 \text{ MB}$$
 
 ### 5. Cross-Layer Parameter Sharing (ALBERT)
 
 **BERT:** Each layer $l$ has unique parameters
 
-```math
-\theta_l = \{W_Q^l, W_K^l, W_V^l, W_O^l, W_1^l, W_2^l\}
-
-```
+$$\theta_l = \{W_Q^l, W_K^l, W_V^l, W_O^l, W_1^l, W_2^l\}$$
 
 **ALBERT:** All layers share the same parameters
 
-```math
-\theta = \theta_1 = \theta_2 = ... = \theta_L
-
-```
+$$\theta = \theta_1 = \theta_2 = ... = \theta_L$$
 
 **Compression Factor:**
 
-```math
-CR = L \times
-
-```
+$$CR = L \times$$
 
 For BERT-Large ($L=24$): 24× parameter reduction in attention/FFN layers!
 
@@ -170,10 +128,7 @@ For BERT-Large ($L=24$): 24× parameter reduction in attention/FFN layers!
 
 **Solution:** Factorize into two smaller matrices:
 
-```math
-E = E_1 \times E_2
-
-```
+$$E = E_1 \times E_2$$
 
 Where:
 
@@ -183,17 +138,11 @@ Where:
 
 **Parameter Reduction:**
 
-```math
-V \times H \to V \times E + E \times H
-
-```
+$$V \times H \to V \times E + E \times H$$
 
 For $V=30000$, $H=1024$, $E=128$:
 
-```math
-30M \to 3.84M + 0.13M = 3.97M \quad (7.5\times \text{ reduction})
-
-```
+$$30M \to 3.84M + 0.13M = 3.97M \quad (7.5\times \text{ reduction})$$
 
 ### 7. Multi-Query Attention (MQA)
 
@@ -202,17 +151,11 @@ For $V=30000$, $H=1024$, $E=128$:
 **Multi-Query Attention (MQA):**
 Single K,V projection shared across all heads:
 
-```math
-W_K, W_V \text{ shared for all heads}
-
-```
+$$W_K, W_V \text{ shared for all heads}$$
 
 **Parameter Reduction (MQA):**
 
-```math
-\frac{h \times d_k \times 2}{d_k \times 2} = h \times
-
-```
+$$\frac{h \times d_k \times 2}{d_k \times 2} = h \times$$
 
 ---
 

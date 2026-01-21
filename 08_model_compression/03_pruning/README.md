@@ -23,49 +23,31 @@
 
 **Basic Criterion:**
 
-```math
-\text{Prune } w_{ij} \text{ if } |w_{ij}| < \tau
-
-```
+$$\text{Prune } w_{ij} \text{ if } |w_{ij}| < \tau$$
 
 **Global vs Layer-wise Pruning:**
 
 *Global:* Single threshold $\tau$ for entire network
 
-```math
-\mathcal{P} = \{w : |w| < \tau_{global}\}
-
-```
+$$\mathcal{P} = \{w : |w| < \tau_{global}\}$$
 
 *Layer-wise:* Per-layer threshold based on percentile
 
-```math
-\mathcal{P}_l = \{w \in W_l : |w| < \text{Percentile}(|W_l|, p)\}
-
-```
+$$\mathcal{P}_l = \{w \in W_l : |w| < \text{Percentile}(|W_l|, p)\}$$
 
 ### 2. Optimal Brain Damage (OBD)
 
 **Second-Order Taylor Expansion:**
 
-```math
-\Delta\mathcal{L} = \sum_i g_i \delta w_i + \frac{1}{2}\sum_i h_{ii} \delta w_i^2 + O(\delta w^3)
-
-```
+$$\Delta\mathcal{L} = \sum_i g_i \delta w_i + \frac{1}{2}\sum_i h_{ii} \delta w_i^2 + O(\delta w^3)$$
 
 At a minimum, $g_i = \frac{\partial\mathcal{L}}{\partial w_i} \approx 0$, so:
 
-```math
-\Delta\mathcal{L} \approx \frac{1}{2}\sum_i h_{ii} w_i^2
-
-```
+$$\Delta\mathcal{L} \approx \frac{1}{2}\sum_i h_{ii} w_i^2$$
 
 **Saliency (Importance Score):**
 
-```math
-s_i^{OBD} = \frac{1}{2}h_{ii}w_i^2
-
-```
+$$s_i^{OBD} = \frac{1}{2}h_{ii}w_i^2$$
 
 Prune weights with lowest saliency.
 
@@ -75,17 +57,11 @@ Prune weights with lowest saliency.
 
 When pruning weight $w_q$, optimal adjustment to other weights:
 
-```math
-\delta w = -\frac{w_q}{[H^{-1}]_{qq}}H^{-1}e_q
-
-```
+$$\delta w = -\frac{w_q}{[H^{-1}]_{qq}}H^{-1}e_q$$
 
 **Saliency:**
 
-```math
-s_q^{OBS} = \frac{w_q^2}{2[H^{-1}]_{qq}}
-
-```
+$$s_q^{OBS} = \frac{w_q^2}{2[H^{-1}]_{qq}}$$
 
 **Advantage:** Accounts for weight correlations
 **Disadvantage:** Computing $H^{-1}$ is expensive ($O(n^3)$)
@@ -94,10 +70,7 @@ s_q^{OBS} = \frac{w_q^2}{2[H^{-1}]_{qq}}
 
 **Criterion:** Prune weights moving toward zero during training
 
-```math
-s_i = -w_i \cdot \frac{\partial\mathcal{L}}{\partial w_i}
-
-```
+$$s_i = -w_i \cdot \frac{\partial\mathcal{L}}{\partial w_i}$$
 
 If $s_i > 0$: weight is moving away from zero (important)
 If $s_i < 0$: weight is moving toward zero (can prune)
@@ -131,36 +104,24 @@ Let $f(x; \theta)$ be a dense neural network. There exists a sparse mask $m \in 
 
 **Filter Pruning (L1/L2 norm):**
 
-```math
-s_f = \|W_f\|_p = \left(\sum_{i,j,k} |w_{f,i,j,k}|^p\right)^{1/p}
-
-```
+$$s_f = \|W_f\|_p = \left(\sum_{i,j,k} |w_{f,i,j,k}|^p\right)^{1/p}$$
 
 **Channel Importance (Taylor Expansion):**
 
-```math
-s_c = \left|\sum_i \frac{\partial\mathcal{L}}{\partial a_c^{(i)}} \cdot a_c^{(i)}\right|
-
-```
+$$s_c = \left|\sum_i \frac{\partial\mathcal{L}}{\partial a_c^{(i)}} \cdot a_c^{(i)}\right|$$
 
 Where $a_c$ are activations of channel $c$.
 
 **Geometric Median (FPGM):**
 Remove filters closest to geometric median:
 
-```math
-f^* = \arg\min_f \sum_{f' \neq f} \|W_f - W_{f'}\|_2
-
-```
+$$f^* = \arg\min_f \sum_{f' \neq f} \|W_f - W_{f'}\|_2$$
 
 ### 7. Sparse Training Theory
 
 **Gradual Magnitude Pruning (Zhu & Gupta, 2017):**
 
-```math
-s_t = s_f + (s_i - s_f)\left(1 - \frac{t - t_0}{n\Delta t}\right)^3
-
-```
+$$s_t = s_f + (s_i - s_f)\left(1 - \frac{t - t_0}{n\Delta t}\right)^3$$
 
 Where:
 
@@ -185,10 +146,7 @@ Where:
 
 **Mathematical Constraint:**
 
-```math
-\forall i: |\{j \in [iM, (i+1)M) : w_j \neq 0\}| = M - N
-
-```
+$$\forall i: |\{j \in [iM, (i+1)M) : w_j \neq 0\}| = M - N$$
 
 ---
 

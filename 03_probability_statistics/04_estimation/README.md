@@ -35,45 +35,27 @@
 
 ### Maximum Likelihood Estimation (MLE)
 
-```math
-\theta_{MLE} = \arg\max_\theta P(D|\theta) = \arg\max_\theta \prod_{i=1}^{n} P(x_i|\theta)
-
-```
+$$\theta_{MLE} = \arg\max_\theta P(D|\theta) = \arg\max_\theta \prod_{i=1}^{n} P(x_i|\theta)$$
 
 **Log-likelihood (for numerical stability):**
 
-```math
-\theta_{MLE} = \arg\max_\theta \ell(\theta) = \arg\max_\theta \sum_{i=1}^{n} \log P(x_i|\theta)
-
-```
+$$\theta_{MLE} = \arg\max_\theta \ell(\theta) = \arg\max_\theta \sum_{i=1}^{n} \log P(x_i|\theta)$$
 
 ### Maximum A Posteriori (MAP)
 
-```math
-\theta_{MAP} = \arg\max_\theta P(\theta|D) = \arg\max_\theta P(D|\theta) P(\theta)
-
-```
+$$\theta_{MAP} = \arg\max_\theta P(\theta|D) = \arg\max_\theta P(D|\theta) P(\theta)$$
 
 **Log form:**
 
-```math
-\theta_{MAP} = \arg\max_\theta \left[\sum_{i=1}^{n} \log P(x_i|\theta) + \log P(\theta)\right]
-
-```
+$$\theta_{MAP} = \arg\max_\theta \left[\sum_{i=1}^{n} \log P(x_i|\theta) + \log P(\theta)\right]$$
 
 ### Full Bayesian
 
-```math
-P(\theta|D) = \frac{P(D|\theta) P(\theta)}{\int P(D|\theta') P(\theta') d\theta'}
-
-```
+$$P(\theta|D) = \frac{P(D|\theta) P(\theta)}{\int P(D|\theta') P(\theta') d\theta'}$$
 
 **Predictive distribution:**
 
-```math
-P(x_{new}|D) = \int P(x_{new}|\theta) P(\theta|D) d\theta
-
-```
+$$P(x_{new}|D) = \int P(x_{new}|\theta) P(\theta|D) d\theta$$
 
 ---
 
@@ -81,47 +63,29 @@ P(x_{new}|D) = \int P(x_{new}|\theta) P(\theta|D) d\theta
 
 ### Gaussian (Unknown Mean, Known Variance)
 
-```math
-X_1, \ldots, X_n \sim \mathcal{N}(\mu, \sigma^2)
-
-```
+$$X_1, \ldots, X_n \sim \mathcal{N}(\mu, \sigma^2)$$
 
 **Log-likelihood:**
 
-```math
-\ell(\mu) = -\frac{n}{2}\log(2\pi\sigma^2) - \frac{1}{2\sigma^2}\sum_{i=1}^{n}(x_i - \mu)^2
-
-```
+$$\ell(\mu) = -\frac{n}{2}\log(2\pi\sigma^2) - \frac{1}{2\sigma^2}\sum_{i=1}^{n}(x_i - \mu)^2$$
 
 **MLE:**
 
-```math
-\mu_{MLE} = \frac{1}{n}\sum_{i=1}^{n} x_i = \bar{x}
-
-```
+$$\mu_{MLE} = \frac{1}{n}\sum_{i=1}^{n} x_i = \bar{x}$$
 
 ### Bernoulli
 
-```math
-X_1, \ldots, X_n \sim \text{Bernoulli}(p)
-
-```
+$$X_1, \ldots, X_n \sim \text{Bernoulli}(p)$$
 
 **Log-likelihood:**
 
-```math
-\ell(p) = k \log p + (n-k) \log(1-p)
-
-```
+$$\ell(p) = k \log p + (n-k) \log(1-p)$$
 
 where $k = \sum_{i=1}^{n} x_i$.
 
 **MLE:**
 
-```math
-p_{MLE} = \frac{k}{n} = \frac{\sum_i x_i}{n}
-
-```
+$$p_{MLE} = \frac{k}{n} = \frac{\sum_i x_i}{n}$$
 
 ---
 
@@ -129,34 +93,22 @@ p_{MLE} = \frac{k}{n} = \frac{\sum_i x_i}{n}
 
 ### L2 Regularization = Gaussian Prior
 
-```math
-P(\theta) = \mathcal{N}(0, \sigma^2 I)
-\log P(\theta) = -\frac{\|\theta\|^2}{2\sigma^2} + \text{const}
-
-```
+$$P(\theta) = \mathcal{N}(0, \sigma^2 I)
+\log P(\theta) = -\frac{\|\theta\|^2}{2\sigma^2} + \text{const}$$
 
 **MAP objective:**
 
-```math
-\arg\max_\theta \left[\sum_i \log P(x_i|\theta) - \lambda\|\theta\|^2\right]
-
-```
+$$\arg\max_\theta \left[\sum_i \log P(x_i|\theta) - \lambda\|\theta\|^2\right]$$
 
 where $\lambda = \frac{1}{2\sigma^2}$. This is **Ridge Regression / Weight Decay**.
 
 ### L1 Regularization = Laplace Prior
 
-```math
-P(\theta) \propto \exp(-|\theta|/b)
-
-```
+$$P(\theta) \propto \exp(-|\theta|/b)$$
 
 **MAP objective:**
 
-```math
-\arg\max_\theta \left[\sum_i \log P(x_i|\theta) - \lambda\|\theta\|_1\right]
-
-```
+$$\arg\max_\theta \left[\sum_i \log P(x_i|\theta) - \lambda\|\theta\|_1\right]$$
 
 This is **Lasso Regression** → promotes sparsity.
 
@@ -180,10 +132,7 @@ This is **Lasso Regression** → promotes sparsity.
 
 **Cross-entropy loss = Negative log-likelihood:**
 
-```math
-\mathcal{L} = -\sum_{i=1}^{n} \log P(y_i|x_i; \theta)
-
-```
+$$\mathcal{L} = -\sum_{i=1}^{n} \log P(y_i|x_i; \theta)$$
 
 **Minimizing cross-entropy = Maximizing likelihood = MLE!**
 
@@ -254,10 +203,7 @@ def bayesian_coin_flip(data, prior_alpha=1, prior_beta=1):
 
 ## 📐 Fisher Information
 
-```math
-I(\theta) = -E\left[\frac{\partial^2 \log P(X|\theta)}{\partial \theta^2}\right]
-
-```
+$$I(\theta) = -E\left[\frac{\partial^2 \log P(X|\theta)}{\partial \theta^2}\right]$$
 
 **Properties:**
 - Measures "curvature" of log-likelihood
@@ -268,10 +214,7 @@ I(\theta) = -E\left[\frac{\partial^2 \log P(X|\theta)}{\partial \theta^2}\right]
 
 **Cramér-Rao Lower Bound:**
 
-```math
-\text{Var}(\hat{\theta}) \geq \frac{1}{I(\theta)}
-
-```
+$$\text{Var}(\hat{\theta}) \geq \frac{1}{I(\theta)}$$
 
 MLE achieves this bound asymptotically → **efficient estimator**.
 

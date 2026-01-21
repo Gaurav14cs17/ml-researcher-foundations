@@ -23,17 +23,11 @@
 
 ## 📐 Definition
 
-```math
-\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})
-
-```
+$$\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$$
 
 **Probability Density Function:**
 
-```math
-p(\mathbf{x}) = (2\pi)^{-d/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^\top\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)
-
-```
+$$p(\mathbf{x}) = (2\pi)^{-d/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^\top\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)$$
 
 **Parameters:**
 - $\boldsymbol{\mu} \in \mathbb{R}^d$: mean vector
@@ -63,33 +57,21 @@ p(\mathbf{x}) = (2\pi)^{-d/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2
 
 **Setup:**
 
-```math
-\begin{bmatrix} \mathbf{x}_1 \\ \mathbf{x}_2 \end{bmatrix} \sim \mathcal{N}\left(\begin{bmatrix} \boldsymbol{\mu}_1 \\ \boldsymbol{\mu}_2 \end{bmatrix}, \begin{bmatrix} \boldsymbol{\Sigma}_{11} & \boldsymbol{\Sigma}_{12} \\ \boldsymbol{\Sigma}_{21} & \boldsymbol{\Sigma}_{22} \end{bmatrix}\right)
-
-```
+$$\begin{bmatrix} \mathbf{x}_1 \\ \mathbf{x}_2 \end{bmatrix} \sim \mathcal{N}\left(\begin{bmatrix} \boldsymbol{\mu}_1 \\ \boldsymbol{\mu}_2 \end{bmatrix}, \begin{bmatrix} \boldsymbol{\Sigma}_{11} & \boldsymbol{\Sigma}_{12} \\ \boldsymbol{\Sigma}_{21} & \boldsymbol{\Sigma}_{22} \end{bmatrix}\right)$$
 
 **Marginal:**
 
-```math
-\mathbf{x}_1 \sim \mathcal{N}(\boldsymbol{\mu}_1, \boldsymbol{\Sigma}_{11})
-
-```
+$$\mathbf{x}_1 \sim \mathcal{N}(\boldsymbol{\mu}_1, \boldsymbol{\Sigma}_{11})$$
 
 **Proof:**
 
 The marginal is obtained by integrating out $\mathbf{x}_2$:
 
-```math
-p(\mathbf{x}_1) = \int p(\mathbf{x}_1, \mathbf{x}_2) \, d\mathbf{x}_2
-
-```
+$$p(\mathbf{x}_1) = \int p(\mathbf{x}_1, \mathbf{x}_2) \, d\mathbf{x}_2$$
 
 Using the partitioned form of the Gaussian and completing the square in $\mathbf{x}_2$, the integral over $\mathbf{x}_2$ yields a normalizing constant, leaving:
 
-```math
-p(\mathbf{x}_1) = (2\pi)^{-d_1/2} |\boldsymbol{\Sigma}_{11}|^{-1/2} \exp\left(-\frac{1}{2}(\mathbf{x}_1-\boldsymbol{\mu}_1)^\top\boldsymbol{\Sigma}_{11}^{-1}(\mathbf{x}_1-\boldsymbol{\mu}_1)\right)
-
-```
+$$p(\mathbf{x}_1) = (2\pi)^{-d_1/2} |\boldsymbol{\Sigma}_{11}|^{-1/2} \exp\left(-\frac{1}{2}(\mathbf{x}_1-\boldsymbol{\mu}_1)^\top\boldsymbol{\Sigma}_{11}^{-1}(\mathbf{x}_1-\boldsymbol{\mu}_1)\right)$$
 
 This is $\mathcal{N}(\boldsymbol{\mu}_1, \boldsymbol{\Sigma}_{11})$. $\blacksquare$
 
@@ -99,86 +81,53 @@ This is $\mathcal{N}(\boldsymbol{\mu}_1, \boldsymbol{\Sigma}_{11})$. $\blacksqua
 
 **Theorem:** The conditional distribution of a Gaussian is also Gaussian.
 
-```math
-\mathbf{x}_1 | \mathbf{x}_2 = \mathbf{a} \sim \mathcal{N}(\boldsymbol{\mu}_{1|2}, \boldsymbol{\Sigma}_{1|2})
-
-```
+$$\mathbf{x}_1 | \mathbf{x}_2 = \mathbf{a} \sim \mathcal{N}(\boldsymbol{\mu}_{1|2}, \boldsymbol{\Sigma}_{1|2})$$
 
 **Conditional Mean:**
 
-```math
-\boldsymbol{\mu}_{1|2} = \boldsymbol{\mu}_1 + \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}(\mathbf{a} - \boldsymbol{\mu}_2)
-
-```
+$$\boldsymbol{\mu}_{1|2} = \boldsymbol{\mu}_1 + \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}(\mathbf{a} - \boldsymbol{\mu}_2)$$
 
 **Conditional Covariance:**
 
-```math
-\boldsymbol{\Sigma}_{1|2} = \boldsymbol{\Sigma}_{11} - \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}\boldsymbol{\Sigma}_{21}
-
-```
+$$\boldsymbol{\Sigma}_{1|2} = \boldsymbol{\Sigma}_{11} - \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}\boldsymbol{\Sigma}_{21}$$
 
 ### Complete Proof
 
 **Step 1: Write the joint density**
 
-```math
-p(\mathbf{x}_1, \mathbf{x}_2) \propto \exp\left(-\frac{1}{2}Q(\mathbf{x}_1, \mathbf{x}_2)\right)
-
-```
+$$p(\mathbf{x}_1, \mathbf{x}_2) \propto \exp\left(-\frac{1}{2}Q(\mathbf{x}_1, \mathbf{x}_2)\right)$$
 
 where the quadratic form is:
 
-```math
-Q = \begin{bmatrix} \mathbf{x}_1 - \boldsymbol{\mu}_1 \\ \mathbf{x}_2 - \boldsymbol{\mu}_2 \end{bmatrix}^\top \begin{bmatrix} \boldsymbol{\Sigma}_{11} & \boldsymbol{\Sigma}_{12} \\ \boldsymbol{\Sigma}_{21} & \boldsymbol{\Sigma}_{22} \end{bmatrix}^{-1} \begin{bmatrix} \mathbf{x}_1 - \boldsymbol{\mu}_1 \\ \mathbf{x}_2 - \boldsymbol{\mu}_2 \end{bmatrix}
-
-```
+$$Q = \begin{bmatrix} \mathbf{x}_1 - \boldsymbol{\mu}_1 \\ \mathbf{x}_2 - \boldsymbol{\mu}_2 \end{bmatrix}^\top \begin{bmatrix} \boldsymbol{\Sigma}_{11} & \boldsymbol{\Sigma}_{12} \\ \boldsymbol{\Sigma}_{21} & \boldsymbol{\Sigma}_{22} \end{bmatrix}^{-1} \begin{bmatrix} \mathbf{x}_1 - \boldsymbol{\mu}_1 \\ \mathbf{x}_2 - \boldsymbol{\mu}_2 \end{bmatrix}$$
 
 **Step 2: Block matrix inversion**
 
 Using the block matrix inversion formula:
 
-```math
-\boldsymbol{\Sigma}^{-1} = \begin{bmatrix} \boldsymbol{\Lambda}_{11} & \boldsymbol{\Lambda}_{12} \\ \boldsymbol{\Lambda}_{21} & \boldsymbol{\Lambda}_{22} \end{bmatrix}
-
-```
+$$\boldsymbol{\Sigma}^{-1} = \begin{bmatrix} \boldsymbol{\Lambda}_{11} & \boldsymbol{\Lambda}_{12} \\ \boldsymbol{\Lambda}_{21} & \boldsymbol{\Lambda}_{22} \end{bmatrix}$$
 
 where:
 
-```math
-\boldsymbol{\Lambda}_{11} = (\boldsymbol{\Sigma}_{11} - \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}\boldsymbol{\Sigma}_{21})^{-1} = \boldsymbol{\Sigma}_{1|2}^{-1}
-
-```
+$$\boldsymbol{\Lambda}_{11} = (\boldsymbol{\Sigma}_{11} - \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}\boldsymbol{\Sigma}_{21})^{-1} = \boldsymbol{\Sigma}_{1|2}^{-1}$$
 
 **Step 3: Expand the quadratic form**
 
-```math
-Q = (\mathbf{x}_1 - \boldsymbol{\mu}_1)^\top \boldsymbol{\Lambda}_{11} (\mathbf{x}_1 - \boldsymbol{\mu}_1) + 2(\mathbf{x}_1 - \boldsymbol{\mu}_1)^\top \boldsymbol{\Lambda}_{12} (\mathbf{x}_2 - \boldsymbol{\mu}_2) + (\mathbf{x}_2 - \boldsymbol{\mu}_2)^\top \boldsymbol{\Lambda}_{22} (\mathbf{x}_2 - \boldsymbol{\mu}_2)
-
-```
+$$Q = (\mathbf{x}_1 - \boldsymbol{\mu}_1)^\top \boldsymbol{\Lambda}_{11} (\mathbf{x}_1 - \boldsymbol{\mu}_1) + 2(\mathbf{x}_1 - \boldsymbol{\mu}_1)^\top \boldsymbol{\Lambda}_{12} (\mathbf{x}_2 - \boldsymbol{\mu}_2) + (\mathbf{x}_2 - \boldsymbol{\mu}_2)^\top \boldsymbol{\Lambda}_{22} (\mathbf{x}_2 - \boldsymbol{\mu}_2)$$
 
 **Step 4: Complete the square in $\mathbf{x}_1$**
 
 Fixing $\mathbf{x}_2 = \mathbf{a}$ and completing the square:
 
-```math
-Q = (\mathbf{x}_1 - \boldsymbol{\mu}_{1|2})^\top \boldsymbol{\Lambda}_{11} (\mathbf{x}_1 - \boldsymbol{\mu}_{1|2}) + \text{terms not involving } \mathbf{x}_1
-
-```
+$$Q = (\mathbf{x}_1 - \boldsymbol{\mu}_{1|2})^\top \boldsymbol{\Lambda}_{11} (\mathbf{x}_1 - \boldsymbol{\mu}_{1|2}) + \text{terms not involving } \mathbf{x}_1$$
 
 where:
 
-```math
-\boldsymbol{\mu}_{1|2} = \boldsymbol{\mu}_1 - \boldsymbol{\Lambda}_{11}^{-1}\boldsymbol{\Lambda}_{12}(\mathbf{a} - \boldsymbol{\mu}_2)
-
-```
+$$\boldsymbol{\mu}_{1|2} = \boldsymbol{\mu}_1 - \boldsymbol{\Lambda}_{11}^{-1}\boldsymbol{\Lambda}_{12}(\mathbf{a} - \boldsymbol{\mu}_2)$$
 
 **Step 5: Use the identity $\boldsymbol{\Lambda}_{12} = -\boldsymbol{\Sigma}_{1|2}^{-1}\boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}$**
 
-```math
-\boldsymbol{\mu}_{1|2} = \boldsymbol{\mu}_1 + \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}(\mathbf{a} - \boldsymbol{\mu}_2) \quad \blacksquare
-
-```
+$$\boldsymbol{\mu}_{1|2} = \boldsymbol{\mu}_1 + \boldsymbol{\Sigma}_{12}\boldsymbol{\Sigma}_{22}^{-1}(\mathbf{a} - \boldsymbol{\mu}_2) \quad \blacksquare$$
 
 ### Key Insights
 
@@ -196,30 +145,21 @@ where:
 
 If $\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, then:
 
-```math
-\mathbf{Y} = \mathbf{A}\mathbf{X} + \mathbf{b} \sim \mathcal{N}(\mathbf{A}\boldsymbol{\mu} + \mathbf{b}, \mathbf{A}\boldsymbol{\Sigma}\mathbf{A}^\top)
-
-```
+$$\mathbf{Y} = \mathbf{A}\mathbf{X} + \mathbf{b} \sim \mathcal{N}(\mathbf{A}\boldsymbol{\mu} + \mathbf{b}, \mathbf{A}\boldsymbol{\Sigma}\mathbf{A}^\top)$$
 
 **Proof using Characteristic Functions:**
 
 The characteristic function of $\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ is:
 
-```math
-\phi_{\mathbf{X}}(\mathbf{t}) = \exp\left(i\mathbf{t}^\top\boldsymbol{\mu} - \frac{1}{2}\mathbf{t}^\top\boldsymbol{\Sigma}\mathbf{t}\right)
-
-```
+$$\phi_{\mathbf{X}}(\mathbf{t}) = \exp\left(i\mathbf{t}^\top\boldsymbol{\mu} - \frac{1}{2}\mathbf{t}^\top\boldsymbol{\Sigma}\mathbf{t}\right)$$
 
 For $\mathbf{Y} = \mathbf{A}\mathbf{X} + \mathbf{b}$:
 
-```math
-\phi_{\mathbf{Y}}(\mathbf{t}) = E[e^{i\mathbf{t}^\top\mathbf{Y}}] = E[e^{i\mathbf{t}^\top(\mathbf{A}\mathbf{X}+\mathbf{b})}]
+$$\phi_{\mathbf{Y}}(\mathbf{t}) = E[e^{i\mathbf{t}^\top\mathbf{Y}}] = E[e^{i\mathbf{t}^\top(\mathbf{A}\mathbf{X}+\mathbf{b})}]
 = e^{i\mathbf{t}^\top\mathbf{b}} E[e^{i(\mathbf{A}^\top\mathbf{t})^\top\mathbf{X}}]
 = e^{i\mathbf{t}^\top\mathbf{b}} \phi_{\mathbf{X}}(\mathbf{A}^\top\mathbf{t})
 = e^{i\mathbf{t}^\top\mathbf{b}} \exp\left(i(\mathbf{A}^\top\mathbf{t})^\top\boldsymbol{\mu} - \frac{1}{2}(\mathbf{A}^\top\mathbf{t})^\top\boldsymbol{\Sigma}(\mathbf{A}^\top\mathbf{t})\right)
-= \exp\left(i\mathbf{t}^\top(\mathbf{A}\boldsymbol{\mu}+\mathbf{b}) - \frac{1}{2}\mathbf{t}^\top\mathbf{A}\boldsymbol{\Sigma}\mathbf{A}^\top\mathbf{t}\right)
-
-```
+= \exp\left(i\mathbf{t}^\top(\mathbf{A}\boldsymbol{\mu}+\mathbf{b}) - \frac{1}{2}\mathbf{t}^\top\mathbf{A}\boldsymbol{\Sigma}\mathbf{A}^\top\mathbf{t}\right)$$
 
 This is the CF of $\mathcal{N}(\mathbf{A}\boldsymbol{\mu}+\mathbf{b}, \mathbf{A}\boldsymbol{\Sigma}\mathbf{A}^\top)$. $\blacksquare$
 
@@ -229,10 +169,7 @@ This is the CF of $\mathcal{N}(\mathbf{A}\boldsymbol{\mu}+\mathbf{b}, \mathbf{A}
 
 **Theorem:** If $\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}_x, \boldsymbol{\Sigma}_x)$ and $\mathbf{Y} \sim \mathcal{N}(\boldsymbol{\mu}_y, \boldsymbol{\Sigma}_y)$ are independent:
 
-```math
-\mathbf{X} + \mathbf{Y} \sim \mathcal{N}(\boldsymbol{\mu}_x + \boldsymbol{\mu}_y, \boldsymbol{\Sigma}_x + \boldsymbol{\Sigma}_y)
-
-```
+$$\mathbf{X} + \mathbf{Y} \sim \mathcal{N}(\boldsymbol{\mu}_x + \boldsymbol{\mu}_y, \boldsymbol{\Sigma}_x + \boldsymbol{\Sigma}_y)$$
 
 **Proof:** Follows from linear transformation with $[\mathbf{X}; \mathbf{Y}]$ and $\mathbf{A} = [\mathbf{I}, \mathbf{I}]$.
 
@@ -242,18 +179,12 @@ This is the CF of $\mathcal{N}(\mathbf{A}\boldsymbol{\mu}+\mathbf{b}, \mathbf{A}
 
 **Theorem:** The product of two Gaussian PDFs is proportional to a Gaussian:
 
-```math
-p_1(\mathbf{x}) \cdot p_2(\mathbf{x}) \propto \mathcal{N}(\mathbf{x}; \boldsymbol{\mu}, \boldsymbol{\Sigma})
-
-```
+$$p_1(\mathbf{x}) \cdot p_2(\mathbf{x}) \propto \mathcal{N}(\mathbf{x}; \boldsymbol{\mu}, \boldsymbol{\Sigma})$$
 
 where:
 
-```math
-\boldsymbol{\Sigma} = (\boldsymbol{\Sigma}_1^{-1} + \boldsymbol{\Sigma}_2^{-1})^{-1}
-\boldsymbol{\mu} = \boldsymbol{\Sigma}(\boldsymbol{\Sigma}_1^{-1}\boldsymbol{\mu}_1 + \boldsymbol{\Sigma}_2^{-1}\boldsymbol{\mu}_2)
-
-```
+$$\boldsymbol{\Sigma} = (\boldsymbol{\Sigma}_1^{-1} + \boldsymbol{\Sigma}_2^{-1})^{-1}
+\boldsymbol{\mu} = \boldsymbol{\Sigma}(\boldsymbol{\Sigma}_1^{-1}\boldsymbol{\mu}_1 + \boldsymbol{\Sigma}_2^{-1}\boldsymbol{\mu}_2)$$
 
 **Applications:** Kalman filtering, sensor fusion, Bayesian inference
 
@@ -263,40 +194,25 @@ where:
 
 **Theorem:**
 
-```math
-D_{KL}(\mathcal{N}(\boldsymbol{\mu}_1,\boldsymbol{\Sigma}_1) \| \mathcal{N}(\boldsymbol{\mu}_2,\boldsymbol{\Sigma}_2)) = \frac{1}{2}\left[\text{tr}(\boldsymbol{\Sigma}_2^{-1}\boldsymbol{\Sigma}_1) + (\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)^\top\boldsymbol{\Sigma}_2^{-1}(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1) - d + \log\frac{|\boldsymbol{\Sigma}_2|}{|\boldsymbol{\Sigma}_1|}\right]
-
-```
+$$D_{KL}(\mathcal{N}(\boldsymbol{\mu}_1,\boldsymbol{\Sigma}_1) \| \mathcal{N}(\boldsymbol{\mu}_2,\boldsymbol{\Sigma}_2)) = \frac{1}{2}\left[\text{tr}(\boldsymbol{\Sigma}_2^{-1}\boldsymbol{\Sigma}_1) + (\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)^\top\boldsymbol{\Sigma}_2^{-1}(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1) - d + \log\frac{|\boldsymbol{\Sigma}_2|}{|\boldsymbol{\Sigma}_1|}\right]$$
 
 **Special Case (VAE Loss - KL to Standard Normal):**
 
-```math
-D_{KL}(\mathcal{N}(\boldsymbol{\mu}, \text{diag}(\boldsymbol{\sigma}^2)) \| \mathcal{N}(\mathbf{0}, \mathbf{I})) = \frac{1}{2}\sum_{i=1}^{d}\left(\mu_i^2 + \sigma_i^2 - 1 - \log\sigma_i^2\right)
-
-```
+$$D_{KL}(\mathcal{N}(\boldsymbol{\mu}, \text{diag}(\boldsymbol{\sigma}^2)) \| \mathcal{N}(\mathbf{0}, \mathbf{I})) = \frac{1}{2}\sum_{i=1}^{d}\left(\mu_i^2 + \sigma_i^2 - 1 - \log\sigma_i^2\right)$$
 
 **Derivation:**
 
-```math
-D_{KL}(q \| p) = E_q[\log q - \log p]
-
-```
+$$D_{KL}(q \| p) = E_q[\log q - \log p]$$
 
 For $q = \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ and $p = \mathcal{N}(\mathbf{0}, \mathbf{I})$:
 
-```math
-= E_q\left[-\frac{1}{2}\log|\boldsymbol{\Sigma}| - \frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^\top\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu}) + \frac{1}{2}\mathbf{x}^\top\mathbf{x} + \frac{d}{2}\log(2\pi) - \frac{d}{2}\log(2\pi)\right]
+$$= E_q\left[-\frac{1}{2}\log|\boldsymbol{\Sigma}| - \frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^\top\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu}) + \frac{1}{2}\mathbf{x}^\top\mathbf{x} + \frac{d}{2}\log(2\pi) - \frac{d}{2}\log(2\pi)\right]
 = -\frac{1}{2}\log|\boldsymbol{\Sigma}| - \frac{d}{2} + \frac{1}{2}E_q[\mathbf{x}^\top\mathbf{x}]
-= -\frac{1}{2}\log|\boldsymbol{\Sigma}| - \frac{d}{2} + \frac{1}{2}(\text{tr}(\boldsymbol{\Sigma}) + \boldsymbol{\mu}^\top\boldsymbol{\mu})
-
-```
+= -\frac{1}{2}\log|\boldsymbol{\Sigma}| - \frac{d}{2} + \frac{1}{2}(\text{tr}(\boldsymbol{\Sigma}) + \boldsymbol{\mu}^\top\boldsymbol{\mu})$$
 
 For diagonal $\boldsymbol{\Sigma} = \text{diag}(\sigma_1^2, \ldots, \sigma_d^2)$:
 
-```math
-= \frac{1}{2}\sum_{i=1}^{d}\left(\mu_i^2 + \sigma_i^2 - 1 - \log\sigma_i^2\right) \quad \blacksquare
-
-```
+$$= \frac{1}{2}\sum_{i=1}^{d}\left(\mu_i^2 + \sigma_i^2 - 1 - \log\sigma_i^2\right) \quad \blacksquare$$
 
 ---
 
@@ -314,21 +230,15 @@ To sample $\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$:
 
 **Why it works:**
 
-```math
-E[\mathbf{X}] = \boldsymbol{\mu} + \mathbf{L}E[\mathbf{Z}] = \boldsymbol{\mu}
-\text{Cov}[\mathbf{X}] = \mathbf{L}\text{Cov}[\mathbf{Z}]\mathbf{L}^\top = \mathbf{L}\mathbf{I}\mathbf{L}^\top = \mathbf{L}\mathbf{L}^\top = \boldsymbol{\Sigma} \quad \blacksquare
-
-```
+$$E[\mathbf{X}] = \boldsymbol{\mu} + \mathbf{L}E[\mathbf{Z}] = \boldsymbol{\mu}
+\text{Cov}[\mathbf{X}] = \mathbf{L}\text{Cov}[\mathbf{Z}]\mathbf{L}^\top = \mathbf{L}\mathbf{I}\mathbf{L}^\top = \mathbf{L}\mathbf{L}^\top = \boldsymbol{\Sigma} \quad \blacksquare$$
 
 ### Box-Muller Transform (Univariate)
 
 Generate $X \sim \mathcal{N}(0,1)$ from uniform $U_1, U_2 \sim \text{Unif}(0,1)$:
 
-```math
-X = \sqrt{-2\ln U_1} \cos(2\pi U_2)
-Y = \sqrt{-2\ln U_1} \sin(2\pi U_2)
-
-```
+$$X = \sqrt{-2\ln U_1} \cos(2\pi U_2)
+Y = \sqrt{-2\ln U_1} \sin(2\pi U_2)$$
 
 Both X and Y are independent $\mathcal{N}(0,1)$.
 
@@ -338,17 +248,11 @@ Both X and Y are independent $\mathcal{N}(0,1)$.
 
 A **Gaussian Process** is a distribution over functions where any finite collection of function values has a joint Gaussian distribution.
 
-```math
-f \sim \mathcal{GP}(m, k)
-
-```
+$$f \sim \mathcal{GP}(m, k)$$
 
 For any set of points $\{x_1, \ldots, x_n\}$:
 
-```math
-[f(x_1), \ldots, f(x_n)]^\top \sim \mathcal{N}(\mathbf{m}, \mathbf{K})
-
-```
+$$[f(x_1), \ldots, f(x_n)]^\top \sim \mathcal{N}(\mathbf{m}, \mathbf{K})$$
 
 where $m_i = m(x_i)$ and $K_{ij} = k(x_i, x_j)$.
 

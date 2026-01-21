@@ -23,10 +23,7 @@ Bayesian inference is the process of updating beliefs about parameters based on 
 
 ### Bayes' Theorem
 
-```math
-P(\theta|D) = \frac{P(D|\theta)P(\theta)}{P(D)}
-
-```
+$$P(\theta|D) = \frac{P(D|\theta)P(\theta)}{P(D)}$$
 
 | Term | Name | Description |
 |------|------|-------------|
@@ -37,18 +34,12 @@ P(\theta|D) = \frac{P(D|\theta)P(\theta)}{P(D)}
 
 ### Posterior Computation
 
-```math
-\text{Posterior} \propto \text{Likelihood} \times \text{Prior}
-P(\theta|D) \propto P(D|\theta) P(\theta)
-
-```
+$$\text{Posterior} \propto \text{Likelihood} \times \text{Prior}
+P(\theta|D) \propto P(D|\theta) P(\theta)$$
 
 **Evidence (marginal likelihood):**
 
-```math
-P(D) = \int P(D|\theta) P(\theta) \, d\theta
-
-```
+$$P(D) = \int P(D|\theta) P(\theta) \, d\theta$$
 
 ---
 
@@ -58,25 +49,16 @@ P(D) = \int P(D|\theta) P(\theta) \, d\theta
 
 **Starting from conditional probability:**
 
-```math
-P(A|B) = \frac{P(A \cap B)}{P(B)}
-P(B|A) = \frac{P(A \cap B)}{P(A)}
-
-```
+$$P(A|B) = \frac{P(A \cap B)}{P(B)}
+P(B|A) = \frac{P(A \cap B)}{P(A)}$$
 
 **From the second equation:**
 
-```math
-P(A \cap B) = P(B|A) \cdot P(A)
-
-```
+$$P(A \cap B) = P(B|A) \cdot P(A)$$
 
 **Substituting into the first:**
 
-```math
-P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
-
-```
+$$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
 
 This is **Bayes' Theorem**. $\quad \blacksquare$
 
@@ -88,30 +70,21 @@ This is **Bayes' Theorem**. $\quad \blacksquare$
 
 **Prior:**
 
-```math
-\theta \sim \text{Beta}(\alpha, \beta)
-p(\theta) = \frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha, \beta)}
-
-```
+$$\theta \sim \text{Beta}(\alpha, \beta)
+p(\theta) = \frac{\theta^{\alpha-1}(1-\theta)^{\beta-1}}{B(\alpha, \beta)}$$
 
 **Likelihood:**
 
-```math
-X|\theta \sim \text{Bernoulli}(\theta)
-P(D|\theta) = \theta^k (1-\theta)^{n-k}
-
-```
+$$X|\theta \sim \text{Bernoulli}(\theta)
+P(D|\theta) = \theta^k (1-\theta)^{n-k}$$
 
 where $k = \sum_{i=1}^n x_i$ is the number of successes.
 
 **Posterior:**
 
-```math
-p(\theta|D) \propto \theta^k (1-\theta)^{n-k} \cdot \theta^{\alpha-1}(1-\theta)^{\beta-1}
+$$p(\theta|D) \propto \theta^k (1-\theta)^{n-k} \cdot \theta^{\alpha-1}(1-\theta)^{\beta-1}
 = \theta^{\alpha + k - 1}(1-\theta)^{\beta + n - k - 1}
-\theta|D \sim \text{Beta}(\alpha + k, \beta + n - k) \quad \blacksquare
-
-```
+\theta|D \sim \text{Beta}(\alpha + k, \beta + n - k) \quad \blacksquare$$
 
 **Interpretation:**
 - $\alpha$: "prior successes" (pseudo-counts)
@@ -132,25 +105,16 @@ p(\theta|D) \propto \theta^k (1-\theta)^{n-k} \cdot \theta^{\alpha-1}(1-\theta)^
 
 where:
 
-```math
-\sigma_n^2 = \frac{1}{\frac{1}{\sigma_0^2} + \frac{n}{\sigma^2}}
-\mu_n = \sigma_n^2 \left(\frac{\mu_0}{\sigma_0^2} + \frac{n\bar{x}}{\sigma^2}\right)
-
-```
+$$\sigma_n^2 = \frac{1}{\frac{1}{\sigma_0^2} + \frac{n}{\sigma^2}}
+\mu_n = \sigma_n^2 \left(\frac{\mu_0}{\sigma_0^2} + \frac{n\bar{x}}{\sigma^2}\right)$$
 
 **Proof:**
 
-```math
-p(\mu|D) \propto \exp\left(-\frac{(\mu-\mu_0)^2}{2\sigma_0^2}\right) \cdot \prod_{i=1}^n \exp\left(-\frac{(x_i-\mu)^2}{2\sigma^2}\right)
-
-```
+$$p(\mu|D) \propto \exp\left(-\frac{(\mu-\mu_0)^2}{2\sigma_0^2}\right) \cdot \prod_{i=1}^n \exp\left(-\frac{(x_i-\mu)^2}{2\sigma^2}\right)$$
 
 Expanding and completing the square in $\mu$:
 
-```math
-\propto \exp\left(-\frac{1}{2}\left[\left(\frac{1}{\sigma_0^2} + \frac{n}{\sigma^2}\right)\mu^2 - 2\left(\frac{\mu_0}{\sigma_0^2} + \frac{n\bar{x}}{\sigma^2}\right)\mu\right]\right)
-
-```
+$$\propto \exp\left(-\frac{1}{2}\left[\left(\frac{1}{\sigma_0^2} + \frac{n}{\sigma^2}\right)\mu^2 - 2\left(\frac{\mu_0}{\sigma_0^2} + \frac{n\bar{x}}{\sigma^2}\right)\mu\right]\right)$$
 
 This is the kernel of $\mathcal{N}(\mu_n, \sigma_n^2)$. $\quad \blacksquare$
 
@@ -160,19 +124,13 @@ This is the kernel of $\mathcal{N}(\mu_n, \sigma_n^2)$. $\quad \blacksquare$
 
 **Posterior Predictive:**
 
-```math
-p(x^*|D) = \int p(x^*|\theta) p(\theta|D) \, d\theta
-
-```
+$$p(x^*|D) = \int p(x^*|\theta) p(\theta|D) \, d\theta$$
 
 This integrates out uncertainty about parameters!
 
 **For Gaussian:**
 
-```math
-p(x^*|D) = \mathcal{N}(\mu_n, \sigma^2 + \sigma_n^2)
-
-```
+$$p(x^*|D) = \mathcal{N}(\mu_n, \sigma^2 + \sigma_n^2)$$
 
 The predictive variance includes both observation noise ($\sigma^2$) and parameter uncertainty ($\sigma_n^2$).
 
@@ -180,17 +138,11 @@ The predictive variance includes both observation noise ($\sigma^2$) and paramet
 
 ## 📐 Evidence (Marginal Likelihood)
 
-```math
-P(D|M) = \int P(D|\theta, M) P(\theta|M) \, d\theta
-
-```
+$$P(D|M) = \int P(D|\theta, M) P(\theta|M) \, d\theta$$
 
 **Bayesian Model Comparison:**
 
-```math
-\frac{P(M_1|D)}{P(M_2|D)} = \frac{P(D|M_1)}{P(D|M_2)} \cdot \frac{P(M_1)}{P(M_2)}
-
-```
+$$\frac{P(M_1|D)}{P(M_2|D)} = \frac{P(D|M_1)}{P(D|M_2)} \cdot \frac{P(M_1)}{P(M_2)}$$
 
 The ratio $\frac{P(D|M_1)}{P(D|M_2)}$ is called the **Bayes Factor**.
 
@@ -223,26 +175,17 @@ When posterior is intractable, sample from it:
 
 Approximate $p(\theta|D)$ with simpler $q(\theta)$:
 
-```math
-q^* = \arg\min_q D_{KL}(q(\theta) \| p(\theta|D))
-
-```
+$$q^* = \arg\min_q D_{KL}(q(\theta) \| p(\theta|D))$$
 
 **ELBO:**
 
-```math
-\mathcal{L}(q) = \mathbb{E}_q[\log p(D|\theta)] - D_{KL}(q(\theta) \| p(\theta))
-
-```
+$$\mathcal{L}(q) = \mathbb{E}_q[\log p(D|\theta)] - D_{KL}(q(\theta) \| p(\theta))$$
 
 ### 3. Laplace Approximation
 
 Approximate posterior as Gaussian centered at MAP:
 
-```math
-p(\theta|D) \approx \mathcal{N}(\theta_{MAP}, H^{-1})
-
-```
+$$p(\theta|D) \approx \mathcal{N}(\theta_{MAP}, H^{-1})$$
 
 where $H$ is the Hessian of the negative log-posterior at $\theta_{MAP}$.
 

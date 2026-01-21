@@ -27,10 +27,7 @@
 
 **Tensor $\mathcal{T} \in \mathbb{R}^{I_1 \times I_2 \times ... \times I_N}$:**
 
-```math
-\mathcal{T} \approx \sum_{r=1}^{R} \lambda_r \cdot a_r^{(1)} \otimes a_r^{(2)} \otimes ... \otimes a_r^{(N)}
-
-```
+$$\mathcal{T} \approx \sum_{r=1}^{R} \lambda_r \cdot a_r^{(1)} \otimes a_r^{(2)} \otimes ... \otimes a_r^{(N)}$$
 
 where:
 
@@ -44,10 +41,7 @@ where:
 
 #### 1.2 Element-wise Form
 
-```math
-\mathcal{T}_{i_1, i_2, ..., i_N} \approx \sum_{r=1}^{R} \lambda_r \cdot a_{r,i_1}^{(1)} \cdot a_{r,i_2}^{(2)} \cdot ... \cdot a_{r,i_N}^{(N)}
-
-```
+$$\mathcal{T}_{i_1, i_2, ..., i_N} \approx \sum_{r=1}^{R} \lambda_r \cdot a_{r,i_1}^{(1)} \cdot a_{r,i_2}^{(2)} \cdot ... \cdot a_{r,i_N}^{(N)}$$
 
 #### 1.3 Parameter Reduction
 
@@ -66,10 +60,7 @@ where:
 
 #### 2.1 Definition
 
-```math
-\mathcal{T} \approx \mathcal{G} \times_1 A^{(1)} \times_2 A^{(2)} \times_3 ... \times_N A^{(N)}
-
-```
+$$\mathcal{T} \approx \mathcal{G} \times_1 A^{(1)} \times_2 A^{(2)} \times_3 ... \times_N A^{(N)}$$
 
 where:
 
@@ -81,10 +72,7 @@ where:
 
 #### 2.2 N-Mode Product
 
-```math
-(T \times_n A)_{i_1...i_{n-1},j,i_{n+1}...i_N} = \sum_{i_n} T_{i_1...i_N} A_{j, i_n}
-
-```
+$$(T \times_n A)_{i_1...i_{n-1},j,i_{n+1}...i_N} = \sum_{i_n} T_{i_1...i_N} A_{j, i_n}$$
 
 #### 2.3 Parameter Count
 
@@ -100,10 +88,7 @@ where:
 
 #### 3.1 Definition
 
-```math
-\mathcal{T}_{i_1, i_2, ..., i_N} = G_1[i_1] \cdot G_2[i_2] \cdot ... \cdot G_N[i_N]
-
-```
+$$\mathcal{T}_{i_1, i_2, ..., i_N} = G_1[i_1] \cdot G_2[i_2] \cdot ... \cdot G_N[i_N]$$
 
 where:
 
@@ -119,17 +104,11 @@ Each core $G_k \in \mathbb{R}^{r_{k-1} \times I_k \times r_k}$ is a 3D tensor.
 
 #### 3.3 Parameter Count
 
-```math
-\text{Params} = \sum_{k=1}^{N} r_{k-1} \cdot I_k \cdot r_k
-
-```
+$$\text{Params} = \sum_{k=1}^{N} r_{k-1} \cdot I_k \cdot r_k$$
 
 For constant rank $r$:
 
-```math
-\text{Params} = O(N \cdot I \cdot r^2)
-
-```
+$$\text{Params} = O(N \cdot I \cdot r^2)$$
 
 vs. original $O(I^N)$ - exponential reduction!
 
@@ -143,10 +122,7 @@ vs. original $O(I^N)$ - exponential reduction!
 
 **Tucker decomposition:**
 
-```math
-W \approx G \times_1 A_{out} \times_2 A_{in} \times_3 A_H \times_4 A_W
-
-```
+$$W \approx G \times_1 A_{out} \times_2 A_{in} \times_3 A_H \times_4 A_W$$
 
 **Implementation as 4 convolutions:**
 

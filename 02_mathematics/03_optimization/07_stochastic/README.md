@@ -90,26 +90,17 @@
 
 **Full-Batch Gradient Descent**:
 
-```math
-\theta_{t+1} = \theta_t - \eta \nabla L(\theta_t) = \theta_t - \eta \frac{1}{n}\sum_{i=1}^{n} \nabla \ell_i(\theta_t)
-
-```
+$$\theta_{t+1} = \theta_t - \eta \nabla L(\theta_t) = \theta_t - \eta \frac{1}{n}\sum_{i=1}^{n} \nabla \ell_i(\theta_t)$$
 
 **Stochastic Gradient Descent**:
 
-```math
-\theta_{t+1} = \theta_t - \eta \nabla \ell_{i_t}(\theta_t)
-
-```
+$$\theta_{t+1} = \theta_t - \eta \nabla \ell_{i_t}(\theta_t)$$
 
 where $i_t$ is randomly sampled.
 
 **Mini-Batch SGD**:
 
-```math
-\theta_{t+1} = \theta_t - \eta \frac{1}{|B|}\sum_{i \in B} \nabla \ell_i(\theta_t)
-
-```
+$$\theta_{t+1} = \theta_t - \eta \frac{1}{|B|}\sum_{i \in B} \nabla \ell_i(\theta_t)$$
 
 ### 📐 Key Properties
 
@@ -164,23 +155,17 @@ Example:
 
 ### 📌 Algorithm
 
-```math
-\begin{align}
+$$\begin{align}
 v_{t+1} &= \beta v_t + \nabla L(\theta_t) \\
 \theta_{t+1} &= \theta_t - \eta v_{t+1}
-\end{align}
-
-```
+\end{align}$$
 
 Or equivalently (with damping factor):
 
-```math
-\begin{align}
+$$\begin{align}
 v_{t+1} &= \beta v_t + (1-\beta) \nabla L(\theta_t) \\
 \theta_{t+1} &= \theta_t - \eta v_{t+1}
-\end{align}
-
-```
+\end{align}$$
 
 ### 📐 Intuition
 
@@ -230,16 +215,13 @@ Often slightly better than standard momentum
 
 ### 📌 Algorithm
 
-```math
-\begin{align}
+$$\begin{align}
 m_t &= \beta_1 m_{t-1} + (1 - \beta_1) \nabla L(\theta_t) \quad &\text{(First moment estimate)} \\
 v_t &= \beta_2 v_{t-1} + (1 - \beta_2) (\nabla L(\theta_t))^2 \quad &\text{(Second moment estimate)} \\
 \hat{m}_t &= m_t / (1 - \beta_1^t) \quad &\text{(Bias correction)} \\
 \hat{v}_t &= v_t / (1 - \beta_2^t) \quad &\text{(Bias correction)} \\
 \theta_{t+1} &= \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
-\end{align}
-
-```
+\end{align}$$
 
 ### 📐 Default Hyperparameters
 
@@ -309,10 +291,7 @@ Weight decay should be constant, not adaptive.
 
 ### 📌 AdamW Algorithm
 
-```math
-\theta_{t+1} = \theta_t - \eta \left( \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} + \lambda \theta_t \right)
-
-```
+$$\theta_{t+1} = \theta_t - \eta \left( \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} + \lambda \theta_t \right)$$
 
 Decoupled weight decay: subtract $\eta \lambda \theta$ directly, bypassing Adam's adaptive scaling.
 
@@ -339,33 +318,21 @@ AdamW is what you actually want for regularization!
 
 **Convex Functions**:
 
-```math
-\mathbb{E}[L(\theta_T) - L(\theta^*)] = O\left(\frac{1}{\sqrt{T}}\right)
-
-```
+$$\mathbb{E}[L(\theta_T) - L(\theta^*)] = O\left(\frac{1}{\sqrt{T}}\right)$$
 
 **Strongly Convex Functions**:
 
-```math
-\mathbb{E}[\|\theta_T - \theta^*\|^2] = O\left(\frac{1}{T}\right)
-
-```
+$$\mathbb{E}[\|\theta_T - \theta^*\|^2] = O\left(\frac{1}{T}\right)$$
 
 **Non-Convex Functions** (finding stationary point):
 
-```math
-\min_{t \leq T} \mathbb{E}[\|\nabla L(\theta_t)\|^2] = O\left(\frac{1}{\sqrt{T}}\right)
-
-```
+$$\min_{t \leq T} \mathbb{E}[\|\nabla L(\theta_t)\|^2] = O\left(\frac{1}{\sqrt{T}}\right)$$
 
 ### 📐 Learning Rate Decay
 
 For convergence guarantees, need:
 
-```math
-\sum_{t=1}^{\infty} \eta_t = \infty \quad \text{and} \quad \sum_{t=1}^{\infty} \eta_t^2 < \infty
-
-```
+$$\sum_{t=1}^{\infty} \eta_t = \infty \quad \text{and} \quad \sum_{t=1}^{\infty} \eta_t^2 < \infty$$
 
 Examples:
 

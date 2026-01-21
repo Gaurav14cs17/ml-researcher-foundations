@@ -76,10 +76,7 @@ Arithmetic Intensity = FLOPs / Bytes loaded < 1
 
 1. **Prefill (first token):** Process all input tokens
 
-```math
-\text{FLOPs}_{prefill} = 2 \times N_{prompt} \times N_{params}
-
-```math
+$$\text{FLOPs}_{prefill} = 2 \times N_{prompt} \times N_{params}$$math
 
 2. **Decode (subsequent tokens):** Generate one token at a time
 
@@ -91,10 +88,7 @@ Arithmetic Intensity = FLOPs / Bytes loaded < 1
 
 **Total for generating \( T \) tokens:**
 
-```math
-\text{FLOPs}_{total} = 2 \times N_{params} \times (N_{prompt} + T)
-
-```
+$$\text{FLOPs}_{total} = 2 \times N_{params} \times (N_{prompt} + T)$$
 
 ---
 
@@ -103,27 +97,18 @@ Arithmetic Intensity = FLOPs / Bytes loaded < 1
 **Without KV cache:**
 Each new token requires recomputing all K, V:
 
-```math
-\text{FLOPs}_{no_cache} = O(N^2 \times d \times L)
-
-```
+$$\text{FLOPs}_{no_cache} = O(N^2 \times d \times L)$$
 
 **With KV cache:**
 Only compute K, V for new token:
 
-```math
-\text{FLOPs}_{cache} = O(N \times d \times L)
-
-```
+$$\text{FLOPs}_{cache} = O(N \times d \times L)$$
 
 **Speedup:** \( N \times \) (sequence length).
 
 **Memory cost:**
 
-```math
-M_{KV} = 2 \times L \times N \times d \times b
-
-```
+$$M_{KV} = 2 \times L \times N \times d \times b$$
 
 **Example (LLaMA-7B):**
 - L = 32 layers, N = 4096 context, d = 4096, b = 2 (FP16)
@@ -146,31 +131,19 @@ M_{KV} = 2 \times L \times N \times d \times b
 
 For draft probability \( p(x) \) and target probability \( q(x) \):
 
-```math
-P_{accept} = \min\left(1, \frac{q(x)}{p(x)}\right)
-
-```
+$$P_{accept} = \min\left(1, \frac{q(x)}{p(x)}\right)$$
 
 **Expected accepted tokens:**
 
-```math
-\mathbb{E}[\text{accepted}] = \sum_{k=1}^{K} P(\text{accept all } k)
-
-```
+$$\mathbb{E}[\text{accepted}] = \sum_{k=1}^{K} P(\text{accept all } k)$$
 
 **Speedup formula:**
 
-```math
-\text{Speedup} = \frac{\mathbb{E}[\text{accepted}] + 1}{1 + K \times \frac{t_{draft}}{t_{target}}}
-
-```
+$$\text{Speedup} = \frac{\mathbb{E}[\text{accepted}] + 1}{1 + K \times \frac{t_{draft}}{t_{target}}}$$
 
 For good draft model (\( P_{accept} \approx 0.8 \)), K=5:
 
-```math
-\text{Speedup} \approx 2-3\times
-
-```
+$$\text{Speedup} \approx 2-3\times$$
 
 ---
 
@@ -186,10 +159,7 @@ Allocate in fixed-size pages (e.g., 16 tokens).
 
 **Memory utilization:**
 
-```math
-\text{Utilization}_{paged} = \frac{\sum_i N_i}{K \times P}
-
-```
+$$\text{Utilization}_{paged} = \frac{\sum_i N_i}{K \times P}$$
 
 where \( K \) = number of requests, \( P \) = page size.
 
@@ -207,17 +177,11 @@ As requests finish, add new ones immediately.
 
 **Throughput improvement:**
 
-```math
-\text{Throughput}_{continuous} = \frac{N_{requests}}{T_{total}}
-
-```
+$$\text{Throughput}_{continuous} = \frac{N_{requests}}{T_{total}}$$
 
 vs.
 
-```math
-\text{Throughput}_{static} = \frac{B}{\max_i T_i}
-
-```
+$$\text{Throughput}_{static} = \frac{B}{\max_i T_i}$$
 
 **Improvement:** 2-4× for variable-length requests.
 
@@ -227,26 +191,17 @@ vs.
 
 **Matrix multiply \( Y = XW \):**
 
-```math
-I = \frac{2 \times m \times n \times k}{(m \times k + k \times n + m \times n) \times b}
-
-```
+$$I = \frac{2 \times m \times n \times k}{(m \times k + k \times n + m \times n) \times b}$$
 
 **For batch size 1:**
 
-```math
-I = \frac{2nk}{(k + kn + n) \times 2} \approx 1
-
-```
+$$I = \frac{2nk}{(k + kn + n) \times 2} \approx 1$$
 
 **Memory-bound!**
 
 **For batch size B:**
 
-```math
-I = \frac{2Bnk}{(Bk + kn + Bn) \times 2} \approx B
-
-```
+$$I = \frac{2Bnk}{(Bk + kn + Bn) \times 2} \approx B$$
 
 **Compute-bound for large B.**
 
@@ -258,10 +213,7 @@ I = \frac{2Bnk}{(Bk + kn + Bn) \times 2} \approx B
 
 **Time per token:**
 
-```math
-t_{token} = \max\left(\frac{\text{FLOPs}_{decode}}{\text{FLOPS}_{hardware}}, \frac{M_{weights} + M_{KV}}{\text{BW}_{memory}}\right)
-
-```
+$$t_{token} = \max\left(\frac{\text{FLOPs}_{decode}}{\text{FLOPS}_{hardware}}, \frac{M_{weights} + M_{KV}}{\text{BW}_{memory}}\right)$$
 
 For A100 (312 TFLOPS, 2TB/s BW), LLaMA-7B:
 
@@ -292,17 +244,11 @@ For A100 (312 TFLOPS, 2TB/s BW), LLaMA-7B:
 
 **GPU utilization:**
 
-```math
-\eta = \frac{\text{Compute time}}{\text{Total time}} = \frac{t_{compute}}{t_{compute} + t_{memory}}
-
-```
+$$\eta = \frac{\text{Compute time}}{\text{Total time}} = \frac{t_{compute}}{t_{compute} + t_{memory}}$$
 
 **With batching:**
 
-```math
-\eta_B = \frac{B \times t_{compute}}{B \times t_{compute} + t_{memory}}
-
-```
+$$\eta_B = \frac{B \times t_{compute}}{B \times t_{compute} + t_{memory}}$$
 
 As \( B \to \infty \): \( \eta_B \to 1 \)
 

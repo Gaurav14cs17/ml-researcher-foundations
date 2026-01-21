@@ -19,10 +19,7 @@
 
 **Core Formulation:**
 
-```math
-W' = W_0 + \Delta W = W_0 + \frac{\alpha}{r}BA
-
-```
+$$W' = W_0 + \Delta W = W_0 + \frac{\alpha}{r}BA$$
 
 Where:
 
@@ -38,10 +35,7 @@ Where:
 
 **Parameter Efficiency:**
 
-```math
-\frac{|\theta_{LoRA}|}{|\theta_{full}|} = \frac{r(d+k)}{dk} = \frac{r}{k} + \frac{r}{d}
-
-```
+$$\frac{|\theta_{LoRA}|}{|\theta_{full}|} = \frac{r(d+k)}{dk} = \frac{r}{k} + \frac{r}{d}$$
 
 For $d = k = 4096$, $r = 16$: $\frac{32768}{16.8M} = 0.2\%$
 
@@ -56,24 +50,15 @@ This ensures $\Delta W = BA = 0$ at initialization.
 
 **Forward Pass:**
 
-```math
-h = W_0 x + \frac{\alpha}{r}BAx
-
-```
+$$h = W_0 x + \frac{\alpha}{r}BAx$$
 
 **Gradient w.r.t. $A$:**
 
-```math
-\frac{\partial \mathcal{L}}{\partial A} = \frac{\alpha}{r} B^T \frac{\partial \mathcal{L}}{\partial h} x^T
-
-```
+$$\frac{\partial \mathcal{L}}{\partial A} = \frac{\alpha}{r} B^T \frac{\partial \mathcal{L}}{\partial h} x^T$$
 
 **Gradient w.r.t. $B$:**
 
-```math
-\frac{\partial \mathcal{L}}{\partial B} = \frac{\alpha}{r} \frac{\partial \mathcal{L}}{\partial h} (Ax)^T
-
-```
+$$\frac{\partial \mathcal{L}}{\partial B} = \frac{\alpha}{r} \frac{\partial \mathcal{L}}{\partial h} (Ax)^T$$
 
 **Scaling Analysis:**
 The $\alpha/r$ factor ensures gradients are independent of rank choice, enabling hyperparameter transfer.
@@ -82,29 +67,20 @@ The $\alpha/r$ factor ensures gradients are independent of rank choice, enabling
 
 **Quantization:**
 
-```math
-W_0 \to W_0^{NF4} + \text{double quantization}
-
-```
+$$W_0 \to W_0^{NF4} + \text{double quantization}$$
 
 **NF4 (NormalFloat4):**
 Quantization levels optimized for normally-distributed weights:
 
-```math
-q_i = \Phi^{-1}\left(\frac{2i + 1}{32}\right), \quad i \in \{0, ..., 15\}
-
-```
+$$q_i = \Phi^{-1}\left(\frac{2i + 1}{32}\right), \quad i \in \{0, ..., 15\}$$
 
 Where $\Phi^{-1}$ is inverse normal CDF.
 
 **Memory Savings:**
 
-```math
-\text{Base model: } P \times 0.5 \text{ bytes (NF4)}
+$$\text{Base model: } P \times 0.5 \text{ bytes (NF4)}
 \text{LoRA adapters: } 2rd \times 2 \text{ bytes (FP16)}
-\text{Total: } 0.5P + 4rd
-
-```
+\text{Total: } 0.5P + 4rd$$
 
 For 7B model: $3.5\text{GB} + 0.5\text{MB} \approx 3.5\text{GB}$ (vs 14GB FP16)
 
@@ -112,29 +88,19 @@ For 7B model: $3.5\text{GB} + 0.5\text{MB} \approx 3.5\text{GB}$ (vs 14GB FP16)
 
 **Prepend learnable "virtual tokens":**
 
-```math
-\text{Attention}(Q, [P_k; K], [P_v; V])
-
-```
+$$\text{Attention}(Q, [P_k; K], [P_v; V])$$
 
 Where $P_k, P_v \in \mathbb{R}^{l \times d}$ are learnable prefix matrices.
 
 **Parameter Count:**
 
-```math
-
-|\theta_{prefix}| = 2 \times l \times d \times L
-
-```
+$$|\theta_{prefix}| = 2 \times l \times d \times L$$
 
 Where $l$ = prefix length, $L$ = number of layers.
 
 **Reparameterization (for stability):**
 
-```math
-P = \text{MLP}(E)
-
-```
+$$P = \text{MLP}(E)$$
 
 Where $E \in \mathbb{R}^{l \times d'}$ is a smaller embedding.
 
@@ -142,10 +108,7 @@ Where $E \in \mathbb{R}^{l \times d'}$ is a smaller embedding.
 
 **Bottleneck Architecture:**
 
-```math
-h' = h + f(h W_{down}) W_{up}
-
-```
+$$h' = h + f(h W_{down}) W_{up}$$
 
 Where:
 
@@ -161,19 +124,13 @@ Where:
 
 **Parameter Count:**
 
-```math
-|\theta_{adapter}| = L \times 2 \times (2dr + r)
-
-```
+$$|\theta_{adapter}| = L \times 2 \times (2dr + r)$$
 
 ### 6. IA³ (Infused Adapter by Inhibiting and Amplifying)
 
 **Simplest Form:**
 
-```math
-h' = l \odot h
-
-```
+$$h' = l \odot h$$
 
 Where $l \in \mathbb{R}^d$ is a learned rescaling vector.
 
@@ -192,10 +149,7 @@ Where $l \in \mathbb{R}^d$ is a learned rescaling vector.
 
 Fine-tuning has low intrinsic dimension $d_{int}$:
 
-```math
-\text{Acc}(\theta_0 + P_{d_{int}} \delta) \approx \text{Acc}(\theta_T)
-
-```
+$$\text{Acc}(\theta_0 + P_{d_{int}} \delta) \approx \text{Acc}(\theta_T)$$
 
 Where $P_{d_{int}}$ projects to random $d_{int}$-dimensional subspace.
 

@@ -23,59 +23,38 @@
 
 **Binary Weights:**
 
-```math
-W \in \{-1, +1\}^{m \times n}
-
-```
+$$W \in \{-1, +1\}^{m \times n}$$
 
 **Quantization Function:**
 
-```math
-\hat{w} = \text{sign}(w) = \begin{cases} +1 & w \geq 0 \\ -1 & w < 0 \end{cases}
-
-```
+$$\hat{w} = \text{sign}(w) = \begin{cases} +1 & w \geq 0 \\ -1 & w < 0 \end{cases}$$
 
 **With Scaling:**
 
-```math
-W_{binary} = \alpha \cdot \text{sign}(W)
-\alpha = \frac{1}{mn}\|W\|_1
-
-```
+$$W_{binary} = \alpha \cdot \text{sign}(W)
+\alpha = \frac{1}{mn}\|W\|_1$$
 
 **Computation:**
 
-```math
-Y = \alpha \cdot (\text{sign}(W) \otimes X)
-
-```
+$$Y = \alpha \cdot (\text{sign}(W) \otimes X)$$
 
 XNOR + popcount operations instead of multiply-accumulate!
 
 **Theoretical Compression:**
 
-```math
-CR = \frac{32 \text{ bits}}{1 \text{ bit}} = 32\times
-
-```
+$$CR = \frac{32 \text{ bits}}{1 \text{ bit}} = 32\times$$
 
 ### 2. Information-Theoretic Limits
 
 **Shannon's Source Coding Theorem:**
 
-```math
-R \geq H(W)
-
-```
+$$R \geq H(W)$$
 
 Minimum bits per weight equals entropy.
 
 **For Gaussian Weights:**
 
-```math
-H(W) = \frac{1}{2}\log_2(2\pi e\sigma^2) \approx 4.13 \text{ bits (for } \sigma=1)
-
-```
+$$H(W) = \frac{1}{2}\log_2(2\pi e\sigma^2) \approx 4.13 \text{ bits (for } \sigma=1)$$
 
 **Implications:**
 - 4-bit is near theoretical limit for Gaussian weights
@@ -88,19 +67,13 @@ H(W) = \frac{1}{2}\log_2(2\pi e\sigma^2) \approx 4.13 \text{ bits (for } \sigma=
 
 **Chinchilla-style Law for Compressed Models:**
 
-```math
-L(N_c, D) = \frac{A}{N_c^\alpha} + \frac{B}{D^\beta} + E
-
-```
+$$L(N_c, D) = \frac{A}{N_c^\alpha} + \frac{B}{D^\beta} + E$$
 
 Where $N_c$ = effective compressed parameters.
 
 **Compression Penalty:**
 
-```math
-L_{compressed} \approx L_{original} + \gamma \cdot CR^\delta
-
-```
+$$L_{compressed} \approx L_{original} + \gamma \cdot CR^\delta$$
 
 Empirically: $\delta \approx 0.3-0.5$ for quantization.
 
@@ -108,10 +81,7 @@ Empirically: $\delta \approx 0.3-0.5$ for quantization.
 
 **Adaptive Precision:**
 
-```math
-b_t = f(x_t, \text{context})
-
-```
+$$b_t = f(x_t, \text{context})$$
 
 Different tokens get different bit-widths based on:
 
@@ -123,10 +93,7 @@ Different tokens get different bit-widths based on:
 
 **Mixed-Precision MoE:**
 
-```math
-y = \sum_i g_i(x) \cdot Q_{b_i}(E_i(x))
-
-```
+$$y = \sum_i g_i(x) \cdot Q_{b_i}(E_i(x))$$
 
 Different experts at different precisions.
 
@@ -134,10 +101,7 @@ Different experts at different precisions.
 
 **Co-design Objective:**
 
-```math
-\min_{M, H} \text{Latency}(M, H) \quad \text{s.t.} \quad \text{Accuracy}(M) \geq A
-
-```
+$$\min_{M, H} \text{Latency}(M, H) \quad \text{s.t.} \quad \text{Accuracy}(M) \geq A$$
 
 Where $H$ = hardware configuration.
 

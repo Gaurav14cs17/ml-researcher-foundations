@@ -106,10 +106,7 @@
 
 **For ANY matrix** $A \in \mathbb{R}^{m \times n}$:
 
-```math
-A = U\Sigma V^T
-
-```
+$$A = U\Sigma V^T$$
 
 where:
 
@@ -203,10 +200,7 @@ In matrix form:
 
 **Theorem**: The best rank-$k$ approximation to $A$ (in Frobenius norm) is:
 
-```math
-A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T
-
-```
+$$A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T$$
 
 **Error**: $\|A - A_k\|_F^2 = \sum_{i=k+1}^{r} \sigma_i^2$
 
@@ -323,17 +317,11 @@ class LoRALinear(nn.Module):
 
 For a **square matrix** $A \in \mathbb{R}^{n \times n}$:
 
-```math
-A\mathbf{v} = \lambda\mathbf{v}
-
-```
+$$A\mathbf{v} = \lambda\mathbf{v}$$
 
 If $A$ has $n$ linearly independent eigenvectors:
 
-```math
-A = Q\Lambda Q^{-1}
-
-```
+$$A = Q\Lambda Q^{-1}$$
 
 For **symmetric** $A$: $A = Q\Lambda Q^T$ (orthogonal $Q$)
 
@@ -474,10 +462,7 @@ For such matrices, use:
 
 For any matrix $A \in \mathbb{R}^{m \times n}$ with $m \geq n$:
 
-```math
-A = QR
-
-```
+$$A = QR$$
 
 where:
 
@@ -606,10 +591,7 @@ As k → ∞: Aₖ → upper triangular (eigenvalues on diagonal)
 
 For a **symmetric positive definite** matrix $A$:
 
-```math
-A = LL^T
-
-```
+$$A = LL^T$$
 
 where $L$ is lower triangular with positive diagonal entries.
 
@@ -718,10 +700,7 @@ log_det = 2 * np.sum(np.log(np.diag(L)))
 
 For a square matrix $A$ (with partial pivoting):
 
-```math
-PA = LU
-
-```
+$$PA = LU$$
 
 where:
 

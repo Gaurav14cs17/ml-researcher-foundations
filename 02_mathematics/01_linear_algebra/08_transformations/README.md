@@ -54,10 +54,7 @@
 
 A function $T: V \to W$ between vector spaces is a **linear transformation** (or linear map) if:
 
-```math
-T(\alpha\mathbf{u} + \beta\mathbf{v}) = \alpha T(\mathbf{u}) + \beta T(\mathbf{v})
-
-```
+$$T(\alpha\mathbf{u} + \beta\mathbf{v}) = \alpha T(\mathbf{u}) + \beta T(\mathbf{v})$$
 
 for all vectors $\mathbf{u}, \mathbf{v} \in V$ and scalars $\alpha, \beta$.
 
@@ -106,10 +103,7 @@ Therefore T(0) = 0 for any linear map.  ∎
 
 Every linear transformation $T: \mathbb{R}^n \to \mathbb{R}^m$ can be uniquely represented by a matrix $A \in \mathbb{R}^{m \times n}$:
 
-```math
-T(\mathbf{x}) = A\mathbf{x}
-
-```
+$$T(\mathbf{x}) = A\mathbf{x}$$
 
 ### 🔍 Proof (Constructive)
 
@@ -218,10 +212,7 @@ The same linear transformation has different matrix representations in different
 
 If $A$ represents $T$ in the standard basis and $B$ represents $T$ in basis $\{\mathbf{v}_1, \ldots, \mathbf{v}_n\}$, then:
 
-```math
-B = P^{-1}AP
-
-```
+$$B = P^{-1}AP$$
 
 where $P = [\mathbf{v}_1 | \cdots | \mathbf{v}_n]$ (change of basis matrix).
 
@@ -277,17 +268,11 @@ For linear transformation $T: V \to W$:
 
 **Kernel (Null Space)**:
 
-```math
-\ker(T) = \{\mathbf{v} \in V : T(\mathbf{v}) = \mathbf{0}\}
-
-```
+$$\ker(T) = \{\mathbf{v} \in V : T(\mathbf{v}) = \mathbf{0}\}$$
 
 **Image (Range)**:
 
-```math
-\text{Im}(T) = \{T(\mathbf{v}) : \mathbf{v} \in V\}
-
-```
+$$\text{Im}(T) = \{T(\mathbf{v}) : \mathbf{v} \in V\}$$
 
 ### 🔍 Proof: Kernel is a Subspace
 
@@ -336,17 +321,11 @@ Therefore Im(T) is a subspace.  ∎
 
 For linear transformation $T: V \to W$ where $V$ is finite-dimensional:
 
-```math
-\dim(\ker(T)) + \dim(\text{Im}(T)) = \dim(V)
-
-```
+$$\dim(\ker(T)) + \dim(\text{Im}(T)) = \dim(V)$$
 
 Or equivalently, for matrix $A \in \mathbb{R}^{m \times n}$:
 
-```math
-\text{nullity}(A) + \text{rank}(A) = n
-
-```
+$$\text{nullity}(A) + \text{rank}(A) = n$$
 
 ### 🔍 Proof
 

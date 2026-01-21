@@ -68,26 +68,17 @@ A Hilbert space \(\mathcal{H}\) of functions \(f: \mathcal{X} \to \mathbb{R}\) i
 
 2. **Reproducing property:**
 
-```math
-\forall f \in \mathcal{H}, \forall x \in \mathcal{X}: f(x) = \langle f, k(\cdot, x) \rangle_\mathcal{H}
-
-```
+$$\forall f \in \mathcal{H}, \forall x \in \mathcal{X}: f(x) = \langle f, k(\cdot, x) \rangle_\mathcal{H}$$
 
 ### Consequence of Reproducing Property
 
 The kernel computes inner products:
 
-```math
-k(x, x') = \langle k(\cdot, x), k(\cdot, x') \rangle_\mathcal{H}
-
-```
+$$k(x, x') = \langle k(\cdot, x), k(\cdot, x') \rangle_\mathcal{H}$$
 
 **Proof:**
 
-```math
-k(x, x') = \langle k(\cdot, x'), k(\cdot, x) \rangle_\mathcal{H} \quad \text{(reproducing property with } f = k(\cdot, x') \text{)} \quad \blacksquare
-
-```
+$$k(x, x') = \langle k(\cdot, x'), k(\cdot, x) \rangle_\mathcal{H} \quad \text{(reproducing property with } f = k(\cdot, x') \text{)} \quad \blacksquare$$
 
 ---
 
@@ -103,17 +94,11 @@ k(x, x') = \langle k(\cdot, x'), k(\cdot, x) \rangle_\mathcal{H} \quad \text{(re
 
 2. **Define pre-Hilbert space:**
 
-```math
-\mathcal{H}_0 = \left\{ f = \sum_{i=1}^n \alpha_i k(\cdot, x_i) : n \in \mathbb{N}, \alpha_i \in \mathbb{R}, x_i \in \mathcal{X} \right\}
-
-```
+$$\mathcal{H}_0 = \left\{ f = \sum_{i=1}^n \alpha_i k(\cdot, x_i) : n \in \mathbb{N}, \alpha_i \in \mathbb{R}, x_i \in \mathcal{X} \right\}$$
 
 3. **Define inner product:**
 
-```math
-\left\langle \sum_i \alpha_i k(\cdot, x_i), \sum_j \beta_j k(\cdot, y_j) \right\rangle = \sum_{i,j} \alpha_i \beta_j k(x_i, y_j)
-
-```
+$$\left\langle \sum_i \alpha_i k(\cdot, x_i), \sum_j \beta_j k(\cdot, y_j) \right\rangle = \sum_{i,j} \alpha_i \beta_j k(x_i, y_j)$$
 
 4. **Verify well-defined:** Uses positive semi-definiteness of \(k\)
 
@@ -121,10 +106,7 @@ k(x, x') = \langle k(\cdot, x'), k(\cdot, x) \rangle_\mathcal{H} \quad \text{(re
 
 6. **Verify reproducing property:**
 
-```math
-\langle f, k(\cdot, x) \rangle = \left\langle \sum_i \alpha_i k(\cdot, x_i), k(\cdot, x) \right\rangle = \sum_i \alpha_i k(x_i, x) = f(x) \quad \blacksquare
-
-```
+$$\langle f, k(\cdot, x) \rangle = \left\langle \sum_i \alpha_i k(\cdot, x_i), k(\cdot, x) \right\rangle = \sum_i \alpha_i k(x_i, x) = f(x) \quad \blacksquare$$
 
 ---
 
@@ -136,19 +118,13 @@ k(x, x') = \langle k(\cdot, x'), k(\cdot, x) \rangle_\mathcal{H} \quad \text{(re
 
 Consider the regularized empirical risk minimization:
 
-```math
-\min_{f \in \mathcal{H}_k} \left[ \sum_{i=1}^n L(y_i, f(x_i)) + \lambda \|f\|_{\mathcal{H}_k}^2 \right]
-
-```
+$$\min_{f \in \mathcal{H}_k} \left[ \sum_{i=1}^n L(y_i, f(x_i)) + \lambda \|f\|_{\mathcal{H}_k}^2 \right]$$
 
 where \(L\) is any loss function and \(\lambda > 0\).
 
 **Then the minimizer has the form:**
 
-```math
-f^*(x) = \sum_{i=1}^n \alpha_i k(x, x_i)
-
-```
+$$f^*(x) = \sum_{i=1}^n \alpha_i k(x, x_i)$$
 
 for some \(\alpha_1, \ldots, \alpha_n \in \mathbb{R}\).
 
@@ -168,10 +144,7 @@ For any \(f \in \mathcal{H}_k\), write \(f = f_\mathcal{S} + f_\perp\) where:
 
 For training point \(x_i\), using reproducing property:
 
-```math
-f(x_i) = \langle f, k(\cdot, x_i) \rangle = \langle f_\mathcal{S} + f_\perp, k(\cdot, x_i) \rangle = \langle f_\mathcal{S}, k(\cdot, x_i) \rangle = f_\mathcal{S}(x_i)
-
-```
+$$f(x_i) = \langle f, k(\cdot, x_i) \rangle = \langle f_\mathcal{S} + f_\perp, k(\cdot, x_i) \rangle = \langle f_\mathcal{S}, k(\cdot, x_i) \rangle = f_\mathcal{S}(x_i)$$
 
 since \(\langle f_\perp, k(\cdot, x_i) \rangle = 0\) by orthogonality.
 
@@ -179,10 +152,7 @@ since \(\langle f_\perp, k(\cdot, x_i) \rangle = 0\) by orthogonality.
 
 By Pythagorean theorem:
 
-```math
-\|f\|^2 = \|f_\mathcal{S}\|^2 + \|f_\perp\|^2 \geq \|f_\mathcal{S}\|^2
-
-```
+$$\|f\|^2 = \|f_\mathcal{S}\|^2 + \|f_\perp\|^2 \geq \|f_\mathcal{S}\|^2$$
 
 **Step 4:** Conclude:
 
@@ -190,10 +160,7 @@ The loss term depends only on \(f_\mathcal{S}\), and the regularizer is minimize
 
 Therefore, optimal \(f^* = f_\mathcal{S}^* \in \mathcal{S}\), which has form:
 
-```math
-f^*(x) = \sum_{i=1}^n \alpha_i k(x, x_i) \quad \blacksquare
-
-```
+$$f^*(x) = \sum_{i=1}^n \alpha_i k(x, x_i) \quad \blacksquare$$
 
 ### Implications
 
@@ -211,10 +178,7 @@ The Representer Theorem reduces infinite-dimensional optimization to finite-dime
 
 For \(f = \sum_i \alpha_i k(\cdot, x_i)\):
 
-```math
-\|f\|_{\mathcal{H}_k}^2 = \sum_{i,j} \alpha_i \alpha_j k(x_i, x_j) = \alpha^\top K \alpha
-
-```
+$$\|f\|_{\mathcal{H}_k}^2 = \sum_{i,j} \alpha_i \alpha_j k(x_i, x_j) = \alpha^\top K \alpha$$
 
 where \(K_{ij} = k(x_i, x_j)\) is the Gram matrix.
 
@@ -228,10 +192,7 @@ The RKHS norm controls smoothness of the function:
 
 **For RBF kernel** \(k(x, x') = \exp(-\gamma\|x-x'\|^2)\):
 
-```math
-\|f\|_{\mathcal{H}}^2 = \int \int f(x) k^{-1}(x, x') f(x') dx dx'
-
-```
+$$\|f\|_{\mathcal{H}}^2 = \int \int f(x) k^{-1}(x, x') f(x') dx dx'$$
 
 where \(k^{-1}\) penalizes high-frequency components.
 
@@ -243,10 +204,7 @@ where \(k^{-1}\) penalizes high-frequency components.
 
 Given data \(\{(x_i, y_i)\}_{i=1}^n\), solve:
 
-```math
-\min_{f \in \mathcal{H}_k} \frac{1}{n}\sum_{i=1}^n (f(x_i) - y_i)^2 + \lambda \|f\|_{\mathcal{H}_k}^2
-
-```
+$$\min_{f \in \mathcal{H}_k} \frac{1}{n}\sum_{i=1}^n (f(x_i) - y_i)^2 + \lambda \|f\|_{\mathcal{H}_k}^2$$
 
 ### Solution via Representer Theorem
 
@@ -256,33 +214,21 @@ Let \(K\) be the Gram matrix and \(\mathbf{f} = K\alpha\).
 
 Objective becomes:
 
-```math
-\frac{1}{n}\|K\alpha - y\|^2 + \lambda \alpha^\top K \alpha
-
-```
+$$\frac{1}{n}\|K\alpha - y\|^2 + \lambda \alpha^\top K \alpha$$
 
 Taking derivative and setting to zero:
 
-```math
-\frac{2}{n} K(K\alpha - y) + 2\lambda K\alpha = 0
+$$\frac{2}{n} K(K\alpha - y) + 2\lambda K\alpha = 0
 K\alpha + n\lambda\alpha = y
-(K + n\lambda I)\alpha = y
-
-```
+(K + n\lambda I)\alpha = y$$
 
 **Solution:**
 
-```math
-\boxed{\alpha^* = (K + n\lambda I)^{-1} y}
-
-```
+$$\boxed{\alpha^* = (K + n\lambda I)^{-1} y}$$
 
 **Prediction:**
 
-```math
-f^*(x) = k_x^\top (K + n\lambda I)^{-1} y
-
-```
+$$f^*(x) = k_x^\top (K + n\lambda I)^{-1} y$$
 
 where \(k_x = [k(x, x_1), \ldots, k(x, x_n)]^\top\).
 

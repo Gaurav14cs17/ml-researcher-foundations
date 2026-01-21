@@ -83,10 +83,7 @@
 
 For $f: \mathbb{R}^n \to \mathbb{R}$:
 
-```math
-\nabla f(\mathbf{x}) = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix}
-
-```
+$$\nabla f(\mathbf{x}) = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix}$$
 
 ### 📐 Key Properties
 
@@ -168,19 +165,13 @@ Proof:
 
 For $\mathbf{f}: \mathbb{R}^n \to \mathbb{R}^m$:
 
-```math
-J = \begin{bmatrix} \nabla f_1^T \\ \nabla f_2^T \\ \vdots \\ \nabla f_m^T \end{bmatrix} = \begin{bmatrix} \frac{\partial f_1}{\partial x_1} & \cdots & \frac{\partial f_1}{\partial x_n} \\ \vdots & \ddots & \vdots \\ \frac{\partial f_m}{\partial x_1} & \cdots & \frac{\partial f_m}{\partial x_n} \end{bmatrix}
-
-```
+$$J = \begin{bmatrix} \nabla f_1^T \\ \nabla f_2^T \\ \vdots \\ \nabla f_m^T \end{bmatrix} = \begin{bmatrix} \frac{\partial f_1}{\partial x_1} & \cdots & \frac{\partial f_1}{\partial x_n} \\ \vdots & \ddots & \vdots \\ \frac{\partial f_m}{\partial x_1} & \cdots & \frac{\partial f_m}{\partial x_n} \end{bmatrix}$$
 
 **Key**: Row $i$ = gradient of $f_i$, Column $j$ = sensitivity to $x_j$
 
 ### 📐 Linear Approximation
 
-```math
-\mathbf{f}(\mathbf{x} + \delta) \approx \mathbf{f}(\mathbf{x}) + J(\mathbf{x}) \cdot \delta
-
-```
+$$\mathbf{f}(\mathbf{x} + \delta) \approx \mathbf{f}(\mathbf{x}) + J(\mathbf{x}) \cdot \delta$$
 
 The Jacobian is the **best linear approximation** to $\mathbf{f}$ near $\mathbf{x}$.
 
@@ -188,10 +179,7 @@ The Jacobian is the **best linear approximation** to $\mathbf{f}$ near $\mathbf{
 
 For $\mathbf{h} = \mathbf{f} \circ \mathbf{g}$:
 
-```math
-J_{\mathbf{h}} = J_{\mathbf{f}} \cdot J_{\mathbf{g}}
-
-```
+$$J_{\mathbf{h}} = J_{\mathbf{f}} \cdot J_{\mathbf{g}}$$
 
 This is why backpropagation multiplies Jacobians!
 
@@ -232,10 +220,7 @@ For sigmoid: D = diag(σ(z)(1-σ(z)))
 
 For square Jacobian ($m = n$):
 
-```math
-\det(J) = \text{local volume scaling factor}
-
-```
+$$\det(J) = \text{local volume scaling factor}$$
 
 **Applications**:
 
@@ -251,19 +236,13 @@ For square Jacobian ($m = n$):
 
 For $f: \mathbb{R}^n \to \mathbb{R}$:
 
-```math
-H = \nabla^2 f = \begin{bmatrix} \frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1 \partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_1 \partial x_n} \\ \frac{\partial^2 f}{\partial x_2 \partial x_1} & \frac{\partial^2 f}{\partial x_2^2} & \cdots & \frac{\partial^2 f}{\partial x_2 \partial x_n} \\ \vdots & \vdots & \ddots & \vdots \\ \frac{\partial^2 f}{\partial x_n \partial x_1} & \frac{\partial^2 f}{\partial x_n \partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_n^2} \end{bmatrix}
-
-```
+$$H = \nabla^2 f = \begin{bmatrix} \frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1 \partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_1 \partial x_n} \\ \frac{\partial^2 f}{\partial x_2 \partial x_1} & \frac{\partial^2 f}{\partial x_2^2} & \cdots & \frac{\partial^2 f}{\partial x_2 \partial x_n} \\ \vdots & \vdots & \ddots & \vdots \\ \frac{\partial^2 f}{\partial x_n \partial x_1} & \frac{\partial^2 f}{\partial x_n \partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_n^2} \end{bmatrix}$$
 
 **Key**: $H$ is symmetric for $C^2$ functions (Schwarz's theorem)
 
 ### 📐 Taylor Expansion (Quadratic Approximation)
 
-```math
-f(\mathbf{x} + \delta) \approx f(\mathbf{x}) + \nabla f(\mathbf{x})^T \delta + \frac{1}{2} \delta^T H(\mathbf{x}) \delta
-
-```
+$$f(\mathbf{x} + \delta) \approx f(\mathbf{x}) + \nabla f(\mathbf{x})^T \delta + \frac{1}{2} \delta^T H(\mathbf{x}) \delta$$
 
 ### 📐 Critical Point Classification
 

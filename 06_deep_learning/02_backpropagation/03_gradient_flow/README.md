@@ -27,35 +27,23 @@
 
 For an $L$-layer network with loss $\mathcal{L}$:
 
-```math
-\frac{\partial \mathcal{L}}{\partial W_1} = \frac{\partial \mathcal{L}}{\partial h_L} \cdot \left(\prod_{l=2}^{L} \frac{\partial h_l}{\partial h_{l-1}}\right) \cdot \frac{\partial h_1}{\partial W_1}
-
-```
+$$\frac{\partial \mathcal{L}}{\partial W_1} = \frac{\partial \mathcal{L}}{\partial h_L} \cdot \left(\prod_{l=2}^{L} \frac{\partial h_l}{\partial h_{l-1}}\right) \cdot \frac{\partial h_1}{\partial W_1}$$
 
 **Jacobian at each layer:**
 
-```math
-\frac{\partial h_l}{\partial h_{l-1}} = W_l^\top \cdot \text{diag}(\sigma'(z_{l-1}))
-
-```
+$$\frac{\partial h_l}{\partial h_{l-1}} = W_l^\top \cdot \text{diag}(\sigma'(z_{l-1}))$$
 
 Where $z_l = W_l h_{l-1} + b_l$ and $h_l = \sigma(z_l)$.
 
 ### Product of Jacobians
 
-```math
-\prod_{l=2}^{L} \frac{\partial h_l}{\partial h_{l-1}} = \prod_{l=2}^{L} W_l^\top \cdot \text{diag}(\sigma'(z_{l-1}))
-
-```
+$$\prod_{l=2}^{L} \frac{\partial h_l}{\partial h_{l-1}} = \prod_{l=2}^{L} W_l^\top \cdot \text{diag}(\sigma'(z_{l-1}))$$
 
 **Spectral Analysis:**
 
 Let $\sigma_{\max}(M)$ denote the largest singular value of matrix $M$.
 
-```math
-\left\|\prod_{l=2}^{L} J_l\right\| \leq \prod_{l=2}^{L} \sigma_{\max}(J_l)
-
-```
+$$\left\|\prod_{l=2}^{L} J_l\right\| \leq \prod_{l=2}^{L} \sigma_{\max}(J_l)$$
 
 ---
 
@@ -65,28 +53,19 @@ Let $\sigma_{\max}(M)$ denote the largest singular value of matrix $M$.
 
 **Theorem:** If $\sigma_{\max}(J_l) < 1$ for most layers:
 
-```math
-\left\|\frac{\partial \mathcal{L}}{\partial W_1}\right\| \leq \left\|\frac{\partial \mathcal{L}}{\partial h_L}\right\| \cdot \prod_{l=2}^{L} \sigma_{\max}(J_l) \rightarrow 0 \text{ as } L \rightarrow \infty
-
-```
+$$\left\|\frac{\partial \mathcal{L}}{\partial W_1}\right\| \leq \left\|\frac{\partial \mathcal{L}}{\partial h_L}\right\| \cdot \prod_{l=2}^{L} \sigma_{\max}(J_l) \rightarrow 0 \text{ as } L \rightarrow \infty$$
 
 ### Activation Function Analysis
 
 **Sigmoid:** $\sigma(x) = \frac{1}{1+e^{-x}}$
 
-```math
-\sigma'(x) = \sigma(x)(1-\sigma(x)) \leq \frac{1}{4}
-
-```
+$$\sigma'(x) = \sigma(x)(1-\sigma(x)) \leq \frac{1}{4}$$
 
 **Proof:** $\max_{x} \sigma(x)(1-\sigma(x)) = \frac{1}{4}$ at $x=0$.
 
 For $L$ layers:
 
-```math
-\left\|\frac{\partial h_L}{\partial h_1}\right\| \leq \left(\frac{1}{4}\right)^{L-1} \|W_2\| \cdots \|W_L\|
-
-```
+$$\left\|\frac{\partial h_L}{\partial h_1}\right\| \leq \left(\frac{1}{4}\right)^{L-1} \|W_2\| \cdots \|W_L\|$$
 
 Even if $\|W_l\| = 2$, gradients vanish as $\left(\frac{1}{2}\right)^{L-1}$!
 
@@ -110,10 +89,7 @@ Still saturates at large $|x|$, causing vanishing gradients.
 
 **Theorem:** If $\sigma_{\max}(J_l) > 1$ for most layers:
 
-```math
-\left\|\frac{\partial \mathcal{L}}{\partial W_1}\right\| \geq c \cdot \prod_{l=2}^{L} \sigma_{\min}(J_l) \rightarrow \infty \text{ as } L \rightarrow \infty
-
-```
+$$\left\|\frac{\partial \mathcal{L}}{\partial W_1}\right\| \geq c \cdot \prod_{l=2}^{L} \sigma_{\min}(J_l) \rightarrow \infty \text{ as } L \rightarrow \infty$$
 
 ### Symptoms
 
@@ -129,10 +105,7 @@ Consider $h_l = W h_{l-1}$ with $W = \begin{pmatrix} 1.5 & 0 \\ 0 & 1.5 \end{pma
 
 After $L$ layers:
 
-```math
-\frac{\partial h_L}{\partial h_1} = W^{L-1} = \begin{pmatrix} 1.5^{L-1} & 0 \\ 0 & 1.5^{L-1} \end{pmatrix}
-
-```
+$$\frac{\partial h_L}{\partial h_1} = W^{L-1} = \begin{pmatrix} 1.5^{L-1} & 0 \\ 0 & 1.5^{L-1} \end{pmatrix}$$
 
 For $L = 50$: $1.5^{49} \approx 6.4 \times 10^8$ (explodes!)
 
@@ -144,31 +117,19 @@ For $L = 50$: $1.5^{49} \approx 6.4 \times 10^8$ (explodes!)
 
 **Architecture:**
 
-```math
-h_{l+1} = h_l + F(h_l; W_l)
-
-```
+$$h_{l+1} = h_l + F(h_l; W_l)$$
 
 **Gradient:**
 
-```math
-\frac{\partial h_{l+1}}{\partial h_l} = I + \frac{\partial F}{\partial h_l}
-
-```
+$$\frac{\partial h_{l+1}}{\partial h_l} = I + \frac{\partial F}{\partial h_l}$$
 
 **Why it works:**
 
-```math
-\frac{\partial h_L}{\partial h_1} = \prod_{l=1}^{L-1} \left(I + \frac{\partial F_l}{\partial h_l}\right)
-
-```
+$$\frac{\partial h_L}{\partial h_1} = \prod_{l=1}^{L-1} \left(I + \frac{\partial F_l}{\partial h_l}\right)$$
 
 Expanding:
 
-```math
-= I + \sum_l \frac{\partial F_l}{\partial h_l} + \sum_{l_1 < l_2} \frac{\partial F_{l_1}}{\partial h_{l_1}} \frac{\partial F_{l_2}}{\partial h_{l_2}} + \cdots
-
-```
+$$= I + \sum_l \frac{\partial F_l}{\partial h_l} + \sum_{l_1 < l_2} \frac{\partial F_{l_1}}{\partial h_{l_1}} \frac{\partial F_{l_2}}{\partial h_{l_2}} + \cdots$$
 
 The identity $I$ ensures gradient of at least 1 flows through!
 
@@ -176,13 +137,10 @@ The identity $I$ ensures gradient of at least 1 flows through!
 
 **Algorithm:**
 
-```math
-\hat{g} = \begin{cases}
+$$\hat{g} = \begin{cases}
 g & \text{if } \|g\| \leq \tau \\
 \frac{\tau g}{\|g\|} & \text{if } \|g\| > \tau
-\end{cases}
-
-```
+\end{cases}$$
 
 **Why:** Prevents gradient explosion while maintaining direction.
 
@@ -195,10 +153,7 @@ torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 
 **Forward:**
 
-```math
-\hat{h} = \frac{h - \mu}{\sigma} \cdot \gamma + \beta
-
-```
+$$\hat{h} = \frac{h - \mu}{\sigma} \cdot \gamma + \beta$$
 
 **Effect on gradients:**
 
@@ -208,17 +163,11 @@ Normalizing activations prevents them from growing unboundedly, which stabilizes
 
 **Xavier (sigmoid/tanh):**
 
-```math
-W \sim \mathcal{N}\left(0, \frac{2}{n_{in} + n_{out}}\right)
-
-```
+$$W \sim \mathcal{N}\left(0, \frac{2}{n_{in} + n_{out}}\right)$$
 
 **Kaiming (ReLU):**
 
-```math
-W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)
-
-```
+$$W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)$$
 
 **Goal:** Keep $\text{Var}(h_l) \approx \text{Var}(h_{l-1})$ across layers.
 
@@ -238,10 +187,7 @@ W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)
 
 ### Condition Number
 
-```math
-\kappa(J) = \frac{\sigma_{\max}(J)}{\sigma_{\min}(J)}
-
-```
+$$\kappa(J) = \frac{\sigma_{\max}(J)}{\sigma_{\min}(J)}$$
 
 **Well-conditioned:** $\kappa \approx 1$ (all directions treated equally)
 
@@ -313,24 +259,15 @@ def plot_gradient_histograms(model):
 
 ### Cell State "Highway"
 
-```math
-C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t
-
-```
+$$C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t$$
 
 **Gradient through cell state:**
 
-```math
-\frac{\partial C_t}{\partial C_{t-1}} = f_t
-
-```
+$$\frac{\partial C_t}{\partial C_{t-1}} = f_t$$
 
 If $f_t \approx 1$:
 
-```math
-\frac{\partial C_T}{\partial C_1} = \prod_{t=2}^{T} f_t \approx 1
-
-```
+$$\frac{\partial C_T}{\partial C_1} = \prod_{t=2}^{T} f_t \approx 1$$
 
 **Key insight:** Additive updates (not multiplicative) preserve gradients!
 

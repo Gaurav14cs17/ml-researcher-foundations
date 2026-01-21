@@ -173,47 +173,29 @@ This paper introduced the standard pruning pipeline used today.
 
 The magnitude-based importance score:
 
-```math
-I(w_{ij}) = |w_{ij}|
-
-```
+$$I(w_{ij}) = |w_{ij}|$$
 
 Pruning mask:
 
-```math
-m_{ij} = \mathbb{1}[|w_{ij}| > \tau]
-
-```
+$$m_{ij} = \mathbb{1}[|w_{ij}| > \tau]$$
 
 where \( \tau \) is the threshold for target sparsity \( s \):
 
-```math
-\tau = \text{Percentile}(|W|, 100 \times s)
-
-```
+$$\tau = \text{Percentile}(|W|, 100 \times s)$$
 
 **Theoretical Justification:**
 
 For a linear layer \( y = Wx + b \), the contribution of weight \( w_{ij} \) to output:
 
-```math
-\Delta y_i = w_{ij} \cdot x_j
-
-```
+$$\Delta y_i = w_{ij} \cdot x_j$$
 
 Expected contribution magnitude:
 
-```math
-\mathbb{E}[|\Delta y_i|] = |w_{ij}| \cdot \mathbb{E}[|x_j|]
-
-```
+$$\mathbb{E}[|\Delta y_i|] = |w_{ij}| \cdot \mathbb{E}[|x_j|]$$
 
 If inputs are normalized, \( \mathbb{E}[|x_j|] \approx \text{const} \), so:
 
-```math
-\text{Importance} \propto |w_{ij}|
-
-```
+$$\text{Importance} \propto |w_{ij}|$$
 
 ---
 
@@ -221,40 +203,25 @@ If inputs are normalized, \( \mathbb{E}[|x_j|] \approx \text{const} \), so:
 
 First-order Taylor approximation of loss change when pruning weight \( w \):
 
-```math
-\Delta \mathcal{L}(w) = \mathcal{L}(w=0) - \mathcal{L}(w) \approx -\frac{\partial \mathcal{L}}{\partial w} \cdot w
-
-```
+$$\Delta \mathcal{L}(w) = \mathcal{L}(w=0) - \mathcal{L}(w) \approx -\frac{\partial \mathcal{L}}{\partial w} \cdot w$$
 
 **Proof:**
 
 Taylor expansion around current weight value:
 
-```math
-\mathcal{L}(w + \Delta w) \approx \mathcal{L}(w) + \frac{\partial \mathcal{L}}{\partial w} \Delta w + \frac{1}{2} \frac{\partial^2 \mathcal{L}}{\partial w^2} (\Delta w)^2
-
-```
+$$\mathcal{L}(w + \Delta w) \approx \mathcal{L}(w) + \frac{\partial \mathcal{L}}{\partial w} \Delta w + \frac{1}{2} \frac{\partial^2 \mathcal{L}}{\partial w^2} (\Delta w)^2$$
 
 Setting \( w \to 0 \) means \( \Delta w = -w \):
 
-```math
-\mathcal{L}(0) \approx \mathcal{L}(w) - \frac{\partial \mathcal{L}}{\partial w} \cdot w
-
-```
+$$\mathcal{L}(0) \approx \mathcal{L}(w) - \frac{\partial \mathcal{L}}{\partial w} \cdot w$$
 
 Therefore:
 
-```math
-\Delta \mathcal{L} = \mathcal{L}(0) - \mathcal{L}(w) \approx -\frac{\partial \mathcal{L}}{\partial w} \cdot w
-
-```
+$$\Delta \mathcal{L} = \mathcal{L}(0) - \mathcal{L}(w) \approx -\frac{\partial \mathcal{L}}{\partial w} \cdot w$$
 
 Importance score:
 
-```math
-I(w) = \left| w \cdot \frac{\partial \mathcal{L}}{\partial w} \right|
-
-```
+$$I(w) = \left| w \cdot \frac{\partial \mathcal{L}}{\partial w} \right|$$
 
 ---
 
@@ -262,19 +229,13 @@ I(w) = \left| w \cdot \frac{\partial \mathcal{L}}{\partial w} \right|
 
 Using second-order Taylor expansion:
 
-```math
-\Delta \mathcal{L}(w) \approx -g_w \cdot w + \frac{1}{2} H_{ww} \cdot w^2
-
-```
+$$\Delta \mathcal{L}(w) \approx -g_w \cdot w + \frac{1}{2} H_{ww} \cdot w^2$$
 
 where \( g_w = \frac{\partial \mathcal{L}}{\partial w} \) and \( H_{ww} = \frac{\partial^2 \mathcal{L}}{\partial w^2} \).
 
 At a local minimum, \( g_w \approx 0 \), so:
 
-```math
-\Delta \mathcal{L}(w) \approx \frac{1}{2} H_{ww} \cdot w^2
-
-```
+$$\Delta \mathcal{L}(w) \approx \frac{1}{2} H_{ww} \cdot w^2$$
 
 **Optimal Brain Damage** (LeCun et al., 1990): Prune weights with smallest \( H_{ww} \cdot w^2 \).
 
@@ -286,24 +247,15 @@ For a convolutional filter \( F_i \in \mathbb{R}^{C_{in} \times k \times k} \):
 
 **L1-norm criterion:**
 
-```math
-I(F_i) = \sum_{c,h,w} |F_{i,c,h,w}|
-
-```
+$$I(F_i) = \sum_{c,h,w} |F_{i,c,h,w}|$$
 
 **L2-norm criterion:**
 
-```math
-I(F_i) = \sqrt{\sum_{c,h,w} F_{i,c,h,w}^2}
-
-```
+$$I(F_i) = \sqrt{\sum_{c,h,w} F_{i,c,h,w}^2}$$
 
 **Geometric median criterion** (more robust):
 
-```math
-I(F_i) = \sum_{j \neq i} \|F_i - F_j\|_2
-
-```
+$$I(F_i) = \sum_{j \neq i} \|F_i - F_j\|_2$$
 
 Filters similar to others are more redundant → prune them.
 
@@ -313,10 +265,7 @@ Filters similar to others are more redundant → prune them.
 
 Empirical observation follows a characteristic curve:
 
-```math
-\text{Accuracy}(s) \approx \text{Acc}_0 - \alpha \cdot \exp\left(\frac{s - s_0}{\beta}\right)
-
-```
+$$\text{Accuracy}(s) \approx \text{Acc}_0 - \alpha \cdot \exp\left(\frac{s - s_0}{\beta}\right)$$
 
 where:
 
@@ -334,10 +283,7 @@ where:
 
 **Cubic sparsity schedule** (commonly used):
 
-```math
-s_t = s_f + (s_0 - s_f)\left(1 - \frac{t - t_0}{n\Delta t}\right)^3
-
-```
+$$s_t = s_f + (s_0 - s_f)\left(1 - \frac{t - t_0}{n\Delta t}\right)^3$$
 
 where:
 
@@ -361,33 +307,21 @@ where:
 
 For unstructured sparsity \( s \):
 
-```math
-\text{Compression Ratio} = \frac{1}{1-s}
-
-```
+$$\text{Compression Ratio} = \frac{1}{1-s}$$
 
 At 90% sparsity: CR = 10×
 
 **With sparse storage (CSR format):**
 
-```math
-\text{Memory} = \text{nnz} \times (\text{value_size} + \text{index_size})
-
-```
+$$\text{Memory} = \text{nnz} \times (\text{value_size} + \text{index_size})$$
 
 Actual compression:
 
-```math
-\text{CR}_{actual} = \frac{n \times \text{value_size}}{\text{nnz} \times (\text{value_size} + \text{index_size})}
-
-```
+$$\text{CR}_{actual} = \frac{n \times \text{value_size}}{\text{nnz} \times (\text{value_size} + \text{index_size})}$$
 
 For 90% sparsity with FP32 values and INT32 indices:
 
-```math
-\text{CR}_{actual} = \frac{n \times 4}{0.1n \times (4 + 4)} = \frac{4}{0.8} = 5\times
-
-```
+$$\text{CR}_{actual} = \frac{n \times 4}{0.1n \times (4 + 4)} = \frac{4}{0.8} = 5\times$$
 
 ---
 
@@ -399,10 +333,7 @@ During fine-tuning with pruning mask \( M \):
 
 **Backward:**
 
-```math
-\frac{\partial \mathcal{L}}{\partial W} = M \odot \left(\frac{\partial \mathcal{L}}{\partial Y} X^T\right)
-
-```
+$$\frac{\partial \mathcal{L}}{\partial W} = M \odot \left(\frac{\partial \mathcal{L}}{\partial Y} X^T\right)$$
 
 Gradients only flow through unpruned weights.
 

@@ -44,10 +44,7 @@
 
 **Shattering:** A set \(S = \{x_1, \ldots, x_n\}\) is shattered by \(\mathcal{H}\) if for every labeling \(\mathbf{y} \in \{0,1\}^n\), there exists \(h \in \mathcal{H}\) such that \(h(x_i) = y_i\) for all \(i\).
 
-```math
-\text{VC}(\mathcal{H}) = \max\{n : \exists S \text{ of size } n \text{ shattered by } \mathcal{H}\}
-
-```
+$$\text{VC}(\mathcal{H}) = \max\{n : \exists S \text{ of size } n \text{ shattered by } \mathcal{H}\}$$
 
 ### Common VC Dimensions
 
@@ -67,10 +64,7 @@
 
 **Empirical Rademacher Complexity:**
 
-```math
-\hat{\mathcal{R}}_n(\mathcal{H}) = \mathbb{E}_{\boldsymbol{\sigma}}\left[\sup_{h \in \mathcal{H}} \frac{1}{n}\sum_{i=1}^n \sigma_i h(x_i)\right]
-
-```
+$$\hat{\mathcal{R}}_n(\mathcal{H}) = \mathbb{E}_{\boldsymbol{\sigma}}\left[\sup_{h \in \mathcal{H}} \frac{1}{n}\sum_{i=1}^n \sigma_i h(x_i)\right]$$
 
 where \(\sigma_i \in \{-1, +1\}\) are i.i.d. Rademacher random variables.
 
@@ -100,10 +94,7 @@ where \(\sigma_i \in \{-1, +1\}\) are i.i.d. Rademacher random variables.
 
 **Theorem:** For hypothesis class \(\mathcal{H}\) with VC dimension \(d\), with probability \(\geq 1 - \delta\):
 
-```math
-R(h) \leq \hat{R}(h) + \sqrt{\frac{d(\log(2n/d) + 1) + \log(4/\delta)}{n}}
-
-```
+$$R(h) \leq \hat{R}(h) + \sqrt{\frac{d(\log(2n/d) + 1) + \log(4/\delta)}{n}}$$
 
 **Proof Sketch:**
 
@@ -117,10 +108,7 @@ R(h) \leq \hat{R}(h) + \sqrt{\frac{d(\log(2n/d) + 1) + \log(4/\delta)}{n}}
 
 **Theorem:** With probability \(\geq 1 - \delta\):
 
-```math
-R(h) \leq \hat{R}(h) + 2\mathcal{R}_n(\mathcal{H}) + \sqrt{\frac{\log(1/\delta)}{2n}}
-
-```
+$$R(h) \leq \hat{R}(h) + 2\mathcal{R}_n(\mathcal{H}) + \sqrt{\frac{\log(1/\delta)}{2n}}$$
 
 **Remark:** This is often tighter than VC bounds for specific data distributions.
 
@@ -134,10 +122,7 @@ Classical theory predicts: more parameters → more overfitting
 
 **Double Descent:** After the interpolation threshold, test error *decreases* again!
 
-```math
-\text{Test Error} = \begin{cases} \text{Classical U-curve} & \text{if params} < n \\ \text{Decrease} & \text{if params} \gg n \end{cases}
-
-```
+$$\text{Test Error} = \begin{cases} \text{Classical U-curve} & \text{if params} < n \\ \text{Decrease} & \text{if params} \gg n \end{cases}$$
 
 ### Theoretical Explanation
 

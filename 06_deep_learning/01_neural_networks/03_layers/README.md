@@ -37,10 +37,7 @@ Neural network layers are modular building blocks. Understanding each layer's pu
 
 ### Forward Pass
 
-```math
-y = Wx + b
-
-```
+$$y = Wx + b$$
 
 Where $W \in \mathbb{R}^{m \times n}$, $x \in \mathbb{R}^n$, $b \in \mathbb{R}^m$, $y \in \mathbb{R}^m$
 
@@ -48,19 +45,13 @@ Where $W \in \mathbb{R}^{m \times n}$, $x \in \mathbb{R}^n$, $b \in \mathbb{R}^m
 
 Given $\frac{\partial \mathcal{L}}{\partial y}$:
 
-```math
-\frac{\partial \mathcal{L}}{\partial x} = W^\top \frac{\partial \mathcal{L}}{\partial y}
+$$\frac{\partial \mathcal{L}}{\partial x} = W^\top \frac{\partial \mathcal{L}}{\partial y}
 \frac{\partial \mathcal{L}}{\partial W} = \frac{\partial \mathcal{L}}{\partial y} \cdot x^\top
-\frac{\partial \mathcal{L}}{\partial b} = \frac{\partial \mathcal{L}}{\partial y}
-
-```
+\frac{\partial \mathcal{L}}{\partial b} = \frac{\partial \mathcal{L}}{\partial y}$$
 
 ### Parameters Count
 
-```math
-\text{Parameters} = m \times n + m = m(n + 1)
-
-```
+$$\text{Parameters} = m \times n + m = m(n + 1)$$
 
 ---
 
@@ -70,35 +61,23 @@ Given $\frac{\partial \mathcal{L}}{\partial y}$:
 
 For input $X \in \mathbb{R}^{H \times W \times C_{in}}$ and kernel $K \in \mathbb{R}^{k \times k \times C_{in} \times C_{out}}$:
 
-```math
-Y[i, j, c_{out}] = \sum_{m=0}^{k-1} \sum_{n=0}^{k-1} \sum_{c_{in}=0}^{C_{in}-1} X[i+m, j+n, c_{in}] \cdot K[m, n, c_{in}, c_{out}] + b[c_{out}]
-
-```
+$$Y[i, j, c_{out}] = \sum_{m=0}^{k-1} \sum_{n=0}^{k-1} \sum_{c_{in}=0}^{C_{in}-1} X[i+m, j+n, c_{in}] \cdot K[m, n, c_{in}, c_{out}] + b[c_{out}]$$
 
 ### Output Size
 
-```math
-H_{out} = \left\lfloor \frac{H + 2p - k}{s} \right\rfloor + 1
-W_{out} = \left\lfloor \frac{W + 2p - k}{s} \right\rfloor + 1
-
-```
+$$H_{out} = \left\lfloor \frac{H + 2p - k}{s} \right\rfloor + 1
+W_{out} = \left\lfloor \frac{W + 2p - k}{s} \right\rfloor + 1$$
 
 Where $p$ = padding, $s$ = stride, $k$ = kernel size.
 
 ### Parameters Count
 
-```math
-\text{Parameters} = C_{out} \times (C_{in} \times k^2 + 1)
-
-```
+$$\text{Parameters} = C_{out} \times (C_{in} \times k^2 + 1)$$
 
 ### Backward Pass
 
-```math
-\frac{\partial \mathcal{L}}{\partial X} = \text{full_conv}\left(\frac{\partial \mathcal{L}}{\partial Y}, \text{flip}(K)\right)
-\frac{\partial \mathcal{L}}{\partial K} = \text{conv}\left(X, \frac{\partial \mathcal{L}}{\partial Y}\right)
-
-```
+$$\frac{\partial \mathcal{L}}{\partial X} = \text{full_conv}\left(\frac{\partial \mathcal{L}}{\partial Y}, \text{flip}(K)\right)
+\frac{\partial \mathcal{L}}{\partial K} = \text{conv}\left(X, \frac{\partial \mathcal{L}}{\partial Y}\right)$$
 
 ---
 
@@ -106,10 +85,7 @@ Where $p$ = padding, $s$ = stride, $k$ = kernel size.
 
 ### Forward Pass
 
-```math
-\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right) V
-
-```
+$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right) V$$
 
 Where:
 
@@ -127,10 +103,7 @@ Where:
 
 ### Parameters
 
-```math
-\text{Parameters} = 3d_{model}^2 + d_{model}^2 = 4d_{model}^2
-
-```
+$$\text{Parameters} = 3d_{model}^2 + d_{model}^2 = 4d_{model}^2$$
 
 (for $W_Q$, $W_K$, $W_V$, and $W_O$)
 
@@ -142,22 +115,16 @@ Where:
 
 For input $x \in \mathbb{R}^d$:
 
-```math
-\mu = \frac{1}{d} \sum_{i=1}^{d} x_i
+$$\mu = \frac{1}{d} \sum_{i=1}^{d} x_i
 \sigma^2 = \frac{1}{d} \sum_{i=1}^{d} (x_i - \mu)^2
 \hat{x}_i = \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}}
-y_i = \gamma \hat{x}_i + \beta
-
-```
+y_i = \gamma \hat{x}_i + \beta$$
 
 ### Backward Pass
 
-```math
-\frac{\partial \mathcal{L}}{\partial \gamma} = \sum_i \frac{\partial \mathcal{L}}{\partial y_i} \hat{x}_i
+$$\frac{\partial \mathcal{L}}{\partial \gamma} = \sum_i \frac{\partial \mathcal{L}}{\partial y_i} \hat{x}_i
 \frac{\partial \mathcal{L}}{\partial \beta} = \sum_i \frac{\partial \mathcal{L}}{\partial y_i}
-\frac{\partial \mathcal{L}}{\partial x_i} = \frac{\gamma}{\sigma} \left( \frac{\partial \mathcal{L}}{\partial y_i} - \frac{1}{d}\sum_j \frac{\partial \mathcal{L}}{\partial y_j} - \frac{\hat{x}_i}{d}\sum_j \frac{\partial \mathcal{L}}{\partial y_j} \hat{x}_j \right)
-
-```
+\frac{\partial \mathcal{L}}{\partial x_i} = \frac{\gamma}{\sigma} \left( \frac{\partial \mathcal{L}}{\partial y_i} - \frac{1}{d}\sum_j \frac{\partial \mathcal{L}}{\partial y_j} - \frac{\hat{x}_i}{d}\sum_j \frac{\partial \mathcal{L}}{\partial y_j} \hat{x}_j \right)$$
 
 ---
 
@@ -165,36 +132,24 @@ y_i = \gamma \hat{x}_i + \beta
 
 ### Forward Pass (Training)
 
-```math
-\tilde{x}_i = \begin{cases}
+$$\tilde{x}_i = \begin{cases}
 \frac{x_i}{1-p} & \text{with probability } 1-p \\
 0 & \text{with probability } p
-\end{cases}
-
-```
+\end{cases}$$
 
 Using mask $m \sim \text{Bernoulli}(1-p)$:
 
-```math
-y = \frac{x \odot m}{1-p}
-
-```
+$$y = \frac{x \odot m}{1-p}$$
 
 ### Forward Pass (Inference)
 
-```math
-y = x
-
-```
+$$y = x$$
 
 (No dropout, no scaling needed due to training-time scaling)
 
 ### Backward Pass
 
-```math
-\frac{\partial \mathcal{L}}{\partial x} = \frac{\partial \mathcal{L}}{\partial y} \odot \frac{m}{1-p}
-
-```
+$$\frac{\partial \mathcal{L}}{\partial x} = \frac{\partial \mathcal{L}}{\partial y} \odot \frac{m}{1-p}$$
 
 ---
 
@@ -204,26 +159,17 @@ y = x
 
 For vocabulary size $V$ and embedding dimension $d$:
 
-```math
-E \in \mathbb{R}^{V \times d}
-
-```
+$$E \in \mathbb{R}^{V \times d}$$
 
 Given token index $i$:
 
-```math
-y = E[i, :] \in \mathbb{R}^d
-
-```
+$$y = E[i, :] \in \mathbb{R}^d$$
 
 (Simple table lookup, no mathematical operations)
 
 ### Backward Pass
 
-```math
-\frac{\partial \mathcal{L}}{\partial E[i, :]} = \frac{\partial \mathcal{L}}{\partial y}
-
-```
+$$\frac{\partial \mathcal{L}}{\partial E[i, :]} = \frac{\partial \mathcal{L}}{\partial y}$$
 
 (Gradient accumulated for each occurrence of token $i$)
 
@@ -233,34 +179,22 @@ y = E[i, :] \in \mathbb{R}^d
 
 ### Forward Pass
 
-```math
-\text{softmax}(x)_i = \frac{e^{x_i}}{\sum_{j=1}^{n} e^{x_j}}
-
-```
+$$\text{softmax}(x)_i = \frac{e^{x_i}}{\sum_{j=1}^{n} e^{x_j}}$$
 
 ### Numerical Stability
 
-```math
-\text{softmax}(x)_i = \frac{e^{x_i - \max(x)}}{\sum_{j=1}^{n} e^{x_j - \max(x)}}
-
-```
+$$\text{softmax}(x)_i = \frac{e^{x_i - \max(x)}}{\sum_{j=1}^{n} e^{x_j - \max(x)}}$$
 
 ### Jacobian
 
-```math
-\frac{\partial s_i}{\partial x_j} = \begin{cases}
+$$\frac{\partial s_i}{\partial x_j} = \begin{cases}
 s_i(1 - s_i) & \text{if } i = j \\
 -s_i s_j & \text{if } i \neq j
-\end{cases}
-
-```
+\end{cases}$$
 
 Or in matrix form:
 
-```math
-\frac{\partial s}{\partial x} = \text{diag}(s) - s s^\top
-
-```
+$$\frac{\partial s}{\partial x} = \text{diag}(s) - s s^\top$$
 
 ---
 

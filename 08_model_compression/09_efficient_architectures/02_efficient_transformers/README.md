@@ -19,10 +19,7 @@
 
 **Self-Attention:**
 
-```math
-\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
-
-```
+$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
 
 Where $Q, K, V \in \mathbb{R}^{n \times d}$
 
@@ -43,68 +40,44 @@ Where $Q, K, V \in \mathbb{R}^{n \times d}$
 
 **Projection:**
 
-```math
-\tilde{K} = E_K K, \quad \tilde{V} = E_V V
-
-```
+$$\tilde{K} = E_K K, \quad \tilde{V} = E_V V$$
 
 Where $E_K, E_V \in \mathbb{R}^{k \times n}$ project to $k \ll n$ dimensions.
 
 **New Attention:**
 
-```math
-\text{Attention} = \text{softmax}\left(\frac{Q\tilde{K}^T}{\sqrt{d}}\right)\tilde{V}
-
-```
+$$\text{Attention} = \text{softmax}\left(\frac{Q\tilde{K}^T}{\sqrt{d}}\right)\tilde{V}$$
 
 **Complexity:** $O(nkd)$ instead of $O(n^2d)$
 
 **Theorem (Johnson-Lindenstrauss):**
 For any $\epsilon > 0$, random projection preserves distances with high probability:
 
-```math
-\|E_K x - E_K y\|_2 \approx (1 \pm \epsilon)\|x - y\|_2
-
-```
+$$\|E_K x - E_K y\|_2 \approx (1 \pm \epsilon)\|x - y\|_2$$
 
 ### 3. Performer: Kernel Approximation
 
 **Standard Attention:**
 
-```math
-\text{Att}(q, K, V) = \frac{\sum_i \exp(q^T k_i) v_i}{\sum_i \exp(q^T k_i)}
-
-```
+$$\text{Att}(q, K, V) = \frac{\sum_i \exp(q^T k_i) v_i}{\sum_i \exp(q^T k_i)}$$
 
 **Kernel View:**
 
-```math
-\text{Att}(q, K, V) = \frac{\sum_i \kappa(q, k_i) v_i}{\sum_i \kappa(q, k_i)}
-
-```
+$$\text{Att}(q, K, V) = \frac{\sum_i \kappa(q, k_i) v_i}{\sum_i \kappa(q, k_i)}$$
 
 Where $\kappa(q, k) = \exp(q^T k)$ (softmax kernel)
 
 **FAVOR+ Approximation:**
 
-```math
-\kappa(q, k) \approx \phi(q)^T \phi(k)
-
-```
+$$\kappa(q, k) \approx \phi(q)^T \phi(k)$$
 
 Using random features:
 
-```math
-\phi(x) = \frac{1}{\sqrt{m}}\left[\exp\left(w_1^T x - \frac{\|x\|^2}{2}\right), ..., \exp\left(w_m^T x - \frac{\|x\|^2}{2}\right)\right]
-
-```
+$$\phi(x) = \frac{1}{\sqrt{m}}\left[\exp\left(w_1^T x - \frac{\|x\|^2}{2}\right), ..., \exp\left(w_m^T x - \frac{\|x\|^2}{2}\right)\right]$$
 
 **Linear Attention:**
 
-```math
-\text{Att}(Q, K, V) = \phi(Q)\left(\phi(K)^T V\right)
-
-```
+$$\text{Att}(Q, K, V) = \phi(Q)\left(\phi(K)^T V\right)$$
 
 Compute $\phi(K)^T V$ first: $O(md)$ per position → $O(nmd)$ total
 
@@ -136,11 +109,8 @@ Compute $\phi(K)^T V$ first: $O(md)$ per position → $O(nmd)$ total
 
 **IO Complexity:**
 
-```math
-\text{Standard: } O(n^2 d + n^2)
-\text{Flash: } O(n^2 d^2 / M)
-
-```
+$$\text{Standard: } O(n^2 d + n^2)
+\text{Flash: } O(n^2 d^2 / M)$$
 
 Where $M$ = SRAM size. Typical reduction: $10-100\times$
 
@@ -148,51 +118,36 @@ Where $M$ = SRAM size. Typical reduction: $10-100\times$
 
 **Multi-Head Attention:**
 
-```math
-\text{MHA}(X) = \text{Concat}(head_1, ..., head_h)W^O
-head_i = \text{Attention}(XW_Q^i, XW_K^i, XW_V^i)
-
-```
+$$\text{MHA}(X) = \text{Concat}(head_1, ..., head_h)W^O
+head_i = \text{Attention}(XW_Q^i, XW_K^i, XW_V^i)$$
 
 **Memory:** $h$ sets of K,V projections
 
 **Multi-Query Attention (MQA):**
 Share K,V across all heads:
 
-```math
-head_i = \text{Attention}(XW_Q^i, XW_K, XW_V)
-
-```
+$$head_i = \text{Attention}(XW_Q^i, XW_K, XW_V)$$
 
 **Memory:** 1 set of K,V projections (but quality degrades)
 
 **Grouped Query Attention (GQA):**
 Share K,V within groups of heads:
 
-```math
-head_i = \text{Attention}(XW_Q^i, XW_K^{g(i)}, XW_V^{g(i)})
-
-```
+$$head_i = \text{Attention}(XW_Q^i, XW_K^{g(i)}, XW_V^{g(i)})$$
 
 Where $g(i)$ maps head $i$ to its group.
 
 **KV Cache Reduction:**
 
-```math
-\text{MHA: } O(h \cdot d_k \cdot L)
+$$\text{MHA: } O(h \cdot d_k \cdot L)
 \text{GQA: } O(G \cdot d_k \cdot L)
-\text{MQA: } O(d_k \cdot L)
-
-```
+\text{MQA: } O(d_k \cdot L)$$
 
 ### 6. Sliding Window Attention
 
 **Local Attention:**
 
-```math
-A_{ij} = \begin{cases} \text{softmax}(\cdot) & |i-j| \leq w \\ 0 & \text{otherwise} \end{cases}
-
-```
+$$A_{ij} = \begin{cases} \text{softmax}(\cdot) & |i-j| \leq w \\ 0 & \text{otherwise} \end{cases}$$
 
 **Complexity:** $O(nw)$ instead of $O(n^2)$
 

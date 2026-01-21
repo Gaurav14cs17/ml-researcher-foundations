@@ -41,10 +41,7 @@
 
 Given unlabeled data \(\mathcal{D} = \{x_i\}_{i=1}^N\), create pseudo-labels from the data itself:
 
-```math
-\mathcal{L}_{\text{SSL}} = \mathbb{E}_{x \sim \mathcal{D}}[\ell(f_\theta(x), \text{pretext}(x))]
-
-```
+$$\mathcal{L}_{\text{SSL}} = \mathbb{E}_{x \sim \mathcal{D}}[\ell(f_\theta(x), \text{pretext}(x))]$$
 
 ---
 
@@ -54,10 +51,7 @@ Given unlabeled data \(\mathcal{D} = \{x_i\}_{i=1}^N\), create pseudo-labels fro
 
 For positive pair \((x_i, x_j)\) (two augmentations of same image):
 
-```math
-\mathcal{L}_{i,j} = -\log \frac{\exp(\text{sim}(z_i, z_j)/\tau)}{\sum_{k=1}^{2N} \mathbb{1}_{[k \neq i]} \exp(\text{sim}(z_i, z_k)/\tau)}
-
-```
+$$\mathcal{L}_{i,j} = -\log \frac{\exp(\text{sim}(z_i, z_j)/\tau)}{\sum_{k=1}^{2N} \mathbb{1}_{[k \neq i]} \exp(\text{sim}(z_i, z_k)/\tau)}$$
 
 where:
 
@@ -71,10 +65,7 @@ where:
 
 **Theorem (InfoNCE Bound):** InfoNCE loss provides a lower bound on mutual information:
 
-```math
-I(X; Y) \geq \log(N) - \mathcal{L}_{\text{NCE}}
-
-```
+$$I(X; Y) \geq \log(N) - \mathcal{L}_{\text{NCE}}$$
 
 **Proof Sketch:**
 The optimal critic \(f^*(x, y) = \frac{p(y|x)}{p(y)} + c\). InfoNCE with this critic recovers mutual information. Finite samples give a lower bound. \(\blacksquare\)
@@ -87,10 +78,7 @@ The optimal critic \(f^*(x, y) = \frac{p(y|x)}{p(y)} + c\). InfoNCE with this cr
 
 Mask ~15% of tokens and predict them:
 
-```math
-\mathcal{L}_{\text{MLM}} = -\mathbb{E}_{x \sim \mathcal{D}} \left[\sum_{i \in \mathcal{M}} \log P(x_i | x_{\backslash \mathcal{M}}; \theta)\right]
-
-```
+$$\mathcal{L}_{\text{MLM}} = -\mathbb{E}_{x \sim \mathcal{D}} \left[\sum_{i \in \mathcal{M}} \log P(x_i | x_{\backslash \mathcal{M}}; \theta)\right]$$
 
 where \(\mathcal{M}\) = set of masked positions.
 
@@ -98,10 +86,7 @@ where \(\mathcal{M}\) = set of masked positions.
 
 Mask ~75% of image patches and reconstruct:
 
-```math
-\mathcal{L}_{\text{MAE}} = \frac{1}{|\mathcal{M}|}\sum_{i \in \mathcal{M}} \|x_i - \hat{x}_i\|^2
-
-```
+$$\mathcal{L}_{\text{MAE}} = \frac{1}{|\mathcal{M}|}\sum_{i \in \mathcal{M}} \|x_i - \hat{x}_i\|^2$$
 
 ---
 
@@ -109,19 +94,13 @@ Mask ~75% of image patches and reconstruct:
 
 ### Next Token Prediction (GPT)
 
-```math
-\mathcal{L}_{\text{AR}} = -\sum_{t=1}^{T} \log P(x_t | x_{1:t-1}; \theta)
-
-```
+$$\mathcal{L}_{\text{AR}} = -\sum_{t=1}^{T} \log P(x_t | x_{1:t-1}; \theta)$$
 
 **Connection to Information Theory:**
 
 This is equivalent to minimizing the cross-entropy between the true distribution and model distribution:
 
-```math
-H(P, Q) = -\mathbb{E}_{x \sim P}[\log Q(x)] = H(P) + D_{\text{KL}}(P \| Q)
-
-```
+$$H(P, Q) = -\mathbb{E}_{x \sim P}[\log Q(x)] = H(P) + D_{\text{KL}}(P \| Q)$$
 
 ---
 

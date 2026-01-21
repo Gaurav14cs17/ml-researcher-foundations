@@ -204,10 +204,7 @@ For a dense network \( f(x; \theta_0) \) with random initialization \( \theta_0 
 
 **Formal Statement:**
 
-```math
-\text{Acc}(f(\cdot; m \odot \theta^*_{sparse})) \approx \text{Acc}(f(\cdot; \theta^*_{dense}))
-
-```
+$$\text{Acc}(f(\cdot; m \odot \theta^*_{sparse})) \approx \text{Acc}(f(\cdot; \theta^*_{dense}))$$
 
 where:
 
@@ -225,31 +222,19 @@ where:
 
 #### COO (Coordinate) Storage
 
-```math
-\text{Memory}_{COO} = \text{nnz} \times (2 \times \text{idx_size} + \text{val_size})
-
-```
+$$\text{Memory}_{COO} = \text{nnz} \times (2 \times \text{idx_size} + \text{val_size})$$
 
 For nnz non-zeros with INT32 indices and FP32 values:
 
-```math
-\text{Memory}_{COO} = \text{nnz} \times (2 \times 4 + 4) = 12 \times \text{nnz} \text{ bytes}
-
-```
+$$\text{Memory}_{COO} = \text{nnz} \times (2 \times 4 + 4) = 12 \times \text{nnz} \text{ bytes}$$
 
 #### CSR (Compressed Sparse Row) Storage
 
-```math
-\text{Memory}_{CSR} = \text{nnz} \times (\text{idx_size} + \text{val_size}) + (n_{rows}+1) \times \text{ptr_size}
-
-```
+$$\text{Memory}_{CSR} = \text{nnz} \times (\text{idx_size} + \text{val_size}) + (n_{rows}+1) \times \text{ptr_size}$$
 
 For matrix \( A \in \mathbb{R}^{m \times n} \):
 
-```math
-\text{Memory}_{CSR} = 8 \times \text{nnz} + 4 \times (m+1) \text{ bytes}
-
-```
+$$\text{Memory}_{CSR} = 8 \times \text{nnz} + 4 \times (m+1) \text{ bytes}$$
 
 **CSR is more efficient for row-wise operations** (common in ML).
 
@@ -257,17 +242,11 @@ For matrix \( A \in \mathbb{R}^{m \times n} \):
 
 Dense is better when:
 
-```math
-m \times n \times \text{val_size} < \text{nnz} \times (\text{idx_size} + \text{val_size})
-
-```
+$$m \times n \times \text{val_size} < \text{nnz} \times (\text{idx_size} + \text{val_size})$$
 
 For FP32 with INT32 indices:
 
-```math
-\frac{\text{nnz}}{m \times n} > \frac{4}{8} = 0.5
-
-```
+$$\frac{\text{nnz}}{m \times n} > \frac{4}{8} = 0.5$$
 
 **Conclusion:** Use dense format when >50% non-zeros.
 
@@ -283,17 +262,11 @@ For FP32 with INT32 indices:
 
 For weights \( W = [w_1, w_2, w_3, w_4] \), the 2:4 approximation keeps the 2 largest magnitude:
 
-```math
-\hat{W} = [w_1, 0, w_3, 0] \text{ if } |w_1|, |w_3| \geq |w_2|, |w_4|
-
-```
+$$\hat{W} = [w_1, 0, w_3, 0] \text{ if } |w_1|, |w_3| \geq |w_2|, |w_4|$$
 
 **Approximation Error:**
 
-```math
-\|\hat{W} - W\|_F^2 = w_2^2 + w_4^2
-
-```
+$$\|\hat{W} - W\|_F^2 = w_2^2 + w_4^2$$
 
 **Theorem:** 2:4 pruning retains the top-50% magnitude weights within each group.
 
@@ -313,26 +286,17 @@ At each update step:
 
 **Drop criterion:**
 
-```math
-\mathcal{D} = \{(i,j) : |w_{ij}| < \tau_{\text{drop}}\}
-
-```
+$$\mathcal{D} = \{(i,j) : |w_{ij}| < \tau_{\text{drop}}\}$$
 
 **Grow criterion:**
 
-```math
-\mathcal{G} = \{(i,j) : |g_{ij}| > \tau_{\text{grow}} \land (i,j) \notin \text{active}\}
-
-```
+$$\mathcal{G} = \{(i,j) : |g_{ij}| > \tau_{\text{grow}} \land (i,j) \notin \text{active}\}$$
 
 where \( g_{ij} = \frac{\partial \mathcal{L}}{\partial w_{ij}} \).
 
 **Update schedule for drop fraction:**
 
-```math
-\alpha_t = \alpha_0 \left(1 - \frac{t}{T}\right)^3
-
-```
+$$\alpha_t = \alpha_0 \left(1 - \frac{t}{T}\right)^3$$
 
 Cubic decay: More exploration early, more exploitation later.
 
@@ -342,19 +306,13 @@ Cubic decay: More exploration early, more exploitation later.
 
 **Problem:** Prune weight matrix \( W \) to minimize reconstruction error:
 
-```math
-\min_{\hat{W}} \|WX - \hat{W}X\|_F^2 \quad \text{s.t.} \quad \hat{W} \text{ is } s\text{-sparse}
-
-```
+$$\min_{\hat{W}} \|WX - \hat{W}X\|_F^2 \quad \text{s.t.} \quad \hat{W} \text{ is } s\text{-sparse}$$
 
 **Solution using Hessian information:**
 
 For each column \( j \), the optimal update when pruning \( w_j \):
 
-```math
-\delta_{j:} = -\frac{w_j}{[H^{-1}]_{jj}} \cdot [H^{-1}]_{:j}
-
-```
+$$\delta_{j:} = -\frac{w_j}{[H^{-1}]_{jj}} \cdot [H^{-1}]_{:j}$$
 
 where \( H = XX^T \) is the Hessian approximation.
 
@@ -377,10 +335,7 @@ for j in columns:
 
 **Sensitivity score for layer \( l \):**
 
-```math
-S_l = \frac{\Delta \mathcal{L}}{\Delta s_l}
-
-```
+$$S_l = \frac{\Delta \mathcal{L}}{\Delta s_l}$$
 
 where \( \Delta \mathcal{L} \) is loss increase when pruning layer \( l \) to sparsity \( s_l \).
 
@@ -408,10 +363,7 @@ For sparse matrix \( A \) with nnz non-zeros, computing \( y = Ax \):
 
 **Speedup ratio:**
 
-```math
-\text{Speedup} = \frac{mn}{\text{nnz}} = \frac{1}{1-s}
-
-```
+$$\text{Speedup} = \frac{mn}{\text{nnz}} = \frac{1}{1-s}$$
 
 At 90% sparsity: theoretical 10× speedup.
 
@@ -428,10 +380,7 @@ At 90% sparsity: theoretical 10× speedup.
 
 **Hypothesis:** Pruned networks preserve essential information.
 
-```math
-I(X; \hat{Y}) \approx I(X; Y)
-
-```
+$$I(X; \hat{Y}) \approx I(X; Y)$$
 
 where:
 

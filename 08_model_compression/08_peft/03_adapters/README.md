@@ -27,10 +27,7 @@
 
 **Adapter module (Houlsby et al., 2019):**
 
-```math
-\text{Adapter}(x) = x + f(x W_{down}) W_{up}
-
-```
+$$\text{Adapter}(x) = x + f(x W_{down}) W_{up}$$
 
 where:
 
@@ -46,19 +43,13 @@ where:
 
 **After attention:**
 
-```math
-h = \text{LayerNorm}(x + \text{Attn}(x))
-h' = h + \text{Adapter}_{attn}(h)
-
-```
+$$h = \text{LayerNorm}(x + \text{Attn}(x))
+h' = h + \text{Adapter}_{attn}(h)$$
 
 **After FFN:**
 
-```math
-z = \text{LayerNorm}(h' + \text{FFN}(h'))
-z' = z + \text{Adapter}_{ffn}(z)
-
-```
+$$z = \text{LayerNorm}(h' + \text{FFN}(h'))
+z' = z + \text{Adapter}_{ffn}(z)$$
 
 ---
 
@@ -66,11 +57,7 @@ z' = z + \text{Adapter}_{ffn}(z)
 
 #### 2.1 Parameters per Adapter
 
-```math
-
-|\theta_{adapter}| = 2 \times d \times r = 2dr
-
-```
+$$|\theta_{adapter}| = 2 \times d \times r = 2dr$$
 
 **With bias:** $2dr + d + r$
 
@@ -78,27 +65,17 @@ z' = z + \text{Adapter}_{ffn}(z)
 
 **Per layer:** 2 adapters (after attention, after FFN)
 
-```math
-|\theta_{layer}| = 4dr
-
-```
+$$|\theta_{layer}| = 4dr$$
 
 **Full model (L layers):**
 
-```math
-
-|\theta_{total}| = 4Ldr
-
-```
+$$|\theta_{total}| = 4Ldr$$
 
 #### 2.3 Efficiency
 
 **For BERT-Base ($d=768$, $L=12$, $r=64$):**
 
-```math
-|\theta_{adapters}| = 4 \times 12 \times 768 \times 64 = 2.36M
-
-```
+$$|\theta_{adapters}| = 4 \times 12 \times 768 \times 64 = 2.36M$$
 
 vs. 110M for full BERT → **2.1%** of parameters!
 
@@ -112,17 +89,11 @@ vs. 110M for full BERT → **2.1%** of parameters!
 
 **Analysis:**
 
-```math
-\text{Adapter}(x) = x + \sigma(xW_{down})W_{up}
-
-```
+$$\text{Adapter}(x) = x + \sigma(xW_{down})W_{up}$$
 
 If $\sigma$ is linear (or linearized):
 
-```math
-\text{Adapter}(x) \approx x + x W_{down} W_{up} = x(I + W_{down}W_{up})
-
-```
+$$\text{Adapter}(x) \approx x + x W_{down} W_{up} = x(I + W_{down}W_{up})$$
 
 This is a rank-$r$ perturbation of identity!
 
@@ -130,17 +101,11 @@ This is a rank-$r$ perturbation of identity!
 
 **Adapter (without nonlinearity):**
 
-```math
-h' = h + h W_{down} W_{up}
-
-```
+$$h' = h + h W_{down} W_{up}$$
 
 **LoRA:**
 
-```math
-h' = Wh + BAh
-
-```
+$$h' = Wh + BAh$$
 
 Both learn low-rank adaptations, but:
 
@@ -156,10 +121,7 @@ Both learn low-rank adaptations, but:
 
 **Learn to combine multiple task adapters:**
 
-```math
-h' = h + \sum_i \alpha_i \text{Adapter}_i(h)
-
-```
+$$h' = h + \sum_i \alpha_i \text{Adapter}_i(h)$$
 
 where $\alpha = \text{softmax}(W_\alpha h)$ are learned attention weights.
 
@@ -167,10 +129,7 @@ where $\alpha = \text{softmax}(W_\alpha h)$ are learned attention weights.
 
 **Insert parallel to attention, not after:**
 
-```math
-\text{Attn}'(x) = \text{Attn}(x) + s \cdot \text{Adapter}(x)
-
-```
+$$\text{Attn}'(x) = \text{Attn}(x) + s \cdot \text{Adapter}(x)$$
 
 where $s$ is a learned scaling factor.
 
@@ -178,10 +137,7 @@ where $s$ is a learned scaling factor.
 
 **Use Kronecker products for more compression:**
 
-```math
-W_{down} = A_1 \otimes A_2
-
-```
+$$W_{down} = A_1 \otimes A_2$$
 
 where $A_1 \in \mathbb{R}^{d_1 \times r_1}$, $A_2 \in \mathbb{R}^{d_2 \times r_2}$, and $d = d_1 d_2$.
 

@@ -304,26 +304,15 @@ print(f"P({{1,2}}) = {power_set({1,2})}")
 
 **For 2 sets:**
 
-```math
-
-|A \cup B| = |A| + |B| - |A \cap B|
-
-```
+$$|A \cup B| = |A| + |B| - |A \cap B|$$
 
 **For 3 sets:**
 
-```math
-
-|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|
-
-```
+$$|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|$$
 
 **General form:**
 
-```math
-\left|\bigcup_{i=1}^n A_i\right| = \sum_{i}|A_i| - \sum_{i<j}|A_i \cap A_j| + \sum_{i<j<k}|A_i \cap A_j \cap A_k| - \cdots
-
-```
+$$\left|\bigcup_{i=1}^n A_i\right| = \sum_{i}|A_i| - \sum_{i<j}|A_i \cap A_j| + \sum_{i<j<k}|A_i \cap A_j \cap A_k| - \cdots$$
 
 ### 📐 Proof: Inclusion-Exclusion for 2 Sets
 
@@ -556,10 +545,7 @@ f(n): 0  1 -1  2 -2  3 -3  ...
 
 **Formula:**
 
-```math
-f(n) = \begin{cases} n/2 & \text{if } n \text{ even} \\ -(n+1)/2 & \text{if } n \text{ odd} \end{cases}
-
-```
+$$f(n) = \begin{cases} n/2 & \text{if } n \text{ even} \\ -(n+1)/2 & \text{if } n \text{ odd} \end{cases}$$
 
 | Step | Statement | Justification |
 |:----:|:----------|:--------------|

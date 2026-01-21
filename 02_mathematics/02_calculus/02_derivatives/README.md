@@ -86,10 +86,7 @@
 
 ### 📌 Formal Definition
 
-```math
-f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
-
-```
+$$f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
 
 Alternative notation: $\frac{df}{dx}$, $\frac{dy}{dx}$, $Df$, $\dot{f}$
 
@@ -259,10 +256,7 @@ This is why ReLU works better:
 
 For $f(x_1, x_2, \ldots, x_n)$:
 
-```math
-\frac{\partial f}{\partial x_i} = \lim_{h \to 0} \frac{f(x_1, \ldots, x_i + h, \ldots, x_n) - f(x_1, \ldots, x_n)}{h}
-
-```
+$$\frac{\partial f}{\partial x_i} = \lim_{h \to 0} \frac{f(x_1, \ldots, x_i + h, \ldots, x_n) - f(x_1, \ldots, x_n)}{h}$$
 
 *Differentiate with respect to one variable, treating others as constants.*
 
@@ -281,10 +275,7 @@ f(x, y) = x²y + 3xy² + y³
 
 The **gradient** collects all partial derivatives:
 
-```math
-\nabla f = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix}
-
-```
+$$\nabla f = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix}$$
 
 ---
 

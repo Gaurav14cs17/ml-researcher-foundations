@@ -19,10 +19,7 @@
 
 **Definition:** The compression ratio quantifies how much smaller a compressed model is compared to the original:
 
-```math
-CR = \frac{|M_{original}|}{|M_{compressed}|} = \frac{\sum_{l} |W_l| \cdot b_{original}}{\sum_{l} |W_l| \cdot b_{compressed}}
-
-```
+$$CR = \frac{|M_{original}|}{|M_{compressed}|} = \frac{\sum_{l} |W_l| \cdot b_{original}}{\sum_{l} |W_l| \cdot b_{compressed}}$$
 
 Where:
 
@@ -43,10 +40,7 @@ CR = 1360 / 340 = 4×
 
 **Optimization Problem:**
 
-```math
-\min_{M_c \in \mathcal{M}} \text{Size}(M_c) \quad \text{subject to} \quad \mathcal{L}(M_c) - \mathcal{L}(M) \leq \epsilon
-
-```
+$$\min_{M_c \in \mathcal{M}} \text{Size}(M_c) \quad \text{subject to} \quad \mathcal{L}(M_c) - \mathcal{L}(M) \leq \epsilon$$
 
 Where:
 
@@ -70,31 +64,19 @@ with at least one strict inequality.
 
 The minimum average description length for weights is bounded by their entropy:
 
-```math
-H(W) \leq \mathbb{E}[\text{bits per weight}]
-
-```
+$$H(W) \leq \mathbb{E}[\text{bits per weight}]$$
 
 Where entropy is:
 
-```math
-H(W) = -\sum_{w} p(w) \log_2 p(w)
-
-```
+$$H(W) = -\sum_{w} p(w) \log_2 p(w)$$
 
 **For continuous weights (differential entropy):**
 
-```math
-h(W) = -\int p(w) \log_2 p(w) dw
-
-```
+$$h(W) = -\int p(w) \log_2 p(w) dw$$
 
 **Gaussian Distribution Case:**
 
-```math
-h(W) = \frac{1}{2} \log_2(2\pi e \sigma^2) \approx 4.13 \text{ bits (for } \sigma = 1)
-
-```
+$$h(W) = \frac{1}{2} \log_2(2\pi e \sigma^2) \approx 4.13 \text{ bits (for } \sigma = 1)$$
 
 This theoretical limit explains why 4-bit quantization often works!
 
@@ -102,25 +84,16 @@ This theoretical limit explains why 4-bit quantization often works!
 
 **Memory Footprint:**
 
-```math
-\text{Memory}(M) = \sum_{l=1}^{L} |W_l| \cdot \frac{b_l}{8} \text{ bytes}
-
-```
+$$\text{Memory}(M) = \sum_{l=1}^{L} |W_l| \cdot \frac{b_l}{8} \text{ bytes}$$
 
 **Inference FLOPs:**
 
-```math
-\text{FLOPs} = \sum_{l=1}^{L} 2 \cdot |W_l| \cdot \text{input-size}_l
-
-```
+$$\text{FLOPs} = \sum_{l=1}^{L} 2 \cdot |W_l| \cdot \text{input-size}_l$$
 
 **Roofline Model (Memory-Bound vs Compute-Bound):**
 
-```math
-\text{Achieved FLOPS} = \min\left(\text{Peak FLOPS}, \text{Bandwidth} \times \text{Arithmetic Intensity}\right)
-\text{Arithmetic Intensity} = \frac{\text{FLOPs}}{\text{Bytes Accessed}}
-
-```
+$$\text{Achieved FLOPS} = \min\left(\text{Peak FLOPS}, \text{Bandwidth} \times \text{Arithmetic Intensity}\right)
+\text{Arithmetic Intensity} = \frac{\text{FLOPs}}{\text{Bytes Accessed}}$$
 
 For LLMs: Usually memory-bound → compression helps!
 
@@ -166,17 +139,11 @@ Problems:
 
 **Memory Calculation:**
 
-```math
-\text{GPU Memory} \geq \text{Model} + \text{Activations} + \text{Gradients} + \text{Optimizer States}
-
-```
+$$\text{GPU Memory} \geq \text{Model} + \text{Activations} + \text{Gradients} + \text{Optimizer States}$$
 
 For training with Adam:
 
-```math
-\text{Total} = P \times (2 + 2 + 4 + 8) = 16P \text{ bytes}
-
-```
+$$\text{Total} = P \times (2 + 2 + 4 + 8) = 16P \text{ bytes}$$
 
 For 7B model: $7 \times 10^9 \times 16 = 112$ GB just for training!
 
@@ -203,10 +170,7 @@ Same task, 5x smaller, 3x faster, <1% accuracy drop!
 
 **Compression Stack:**
 
-```math
-M_{compressed} = Q(P(D(M_{original})))
-
-```
+$$M_{compressed} = Q(P(D(M_{original})))$$
 
 Where:
 
@@ -224,10 +188,7 @@ Where:
 
 **Empirical Scaling Law for Compression:**
 
-```math
-\mathcal{L}_{compressed} \approx \mathcal{L}_{original} + \alpha \cdot CR^{\beta}
-
-```
+$$\mathcal{L}_{compressed} \approx \mathcal{L}_{original} + \alpha \cdot CR^{\beta}$$
 
 Where:
 

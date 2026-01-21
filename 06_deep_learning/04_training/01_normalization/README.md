@@ -31,10 +31,7 @@ Normalization layers are critical for stable and fast training. They address int
 
 ### General Normalization Form
 
-```math
-y = \gamma \cdot \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} + \beta
-
-```
+$$y = \gamma \cdot \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} + \beta$$
 
 Where:
 
@@ -55,21 +52,15 @@ Where:
 **Training:**
 Given mini-batch $B = \{x_1, ..., x_m\}$:
 
-```math
-\mu_B = \frac{1}{m} \sum_{i=1}^{m} x_i
+$$\mu_B = \frac{1}{m} \sum_{i=1}^{m} x_i
 \sigma_B^2 = \frac{1}{m} \sum_{i=1}^{m} (x_i - \mu_B)^2
 \hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}
-y_i = \gamma \hat{x}_i + \beta
-
-```
+y_i = \gamma \hat{x}_i + \beta$$
 
 **Inference (Running Statistics):**
 
-```math
-\mu_{running} \leftarrow (1 - \alpha) \mu_{running} + \alpha \mu_B
-\sigma_{running}^2 \leftarrow (1 - \alpha) \sigma_{running}^2 + \alpha \sigma_B^2
-
-```
+$$\mu_{running} \leftarrow (1 - \alpha) \mu_{running} + \alpha \mu_B
+\sigma_{running}^2 \leftarrow (1 - \alpha) \sigma_{running}^2 + \alpha \sigma_B^2$$
 
 Where $\alpha$ is the momentum (typically 0.1).
 
@@ -79,11 +70,8 @@ Input: $x \in \mathbb{R}^{B \times C \times H \times W}$
 
 Normalize over $(B, H, W)$ for each channel $c$:
 
-```math
-\mu_c = \frac{1}{B \cdot H \cdot W} \sum_{b,h,w} x_{b,c,h,w}
-\sigma_c^2 = \frac{1}{B \cdot H \cdot W} \sum_{b,h,w} (x_{b,c,h,w} - \mu_c)^2
-
-```
+$$\mu_c = \frac{1}{B \cdot H \cdot W} \sum_{b,h,w} x_{b,c,h,w}
+\sigma_c^2 = \frac{1}{B \cdot H \cdot W} \sum_{b,h,w} (x_{b,c,h,w} - \mu_c)^2$$
 
 **Parameters:** $\gamma, \beta \in \mathbb{R}^C$ (one per channel)
 
@@ -91,26 +79,17 @@ Normalize over $(B, H, W)$ for each channel $c$:
 
 **Forward:**
 
-```math
-\hat{x} = \frac{x - \mu}{\sigma}, \quad y = \gamma \hat{x} + \beta
-
-```
+$$\hat{x} = \frac{x - \mu}{\sigma}, \quad y = \gamma \hat{x} + \beta$$
 
 **Backward:**
 
-```math
-\frac{\partial L}{\partial \gamma} = \sum_i \frac{\partial L}{\partial y_i} \cdot \hat{x}_i
+$$\frac{\partial L}{\partial \gamma} = \sum_i \frac{\partial L}{\partial y_i} \cdot \hat{x}_i
 \frac{\partial L}{\partial \beta} = \sum_i \frac{\partial L}{\partial y_i}
-\frac{\partial L}{\partial \hat{x}_i} = \gamma \frac{\partial L}{\partial y_i}
-
-```
+\frac{\partial L}{\partial \hat{x}_i} = \gamma \frac{\partial L}{\partial y_i}$$
 
 **Key insight:** Gradient of $\hat{x}$ w.r.t. $x$ is complex because $\mu$ and $\sigma$ depend on all $x_i$:
 
-```math
-\frac{\partial L}{\partial x_i} = \frac{1}{m\sigma}\left[m\frac{\partial L}{\partial \hat{x}_i} - \sum_j \frac{\partial L}{\partial \hat{x}_j} - \hat{x}_i \sum_j \frac{\partial L}{\partial \hat{x}_j} \hat{x}_j\right]
-
-```
+$$\frac{\partial L}{\partial x_i} = \frac{1}{m\sigma}\left[m\frac{\partial L}{\partial \hat{x}_i} - \sum_j \frac{\partial L}{\partial \hat{x}_j} - \hat{x}_i \sum_j \frac{\partial L}{\partial \hat{x}_j} \hat{x}_j\right]$$
 
 ### Why BatchNorm Works
 
@@ -137,13 +116,10 @@ Normalize over $(B, H, W)$ for each channel $c$:
 
 For each sample $x \in \mathbb{R}^d$:
 
-```math
-\mu = \frac{1}{d} \sum_{i=1}^{d} x_i
+$$\mu = \frac{1}{d} \sum_{i=1}^{d} x_i
 \sigma^2 = \frac{1}{d} \sum_{i=1}^{d} (x_i - \mu)^2
 \hat{x}_i = \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}}
-y_i = \gamma_i \hat{x}_i + \beta_i
-
-```
+y_i = \gamma_i \hat{x}_i + \beta_i$$
 
 **Key difference from BatchNorm:**
 - Normalize over features, not batch
@@ -158,11 +134,8 @@ Input: $x \in \mathbb{R}^{B \times L \times D}$
 
 Normalize over $D$ for each token $(b, l)$:
 
-```math
-\mu_{b,l} = \frac{1}{D} \sum_{d=1}^{D} x_{b,l,d}
-\sigma_{b,l}^2 = \frac{1}{D} \sum_{d=1}^{D} (x_{b,l,d} - \mu_{b,l})^2
-
-```
+$$\mu_{b,l} = \frac{1}{D} \sum_{d=1}^{D} x_{b,l,d}
+\sigma_{b,l}^2 = \frac{1}{D} \sum_{d=1}^{D} (x_{b,l,d} - \mu_{b,l})^2$$
 
 **Parameters:** $\gamma, \beta \in \mathbb{R}^D$
 
@@ -195,11 +168,8 @@ Normalize over $D$ for each token $(b, l)$:
 
 Simpler variant without mean subtraction:
 
-```math
-\text{RMS}(x) = \sqrt{\frac{1}{d} \sum_{i=1}^{d} x_i^2}
-y = \frac{x}{\text{RMS}(x)} \cdot \gamma
-
-```
+$$\text{RMS}(x) = \sqrt{\frac{1}{d} \sum_{i=1}^{d} x_i^2}
+y = \frac{x}{\text{RMS}(x)} \cdot \gamma$$
 
 **Note:** No $\beta$ parameter, no mean centering.
 
@@ -245,10 +215,7 @@ The re-centering (subtracting mean) in LayerNorm can be redundant because:
 
 Divides channels into groups, normalizes within each group:
 
-```math
-\mu_g = \frac{1}{|G|} \sum_{i \in G} x_i
-
-```
+$$\mu_g = \frac{1}{|G|} \sum_{i \in G} x_i$$
 
 **Use case:** Small batch sizes where BatchNorm fails
 
@@ -256,10 +223,7 @@ Divides channels into groups, normalizes within each group:
 
 Normalizes over $(H, W)$ for each sample and channel:
 
-```math
-\mu_{n,c} = \frac{1}{HW} \sum_{h,w} x_{n,c,h,w}
-
-```
+$$\mu_{n,c} = \frac{1}{HW} \sum_{h,w} x_{n,c,h,w}$$
 
 **Use case:** Style transfer (removes style information)
 
@@ -267,10 +231,7 @@ Normalizes over $(H, W)$ for each sample and channel:
 
 Normalizes weight vectors instead of activations:
 
-```math
-w = g \cdot \frac{v}{\|v\|}
-
-```
+$$w = g \cdot \frac{v}{\|v\|}$$
 
 **Use case:** RNNs, when BatchNorm is problematic
 
@@ -436,19 +397,13 @@ instance_norm = nn.InstanceNorm2d(64)  # For style transfer
 **Without Normalization:**
 Layer inputs have distributions that change during training:
 
-```math
-x^{(l)} \sim p_t(x^{(l)})
-
-```
+$$x^{(l)} \sim p_t(x^{(l)})$$
 
 where $p_t$ depends on all previous layer parameters at step $t$.
 
 **With Normalization:**
 
-```math
-\hat{x}^{(l)} \sim \mathcal{N}(\beta, \gamma^2) \quad \text{(approximately)}
-
-```
+$$\hat{x}^{(l)} \sim \mathcal{N}(\beta, \gamma^2) \quad \text{(approximately)}$$
 
 Distribution controlled by learnable $\beta, \gamma$.
 
@@ -457,10 +412,7 @@ Distribution controlled by learnable $\beta, \gamma$.
 **Theorem (Gradient Magnitude):**
 For normalized activations:
 
-```math
-\left\|\frac{\partial L}{\partial W^{(l)}}\right\| \approx O\left(\frac{1}{\sqrt{d}}\right) \left\|\frac{\partial L}{\partial a^{(l)}}\right\|
-
-```
+$$\left\|\frac{\partial L}{\partial W^{(l)}}\right\| \approx O\left(\frac{1}{\sqrt{d}}\right) \left\|\frac{\partial L}{\partial a^{(l)}}\right\|$$
 
 Gradients don't explode or vanish as quickly.
 
@@ -469,10 +421,7 @@ Gradients don't explode or vanish as quickly.
 **Theorem (Santurkar et al., 2018):**
 BatchNorm makes the loss landscape more Lipschitz-smooth:
 
-```math
-\|\nabla L(w_1) - \nabla L(w_2)\| \leq \beta \|w_1 - w_2\|
-
-```
+$$\|\nabla L(w_1) - \nabla L(w_2)\| \leq \beta \|w_1 - w_2\|$$
 
 with smaller $\beta$ than unnormalized networks.
 

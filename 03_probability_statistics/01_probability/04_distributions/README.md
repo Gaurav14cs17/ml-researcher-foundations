@@ -17,18 +17,12 @@
 
 ### Bernoulli Distribution
 
-```math
-X \sim \text{Bernoulli}(p)
-P(X = 1) = p, \quad P(X = 0) = 1 - p = q
-
-```
+$$X \sim \text{Bernoulli}(p)
+P(X = 1) = p, \quad P(X = 0) = 1 - p = q$$
 
 **PMF:**
 
-```math
-P(X = k) = p^k (1-p)^{1-k}, \quad k \in \{0, 1\}
-
-```
+$$P(X = k) = p^k (1-p)^{1-k}, \quad k \in \{0, 1\}$$
 
 | Property | Value |
 |----------|-------|
@@ -41,28 +35,19 @@ P(X = k) = p^k (1-p)^{1-k}, \quad k \in \{0, 1\}
 
 #### Proof: Mean of Bernoulli
 
-```math
-E[X] = \sum_{x \in \{0,1\}} x \cdot P(X=x) = 0 \cdot (1-p) + 1 \cdot p = p \quad \blacksquare
-
-```
+$$E[X] = \sum_{x \in \{0,1\}} x \cdot P(X=x) = 0 \cdot (1-p) + 1 \cdot p = p \quad \blacksquare$$
 
 #### Proof: Variance of Bernoulli
 
-```math
-E[X^2] = 0^2 \cdot (1-p) + 1^2 \cdot p = p
-\text{Var}(X) = E[X^2] - (E[X])^2 = p - p^2 = p(1-p) \quad \blacksquare
-
-```
+$$E[X^2] = 0^2 \cdot (1-p) + 1^2 \cdot p = p
+\text{Var}(X) = E[X^2] - (E[X])^2 = p - p^2 = p(1-p) \quad \blacksquare$$
 
 ---
 
 ### Binomial Distribution
 
-```math
-X \sim \text{Binomial}(n, p)
-P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0,1,\ldots,n
-
-```
+$$X \sim \text{Binomial}(n, p)
+P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0,1,\ldots,n$$
 
 | Property | Value |
 |----------|-------|
@@ -75,27 +60,18 @@ P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0,1,\ldots,n
 
 Let $X = \sum_{i=1}^{n} X_i$ where $X_i \sim \text{Bernoulli}(p)$ are independent.
 
-```math
-E[X] = E\left[\sum_{i=1}^{n} X_i\right] = \sum_{i=1}^{n} E[X_i] = \sum_{i=1}^{n} p = np \quad \blacksquare
-
-```
+$$E[X] = E\left[\sum_{i=1}^{n} X_i\right] = \sum_{i=1}^{n} E[X_i] = \sum_{i=1}^{n} p = np \quad \blacksquare$$
 
 ---
 
 ### Categorical Distribution
 
-```math
-X \sim \text{Categorical}(p_1, p_2, \ldots, p_K) \quad \text{where } \sum_i p_i = 1
-P(X = i) = p_i
-
-```
+$$X \sim \text{Categorical}(p_1, p_2, \ldots, p_K) \quad \text{where } \sum_i p_i = 1
+P(X = i) = p_i$$
 
 **One-hot representation:**
 
-```math
-\mathbf{x} = [0, 0, \ldots, 1, \ldots, 0]^\top \quad \text{(1 at position } i\text{)}
-
-```
+$$\mathbf{x} = [0, 0, \ldots, 1, \ldots, 0]^\top \quad \text{(1 at position } i\text{)}$$
 
 **ML Use:** Multi-class classification (softmax → Categorical)
 
@@ -103,11 +79,8 @@ P(X = i) = p_i
 
 ### Poisson Distribution
 
-```math
-X \sim \text{Poisson}(\lambda)
-P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}, \quad k = 0,1,2,\ldots
-
-```
+$$X \sim \text{Poisson}(\lambda)
+P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}, \quad k = 0,1,2,\ldots$$
 
 | Property | Value |
 |----------|-------|
@@ -118,24 +91,15 @@ P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}, \quad k = 0,1,2,\ldots
 
 #### Proof: Poisson Mean
 
-```math
-E[X] = \sum_{k=0}^{\infty} k \cdot \frac{\lambda^k e^{-\lambda}}{k!}
-
-```
+$$E[X] = \sum_{k=0}^{\infty} k \cdot \frac{\lambda^k e^{-\lambda}}{k!}$$
 
 The k=0 term vanishes. For k ≥ 1:
 
-```math
-= e^{-\lambda} \sum_{k=1}^{\infty} k \cdot \frac{\lambda^k}{k!} = e^{-\lambda} \sum_{k=1}^{\infty} \frac{\lambda^k}{(k-1)!}
-
-```
+$$= e^{-\lambda} \sum_{k=1}^{\infty} k \cdot \frac{\lambda^k}{k!} = e^{-\lambda} \sum_{k=1}^{\infty} \frac{\lambda^k}{(k-1)!}$$
 
 Let j = k - 1:
 
-```math
-= e^{-\lambda} \lambda \sum_{j=0}^{\infty} \frac{\lambda^j}{j!} = e^{-\lambda} \lambda \cdot e^{\lambda} = \lambda \quad \blacksquare
-
-```
+$$= e^{-\lambda} \lambda \sum_{j=0}^{\infty} \frac{\lambda^j}{j!} = e^{-\lambda} \lambda \cdot e^{\lambda} = \lambda \quad \blacksquare$$
 
 ---
 
@@ -143,17 +107,11 @@ Let j = k - 1:
 
 ### Gaussian (Normal) Distribution
 
-```math
-X \sim \mathcal{N}(\mu, \sigma^2)
-
-```
+$$X \sim \mathcal{N}(\mu, \sigma^2)$$
 
 **PDF:**
 
-```math
-p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
-
-```
+$$p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
 
 | Property | Value |
 |----------|-------|
@@ -187,10 +145,7 @@ p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\righ
 
 We maximize:
 
-```math
-H(X) = -\int p(x)\log p(x) \, dx
-
-```
+$$H(X) = -\int p(x)\log p(x) \, dx$$
 
 Subject to:
 
@@ -202,19 +157,13 @@ Subject to:
 
 **Lagrangian:**
 
-```math
-\mathcal{L}[p] = -\int p \log p \, dx + \lambda_0\left(\int p \, dx - 1\right) + \lambda_1\left(\int xp \, dx - \mu\right) + \lambda_2\left(\int (x-\mu)^2 p \, dx - \sigma^2\right)
-
-```
+$$\mathcal{L}[p] = -\int p \log p \, dx + \lambda_0\left(\int p \, dx - 1\right) + \lambda_1\left(\int xp \, dx - \mu\right) + \lambda_2\left(\int (x-\mu)^2 p \, dx - \sigma^2\right)$$
 
 **Functional derivative:**
 
-```math
-\frac{\delta \mathcal{L}}{\delta p} = -\log p - 1 + \lambda_0 + \lambda_1 x + \lambda_2(x-\mu)^2 = 0
+$$\frac{\delta \mathcal{L}}{\delta p} = -\log p - 1 + \lambda_0 + \lambda_1 x + \lambda_2(x-\mu)^2 = 0
 \log p = -1 + \lambda_0 + \lambda_1 x + \lambda_2(x-\mu)^2
-p(x) = \exp\left(-1 + \lambda_0 + \lambda_1 x + \lambda_2(x-\mu)^2\right)
-
-```
+p(x) = \exp\left(-1 + \lambda_0 + \lambda_1 x + \lambda_2(x-\mu)^2\right)$$
 
 **Imposing constraints:**
 - From fixed mean: $\lambda_1 = 0$
@@ -223,19 +172,13 @@ p(x) = \exp\left(-1 + \lambda_0 + \lambda_1 x + \lambda_2(x-\mu)^2\right)
 
 - From normalization: $\lambda_0 = 1 - \frac{1}{2}\log(2\pi\sigma^2)$
 
-```math
-p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
-
-```
+$$p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
 
 This is the Gaussian distribution! $\blacksquare$
 
 **Entropy of Gaussian:**
 
-```math
-H(X) = \frac{1}{2}\log(2\pi e\sigma^2) \text{ nats}
-
-```
+$$H(X) = \frac{1}{2}\log(2\pi e\sigma^2) \text{ nats}$$
 
 ---
 
@@ -247,10 +190,7 @@ Define sample mean: $\bar{X}_n = \frac{1}{n}\sum_{i=1}^{n} X_i$
 
 Then as $n \to \infty$:
 
-```math
-\sqrt{n}(\bar{X}_n - \mu) \xrightarrow{d} \mathcal{N}(0, \sigma^2)
-
-```
+$$\sqrt{n}(\bar{X}_n - \mu) \xrightarrow{d} \mathcal{N}(0, \sigma^2)$$
 
 Or equivalently: $\bar{X}_n \xrightarrow{d} \mathcal{N}(\mu, \sigma^2/n)$
 
@@ -262,24 +202,15 @@ Or equivalently: $\bar{X}_n \xrightarrow{d} \mathcal{N}(\mu, \sigma^2/n)$
 
 3. Characteristic function:
 
-```math
-\phi_{S_n}(t) = E[e^{itS_n}] = \left[\phi_Z\left(\frac{t}{\sqrt{n}}\right)\right]^n
-
-```
+$$\phi_{S_n}(t) = E[e^{itS_n}] = \left[\phi_Z\left(\frac{t}{\sqrt{n}}\right)\right]^n$$
 
 4. Taylor expansion:
 
-```math
-\phi_Z\left(\frac{t}{\sqrt{n}}\right) = 1 - \frac{t^2}{2n} + O\left(\frac{t^3}{n^{3/2}}\right)
-
-```
+$$\phi_Z\left(\frac{t}{\sqrt{n}}\right) = 1 - \frac{t^2}{2n} + O\left(\frac{t^3}{n^{3/2}}\right)$$
 
 5. Taking limit:
 
-```math
-\phi_{S_n}(t) = \left[1 - \frac{t^2}{2n}\right]^n \to e^{-t^2/2}
-
-```
+$$\phi_{S_n}(t) = \left[1 - \frac{t^2}{2n}\right]^n \to e^{-t^2/2}$$
 
 This is the characteristic function of $\mathcal{N}(0,1)$! $\blacksquare$
 
@@ -289,33 +220,21 @@ This is the characteristic function of $\mathcal{N}(0,1)$! $\blacksquare$
 
 **Theorem:** If likelihood is $X|\mu \sim \mathcal{N}(\mu, \sigma^2)$ (σ² known) and prior is $\mu \sim \mathcal{N}(\mu_0, \sigma_0^2)$, then the posterior is Gaussian:
 
-```math
-\mu|X \sim \mathcal{N}(\mu_n, \sigma_n^2)
-
-```
+$$\mu|X \sim \mathcal{N}(\mu_n, \sigma_n^2)$$
 
 where:
 
-```math
-\sigma_n^2 = \frac{1}{\frac{1}{\sigma_0^2} + \frac{n}{\sigma^2}}
-\mu_n = \sigma_n^2 \left(\frac{\mu_0}{\sigma_0^2} + \frac{n\bar{X}}{\sigma^2}\right)
-
-```
+$$\sigma_n^2 = \frac{1}{\frac{1}{\sigma_0^2} + \frac{n}{\sigma^2}}
+\mu_n = \sigma_n^2 \left(\frac{\mu_0}{\sigma_0^2} + \frac{n\bar{X}}{\sigma^2}\right)$$
 
 **Proof:**
 
-```math
-p(\mu|X) \propto p(X|\mu) \cdot p(\mu)
-\propto \exp\left(-\sum_i\frac{(x_i-\mu)^2}{2\sigma^2}\right) \cdot \exp\left(-\frac{(\mu-\mu_0)^2}{2\sigma_0^2}\right)
-
-```
+$$p(\mu|X) \propto p(X|\mu) \cdot p(\mu)
+\propto \exp\left(-\sum_i\frac{(x_i-\mu)^2}{2\sigma^2}\right) \cdot \exp\left(-\frac{(\mu-\mu_0)^2}{2\sigma_0^2}\right)$$
 
 Expanding and completing the square in μ:
 
-```math
-\propto \exp\left(-\frac{1}{2}\left[\left(\frac{n}{\sigma^2}+\frac{1}{\sigma_0^2}\right)\mu^2 - 2\left(\frac{n\bar{X}}{\sigma^2}+\frac{\mu_0}{\sigma_0^2}\right)\mu\right]\right)
-
-```
+$$\propto \exp\left(-\frac{1}{2}\left[\left(\frac{n}{\sigma^2}+\frac{1}{\sigma_0^2}\right)\mu^2 - 2\left(\frac{n\bar{X}}{\sigma^2}+\frac{\mu_0}{\sigma_0^2}\right)\mu\right]\right)$$
 
 This is the kernel of $\mathcal{N}(\mu_n, \sigma_n^2)$. $\blacksquare$
 
@@ -323,17 +242,11 @@ This is the kernel of $\mathcal{N}(\mu_n, \sigma_n^2)$. $\blacksquare$
 
 ### Multivariate Gaussian
 
-```math
-\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma}), \quad \mathbf{X}, \boldsymbol{\mu} \in \mathbb{R}^n, \quad \boldsymbol{\Sigma} \in \mathbb{R}^{n \times n}
-
-```
+$$\mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma}), \quad \mathbf{X}, \boldsymbol{\mu} \in \mathbb{R}^n, \quad \boldsymbol{\Sigma} \in \mathbb{R}^{n \times n}$$
 
 **PDF:**
 
-```math
-p(\mathbf{x}) = (2\pi)^{-n/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^\top\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)
-
-```
+$$p(\mathbf{x}) = (2\pi)^{-n/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^\top\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)$$
 
 **Key Properties:**
 - Marginals are Gaussian
@@ -348,32 +261,20 @@ p(\mathbf{x}) = (2\pi)^{-n/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2
 
 **Joint distribution:**
 
-```math
-\begin{bmatrix} \mathbf{x} \\ \mathbf{y} \end{bmatrix} \sim \mathcal{N}\left(\begin{bmatrix} \boldsymbol{\mu}_x \\ \boldsymbol{\mu}_y \end{bmatrix}, \begin{bmatrix} \boldsymbol{\Sigma}_{xx} & \boldsymbol{\Sigma}_{xy} \\ \boldsymbol{\Sigma}_{yx} & \boldsymbol{\Sigma}_{yy} \end{bmatrix}\right)
-
-```
+$$\begin{bmatrix} \mathbf{x} \\ \mathbf{y} \end{bmatrix} \sim \mathcal{N}\left(\begin{bmatrix} \boldsymbol{\mu}_x \\ \boldsymbol{\mu}_y \end{bmatrix}, \begin{bmatrix} \boldsymbol{\Sigma}_{xx} & \boldsymbol{\Sigma}_{xy} \\ \boldsymbol{\Sigma}_{yx} & \boldsymbol{\Sigma}_{yy} \end{bmatrix}\right)$$
 
 **Marginal:**
 
-```math
-\mathbf{x} \sim \mathcal{N}(\boldsymbol{\mu}_x, \boldsymbol{\Sigma}_{xx})
-
-```
+$$\mathbf{x} \sim \mathcal{N}(\boldsymbol{\mu}_x, \boldsymbol{\Sigma}_{xx})$$
 
 **Conditional:**
 
-```math
-\mathbf{x}|\mathbf{y} \sim \mathcal{N}(\boldsymbol{\mu}_{x|y}, \boldsymbol{\Sigma}_{x|y})
-
-```
+$$\mathbf{x}|\mathbf{y} \sim \mathcal{N}(\boldsymbol{\mu}_{x|y}, \boldsymbol{\Sigma}_{x|y})$$
 
 where:
 
-```math
-\boldsymbol{\mu}_{x|y} = \boldsymbol{\mu}_x + \boldsymbol{\Sigma}_{xy}\boldsymbol{\Sigma}_{yy}^{-1}(\mathbf{y} - \boldsymbol{\mu}_y)
-\boldsymbol{\Sigma}_{x|y} = \boldsymbol{\Sigma}_{xx} - \boldsymbol{\Sigma}_{xy}\boldsymbol{\Sigma}_{yy}^{-1}\boldsymbol{\Sigma}_{yx}
-
-```
+$$\boldsymbol{\mu}_{x|y} = \boldsymbol{\mu}_x + \boldsymbol{\Sigma}_{xy}\boldsymbol{\Sigma}_{yy}^{-1}(\mathbf{y} - \boldsymbol{\mu}_y)
+\boldsymbol{\Sigma}_{x|y} = \boldsymbol{\Sigma}_{xx} - \boldsymbol{\Sigma}_{xy}\boldsymbol{\Sigma}_{yy}^{-1}\boldsymbol{\Sigma}_{yx}$$
 
 **Note:** The conditional mean is the **regression formula**! The conditional covariance is the **Schur complement**.
 
@@ -383,47 +284,29 @@ where:
 
 **Univariate:**
 
-```math
-D_{KL}(\mathcal{N}(\mu_1,\sigma_1^2) \| \mathcal{N}(\mu_2,\sigma_2^2)) = \log\frac{\sigma_2}{\sigma_1} + \frac{\sigma_1^2 + (\mu_1-\mu_2)^2}{2\sigma_2^2} - \frac{1}{2}
-
-```
+$$D_{KL}(\mathcal{N}(\mu_1,\sigma_1^2) \| \mathcal{N}(\mu_2,\sigma_2^2)) = \log\frac{\sigma_2}{\sigma_1} + \frac{\sigma_1^2 + (\mu_1-\mu_2)^2}{2\sigma_2^2} - \frac{1}{2}$$
 
 **Special case (KL to standard normal - VAE regularization):**
 
-```math
-D_{KL}(\mathcal{N}(\mu,\sigma^2) \| \mathcal{N}(0,1)) = \frac{1}{2}\left(\mu^2 + \sigma^2 - 1 - \log(\sigma^2)\right)
-
-```
+$$D_{KL}(\mathcal{N}(\mu,\sigma^2) \| \mathcal{N}(0,1)) = \frac{1}{2}\left(\mu^2 + \sigma^2 - 1 - \log(\sigma^2)\right)$$
 
 **Multivariate:**
 
-```math
-D_{KL}(\mathcal{N}(\boldsymbol{\mu}_1,\boldsymbol{\Sigma}_1) \| \mathcal{N}(\boldsymbol{\mu}_2,\boldsymbol{\Sigma}_2)) = \frac{1}{2}\left[\text{tr}(\boldsymbol{\Sigma}_2^{-1}\boldsymbol{\Sigma}_1) + (\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)^\top\boldsymbol{\Sigma}_2^{-1}(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1) - d + \log\frac{|\boldsymbol{\Sigma}_2|}{|\boldsymbol{\Sigma}_1|}\right]
-
-```
+$$D_{KL}(\mathcal{N}(\boldsymbol{\mu}_1,\boldsymbol{\Sigma}_1) \| \mathcal{N}(\boldsymbol{\mu}_2,\boldsymbol{\Sigma}_2)) = \frac{1}{2}\left[\text{tr}(\boldsymbol{\Sigma}_2^{-1}\boldsymbol{\Sigma}_1) + (\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)^\top\boldsymbol{\Sigma}_2^{-1}(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1) - d + \log\frac{|\boldsymbol{\Sigma}_2|}{|\boldsymbol{\Sigma}_1|}\right]$$
 
 ---
 
 ### Uniform Distribution
 
-```math
-X \sim \text{Uniform}(a, b)
-
-```
+$$X \sim \text{Uniform}(a, b)$$
 
 **PDF:**
 
-```math
-p(x) = \frac{1}{b-a}, \quad x \in [a, b]
-
-```
+$$p(x) = \frac{1}{b-a}, \quad x \in [a, b]$$
 
 **CDF:**
 
-```math
-F(x) = \frac{x-a}{b-a}
-
-```
+$$F(x) = \frac{x-a}{b-a}$$
 
 | Property | Value |
 |----------|-------|
@@ -434,24 +317,15 @@ F(x) = \frac{x-a}{b-a}
 
 ### Exponential Distribution
 
-```math
-X \sim \text{Exponential}(\lambda)
-
-```
+$$X \sim \text{Exponential}(\lambda)$$
 
 **PDF:**
 
-```math
-p(x) = \lambda e^{-\lambda x}, \quad x \geq 0
-
-```
+$$p(x) = \lambda e^{-\lambda x}, \quad x \geq 0$$
 
 **CDF:**
 
-```math
-F(x) = 1 - e^{-\lambda x}
-
-```
+$$F(x) = 1 - e^{-\lambda x}$$
 
 | Property | Value |
 |----------|-------|
@@ -464,10 +338,7 @@ F(x) = 1 - e^{-\lambda x}
 
 **General form:**
 
-```math
-p(x|\boldsymbol{\theta}) = h(x) \exp\left(\boldsymbol{\eta}(\boldsymbol{\theta})^\top \mathbf{T}(x) - A(\boldsymbol{\theta})\right)
-
-```
+$$p(x|\boldsymbol{\theta}) = h(x) \exp\left(\boldsymbol{\eta}(\boldsymbol{\theta})^\top \mathbf{T}(x) - A(\boldsymbol{\theta})\right)$$
 
 | Component | Name | Description |
 |-----------|------|-------------|
@@ -559,12 +430,9 @@ def sample_mvn_cholesky(mu, Sigma, n_samples):
 
 ### Loss Functions as Negative Log-Likelihood
 
-```math
-\text{Binary Cross-Entropy} = -\log P(y|x) \text{ for Bernoulli}
+$$\text{Binary Cross-Entropy} = -\log P(y|x) \text{ for Bernoulli}
 \text{Cross-Entropy Loss} = -\log P(y|x) \text{ for Categorical}
-\text{MSE Loss} \propto -\log P(y|x) \text{ for Gaussian (fixed } \sigma\text{)}
-
-```
+\text{MSE Loss} \propto -\log P(y|x) \text{ for Gaussian (fixed } \sigma\text{)}$$
 
 **Training = Maximum Likelihood = Minimize NLL**
 

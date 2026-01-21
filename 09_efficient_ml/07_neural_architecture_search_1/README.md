@@ -131,17 +131,11 @@ output = α_1 * op_1(x) + α_2 * op_2(x) + α_3 * op_3(x)
 
 **Objective:**
 
-```math
-\alpha^* = \arg\max_{\alpha \in \mathcal{A}} \text{Val-Acc}(w^*(\alpha), \alpha)
-
-```
+$$\alpha^* = \arg\max_{\alpha \in \mathcal{A}} \text{Val-Acc}(w^*(\alpha), \alpha)$$
 
 subject to:
 
-```math
-w^*(\alpha) = \arg\min_w \mathcal{L}_{train}(w, \alpha)
-
-```
+$$w^*(\alpha) = \arg\min_w \mathcal{L}_{train}(w, \alpha)$$
 
 where:
 
@@ -159,26 +153,17 @@ This is a **bi-level optimization** problem.
 
 **Discrete search space:**
 
-```math
-\bar{o}^{(i,j)}(x) = \sum_{o \in \mathcal{O}} \mathbb{1}[\alpha^{(i,j)} = o] \cdot o(x)
-
-```
+$$\bar{o}^{(i,j)}(x) = \sum_{o \in \mathcal{O}} \mathbb{1}[\alpha^{(i,j)} = o] \cdot o(x)$$
 
 **Continuous relaxation:**
 
-```math
-\bar{o}^{(i,j)}(x) = \sum_{o \in \mathcal{O}} \frac{\exp(\alpha_o^{(i,j)})}{\sum_{o'} \exp(\alpha_{o'}^{(i,j)})} \cdot o(x)
-
-```
+$$\bar{o}^{(i,j)}(x) = \sum_{o \in \mathcal{O}} \frac{\exp(\alpha_o^{(i,j)})}{\sum_{o'} \exp(\alpha_{o'}^{(i,j)})} \cdot o(x)$$
 
 This is a **softmax-weighted mixture** of all operations.
 
 **After training:** Discretize by selecting highest-weight operation:
 
-```math
-o^* = \arg\max_o \alpha_o^{(i,j)}
-
-```
+$$o^* = \arg\max_o \alpha_o^{(i,j)}$$
 
 ---
 
@@ -186,33 +171,21 @@ o^* = \arg\max_o \alpha_o^{(i,j)}
 
 **Outer loop (architecture):**
 
-```math
-\min_\alpha \mathcal{L}_{val}(w^*(\alpha), \alpha)
-
-```
+$$\min_\alpha \mathcal{L}_{val}(w^*(\alpha), \alpha)$$
 
 **Inner loop (weights):**
 
-```math
-w^*(\alpha) = \arg\min_w \mathcal{L}_{train}(w, \alpha)
-
-```
+$$w^*(\alpha) = \arg\min_w \mathcal{L}_{train}(w, \alpha)$$
 
 **Approximation (for tractability):**
 
 Instead of fully solving inner loop, take one gradient step:
 
-```math
-w' = w - \xi \nabla_w \mathcal{L}_{train}(w, \alpha)
-
-```
+$$w' = w - \xi \nabla_w \mathcal{L}_{train}(w, \alpha)$$
 
 Then update architecture:
 
-```math
-\alpha' = \alpha - \eta \nabla_\alpha \mathcal{L}_{val}(w', \alpha)
-
-```
+$$\alpha' = \alpha - \eta \nabla_\alpha \mathcal{L}_{val}(w', \alpha)$$
 
 ---
 
@@ -220,17 +193,11 @@ Then update architecture:
 
 The gradient of validation loss w.r.t. architecture:
 
-```math
-\nabla_\alpha \mathcal{L}_{val}(w^*(\alpha), \alpha) = \nabla_\alpha \mathcal{L}_{val} - \xi \nabla_\alpha \nabla_w \mathcal{L}_{train} \cdot \nabla_{w'} \mathcal{L}_{val}
-
-```
+$$\nabla_\alpha \mathcal{L}_{val}(w^*(\alpha), \alpha) = \nabla_\alpha \mathcal{L}_{val} - \xi \nabla_\alpha \nabla_w \mathcal{L}_{train} \cdot \nabla_{w'} \mathcal{L}_{val}$$
 
 **First-order approximation (faster):**
 
-```math
-\nabla_\alpha \mathcal{L}_{val}(w^*(\alpha), \alpha) \approx \nabla_\alpha \mathcal{L}_{val}(w, \alpha)
-
-```
+$$\nabla_\alpha \mathcal{L}_{val}(w^*(\alpha), \alpha) \approx \nabla_\alpha \mathcal{L}_{val}(w, \alpha)$$
 
 Ignores the second term (Hessian-vector product).
 
@@ -238,10 +205,7 @@ Ignores the second term (Hessian-vector product).
 
 Using finite differences:
 
-```math
-\nabla_\alpha^2 \mathcal{L}_{val} \approx \frac{\nabla_\alpha \mathcal{L}_{val}(w^+) - \nabla_\alpha \mathcal{L}_{val}(w^-)}{2\epsilon}
-
-```
+$$\nabla_\alpha^2 \mathcal{L}_{val} \approx \frac{\nabla_\alpha \mathcal{L}_{val}(w^+) - \nabla_\alpha \mathcal{L}_{val}(w^-)}{2\epsilon}$$
 
 where \( w^\pm = w \pm \epsilon \nabla_{w'} \mathcal{L}_{val} \).
 
@@ -253,26 +217,15 @@ For a cell with \( N \) nodes and \( K \) operations:
 
 **Number of possible cells:**
 
-```math
-
-|\mathcal{A}_{cell}| = K^{\binom{N}{2}} = K^{N(N-1)/2}
-
-```
+$$|\mathcal{A}_{cell}| = K^{\binom{N}{2}} = K^{N(N-1)/2}$$
 
 **Example:** \( N=4 \), \( K=8 \):
 
-```math
-|\mathcal{A}_{cell}| = 8^6 = 262,144 \text{ cells}
-
-```
+$$|\mathcal{A}_{cell}| = 8^6 = 262,144 \text{ cells}$$
 
 With normal + reduction cells:
 
-```math
-
-|\mathcal{A}_{total}| = |\mathcal{A}_{cell}|^2 \approx 10^{10}
-
-```
+$$|\mathcal{A}_{total}| = |\mathcal{A}_{cell}|^2 \approx 10^{10}$$
 
 **Exhaustive search is infeasible** → need efficient search strategies.
 
@@ -284,26 +237,17 @@ With normal + reduction cells:
 
 **Solution:** Train a **supernet** containing all architectures:
 
-```math
-\mathcal{M}_{super}(x; W) = \sum_{\alpha \in \mathcal{A}} p(\alpha) \cdot f(x; W, \alpha)
-
-```
+$$\mathcal{M}_{super}(x; W) = \sum_{\alpha \in \mathcal{A}} p(\alpha) \cdot f(x; W, \alpha)$$
 
 **Path sampling:** At each step, sample an architecture \( \alpha \) and train:
 
-```math
-W \leftarrow W - \eta \nabla_W \mathcal{L}(W, \alpha)
-
-```
+$$W \leftarrow W - \eta \nabla_W \mathcal{L}(W, \alpha)$$
 
 **Evaluation:** Use shared weights without retraining.
 
 **Approximation quality:**
 
-```math
-\text{Acc}_{shared}(\alpha) \approx \text{Acc}_{scratch}(\alpha)
-
-```
+$$\text{Acc}_{shared}(\alpha) \approx \text{Acc}_{scratch}(\alpha)$$
 
 Correlation: ~0.8-0.9 (good enough for ranking).
 
@@ -321,17 +265,11 @@ Correlation: ~0.8-0.9 (good enough for ranking).
 
 **Policy gradient update:**
 
-```math
-\nabla_\theta J(\theta) = \mathbb{E}_{a \sim \pi_\theta}[R(a) \nabla_\theta \log \pi_\theta(a)]
-
-```
+$$\nabla_\theta J(\theta) = \mathbb{E}_{a \sim \pi_\theta}[R(a) \nabla_\theta \log \pi_\theta(a)]$$
 
 **REINFORCE with baseline:**
 
-```math
-\nabla_\theta J(\theta) = \mathbb{E}[(R - b) \nabla_\theta \log \pi_\theta(a)]
-
-```
+$$\nabla_\theta J(\theta) = \mathbb{E}[(R - b) \nabla_\theta \log \pi_\theta(a)]$$
 
 where \( b \) is the moving average of rewards (baseline).
 
@@ -372,10 +310,7 @@ where \( b \) is the moving average of rewards (baseline).
 
 DARTS maintains all operations simultaneously:
 
-```math
-\text{Memory} = \sum_{o \in \mathcal{O}} \text{Memory}(o)
-
-```
+$$\text{Memory} = \sum_{o \in \mathcal{O}} \text{Memory}(o)$$
 
 For \( K \) operations: \( K \times \) memory of single-path model.
 
@@ -385,17 +320,11 @@ For \( K \) operations: \( K \times \) memory of single-path model.
 
 For found architecture with operations \( \{o_1, ..., o_L\} \):
 
-```math
-\text{FLOPs} = \sum_{l=1}^L \text{FLOPs}(o_l)
-
-```
+$$\text{FLOPs} = \sum_{l=1}^L \text{FLOPs}(o_l)$$
 
 Can add FLOPs constraint to search:
 
-```math
-\min_\alpha \mathcal{L}_{val} + \lambda \cdot \text{FLOPs}(\alpha)
-
-```
+$$\min_\alpha \mathcal{L}_{val} + \lambda \cdot \text{FLOPs}(\alpha)$$
 
 ---
 

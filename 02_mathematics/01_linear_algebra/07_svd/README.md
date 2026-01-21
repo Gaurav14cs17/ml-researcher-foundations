@@ -87,10 +87,7 @@
 
 For **any** matrix $A \in \mathbb{R}^{m \times n}$, there exist:
 
-```math
-A = U\Sigma V^T
-
-```
+$$A = U\Sigma V^T$$
 
 where:
 
@@ -214,10 +211,7 @@ In matrix form:
 
 The best rank-$k$ approximation to $A$ (in Frobenius or spectral norm) is:
 
-```math
-A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T
-
-```
+$$A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T$$
 
 **Error**: $\|A - A_k\|_F^2 = \sum_{i=k+1}^{r} \sigma_i^2$
 

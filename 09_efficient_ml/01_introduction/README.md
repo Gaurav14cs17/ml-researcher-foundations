@@ -123,10 +123,7 @@ Machine learning models are getting bigger every year:
 
 For a matrix multiplication \( Y = XW \) where \( X \in \mathbb{R}^{m \times n} \) and \( W \in \mathbb{R}^{n \times p} \):
 
-```math
-\text{FLOPs} = 2 \times m \times n \times p
-
-```
+$$\text{FLOPs} = 2 \times m \times n \times p$$
 
 **Proof:** Each output element \( Y_{ij} = \sum_{k=1}^{n} X_{ik} W_{kj} \) requires:
 
@@ -138,26 +135,17 @@ Total: \( m \times p \times 2n = 2mnp \) FLOPs.
 
 #### Memory Footprint
 
-```math
-\text{Memory} = \sum_{l=1}^{L} |\theta_l| \times b_l
-
-```
+$$\text{Memory} = \sum_{l=1}^{L} |\theta_l| \times b_l$$
 
 where \( |\theta_l| \) is the number of parameters in layer \( l \) and \( b_l \) is bytes per parameter.
 
 **Example:** A model with 7B parameters in FP16:
 
-```math
-\text{Memory} = 7 \times 10^9 \times 2 \text{ bytes} = 14 \text{ GB}
-
-```
+$$\text{Memory} = 7 \times 10^9 \times 2 \text{ bytes} = 14 \text{ GB}$$
 
 #### Efficiency Ratio
 
-```math
-\eta = \frac{\text{Accuracy}(\mathcal{M})}{\text{Cost}(\mathcal{M})}
-
-```
+$$\eta = \frac{\text{Accuracy}(\mathcal{M})}{\text{Cost}(\mathcal{M})}$$
 
 where Cost can be FLOPs, latency, energy, or memory.
 
@@ -169,10 +157,7 @@ A model \( \mathcal{M}^* \) is **Pareto optimal** if no other model achieves:
 
 - Same accuracy with lower cost
 
-```math
-\nexists \mathcal{M}: \text{Acc}(\mathcal{M}) \geq \text{Acc}(\mathcal{M}^*) \land \text{Cost}(\mathcal{M}) \leq \text{Cost}(\mathcal{M}^*)
-
-```
+$$\nexists \mathcal{M}: \text{Acc}(\mathcal{M}) \geq \text{Acc}(\mathcal{M}^*) \land \text{Cost}(\mathcal{M}) \leq \text{Cost}(\mathcal{M}^*)$$
 
 with at least one strict inequality.
 
@@ -180,10 +165,7 @@ with at least one strict inequality.
 
 The optimal relationship between compute \( C \), parameters \( N \), and data \( D \):
 
-```math
-L(N, D) = \frac{A}{N^\alpha} + \frac{B}{D^\beta} + E
-
-```
+$$L(N, D) = \frac{A}{N^\alpha} + \frac{B}{D^\beta} + E$$
 
 where:
 
@@ -201,21 +183,15 @@ where:
 
 For transformer inference, the compute-to-memory ratio:
 
-```math
-\text{Arithmetic Intensity} = \frac{\text{FLOPs}}{\text{Bytes}} = \frac{2 \times \text{batch} \times \text{seq} \times d^2}{d^2 \times \text{bytes_per_param}}
-
-```
+$$\text{Arithmetic Intensity} = \frac{\text{FLOPs}}{\text{Bytes}} = \frac{2 \times \text{batch} \times \text{seq} \times d^2}{d^2 \times \text{bytes_per_param}}$$
 
 **Insight:** At batch size 1, arithmetic intensity is low → memory-bound.
 
 ### Energy Consumption Model
 
-```math
-E_{\text{total}} = E_{\text{compute}} + E_{\text{memory}}
+$$E_{\text{total}} = E_{\text{compute}} + E_{\text{memory}}
 E_{\text{compute}} = \text{FLOPs} \times E_{\text{per_FLOP}}
-E_{\text{memory}} = \text{Data_moved} \times E_{\text{per_byte}}
-
-```
+E_{\text{memory}} = \text{Data_moved} \times E_{\text{per_byte}}$$
 
 For modern hardware: \( E_{\text{memory}} \gg E_{\text{compute}} \)
 

@@ -100,10 +100,7 @@
 
 **Theorem**: Every matrix satisfies its own characteristic polynomial.
 
-```math
-p_A(A) = 0 \text{ where } p_A(\lambda) = \det(A - \lambda I)
-
-```
+$$p_A(A) = 0 \text{ where } p_A(\lambda) = \det(A - \lambda I)$$
 
 **Example**:
 
@@ -148,10 +145,7 @@ Actually: A⁻¹ = (-1/2)(A - 5I) = (5I - A)/2
 
 Every eigenvalue of $A$ lies in at least one Gershgorin disc:
 
-```math
-D_i = \{z \in \mathbb{C} : |z - A_{ii}| \leq R_i\}
-
-```
+$$D_i = \{z \in \mathbb{C} : |z - A_{ii}| \leq R_i\}$$
 
 where $R_i = \sum_{j \neq i} |A_{ij}|$ (sum of off-diagonal elements in row $i$).
 
@@ -301,10 +295,7 @@ print(f"Most important: Page {np.argmax(ranks) + 1}")
 
 In RNNs, gradients flow through time via:
 
-```math
-\frac{\partial h_t}{\partial h_0} = \prod_{k=1}^{t} W_h^T \text{diag}(\sigma'(z_k))
-
-```
+$$\frac{\partial h_t}{\partial h_0} = \prod_{k=1}^{t} W_h^T \text{diag}(\sigma'(z_k))$$
 
 ### 📐 Eigenvalue Analysis
 
@@ -375,11 +366,8 @@ print(f"Orthogonal init: {check_rnn_stability(W_orth)}")
 
 For graph with adjacency matrix $A$ and degree matrix $D$:
 
-```math
-L = D - A \quad \text{(unnormalized)}
-L_{sym} = I - D^{-1/2}AD^{-1/2} \quad \text{(normalized)}
-
-```
+$$L = D - A \quad \text{(unnormalized)}
+L_{sym} = I - D^{-1/2}AD^{-1/2} \quad \text{(normalized)}$$
 
 ### 📐 Properties of Laplacian
 

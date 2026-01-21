@@ -35,10 +35,7 @@ Let $f(x; \theta)$ be a neural network with parameters $\theta_0$ at initializat
 
 2. $f(x; m \odot \theta_0)$ trained for $T$ iterations achieves:
 
-```math
-\text{Acc}(f_{m \odot \theta_T}) \geq \text{Acc}(f_{\theta_T}) - \epsilon
-
-```math
+$$\text{Acc}(f_{m \odot \theta_T}) \geq \text{Acc}(f_{\theta_T}) - \epsilon$$math
 The sparse subnetwork $(m, \theta_0)$ is called a **winning ticket**.
 
 ---
@@ -107,28 +104,21 @@ Two networks $\theta_1, \theta_2$ are linearly mode connected if:
 ```
 \mathcal{L}(\alpha\theta_1 + (1-\alpha)\theta_2) \leq \max(\mathcal{L}(\theta_1), \mathcal{L}(\theta_2)) \quad \forall \alpha \in [0,1]
 
-```math
-**Finding:** Winning tickets found with late resetting are linearly connected to their dense counterparts.
+$$**Finding:** Winning tickets found with late resetting are linearly connected to their dense counterparts.
 
 This suggests winning tickets lie in the same "basin" of the loss landscape.
 
 #### 3.3 Neural Tangent Kernel Perspective
 
-**At initialization, network behaves linearly:**
-
-```
+**At initialization, network behaves linearly:**$$
 
 f(x; \theta) \approx f(x; \theta_0) + \nabla_\theta f(x; \theta_0)^T (\theta - \theta_0)
 
-```math
-**Sparse subnetwork:**
-
-```
+$$**Sparse subnetwork:**$$
 
 f_m(x; \theta) \approx f(x; \theta_0) + (m \odot \nabla_\theta f(x; \theta_0))^T (\theta - \theta_0)
 
-```math
-**Key:** The masked gradient $m \odot \nabla_\theta f$ must still span the function space.
+$$**Key:** The masked gradient $m \odot \nabla_\theta f$ must still span the function space.
 
 ---
 
@@ -142,9 +132,7 @@ f_m(x; \theta) \approx f(x; \theta_0) + (m \odot \nabla_\theta f(x; \theta_0))^T
 
 #### 4.2 Late Resetting Solution
 
-**Reset to $\theta_k$ instead of $\theta_0$:**
-
-```
+**Reset to $\theta_k$ instead of $\theta_0$:**$$
 
 Modified IMP:
 
@@ -176,8 +164,7 @@ Modified IMP:
 ```
 \theta_k = \theta_0 + \sum_{t=0}^{k-1} \eta \nabla\mathcal{L}(\theta_t)
 
-```math
-The early gradient updates "prepare" the network.
+$$The early gradient updates "prepare" the network.
 
 ---
 
@@ -195,14 +182,11 @@ Specifically, if $f$ has width $w$, then with high probability, a subnetwork can
 
 **Claim:** Winning tickets exist at initialization without any training.
 
-**SNIP (Lee et al., 2018):** Find tickets using gradient-based saliency at init:
-
-```
+**SNIP (Lee et al., 2018):** Find tickets using gradient-based saliency at init:$$
 
 s_i = |w_i \cdot \nabla_{w_i}\mathcal{L}|
 
-```math
-**GraSP (Wang et al., 2020):** Use Hessian-gradient product.
+$$**GraSP (Wang et al., 2020):** Use Hessian-gradient product.
 
 #### 5.3 Pruning at Random
 
@@ -227,23 +211,15 @@ This proves IMP is finding something special, not just any sparse mask.
 
 1. **Covering argument:** For each target neuron $\sigma(w^T x - b)$, we need to find a random neuron $\sigma(v^T x - c)$ such that $\|w - v\| < \epsilon$ and $|b - c| < \epsilon$.
 
-2. **Probability of good neuron:** For random $v \sim \mathcal{N}(0, I)$ truncated to $\|v\| \leq B$:
-
-```
+2. **Probability of good neuron:** For random $v \sim \mathcal{N}(0, I)$ truncated to $\|v\| \leq B$:$$
 
 P(\|w - v\| < \epsilon) \geq \left(\frac{\epsilon}{2B}\right)^d
 
-```math
-
-3. **Union bound:** With $m$ random neurons, probability of finding match for all $n$ targets:
-
-```
+$$3. **Union bound:** With $m$ random neurons, probability of finding match for all $n$ targets:$$
 
 P(\text{all matched}) \geq 1 - n \cdot \left(1 - \left(\frac{\epsilon}{2B}\right)^d\right)^m
 
-```math
-
-4. **Required width:** Setting $m = O(n \cdot (2B/\epsilon)^d \cdot \log(n/\delta))$ ensures success.
+$$4. **Required width:** Setting $m = O(n \cdot (2B/\epsilon)^d \cdot \log(n/\delta))$ ensures success.
 
 For ReLU networks with polynomial target, $d$ is effectively small due to low-rank structure. ∎
 
@@ -251,14 +227,11 @@ For ReLU networks with polynomial target, $d$ is effectively small due to low-ra
 
 **Theorem:** A winning ticket $(m, \theta_0)$ preserves the essential gradient directions of the dense network.
 
-**Formal statement:** Let $g_{dense} = \nabla_\theta \mathcal{L}|_{\theta_0}$ and $g_{sparse} = m \odot g_{dense}$. If:
-
-```
+**Formal statement:** Let $g_{dense} = \nabla_\theta \mathcal{L}|_{\theta_0}$ and $g_{sparse} = m \odot g_{dense}$. If:$$
 
 \cos(g_{dense}, g_{sparse}) = \frac{\langle g_{dense}, g_{sparse} \rangle}{\|g_{dense}\| \|g_{sparse}\|} \geq 1 - \epsilon
 
-```math
-then the sparse network achieves similar convergence rate.
+$$then the sparse network achieves similar convergence rate.
 
 **Proof:**
 
@@ -268,46 +241,34 @@ Gradient descent update:
 
 - Sparse: $\theta_1^{(s)} = \theta_0 - \eta g_{sparse}$
 
-The loss decrease:
-
-```
+The loss decrease:$$
 
 \mathcal{L}(\theta_1) - \mathcal{L}(\theta_0) \approx -\eta \|g_{dense}\|^2
 \mathcal{L}(\theta_1^{(s)}) - \mathcal{L}(\theta_0) \approx -\eta \langle g_{dense}, g_{sparse} \rangle
 
-```math
-Ratio of progress:
-
-```
+$$Ratio of progress:$$
 
 \frac{\text{sparse progress}}{\text{dense progress}} = \frac{\langle g_{dense}, g_{sparse} \rangle}{\|g_{dense}\|^2} = \frac{\|g_{sparse}\|}{\|g_{dense}\|} \cos(\theta)
 
-```math
-For high cosine similarity, sparse network makes nearly same progress. ∎
+$$For high cosine similarity, sparse network makes nearly same progress. ∎
 
 #### 6.3 Theorem: Generalization Bound for Sparse Networks
 
-**Theorem:** A sparse network with $k$ non-zero weights has generalization bound:
-
-```
+**Theorem:** A sparse network with $k$ non-zero weights has generalization bound:$$
 
 \mathcal{L}_{test} - \mathcal{L}_{train} \leq O\left(\sqrt{\frac{k \log(n/k)}{m}}\right)
 
-```math
-where $n$ = total parameters, $m$ = training samples.
+$$where $n$ = total parameters, $m$ = training samples.
 
 **Proof:**
 
 The effective complexity of a $k$-sparse network is $\binom{n}{k} \cdot \mathbb{R}^k$ (choosing which $k$ weights and their values).
 
-By Rademacher complexity:
-
-```
+By Rademacher complexity:$$
 
 \mathcal{R}_m(\mathcal{F}_{sparse}) \leq O\left(\sqrt{\frac{k}{m}}\right)
 
-```math
-The $\log(n/k)$ factor comes from the combinatorial choice of sparse pattern. ∎
+$$The $\log(n/k)$ factor comes from the combinatorial choice of sparse pattern. ∎
 
 **Implication:** Winning tickets generalize better due to lower effective capacity.
 
@@ -317,32 +278,21 @@ The $\log(n/k)$ factor comes from the combinatorial choice of sparse pattern. �
 
 **Proof:**
 
-After $t$ iterations, fraction of weights remaining:
-
-```
+After $t$ iterations, fraction of weights remaining:$$
 
 r_t = (1-p)^t
 
-```math
-Sparsity after $t$ iterations:
-
-```
+$$Sparsity after $t$ iterations:$$
 
 s_t = 1 - r_t = 1 - (1-p)^t
 
-```math
-To achieve target $s$:
-
-```
+$$To achieve target $s$:$$
 
 1 - (1-p)^t \geq s
 (1-p)^t \leq 1-s
 t \geq \frac{\log(1-s)}{\log(1-p)}
 
-```math
-For $p = 0.2$ and $s = 0.9$:
-
-```
+$$For $p = 0.2$ and $s = 0.9$:$$
 
 t \geq \frac{\log(0.1)}{\log(0.8)} = \frac{-2.30}{-0.22} \approx 10.3
 

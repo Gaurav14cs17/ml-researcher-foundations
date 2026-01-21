@@ -45,10 +45,7 @@ Integration is the inverse of differentiation. In ML, we rarely compute integral
 
 **Definition:** The Riemann integral of \(f\) over \([a, b]\) is defined as:
 
-```math
-\int_a^b f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x
-
-```
+$$\int_a^b f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x$$
 
 where \(\Delta x = \frac{b-a}{n}\) and \(x_i^* \in [x_{i-1}, x_i]\).
 
@@ -58,10 +55,7 @@ where \(\Delta x = \frac{b-a}{n}\) and \(x_i^* \in [x_{i-1}, x_i]\).
 
 **Theorem (Part 1):** If \(f\) is continuous on \([a, b]\), then:
 
-```math
-F(x) = \int_a^x f(t) \, dt
-
-```
+$$F(x) = \int_a^x f(t) \, dt$$
 
 is differentiable and \(F'(x) = f(x)\).
 
@@ -84,10 +78,7 @@ As h → 0, c → x, so by continuity: F'(x) = f(x) ✓
 
 **Theorem (Part 2):** If \(F\) is an antiderivative of \(f\) on \([a, b]\), then:
 
-```math
-\int_a^b f(x) \, dx = F(b) - F(a)
-
-```
+$$\int_a^b f(x) \, dx = F(b) - F(a)$$
 
 **Proof:**
 
@@ -116,10 +107,7 @@ Therefore: ∫_a^b f(x)dx = G(b) = F(b) - F(a) ✓
 
 **Theorem:** If \(u = g(x)\) is differentiable and \(f\) is continuous, then:
 
-```math
-\int f(g(x)) \cdot g'(x) \, dx = \int f(u) \, du
-
-```
+$$\int f(g(x)) \cdot g'(x) \, dx = \int f(u) \, du$$
 
 **Proof:**
 
@@ -163,10 +151,7 @@ This proves: ∫_{-∞}^{∞} e^{-x²/2} dx = √(2π) ✓
 
 **Theorem:** 
 
-```math
-\int u \, dv = uv - \int v \, du
-
-```
+$$\int u \, dv = uv - \int v \, du$$
 
 **Proof:**
 
@@ -202,10 +187,7 @@ E[X] = [-xe^{-λx}]_0^∞ + ∫_0^∞ e^{-λx} dx
 
 **Definition:** For a random variable \(X\) with PDF \(p(x)\):
 
-```math
-\mathbb{E}[f(X)] = \int_{-\infty}^{\infty} f(x) \cdot p(x) \, dx
-
-```
+$$\mathbb{E}[f(X)] = \int_{-\infty}^{\infty} f(x) \cdot p(x) \, dx$$
 
 **Variance derivation:**
 
@@ -225,10 +207,7 @@ This is the computational formula for variance.
 
 **Theorem:** For joint distribution \(p(x, z)\), the marginal is:
 
-```math
-p(x) = \int p(x, z) \, dz = \int p(x|z) p(z) \, dz
-
-```
+$$p(x) = \int p(x, z) \, dz = \int p(x|z) p(z) \, dz$$
 
 **Proof:**
 
@@ -302,10 +281,7 @@ The bound is tight when q(z|x) = p(z|x) (true posterior).
 
 **Theorem (Monte Carlo Estimator):**
 
-```math
-\mathbb{E}[f(X)] \approx \frac{1}{N} \sum_{i=1}^{N} f(x_i) \quad \text{where } x_i \sim p(x)
-
-```
+$$\mathbb{E}[f(X)] \approx \frac{1}{N} \sum_{i=1}^{N} f(x_i) \quad \text{where } x_i \sim p(x)$$
 
 **Proof of Unbiasedness:**
 
@@ -344,10 +320,7 @@ This shows convergence rate is O(1/√N).
 
 **Theorem:**
 
-```math
-\mathbb{E}_p[f(X)] = \mathbb{E}_q\left[f(X) \cdot \frac{p(X)}{q(X)}\right] \approx \frac{1}{N} \sum_{i=1}^{N} f(x_i) \cdot \frac{p(x_i)}{q(x_i)}
-
-```
+$$\mathbb{E}_p[f(X)] = \mathbb{E}_q\left[f(X) \cdot \frac{p(X)}{q(X)}\right] \approx \frac{1}{N} \sum_{i=1}^{N} f(x_i) \cdot \frac{p(x_i)}{q(x_i)}$$
 
 **Proof:**
 
@@ -374,10 +347,7 @@ In practice, choose q to have heavier tails than p.
 
 **Theorem:** For transformation \(y = g(x)\) where \(x \in \mathbb{R}^n\):
 
-```math
-\int f(y) \, dy = \int f(g(x)) \cdot |\det(J_g(x))| \, dx
-
-```
+$$\int f(y) \, dy = \int f(g(x)) \cdot |\det(J_g(x))| \, dx$$
 
 where \(J_g\) is the Jacobian matrix.
 

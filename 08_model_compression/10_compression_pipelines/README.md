@@ -23,47 +23,29 @@
 
 **Multiplicative Compression:**
 
-```math
-CR_{total} = CR_{method_1} \times CR_{method_2} \times ... \times CR_{method_n}
-
-```
+$$CR_{total} = CR_{method_1} \times CR_{method_2} \times ... \times CR_{method_n}$$
 
 **Example (Prune + Quantize):**
 
-```math
-CR = CR_{prune} \times CR_{quant} = \frac{1}{1-s} \times \frac{32}{b}
-
-```
+$$CR = CR_{prune} \times CR_{quant} = \frac{1}{1-s} \times \frac{32}{b}$$
 
 For 50% sparsity + INT8:
 
-```math
-CR = 2 \times 4 = 8\times
-
-```
+$$CR = 2 \times 4 = 8\times$$
 
 ### 2. Error Accumulation Analysis
 
 **Single Method Error:**
 
-```math
-\mathcal{L}_{compressed} = \mathcal{L}_{original} + \Delta\mathcal{L}_{method}
-
-```
+$$\mathcal{L}_{compressed} = \mathcal{L}_{original} + \Delta\mathcal{L}_{method}$$
 
 **Combined Error (Worst Case):**
 
-```math
-\Delta\mathcal{L}_{total} \leq \sum_i \Delta\mathcal{L}_{method_i}
-
-```
+$$\Delta\mathcal{L}_{total} \leq \sum_i \Delta\mathcal{L}_{method_i}$$
 
 **With Synergy (Best Case):**
 
-```math
-\Delta\mathcal{L}_{total} < \sum_i \Delta\mathcal{L}_{method_i}
-
-```
+$$\Delta\mathcal{L}_{total} < \sum_i \Delta\mathcal{L}_{method_i}$$
 
 Methods can be synergistic (e.g., pruning removes weights that would be poorly quantized).
 
@@ -71,17 +53,11 @@ Methods can be synergistic (e.g., pruning removes weights that would be poorly q
 
 **Three-Stage Compression:**
 
-```math
-M_{compressed} = \text{Huffman}(\text{Quantize}(\text{Prune}(M)))
-
-```
+$$M_{compressed} = \text{Huffman}(\text{Quantize}(\text{Prune}(M)))$$
 
 1. **Prune:** Remove weights below threshold
 
-```math
-W_{pruned} = W \odot \mathbf{1}_{|W| > \tau}
-
-```math
+$$W_{pruned} = W \odot \mathbf{1}_{|W| > \tau}$$math
 
 2. **Quantize:** Cluster remaining weights
 
@@ -93,10 +69,7 @@ W_{quant} = \arg\min_C \sum_i \min_j \|w_i - c_j\|^2
 
 3. **Huffman Code:** Entropy coding
 
-```math
-\text{bits} \approx H(p) = -\sum_j p_j \log_2 p_j
-
-```math
+$$\text{bits} \approx H(p) = -\sum_j p_j \log_2 p_j$$math
 **Achieved Compression:**
 - AlexNet: 35× (240MB → 6.9MB)
 
@@ -110,29 +83,19 @@ W_{quant} = \arg\min_C \sum_i \min_j \|w_i - c_j\|^2
 
 M_{total} = M_{base} + M_{LoRA} + M_{optimizer} + M_{activations}
 
-```math
-**Base Model (4-bit):**
-
-```
+$$**Base Model (4-bit):**$$
 
 M_{base} = P \times 0.5 \text{ bytes}
 
-```math
-**LoRA Adapters (FP16):**
-
-```
+$$**LoRA Adapters (FP16):**$$
 
 M_{LoRA} = 2 \times r \times d \times L \times 2 \text{ bytes}
 
-```math
-**Optimizer States (AdamW, 8-bit):**
-
-```
+$$**Optimizer States (AdamW, 8-bit):**$$
 
 M_{optimizer} = 2 \times |\theta_{LoRA}| \times 1 \text{ byte}
 
-```math
-**Example (LLaMA-7B, r=16):**
+$$**Example (LLaMA-7B, r=16):**
 - Base: $7B \times 0.5 = 3.5$GB
 
 - LoRA: $\sim 4M \times 2 = 8$MB
@@ -141,14 +104,11 @@ M_{optimizer} = 2 \times |\theta_{LoRA}| \times 1 \text{ byte}
 
 ### 5. Accuracy-Compression Pareto Frontier
 
-**Empirical Scaling Law:**
-
-```
+**Empirical Scaling Law:**$$
 
 \text{Accuracy} \approx A_0 - \alpha \cdot CR^\beta
 
-```math
-Where:
+$$Where:
 
 - $A_0$ = original accuracy
 
@@ -156,39 +116,25 @@ Where:
 
 - $CR$ = compression ratio
 
-**Optimal Pipeline Selection:**
-
-```
+**Optimal Pipeline Selection:**$$
 
 \arg\min_{\text{pipeline}} CR \quad \text{s.t.} \quad \text{Accuracy} \geq A_{threshold}
 
-```math
-### 6. Inference Latency Model
+$$### 6. Inference Latency Model
 
-**Latency Components:**
-
-```
+**Latency Components:**$$
 
 T_{inference} = T_{compute} + T_{memory}
 
-```math
-**Compute Bound:**
-
-```
+$$**Compute Bound:**$$
 
 T_{compute} = \frac{\text{FLOPs}}{\text{Peak FLOPS}}
 
-```math
-**Memory Bound (LLMs):**
-
-```
+$$**Memory Bound (LLMs):**$$
 
 T_{memory} = \frac{\text{Model Size}}{\text{Memory Bandwidth}}
 
-```math
-**Most LLMs are memory-bound:**
-
-```
+$$**Most LLMs are memory-bound:**$$
 
 T_{inference} \approx \frac{P \times b}{BW}
 

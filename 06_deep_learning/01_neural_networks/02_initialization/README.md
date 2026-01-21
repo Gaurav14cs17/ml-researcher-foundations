@@ -51,26 +51,17 @@ Assuming:
 
 Then:
 
-```math
-y_j = \sum_{i=1}^{n_{in}} w_{ji} x_i
+$$y_j = \sum_{i=1}^{n_{in}} w_{ji} x_i
 \mathbb{E}[y_j] = \sum_{i=1}^{n_{in}} \mathbb{E}[w_{ji}] \mathbb{E}[x_i] = 0
-\text{Var}(y_j) = \sum_{i=1}^{n_{in}} \text{Var}(w_{ji} x_i) = n_{in} \cdot \sigma_w^2 \cdot \sigma_x^2
-
-```
+\text{Var}(y_j) = \sum_{i=1}^{n_{in}} \text{Var}(w_{ji} x_i) = n_{in} \cdot \sigma_w^2 \cdot \sigma_x^2$$
 
 **Key Insight:**
 
-```math
-\text{Var}(y) = n_{in} \cdot \sigma_w^2 \cdot \text{Var}(x)
-
-```
+$$\text{Var}(y) = n_{in} \cdot \sigma_w^2 \cdot \text{Var}(x)$$
 
 To maintain $\text{Var}(y) = \text{Var}(x)$:
 
-```math
-\sigma_w^2 = \frac{1}{n_{in}}
-
-```
+$$\sigma_w^2 = \frac{1}{n_{in}}$$
 
 ---
 
@@ -88,31 +79,19 @@ Backward: $\text{Var}(\delta_x) = n_{out} \cdot \sigma_w^2 \cdot \text{Var}(\del
 
 To satisfy both:
 
-```math
-n_{in} \cdot \sigma_w^2 = 1 \quad \text{and} \quad n_{out} \cdot \sigma_w^2 = 1
-
-```
+$$n_{in} \cdot \sigma_w^2 = 1 \quad \text{and} \quad n_{out} \cdot \sigma_w^2 = 1$$
 
 **Compromise:**
 
-```math
-\sigma_w^2 = \frac{2}{n_{in} + n_{out}}
-
-```
+$$\sigma_w^2 = \frac{2}{n_{in} + n_{out}}$$
 
 **Uniform Distribution:**
 
-```math
-W \sim \mathcal{U}\left(-\sqrt{\frac{6}{n_{in} + n_{out}}}, \sqrt{\frac{6}{n_{in} + n_{out}}}\right)
-
-```
+$$W \sim \mathcal{U}\left(-\sqrt{\frac{6}{n_{in} + n_{out}}}, \sqrt{\frac{6}{n_{in} + n_{out}}}\right)$$
 
 **Normal Distribution:**
 
-```math
-W \sim \mathcal{N}\left(0, \frac{2}{n_{in} + n_{out}}\right)
-
-```
+$$W \sim \mathcal{N}\left(0, \frac{2}{n_{in} + n_{out}}\right)$$
 
 ---
 
@@ -122,47 +101,29 @@ W \sim \mathcal{N}\left(0, \frac{2}{n_{in} + n_{out}}\right)
 
 **Problem:** ReLU zeros out half the distribution!
 
-```math
-\text{ReLU}(x) = \max(0, x)
-
-```
+$$\text{ReLU}(x) = \max(0, x)$$
 
 For $x \sim \mathcal{N}(0, \sigma^2)$:
 
-```math
-\text{Var}(\text{ReLU}(x)) = \frac{\sigma^2}{2}
-
-```
+$$\text{Var}(\text{ReLU}(x)) = \frac{\sigma^2}{2}$$
 
 **Proof:**
 
-```math
-\mathbb{E}[\text{ReLU}(x)^2] = \int_0^\infty x^2 \cdot \frac{1}{\sqrt{2\pi}\sigma} e^{-x^2/2\sigma^2} dx = \frac{\sigma^2}{2}
+$$\mathbb{E}[\text{ReLU}(x)^2] = \int_0^\infty x^2 \cdot \frac{1}{\sqrt{2\pi}\sigma} e^{-x^2/2\sigma^2} dx = \frac{\sigma^2}{2}
 \mathbb{E}[\text{ReLU}(x)] = \int_0^\infty x \cdot \frac{1}{\sqrt{2\pi}\sigma} e^{-x^2/2\sigma^2} dx = \frac{\sigma}{\sqrt{2\pi}}
-\text{Var}(\text{ReLU}(x)) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = \frac{\sigma^2}{2} - \frac{\sigma^2}{2\pi} \approx \frac{\sigma^2}{2}
-
-```
+\text{Var}(\text{ReLU}(x)) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = \frac{\sigma^2}{2} - \frac{\sigma^2}{2\pi} \approx \frac{\sigma^2}{2}$$
 
 **Solution:** Double the variance to compensate:
 
-```math
-\sigma_w^2 = \frac{2}{n_{in}}
-
-```
+$$\sigma_w^2 = \frac{2}{n_{in}}$$
 
 **He Normal:**
 
-```math
-W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)
-
-```
+$$W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)$$
 
 **He Uniform:**
 
-```math
-W \sim \mathcal{U}\left(-\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}}\right)
-
-```
+$$W \sim \mathcal{U}\left(-\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}}\right)$$
 
 ---
 
@@ -172,17 +133,11 @@ Leaky ReLU: $f(x) = \max(\alpha x, x)$ where $\alpha \in (0, 1)$
 
 **Variance through Leaky ReLU:**
 
-```math
-\text{Var}(f(x)) = \frac{1 + \alpha^2}{2} \cdot \text{Var}(x)
-
-```
+$$\text{Var}(f(x)) = \frac{1 + \alpha^2}{2} \cdot \text{Var}(x)$$
 
 **Initialization:**
 
-```math
-\sigma_w^2 = \frac{2}{(1 + \alpha^2) \cdot n_{in}}
-
-```
+$$\sigma_w^2 = \frac{2}{(1 + \alpha^2) \cdot n_{in}}$$
 
 ---
 
@@ -202,10 +157,7 @@ Leaky ReLU: $f(x) = \max(\alpha x, x)$ where $\alpha \in (0, 1)$
 
 **Problem in RNNs:** 
 
-```math
-h_t = Wh_{t-1} + Ux_t
-
-```
+$$h_t = Wh_{t-1} + Ux_t$$
 
 After $T$ steps: $h_T = W^T h_0 + ...$
 

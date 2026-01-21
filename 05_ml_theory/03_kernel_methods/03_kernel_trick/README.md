@@ -42,10 +42,7 @@ The **kernel trick** is one of the most elegant ideas in machine learning. It al
 
 Many algorithms require computing inner products in feature space:
 
-```math
-\langle \phi(x), \phi(y) \rangle_{\mathcal{H}}
-
-```
+$$\langle \phi(x), \phi(y) \rangle_{\mathcal{H}}$$
 
 If \(\phi: \mathcal{X} \to \mathcal{H}\) maps to a high-dimensional space \(\mathcal{H}\), direct computation is expensive or impossible.
 
@@ -53,10 +50,7 @@ If \(\phi: \mathcal{X} \to \mathcal{H}\) maps to a high-dimensional space \(\mat
 
 **Definition:** A kernel is a function \(k: \mathcal{X} \times \mathcal{X} \to \mathbb{R}\) such that:
 
-```math
-k(x, y) = \langle \phi(x), \phi(y) \rangle_{\mathcal{H}}
-
-```
+$$k(x, y) = \langle \phi(x), \phi(y) \rangle_{\mathcal{H}}$$
 
 for some feature map \(\phi\) and inner product space \(\mathcal{H}\).
 
@@ -70,10 +64,7 @@ for some feature map \(\phi\) and inner product space \(\mathcal{H}\).
 
 **Definition:** A kernel \(k\) is **positive semi-definite (PSD)** if for any finite set \(\{x_1, \ldots, x_n\} \subset \mathcal{X}\), the Gram matrix:
 
-```math
-K_{ij} = k(x_i, x_j)
-
-```
+$$K_{ij} = k(x_i, x_j)$$
 
 is positive semi-definite: \(\forall \alpha \in \mathbb{R}^n: \alpha^\top K \alpha \geq 0\).
 
@@ -83,10 +74,7 @@ is positive semi-definite: \(\forall \alpha \in \mathbb{R}^n: \alpha^\top K \alp
 
 **Equivalently:** \(k\) is a valid kernel iff there exists a feature map \(\phi\) and an inner product space \(\mathcal{H}\) such that:
 
-```math
-k(x, y) = \langle \phi(x), \phi(y) \rangle_{\mathcal{H}}
-
-```
+$$k(x, y) = \langle \phi(x), \phi(y) \rangle_{\mathcal{H}}$$
 
 ### Proof Sketch (Finite Case)
 
@@ -106,10 +94,7 @@ Given PSD kernel \(k\) and points \(\{x_1, \ldots, x_n\}\):
 
 ### Linear Kernel
 
-```math
-k(x, y) = x^\top y
-
-```
+$$k(x, y) = x^\top y$$
 
 **Feature map:** \(\phi(x) = x\) (identity)
 
@@ -117,10 +102,7 @@ k(x, y) = x^\top y
 
 ### Polynomial Kernel
 
-```math
-k(x, y) = (x^\top y + c)^d
-
-```
+$$k(x, y) = (x^\top y + c)^d$$
 
 **Feature map:** Contains all monomials up to degree \(d\)
 
@@ -128,32 +110,20 @@ k(x, y) = (x^\top y + c)^d
 
 For \(x = [x_1, x_2]^\top\):
 
-```math
-k(x, y) = (x_1 y_1 + x_2 y_2 + 1)^2
-= x_1^2 y_1^2 + 2x_1 x_2 y_1 y_2 + x_2^2 y_2^2 + 2x_1 y_1 + 2x_2 y_2 + 1
-
-```
+$$k(x, y) = (x_1 y_1 + x_2 y_2 + 1)^2
+= x_1^2 y_1^2 + 2x_1 x_2 y_1 y_2 + x_2^2 y_2^2 + 2x_1 y_1 + 2x_2 y_2 + 1$$
 
 Implicit feature map:
 
-```math
-\phi(x) = [x_1^2, \sqrt{2}x_1 x_2, x_2^2, \sqrt{2}x_1, \sqrt{2}x_2, 1]^\top
-
-```
+$$\phi(x) = [x_1^2, \sqrt{2}x_1 x_2, x_2^2, \sqrt{2}x_1, \sqrt{2}x_2, 1]^\top$$
 
 **Verification:**
 
-```math
-\phi(x)^\top \phi(y) = x_1^2 y_1^2 + 2x_1 x_2 y_1 y_2 + x_2^2 y_2^2 + 2x_1 y_1 + 2x_2 y_2 + 1 = k(x, y) \checkmark
-
-```
+$$\phi(x)^\top \phi(y) = x_1^2 y_1^2 + 2x_1 x_2 y_1 y_2 + x_2^2 y_2^2 + 2x_1 y_1 + 2x_2 y_2 + 1 = k(x, y) \checkmark$$
 
 ### Gaussian (RBF) Kernel
 
-```math
-k(x, y) = \exp\left(-\gamma \|x - y\|^2\right) = \exp\left(-\frac{\|x - y\|^2}{2\sigma^2}\right)
-
-```
+$$k(x, y) = \exp\left(-\gamma \|x - y\|^2\right) = \exp\left(-\frac{\|x - y\|^2}{2\sigma^2}\right)$$
 
 **Feature map dimension:** Infinite!
 
@@ -161,20 +131,14 @@ k(x, y) = \exp\left(-\gamma \|x - y\|^2\right) = \exp\left(-\frac{\|x - y\|^2}{2
 
 Using Taylor expansion of exponential:
 
-```math
-e^{-\gamma\|x-y\|^2} = e^{-\gamma\|x\|^2} e^{-\gamma\|y\|^2} e^{2\gamma x^\top y}
-= e^{-\gamma\|x\|^2} e^{-\gamma\|y\|^2} \sum_{n=0}^{\infty} \frac{(2\gamma x^\top y)^n}{n!}
-
-```
+$$e^{-\gamma\|x-y\|^2} = e^{-\gamma\|x\|^2} e^{-\gamma\|y\|^2} e^{2\gamma x^\top y}
+= e^{-\gamma\|x\|^2} e^{-\gamma\|y\|^2} \sum_{n=0}^{\infty} \frac{(2\gamma x^\top y)^n}{n!}$$
 
 Each term in the series corresponds to polynomial features of increasing degree.
 
 ### Laplacian Kernel
 
-```math
-k(x, y) = \exp(-\gamma \|x - y\|_1)
-
-```
+$$k(x, y) = \exp(-\gamma \|x - y\|_1)$$
 
 **Properties:** More robust to outliers than RBF, infinite-dimensional feature space.
 
@@ -212,19 +176,13 @@ For Gram matrix \(K\) with \(K_{ij} = k(x_i, x_j)\):
 
 **Theorem:** Consider the optimization problem:
 
-```math
-\min_{f \in \mathcal{H}_k} \left[\sum_{i=1}^n L(y_i, f(x_i)) + \lambda \|f\|_{\mathcal{H}_k}^2\right]
-
-```
+$$\min_{f \in \mathcal{H}_k} \left[\sum_{i=1}^n L(y_i, f(x_i)) + \lambda \|f\|_{\mathcal{H}_k}^2\right]$$
 
 where \(\mathcal{H}_k\) is the RKHS induced by kernel \(k\).
 
 **Then the optimal solution has the form:**
 
-```math
-f^*(x) = \sum_{i=1}^n \alpha_i k(x, x_i)
-
-```
+$$f^*(x) = \sum_{i=1}^n \alpha_i k(x, x_i)$$
 
 ### Proof Sketch
 

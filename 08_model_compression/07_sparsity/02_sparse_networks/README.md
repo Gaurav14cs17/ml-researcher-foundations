@@ -19,10 +19,7 @@
 
 **Sparsity Ratio:**
 
-```math
-s = \frac{\|\mathbf{w}\|_0}{\text{total params}} = \frac{\#\text{zeros}}{\#\text{total}}
-
-```
+$$s = \frac{\|\mathbf{w}\|_0}{\text{total params}} = \frac{\#\text{zeros}}{\#\text{total}}$$
 
 **Density:** $d = 1 - s$
 
@@ -32,10 +29,7 @@ s = \frac{\|\mathbf{w}\|_0}{\text{total params}} = \frac{\#\text{zeros}}{\#\text
 
 **Compressed Sparse Row (CSR):**
 
-```math
-\text{Storage: } O(\text{nnz} + n)
-
-```
+$$\text{Storage: } O(\text{nnz} + n)$$
 
 Components:
 
@@ -47,10 +41,7 @@ Components:
 
 **Coordinate Format (COO):**
 
-```math
-\text{Storage: } 3 \times \text{nnz}
-
-```
+$$\text{Storage: } 3 \times \text{nnz}$$
 
 Stores (row, col, value) triplets.
 
@@ -68,10 +59,7 @@ Stores (row, col, value) triplets.
 
 **2:4 Sparsity (NVIDIA Ampere):**
 
-```math
-\forall i: \sum_{j=4i}^{4i+3} \mathbf{1}[w_j \neq 0] = 2
-
-```
+$$\forall i: \sum_{j=4i}^{4i+3} \mathbf{1}[w_j \neq 0] = 2$$
 
 **Valid patterns for 2:4:**
 
@@ -85,10 +73,7 @@ Stores (row, col, value) triplets.
 
 **Mathematical Formulation:**
 
-```math
-W_{2:4} = W \odot M_{2:4}
-
-```
+$$W_{2:4} = W \odot M_{2:4}$$
 
 Where $M_{2:4}$ satisfies the 2:4 constraint and minimizes $\|W - W_{2:4}\|_F$.
 
@@ -132,11 +117,8 @@ return m, θ₀
 
 **RigL (Rigged Lottery):**
 
-```math
-\text{Drop: } \arg\min_{|\mathcal{S}|=k} \sum_{i \in \mathcal{S}} |w_i|
-\text{Grow: } \arg\max_{|\mathcal{S}|=k} \sum_{i \in \mathcal{S}} |\nabla_i|
-
-```
+$$\text{Drop: } \arg\min_{|\mathcal{S}|=k} \sum_{i \in \mathcal{S}} |w_i|
+\text{Grow: } \arg\max_{|\mathcal{S}|=k} \sum_{i \in \mathcal{S}} |\nabla_i|$$
 
 Drop smallest magnitude, grow largest gradient.
 
@@ -144,29 +126,20 @@ Drop smallest magnitude, grow largest gradient.
 
 **Standard Attention Complexity:**
 
-```math
-\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d}}\right)V
-\text{Memory: } O(n^2), \quad \text{Compute: } O(n^2 d)
-
-```
+$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d}}\right)V
+\text{Memory: } O(n^2), \quad \text{Compute: } O(n^2 d)$$
 
 **Local Attention:**
 
-```math
-A_{ij} = \begin{cases} \text{attention}(q_i, k_j) & |i-j| \leq w \\ 0 & \text{otherwise} \end{cases}
-\text{Complexity: } O(nw)
-
-```
+$$A_{ij} = \begin{cases} \text{attention}(q_i, k_j) & |i-j| \leq w \\ 0 & \text{otherwise} \end{cases}
+\text{Complexity: } O(nw)$$
 
 **Global + Local (Longformer):**
 - Select $g$ global tokens that attend to all
 
 - All other tokens use local window $w$
 
-```math
-\text{Complexity: } O(n(w + g))
-
-```
+$$\text{Complexity: } O(n(w + g))$$
 
 **Sparse Patterns Comparison:**
 

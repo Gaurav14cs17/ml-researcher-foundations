@@ -27,25 +27,16 @@ For a mini-batch \(\mathcal{B} = \{x_1, \ldots, x_m\}\):
 
 **Step 1: Compute batch statistics**
 
-```math
-\mu_{\mathcal{B}} = \frac{1}{m} \sum_{i=1}^{m} x_i
-\sigma^2_{\mathcal{B}} = \frac{1}{m} \sum_{i=1}^{m} (x_i - \mu_{\mathcal{B}})^2
-
-```
+$$\mu_{\mathcal{B}} = \frac{1}{m} \sum_{i=1}^{m} x_i
+\sigma^2_{\mathcal{B}} = \frac{1}{m} \sum_{i=1}^{m} (x_i - \mu_{\mathcal{B}})^2$$
 
 **Step 2: Normalize**
 
-```math
-\hat{x}_i = \frac{x_i - \mu_{\mathcal{B}}}{\sqrt{\sigma^2_{\mathcal{B}} + \epsilon}}
-
-```
+$$\hat{x}_i = \frac{x_i - \mu_{\mathcal{B}}}{\sqrt{\sigma^2_{\mathcal{B}} + \epsilon}}$$
 
 **Step 3: Scale and shift (learnable)**
 
-```math
-y_i = \gamma \hat{x}_i + \beta
-
-```
+$$y_i = \gamma \hat{x}_i + \beta$$
 
 where:
 
@@ -122,24 +113,15 @@ Given \(\frac{\partial L}{\partial y_i}\), compute gradients with respect to \(\
 
 **Gradient with respect to \(\gamma\):**
 
-```math
-\frac{\partial L}{\partial \gamma} = \sum_{i=1}^{m} \frac{\partial L}{\partial y_i} \cdot \hat{x}_i
-
-```
+$$\frac{\partial L}{\partial \gamma} = \sum_{i=1}^{m} \frac{\partial L}{\partial y_i} \cdot \hat{x}_i$$
 
 **Gradient with respect to \(\beta\):**
 
-```math
-\frac{\partial L}{\partial \beta} = \sum_{i=1}^{m} \frac{\partial L}{\partial y_i}
-
-```
+$$\frac{\partial L}{\partial \beta} = \sum_{i=1}^{m} \frac{\partial L}{\partial y_i}$$
 
 **Gradient with respect to \(\hat{x}_i\):**
 
-```math
-\frac{\partial L}{\partial \hat{x}_i} = \frac{\partial L}{\partial y_i} \cdot \gamma
-
-```
+$$\frac{\partial L}{\partial \hat{x}_i} = \frac{\partial L}{\partial y_i} \cdot \gamma$$
 
 **Gradient with respect to \(\sigma^2_{\mathcal{B}}\):**
 

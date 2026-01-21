@@ -27,17 +27,11 @@
 
 The 2D discrete convolution operation is defined as:
 
-```math
-(f * g)(i, j) = \sum_{m=-\infty}^{\infty} \sum_{n=-\infty}^{\infty} f(m, n) \cdot g(i-m, j-n)
-
-```
+$$(f * g)(i, j) = \sum_{m=-\infty}^{\infty} \sum_{n=-\infty}^{\infty} f(m, n) \cdot g(i-m, j-n)$$
 
 In practice for images (cross-correlation, which deep learning calls "convolution"):
 
-```math
-\text{Output}[i,j] = \sum_{m=0}^{k_h-1} \sum_{n=0}^{k_w-1} \text{Input}[i+m, j+n] \cdot \text{Kernel}[m, n] + b
-
-```
+$$\text{Output}[i,j] = \sum_{m=0}^{k_h-1} \sum_{n=0}^{k_w-1} \text{Input}[i+m, j+n] \cdot \text{Kernel}[m, n] + b$$
 
 Where:
 
@@ -49,10 +43,7 @@ Where:
 
 For input of size $(H_{in}, W_{in})$ with kernel size $k$, padding $p$, stride $s$, and dilation $d$:
 
-```math
-H_{out} = \left\lfloor \frac{H_{in} + 2p - d(k - 1) - 1}{s} + 1 \right\rfloor
-
-```
+$$H_{out} = \left\lfloor \frac{H_{in} + 2p - d(k - 1) - 1}{s} + 1 \right\rfloor$$
 
 **Proof:**
 
@@ -82,10 +73,7 @@ For a convolutional layer with:
 
 - Kernel size $(k_h \times k_w)$
 
-```math
-\text{Parameters} = C_{out} \times (C_{in} \times k_h \times k_w + 1)
-
-```
+$$\text{Parameters} = C_{out} \times (C_{in} \times k_h \times k_w + 1)$$
 
 The "+1" accounts for bias per filter.
 
@@ -102,10 +90,7 @@ Parameters = 64 × (3 × 3 × 3 + 1) = 64 × 28 = 1,792
 
 The receptive field (RF) of a neuron is the region of input it "sees":
 
-```math
-RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i
-
-```
+$$RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i$$
 
 Where:
 
@@ -121,10 +106,7 @@ Base case: $RF_1 = k_1$ (first layer sees kernel-sized region)
 
 Inductive step: Each position at layer $l$ corresponds to $s_{l-1}$ positions at layer $l-1$. Adding $(k_l - 1)$ kernel elements, we get:
 
-```math
-RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i
-
-```
+$$RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i$$
 
 ---
 
@@ -146,10 +128,7 @@ RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i
 
 **Statement:** If input is shifted, output is shifted by the same amount.
 
-```math
-\text{If } x'(i,j) = x(i - \Delta_i, j - \Delta_j), \text{ then } y'(i,j) = y(i - \Delta_i, j - \Delta_j)
-
-```
+$$\text{If } x'(i,j) = x(i - \Delta_i, j - \Delta_j), \text{ then } y'(i,j) = y(i - \Delta_i, j - \Delta_j)$$
 
 **Proof:**
 
@@ -192,26 +171,17 @@ This enables:
 
 ### Forward Pass:
 
-```math
-y = x * w + b
-
-```
+$$y = x * w + b$$
 
 ### Backward Pass (Gradients):
 
 **Gradient w.r.t. weights:**
 
-```math
-\frac{\partial L}{\partial w} = x * \frac{\partial L}{\partial y}
-
-```
+$$\frac{\partial L}{\partial w} = x * \frac{\partial L}{\partial y}$$
 
 **Gradient w.r.t. input:**
 
-```math
-\frac{\partial L}{\partial x} = \frac{\partial L}{\partial y} *_{full} \text{rot}_{180}(w)
-
-```
+$$\frac{\partial L}{\partial x} = \frac{\partial L}{\partial y} *_{full} \text{rot}_{180}(w)$$
 
 Where $*_{full}$ denotes full convolution (with padding = k-1).
 

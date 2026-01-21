@@ -31,10 +31,7 @@ Learning rate scheduling adjusts the learning rate during training. Starting hig
 
 ### SGD Update Rule
 
-```math
-\theta_{t+1} = \theta_t - \eta_t \nabla_\theta \mathcal{L}(\theta_t)
-
-```
+$$\theta_{t+1} = \theta_t - \eta_t \nabla_\theta \mathcal{L}(\theta_t)$$
 
 Where $\eta_t$ is the learning rate at step $t$.
 
@@ -44,10 +41,7 @@ Where $\eta_t$ is the learning rate at step $t$.
 
 For strongly convex functions, SGD converges with rate:
 
-```math
-\mathbb{E}[\|\theta_T - \theta^*\|^2] = O\left(\frac{1}{T}\right) \text{ when } \eta_t = O\left(\frac{1}{t}\right)
-
-```
+$$\mathbb{E}[\|\theta_T - \theta^*\|^2] = O\left(\frac{1}{T}\right) \text{ when } \eta_t = O\left(\frac{1}{t}\right)$$
 
 **Intuition:**
 - **Large LR early:** Explore broadly, escape saddle points
@@ -60,19 +54,13 @@ For strongly convex functions, SGD converges with rate:
 
 ### 1. Constant Learning Rate
 
-```math
-\eta_t = \eta_0
-
-```
+$$\eta_t = \eta_0$$
 
 **Use:** Quick experiments, baselines.
 
 ### 2. Step Decay
 
-```math
-\eta_t = \eta_0 \cdot \gamma^{\lfloor t/s \rfloor}
-
-```
+$$\eta_t = \eta_0 \cdot \gamma^{\lfloor t/s \rfloor}$$
 
 Where $\gamma \in (0, 1)$ is the decay factor and $s$ is the step size.
 
@@ -86,33 +74,21 @@ Where $\gamma \in (0, 1)$ is the decay factor and $s$ is the step size.
 
 ### 3. Exponential Decay
 
-```math
-\eta_t = \eta_0 \cdot \gamma^t
-
-```
+$$\eta_t = \eta_0 \cdot \gamma^t$$
 
 **Continuous version:**
 
-```math
-\eta_t = \eta_0 \cdot e^{-\lambda t}
-
-```
+$$\eta_t = \eta_0 \cdot e^{-\lambda t}$$
 
 ### 4. Polynomial Decay
 
-```math
-\eta_t = \eta_0 \cdot \left(1 - \frac{t}{T}\right)^p
-
-```
+$$\eta_t = \eta_0 \cdot \left(1 - \frac{t}{T}\right)^p$$
 
 Where $p$ controls decay speed (typically $p = 1$ for linear, $p = 2$ for quadratic).
 
 ### 5. Cosine Annealing
 
-```math
-\eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{\pi t}{T}\right)\right)
-
-```
+$$\eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{\pi t}{T}\right)\right)$$
 
 **Properties:**
 - Smooth decay from $\eta_{max}$ to $\eta_{min}$
@@ -123,10 +99,7 @@ Where $p$ controls decay speed (typically $p = 1$ for linear, $p = 2$ for quadra
 
 ### 6. Cosine Annealing with Warm Restarts
 
-```math
-\eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{\pi T_{cur}}{T_i}\right)\right)
-
-```
+$$\eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{\pi T_{cur}}{T_i}\right)\right)$$
 
 Where $T_{cur}$ is steps since last restart and $T_i$ is the $i$-th restart period.
 
@@ -140,10 +113,7 @@ Where $T_{cur}$ is steps since last restart and $T_i$ is the $i$-th restart peri
 
 1. **Adam's running averages:** Not calibrated at start
 
-```math
-m_0 = 0, \quad v_0 = 0
-
-```math
+$$m_0 = 0, \quad v_0 = 0$$math
 Bias correction helps, but initial steps are still noisy.
 
 2. **Large gradients:** Randomly initialized networks have large gradients
@@ -159,18 +129,14 @@ Bias correction helps, but initial steps are still noisy.
 \text{schedule}(t) & t \geq T_{warmup}
 \end{cases}
 
-```math
-### Warmup + Cosine Decay (LLM Standard)
-
-```
+$$### Warmup + Cosine Decay (LLM Standard)$$
 
 \eta_t = \begin{cases}
 \eta_{max} \cdot \frac{t}{T_w} & t < T_w \\
 \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{\pi(t - T_w)}{T - T_w}\right)\right) & t \geq T_w
 \end{cases}
 
-```math
-**Typical values for LLMs:**
+$$**Typical values for LLMs:**
 - $T_w = 2000$ steps (warmup)
 
 - $\eta_{max} = 3 \times 10^{-4}$
@@ -187,9 +153,7 @@ Bias correction helps, but initial steps are still noisy.
 
 2. **Annealing:** LR decreases from $\eta_{max}$ to $\eta_{low}$
 
-3. **Fine-tune:** LR drops further to $\eta_{low}/10$
-
-```
+3. **Fine-tune:** LR drops further to $\eta_{low}/10$$$
 
 \eta_t = \begin{cases}
 \eta_{low} + (\eta_{max} - \eta_{low}) \cdot \frac{t}{T_1} & t < T_1 \\

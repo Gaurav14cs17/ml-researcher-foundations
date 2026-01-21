@@ -25,10 +25,7 @@ Proper weight initialization is crucial for training deep networks. Bad initiali
 
 For a fully connected layer \(y = Wx\) where \(W \in \mathbb{R}^{m \times n}\):
 
-```math
-y_i = \sum_{j=1}^{n} w_{ij} x_j
-
-```
+$$y_i = \sum_{j=1}^{n} w_{ij} x_j$$
 
 **Variance of output:**
 
@@ -77,10 +74,7 @@ Var[W] = 1/n_out
 
 **Xavier compromise:**
 
-```math
-\text{Var}[W] = \frac{2}{n_{in} + n_{out}}
-
-```
+$$\text{Var}[W] = \frac{2}{n_{in} + n_{out}}$$
 
 **Xavier Distributions:**
 
@@ -143,17 +137,11 @@ Var[W] = 2/n_in
 
 **He Initialization:**
 
-```math
-W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)
-
-```
+$$W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)$$
 
 Or for uniform:
 
-```math
-W \sim U\left[-\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}}\right]
-
-```
+$$W \sim U\left[-\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}}\right]$$
 
 ---
 
@@ -174,10 +162,7 @@ W \sim U\left[-\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}}\right]
 
 For LeakyReLU with slope \(\alpha\):
 
-```math
-\text{LeakyReLU}(x) = \begin{cases} x & x > 0 \\ \alpha x & x \leq 0 \end{cases}
-
-```
+$$\text{LeakyReLU}(x) = \begin{cases} x & x > 0 \\ \alpha x & x \leq 0 \end{cases}$$
 
 **Variance factor:**
 
@@ -190,10 +175,7 @@ E[a²] = (1/2)·E[y²|y>0] + (1/2)·α²·E[y²|y<0]
 
 **Adjusted initialization:**
 
-```math
-\text{Var}[W] = \frac{2}{(1 + \alpha^2) \cdot n_{in}}
-
-```
+$$\text{Var}[W] = \frac{2}{(1 + \alpha^2) \cdot n_{in}}$$
 
 ---
 

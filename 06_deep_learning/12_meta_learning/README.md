@@ -43,10 +43,7 @@ A meta-learning problem consists of:
 
 **Meta-objective:**
 
-```math
-\min_\theta \mathbb{E}_{\mathcal{T} \sim p(\mathcal{T})} \left[ \mathcal{L}(\mathcal{A}(\theta, D^{train}), D^{test}) \right]
-
-```
+$$\min_\theta \mathbb{E}_{\mathcal{T} \sim p(\mathcal{T})} \left[ \mathcal{L}(\mathcal{A}(\theta, D^{train}), D^{test}) \right]$$
 
 where \(\mathcal{A}\) is the adaptation algorithm.
 
@@ -62,17 +59,11 @@ Learn an initialization \(\theta\) that can be quickly adapted to any task with 
 
 **Outer loop (meta-update):**
 
-```math
-\theta \leftarrow \theta - \alpha \nabla_\theta \sum_{\mathcal{T}_i} \mathcal{L}_{\mathcal{T}_i}(f_{\theta'_i})
-
-```
+$$\theta \leftarrow \theta - \alpha \nabla_\theta \sum_{\mathcal{T}_i} \mathcal{L}_{\mathcal{T}_i}(f_{\theta'_i})$$
 
 **Inner loop (task-specific adaptation):**
 
-```math
-\theta'_i = \theta - \beta \nabla_\theta \mathcal{L}_{\mathcal{T}_i}(f_\theta)
-
-```
+$$\theta'_i = \theta - \beta \nabla_\theta \mathcal{L}_{\mathcal{T}_i}(f_\theta)$$
 
 ### Complete Derivation
 
@@ -101,10 +92,7 @@ This is why MAML needs second-order derivatives!
 
 Approximate by ignoring second-order terms:
 
-```math
-\nabla_\theta \mathcal{L}(f_{\theta'}) \approx \nabla_{\theta'} \mathcal{L}(f_{\theta'})
-
-```
+$$\nabla_\theta \mathcal{L}(f_{\theta'}) \approx \nabla_{\theta'} \mathcal{L}(f_{\theta'})$$
 
 ```
 Justification:
@@ -127,19 +115,13 @@ Classify by computing distance to class "prototypes" (mean embeddings).
 
 **1. Compute prototypes:**
 
-```math
-c_k = \frac{1}{|S_k|} \sum_{(x_i, y_i) \in S_k} f_\theta(x_i)
-
-```
+$$c_k = \frac{1}{|S_k|} \sum_{(x_i, y_i) \in S_k} f_\theta(x_i)$$
 
 where \(S_k\) is the support set for class \(k\).
 
 **2. Classify by distance:**
 
-```math
-p(y = k | x) = \frac{\exp(-d(f_\theta(x), c_k))}{\sum_{k'} \exp(-d(f_\theta(x), c_{k'}))}
-
-```
+$$p(y = k | x) = \frac{\exp(-d(f_\theta(x), c_k))}{\sum_{k'} \exp(-d(f_\theta(x), c_{k'}))}$$
 
 ### Mathematical Justification
 
@@ -173,17 +155,11 @@ The mean minimizes sum of squared distances.
 
 ### Attention-based Classification
 
-```math
-p(y|x, S) = \sum_{(x_i, y_i) \in S} a(x, x_i) \cdot y_i
-
-```
+$$p(y|x, S) = \sum_{(x_i, y_i) \in S} a(x, x_i) \cdot y_i$$
 
 where attention weights:
 
-```math
-a(x, x_i) = \frac{\exp(c(f(x), g(x_i)))}{\sum_j \exp(c(f(x), g(x_j)))}
-
-```
+$$a(x, x_i) = \frac{\exp(c(f(x), g(x_i)))}{\sum_j \exp(c(f(x), g(x_j)))}$$
 
 **Key differences from Prototypical:**
 - Soft attention over all support examples
